@@ -1,0 +1,38 @@
+#%Module
+#
+# SuiteSparse 5.4.0 (System gcc-7.4.0)
+#
+#
+set	version		5.4.0
+
+proc ModulesHelp { } {
+	global version
+        puts stderr "\tSets up the environment for SuiteSparse $version (System gcc-7.4.0)\n"
+        puts stderr "\t- PATH"
+        puts stderr "\t- SUITESPARSE_ROOT"
+        puts stderr "\t- SUITESPARSE_INCDIR"
+        puts stderr "\t- SUITESPARSE_LIBDIR"
+        puts stderr "\t- SUITESPARSE_INCLUDEDIR"
+        puts stderr "\t- SUITESPARSE_LIBRARYDIR"
+        puts stderr "\t- LD_LIBRARY_PATH\n"
+        puts stderr "\t- LD_RUN_PATH\n"
+}
+
+module-whatis "sets up the environment for SuiteSparse 5.4.0 (System gcc-7.4.0-1ubuntu1~18.04.1)"
+
+prereq openblas/dynamic/0.3.7
+
+set             pkghome          /cm/shared/apps/suitesparse/gcc/$version
+
+setenv		SUITESPARSE_ROOT       $pkghome
+setenv		SUITESPARSE_BASE       $pkghome
+setenv		SUITESPARSE_INCLUDEDIR $pkghome/include
+setenv		SUITESPARSE_LIBRARYDIR $pkghome/lib
+setenv		SUITESPARSE_INCDIR     $pkghome/include
+setenv		SUITESPARSE_LIBDIR     $pkghome/lib
+
+prepend-path    LD_LIBRARY_PATH  $pkghome/lib
+
+unset           pkghome
+
+set MSG "SuiteSparse $version (System gcc-7.4.0-1ubuntu1~18.04.1)"
