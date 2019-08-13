@@ -1,0 +1,36 @@
+#%Module
+#
+# SCOTCH 6.0.7 (System gcc-7.4.0)
+#
+#
+set	version		6.0.7
+
+proc ModulesHelp { } {
+	global version
+        puts stderr "\tSets up the environment for SCOTCH $version (System gcc-7.4.0)\n"
+        puts stderr "\t- PATH"
+        puts stderr "\t- SCOTCH_ROOT"
+        puts stderr "\t- SCOTCH_INCDIR"
+        puts stderr "\t- SCOTCH_LIBDIR"
+        puts stderr "\t- SCOTCH_INCLUDEDIR"
+        puts stderr "\t- SCOTCH_LIBRARYDIR"
+        puts stderr "\t- LD_LIBRARY_PATH\n"
+        puts stderr "\t- LD_RUN_PATH\n"
+}
+
+module-whatis "sets up the environment for SCOTCH 6.0.7 (System gcc-7.4.0-1ubuntu1~18.04.1)"
+
+set             pkghome          /cm/shared/apps/scotch/gcc/$version
+
+setenv		SCOTCH_ROOT       $pkghome
+setenv		SCOTCH_BASE       $pkghome
+setenv		SCOTCH_INCLUDEDIR $pkghome/include
+setenv		SCOTCH_LIBRARYDIR $pkghome/lib
+setenv		SCOTCH_INCDIR     $pkghome/include
+setenv		SCOTCH_LIBDIR     $pkghome/lib
+
+prepend-path    LD_LIBRARY_PATH  $pkghome/lib
+
+unset           pkghome
+
+set MSG "SCOTCH $version (System gcc-7.4.0-1ubuntu1~18.04.1)"
