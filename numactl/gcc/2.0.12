@@ -1,0 +1,36 @@
+#%Module
+#
+# numactl 2.0.12 (System gcc-7.4.0)
+#
+#
+set	version		2.0.12
+
+proc ModulesHelp { } {
+	global version
+        puts stderr "\tSets up the environment for numactl $version (System gcc-7.4.0)\n"
+        puts stderr "\t- PATH"
+        puts stderr "\t- NUMACTL_ROOT"
+        puts stderr "\t- NUMACTL_INCDIR"
+        puts stderr "\t- NUMACTL_LIBDIR"
+        puts stderr "\t- NUMACTL_INCLUDEDIR"
+        puts stderr "\t- NUMACTL_LIBRARYDIR"
+        puts stderr "\t- LD_LIBRARY_PATH\n"
+        puts stderr "\t- LD_RUN_PATH\n"
+}
+
+module-whatis "sets up the environment for numactl 2.0.12 (System gcc-7.4.0-1ubuntu1~18.04.1)"
+
+set             pkghome          /cm/shared/apps/numactl/gcc/$version
+
+setenv		NUMACTL_ROOT       $pkghome
+setenv		NUMACTL_BASE       $pkghome
+setenv		NUMACTL_INCLUDEDIR $pkghome/include
+setenv		NUMACTL_LIBRARYDIR $pkghome/lib
+setenv		NUMACTL_INCDIR     $pkghome/include
+setenv		NUMACTL_LIBDIR     $pkghome/lib
+
+prepend-path    LD_LIBRARY_PATH  $pkghome/lib
+
+unset           pkghome
+
+set MSG "numactl $version (System gcc-7.4.0-1ubuntu1~18.04.1)"
