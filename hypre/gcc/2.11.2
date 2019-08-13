@@ -3,19 +3,21 @@
 # HYPRE 2.11.2 (System gcc-7.4.0)
 #
 #
-set	version		2.11.2
+set version 2.11.2
 
 proc ModulesHelp { } {
 	global version
         puts stderr "\tSets up the environment for HYPRE $version (System gcc-7.4.0)\n"
-        puts stderr "\t- PATH"
         puts stderr "\t- HYPRE_ROOT"
+        puts stderr "\t- HYPRE_BASE"
         puts stderr "\t- HYPRE_INCDIR"
         puts stderr "\t- HYPRE_LIBDIR"
         puts stderr "\t- HYPRE_INCLUDEDIR"
         puts stderr "\t- HYPRE_LIBRARYDIR"
-        puts stderr "\t- LD_LIBRARY_PATH\n"
-        puts stderr "\t- LD_RUN_PATH\n"
+        puts stderr "\t- C_INCLUDE_PATH"
+        puts stderr "\t- CPLUS_INCLUDE_PATH"
+        puts stderr "\t- LIBRARY_PATH"
+        puts stderr "\t- LD_LIBRARY_PATH"
 }
 
 module-whatis "sets up the environment for HYPRE 2.11.2 (System gcc-7.4.0-1ubuntu1~18.04.1)"
@@ -24,18 +26,20 @@ prereq numactl/gcc/2.0.12
 prereq openblas/dynamic/0.3.7
 prereq openmpi/gcc/64/1.10.7
 
-set             pkghome          /cm/shared/apps/hypre/gcc/$version
+set pkghome /cm/shared/apps/hypre/gcc/$version
 
-setenv		HYPRE_ROOT       $pkghome
-setenv		HYPRE_BASE       $pkghome
-setenv		HYPRE_INCLUDEDIR $pkghome/include
-setenv		HYPRE_LIBRARYDIR $pkghome/lib
-setenv		HYPRE_INCDIR     $pkghome/include
-setenv		HYPRE_LIBDIR     $pkghome/lib
+setenv HYPRE_ROOT $pkghome
+setenv HYPRE_BASE $pkghome
+setenv HYPRE_INCDIR $pkghome/include
+setenv HYPRE_LIBDIR $pkghome/lib
+setenv HYPRE_INCLUDEDIR $pkghome/include
+setenv HYPRE_LIBRARYDIR $pkghome/lib
 
-prepend-path    LD_LIBRARY_PATH  $pkghome/lib
-prepend-path    INCLUDE		 $pkghome/include
+prepend-path C_INCLUDE_PATH $pkghome/include
+prepend-path CPLUS_INCLUDE_PATH $pkghome/include
+prepend-path LIBRARY_PATH $pkghome/lib
+prepend-path LD_LIBRARY_PATH $pkghome/lib
 
-unset           pkghome
+unset pkghome
 
 set MSG "HYPRE $version (System gcc-7.4.0-1ubuntu1~18.04.1)"
