@@ -37,6 +37,12 @@ pushd ${BUILD_DIR}/${SRC_DIR}
 make config shared=1 prefix=${PKG_INSTALL_DIR}
 make
 make install DESTDIR=${DESTDIR}
+
+# Workaround for an issue that causes metis.h to not be installed
+# (see http://glaros.dtc.umn.edu/gkhome/node/832).
+echo "Copying ${BUILD_DIR}/${SRC_DIR}/build/Linux-x86_64/metis/include/metis.h to ${DESTDIR}/${PKG_INSTALL_DIR}/include"
+cp build/Linux-x86_64/metis/include/metis.h ${DESTDIR}/${PKG_INSTALL_DIR}/include
+
 popd
 
 
