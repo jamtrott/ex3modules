@@ -1,0 +1,43 @@
+#%Module
+#
+# hwloc 2.0.4 (System gcc-7.4.0)
+#
+#
+set version 2.0.4
+
+proc ModulesHelp { } {
+	global version
+        puts stderr "\tSets up the environment for hwloc $version (System gcc-7.4.0)\n"
+        puts stderr "\t- HWLOC_ROOT"
+        puts stderr "\t- HWLOC_INCDIR"
+        puts stderr "\t- HWLOC_LIBDIR"
+        puts stderr "\t- HWLOC_INCLUDEDIR"
+        puts stderr "\t- HWLOC_LIBRARYDIR"
+        puts stderr "\t- PATH"
+        puts stderr "\t- C_INCLUDE_PATH"
+        puts stderr "\t- CPLUS_INCLUDE_PATH"
+        puts stderr "\t- LIBRARY_PATH"
+        puts stderr "\t- LD_LIBRARY_PATH"
+        puts stderr "\t- MANPATH"
+}
+
+module-whatis "sets up the environment for hwloc 2.0.4 (System gcc-7.4.0-1ubuntu1~18.04.1)"
+
+set pkghome /cm/shared/apps/hwloc/gcc/$version
+
+setenv HWLOC_ROOT $pkghome
+setenv HWLOC_INCDIR $pkghome/include
+setenv HWLOC_LIBDIR $pkghome/lib
+setenv HWLOC_INCLUDEDIR $pkghome/include
+setenv HWLOC_LIBRARYDIR $pkghome/lib
+
+prepend-path PATH $pkghome/bin
+prepend-path C_INCLUDE_PATH $pkghome/include
+prepend-path CPLUS_INCLUDE_PATH $pkghome/include
+prepend-path LIBRARY_PATH $pkghome/lib
+prepend-path LD_LIBRARY_PATH $pkghome/lib
+prepend-path MANPATH $pkghome/share/man
+
+unset pkghome
+
+set MSG "hwloc $version (System gcc-7.4.0-1ubuntu1~18.04.1)"
