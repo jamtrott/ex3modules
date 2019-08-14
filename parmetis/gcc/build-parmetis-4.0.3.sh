@@ -16,7 +16,7 @@ PKG_MODULE_DIR=$(dirname ${MODULEFILES_DIR}/${PKG_MODULE})
 
 # Load prerequisite modules
 module load openblas/dynamic/0.3.7
-module load openmpi/gcc/64/1.10.7
+module load openmpi/gcc/64/4.0.1
 
 # Set up build and install directories
 OUT_DIR=$(mktemp -d -t ${PKG_NAME}-${PKG_VERSION}-XXXXXX)
