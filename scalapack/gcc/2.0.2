@@ -1,0 +1,29 @@
+#%Module
+#
+# ScaLAPACK 2.0.2 (System gcc-7.4.0)
+#
+#
+set version 2.0.2
+
+proc ModulesHelp { } {
+	global version
+        puts stderr "\tSets up the environment for ScaLAPACK $version (System gcc-7.4.0)\n"
+        puts stderr "\t- SCALAPACK_ROOT"
+        puts stderr "\t- LIBRARY_PATH"
+        puts stderr "\t- LD_LIBRARY_PATH"
+}
+
+module-whatis "sets up the environment for ScaLAPACK 2.0.2 (System gcc-7.4.0-1ubuntu1~18.04.1)"
+
+prereq openblas/dynamic/0.3.7
+prereq openmpi/gcc/64/4.0.1
+
+set pkghome /cm/shared/apps/scalapack/gcc/$version
+
+setenv SCALAPACK_ROOT $pkghome
+prepend-path LIBRARY_PATH $pkghome/lib
+prepend-path LD_LIBRARY_PATH $pkghome/lib
+
+unset pkghome
+
+set MSG "ScaLAPACK $version (System gcc-7.4.0-1ubuntu1~18.04.1)"
