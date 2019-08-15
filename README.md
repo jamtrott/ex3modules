@@ -13,6 +13,7 @@ The available modules are shown in the table below.
 | [METIS](http://glaros.dtc.umn.edu/gkhome/metis/metis/overview) | 5.1.0 | | |
 | [MUMPS](http://mumps.enseeiht.fr/) | 5.2.1 | BLAS, MPI, METIS, ParMETIS, SCOTCH, ScaLAPACK | |
 | [numactl](https://github.com/numactl/numactl) | 2.0.12 | | |
+| [patchelf](https://nixos.org/patchelf.html) | 0.10 | | |
 | [ParMETIS](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview) | 4.0.3 | BLAS, MPI | |
 | [ScaLAPACK](http://www.netlib.org/scalapack/) | 2.0.2 | BLAS, MPI | |
 | [SCOTCH](https://www.labri.fr/perso/pelegrin/scotch/) | 6.0.7 | MPI | Includes PT-SCOTCH for parallel graph partitioning |
