@@ -1,0 +1,27 @@
+#%Module
+#
+# FFC 2019.1.0 (System python-3.7.4)
+#
+#
+set version 2019.1.0
+
+proc ModulesHelp { } {
+	global version
+        puts stderr "\tSets up the environment for FFC $version (System python-3.7.4)\n"
+        puts stderr "\t- FFC_ROOT"
+        puts stderr "\t- PATH"
+        puts stderr "\t- PYTHONPATH"
+        puts stderr "\t- MANPATH"
+}
+
+module-whatis "FEniCS Form Compiler for finite element variational forms"
+module-whatis "https://bitbucket.org/fenics-project/ffc/"
+
+set pkghome /cm/shared/apps/ffc/gcc/$version
+setenv FFC_ROOT $pkghome
+prepend-path PATH $pkghome/bin
+prepend-path PYTHONPATH $pkghome/lib/python3.7/site-packages
+prepend-path MANPATH $pkghome/share/man
+unset pkghome
+
+set MSG "FFC $version (System python-3.7.4)"
