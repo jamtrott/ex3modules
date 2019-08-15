@@ -31,9 +31,36 @@ curl -o ${SRC_PKG} ${SRC_URL}
 # Unpack
 tar -C ${BUILD_DIR} -xzvf ${SRC_PKG}
 
+# Modify source to allow correct shared library linking
+grep -lr '$(AR) $(ARFLAGS) $(@) $(^)' ${BUILD_DIR}/${SRC_DIR} | xargs sed -i 's,$(AR) $(ARFLAGS) $(@) $(^),$(AR) $(ARFLAGS) $(@) $(^) $(DYNLDFLAGS),g'
+grep -lr '$(AR) $(ARFLAGS) $(@) $(?)' ${BUILD_DIR}/${SRC_DIR} | xargs sed -i 's,$(AR) $(ARFLAGS) $(@) $(?),$(AR) $(ARFLAGS) $(@) $(?) $(DYNLDFLAGS),g'
+
 # Build
 pushd ${BUILD_DIR}/${SRC_DIR}
-ln -s Make.inc/Makefile.inc.x86-64_pc_linux2.shlib Makefile.inc
+cat > Makefile.inc <<'EOF'
+EXE             =
+LIB             = .so
+OBJ             = .o
+MAKE            = make
+AR              = gcc
+ARFLAGS         = -shared -o
+CAT             = cat
+CCS             = gcc
+CCP             = mpicc
+CCD             = gcc
+CFLAGS          = -O3 -DCOMMON_FILE_COMPRESS_GZ -DCOMMON_PTHREAD -DCOMMON_RANDOM_FIXED_SEED -DSCOTCH_RENAME -DSCOTCH_PTHREAD \
+-Drestrict=__restrict -DIDXSIZE64
+CLIBFLAGS       = -shared -fPIC
+LDFLAGS         = -lz -lm -lrt -pthread
+DYNLDFLAGS      = $(LDFLAGS)
+CP              = cp
+LEX             = flex -Pscotchyy -olex.yy.c
+LN              = ln
+MKDIR           = mkdir -p
+MV              = mv
+RANLIB          = echo
+YACC            = bison -pscotchyy -y -b y
+EOF
 make scotch ptscotch esmumps ptesmumps --jobs=1 # Parallel builds not supported
 make prefix=${DESTDIR} install
 popd
