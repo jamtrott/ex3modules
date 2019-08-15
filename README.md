@@ -7,6 +7,7 @@ The available modules are shown in the table below.
 
 | Module       | Version | Dependencies | Notes |
 | :---         | ---:    | :---         | :---  |
+| [cmake](https://cmake.org) | 3.15.2 | | |
 | [dijitso](https://bitbucket.org/fenics-project/dijitso/src/master/) | 2019.1.0 | Python | fenics-2019.1.0 |
 | [Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) | 3.3.7 | Optionally depends on boost, mpfr, gmp, suitesparse, superlu | |
 | [FFC](https://bitbucket.org/fenics-project/ffc/src/master/) | 2019.1.0 | Python | fenics-2019.1.0 |
