@@ -9,7 +9,6 @@ proc ModulesHelp { } {
 	global version
         puts stderr "\tSets up the environment for ParMETIS $version (System gcc-7.4.0)\n"
         puts stderr "\t- PARMETIS_ROOT"
-        puts stderr "\t- PARMETIS_BASE"
         puts stderr "\t- PARMETIS_INCDIR"
         puts stderr "\t- PARMETIS_LIBDIR"
         puts stderr "\t- PARMETIS_INCLUDEDIR"
@@ -22,14 +21,13 @@ proc ModulesHelp { } {
 }
 
 module-whatis "sets up the environment for ParMETIS 4.0.3 (System gcc-7.4.0-1ubuntu1~18.04.1)"
+module-whatis "Homepage: http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview            "
 
-prereq numactl/gcc/2.0.12
 prereq openmpi/gcc/64/4.0.1
 
 set pkghome /cm/shared/apps/parmetis/gcc/$version
 
 setenv PARMETIS_ROOT $pkghome
-setenv PARMETIS_BASE $pkghome
 setenv PARMETIS_INCDIR $pkghome/include
 setenv PARMETIS_LIBDIR $pkghome/lib
 setenv PARMETIS_INCLUDEDIR $pkghome/include
