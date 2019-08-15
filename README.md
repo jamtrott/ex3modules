@@ -26,3 +26,4 @@ The available modules are shown in the table below.
 | [SuiteSparse](http://faculty.cse.tamu.edu/davis/suitesparse.html) | 5.4.0 | BLAS | |
 | [SuperLU](https://github.com/xiaoyeli/superlu) | 5.2.1 | BLAS | |
 | [SuperLU\_DIST](https://github.com/xiaoyeli/superlu_dist) | 6.1.1 | BLAS, ParMETIS | |
+| [ufl](https://bitbucket.org/fenics-project/ufl/src/master/) | 2019.1.0 | Python | fenics-2019.1.0 |
