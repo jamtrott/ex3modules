@@ -1,0 +1,41 @@
+#%Module
+#
+# HDF5 1.10.5 (System gcc-7.4.0)
+#
+#
+set version 1.10.5
+
+proc ModulesHelp { } {
+	global version
+        puts stderr "\tSets up the environment for HDF5 $version (System gcc-7.4.0)\n"
+        puts stderr "\t- HDF5_ROOT"
+        puts stderr "\t- HDF5_INCDIR"
+        puts stderr "\t- HDF5_LIBDIR"
+        puts stderr "\t- HDF5_INCLUDEDIR"
+        puts stderr "\t- HDF5_LIBRARYDIR"
+        puts stderr "\t- PATH"
+        puts stderr "\t- C_INCLUDE_PATH"
+        puts stderr "\t- CPLUS_INCLUDE_PATH"
+        puts stderr "\t- LIBRARY_PATH"
+        puts stderr "\t- LD_LIBRARY_PATH"
+}
+
+module-whatis "sets up the environment for HDF5 1.10.5 (System gcc-7.4.0-1ubuntu1~18.04.1)"
+
+set pkghome /cm/shared/apps/hdf5/gcc/$version
+
+setenv HDF5_ROOT $pkghome
+setenv HDF5_INCDIR $pkghome/include
+setenv HDF5_LIBDIR $pkghome/lib
+setenv HDF5_INCLUDEDIR $pkghome/include
+setenv HDF5_LIBRARYDIR $pkghome/lib
+
+prepend-path PATH $pkghome/bin
+prepend-path C_INCLUDE_PATH $pkghome/include
+prepend-path CPLUS_INCLUDE_PATH $pkghome/include
+prepend-path LIBRARY_PATH $pkghome/lib
+prepend-path LD_LIBRARY_PATH $pkghome/lib
+
+unset pkghome
+
+set MSG "HDF5 $version (System gcc-7.4.0-1ubuntu1~18.04.1)"
