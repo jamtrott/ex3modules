@@ -2,9 +2,9 @@
 
 # Package details
 PKG_NAME=hypre
-PKG_VERSION=2.11.2
+PKG_VERSION=2.17.0
 MODULEFILE=$(realpath ${PKG_VERSION})
-SRC_URL=https://computing.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods/download/hypre-${PKG_VERSION}.tar.gz
+SRC_URL=https://github.com/hypre-space/hypre/archive/v${PKG_VERSION}.tar.gz
 SRC_DIR=${PKG_NAME}-${PKG_VERSION}/src
 
 # Set up installation paths
@@ -28,7 +28,7 @@ mkdir -p ${DESTDIR}
 
 # Download package
 SRC_PKG=${BUILD_DIR}/${PKG_NAME}-${PKG_VERSION}.tar.gz
-curl -o ${SRC_PKG} ${SRC_URL}
+curl -Lo ${SRC_PKG} ${SRC_URL}
 
 # Unpack
 tar -C ${BUILD_DIR} -xzvf ${SRC_PKG}
