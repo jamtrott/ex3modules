@@ -8,7 +8,7 @@ The available modules are shown in the table below.
 | Module       | Version | Dependencies | Notes |
 | :---         | ---:    | :---         | :---  |
 | [hwloc](https://www.open-mpi.org/projects/hwloc/) | 2.0.4 | | |
-| [HYPRE](https://computing.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods) | 2.11.2 | numactl, BLAS, MPI | |
+| [HYPRE](https://computing.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods) | 2.17.0 | numactl, BLAS, MPI | |
 | [knem](http://knem.gforge.inria.fr/) | 1.1.3 | hwloc | |
 | [METIS](http://glaros.dtc.umn.edu/gkhome/metis/metis/overview) | 5.1.0 | | |
 | [MUMPS](http://mumps.enseeiht.fr/) | 5.2.1 | BLAS, MPI, METIS, ParMETIS, SCOTCH, ScaLAPACK | |
