@@ -1,0 +1,23 @@
+#%Module -*- tcl -*-
+##
+## dot modulefile
+##
+proc ModulesHelp { } {
+  global openmpiversion
+
+  puts stderr "\tAdds OpenMPI ver.4.0.1 to your environment variables,"
+}
+
+module-whatis "adds OpenMPI ver.4.0.1 to your environment variables"
+
+set              openmpiversion    4.0.1
+set              root              /cm/shared/apps/openmpi/gcc/64/$openmpiversion
+
+prepend-path     PATH              $root/bin
+prepend-path     MANPATH           $root/share/man/
+setenv           MPI_HOME          $root
+setenv           MPI_RUN           $root/bin/mpirun
+
+prepend-path     LD_RUN_PATH       $root/lib64
+prepend-path     LD_LIBRARY_PATH   $root/lib64
+prepend-path     CPATH             $root/include

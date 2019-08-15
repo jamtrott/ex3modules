@@ -13,6 +13,7 @@ The available modules are shown in the table below.
 | [METIS](http://glaros.dtc.umn.edu/gkhome/metis/metis/overview) | 5.1.0 | | |
 | [MUMPS](http://mumps.enseeiht.fr/) | 5.2.1 | BLAS, MPI, METIS, ParMETIS, SCOTCH, ScaLAPACK | |
 | [numactl](https://github.com/numactl/numactl) | 2.0.12 | | |
+| [OpenMPI](https://www.open-mpi.org) | 4.0.1 | knem | |
 | [patchelf](https://nixos.org/patchelf.html) | 0.10 | | |
 | [ParMETIS](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview) | 4.0.3 | BLAS, MPI | |
 | [ScaLAPACK](http://www.netlib.org/scalapack/) | 2.0.2 | BLAS, MPI | |
