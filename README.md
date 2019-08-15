@@ -7,6 +7,7 @@ The available modules are shown in the table below.
 
 | Module       | Version | Dependencies | Notes |
 | :---         | ---:    | :---         | :---  |
+| [dijitso](https://bitbucket.org/fenics-project/dijitso/src/master/) | 2019.1.0 | Python | fenics-2019.1.0 |
 | [Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) | 3.3.7 | Optionally depends on boost, mpfr, gmp, suitesparse, superlu | |
 | [FIAT](https://bitbucket.org/fenics-project/fiat/src/master/) | 2019.1.0 | Python | fenics-2019.1.0 |
 | [HDF5](https://www.hdfgroup.org/solutions/hdf5/) | 1.10.5 | MPI | |
