@@ -21,4 +21,4 @@ The available modules are shown in the table below.
 | [SCOTCH](https://www.labri.fr/perso/pelegrin/scotch/) | 6.0.7 | MPI | Includes PT-SCOTCH for parallel graph partitioning |
 | [SuiteSparse](http://faculty.cse.tamu.edu/davis/suitesparse.html) | 5.4.0 | BLAS | |
 | [SuperLU](https://github.com/xiaoyeli/superlu) | 5.2.1 | BLAS | |
-| [SuperLU_DIST](https://github.com/xiaoyeli/superlu_dist) | 6.1.1 | BLAS, ParMETIS | |
+| [SuperLU\_DIST](https://github.com/xiaoyeli/superlu_dist) | 6.1.1 | BLAS, ParMETIS | |
