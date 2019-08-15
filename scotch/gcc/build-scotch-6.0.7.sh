@@ -34,7 +34,7 @@ tar -C ${BUILD_DIR} -xzvf ${SRC_PKG}
 # Build
 pushd ${BUILD_DIR}/${SRC_DIR}
 ln -s Make.inc/Makefile.inc.x86-64_pc_linux2.shlib Makefile.inc
-make scotch ptscotch esmumps ptesmumps -j
+make scotch ptscotch esmumps ptesmumps --jobs=1 # Parallel builds not supported
 make prefix=${DESTDIR} install
 popd
 

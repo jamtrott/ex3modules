@@ -9,7 +9,6 @@ proc ModulesHelp { } {
 	global version
         puts stderr "\tSets up the environment for SCOTCH $version (System gcc-7.4.0)\n"
         puts stderr "\t- SCOTCH_ROOT"
-        puts stderr "\t- SCOTCH_BASE"
         puts stderr "\t- SCOTCH_INCDIR"
         puts stderr "\t- SCOTCH_LIBDIR"
         puts stderr "\t- SCOTCH_INCLUDEDIR"
@@ -23,13 +22,13 @@ proc ModulesHelp { } {
 }
 
 module-whatis "sets up the environment for SCOTCH 6.0.7 (System gcc-7.4.0-1ubuntu1~18.04.1)"
+module-whatis "https://www.labri.fr/perso/pelegrin/scotch/"
 
 prereq openmpi/gcc/64/4.0.1
 
 set pkghome /cm/shared/apps/scotch/gcc/$version
 
 setenv SCOTCH_ROOT $pkghome
-setenv SCOTCH_BASE $pkghome
 setenv SCOTCH_INCDIR $pkghome/include
 setenv SCOTCH_LIBDIR $pkghome/lib
 setenv SCOTCH_INCLUDEDIR $pkghome/include
