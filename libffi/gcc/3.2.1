@@ -27,13 +27,13 @@ module-whatis "https://sourceware.org/libffi/"
 set pkghome /cm/shared/apps/libffi/gcc/$version
 
 setenv LIBFFI_ROOT $pkghome
-setenv LIBFFI_INCDIR $pkghome/lib/libffi-3.2.1/include/ffi
+setenv LIBFFI_INCDIR $pkghome/lib/libffi-3.2.1/include
 setenv LIBFFI_LIBDIR $pkghome/lib
-setenv LIBFFI_INCLUDEDIR $pkghome/lib/libffi-3.2.1/include/ffi
+setenv LIBFFI_INCLUDEDIR $pkghome/lib/libffi-3.2.1/include
 setenv LIBFFI_LIBRARYDIR $pkghome/lib
 
-prepend-path C_INCLUDE_PATH $pkghome/lib/libffi-3.2.1/include/ffi
-prepend-path CPLUS_INCLUDE_PATH $pkghome/lib/libffi-3.2.1/include/ffi
+prepend-path C_INCLUDE_PATH $pkghome/lib/libffi-3.2.1/include
+prepend-path CPLUS_INCLUDE_PATH $pkghome/lib/libffi-3.2.1/include
 prepend-path LIBRARY_PATH $pkghome/lib
 prepend-path LD_LIBRARY_PATH $pkghome/lib
 prepend-path MANPATH $pkghome/share/man
