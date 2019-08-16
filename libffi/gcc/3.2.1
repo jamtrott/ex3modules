@@ -1,0 +1,44 @@
+#%Module
+#
+# libffi 3.2.1 (System gcc-7.4.0)
+#
+#
+set version 3.2.1
+
+proc ModulesHelp { } {
+	global version
+        puts stderr "\tSets up the environment for libffi $version (System gcc-7.4.0)\n"
+        puts stderr "\t- LIBFFI_ROOT"
+        puts stderr "\t- LIBFFI_INCDIR"
+        puts stderr "\t- LIBFFI_LIBDIR"
+        puts stderr "\t- LIBFFI_INCLUDEDIR"
+        puts stderr "\t- LIBFFI_LIBRARYDIR"
+        puts stderr "\t- C_INCLUDE_PATH"
+        puts stderr "\t- CPLUS_INCLUDE_PATH"
+        puts stderr "\t- LIBRARY_PATH"
+        puts stderr "\t- LD_LIBRARY_PATH"
+        puts stderr "\t- MANPATH"
+        puts stderr "\t- INFOPATH"
+}
+
+module-whatis "A Portable Foreign Function Interface Library"
+module-whatis "https://sourceware.org/libffi/"
+
+set pkghome /cm/shared/apps/libffi/gcc/$version
+
+setenv LIBFFI_ROOT $pkghome
+setenv LIBFFI_INCDIR $pkghome/lib/libffi-3.2.1/include/ffi
+setenv LIBFFI_LIBDIR $pkghome/lib
+setenv LIBFFI_INCLUDEDIR $pkghome/lib/libffi-3.2.1/include/ffi
+setenv LIBFFI_LIBRARYDIR $pkghome/lib
+
+prepend-path C_INCLUDE_PATH $pkghome/lib/libffi-3.2.1/include/ffi
+prepend-path CPLUS_INCLUDE_PATH $pkghome/lib/libffi-3.2.1/include/ffi
+prepend-path LIBRARY_PATH $pkghome/lib
+prepend-path LD_LIBRARY_PATH $pkghome/lib
+prepend-path MANPATH $pkghome/share/man
+prepend-path INFOPATH $pkghome/share/info
+
+unset pkghome
+
+set MSG "libffi $version (System gcc-7.4.0-1ubuntu1~18.04.1)"
