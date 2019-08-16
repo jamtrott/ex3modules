@@ -23,6 +23,7 @@ The available modules are shown in the table below.
 | [patchelf](https://nixos.org/patchelf.html) | 0.10 | | |
 | [ParMETIS](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview) | 4.0.3 | BLAS, MPI | |
 | [PETSc](https://www.mcs.anl.gov/petsc/) | 3.11.3 | boost, BLAS, MPI, hwloc, hypre, metis, mumps, parmetis, scalapack, scotch, suitesparse, superlu, superlu\_dist | |
+| [pybind11](https://github.com/pybind/pybind11) | 2.3.0 | | Seamless operability between C++11 and Python |
 | [ScaLAPACK](http://www.netlib.org/scalapack/) | 2.0.2 | BLAS, MPI | |
 | [SCOTCH](https://www.labri.fr/perso/pelegrin/scotch/) | 6.0.7 | MPI | Includes PT-SCOTCH for parallel graph partitioning |
 | [SuiteSparse](http://faculty.cse.tamu.edu/davis/suitesparse.html) | 5.4.0 | BLAS | |
