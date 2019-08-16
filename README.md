@@ -9,10 +9,10 @@ The available modules are shown in the table below.
 | :---         | ---:    | :---         | :---  |
 | [cmake](https://cmake.org) | 3.15.2 | Open-source, cross-platform tools to build, test and package software | |
 | [Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) | 3.3.7 | C++ template library for linear algebra | Optionally depends on boost, mpfr, gmp, suitesparse, superlu |
-| [fenicsproject/dijitso](https://bitbucket.org/fenics-project/dijitso/src/master/) | 2019.1.0 | FEniCS Project: Distributed just-in-time compilation | Python |
-| [fenicsproject/FFC](https://bitbucket.org/fenics-project/ffc/src/master/) | 2019.1.0 | FEniCS Project: Compiler for finite element variational forms | Python |
-| [fenicsproject/FIAT](https://bitbucket.org/fenics-project/fiat/src/master/) | 2019.1.0 | FEniCS Project: FInite element Automatic Tabulator | Python |
-| [fenicsproject/ufl](https://bitbucket.org/fenics-project/ufl/src/master/) | 2019.1.0 | FEniCS Project: Unified Form Language for finite element variational forms | Python |
+| [fenics/dijitso](https://bitbucket.org/fenics-project/dijitso/src/master/) | 2019.1.0 | FEniCS Project: Distributed just-in-time compilation | Python |
+| [fenics/FFC](https://bitbucket.org/fenics-project/ffc/src/master/) | 2019.1.0 | FEniCS Project: Compiler for finite element variational forms | Python |
+| [fenics/FIAT](https://bitbucket.org/fenics-project/fiat/src/master/) | 2019.1.0 | FEniCS Project: FInite element Automatic Tabulator | Python |
+| [fenics/ufl](https://bitbucket.org/fenics-project/ufl/src/master/) | 2019.1.0 | FEniCS Project: Unified Form Language for finite element variational forms | Python |
 | [HDF5](https://www.hdfgroup.org/solutions/hdf5/) | 1.10.5 | HDF5 high performance data software library and file format | MPI |
 | [hwloc](https://www.open-mpi.org/projects/hwloc/) | 2.0.4 | Portable abstraction of hierarchical topology of modern architectures | |
 | [HYPRE](https://computing.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods) | 2.17.0 | Scalable Linear Solvers and Multigrid Methods | numactl, BLAS, MPI |
