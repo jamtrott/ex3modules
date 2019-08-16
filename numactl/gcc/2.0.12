@@ -22,7 +22,8 @@ proc ModulesHelp { } {
         puts stderr "\t- MANPATH"
 }
 
-module-whatis "sets up the environment for numactl 2.0.12 (System gcc-7.4.0-1ubuntu1~18.04.1)"
+module-whatis "NUMA support for Linux"
+module-whatis "https://github.com/numactl/numactl"
 
 set pkghome /cm/shared/apps/numactl/gcc/$version
 

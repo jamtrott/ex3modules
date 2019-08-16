@@ -12,7 +12,7 @@ proc ModulesHelp { } {
         puts stderr "\t- MANPATH"
 }
 
-module-whatis "sets up the environment for patchelf 0.10 (System gcc-7.4.0-1ubuntu1~18.04.1)"
+module-whatis "A small utility to modify the dynamic linker and RPATH of ELF executables"
 module-whatis "https://github.com/NixOS/patchelf"
 
 set pkghome /cm/shared/apps/patchelf/gcc/$version

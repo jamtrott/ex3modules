@@ -19,8 +19,8 @@ proc ModulesHelp { } {
         puts stderr "\t- LD_LIBRARY_PATH"
 }
 
-module-whatis "sets up the environment for HYPRE 2.17.0 (System gcc-7.4.0-1ubuntu1~18.04.1)"
-module-whatis "URL: https://github.com/hypre-space/hypre"
+module-whatis "Scalable Linear Solvers and Multigrid Methods"
+module-whatis "https://github.com/hypre-space/hypre"
 
 prereq openblas/dynamic/0.3.7
 prereq openmpi/gcc/64/4.0.1

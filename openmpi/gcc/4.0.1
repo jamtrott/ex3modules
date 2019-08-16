@@ -1,23 +1,33 @@
 #%Module -*- tcl -*-
-##
-## dot modulefile
-##
-proc ModulesHelp { } {
-  global openmpiversion
+#
+# Open MPI 4.0.1 (System gcc-7.4.0)
+#
+#
+set version 4.0.1
 
-  puts stderr "\tAdds OpenMPI ver.4.0.1 to your environment variables,"
+proc ModulesHelp { } {
+        global version
+        puts stderr "\tSets up the environment for Open MPI $version (System gcc-7.4.0)\n"
+	puts stderr "\t- MPI_HOME"
+	puts stderr "\t- MPI_RUN"
+	puts stderr "\t- PATH"
+	puts stderr "\t- MANPATH"
+	puts stderr "\t- LD_RUN_PATH"
+	puts stderr "\t- LD_LIBRARY_PATH"
+	puts stderr "\t- CPATH"
 }
 
-module-whatis "adds OpenMPI ver.4.0.1 to your environment variables"
+module-whatis "A High Performance Message Passing Library"
+module-whatis "https://www.open-mpi.org"
 
-set              openmpiversion    4.0.1
-set              root              /cm/shared/apps/openmpi/gcc/64/$openmpiversion
+set pkghome /cm/shared/apps/openmpi/gcc/64/$version
+setenv MPI_HOME $pkghome
+setenv MPI_RUN $pkghome/bin/mpirun
+prepend-path PATH $pkghome/bin
+prepend-path MANPATH $pkghome/share/man/
+prepend-path LD_RUN_PATH $pkghome/lib64
+prepend-path LD_LIBRARY_PATH $pkghome/lib64
+prepend-path CPATH $pkghome/include
+unset pkghome
 
-prepend-path     PATH              $root/bin
-prepend-path     MANPATH           $root/share/man/
-setenv           MPI_HOME          $root
-setenv           MPI_RUN           $root/bin/mpirun
-
-prepend-path     LD_RUN_PATH       $root/lib64
-prepend-path     LD_LIBRARY_PATH   $root/lib64
-prepend-path     CPATH             $root/include
+set MSG "Open MPI $version (System gcc-7.4.0-1ubuntu1~18.04.1)"

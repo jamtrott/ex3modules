@@ -21,7 +21,8 @@ proc ModulesHelp { } {
         puts stderr "\t- LD_LIBRARY_PATH"
 }
 
-module-whatis "sets up the environment for SuiteSparse 5.4.0 (System gcc-7.4.0-1ubuntu1~18.04.1)"
+module-whatis "A suite of sparse matrix software"
+module-whatis "http://faculty.cse.tamu.edu/davis/suitesparse.html"
 
 prereq openblas/dynamic/0.3.7
 
