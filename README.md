@@ -8,10 +8,11 @@ The available modules are shown in the table below.
 | Module       | Version | Description | Dependencies |
 | :---         | ---:    | :---         | :---  |
 | [cmake](https://cmake.org) | 3.15.2 | Open-source, cross-platform tools to build, test and package software | |
-| [dijitso](https://bitbucket.org/fenics-project/dijitso/src/master/) | 2019.1.0 | FEniCS Project: Distributed just-in-time compilation | Python |
 | [Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) | 3.3.7 | C++ template library for linear algebra | Optionally depends on boost, mpfr, gmp, suitesparse, superlu |
-| [FFC](https://bitbucket.org/fenics-project/ffc/src/master/) | 2019.1.0 | FEniCS Project: Compiler for finite element variational forms | Python |
-| [FIAT](https://bitbucket.org/fenics-project/fiat/src/master/) | 2019.1.0 | FEniCS Project: FInite element Automatic Tabulator | Python |
+| [fenicsproject/dijitso](https://bitbucket.org/fenics-project/dijitso/src/master/) | 2019.1.0 | FEniCS Project: Distributed just-in-time compilation | Python |
+| [fenicsproject/FFC](https://bitbucket.org/fenics-project/ffc/src/master/) | 2019.1.0 | FEniCS Project: Compiler for finite element variational forms | Python |
+| [fenicsproject/FIAT](https://bitbucket.org/fenics-project/fiat/src/master/) | 2019.1.0 | FEniCS Project: FInite element Automatic Tabulator | Python |
+| [fenicsproject/ufl](https://bitbucket.org/fenics-project/ufl/src/master/) | 2019.1.0 | FEniCS Project: Unified Form Language for finite element variational forms | Python |
 | [HDF5](https://www.hdfgroup.org/solutions/hdf5/) | 1.10.5 | HDF5 high performance data software library and file format | MPI |
 | [hwloc](https://www.open-mpi.org/projects/hwloc/) | 2.0.4 | Portable abstraction of hierarchical topology of modern architectures | |
 | [HYPRE](https://computing.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods) | 2.17.0 | Scalable Linear Solvers and Multigrid Methods | numactl, BLAS, MPI |
@@ -30,4 +31,3 @@ The available modules are shown in the table below.
 | [SuiteSparse](http://faculty.cse.tamu.edu/davis/suitesparse.html) | 5.4.0 | A suite of sparse matrix software | BLAS |
 | [SuperLU](https://github.com/xiaoyeli/superlu) | 5.2.1 | Direct solver for large, sparse non-symmetric systems of linear equations | BLAS |
 | [SuperLU\_DIST](https://github.com/xiaoyeli/superlu_dist) | 6.1.1 | MPI-based direct solver for large, sparse non-symmetric systems of equations in distributed memory | BLAS, ParMETIS |
-| [ufl](https://bitbucket.org/fenics-project/ufl/src/master/) | 2019.1.0 | FEniCS Project: Unified Form Language for finite element variational forms | Python |
