@@ -7,19 +7,20 @@ set version 3.11.3
 
 proc ModulesHelp { } {
 	global version
-        puts stderr "\tSets up the environment for PETSc $version (System gcc-7.4.0)\n"
-        puts stderr "\t- PETSC_ROOT"
-        puts stderr "\t- PETSC_INCDIR"
-        puts stderr "\t- PETSC_LIBDIR"
-        puts stderr "\t- PETSC_INCLUDEDIR"
-        puts stderr "\t- PETSC_LIBRARYDIR"
-        puts stderr "\t- C_INCLUDE_PATH"
-        puts stderr "\t- CPLUS_INCLUDE_PATH"
-        puts stderr "\t- LIBRARY_PATH"
-        puts stderr "\t- LD_LIBRARY_PATH"
+	puts stderr "\tSets up the environment for PETSc $version (System gcc-7.4.0)\n"
+	puts stderr "\t- PETSC_ROOT"
+	puts stderr "\t- PETSC_DIR"
+	puts stderr "\t- PETSC_INCDIR"
+	puts stderr "\t- PETSC_LIBDIR"
+	puts stderr "\t- PETSC_INCLUDEDIR"
+	puts stderr "\t- PETSC_LIBRARYDIR"
+	puts stderr "\t- C_INCLUDE_PATH"
+	puts stderr "\t- CPLUS_INCLUDE_PATH"
+	puts stderr "\t- LIBRARY_PATH"
+	puts stderr "\t- LD_LIBRARY_PATH"
 }
 
-module-whatis "sets up the environment for PETSc 3.11.3 (System gcc-7.4.0-1ubuntu1~18.04.1)"
+module-whatis "Portable, Extensible Toolkit for Scientific Computation"
 module-whatis "https://www.mcs.anl.gov/petsc/"
 
 prereq openblas/dynamic/0.3.7
@@ -38,6 +39,7 @@ prereq superlu_dist/gcc/6.1.1
 set pkghome /cm/shared/apps/petsc/gcc/$version
 
 setenv PETSC_ROOT $pkghome
+setenv PETSC_DIR $pkghome
 setenv PETSC_INCDIR $pkghome/include
 setenv PETSC_LIBDIR $pkghome/lib
 setenv PETSC_INCLUDEDIR $pkghome/include
