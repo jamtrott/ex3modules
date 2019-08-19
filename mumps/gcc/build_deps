@@ -1,0 +1,8 @@
+openblas/dynamic/0.3.7
+numactl/gcc/2.0.12
+ucx/gcc/1.6.0
+openmpi/gcc/64/4.0.1
+metis/gcc/5.1.0
+parmetis/gcc/4.0.3
+scotch/gcc/6.0.7
+scalapack/gcc/2.0.2
