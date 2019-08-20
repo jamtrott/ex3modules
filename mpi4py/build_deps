@@ -1,0 +1,4 @@
+python/gcc/3.7.4
+numactl/gcc/2.0.12
+ucx/gcc/1.6.0
+openmpi/gcc/64/4.0.1
