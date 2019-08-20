@@ -15,6 +15,7 @@ The available modules are shown in the table below.
 | [fenics/FFC](https://bitbucket.org/fenics-project/ffc/) | 2019.1.0 | FEniCS Project: Compiler for finite element variational forms | python, numpy, mpmath, sympy, fiat, ufl  |
 | [fenics/FIAT](https://bitbucket.org/fenics-project/fiat/) | 2019.1.0 | FEniCS Project: FInite element Automatic Tabulator | python, numpy, mpmath, sympy |
 | [fenics/ufl](https://bitbucket.org/fenics-project/ufl/) | 2019.1.0 | FEniCS Project: Unified Form Language for finite element variational forms | python, numpy |
+| [gmp](https://gmplib.org) | 6.1.2 | Library for arbitrary precision arithmetic | |
 | [HDF5](https://www.hdfgroup.org/solutions/hdf5/) | 1.10.5 | HDF5 high performance data software library and file format | MPI |
 | [hwloc](https://www.open-mpi.org/projects/hwloc/) | 2.0.4 | Portable abstraction of hierarchical topology of modern architectures | |
 | [HYPRE](https://computing.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods) | 2.17.0 | Scalable Linear Solvers and Multigrid Methods | numactl, BLAS, MPI |
