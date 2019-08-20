@@ -16,7 +16,7 @@
 
 PKG_NAME=fenics-ffc
 PKG_VERSION=2019.1.0
-PKG_MODULEDIR=${PKG_NAME}/${PKG_VERSION}
+PKG_MODULEDIR=fenics/ffc/${PKG_VERSION}
 PKG_DESCRIPTION="FEniCS Project: FEniCS Form Compiler"
 PKG_URL="https://bitbucket.org/fenics-project/ffc/"
 SRC_URL=https://bitbucket.org/fenics-project/ffc/downloads/ffc-${PKG_VERSION}.tar.gz

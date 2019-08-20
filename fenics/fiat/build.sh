@@ -16,7 +16,7 @@
 
 PKG_NAME=fenics-fiat
 PKG_VERSION=2019.1.0
-PKG_MODULEDIR=${PKG_NAME}/${PKG_VERSION}
+PKG_MODULEDIR=fenics/fiat/${PKG_VERSION}
 PKG_DESCRIPTION="FEniCS Project: FInite element Automatic Tabulator"
 PKG_URL="https://bitbucket.org/fenics-project/fiat/"
 

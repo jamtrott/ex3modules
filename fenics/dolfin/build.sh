@@ -16,7 +16,7 @@
 
 PKG_NAME=dolfin
 PKG_VERSION=2019.1.0.post0
-PKG_MODULEDIR=fenics-${PKG_NAME}/${PKG_VERSION}
+PKG_MODULEDIR=fenics/dolfin/${PKG_VERSION}
 PKG_DESCRIPTION="C++ and Python interface to the FEniCS computing platform for solving partial differential equations"
 PKG_URL="https://bitbucket.org/fenics-project/dolfin/"
 SRC_URL=https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-${PKG_VERSION}.tar.gz

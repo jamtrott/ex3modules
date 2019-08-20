@@ -16,7 +16,7 @@
 
 PKG_NAME=fenics-dijitso
 PKG_VERSION=2019.1.0
-PKG_MODULEDIR=${PKG_NAME}/${PKG_VERSION}
+PKG_MODULEDIR=fenics/dijitso/${PKG_VERSION}
 PKG_DESCRIPTION="FEniCS Project: Distributed just-in-time compilation"
 PKG_URL="https://bitbucket.org/fenics-project/dijitso/"
 
