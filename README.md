@@ -24,6 +24,7 @@ The available modules are shown in the table below.
 | [libtool](https://www.gnu.org/software/libtool) | 2.4.6 | The GNU Portable Library Tool | |
 | [matplotlib](https://matplotlib.org) | 3.1.1 | 2D plotting library | python |
 | [METIS](http://glaros.dtc.umn.edu/gkhome/metis/metis/overview) | 5.1.0 | Serial Graph Partitioning and Fill-reducing Matrix Ordering | cmake |
+| [mpfr](https://www.mpfr.org) | 4.0.2 | C library for multiple-precision floating-point computations | gmp |
 | [mpi4py](https://mpi4py.readthedocs.io) | 3.0.2 | Python bindings for the Message Passing Interface (MPI) | python, numactl, ucx, openmpi |
 | [mpmath](http://mpmath.org) | 1.1.0 | Python library for arbitrary-precision floating-point arithmetic | python |
 | [MUMPS](http://mumps.enseeiht.fr/) | 5.2.1 | MUltifrontal Massively Parallel sparse direct Solver | BLAS, MPI, METIS, ParMETIS, SCOTCH, ScaLAPACK |
