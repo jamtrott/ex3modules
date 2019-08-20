@@ -27,6 +27,7 @@ The available modules are shown in the table below.
 | [MUMPS](http://mumps.enseeiht.fr/) | 5.2.1 | MUltifrontal Massively Parallel sparse direct Solver | BLAS, MPI, METIS, ParMETIS, SCOTCH, ScaLAPACK |
 | [numactl](https://github.com/numactl/numactl) | 2.0.12 | NUMA support for Linux | |
 | [numpy](https://www.numpy.org) | 1.17.0 | Fundamental package for scientific computing with Python | python |
+| [openblas](https://openblas.net) | 0.3.7 | Optimized BLAS library | cmake |
 | [OpenMPI](https://www.open-mpi.org) | 4.0.1 | A High Performance Message Passing Library | knem, numactl, ucx |
 | [OpenSSL](https://www.openssl.org) | 1.1.1c | Cryptography and SSL/TLS toolkits | |
 | [ParMETIS](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview) | 4.0.3 | Parallel Graph Partitioning and Fill-reducing Matrix Ordering | BLAS, MPI |
