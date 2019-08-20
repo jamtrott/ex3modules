@@ -34,6 +34,7 @@ The available modules are shown in the table below.
 | [pybind11](https://github.com/pybind/pybind11) | 2.3.0 | Seamless operability between C++11 and Python | python |
 | [pytest](https://docs.pytest.org/) | 5.1.0 | Python testing framework | python |
 | [python](https://github.com/pybind/pybind11) | 3.7.4 | Python programming language | libffi |
+| [python-pkgconfig](https://github.com/matze/pkgconfig) | 1.5.1 | Python interface to the pkg-config command line tool | python |
 | [ScaLAPACK](http://www.netlib.org/scalapack/) | 2.0.2 | Scalable Linear Algebra PACKage | BLAS, MPI |
 | [SCOTCH](https://www.labri.fr/perso/pelegrin/scotch/) | 6.0.7 | Static Mapping, Graph, Mesh and Hypergraph Partitioning, and Parallel and Sequential Sparse Matrix Ordering Package | MPI |
 | [sympy](https://www.sympy.org) | 1.4 | Computer algebra system written in pure Python | python, mpmath |
