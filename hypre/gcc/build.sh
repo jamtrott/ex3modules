@@ -24,7 +24,7 @@ SRC_DIR=${PKG_NAME}-${PKG_VERSION}/src
 
 # Load build-time dependencies and determine prerequisite modules
 while read module; do module load ${module}; done <build_deps
-PKG_PREREQS=$(while read module; do echo "prereq ${module}"; done <prereqs)
+PKG_PREREQS=$(while read module; do echo "module load ${module}"; done <prereqs)
 
 # Set default options
 PREFIX=/cm/shared/apps
