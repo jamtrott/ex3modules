@@ -7,6 +7,7 @@ The available modules are shown in the table below.
 
 | Module       | Version | Description | Dependencies |
 | :---         | ---:    | :---         | :---  |
+| [boost](https://www.boost.org) | 1.71.0 | Libraries for the C++ programming language | mpi, python |
 | [cmake](https://cmake.org) | 3.15.2 | Open-source, cross-platform tools to build, test and package software | |
 | [Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) | 3.3.7 | C++ template library for linear algebra | Optionally depends on boost, mpfr, gmp, suitesparse, superlu |
 | [fenics/dijitso](https://bitbucket.org/fenics-project/dijitso/) | 2019.1.0 | FEniCS Project: Distributed just-in-time compilation | python, numpy |
