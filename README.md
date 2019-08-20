@@ -29,6 +29,7 @@ The available modules are shown in the table below.
 | [ParMETIS](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview) | 4.0.3 | Parallel Graph Partitioning and Fill-reducing Matrix Ordering | BLAS, MPI |
 | [patchelf](https://nixos.org/patchelf.html) | 0.10 | A small utility to modify the dynamic linker and RPATH of ELF executables | |
 | [PETSc](https://www.mcs.anl.gov/petsc/) | 3.11.3 | Portable, Extensible Toolkit for Scientific Computation | boost, BLAS, MPI, hwloc, hypre, metis, mumps, parmetis, scalapack, scotch, suitesparse, superlu, superlu\_dist |
+| [petsc4py](https://bitbucket.org/petsc/petsc4py) | 3.11.0 | Python bindings for PETSc | boost, openblas, numactl, ucx, openmpi, hwloc, hypre, metis, mumps, parmetis, scalapack, scotch, suitesparse, superlu, superlu\_dist, petsc, python, numpy, mpi4py |
 | [ply](https://www.dabeaz.com/ply) | 3.11 | lex and yacc parsing tools for Python | python |
 | [pybind11](https://github.com/pybind/pybind11) | 2.3.0 | Seamless operability between C++11 and Python | python |
 | [pytest](https://docs.pytest.org/) | 5.1.0 | Python testing framework | python |
