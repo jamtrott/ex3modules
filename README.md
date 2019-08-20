@@ -33,6 +33,7 @@ The available modules are shown in the table below.
 | [python](https://github.com/pybind/pybind11) | 3.7.4 | Python programming language | libffi |
 | [ScaLAPACK](http://www.netlib.org/scalapack/) | 2.0.2 | Scalable Linear Algebra PACKage | BLAS, MPI |
 | [SCOTCH](https://www.labri.fr/perso/pelegrin/scotch/) | 6.0.7 | Static Mapping, Graph, Mesh and Hypergraph Partitioning, and Parallel and Sequential Sparse Matrix Ordering Package | MPI |
+| [sympy](https://www.sympy.org) | 1.4 | Computer algebra system written in pure Python | python, mpmath |
 | [SuiteSparse](http://faculty.cse.tamu.edu/davis/suitesparse.html) | 5.4.0 | A suite of sparse matrix software | BLAS |
 | [SuperLU](https://github.com/xiaoyeli/superlu) | 5.2.1 | Direct solver for large, sparse non-symmetric systems of linear equations | BLAS |
 | [SuperLU\_DIST](https://github.com/xiaoyeli/superlu_dist) | 6.1.1 | MPI-based direct solver for large, sparse non-symmetric systems of equations in distributed memory | BLAS, ParMETIS |
