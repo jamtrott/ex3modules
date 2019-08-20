@@ -4,5 +4,5 @@ mpfr/gcc/4.0.2
 gmp/gcc/6.1.2
 metis/gcc/5.1.0
 suitesparse/gcc/5.4.0
-openblas/dynamic/0.3.7
+openblas/gcc/0.3.7
 superlu/gcc/5.2.1

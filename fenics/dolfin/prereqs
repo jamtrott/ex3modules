@@ -1,6 +1,6 @@
 boost/gcc/1.70.0
 openmpi/gcc/64/4.0.1
-openblas/dynamic/0.3.7
+openblas/gcc/0.3.7
 hdf5/gcc/1.10.5
 parmetis/gcc/4.0.3
 scotch/gcc/6.0.7
