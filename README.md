@@ -19,6 +19,7 @@ The available modules are shown in the table below.
 | [knem](http://knem.gforge.inria.fr/) | 1.1.3 | High-Performance Intra-Node MPI Communication | hwloc |
 | [libffi](https://sourceware.org/libffi/) | 3.2.1 | A Portable Foreign Function Interface Library | |
 | [METIS](http://glaros.dtc.umn.edu/gkhome/metis/metis/overview) | 5.1.0 | Serial Graph Partitioning and Fill-reducing Matrix Ordering | cmake |
+| [mpmath](http://mpmath.org) | 1.1.0 | Python library for arbitrary-precision floating-point arithmetic | python |
 | [MUMPS](http://mumps.enseeiht.fr/) | 5.2.1 | MUltifrontal Massively Parallel sparse direct Solver | BLAS, MPI, METIS, ParMETIS, SCOTCH, ScaLAPACK |
 | [numactl](https://github.com/numactl/numactl) | 2.0.12 | NUMA support for Linux | |
 | [numpy](https://www.numpy.org) | 1.17.0 | Fundamental package for scientific computing with Python | python |
