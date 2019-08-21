@@ -71,7 +71,7 @@ pushd ${BUILD_DIR}/${SRC_DIR}
 python3 setup.py build
 python3 setup.py install \
 	--prefix=${PKG_PREFIX} \
-	--root=${DESTDIR} \
+	$([ ! -z "${DESTDIR}" ] && --root="${DESTDIR}") \
 	--optimize=1 \
 	--skip-build
 popd

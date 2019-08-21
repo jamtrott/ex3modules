@@ -54,7 +54,7 @@ done
 PKG_PREFIX=${PREFIX}/${PKG_MODULEDIR}
 
 # Install the module
-python3 -m pip install --prefix=${PKG_PREFIX} --root=${DESTDIR} ${PKG_NAME}==${PKG_VERSION}
+python3 -m pip install --prefix=${PKG_PREFIX} $([ ! -z "${DESTDIR}" ] && --root="${DESTDIR}") ${PKG_NAME}==${PKG_VERSION}
 
 # Write the module file
 PKG_MODULEFILE=${DESTDIR}${PREFIX}/${MODULEFILESDIR}/${PKG_MODULEDIR}
