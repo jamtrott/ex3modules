@@ -71,7 +71,6 @@ make config shared=1 prefix=${PKG_PREFIX}
 make
 make DESTDIR=${DESTDIR} install
 popd
-popd
 
 # Write the module file
 PKG_MODULEFILE=${DESTDIR}${PREFIX}/${MODULEFILESDIR}/${PKG_MODULEDIR}
