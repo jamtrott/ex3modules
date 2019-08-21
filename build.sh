@@ -62,7 +62,7 @@ function build_deps()
 function build_module()
 {
     module=$1
-    echo "Building ${module}"
+    echo "$0: Building ${module}"
     if [ -z ${dry_run} ]; then
 	pushd $(dirname ${module})
 	DESTDIR=${DESTDIR} MODULES_PREFIX=${DESTDIR}${PREFIX} \
@@ -72,7 +72,7 @@ function build_module()
 	    | tee ${LOG_PATH}
 	popd
     fi
-    echo "Done building ${module}"
+    echo "$0: Done building ${module}"
 }
 
 # Get a list of required build-time dependencies by recursively
@@ -90,6 +90,7 @@ modules=$(printf "${module_dependencies}\n" | tsort | tac)
 echo "Building the following modules:" | tee ${LOG_PATH}
 echo "${modules}" | tee -a ${LOG_PATH}
 (
+    module use ${PREFIX}/${MODULEFILESDIR}
     for module in ${modules}; do
 	build_module ${module}
     done
