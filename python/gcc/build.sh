@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 #
-# Build <module>
+# Build python
 #
 # The following command will build the module, write a module file,
 # and temporarily install them to your home directory, so that you may
@@ -11,7 +11,7 @@
 # The module can then be loaded as follows:
 #
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
-#   MODULES_PREFIX=$HOME module load <module>
+#   MODULES_PREFIX=$HOME module load python
 #
 
 PKG_NAME=python
