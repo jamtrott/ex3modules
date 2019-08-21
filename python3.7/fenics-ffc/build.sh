@@ -69,6 +69,8 @@ tar -C ${BUILD_DIR} -xzvf ${SRC_PKG}
 # Build
 pushd ${BUILD_DIR}/${SRC_DIR}
 python3 setup.py build
+PYTHONPATH="${PYTHONPATH}:${DESTDIR}${PKG_PREFIX}/lib/python${PYTHON_VERSION_SHORT}/site-packages"
+mkdir -p "${DESTDIR}${PKG_PREFIX}/lib/python${PYTHON_VERSION_SHORT}/site-packages"
 python3 setup.py install \
 	--prefix=${PKG_PREFIX} \
 	$([ ! -z "${DESTDIR}" ] && --root="${DESTDIR}") \
