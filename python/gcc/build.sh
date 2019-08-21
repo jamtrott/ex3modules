@@ -19,7 +19,7 @@ PKG_VERSION=3.7.4
 PKG_MODULEDIR=${PKG_NAME}/gcc/${PKG_VERSION}
 PKG_DESCRIPTION="Python programming language"
 PKG_URL="https://www.python.org/"
-SRC_URL=https://www.python.org/ftp/python/3.7.4/Python-${PKG_VERSION}.tar.xz
+SRC_URL=https://www.python.org/ftp/python/${PKG_VERSION}/Python-${PKG_VERSION}.tar.xz
 SRC_DIR=Python-${PKG_VERSION}
 
 # Load build-time dependencies and determine prerequisite modules
@@ -105,11 +105,11 @@ setenv ${PKG_NAME^^}_LIBRARYDIR \$MODULES_PREFIX${PKG_PREFIX}/lib
 setenv ${PKG_NAME^^}_VERSION ${PKG_VERSION}
 setenv ${PKG_NAME^^}_VERSION_SHORT ${PKG_VERSION%.*}
 prepend-path PATH \$MODULES_PREFIX${PKG_PREFIX}/bin
-prepend-path C_INCLUDE_PATH \$MODULES_PREFIX${PKG_PREFIX}/include/python3.7m
-prepend-path CPLUS_INCLUDE_PATH \$MODULES_PREFIX${PKG_PREFIX}/include/python3.7m
+prepend-path C_INCLUDE_PATH \$MODULES_PREFIX${PKG_PREFIX}/include/python${PKG_VERSION%.*}m
+prepend-path CPLUS_INCLUDE_PATH \$MODULES_PREFIX${PKG_PREFIX}/include/python${PKG_VERSION%.*}m
 prepend-path LIBRARY_PATH \$MODULES_PREFIX${PKG_PREFIX}/lib
 prepend-path LD_LIBRARY_PATH \$MODULES_PREFIX${PKG_PREFIX}/lib
-prepend-path PYTHONPATH \$MODULES_PREFIX${PKG_PREFIX}/lib/python3.7
+prepend-path PYTHONPATH \$MODULES_PREFIX${PKG_PREFIX}/lib/python${PKG_VERSION%.*}
 prepend-path PKG_CONFIG_PATH \$MODULES_PREFIX${PKG_PREFIX}/lib/pkgconfig
 prepend-path MANPATH \$MODULES_PREFIX${PKG_PREFIX}/share/man
 set MSG "${PKG_NAME} ${PKG_VERSION}"
