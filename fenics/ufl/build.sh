@@ -54,7 +54,7 @@ PKG_PREFIX=${PREFIX}/${PKG_MODULEDIR}
 py_version_short=$(python3 -c "import sysconfig; print(sysconfig.get_config_vars()['py_version_short'])")
 
 # Install the module
-pip3 install --prefix=${PKG_PREFIX} --root=${DESTDIR} ${PKG_NAME}==${PKG_VERSION}
+python3 -m pip install --prefix=${PKG_PREFIX} --root=${DESTDIR} ${PKG_NAME}==${PKG_VERSION}
 
 # Write the module file
 PKG_MODULEFILE=${DESTDIR}${PREFIX}/${MODULEFILESDIR}/${PKG_MODULEDIR}
