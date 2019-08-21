@@ -1,2 +1,4 @@
+petsc/gcc/3.11.3
 python/gcc/3.7.4
 python3.7/numpy/1.17.0
+python3.7/mpi4py/3.0.2

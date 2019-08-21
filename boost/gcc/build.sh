@@ -70,7 +70,7 @@ pushd ${BUILD_DIR}/${SRC_DIR}
 ./bootstrap.sh \
     --prefix=${DESTDIR}${PKG_PREFIX} \
     --with-python=${PYTHON_ROOT}/bin/python3 \
-    --with-python-version=$(${PYTHON_ROOT}/bin/python3 -c "import sysconfig; print(sysconfig.get_config_vars()['py_version_short'])") \
+    --with-python-version=${PYTHON_VERSION_SHORT} \
     --with-python-root=${PYTHON_ROOT}
 echo "using mpi ;" >>project-config.jam
 cat project-config.jam

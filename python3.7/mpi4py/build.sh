@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 #
-# Build numpy
+# Build mpi4py
 #
 # The following command will build the module, write a module file,
 # and temporarily install them to your home directory, so that you may
@@ -11,18 +11,19 @@
 # The module can then be loaded as follows:
 #
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
-#   MODULES_PREFIX=$HOME module load numpy
+#   MODULES_PREFIX=$HOME module load python<version>/mpi4py
 #
-
-PKG_NAME=numpy
-PKG_VERSION=1.17.0
-PKG_MODULEDIR=${PKG_NAME}/${PKG_VERSION}
-PKG_DESCRIPTION="Fundamental package for scientific computing with Python"
-PKG_URL="https://www.numpy.org/"
 
 # Load build-time dependencies and determine prerequisite modules
 while read module; do module load ${module}; done <build_deps
 PKG_PREREQS=$(while read module; do echo "module load ${module}"; done <prereqs)
+
+# Package details
+PKG_NAME=mpi4py
+PKG_VERSION=3.0.2
+PKG_MODULEDIR=python${PYTHON_VERSION_SHORT}/${PKG_NAME}/${PKG_VERSION}
+PKG_DESCRIPTION="Python bindings for the Message Passing Interface (MPI)"
+PKG_URL="https://mpi4py.readthedocs.io/"
 
 # Set default options
 PREFIX=/cm/shared/apps
@@ -54,7 +55,6 @@ PKG_PREFIX=${PREFIX}/${PKG_MODULEDIR}
 
 # Install the module
 python3 -m pip install --prefix=${PKG_PREFIX} --root=${DESTDIR} ${PKG_NAME}==${PKG_VERSION}
-py_version_short=$(python3 -c "import sysconfig; print(sysconfig.get_config_vars()['py_version_short'])")
 
 # Write the module file
 PKG_MODULEFILE=${DESTDIR}${PREFIX}/${MODULEFILESDIR}/${PKG_MODULEDIR}
@@ -74,7 +74,6 @@ module-whatis "${PKG_URL}"
 ${PKG_PREREQS}
 
 set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-prepend-path PATH \$MODULES_PREFIX${PKG_PREFIX}/bin
-prepend-path PYTHONPATH \$MODULES_PREFIX${PKG_PREFIX}/lib/python${py_version_short}/site-packages
+prepend-path PYTHONPATH \$MODULES_PREFIX${PKG_PREFIX}/lib/python${PYTHON_VERSION_SHORT}/site-packages
 set MSG "${PKG_NAME} ${PKG_VERSION}"
 EOF

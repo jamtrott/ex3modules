@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 #
-# Build matplotlib
+# Build python-pkgconfig
 #
 # The following command will build the module, write a module file,
 # and temporarily install them to your home directory, so that you may
@@ -11,18 +11,19 @@
 # The module can then be loaded as follows:
 #
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
-#   MODULES_PREFIX=$HOME module load matplotlib
+#   MODULES_PREFIX=$HOME module load python<version>/python-pkgconfig
 #
-
-PKG_NAME=matplotlib
-PKG_VERSION=3.1.1
-PKG_MODULEDIR=${PKG_NAME}/${PKG_VERSION}
-PKG_DESCRIPTION="2D plotting library"
-PKG_URL="https://matplotlib.org"
 
 # Load build-time dependencies and determine prerequisite modules
 while read module; do module load ${module}; done <build_deps
 PKG_PREREQS=$(while read module; do echo "module load ${module}"; done <prereqs)
+
+# Package details
+PKG_NAME=pkgconfig
+PKG_VERSION=1.5.1
+PKG_MODULEDIR=python${PYTHON_VERSION_SHORT}/${PKG_NAME}/${PKG_VERSION}
+PKG_DESCRIPTION="Python interface to the pkg-config command line tool"
+PKG_URL="https://github.com/matze/pkgconfig"
 
 # Set default options
 PREFIX=/cm/shared/apps
@@ -73,6 +74,6 @@ module-whatis "${PKG_URL}"
 ${PKG_PREREQS}
 
 set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-prepend-path PYTHONPATH \$MODULES_PREFIX${PKG_PREFIX}/lib/python$(python3 -c "import sysconfig; print(sysconfig.get_config_vars()['py_version_short'])")/site-packages
+prepend-path PYTHONPATH \$MODULES_PREFIX${PKG_PREFIX}/lib/python${PYTHON_VERSION_SHORT}/site-packages
 set MSG "${PKG_NAME} ${PKG_VERSION}"
 EOF

@@ -133,6 +133,6 @@ prepend-path LIBRARY_PATH \$MODULES_PREFIX${PKG_PREFIX}/lib
 prepend-path LD_LIBRARY_PATH \$MODULES_PREFIX${PKG_PREFIX}/lib
 prepend-path PKG_CONFIG_PATH \$MODULES_PREFIX${PKG_PREFIX}/lib/pkgconfig
 prepend-path CMAKE_MODULE_PATH \$MODULES_PREFIX${PKG_PREFIX}/share/dolfin/cmake
-prepend-path PYTHONPATH \$MODULES_PREFIX${PKG_PREFIX}/lib/python$(python3 -c "import sysconfig; print(sysconfig.get_config_vars()['py_version_short'])")/site-packages
+prepend-path PYTHONPATH \$MODULES_PREFIX${PKG_PREFIX}/lib/python${PYTHON_VERSION_SHORT}/site-packages
 set MSG "${PKG_NAME} ${PKG_VERSION}"
 EOF

@@ -53,7 +53,6 @@ done
 
 # Set up installation paths
 PKG_PREFIX=${PREFIX}/${PKG_MODULEDIR}
-py_version_short=$(python3 -c "import sysconfig; print(sysconfig.get_config_vars()['py_version_short'])")
 
 # Set up build and temporary install directories
 BUILD_DIR=$(mktemp -d -t ${PKG_NAME}-${PKG_VERSION}-XXXXXX)
@@ -95,7 +94,7 @@ ${PKG_PREREQS}
 
 set MODULES_PREFIX [getenv MODULES_PREFIX ""]
 prepend-path PATH \$MODULES_PREFIX${PKG_PREFIX}/bin
-prepend-path PYTHONPATH \$MODULES_PREFIX${PKG_PREFIX}/lib/python${py_version_short}/site-packages
+prepend-path PYTHONPATH \$MODULES_PREFIX${PKG_PREFIX}/lib/python${PYTHON_VERSION_SHORT}/site-packages
 prepend-path MANPATH \$MODULES_PREFIX${PKG_PREFIX}/share/man
 set MSG "${PKG_NAME} ${PKG_VERSION}"
 EOF

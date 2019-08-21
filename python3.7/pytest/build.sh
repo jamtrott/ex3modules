@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 #
-# Build mpmath
+# Build pytest
 #
 # The following command will build the module, write a module file,
 # and temporarily install them to your home directory, so that you may
@@ -11,18 +11,19 @@
 # The module can then be loaded as follows:
 #
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
-#   MODULES_PREFIX=$HOME module load mpmath
+#   MODULES_PREFIX=$HOME module load python<version>/pytest
 #
-
-PKG_NAME=mpmath
-PKG_VERSION=1.1.0
-PKG_MODULEDIR=${PKG_NAME}/${PKG_VERSION}
-PKG_DESCRIPTION="Python library for arbitrary-precision floating-point arithmetic"
-PKG_URL="https://www.mpmath.org/"
 
 # Load build-time dependencies and determine prerequisite modules
 while read module; do module load ${module}; done <build_deps
 PKG_PREREQS=$(while read module; do echo "module load ${module}"; done <prereqs)
+
+# Package details
+PKG_NAME=pytest
+PKG_VERSION=5.1.0
+PKG_MODULEDIR=python${PYTHON_VERSION_SHORT}/${PKG_NAME}/${PKG_VERSION}
+PKG_DESCRIPTION="Python testing framework"
+PKG_URL="https://docs.pytest.org/"
 
 # Set default options
 PREFIX=/cm/shared/apps
@@ -54,7 +55,6 @@ PKG_PREFIX=${PREFIX}/${PKG_MODULEDIR}
 
 # Install the module
 python3 -m pip install --prefix=${PKG_PREFIX} --root=${DESTDIR} ${PKG_NAME}==${PKG_VERSION}
-py_version_short=$(python3 -c "import sysconfig; print(sysconfig.get_config_vars()['py_version_short'])")
 
 # Write the module file
 PKG_MODULEFILE=${DESTDIR}${PREFIX}/${MODULEFILESDIR}/${PKG_MODULEDIR}
@@ -74,6 +74,7 @@ module-whatis "${PKG_URL}"
 ${PKG_PREREQS}
 
 set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-prepend-path PYTHONPATH \$MODULES_PREFIX${PKG_PREFIX}/lib/python${py_version_short}/site-packages
+prepend-path PATH \$MODULES_PREFIX${PKG_PREFIX}/bin
+prepend-path PYTHONPATH \$MODULES_PREFIX${PKG_PREFIX}/lib/python${PYTHON_VERSION_SHORT}/site-packages
 set MSG "${PKG_NAME} ${PKG_VERSION}"
 EOF
