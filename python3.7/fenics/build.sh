@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 #
-# Build dolfin
+# Build fenics
 #
 # The following command will build the module, write a module file,
 # and temporarily install them to your home directory, so that you may
@@ -11,20 +11,21 @@
 # The module can then be loaded as follows:
 #
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
-#   MODULES_PREFIX=$HOME module load dolfin
+#   MODULES_PREFIX=$HOME module load python<version>/fenics
 #
-
-PKG_NAME=dolfin
-PKG_VERSION=2019.1.0.post0
-PKG_MODULEDIR=fenics/${PKG_NAME}/${PKG_VERSION}
-PKG_DESCRIPTION="C++ interface to the FEniCS computing platform for solving partial differential equations"
-PKG_URL="https://bitbucket.org/fenics-project/dolfin/"
-SRC_URL=https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-${PKG_VERSION}.tar.gz
-SRC_DIR=${PKG_NAME}-${PKG_VERSION}
 
 # Load build-time dependencies and determine prerequisite modules
 while read module; do module load ${module}; done <build_deps
 PKG_PREREQS=$(while read module; do echo "module load ${module}"; done <prereqs)
+
+# Package details
+PKG_NAME=fenics
+PKG_VERSION=2019.1.0.post0
+PKG_MODULEDIR=python${PYTHON_VERSION_SHORT}/${PKG_NAME}/${PKG_VERSION}
+PKG_DESCRIPTION="Python interface to the FEniCS computing platform for solving partial differential equations"
+PKG_URL="https://bitbucket.org/fenics-project/dolfin/"
+SRC_URL=https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-${PKG_VERSION}.tar.gz
+SRC_DIR=dolfin-${PKG_VERSION}/python
 
 # Set default options
 PREFIX=/cm/shared/apps
@@ -67,22 +68,12 @@ tar -C ${BUILD_DIR} -xzvf ${SRC_PKG}
 
 # Build
 pushd ${BUILD_DIR}/${SRC_DIR}
-mkdir -p build
-pushd build
-cmake .. \
-      -DCMAKE_POLICY_DEFAULT_CMP0074=NEW \
-      -DCMAKE_INSTALL_PREFIX="${PKG_PREFIX}" \
-      -DBUILD_SHARED_LIBS=TRUE \
-      -DEIGEN3_INCLUDE_DIR="${EIGEN_ROOT}/include/eigen3" \
-      -DPARMETIS_DIR="${PARMETIS_ROOT}" \
-      -DSCOTCH_DIR="${SCOTCH_ROOT}" \
-      -DAMD_DIR="${SUITESPARSE_ROOT}" \
-      -DCHOLMOD_DIR="${SUITESPARSE_ROOT}" \
-      -DUMFPACK_DIR="${SUITESPARSE_ROOT}" \
-      -DCMAKE_CXX_FLAGS="-O3 -march=core-avx2"
-make -j
-make install DESTDIR=${DESTDIR}
-popd
+python3 setup.py build
+python3 setup.py install \
+	--prefix=${PKG_PREFIX} \
+	--root=${DESTDIR} \
+	--optimize=1 \
+	--skip-build
 popd
 
 # Write the module file
@@ -115,5 +106,6 @@ prepend-path LIBRARY_PATH \$MODULES_PREFIX${PKG_PREFIX}/lib
 prepend-path LD_LIBRARY_PATH \$MODULES_PREFIX${PKG_PREFIX}/lib
 prepend-path PKG_CONFIG_PATH \$MODULES_PREFIX${PKG_PREFIX}/lib/pkgconfig
 prepend-path CMAKE_MODULE_PATH \$MODULES_PREFIX${PKG_PREFIX}/share/dolfin/cmake
+prepend-path PYTHONPATH \$MODULES_PREFIX${PKG_PREFIX}/lib/python${PYTHON_VERSION_SHORT}/site-packages
 set MSG "${PKG_NAME} ${PKG_VERSION}"
 EOF

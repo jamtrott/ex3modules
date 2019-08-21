@@ -10,11 +10,8 @@ The available modules are shown in the table below.
 | [boost](https://www.boost.org) | 1.71.0 | Libraries for the C++ programming language | mpi, python |
 | [cmake](https://cmake.org) | 3.15.2 | Open-source, cross-platform tools to build, test and package software | |
 | [Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) | 3.3.7 | C++ template library for linear algebra | Optionally depends on boost, mpfr, gmp, suitesparse, superlu |
-| [fenics/dijitso](https://bitbucket.org/fenics-project/dijitso/) | 2019.1.0 | FEniCS Project: Distributed just-in-time compilation | python, numpy |
-| [fenics/dolfin](https://bitbucket.org/fenics-project/dolfin/) | 2019.1.0.post0 | FEniCS Project: C++ and Python interface to the FEniCS computing platform for solving partial differential equations | Python,  |
-| [fenics/FFC](https://bitbucket.org/fenics-project/ffc/) | 2019.1.0 | FEniCS Project: Compiler for finite element variational forms | python, numpy, mpmath, sympy, fiat, ufl  |
-| [fenics/FIAT](https://bitbucket.org/fenics-project/fiat/) | 2019.1.0 | FEniCS Project: FInite element Automatic Tabulator | python, numpy, mpmath, sympy |
-| [fenics/ufl](https://bitbucket.org/fenics-project/ufl/) | 2019.1.0 | FEniCS Project: Unified Form Language for finite element variational forms | python, numpy |
+| [fenics](https://bitbucket.org/fenics-project/dolfin/) | 2019.1.0.post0 | FEniCS Project: C++ and Python interface to the FEniCS computing platform for solving partial differential equations | Python,  |
+| [fenics/dolfin](https://bitbucket.org/fenics-project/dolfin/) | 2019.1.0.post0 | FEniCS Project: C++ interface to the FEniCS computing platform for solving partial differential equations | Python,  |
 | [gmp](https://gmplib.org) | 6.1.2 | Library for arbitrary precision arithmetic | |
 | [HDF5](https://www.hdfgroup.org/solutions/hdf5/) | 1.10.5 | HDF5 high performance data software library and file format | MPI |
 | [hwloc](https://www.open-mpi.org/projects/hwloc/) | 2.0.4 | Portable abstraction of hierarchical topology of modern architectures | |
@@ -45,6 +42,11 @@ The available modules are shown in the table below.
 ### Python modules
 | Module       | Version | Description | Dependencies |
 | :---         | ---:    | :---         | :---  |
+| [python3.7/fenics](https://bitbucket.org/fenics-project/dolfin/) | 2019.1.0.post0 | FEniCS Project: Python interface to the FEniCS computing platform for solving partial differential equations | Python,  |
+| [python3.7/fenics-dijitso](https://bitbucket.org/fenics-project/dijitso/) | 2019.1.0 | FEniCS Project: Distributed just-in-time compilation | python, numpy |
+| [python3.7/fenics-FFC](https://bitbucket.org/fenics-project/ffc/) | 2019.1.0 | FEniCS Project: Compiler for finite element variational forms | python, numpy, mpmath, sympy, fiat, ufl  |
+| [python3.7/fenics-FIAT](https://bitbucket.org/fenics-project/fiat/) | 2019.1.0 | FEniCS Project: FInite element Automatic Tabulator | python, numpy, mpmath, sympy |
+| [python3.7/fenics-ufl](https://bitbucket.org/fenics-project/ufl/) | 2019.1.0 | FEniCS Project: Unified Form Language for finite element variational forms | python, numpy |
 | [python3.7/matplotlib](https://matplotlib.org) | 3.1.1 | 2D plotting library | python |
 | [python3.7/mpi4py](https://mpi4py.readthedocs.io) | 3.0.2 | Python bindings for the Message Passing Interface (MPI) | python, numactl, ucx, openmpi |
 | [python3.7/mpmath](http://mpmath.org) | 1.1.0 | Python library for arbitrary-precision floating-point arithmetic | python |
