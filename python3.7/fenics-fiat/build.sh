@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 #
-# Build fenics-ufl
+# Build fenics-fiat
 #
 # The following command will build the module, write a module file,
 # and temporarily install them to your home directory, so that you may
@@ -11,18 +11,19 @@
 # The module can then be loaded as follows:
 #
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
-#   MODULES_PREFIX=$HOME module load fenics-ufl
+#   MODULES_PREFIX=$HOME module load python<version>/fenics-fiat
 #
-
-PKG_NAME=fenics-ufl
-PKG_VERSION=2019.1.0
-PKG_MODULEDIR=fenics/ufl/${PKG_VERSION}
-PKG_DESCRIPTION="FEniCS Project: Unified Form Language"
-PKG_URL="https://bitbucket.org/fenics-project/ufl/"
 
 # Load build-time dependencies and determine prerequisite modules
 while read module; do module load ${module}; done <build_deps
 PKG_PREREQS=$(while read module; do echo "module load ${module}"; done <prereqs)
+
+# Package details
+PKG_NAME=fenics-fiat
+PKG_VERSION=2019.1.0
+PKG_MODULEDIR=python${PYTHON_VERSION_SHORT}/${PKG_NAME}/${PKG_VERSION}
+PKG_DESCRIPTION="FEniCS Project: FInite element Automatic Tabulator"
+PKG_URL="https://bitbucket.org/fenics-project/fiat/"
 
 # Set default options
 PREFIX=/cm/shared/apps

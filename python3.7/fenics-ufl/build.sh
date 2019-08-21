@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 #
-# Build fenics-ffc
+# Build fenics-ufl
 #
 # The following command will build the module, write a module file,
 # and temporarily install them to your home directory, so that you may
@@ -11,20 +11,19 @@
 # The module can then be loaded as follows:
 #
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
-#   MODULES_PREFIX=$HOME module load fenics-ffc
+#   MODULES_PREFIX=$HOME module load python<version>/fenics-ufl
 #
-
-PKG_NAME=fenics-ffc
-PKG_VERSION=2019.1.0
-PKG_MODULEDIR=fenics/ffc/${PKG_VERSION}
-PKG_DESCRIPTION="FEniCS Project: FEniCS Form Compiler"
-PKG_URL="https://bitbucket.org/fenics-project/ffc/"
-SRC_URL=https://bitbucket.org/fenics-project/ffc/downloads/ffc-${PKG_VERSION}.tar.gz
-SRC_DIR=ffc-${PKG_VERSION}
 
 # Load build-time dependencies and determine prerequisite modules
 while read module; do module load ${module}; done <build_deps
 PKG_PREREQS=$(while read module; do echo "module load ${module}"; done <prereqs)
+
+# Package details
+PKG_NAME=fenics-ufl
+PKG_VERSION=2019.1.0
+PKG_MODULEDIR=python${PYTHON_VERSION_SHORT}/${PKG_NAME}/${PKG_VERSION}
+PKG_DESCRIPTION="FEniCS Project: Unified Form Language"
+PKG_URL="https://bitbucket.org/fenics-project/ufl/"
 
 # Set default options
 PREFIX=/cm/shared/apps
@@ -54,26 +53,8 @@ done
 # Set up installation paths
 PKG_PREFIX=${PREFIX}/${PKG_MODULEDIR}
 
-# Set up build and temporary install directories
-BUILD_DIR=$(mktemp -d -t ${PKG_NAME}-${PKG_VERSION}-XXXXXX)
-mkdir -p ${BUILD_DIR}
-
-# Download package
-SRC_PKG=${BUILD_DIR}/$(basename ${SRC_URL})
-curl --fail -Lo ${SRC_PKG} ${SRC_URL}
-
-# Unpack
-tar -C ${BUILD_DIR} -xzvf ${SRC_PKG}
-
-# Build
-pushd ${BUILD_DIR}/${SRC_DIR}
-python3 setup.py build
-python3 setup.py install \
-	--prefix=${PKG_PREFIX} \
-	--root=${DESTDIR} \
-	--optimize=1 \
-	--skip-build
-popd
+# Install the module
+python3 -m pip install --prefix=${PKG_PREFIX} --root=${DESTDIR} ${PKG_NAME}==${PKG_VERSION}
 
 # Write the module file
 PKG_MODULEFILE=${DESTDIR}${PREFIX}/${MODULEFILESDIR}/${PKG_MODULEDIR}
