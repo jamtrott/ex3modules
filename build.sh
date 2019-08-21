@@ -6,7 +6,7 @@
 # dependencies, and install the modules and module files to the
 # current user's home directory:
 #
-#   ./build.sh --prefix=$HOME openmpi/gcc/4.0.1 2>&1 | tee build.log
+#   ./build.sh --prefix=$HOME openmpi/gcc/4.0.1
 #
 # The module can then be loaded as follows:
 #
@@ -19,7 +19,8 @@
 PREFIX=/cm/shared/apps
 MODULEFILESDIR=modulefiles
 top_modules=
-LOG_PATH=build.log
+STDOUT_LOG_PATH=build-output.log
+STDERR_LOG_PATH=build-error.log
 
 # Parse program options
 help() {
@@ -46,6 +47,20 @@ if [ -z "${top_modules}" ]; then
     help
 fi
 
+function init_log() {
+    echo -n "" > ${STDOUT_LOG_PATH}
+    echo -n "" > ${STDERR_LOG_PATH}
+}
+
+function log() {
+    LOG_PATH=$1
+    (
+	while IFS= read -r line; do
+	    printf '[%s] %s\n' "$(date +"%Y-%m-%d %T")" "$line";
+	done
+    ) | tee -a ${LOG_PATH}
+}
+
 function build_deps()
 {
     module=$1
@@ -68,12 +83,25 @@ function build_module()
 	DESTDIR=${DESTDIR} MODULES_PREFIX=${DESTDIR}${PREFIX} \
 	       ./build.sh \
 	       --prefix=${PREFIX} \
-	       --modulefilesdir=${MODULEFILESDIR} \
-	    | tee ${LOG_PATH}
+	       --modulefilesdir=${MODULEFILESDIR}
 	popd
     fi
     echo "$0: Done building ${module}"
 }
+
+function build_modules()
+{
+    modules=$1
+    echo "$0: Building the following modules:"
+    echo "$0: ${modules}"
+    mkdir -p ${PREFIX}/${MODULEFILESDIR}
+    module use ${PREFIX}/${MODULEFILESDIR}
+    for module in ${modules}; do
+	build_module ${module}
+    done
+}
+
+init_log
 
 # Get a list of required build-time dependencies by recursively
 # traversing modules and their dependencies.
@@ -87,11 +115,4 @@ done
 modules=$(printf "${module_dependencies}\n" | tsort | tac)
 
 # Build the required modules
-echo "Building the following modules:" | tee ${LOG_PATH}
-echo "${modules}" | tee -a ${LOG_PATH}
-(
-    module use ${PREFIX}/${MODULEFILESDIR}
-    for module in ${modules}; do
-	build_module ${module}
-    done
-) | tee -a ${LOG_PATH}
+(build_modules "${modules}" | log ${STDOUT_LOG_PATH}) 3>&1 1>&2 2>&3 | log ${STDERR_LOG_PATH}
