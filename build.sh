@@ -18,6 +18,7 @@
 # Default options
 PREFIX=/cm/shared/apps
 MODULEFILESDIR=modulefiles
+DRY_RUN=
 top_modules=
 STDOUT_LOG_PATH=build-output.log
 STDERR_LOG_PATH=build-error.log
@@ -30,6 +31,7 @@ help() {
     printf "  %-20s\t%s\n" "-h, --help" "display this help and exit"
     printf "  %-20s\t%s\n" "--prefix=PREFIX" "install files in PREFIX [${PREFIX}]"
     printf "  %-20s\t%s\n" "--modulefilesdir=DIR" "module files [PREFIX/${MODULEFILESDIR}]"
+    printf "  %-20s\t%s\n" "--dry-run" "Print the commands that would be executed, but do not execute them"
     exit 1
 }
 
@@ -38,6 +40,7 @@ while [ "$#" -gt 0 ]; do
 	-h | --help) help; exit 0;;
 	--prefix=*) PREFIX="${1#*=}"; shift 1;;
 	--modulefilesdir=*) MODULEFILESDIR="${1#*=}"; shift 1;;
+	--dry-run) DRY_RUN=1; shift 1;;
 	--) shift; break;;
 	-*) echo "unknown option: ${1}" >&2; exit 1;;
 	*) top_modules="${top_modules} ${1}"; shift 1;;
@@ -78,13 +81,20 @@ function build_module()
 {
     module=$1
     echo "$0: Building ${module}"
-    if [ -z ${dry_run} ]; then
+    if [ -z ${DRY_RUN} ]; then
 	pushd $(dirname ${module})
-	DESTDIR=${DESTDIR} MODULES_PREFIX=${DESTDIR}${PREFIX} \
+	DESTDIR=${DESTDIR} MODULES_PREFIX=${DESTDIR} \
 	       ./build.sh \
 	       --prefix=${PREFIX} \
 	       --modulefilesdir=${MODULEFILESDIR}
 	popd
+    else
+	echo "pushd $(dirname ${module})"
+	echo "DESTDIR=${DESTDIR} MODULES_PREFIX=${DESTDIR} " \
+	     "./build.sh " \
+	     "--prefix=${PREFIX} " \
+	     "--modulefilesdir=${MODULEFILESDIR}"
+	echo "popd"
     fi
     echo "$0: Done building ${module}"
 }
