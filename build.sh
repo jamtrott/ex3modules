@@ -104,8 +104,14 @@ function build_modules()
     modules=$1
     echo "$0: Building the following modules:"
     echo "$0: ${modules}"
-    mkdir -p ${PREFIX}/${MODULEFILESDIR}
-    module use ${PREFIX}/${MODULEFILESDIR}
+
+    if [ -z ${DRY_RUN} ]; then
+	mkdir -p ${PREFIX}/${MODULEFILESDIR}
+	module use ${PREFIX}/${MODULEFILESDIR}
+    else
+	echo "mkdir -p ${PREFIX}/${MODULEFILESDIR}"
+	echo "module use ${PREFIX}/${MODULEFILESDIR}"
+    fi
     for module in ${modules}; do
 	build_module ${module}
     done
