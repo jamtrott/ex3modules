@@ -105,9 +105,9 @@ module-whatis "${PKG_URL}"
 ${PKG_PREREQS}
 
 set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-setenv ${PKG_NAME^^}_ROOT \$MODULES_PREFIX${PKG_PREFIX}
-setenv ${PKG_NAME^^}_INCDIR \$MODULES_PREFIX${PKG_PREFIX}/include
-setenv ${PKG_NAME^^}_INCLUDEDIR \$MODULES_PREFIX${PKG_PREFIX}/include
+setenv $(echo "${PKG_NAME}" | tr '[a-z]' '[A-Z]')_ROOT \$MODULES_PREFIX${PKG_PREFIX}
+setenv $(echo "${PKG_NAME}" | tr '[a-z]' '[A-Z]')_INCDIR \$MODULES_PREFIX${PKG_PREFIX}/include
+setenv $(echo "${PKG_NAME}" | tr '[a-z]' '[A-Z]')_INCLUDEDIR \$MODULES_PREFIX${PKG_PREFIX}/include
 prepend-path C_INCLUDE_PATH \$MODULES_PREFIX${PKG_PREFIX}/include
 prepend-path CPLUS_INCLUDE_PATH \$MODULES_PREFIX${PKG_PREFIX}/include
 prepend-path PKG_CONFIG_PATH \$MODULES_PREFIX${PKG_PREFIX}/share/pkgconfig
