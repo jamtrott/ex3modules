@@ -91,7 +91,7 @@ module-whatis "${PKG_URL}"
 ${PKG_PREREQS}
 
 set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-setenv ${PKG_NAME^^}_ROOT \$MODULES_PREFIX${PKG_PREFIX}
+setenv $(echo "${PKG_NAME}" | tr '[a-z]' '[A-Z]')_ROOT \$MODULES_PREFIX${PKG_PREFIX}
 prepend-path PATH \$MODULES_PREFIX${PKG_PREFIX}/bin
 prepend-path MANPATH \$MODULES_PREFIX${PKG_PREFIX}/share/man
 set MSG "${PKG_NAME} ${PKG_VERSION}"

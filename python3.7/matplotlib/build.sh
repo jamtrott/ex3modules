@@ -11,7 +11,7 @@
 # The module can then be loaded as follows:
 #
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
-#   MODULES_PREFIX=$HOME module load matplotlib
+#   MODULES_PREFIX=$HOME module load python<version>/matplotlib
 #
 
 # Load build-time dependencies and determine prerequisite modules
