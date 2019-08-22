@@ -67,7 +67,7 @@ function log() {
 function build_deps()
 {
     module=$1
-    module_build_deps="$(dirname ${module})/build_deps"
+    module_build_deps="${module}/build_deps"
     (
 	printf "%s %s\n" "${module}" "${module}"
 	while read dep; do
@@ -82,14 +82,14 @@ function build_module()
     module=$1
     echo "$0: Building ${module}"
     if [ -z ${DRY_RUN} ]; then
-	pushd $(dirname ${module})
+	pushd ${module}
 	DESTDIR=${DESTDIR} MODULES_PREFIX=${DESTDIR} \
 	       ./build.sh \
 	       --prefix=${PREFIX} \
 	       --modulefilesdir=${MODULEFILESDIR}
 	popd
     else
-	echo "pushd $(dirname ${module})"
+	echo "pushd ${module}"
 	echo "DESTDIR=${DESTDIR} MODULES_PREFIX=${DESTDIR} " \
 	     "./build.sh " \
 	     "--prefix=${PREFIX} " \
