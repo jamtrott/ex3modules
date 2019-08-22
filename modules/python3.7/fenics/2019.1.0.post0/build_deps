@@ -10,4 +10,4 @@ pybind11/gcc/2.3.0
 python3.7/ply/3.11
 python3.7/mpi4py/3.0.2
 python3.7/petsc4py/3.11.0
-fenics/dolfin/2019.1.0.post0
+fenics-dolfin/2019.1.0.post0

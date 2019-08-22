@@ -11,7 +11,7 @@ The available modules are shown in the table below.
 | [cmake](https://cmake.org) | 3.15.2 | Open-source, cross-platform tools to build, test and package software | |
 | [Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) | 3.3.7 | C++ template library for linear algebra | Optionally depends on boost, mpfr, gmp, suitesparse, superlu |
 | [fenics](https://bitbucket.org/fenics-project/dolfin/) | 2019.1.0.post0 | FEniCS Project: C++ and Python interface to the FEniCS computing platform for solving partial differential equations | Python,  |
-| [fenics/dolfin](https://bitbucket.org/fenics-project/dolfin/) | 2019.1.0.post0 | FEniCS Project: C++ interface to the FEniCS computing platform for solving partial differential equations | Python,  |
+| [fenics-dolfin](https://bitbucket.org/fenics-project/dolfin/) | 2019.1.0.post0 | FEniCS Project: C++ interface to the FEniCS computing platform for solving partial differential equations | Python,  |
 | [gmp](https://gmplib.org) | 6.1.2 | Library for arbitrary precision arithmetic | |
 | [HDF5](https://www.hdfgroup.org/solutions/hdf5/) | 1.10.5 | HDF5 high performance data software library and file format | MPI |
 | [hwloc](https://www.open-mpi.org/projects/hwloc/) | 2.0.4 | Portable abstraction of hierarchical topology of modern architectures | |
