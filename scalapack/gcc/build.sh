@@ -96,9 +96,9 @@ module-whatis "${PKG_URL}"
 ${PKG_PREREQS}
 
 set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-setenv $(echo "${PKG_NAME}" | tr '[a-z]' '[A-Z]')_ROOT \$MODULES_PREFIX${PKG_PREFIX}
-setenv $(echo "${PKG_NAME}" | tr '[a-z]' '[A-Z]')_LIBDIR \$MODULES_PREFIX${PKG_PREFIX}/lib
-setenv $(echo "${PKG_NAME}" | tr '[a-z]' '[A-Z]')_LIBRARYDIR \$MODULES_PREFIX${PKG_PREFIX}/lib
+setenv ${PKG_NAME^^}_ROOT \$MODULES_PREFIX${PKG_PREFIX}
+setenv ${PKG_NAME^^}_LIBDIR \$MODULES_PREFIX${PKG_PREFIX}/lib
+setenv ${PKG_NAME^^}_LIBRARYDIR \$MODULES_PREFIX${PKG_PREFIX}/lib
 prepend-path LIBRARY_PATH \$MODULES_PREFIX${PKG_PREFIX}/lib
 prepend-path LD_LIBRARY_PATH \$MODULES_PREFIX${PKG_PREFIX}/lib
 prepend-path PKG_CONFIG_PATH \$MODULES_PREFIX${PKG_PREFIX}/lib/pkgconfig
