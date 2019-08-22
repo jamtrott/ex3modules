@@ -80,7 +80,7 @@ function build_deps()
 function build_module()
 {
     module=$1
-    echo "$0: Building ${module}"
+    printf "%s: Building %s\n" "${0}" "${module}"
     if [ -z ${DRY_RUN} ]; then
 	pushd modules/${module}
 	DESTDIR=${DESTDIR} MODULES_PREFIX=${DESTDIR} \
@@ -96,14 +96,13 @@ function build_module()
 	     "--modulefilesdir=${MODULEFILESDIR}"
 	echo "popd"
     fi
-    echo "$0: Done building ${module}"
+    printf "%s: Done building %s\n" "${0}" "${module}"
 }
 
 function build_modules()
 {
     modules=$1
-    echo "$0: Building the following modules:"
-    echo "$0: ${modules}"
+    printf "%s: Building the following modules:\n%s\n" "${0}" "${modules}"
 
     if [ -z ${DRY_RUN} ]; then
 	mkdir -p ${PREFIX}/${MODULEFILESDIR}
