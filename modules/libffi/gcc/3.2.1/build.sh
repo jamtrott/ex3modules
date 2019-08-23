@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build libffi
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load libffi
 #
+set -x -o errexit
 
 PKG_NAME=libffi
 PKG_VERSION=3.2.1

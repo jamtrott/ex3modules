@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build <module>
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load <module>
 #
+set -x -o errexit
 
 PKG_NAME=<module>
 PKG_VERSION=<version>

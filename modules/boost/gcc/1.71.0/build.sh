@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build boost
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load boost
 #
+set -x -o errexit
 
 PKG_NAME=boost
 PKG_VERSION=1.71.0

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build dolfin
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load dolfin
 #
+set -x -o errexit
 
 PKG_NAME=dolfin
 PKG_VERSION=2019.1.0.post0

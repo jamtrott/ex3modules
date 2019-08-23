@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build hdf5
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load hdf5
 #
+set -x -o errexit
 
 PKG_NAME=hdf5
 PKG_VERSION=1.10.5

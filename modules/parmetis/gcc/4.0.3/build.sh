@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build parmetis
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load parmetis
 #
+set -x -o errexit
 
 PKG_NAME=parmetis
 PKG_VERSION=4.0.3

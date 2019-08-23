@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build hwloc
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load hwloc
 #
+set -x -o errexit
 
 PKG_NAME=hwloc
 PKG_VERSION=2.0.4

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -e
+#!/usr/bin/env bash
 #
 # Build modules and their dependencies
 #
@@ -14,6 +14,7 @@
 #   MODULES_PREFIX=$HOME module load openmpi/gcc/64/4.0.1
 #
 #
+set -o errexit
 
 # Default options
 PREFIX=/cm/shared/apps

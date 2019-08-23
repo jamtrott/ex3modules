@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build fenics
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load python<version>/fenics
 #
+set -x -o errexit
 
 # Load build-time dependencies and determine prerequisite modules
 while read module; do module load ${module}; done <build_deps

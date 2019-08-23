@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build osu-micro-benchmarks
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load osu-micro-benchmarks
 #
+set -x -o errexit
 
 PKG_NAME=osu-micro-benchmarks
 PKG_VERSION=5.6.2

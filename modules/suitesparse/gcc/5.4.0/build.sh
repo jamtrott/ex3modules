@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build suitesparse
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load suitesparse
 #
+set -x -o errexit
 
 PKG_NAME=suitesparse
 PKG_VERSION=5.4.0

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build petsc
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load petsc
 #
+set -x -o errexit
 
 PKG_NAME=petsc
 PKG_VERSION_NUMBER=3.11.3

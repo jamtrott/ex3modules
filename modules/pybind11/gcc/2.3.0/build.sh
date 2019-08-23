@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build pybind11
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load pybind11
 #
+set -x -o errexit
 
 PKG_NAME=pybind11
 PKG_VERSION=2.3.0

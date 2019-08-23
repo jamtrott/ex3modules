@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build openmpi
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load openmpi
 #
+set -x -o errexit
 
 PKG_NAME=openmpi
 PKG_VERSION=4.0.1

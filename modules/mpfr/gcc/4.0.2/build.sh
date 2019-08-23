@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build mpfr
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load mpfr
 #
+set -x -o errexit
 
 PKG_NAME=mpfr
 PKG_VERSION=4.0.2

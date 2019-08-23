@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build libevent
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load libevent
 #
+set -x -o errexit
 
 PKG_NAME=libevent
 PKG_VERSION=2.1.11-stable

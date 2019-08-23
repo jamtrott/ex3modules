@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build scalapack
 #
@@ -13,7 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load scalapack
 #
-
+set -x -o errexit
 
 PKG_NAME=scalapack
 PKG_VERSION=2.0.2

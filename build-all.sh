@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -e
+#!/usr/bin/env bash
 #
 # Build all modules
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/modulefiles
 #
 #
+set -o errexit
 
 build_files=$(find modules -name build.sh)
 modules=$(

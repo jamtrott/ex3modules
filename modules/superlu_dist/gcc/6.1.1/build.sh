@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build superlu_dist
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load superlu_dist
 #
+set -x -o errexit
 
 PKG_NAME=superlu_dist
 PKG_VERSION=6.1.1

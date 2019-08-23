@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xe
+#!/usr/bin/env bash
 #
 # Build cuda-toolkit
 #
@@ -13,6 +13,7 @@
 #   module use $HOME/$PREFIX/$MODULEFILESDIR
 #   MODULES_PREFIX=$HOME module load cuda-toolkit
 #
+set -x -o errexit
 
 PKG_NAME=cuda-toolkit
 PKG_VERSION=10.1.243
