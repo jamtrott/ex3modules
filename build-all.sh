@@ -20,4 +20,4 @@ modules=$(
 	echo "${f}" | sed -e "s/^modules\///" -e "s/\/build.sh$//";
     done)
 
-./build.sh "$@" ${modules}
+./build.sh --build-dependencies "$@" ${modules}
