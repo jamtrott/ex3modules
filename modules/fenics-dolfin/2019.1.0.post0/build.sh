@@ -78,8 +78,7 @@ cmake .. \
       -DSCOTCH_DIR="${SCOTCH_ROOT}" \
       -DAMD_DIR="${SUITESPARSE_ROOT}" \
       -DCHOLMOD_DIR="${SUITESPARSE_ROOT}" \
-      -DUMFPACK_DIR="${SUITESPARSE_ROOT}" \
-      -DCMAKE_CXX_FLAGS="-O3 -march=core-avx2"
+      -DUMFPACK_DIR="${SUITESPARSE_ROOT}"
 make -j
 make install DESTDIR=${DESTDIR}
 popd
