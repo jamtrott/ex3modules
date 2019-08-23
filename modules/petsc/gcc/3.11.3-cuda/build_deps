@@ -11,4 +11,4 @@ scotch/gcc/6.0.7
 suitesparse/gcc/5.4.0
 superlu/gcc/5.2.1
 superlu_dist/gcc/6.1.1
-cuda10.1/toolkit/10.1.168
+cuda-toolkit/10.1.243
