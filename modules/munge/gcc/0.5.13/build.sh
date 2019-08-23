@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -e
+#!/usr/bin/env bash -xe
 #
 # Build munge
 #
@@ -23,7 +23,7 @@ SRC_URL=https://github.com/dun/munge/archive/munge-${PKG_VERSION}.tar.gz
 SRC_DIR=${PKG_NAME}-${PKG_NAME}-${PKG_VERSION}
 
 # Load build-time dependencies and determine prerequisite modules
-while read module; do (module load ${module}; done <build_deps
+while read module; do module load ${module}; done <build_deps
 PKG_PREREQS=$(while read module; do echo "module load ${module}"; done <prereqs)
 
 # Set default options
