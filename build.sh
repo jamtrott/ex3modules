@@ -18,6 +18,7 @@
 # Default options
 PREFIX=/cm/shared/apps
 MODULEFILESDIR=modulefiles
+BUILD_DEPENDENCIES=
 DRY_RUN=
 top_modules=
 STDOUT_LOG_PATH=build-output.log
@@ -31,6 +32,7 @@ help() {
     printf "  %-20s\t%s\n" "-h, --help" "display this help and exit"
     printf "  %-20s\t%s\n" "--prefix=PREFIX" "install files in PREFIX [${PREFIX}]"
     printf "  %-20s\t%s\n" "--modulefilesdir=DIR" "module files [PREFIX/${MODULEFILESDIR}]"
+    printf "  %-20s\t%s\n" "--build-dependencies[=ARG]" "Build module dependencies [default=no]"
     printf "  %-20s\t%s\n" "--dry-run" "Print the commands that would be executed, but do not execute them"
     exit 1
 }
@@ -40,6 +42,7 @@ while [ "$#" -gt 0 ]; do
 	-h | --help) help; exit 0;;
 	--prefix=*) PREFIX="${1#*=}"; shift 1;;
 	--modulefilesdir=*) MODULEFILESDIR="${1#*=}"; shift 1;;
+	--build-dependencies | --build-dependencies=yes) BUILD_DEPENDENCIES=1; shift 1;;
 	--dry-run) DRY_RUN=1; shift 1;;
 	--) shift; break;;
 	-*) echo "unknown option: ${1}" >&2; exit 1;;
@@ -67,7 +70,13 @@ function log() {
 function build_deps()
 {
     module=$1
+
     module_build_deps="modules/${module}/build_deps"
+    if [ ! -f "${module_build_deps}" ]; then
+	printf "%s: No such file or directory\n" "${module_build_deps}" >&2
+	exit 1
+    fi
+
     (
 	printf "%s %s\n" "${module}" "${module}"
 	while read dep; do
@@ -118,16 +127,19 @@ function build_modules()
 
 init_log
 
-# Get a list of required build-time dependencies by recursively
-# traversing modules and their dependencies.
-module_dependencies=
-for top_module in ${top_modules}; do
-    module_dependencies="${module_dependencies} $(build_deps ${top_module})"
-done
+modules="${top_modules}"
+if [ ! -z "${BUILD_DEPENDENCIES}" ]; then
+    # Get a list of required build-time dependencies by recursively
+    # traversing modules and their dependencies.
+    module_dependencies=
+    for top_module in ${top_modules}; do
+	module_dependencies="${module_dependencies} $(build_deps ${top_module})"
+    done
 
-# Obtain a list of modules that must be built through a topological
-# sorting of the dependency list
-modules=$(printf "${module_dependencies}\n" | tsort | tac)
+    # Obtain a list of modules that must be built through a topological
+    # sorting of the dependency list
+    modules=$(printf "${module_dependencies}\n" | tsort | tac)
+fi
 
 # Build the required modules
 (build_modules "${modules}" | log ${STDOUT_LOG_PATH}) 3>&1 1>&2 2>&3 | log ${STDERR_LOG_PATH}
