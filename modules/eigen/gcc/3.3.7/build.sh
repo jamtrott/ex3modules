@@ -81,7 +81,7 @@ cmake .. \
       -DUMFPACK_LIBRARIES="${SUITESPARSE_LIBDIR}/libumfpack.so" \
       -DSUPERLU_INCLUDES="${SUPERLU_INCDIR}" \
       -DSUPERLU_LIBRARIES="${SUPERLU_LIBDIR}/libsuperlu.so" \
-      -DCMAKE_CXX_FLAGS="-O3 -march=core-avx2"
+      -DCMAKE_CXX_FLAGS="-O3"
 make
 make install DESTDIR=${DESTDIR}
 popd
