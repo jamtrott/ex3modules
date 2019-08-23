@@ -67,7 +67,7 @@ tar -C ${BUILD_DIR} -xzvf ${SRC_PKG}
 
 # Build
 pushd ${BUILD_DIR}/${SRC_DIR}
-CC=mpicc H5_CFLAGS="-O3 -march=core-avx2" FC=mpifort ./configure \
+CC=mpicc H5_CFLAGS="-O3" FC=mpifort ./configure \
   --prefix=${PKG_PREFIX} \
   --enable-shared \
   --enable-fortran \
