@@ -71,8 +71,7 @@ mkdir -p build
 pushd build
 cmake .. \
       -DCMAKE_INSTALL_PREFIX="${PKG_PREFIX}" \
-      -DBUILD_SHARED_LIBS=TRUE \
-      -DCMAKE_CXX_FLAGS="-O3 -march=core-avx2"
+      -DBUILD_SHARED_LIBS=TRUE
 make -j
 make install DESTDIR=${DESTDIR}
 popd
