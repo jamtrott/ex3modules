@@ -15,12 +15,13 @@
 #
 
 PKG_NAME=petsc
-PKG_VERSION=3.11.3
+PKG_VERSION_NUMBER=3.11.3
+PKG_VERSION=${PKG_VERSION_NUMBER}-cuda
 PKG_MODULEDIR=${PKG_NAME}/gcc/${PKG_VERSION}
 PKG_DESCRIPTION="Portable, Extensible Toolkit for Scientific Computation"
 PKG_URL="https://www.mcs.anl.gov/petsc/"
-SRC_URL=http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-${PKG_VERSION}.tar.gz
-SRC_DIR=${PKG_NAME}-${PKG_VERSION}
+SRC_URL=http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-${PKG_VERSION_NUMBER}.tar.gz
+SRC_DIR=${PKG_NAME}-${PKG_VERSION_NUMBER}
 
 # Load build-time dependencies and determine prerequisite modules
 while read module; do module load ${module}; done <build_deps
