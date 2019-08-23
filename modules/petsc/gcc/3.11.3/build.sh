@@ -72,6 +72,9 @@ CXXOPTFLAGS="-O3"
 FOPTFLAGS="-O3"
 ./configure \
     --prefix=${PKG_PREFIX} \
+    --with-cc=mpicc \
+    --with-cxx=mpicxx \
+    --with-fc=mpifort \
     --with-cxx-dialect=C++11 \
     --with-openmp=1 \
     --with-blaslapack-lib=${BLASDIR}/lib${BLASLIB}.so \
@@ -79,7 +82,7 @@ FOPTFLAGS="-O3"
     --with-hwloc --with-hwloc-dir=${HWLOC_ROOT} \
     --with-hypre --with-hypre-dir=${HYPRE_ROOT} \
     --with-metis --with-metis-dir=${METIS_ROOT} \
-    --with-mpi --with-mpi-dir=${MPI_HOME} \
+    --with-mpi --with-mpi-dir=${MPI_ROOT} \
     --with-mumps --with-mumps-dir=${MUMPS_ROOT} \
     --with-parmetis --with-parmetis-dir=${PARMETIS_ROOT} \
     --with-ptscotch --with-ptscotch-dir=${SCOTCH_ROOT} --with-ptscotch-libs=libz.so \
