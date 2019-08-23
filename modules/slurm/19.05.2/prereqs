@@ -1,1 +1,5 @@
 pmix/gcc/3.1.4
+ucx/gcc/1.6.0
+numactl/gcc/2.0.12
+hwloc/gcc/2.0.4
+munge/gcc/0.5.13
