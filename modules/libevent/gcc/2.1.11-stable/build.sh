@@ -70,6 +70,7 @@ tar -C ${BUILD_DIR} -xzvf ${SRC_PKG}
 pushd ${BUILD_DIR}/${SRC_DIR}
 ./configure --prefix=${PKG_PREFIX}
 make -j
+make verify
 make install DESTDIR=${DESTDIR}
 popd
 
