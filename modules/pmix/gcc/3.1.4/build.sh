@@ -76,6 +76,7 @@ pushd build
     --with-hwloc=${HWLOC_ROOT} \
     --with-libevent=${LIBEVENT_ROOT}
 make -j all
+make check -j
 make install DESTDIR=${DESTDIR}
 popd
 popd
