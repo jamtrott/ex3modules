@@ -20,6 +20,7 @@ set -o errexit
 PREFIX=/cm/shared/apps
 MODULEFILESDIR=modulefiles
 BUILD_DEPENDENCIES=
+PRINT_DEPENDENCIES=
 DRY_RUN=
 top_modules=
 STDOUT_LOG_PATH=build-output.log
@@ -34,6 +35,7 @@ help() {
     printf "  %-20s\t%s\n" "--prefix=PREFIX" "install files in PREFIX [${PREFIX}]"
     printf "  %-20s\t%s\n" "--modulefilesdir=DIR" "module files [PREFIX/${MODULEFILESDIR}]"
     printf "  %-20s\t%s\n" "--build-dependencies[=ARG]" "Build module dependencies [default=no]"
+    printf "  %-20s\t%s\n" "--print-dependencies" "Print module dependencies"
     printf "  %-20s\t%s\n" "--dry-run" "Print the commands that would be executed, but do not execute them"
     exit 1
 }
@@ -44,6 +46,7 @@ while [ "$#" -gt 0 ]; do
 	--prefix=*) PREFIX="${1#*=}"; shift 1;;
 	--modulefilesdir=*) MODULEFILESDIR="${1#*=}"; shift 1;;
 	--build-dependencies | --build-dependencies=yes) BUILD_DEPENDENCIES=1; shift 1;;
+	--print-dependencies) PRINT_DEPENDENCIES=1; shift 1;;
 	--dry-run) DRY_RUN=1; shift 1;;
 	--) shift; break;;
 	-*) echo "unknown option: ${1}" >&2; exit 1;;
@@ -129,7 +132,7 @@ function build_modules()
 init_log
 
 modules="${top_modules}"
-if [ ! -z "${BUILD_DEPENDENCIES}" ]; then
+if [ ! -z "${BUILD_DEPENDENCIES}" ] || [ ! -z "${PRINT_DEPENDENCIES}" ]; then
     # Get a list of required build-time dependencies by recursively
     # traversing modules and their dependencies.
     module_dependencies=
@@ -140,6 +143,11 @@ if [ ! -z "${BUILD_DEPENDENCIES}" ]; then
     # Obtain a list of modules that must be built through a topological
     # sorting of the dependency list
     modules=$(printf "${module_dependencies}\n" | tsort | tac)
+
+    if [ ! -z "${PRINT_DEPENDENCIES}" ]; then
+	printf "%s\n" "${modules}"
+	exit 1
+    fi
 fi
 
 # Build the required modules
