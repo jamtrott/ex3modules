@@ -71,7 +71,7 @@ pushd ${BUILD_DIR}/${SRC_DIR}
 ./configure \
     --prefix=${PKG_PREFIX} \
     --with-ucx=${UCX_ROOT} \
-    --with-pmi=${PMIX_ROOT} \
+    --with-pmi=/cm/shared/apps/slurm/18.08.8 \
     --enable-mpi-cxx \
     --enable-mpi-fortran=all \
     --enable-mpi1-compatibility \
