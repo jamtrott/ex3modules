@@ -79,6 +79,7 @@ pushd ${BUILD_DIR}/${SRC_DIR}
     --disable-assertions \
     --disable-params-check
 make -j
+make check -j
 make install DESTDIR=${DESTDIR}
 popd
 
