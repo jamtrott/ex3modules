@@ -70,12 +70,14 @@ tar -C ${BUILD_DIR} -xjvf ${SRC_PKG}
 pushd ${BUILD_DIR}/${SRC_DIR}
 ./configure \
     --prefix=${PKG_PREFIX} \
+    --with-hwloc=${HWLOC_ROOT} \
+    --with-knem=${KNEM_ROOT} \
+    --with-libevent=${LIBEVENT_ROOT} \
     --with-ucx=${UCX_ROOT} \
     --with-pmi=/cm/shared/apps/slurm/18.08.8 \
     --enable-mpi-cxx \
     --enable-mpi-fortran=all \
-    --enable-mpi1-compatibility \
-    --with-knem=${KNEM_ROOT}
+    --enable-mpi1-compatibility
 make -j ${JOBS}
 make install DESTDIR=${DESTDIR}
 popd
