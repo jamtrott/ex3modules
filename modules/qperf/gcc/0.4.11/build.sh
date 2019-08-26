@@ -70,7 +70,7 @@ tar -C ${BUILD_DIR} -xzvf ${SRC_PKG}
 pushd ${BUILD_DIR}/${SRC_DIR}
 ./autogen.sh
 ./configure --prefix=${PKG_PREFIX}
-make -j
+make -j ${NPROC}
 make install DESTDIR=${DESTDIR}
 popd
 

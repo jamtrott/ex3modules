@@ -98,7 +98,7 @@ FOPTFLAGS="-O3"
     COPTFLAGS=${COPTFLAGS} \
     CXXOPTFLAGS=${CXXOPTFLAGS} \
     FOPTFLAGS=${FOPTFLAGS}
-make -j
+make -j ${NPROC}
 make install DESTDIR=${DESTDIR}
 popd
 

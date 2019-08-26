@@ -76,7 +76,7 @@ LDFLAGS=$(pkg-config --libs-only-L libffi) ./configure \
     --with-ensurepip=install \
     --with-system-ffi \
     --with-openssl=${OPENSSL_ROOT}
-make -j
+make -j ${NPROC}
 make install DESTDIR=${DESTDIR}
 popd
 

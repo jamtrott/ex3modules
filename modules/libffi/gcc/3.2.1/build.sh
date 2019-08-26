@@ -72,7 +72,7 @@ pushd ${BUILD_DIR}/${SRC_DIR}
 # The commands used to build the module For packages based on
 # Autotools, this is the usual sequence of commands:
 ./configure --prefix=${PKG_PREFIX}
-make -j
+make -j ${NPROC}
 make install DESTDIR=${DESTDIR}
 
 popd

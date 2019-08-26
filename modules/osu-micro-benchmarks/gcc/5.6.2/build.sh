@@ -71,7 +71,7 @@ pushd ${BUILD_DIR}/${SRC_DIR}
 ./configure \
     --prefix=${PKG_PREFIX} \
     CC=mpicc CXX=mpicxx
-make -j
+make -j ${NPROC}
 make install DESTDIR=${DESTDIR}
 popd
 

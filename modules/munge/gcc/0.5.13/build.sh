@@ -72,7 +72,7 @@ pushd ${BUILD_DIR}/${SRC_DIR}
     --prefix=${PKG_PREFIX} \
     --with-openssl-prefix=${OPENSSL_ROOT} \
     --with-crypto-lib=openssl
-make -j
+make -j ${NPROC}
 make install DESTDIR=${DESTDIR}
 popd
 

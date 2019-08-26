@@ -78,8 +78,8 @@ pushd ${BUILD_DIR}/${SRC_DIR}
     --disable-debug \
     --disable-assertions \
     --disable-params-check
-make -j
-make check -j
+make -j ${NPROC}
+make check -j ${NPROC}
 make install DESTDIR=${DESTDIR}
 popd
 

@@ -69,8 +69,8 @@ tar -C ${BUILD_DIR} -xzvf ${SRC_PKG}
 # Build
 pushd ${BUILD_DIR}/${SRC_DIR}
 ./config --prefix=${PKG_PREFIX}
-make -j
-make test -j
+make -j ${NPROC}
+make test -j ${NPROC}
 make install DESTDIR=${DESTDIR}
 popd
 
