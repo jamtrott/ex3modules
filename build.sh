@@ -58,7 +58,7 @@ while [ "$#" -gt 0 ]; do
 	--build-dependencies | --build-dependencies=yes) BUILD_DEPENDENCIES=1; shift 1;;
 	--print-dependencies) PRINT_DEPENDENCIES=1; shift 1;;
 	--dry-run) DRY_RUN=1; shift 1;;
-        --jobs) JOBS="${1#*=}"; shift 1;;
+        --jobs=*) JOBS="${1#*=}"; shift 1;;
 	--) shift; break;;
 	-*) echo "unknown option: ${1}" >&2; exit 1;;
 	*) top_modules="${top_modules} ${1}"; shift 1;;
