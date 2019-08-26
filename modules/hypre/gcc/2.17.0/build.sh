@@ -79,7 +79,7 @@ grep -lr "\${HYPRE_INC_INSTALL}" . | xargs sed -i 's,${HYPRE_INC_INSTALL},${DEST
     --with-blas-lib-dirs=${BLASDIR} --with-blas-libs=${BLASLIB} \
     --with-lapack-lib-dirs=${BLASDIR} --with-lapack-libs=${BLASLIB} \
     CFLAGS="-O3"
-make -j
+make -j ${JOBS}
 make install DESTDIR=${DESTDIR}
 popd
 

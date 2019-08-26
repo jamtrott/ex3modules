@@ -72,7 +72,7 @@ pushd ${BUILD_DIR}/${SRC_DIR}
     --prefix=${PKG_PREFIX} \
     --parallel=$(nproc) \
     -- -DCMAKE_BUILD_TYPE:STRING=Release
-make -j
+make -j ${JOBS}
 make install DESTDIR=${DESTDIR}
 popd
 

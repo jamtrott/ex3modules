@@ -80,7 +80,7 @@ cmake .. \
       -DAMD_DIR="${SUITESPARSE_ROOT}" \
       -DCHOLMOD_DIR="${SUITESPARSE_ROOT}" \
       -DUMFPACK_DIR="${SUITESPARSE_ROOT}"
-make -j
+make -j ${JOBS}
 make install DESTDIR=${DESTDIR}
 popd
 popd

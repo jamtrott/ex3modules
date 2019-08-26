@@ -68,7 +68,7 @@ tar -C ${BUILD_DIR} -xzvf ${SRC_PKG}
 
 # Build
 pushd ${BUILD_DIR}/${SRC_DIR}
-make DYNAMIC_ARCH=1 -j
+make DYNAMIC_ARCH=1 -j ${JOBS}
 make install DESTDIR=${DESTDIR} PREFIX=${PKG_PREFIX}
 popd
 

@@ -78,7 +78,7 @@ CC=mpicc CXX=mpicxx FC=mpifort cmake .. \
       -DTPL_LAPACK_LIBRARIES="${BLASDIR}/lib${BLASLIB}.so" \
       -DTPL_PARMETIS_INCLUDE_DIRS="${PARMETIS_INCDIR}" \
       -DTPL_PARMETIS_LIBRARIES="${PARMETIS_LIBDIR}/libparmetis.so"
-make -j
+make -j ${JOBS}
 make install DESTDIR=${DESTDIR}
 popd
 popd

@@ -71,7 +71,7 @@ pushd ${BUILD_DIR}/${SRC_DIR}
 ./configure \
     --prefix=${PKG_PREFIX} \
     --with-gmp=${GMP_ROOT}
-make -j
+make -j ${JOBS}
 make install DESTDIR=${DESTDIR}
 popd
 

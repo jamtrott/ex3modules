@@ -73,7 +73,7 @@ pushd build
 cmake .. \
       -DCMAKE_INSTALL_PREFIX="${PKG_PREFIX}" \
       -DBUILD_SHARED_LIBS=TRUE
-make -j
+make -j ${JOBS}
 make install DESTDIR=${DESTDIR}
 popd
 popd

@@ -75,8 +75,8 @@ pushd build
     --prefix=${PKG_PREFIX} \
     --with-hwloc=${HWLOC_ROOT} \
     --with-libevent=${LIBEVENT_ROOT}
-make -j all
-make check -j
+make -j ${JOBS} all
+make check -j ${JOBS}
 make install DESTDIR=${DESTDIR}
 popd
 popd
