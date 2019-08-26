@@ -75,8 +75,8 @@ pushd ${BUILD_DIR}/${SRC_DIR}
     --with-python-root=${PYTHON_ROOT}
 echo "using mpi ;" >>project-config.jam
 cat project-config.jam
-./b2 --with=all -j $(nproc)
-./b2 --with=all -j $(nproc) install
+./b2 --with=all -j${JOBS}
+./b2 --with=all -j${JOBS} install
 popd
 
 # Write the module file

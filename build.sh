@@ -47,6 +47,7 @@ help() {
     printf "  %-20s\t%s\n" "--build-dependencies[=ARG]" "Build module dependencies [default=no]"
     printf "  %-20s\t%s\n" "--print-dependencies" "Print module dependencies"
     printf "  %-20s\t%s\n" "--dry-run" "Print the commands that would be executed, but do not execute them"
+    printf "  %-20s\t%s\n" "-j [N], --jobs[=N]" "Allow N jobs at once."
     exit 1
 }
 
@@ -58,6 +59,11 @@ while [ "$#" -gt 0 ]; do
 	--build-dependencies | --build-dependencies=yes) BUILD_DEPENDENCIES=1; shift 1;;
 	--print-dependencies) PRINT_DEPENDENCIES=1; shift 1;;
 	--dry-run) DRY_RUN=1; shift 1;;
+	-j) case "${2}" in
+		''|*[!0-9]*) JOBS=""; shift 1;;
+		*) JOBS="${2}"; shift 2;;
+	    esac ;;
+	-j*) JOBS="${1#j}"; shift 1;;
         --jobs=*) JOBS="${1#*=}"; shift 1;;
 	--) shift; break;;
 	-*) echo "unknown option: ${1}" >&2; exit 1;;
@@ -107,7 +113,7 @@ function build_module()
     printf "%s: Building %s\n" "${0}" "${module}"
     if [ -z ${DRY_RUN} ]; then
 	pushd modules/${module}
-	DESTDIR=${DESTDIR} MODULES_PREFIX=${DESTDIR} \
+	DESTDIR=${DESTDIR} MODULES_PREFIX=${DESTDIR} JOBS=${JOBS} \
 	       ./build.sh \
 	       --prefix=${PREFIX} \
 	       --modulefilesdir=${MODULEFILESDIR}
