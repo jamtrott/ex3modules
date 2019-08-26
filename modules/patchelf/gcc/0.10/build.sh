@@ -70,7 +70,7 @@ tar -C ${BUILD_DIR} -xzvf ${SRC_PKG}
 pushd ${BUILD_DIR}/${SRC_DIR}
 ./bootstrap.sh
 ./configure --prefix=${PKG_PREFIX}
-make -j ${NPROC}
+make -j ${JOBS}
 make install DESTDIR=${DESTDIR}
 popd
 

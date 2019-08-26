@@ -25,14 +25,14 @@ DRY_RUN=
 top_modules=
 STDOUT_LOG_PATH=build-output.log
 STDERR_LOG_PATH=build-error.log
-if [ -z "${NPROC}" ]; then
+if [ -z "${JOBS}" ]; then
     # determine number of logical CPUs
     if command -v nproc >/dev/null 2>&1; then
         # Linux
-        NPROC=$(nproc)
+        JOBS=$(nproc)
     elif command -v sysctl >/dev/null 2>&1; then
         # macOS
-        NPROC=$(sysctl -n hw.ncpu)
+        JOBS=$(sysctl -n hw.ncpu)
     fi
 fi
 
@@ -58,6 +58,7 @@ while [ "$#" -gt 0 ]; do
 	--build-dependencies | --build-dependencies=yes) BUILD_DEPENDENCIES=1; shift 1;;
 	--print-dependencies) PRINT_DEPENDENCIES=1; shift 1;;
 	--dry-run) DRY_RUN=1; shift 1;;
+        --jobs) JOBS="${1#*=}"; shift 1;;
 	--) shift; break;;
 	-*) echo "unknown option: ${1}" >&2; exit 1;;
 	*) top_modules="${top_modules} ${1}"; shift 1;;

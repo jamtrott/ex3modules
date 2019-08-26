@@ -66,7 +66,7 @@ git clone https://scm.gforge.inria.fr/anonscm/git/knem/knem.git ${BUILD_DIR}/${S
 pushd ${BUILD_DIR}/${SRC_DIR}
 ./autogen.sh
 ./configure --prefix=${PKG_PREFIX}
-make -j ${NPROC}
+make -j ${JOBS}
 make install DESTDIR=${DESTDIR}
 popd
 

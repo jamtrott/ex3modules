@@ -73,7 +73,7 @@ pushd ${BUILD_DIR}/${SRC_DIR}
     --with-pmix=${PMIX_ROOT} \
     --with-hwloc=${HWLOC_ROOT} \
     --with-ucx=${UCX_ROOT}
-make -j ${NPROC}
+make -j ${JOBS}
 make install DESTDIR=${DESTDIR}
 popd
 

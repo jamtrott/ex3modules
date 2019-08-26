@@ -73,7 +73,7 @@ CC=mpicc H5_CFLAGS="-O3" FC=mpifort ./configure \
   --enable-shared \
   --enable-fortran \
   --enable-parallel
-make -j ${NPROC}
+make -j ${JOBS}
 make install DESTDIR=${DESTDIR}
 popd
 

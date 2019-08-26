@@ -76,7 +76,7 @@ pushd ${BUILD_DIR}/${SRC_DIR}
     --enable-mpi-fortran=all \
     --enable-mpi1-compatibility \
     --with-knem=${KNEM_ROOT}
-make -j ${NPROC}
+make -j ${JOBS}
 make install DESTDIR=${DESTDIR}
 popd
 
