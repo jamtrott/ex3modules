@@ -66,9 +66,14 @@ curl --fail -Lo ${SRC_PKG} ${SRC_URL}
 # Unpack
 tar -C ${BUILD_DIR} -xzvf ${SRC_PKG}
 
+# we should export JOBS if it is set, so that it becomes visible to Make
+if [ ! -z "${JOBS}" ]; then
+    export JOBS
+fi
+
 # Build
 pushd ${BUILD_DIR}/${SRC_DIR}
-JOBS=$(nproc) make \
+make \
     BLAS="-L$BLASDIR -l$BLASLIB" \
     LAPACK="" \
     MY_METIS_LIB="${METIS_LIBDIR}/libmetis.so" \

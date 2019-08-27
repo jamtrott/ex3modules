@@ -66,11 +66,23 @@ curl --fail -Lo ${SRC_PKG} ${SRC_URL}
 # Unpack
 tar -C ${BUILD_DIR} -xzvf ${SRC_PKG}
 
+# we need to set JOBS if it is not already set, since it is used an argument to bootstrap
+if [ -z "${JOBS}" ]; then
+    # determine number of logical CPUs
+    if command -v nproc >/dev/null 2>&1; then
+        # Linux
+        JOBS=$(nproc)
+    elif command -v sysctl >/dev/null 2>&1; then
+        # macOS
+        JOBS=$(sysctl -n hw.ncpu)
+    fi
+fi
+
 # Build
 pushd ${BUILD_DIR}/${SRC_DIR}
 ./bootstrap \
     --prefix=${PKG_PREFIX} \
-    --parallel=$(nproc) \
+    --parallel=${JOBS} \
     -- -DCMAKE_BUILD_TYPE:STRING=Release
 make -j ${JOBS}
 make install DESTDIR=${DESTDIR}
