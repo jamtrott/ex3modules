@@ -21,6 +21,7 @@ PREFIX=/cm/shared/apps
 MODULEFILESDIR=modulefiles
 BUILD_DEPENDENCIES=
 PRINT_DEPENDENCIES=
+FORCE_REBUILD_DEPENDENCIES=
 DRY_RUN=
 top_modules=
 STDOUT_LOG_PATH=build-output.log
@@ -58,6 +59,7 @@ while [ "$#" -gt 0 ]; do
 	--modulefilesdir=*) MODULEFILESDIR="${1#*=}"; shift 1;;
 	--build-dependencies | --build-dependencies=yes) BUILD_DEPENDENCIES=1; shift 1;;
 	--print-dependencies) PRINT_DEPENDENCIES=1; shift 1;;
+	--force-rebuild-dependencies) FORCE_REBUILD_DEPENDENCIES=1; BUILD_DEPENDENCIES=1; shift 1;;
 	--dry-run) DRY_RUN=1; shift 1;;
 	-j) case "${2}" in
 		''|*[!0-9]*) JOBS=""; shift 1;;
@@ -142,7 +144,25 @@ function build_modules()
 	echo "module use ${PREFIX}/${MODULEFILESDIR}"
     fi
     for module in ${modules}; do
-	build_module ${module}
+        # Use `module is-avail` to query the availability of a module, and use
+        # the return code to determine if it is already built.
+        # We need to temporarily disable termination on non-zero return codes in
+        # order for this to work.
+        set +o errexit
+        eval module is-avail ${module}
+        retval=$?
+        set -o errexit
+        is_top_module=0
+        for top_module in $top_modules; do
+            if [ "$module" = "${top_module}" ]; then
+                is_top_module=1
+            fi
+        done
+        if [ 0 -eq ${is_top_module} ] && [ ${retval} -eq 0 ] && [ -z "${FORCE_REBUILD_DEPENDENCIES}" ]; then
+            echo "Skipping building of dependency ${module}, since it has already been built"
+            continue
+        fi
+        build_module ${module}
     done
 }
 
