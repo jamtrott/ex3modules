@@ -75,9 +75,10 @@ make install DESTDIR=${DESTDIR}
 
 # Workaround for an issue that causes metis.h to not be installed
 # (see http://glaros.dtc.umn.edu/gkhome/node/832).
-echo "Copying ${BUILD_DIR}/${SRC_DIR}/build/Linux-x86_64/metis/include/metis.h " \
-     "to ${DESTDIR}${PKG_PREFIX}/include"
-cp build/Linux-x86_64/metis/include/metis.h ${DESTDIR}${PKG_PREFIX}/include
+metis_h_src=${BUILD_DIR}/${SRC_DIR}/build/Linux-$(uname -m)/metis/include/metis.h
+metis_h_dstdir=${DESTDIR}${PKG_PREFIX}/include
+echo "Copying ${metis_h_src} to ${metis_h_dstdir}"
+cp ${metis_h_src} ${metis_h_dstdir}
 
 popd
 
