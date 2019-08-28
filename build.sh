@@ -19,9 +19,8 @@ set -o errexit
 # Default options
 PREFIX=/cm/shared/apps
 MODULEFILESDIR=modulefiles
-BUILD_DEPENDENCIES=
+BUILD_DEPENDENCIES=no
 PRINT_DEPENDENCIES=
-FORCE_REBUILD_DEPENDENCIES=
 DRY_RUN=
 top_modules=
 STDOUT_LOG_PATH=build-output.log
@@ -45,7 +44,7 @@ help() {
     printf "  %-20s\t%s\n" "-h, --help" "display this help and exit"
     printf "  %-20s\t%s\n" "--prefix=PREFIX" "install files in PREFIX [${PREFIX}]"
     printf "  %-20s\t%s\n" "--modulefilesdir=DIR" "module files [PREFIX/${MODULEFILESDIR}]"
-    printf "  %-20s\t%s\n" "--build-dependencies[=ARG]" "Build module dependencies [default=no]"
+    printf "  %-20s\t%s\n" "--build-dependencies[=ARG]" "Build module dependencies {no,missing-only,all} [default=missing-only]. If this flag is not specified, no dependencies are built."
     printf "  %-20s\t%s\n" "--print-dependencies" "Print module dependencies"
     printf "  %-20s\t%s\n" "--dry-run" "Print the commands that would be executed, but do not execute them"
     printf "  %-20s\t%s\n" "-j [N], --jobs[=N]" "Allow N jobs at once."
@@ -57,9 +56,9 @@ while [ "$#" -gt 0 ]; do
 	-h | --help) help; exit 0;;
 	--prefix=*) PREFIX="${1#*=}"; shift 1;;
 	--modulefilesdir=*) MODULEFILESDIR="${1#*=}"; shift 1;;
-	--build-dependencies | --build-dependencies=yes) BUILD_DEPENDENCIES=1; shift 1;;
+	--build-dependencies) BUILD_DEPENDENCIES=missing-only; shift 1;;
+        --build-dependencies=*) BUILD_DEPENDENCIES="${1#*=}"; shift 1;;
 	--print-dependencies) PRINT_DEPENDENCIES=1; shift 1;;
-	--force-rebuild-dependencies) FORCE_REBUILD_DEPENDENCIES=1; BUILD_DEPENDENCIES=1; shift 1;;
 	--dry-run) DRY_RUN=1; shift 1;;
 	-j) case "${2}" in
 		''|*[!0-9]*) JOBS=""; shift 1;;
@@ -75,6 +74,11 @@ done
 if [ -z "${top_modules}" ]; then
     help
 fi
+case "${BUILD_DEPENDENCIES}" in
+    no | missing-only | all) ;;
+    *) echo "Invalid value for --build-dependencies: '${BUILD_DEPENDENCIES}'"; help;
+esac
+
 
 function init_log() {
     echo -n "" > ${STDOUT_LOG_PATH}
@@ -146,19 +150,20 @@ function build_modules()
     for module in ${modules}; do
         # Use `module is-avail` to query the availability of a module, and use
         # the return code to determine if it is already built.
-        # We need to temporarily disable termination on non-zero return codes in
-        # order for this to work.
-        set +o errexit
-        eval module is-avail ${module}
-        retval=$?
-        set -o errexit
+        module_found=0
+        if module is-avail "${module}"; then
+            module_found=1
+        fi
+
         is_top_module=0
         for top_module in $top_modules; do
             if [ "$module" = "${top_module}" ]; then
                 is_top_module=1
             fi
         done
-        if [ 0 -eq ${is_top_module} ] && [ ${retval} -eq 0 ] && [ -z "${FORCE_REBUILD_DEPENDENCIES}" ]; then
+        if [ ${is_top_module} -eq 0 ] &&
+            [ ${module_found} -eq 1 ] &&
+            [ "${BUILD_DEPENDENCIES}" != "all" ]; then
             echo "Skipping building of dependency ${module}, since it has already been built"
             continue
         fi
@@ -169,7 +174,7 @@ function build_modules()
 init_log
 
 modules="${top_modules}"
-if [ ! -z "${BUILD_DEPENDENCIES}" ] || [ ! -z "${PRINT_DEPENDENCIES}" ]; then
+if [ "${BUILD_DEPENDENCIES}" != "no" ] || [ ! -z "${PRINT_DEPENDENCIES}" ]; then
     # Get a list of required build-time dependencies by recursively
     # traversing modules and their dependencies.
     module_dependencies=
