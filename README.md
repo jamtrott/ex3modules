@@ -13,6 +13,7 @@ The available modules are shown in the table below.
 | [fenics](https://bitbucket.org/fenics-project/dolfin/) | 2019.1.0.post0 | FEniCS Project: C++ and Python interface to the FEniCS computing platform for solving partial differential equations | Python,  |
 | [fenics-dolfin](https://bitbucket.org/fenics-project/dolfin/) | 2019.1.0.post0 | FEniCS Project: C++ interface to the FEniCS computing platform for solving partial differential equations | Python,  |
 | [gmp](https://gmplib.org) | 6.1.2 | Library for arbitrary precision arithmetic | |
+| [gsl](https://www.gnu.org/software/gsl/) | 2.6 | GNU Scientific Library | |
 | [HDF5](https://www.hdfgroup.org/solutions/hdf5/) | 1.10.5 | HDF5 high performance data software library and file format | MPI |
 | [hwloc](https://www.open-mpi.org/projects/hwloc/) | 2.0.4 | Portable abstraction of hierarchical topology of modern architectures | |
 | [HYPRE](https://computing.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods) | 2.17.0 | Scalable Linear Solvers and Multigrid Methods | numactl, BLAS, MPI |
