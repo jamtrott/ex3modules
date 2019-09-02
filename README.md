@@ -56,4 +56,5 @@ The available modules are shown in the table below.
 | [python3.7/pkgconfig](https://github.com/matze/pkgconfig) | 1.5.1 | Python interface to the pkg-config command line tool | python |
 | [python3.7/ply](https://www.dabeaz.com/ply) | 3.11 | lex and yacc parsing tools for Python | python |
 | [python3.7/pytest](https://docs.pytest.org/) | 5.1.0 | Python testing framework | python |
+| [python3.7/scipy](https://www.scipy.org) | 1.3.1 | Fundamental package for scientific computing with Python | python, python3.7/numpy |
 | [python3.7/sympy](https://www.sympy.org) | 1.4 | Computer algebra system written in pure Python | python, mpmath |
