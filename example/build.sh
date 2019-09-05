@@ -17,14 +17,14 @@ set -x -o errexit
 
 PKG_NAME=<module>
 PKG_VERSION=<version>
-PKG_MODULEDIR=<moduledir> # Usually something like ${PKG_NAME}/${PKG_VERSION}
+PKG_MODULEDIR=<moduledir> # Usually something like "${PKG_NAME}/${PKG_VERSION}"
 PKG_DESCRIPTION=<description>
 PKG_URL=<url>
 SRC_URL=<src-url>
 SRC_DIR=<src-dir>
 
 # Load build-time dependencies and determine prerequisite modules
-while read module; do module load ${module}; done <build_deps
+while read module; do module load "${module}"; done <build_deps
 PKG_PREREQS=$(while read module; do echo "module load ${module}"; done <prereqs)
 
 # Set default options
@@ -53,35 +53,35 @@ while [ "$#" -gt 0 ]; do
 done
 
 # Set up installation paths
-PKG_PREFIX=${PREFIX}/${PKG_MODULEDIR}
+PKG_PREFIX="${PREFIX}/${PKG_MODULEDIR}"
 
 # Set up build and temporary install directories
-BUILD_DIR=$(mktemp -d -t ${PKG_NAME}-${PKG_VERSION}-XXXXXX)
-mkdir -p ${BUILD_DIR}
+BUILD_DIR="$(mktemp -d -t ${PKG_NAME}-${PKG_VERSION}-XXXXXX)"
+mkdir -p "${BUILD_DIR}"
 
 # Download package
-SRC_PKG=${BUILD_DIR}/$(basename ${SRC_URL})
-curl --fail -Lo ${SRC_PKG} ${SRC_URL}
+SRC_PKG="${BUILD_DIR}/$(basename ${SRC_URL})"
+curl --fail -Lo "${SRC_PKG}" "${SRC_URL}"
 
 # Unpack
-tar -C ${BUILD_DIR} -xzvf ${SRC_PKG}
+tar -C "${BUILD_DIR}" -xzvf "${SRC_PKG}"
 
 # Build
-pushd ${BUILD_DIR}/${SRC_DIR}
+pushd "${BUILD_DIR}/${SRC_DIR}"
 
 # The commands used to build the module For packages based on
 # Autotools, this is the usual sequence of commands:
-./configure --prefix=${PKG_PREFIX}
+./configure --prefix="${PKG_PREFIX}"
 make -j${JOBS}
-make install DESTDIR=${DESTDIR}
+make install DESTDIR="${DESTDIR}"
 
 popd
 
 # Write the module file
-PKG_MODULEFILE=${DESTDIR}${PREFIX}/${MODULEFILESDIR}/${PKG_MODULEDIR}
-mkdir -p $(dirname ${PKG_MODULEFILE})
+PKG_MODULEFILE="${DESTDIR}${PREFIX}/${MODULEFILESDIR}/${PKG_MODULEDIR}"
+mkdir -p $(dirname "${PKG_MODULEFILE}")
 echo "Writing module file ${PKG_MODULEFILE}"
-cat >${PKG_MODULEFILE} <<EOF
+cat >"${PKG_MODULEFILE}" <<EOF
 #%Module
 # ${PKG_NAME} ${PKG_VERSION}
 
