@@ -18,14 +18,14 @@ set -o errexit
 
 # Default options
 list_modules=
-PREFIX=/cm/shared/apps
-MODULEFILESDIR=modulefiles
-BUILD_DEPENDENCIES=no
-PRINT_DEPENDENCIES=
-DRY_RUN=
+prefix=/cm/shared/apps
+modulefilesdir=modulefiles
+build_dependencies=no
+print_dependencies=
+dry_run=
 top_modules=
-STDOUT_LOG_PATH=build-output.log
-STDERR_LOG_PATH=build-error.log
+stdout_log_path=build-output.log
+stderr_log_path=build-error.log
 if [ -z "${JOBS}" ]; then
     # determine number of logical CPUs
     if command -v nproc >/dev/null 2>&1; then
@@ -44,8 +44,8 @@ help() {
     printf " Options are:\n"
     printf "  %-20s\t%s\n" "-h, --help" "display this help and exit"
     printf "  %-20s\t%s\n" "--list-modules" "list available modules"
-    printf "  %-20s\t%s\n" "--prefix=PREFIX" "install files in PREFIX [${PREFIX}]"
-    printf "  %-20s\t%s\n" "--modulefilesdir=DIR" "module files [PREFIX/${MODULEFILESDIR}]"
+    printf "  %-20s\t%s\n" "--prefix=PREFIX" "install files in PREFIX [${prefix}]"
+    printf "  %-20s\t%s\n" "--modulefilesdir=DIR" "module files [PREFIX/${modulefilesdir}]"
     printf "  %-20s\t%s\n" "--build-dependencies[=ARG]" "Build module dependencies {no,missing-only,all} [default=missing-only]. If this flag is not specified, no dependencies are built."
     printf "  %-20s\t%s\n" "--print-dependencies" "Print module dependencies"
     printf "  %-20s\t%s\n" "--dry-run" "Print the commands that would be executed, but do not execute them"
@@ -59,12 +59,12 @@ function parse_command_line_args() {
 	case "${1}" in
 	    -h | --help) help; exit 0;;
 	    --list-modules) list_modules=1; shift 1;;
-	    --prefix=*) PREFIX="${1#*=}"; shift 1;;
-	    --modulefilesdir=*) MODULEFILESDIR="${1#*=}"; shift 1;;
-	    --build-dependencies) BUILD_DEPENDENCIES=missing-only; shift 1;;
-            --build-dependencies=*) BUILD_DEPENDENCIES="${1#*=}"; shift 1;;
-	    --print-dependencies) PRINT_DEPENDENCIES=1; shift 1;;
-	    --dry-run) DRY_RUN=1; shift 1;;
+	    --prefix=*) prefix="${1#*=}"; shift 1;;
+	    --modulefilesdir=*) modulefilesdir="${1#*=}"; shift 1;;
+	    --build-dependencies) build_dependencies=missing-only; shift 1;;
+            --build-dependencies=*) build_dependencies="${1#*=}"; shift 1;;
+	    --print-dependencies) print_dependencies=1; shift 1;;
+	    --dry-run) dry_run=1; shift 1;;
 	    -j) case "${2}" in
 		    ''|*[!0-9]*) JOBS=""; shift 1;;
 		    *) JOBS="${2}"; shift 2;;
@@ -79,20 +79,20 @@ function parse_command_line_args() {
     # if [ -z "${top_modules}" ]; then
     # 	help
     # fi
-    case "${BUILD_DEPENDENCIES}" in
+    case "${build_dependencies}" in
 	no | missing-only | all) ;;
-	*) echo "Invalid value for --build-dependencies: '${BUILD_DEPENDENCIES}'"; help;
+	*) echo "Invalid value for --build-dependencies: '${build_dependencies}'"; help;
     esac
 }
 
 
 function init_log() {
     if [ -x "$(command -v savelog)" ]; then
-	savelog -n -t "${STDOUT_LOG_PATH}"
-	savelog -n -t "${STDERR_LOG_PATH}"
+	savelog -n -t "${stdout_log_path}"
+	savelog -n -t "${stderr_log_path}"
     else
-	echo -n "" > "${STDOUT_LOG_PATH}"
-	echo -n "" > "${STDERR_LOG_PATH}"
+	echo -n "" > "${stdout_log_path}"
+	echo -n "" > "${stderr_log_path}"
     fi
 }
 
@@ -142,19 +142,19 @@ function build_module()
 {
     module=$1
     printf "%s: Building %s\n" "${0}" "${module}"
-    if [ -z ${DRY_RUN} ]; then
-	pushd modules/${module}
-	DESTDIR=${DESTDIR} MODULES_PREFIX=${DESTDIR} JOBS=${JOBS} \
+    if [ -z "${dry_run}" ]; then
+	pushd "modules/${module}"
+	DESTDIR="${DESTDIR}" MODULES_PREFIX="${DESTDIR}" JOBS="${JOBS}" \
 	       ./build.sh \
-	       --prefix=${PREFIX} \
-	       --modulefilesdir=${MODULEFILESDIR}
+	       --prefix="${prefix}" \
+	       --modulefilesdir="${modulefilesdir}"
 	popd
     else
 	echo "pushd modules/${module}"
 	echo "DESTDIR=${DESTDIR} MODULES_PREFIX=${DESTDIR} " \
 	     "./build.sh " \
-	     "--prefix=${PREFIX} " \
-	     "--modulefilesdir=${MODULEFILESDIR}"
+	     "--prefix=${prefix} " \
+	     "--modulefilesdir=${modulefilesdir}"
 	echo "popd"
     fi
     printf "%s: Done building %s\n" "${0}" "${module}"
@@ -163,15 +163,15 @@ function build_module()
 
 function build_modules()
 {
-    modules=$1
+    modules="$1"
     printf "%s: Building the following modules:\n%s\n" "${0}" "${modules}"
 
-    if [ -z ${DRY_RUN} ]; then
-	mkdir -p ${PREFIX}/${MODULEFILESDIR}
-	module use ${PREFIX}/${MODULEFILESDIR}
+    if [ -z "${dry_run}" ]; then
+	mkdir -p "${prefix}/${modulefilesdir}"
+	module use "${prefix}/${modulefilesdir}"
     else
-	echo "mkdir -p ${PREFIX}/${MODULEFILESDIR}"
-	echo "module use ${PREFIX}/${MODULEFILESDIR}"
+	echo "mkdir -p ${prefix}/${modulefilesdir}"
+	echo "module use ${prefix}/${modulefilesdir}"
     fi
     for module in ${modules}; do
         # Use `module is-avail` to query the availability of a module, and use
@@ -189,7 +189,7 @@ function build_modules()
         done
         if [ ${is_top_module} -eq 0 ] &&
             [ ${module_found} -eq 1 ] &&
-            [ "${BUILD_DEPENDENCIES}" != "all" ]; then
+            [ "${build_dependencies}" != "all" ]; then
             echo "Skipping building of dependency ${module}, since it has already been built"
             continue
         fi
@@ -210,7 +210,7 @@ function main()
     init_log
 
     modules="${top_modules}"
-    if [ "${BUILD_DEPENDENCIES}" != "no" ] || [ ! -z "${PRINT_DEPENDENCIES}" ]; then
+    if [ "${build_dependencies}" != "no" ] || [ ! -z "${print_dependencies}" ]; then
 	# Get a list of required build-time dependencies by recursively
 	# traversing modules and their dependencies.
 	module_dependencies=
@@ -222,14 +222,14 @@ function main()
 	# sorting of the dependency list
 	modules=$(printf "${module_dependencies}\n" | tsort | tac)
 
-	if [ ! -z "${PRINT_DEPENDENCIES}" ]; then
+	if [ ! -z "${print_dependencies}" ]; then
 	    printf "%s\n" "${modules}"
 	    exit 1
 	fi
     fi
 
     # Build the required modules
-    (build_modules "${modules}" | log ${STDOUT_LOG_PATH}) 3>&1 1>&2 2>&3 | log ${STDERR_LOG_PATH}
+    (build_modules "${modules}" | log "${stdout_log_path}") 3>&1 1>&2 2>&3 | log "${stderr_log_path}"
 }
 
 main "$@"
