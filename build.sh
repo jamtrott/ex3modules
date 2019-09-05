@@ -81,8 +81,13 @@ esac
 
 
 function init_log() {
-    echo -n "" > ${STDOUT_LOG_PATH}
-    echo -n "" > ${STDERR_LOG_PATH}
+    if [ -x "$(command -v savelog)" ]; then
+	savelog -n -t "${STDOUT_LOG_PATH}"
+	savelog -n -t "${STDERR_LOG_PATH}"
+    else
+	echo -n "" > "${STDOUT_LOG_PATH}"
+	echo -n "" > "${STDERR_LOG_PATH}"
+    fi
 }
 
 function log() {
