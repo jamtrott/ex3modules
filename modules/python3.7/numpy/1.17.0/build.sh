@@ -10,41 +10,41 @@
 #
 # The module can then be loaded as follows:
 #
-#   module use $HOME/$PREFIX/$MODULEFILESDIR
+#   module use $HOME/$prefix/$modulefilesdir
 #   MODULES_PREFIX=$HOME module load python<version>/numpy
 #
 set -x -o errexit
 
 # Load build-time dependencies and determine prerequisite modules
 while read module; do module load ${module}; done <build_deps
-PKG_PREREQS=$(while read module; do echo "module load ${module}"; done <prereqs)
+pkg_prereqs=$(while read module; do echo "module load ${module}"; done <prereqs)
 
 # Package details
-PKG_NAME=numpy
-PKG_VERSION=1.17.0
-PKG_MODULEDIR=python${PYTHON_VERSION_SHORT}/${PKG_NAME}/${PKG_VERSION}
-PKG_DESCRIPTION="Fundamental package for scientific computing with Python"
-PKG_URL="https://www.numpy.org/"
+pkg_name=numpy
+pkg_version=1.17.0
+pkg_moduledir=python${PYTHON_VERSION_SHORT}/${pkg_name}/${pkg_version}
+pkg_description="Fundamental package for scientific computing with Python"
+pkg_url="https://www.numpy.org/"
 
 # Set default options
-PREFIX=/cm/shared/apps
-MODULEFILESDIR=modulefiles
+prefix=/cm/shared/apps
+modulefilesdir=modulefiles
 
 # Parse program options
 help() {
     printf "Usage: $0 [option...]\n"
-    printf " Build %s\n\n" "${PKG_NAME}-${PKG_VERSION}"
+    printf " Build %s\n\n" "${pkg_name}-${pkg_version}"
     printf " Options are:\n"
     printf "  %-20s\t%s\n" "-h, --help" "display this help and exit"
-    printf "  %-20s\t%s\n" "--prefix=PREFIX" "install files in PREFIX [${PREFIX}]"
-    printf "  %-20s\t%s\n" "--modulefilesdir=DIR" "module files [PREFIX/${MODULEFILESDIR}]"
+    printf "  %-20s\t%s\n" "--prefix=PREFIX" "install files in PREFIX [${prefix}]"
+    printf "  %-20s\t%s\n" "--modulefilesdir=DIR" "module files [PREFIX/${modulefilesdir}]"
     exit 1
 }
 while [ "$#" -gt 0 ]; do
     case "$1" in
 	-h | --help) help; exit 0;;
-	--prefix=*) PREFIX="${1#*=}"; shift 1;;
-	--modulefilesdir=*) MODULEFILESDIR="${1#*=}"; shift 1;;
+	--prefix=*) prefix="${1#*=}"; shift 1;;
+	--modulefilesdir=*) modulefilesdir="${1#*=}"; shift 1;;
 	--) shift; break;;
 	-*) echo "unknown option: $1" >&2; exit 1;;
 	*) handle_argument "$1"; shift 1;;
@@ -52,30 +52,30 @@ while [ "$#" -gt 0 ]; do
 done
 
 # Set up installation paths
-PKG_PREFIX=${PREFIX}/${PKG_MODULEDIR}
+pkg_prefix=${prefix}/${pkg_moduledir}
 
 # Install the module
-python3 -m pip install --prefix=${PKG_PREFIX} $([ ! -z "${DESTDIR}" ] && --root="${DESTDIR}") ${PKG_NAME}==${PKG_VERSION}
+python3 -m pip install --prefix=${pkg_prefix} $([ ! -z "${DESTDIR}" ] && --root="${DESTDIR}") ${pkg_name}==${pkg_version}
 
 # Write the module file
-PKG_MODULEFILE=${DESTDIR}${PREFIX}/${MODULEFILESDIR}/${PKG_MODULEDIR}
-mkdir -p $(dirname ${PKG_MODULEFILE})
-echo "Writing module file ${PKG_MODULEFILE}"
-cat >${PKG_MODULEFILE} <<EOF
+pkg_modulefile=${DESTDIR}${prefix}/${modulefilesdir}/${pkg_moduledir}
+mkdir -p $(dirname ${pkg_modulefile})
+echo "Writing module file ${pkg_modulefile}"
+cat >${pkg_modulefile} <<EOF
 #%Module
-# ${PKG_NAME} ${PKG_VERSION}
+# ${pkg_name} ${pkg_version}
 
 proc ModulesHelp { } {
-     puts stderr "\tSets up the environment for ${PKG_NAME} ${PKG_VERSION}\n"
+     puts stderr "\tSets up the environment for ${pkg_name} ${pkg_version}\n"
 }
 
-module-whatis "${PKG_DESCRIPTION}"
-module-whatis "${PKG_URL}"
+module-whatis "${pkg_description}"
+module-whatis "${pkg_url}"
 
-${PKG_PREREQS}
+${pkg_prereqs}
 
 set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-prepend-path PATH \$MODULES_PREFIX${PKG_PREFIX}/bin
-prepend-path PYTHONPATH \$MODULES_PREFIX${PKG_PREFIX}/lib/python${PYTHON_VERSION_SHORT}/site-packages
-set MSG "${PKG_NAME} ${PKG_VERSION}"
+prepend-path PATH \$MODULES_PREFIX${pkg_prefix}/bin
+prepend-path PYTHONPATH \$MODULES_PREFIX${pkg_prefix}/lib/python${PYTHON_VERSION_SHORT}/site-packages
+set MSG "${pkg_name} ${pkg_version}"
 EOF

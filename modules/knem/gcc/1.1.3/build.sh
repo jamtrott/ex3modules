@@ -10,42 +10,42 @@
 #
 # The module can then be loaded as follows:
 #
-#   module use $HOME/$PREFIX/$MODULEFILESDIR
+#   module use $HOME/$prefix/$modulefilesdir
 #   MODULES_PREFIX=$HOME module load knem
 #
 set -x -o errexit
 
-PKG_NAME=knem
-PKG_VERSION=1.1.3
-PKG_MODULEDIR=${PKG_NAME}/gcc/${PKG_VERSION}
-PKG_DESCRIPTION="High-Performance Intra-Node MPI Communication"
-PKG_URL="http://knem.gforge.inria.fr/"
-SRC_URL=https://scm.gforge.inria.fr/anonscm/git/knem/knem.git
-SRC_DIR=${PKG_NAME}
+pkg_name=knem
+pkg_version=1.1.3
+pkg_moduledir=${pkg_name}/gcc/${pkg_version}
+pkg_description="High-Performance Intra-Node MPI Communication"
+pkg_url="http://knem.gforge.inria.fr/"
+src_url=https://scm.gforge.inria.fr/anonscm/git/knem/knem.git
+src_dir=${pkg_name}
 
 # Load build-time dependencies and determine prerequisite modules
 while read module; do module load ${module}; done <build_deps
-PKG_PREREQS=$(while read module; do echo "module load ${module}"; done <prereqs)
+pkg_prereqs=$(while read module; do echo "module load ${module}"; done <prereqs)
 
 # Set default options
-PREFIX=/cm/shared/apps
-MODULEFILESDIR=modulefiles
+prefix=/cm/shared/apps
+modulefilesdir=modulefiles
 
 # Parse program options
 help() {
     printf "Usage: $0 [option...]\n"
-    printf " Build %s\n\n" "${PKG_NAME}-${PKG_VERSION}"
+    printf " Build %s\n\n" "${pkg_name}-${pkg_version}"
     printf " Options are:\n"
     printf "  %-20s\t%s\n" "-h, --help" "display this help and exit"
-    printf "  %-20s\t%s\n" "--prefix=PREFIX" "install files in PREFIX [${PREFIX}]"
-    printf "  %-20s\t%s\n" "--modulefilesdir=DIR" "module files [PREFIX/${MODULEFILESDIR}]"
+    printf "  %-20s\t%s\n" "--prefix=PREFIX" "install files in PREFIX [${prefix}]"
+    printf "  %-20s\t%s\n" "--modulefilesdir=DIR" "module files [PREFIX/${modulefilesdir}]"
     exit 1
 }
 while [ "$#" -gt 0 ]; do
     case "$1" in
 	-h | --help) help; exit 0;;
-	--prefix=*) PREFIX="${1#*=}"; shift 1;;
-	--modulefilesdir=*) MODULEFILESDIR="${1#*=}"; shift 1;;
+	--prefix=*) prefix="${1#*=}"; shift 1;;
+	--modulefilesdir=*) modulefilesdir="${1#*=}"; shift 1;;
 	--) shift; break;;
 	-*) echo "unknown option: $1" >&2; exit 1;;
 	*) handle_argument "$1"; shift 1;;
@@ -53,50 +53,50 @@ while [ "$#" -gt 0 ]; do
 done
 
 # Set up installation paths
-PKG_PREFIX=${PREFIX}/${PKG_MODULEDIR}
+pkg_prefix=${prefix}/${pkg_moduledir}
 
 # Set up build and temporary install directories
-BUILD_DIR=$(mktemp -d -t ${PKG_NAME}-${PKG_VERSION}-XXXXXX)
-mkdir -p ${BUILD_DIR}
+build_dir=$(mktemp -d -t ${pkg_name}-${pkg_version}-XXXXXX)
+mkdir -p ${build_dir}
 
 # Download package
-git clone https://scm.gforge.inria.fr/anonscm/git/knem/knem.git ${BUILD_DIR}/${SRC_DIR}
+git clone https://scm.gforge.inria.fr/anonscm/git/knem/knem.git ${build_dir}/${src_dir}
 
 # Build
-pushd ${BUILD_DIR}/${SRC_DIR}
+pushd ${build_dir}/${src_dir}
 ./autogen.sh
-./configure --prefix=${PKG_PREFIX}
+./configure --prefix=${pkg_prefix}
 make -j ${JOBS}
 make install DESTDIR=${DESTDIR}
 popd
 
 # Write the module file
-PKG_MODULEFILE=${DESTDIR}${PREFIX}/${MODULEFILESDIR}/${PKG_MODULEDIR}
-mkdir -p $(dirname ${PKG_MODULEFILE})
-echo "Writing module file ${PKG_MODULEFILE}"
-cat >${PKG_MODULEFILE} <<EOF
+pkg_modulefile=${DESTDIR}${prefix}/${modulefilesdir}/${pkg_moduledir}
+mkdir -p $(dirname ${pkg_modulefile})
+echo "Writing module file ${pkg_modulefile}"
+cat >${pkg_modulefile} <<EOF
 #%Module
-# ${PKG_NAME} ${PKG_VERSION}
+# ${pkg_name} ${pkg_version}
 
 proc ModulesHelp { } {
-     puts stderr "\tSets up the environment for ${PKG_NAME} ${PKG_VERSION}\n"
+     puts stderr "\tSets up the environment for ${pkg_name} ${pkg_version}\n"
 }
 
-module-whatis "${PKG_DESCRIPTION}"
-module-whatis "${PKG_URL}"
+module-whatis "${pkg_description}"
+module-whatis "${pkg_url}"
 
-${PKG_PREREQS}
+${pkg_prereqs}
 
 set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-setenv ${PKG_NAME^^}_ROOT \$MODULES_PREFIX${PKG_PREFIX}
-setenv ${PKG_NAME^^}_INCDIR \$MODULES_PREFIX${PKG_PREFIX}/include
-setenv ${PKG_NAME^^}_INCLUDEDIR \$MODULES_PREFIX${PKG_PREFIX}/include
-setenv ${PKG_NAME^^}_LIBDIR \$MODULES_PREFIX${PKG_PREFIX}/lib
-setenv ${PKG_NAME^^}_LIBRARYDIR \$MODULES_PREFIX${PKG_PREFIX}/lib
-prepend-path PATH \$MODULES_PREFIX${PKG_PREFIX}/bin
-prepend-path C_INCLUDE_PATH \$MODULES_PREFIX${PKG_PREFIX}/include
-prepend-path CPLUS_INCLUDE_PATH \$MODULES_PREFIX${PKG_PREFIX}/include
-prepend-path LIBRARY_PATH \$MODULES_PREFIX${PKG_PREFIX}/lib
-prepend-path LD_LIBRARY_PATH \$MODULES_PREFIX${PKG_PREFIX}/lib
-set MSG "${PKG_NAME} ${PKG_VERSION}"
+setenv ${pkg_name^^}_ROOT \$MODULES_PREFIX${pkg_prefix}
+setenv ${pkg_name^^}_INCDIR \$MODULES_PREFIX${pkg_prefix}/include
+setenv ${pkg_name^^}_INCLUDEDIR \$MODULES_PREFIX${pkg_prefix}/include
+setenv ${pkg_name^^}_LIBDIR \$MODULES_PREFIX${pkg_prefix}/lib
+setenv ${pkg_name^^}_LIBRARYDIR \$MODULES_PREFIX${pkg_prefix}/lib
+prepend-path PATH \$MODULES_PREFIX${pkg_prefix}/bin
+prepend-path C_INCLUDE_PATH \$MODULES_PREFIX${pkg_prefix}/include
+prepend-path CPLUS_INCLUDE_PATH \$MODULES_PREFIX${pkg_prefix}/include
+prepend-path LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib
+prepend-path LD_LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib
+set MSG "${pkg_name} ${pkg_version}"
 EOF

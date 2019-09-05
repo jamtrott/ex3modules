@@ -10,40 +10,40 @@
 #
 # The module can then be loaded as follows:
 #
-#   module use $HOME/$PREFIX/$MODULEFILESDIR
+#   module use $HOME/$prefix/$modulefilesdir
 #   MODULES_PREFIX=$HOME module load fenics
 #
 set -x -o errexit
 
-PKG_NAME=fenics
-PKG_VERSION=2019.1.0
-PKG_MODULEDIR=${PKG_NAME}/${PKG_VERSION}
-PKG_DESCRIPTION="Computing platform for solving partial differential equations"
-PKG_URL="https://fenicsproject.org"
+pkg_name=fenics
+pkg_version=2019.1.0
+pkg_moduledir=${pkg_name}/${pkg_version}
+pkg_description="Computing platform for solving partial differential equations"
+pkg_url="https://fenicsproject.org"
 
 # Load build-time dependencies and determine prerequisite modules
 while read module; do module load ${module}; done <build_deps
-PKG_PREREQS=$(while read module; do echo "module load ${module}"; done <prereqs)
+pkg_prereqs=$(while read module; do echo "module load ${module}"; done <prereqs)
 
 # Set default options
-PREFIX=/cm/shared/apps
-MODULEFILESDIR=modulefiles
+prefix=/cm/shared/apps
+modulefilesdir=modulefiles
 
 # Parse program options
 help() {
     printf "Usage: $0 [option...]\n"
-    printf " Build %s\n\n" "${PKG_NAME}-${PKG_VERSION}"
+    printf " Build %s\n\n" "${pkg_name}-${pkg_version}"
     printf " Options are:\n"
     printf "  %-20s\t%s\n" "-h, --help" "display this help and exit"
-    printf "  %-20s\t%s\n" "--prefix=PREFIX" "install files in PREFIX [${PREFIX}]"
-    printf "  %-20s\t%s\n" "--modulefilesdir=DIR" "module files [PREFIX/${MODULEFILESDIR}]"
+    printf "  %-20s\t%s\n" "--prefix=PREFIX" "install files in PREFIX [${prefix}]"
+    printf "  %-20s\t%s\n" "--modulefilesdir=DIR" "module files [PREFIX/${modulefilesdir}]"
     exit 1
 }
 while [ "$#" -gt 0 ]; do
     case "$1" in
 	-h | --help) help; exit 0;;
-	--prefix=*) PREFIX="${1#*=}"; shift 1;;
-	--modulefilesdir=*) MODULEFILESDIR="${1#*=}"; shift 1;;
+	--prefix=*) prefix="${1#*=}"; shift 1;;
+	--modulefilesdir=*) modulefilesdir="${1#*=}"; shift 1;;
 	--) shift; break;;
 	-*) echo "unknown option: $1" >&2; exit 1;;
 	*) handle_argument "$1"; shift 1;;
@@ -51,21 +51,21 @@ while [ "$#" -gt 0 ]; do
 done
 
 # Write the module file
-PKG_MODULEFILE=${DESTDIR}${PREFIX}/${MODULEFILESDIR}/${PKG_MODULEDIR}
-mkdir -p $(dirname ${PKG_MODULEFILE})
-echo "Writing module file ${PKG_MODULEFILE}"
-cat >${PKG_MODULEFILE} <<EOF
+pkg_modulefile=${DESTDIR}${prefix}/${modulefilesdir}/${pkg_moduledir}
+mkdir -p $(dirname ${pkg_modulefile})
+echo "Writing module file ${pkg_modulefile}"
+cat >${pkg_modulefile} <<EOF
 #%Module
-# ${PKG_NAME} ${PKG_VERSION}
+# ${pkg_name} ${pkg_version}
 
 proc ModulesHelp { } {
-     puts stderr "\tSets up the environment for ${PKG_NAME} ${PKG_VERSION}\n"
+     puts stderr "\tSets up the environment for ${pkg_name} ${pkg_version}\n"
 }
 
-module-whatis "${PKG_DESCRIPTION}"
-module-whatis "${PKG_URL}"
+module-whatis "${pkg_description}"
+module-whatis "${pkg_url}"
 
-${PKG_PREREQS}
+${pkg_prereqs}
 
-set MSG "${PKG_NAME} ${PKG_VERSION}"
+set MSG "${pkg_name} ${pkg_version}"
 EOF
