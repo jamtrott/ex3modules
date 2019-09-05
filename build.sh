@@ -64,7 +64,7 @@ while [ "$#" -gt 0 ]; do
 		''|*[!0-9]*) JOBS=""; shift 1;;
 		*) JOBS="${2}"; shift 2;;
 	    esac ;;
-	-j*) JOBS="${1#j}"; shift 1;;
+	-j*) JOBS="${1#-j}"; shift 1;;
         --jobs=*) JOBS="${1#*=}"; shift 1;;
 	--) shift; break;;
 	-*) echo "unknown option: ${1}" >&2; exit 1;;
