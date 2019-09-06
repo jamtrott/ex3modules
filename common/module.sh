@@ -93,7 +93,8 @@ function module_build_download_package()
 {
     local src_url="${1}"
     local pkg_build_dir="${2}"
-    curl --fail -Lo "${pkg_build_dir}/$(basename ${src_url})" "${src_url}"
+    pkg_src="${pkg_build_dir}/$(basename ${src_url})"
+    curl --fail -Lo "${pkg_src}" "${src_url}"
 }
 
 # Unpack a module's source package
@@ -101,7 +102,8 @@ function module_build_unpack()
 {
     local source_path="${1}"
     local pkg_build_dir="${2}"
-    tar -C "${pkg_build_dir}" -xzvf "${source_path}"
+    local tar_options="${3:--xzvf}"
+    tar -C "${pkg_build_dir}" "${tar_options}" "${source_path}"
 }
 
 # Clean up temporary build directory

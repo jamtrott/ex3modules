@@ -15,64 +15,45 @@
 #
 set -x -o errexit
 
+. ../../../../common/module.sh
+
 pkg_name=scotch
 pkg_version=6.0.7
-pkg_moduledir=${pkg_name}/gcc/${pkg_version}
+pkg_moduledir="${pkg_name}/gcc/${pkg_version}"
 pkg_description="Static Mapping, Graph, Mesh and Hypergraph Partitioning, and Parallel and Sequential Sparse Matrix Ordering Package"
 pkg_url="https://www.labri.fr/perso/pelegrin/scotch/"
-src_url=https://gforge.inria.fr/frs/download.php/file/38040/${pkg_name}_${pkg_version}.tar.gz
-src_dir=${pkg_name}_${pkg_version}/src
+src_url="https://gforge.inria.fr/frs/download.php/file/38040/${pkg_name}_${pkg_version}.tar.gz"
+src_dir="${pkg_name}_${pkg_version}/src"
 
-# Load build-time dependencies and determine prerequisite modules
-while read module; do module load ${module}; done <build_deps
-pkg_prereqs=$(while read module; do echo "module load ${module}"; done <prereqs)
+function main()
+{
+    # Parse program options
+    module_build_parse_command_line_args \
+	"${0}" \
+	"${pkg_name}" \
+	"${pkg_version}" \
+	"${pkg_moduledir}" \
+	"${pkg_description}" \
+	"${pkg_url}" \
+	"$@"
 
-# Set default options
-prefix=/cm/shared/apps
-modulefilesdir=modulefiles
+    # Load build-time dependencies and determine prerequisite modules
+    module_load_build_deps build_deps
+    pkg_prereqs=$(module_prereqs prereqs)
 
-# Parse program options
-help() {
-    printf "Usage: $0 [option...]\n"
-    printf " Build %s\n\n" "${pkg_name}-${pkg_version}"
-    printf " Options are:\n"
-    printf "  %-20s\t%s\n" "-h, --help" "display this help and exit"
-    printf "  %-20s\t%s\n" "--prefix=PREFIX" "install files in PREFIX [${prefix}]"
-    printf "  %-20s\t%s\n" "--modulefilesdir=DIR" "module files [PREFIX/${modulefilesdir}]"
-    exit 1
-}
-while [ "$#" -gt 0 ]; do
-    case "$1" in
-	-h | --help) help; exit 0;;
-	--prefix=*) prefix="${1#*=}"; shift 1;;
-	--modulefilesdir=*) modulefilesdir="${1#*=}"; shift 1;;
-	--) shift; break;;
-	-*) echo "unknown option: $1" >&2; exit 1;;
-	*) handle_argument "$1"; shift 1;;
-    esac
-done
+    # Download and unpack source
+    pkg_prefix=$(module_build_prefix "${prefix}" "${pkg_moduledir}")
+    pkg_build_dir=$(module_build_create_build_dir "${pkg_name}" "${pkg_version}")
+    module_build_download_package "${src_url}" "${pkg_build_dir}"
+    module_build_unpack "${pkg_src}" "${pkg_build_dir}"
 
-# Set up installation paths
-pkg_prefix=${prefix}/${pkg_moduledir}
+    # Modify source to allow correct shared library linking
+    grep -lr '$(AR) $(ARFLAGS) $(@) $(^)' "${pkg_build_dir}/${src_dir}" | xargs sed -i 's,$(AR) $(ARFLAGS) $(@) $(^),$(AR) $(ARFLAGS) $(@) $(^) $(DYNLDFLAGS),g'
+    grep -lr '$(AR) $(ARFLAGS) $(@) $(?)' "${pkg_build_dir}/${src_dir}" | xargs sed -i 's,$(AR) $(ARFLAGS) $(@) $(?),$(AR) $(ARFLAGS) $(@) $(?) $(DYNLDFLAGS),g'
 
-# Set up build and temporary install directories
-build_dir=$(mktemp -d -t ${pkg_name}-${pkg_version}-XXXXXX)
-mkdir -p ${build_dir}
-
-# Download package
-src_pkg=${build_dir}/$(basename ${src_url})
-curl --fail -Lo ${src_pkg} ${src_url}
-
-# Unpack
-tar -C ${build_dir} -xzvf ${src_pkg}
-
-# Modify source to allow correct shared library linking
-grep -lr '$(AR) $(ARFLAGS) $(@) $(^)' ${build_dir}/${src_dir} | xargs sed -i 's,$(AR) $(ARFLAGS) $(@) $(^),$(AR) $(ARFLAGS) $(@) $(^) $(DYNLDFLAGS),g'
-grep -lr '$(AR) $(ARFLAGS) $(@) $(?)' ${build_dir}/${src_dir} | xargs sed -i 's,$(AR) $(ARFLAGS) $(@) $(?),$(AR) $(ARFLAGS) $(@) $(?) $(DYNLDFLAGS),g'
-
-# Build
-pushd ${build_dir}/${src_dir}
-cat > Makefile.inc <<'EOF'
+    # Build
+    pushd "${pkg_build_dir}/${src_dir}"
+    cat > Makefile.inc <<'EOF'
 EXE             =
 LIB             = .so
 OBJ             = .o
@@ -96,15 +77,14 @@ MV              = mv
 RANLIB          = echo
 YACC            = bison -pscotchyy -y -b y
 EOF
-make scotch ptscotch esmumps ptesmumps --jobs=1 # Parallel builds not supported
-make prefix=${DESTDIR}${pkg_prefix} install
-popd
+    make scotch ptscotch esmumps ptesmumps --jobs=1 # Parallel builds not supported
+    make prefix="${DESTDIR}${pkg_prefix}" install
+    popd
 
-# Write the module file
-pkg_modulefile=${DESTDIR}${prefix}/${modulefilesdir}/${pkg_moduledir}
-mkdir -p $(dirname ${pkg_modulefile})
-echo "Writing module file ${pkg_modulefile}"
-cat >${pkg_modulefile} <<EOF
+    # Write the module file
+    pkg_modulefile="${DESTDIR}${prefix}/${modulefilesdir}/${pkg_moduledir}"
+    mkdir -p $(dirname "${pkg_modulefile}")
+    cat >"${pkg_modulefile}" <<EOF
 #%Module
 # ${pkg_name} ${pkg_version}
 
@@ -131,3 +111,8 @@ prepend-path LD_LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib
 prepend-path MANPATH \$MODULES_PREFIX${pkg_prefix}/share/man
 set MSG "${pkg_name} ${pkg_version}"
 EOF
+
+    module_build_cleanup "${pkg_build_dir}"
+}
+
+main "$@"
