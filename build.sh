@@ -16,6 +16,9 @@
 #
 set -o errexit
 
+# Source the Environment Modules shell initialisation script
+source $MODULESHOME/init/bash
+
 # Default options
 list_modules=
 prefix=/cm/shared/apps
