@@ -91,9 +91,15 @@ module-whatis "${pkg_url}"
 
 ${pkg_prereqs}
 
+set HOME [getenv HOME ""]
 set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-setenv ${PKG_NAME^^}_ROOT \$MODULES_PREFIX${pkg_prefix}
+setenv ${pkg_name^^}_ROOT \$MODULES_PREFIX${pkg_prefix}
 prepend-path PATH \$MODULES_PREFIX${pkg_prefix}/bin
+prepend-path PATH \$HOME/.opam/ocaml-system/bin
 prepend-path MANPATH \$MODULES_PREFIX${pkg_prefix}/share/man
+prepend-path MANPATH \$HOME/.opam/ocaml-system/man
+prepend-path CAML_LD_LIBRARY_PATH \$HOME/.opam/ocaml-system/lib/stublibs
+setenv OPAM_SWITCH_PREFIX \$HOME/.opam/ocaml-system
+setenv OCAML_TOPLEVEL_PATH \$HOME/.opam/ocaml-system/lib/toplevel
 set MSG "${pkg_name} ${pkg_version}"
 EOF
