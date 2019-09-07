@@ -71,7 +71,7 @@ pushd ${build_dir}/${src_dir}
 mkdir -p build
 pushd build
 cmake .. \
-      -DCMAKE_INSTALL_prefix="${pkg_prefix}" \
+      -DCMAKE_INSTALL_PREFIX="${pkg_prefix}" \
       -DMPFR_INCLUDES="${MPFRDIR}/include" \
       -DMPFR_LIBRARIES="${MPFRLIB}/libmpfr.so" \
       -DGMP_INCLUDES="${GMPDIR}/include" \

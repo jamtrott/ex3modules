@@ -71,7 +71,7 @@ pushd ${build_dir}/${src_dir}
 mkdir -p build
 pushd build
 cmake .. \
-      -DCMAKE_INSTALL_prefix=${pkg_prefix} \
+      -DCMAKE_INSTALL_PREFIX=${pkg_prefix} \
       -DBUILD_SHARED_LIBS=TRUE \
       -Denable_blaslib=OFF
 make

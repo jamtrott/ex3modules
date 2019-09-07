@@ -71,7 +71,7 @@ pushd ${build_dir}/${src_dir}
 mkdir -p build
 pushd build
 CC=mpicc CXX=mpicxx FC=mpifort cmake .. \
-      -DCMAKE_INSTALL_prefix="${pkg_prefix}" \
+      -DCMAKE_INSTALL_PREFIX="${pkg_prefix}" \
       -DBUILD_SHARED_LIBS=TRUE \
       -DTPL_ENABLE_BLASLIB=OFF \
       -DTPL_BLAS_LIBRARIES="${BLASDIR}/lib${BLASLIB}.so" \

@@ -72,7 +72,7 @@ mkdir -p build
 pushd build
 cmake .. \
       -DCMAKE_POLICY_DEFAULT_CMP0074=NEW \
-      -DCMAKE_INSTALL_prefix="${pkg_prefix}" \
+      -DCMAKE_INSTALL_PREFIX="${pkg_prefix}" \
       -DBUILD_SHARED_LIBS=TRUE \
       -DEIGEN3_INCLUDE_DIR="${EIGEN_ROOT}/include/eigen3" \
       -DPARMETIS_DIR="${PARMETIS_ROOT}" \
