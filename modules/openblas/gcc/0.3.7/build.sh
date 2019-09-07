@@ -69,7 +69,7 @@ tar -C ${build_dir} -xzvf ${src_pkg}
 # Build
 pushd ${build_dir}/${src_dir}
 make DYNAMIC_ARCH=1
-make install DESTDIR=${DESTDIR} prefix=${pkg_prefix}
+make install PREFIX=${pkg_prefix}
 popd
 
 # Write the module file
