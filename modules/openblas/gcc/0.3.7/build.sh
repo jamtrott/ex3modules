@@ -68,7 +68,8 @@ tar -C ${build_dir} -xzvf ${src_pkg}
 
 # Build
 pushd ${build_dir}/${src_dir}
-make DYNAMIC_ARCH=1
+make DYNAMIC_ARCH=1 \
+	USE_THREAD=0
 make install PREFIX=${pkg_prefix}
 popd
 
