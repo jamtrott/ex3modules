@@ -17,7 +17,8 @@ set -x -o errexit
 
 pkg_name=opam
 pkg_version=2.0.5
-pkg_moduledir="${pkg_name}/gcc/${pkg_version}"
+ocaml_version=4.08
+pkg_moduledir="ocaml${ocaml_version}/${pkg_name}/${pkg_version}"
 pkg_description="Source-based package manager for OCaml"
 pkg_url="https://opam.ocaml.org"
 src_url="https://github.com/ocaml/opam/archive/${pkg_version}.tar.gz"
