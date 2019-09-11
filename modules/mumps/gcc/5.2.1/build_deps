@@ -1,6 +1,0 @@
-openblas/gcc/0.3.7
-openmpi/gcc/4.0.1
-metis/gcc/5.1.0
-parmetis/gcc/4.0.3
-scotch/gcc/6.0.7
-scalapack/gcc/2.0.2
