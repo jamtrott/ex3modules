@@ -13,7 +13,7 @@
 #   module use $HOME/$prefix/$modulefilesdir
 #   MODULES_PREFIX=$HOME module load slurm
 #
-set -x -o errexit
+set -o errexit
 
 . ../../../../common/module.sh
 
@@ -45,7 +45,7 @@ function main()
     pkg_prefix=$(module_build_prefix "${prefix}" "${pkg_moduledir}")
     pkg_build_dir=$(module_build_create_build_dir "${pkg_name}" "${pkg_version}")
     module_build_download_package "${src_url}" "${pkg_build_dir}"
-    module_build_unpack "${pkg_src}" "${pkg_build_dir}" -xjvf
+    module_build_unpack "${pkg_src}" "${pkg_build_dir}" -xj
 
     # Build
     pushd "${pkg_build_dir}/${src_dir}"

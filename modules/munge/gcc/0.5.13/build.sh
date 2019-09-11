@@ -13,7 +13,7 @@
 #   module use $HOME/$prefix/$modulefilesdir
 #   MODULES_PREFIX=$HOME module load munge
 #
-set -x -o errexit
+set -o errexit
 
 . ../../../../common/module.sh
 

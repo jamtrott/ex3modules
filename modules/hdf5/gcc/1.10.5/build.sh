@@ -13,7 +13,7 @@
 #   module use $HOME/$prefix/$modulefilesdir
 #   MODULES_PREFIX=$HOME module load hdf5
 #
-set -x -o errexit
+set -o errexit
 
 . ../../../../common/module.sh
 

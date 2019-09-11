@@ -6,7 +6,10 @@
 function module_load_build_deps()
 {
     local build_deps="${1}"
-    while read module; do module load "${module}"; done <"${build_deps}"
+    while read module; do
+	echo "module load ${module}"
+	module load "${module}"
+    done <"${build_deps}"
 }
 
 # Determine a module's prerequisites
@@ -18,6 +21,7 @@ function module_prereqs()
     done <"${prereqs}"
 }
 
+# Print program help message
 function module_build_help()
 {
     local program_name="${1}"
@@ -34,8 +38,10 @@ function module_build_help()
     printf "  %-20s\t%s\n" "-h, --help" "display this help and exit"
     printf "  %-20s\t%s\n" "--prefix=PREFIX" "install files in PREFIX [${prefix}]"
     printf "  %-20s\t%s\n" "--modulefilesdir=DIR" "module files [PREFIX/${modulefilesdir}]"
+    printf "  %-20s\t%s\n" "--verbose" "Verbose output"
 }
 
+# Parse program options for building a module
 function module_build_parse_command_line_args()
 {
     local program_name="${1}"
@@ -50,6 +56,7 @@ function module_build_parse_command_line_args()
     # Set default options
     prefix=/cm/shared/apps
     modulefilesdir=modulefiles
+    module_build_verbose=
 
     while [ "$#" -gt 0 ]; do
 	case "${1}" in
@@ -64,6 +71,7 @@ function module_build_parse_command_line_args()
 		exit 1;;
 	    --prefix=*) prefix="${1#*=}"; shift 1;;
 	    --modulefilesdir=*) modulefilesdir="${1#*=}"; shift 1;;
+	    --verbose) module_build_verbose=1; shift 1;;
 	    --) shift; break;;
 	    -*) echo "unknown option: ${1}" >&2; exit 1;;
 	    *) handle_argument "${1}"; shift 1;;
@@ -71,6 +79,7 @@ function module_build_parse_command_line_args()
     done
 }
 
+# Print a module's prefix path
 function module_build_prefix()
 {
     local prefix="${1}"
@@ -94,6 +103,8 @@ function module_build_download_package()
     local src_url="${1}"
     local pkg_build_dir="${2}"
     pkg_src="${pkg_build_dir}/$(basename ${src_url})"
+    [[ "${module_build_verbose}" ]] && \
+	echo "curl --fail -Lo ${pkg_src} ${src_url}"
     curl --fail -Lo "${pkg_src}" "${src_url}"
 }
 
@@ -102,14 +113,18 @@ function module_build_unpack()
 {
     local source_path="${1}"
     local pkg_build_dir="${2}"
-    local tar_options="${3:--xzvf}"
-    tar -C "${pkg_build_dir}" "${tar_options}" "${source_path}"
+    local tar_options="${3:--xz}"
+    [[ "${module_build_verbose}" ]] && \
+	echo "tar -C ${pkg_build_dir} ${tar_options} -f ${source_path}"
+    tar -C "${pkg_build_dir}" "${tar_options}" -f "${source_path}"
 }
 
 # Clean up temporary build directory
 function module_build_cleanup()
 {
     local pkg_build_dir="${1}"
+    [[ "${module_build_verbose}" ]] && \
+	echo "rm -rf ${pkg_build_dir}"
     rm -rf "${pkg_build_dir}"
 }
 
