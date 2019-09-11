@@ -1,6 +1,6 @@
 boost/gcc/1.71.0
 openblas/gcc/0.3.7
-openmpi/gcc/64/4.0.1
+openmpi/gcc/4.0.1
 hwloc/gcc/2.0.4
 hypre/gcc/2.17.0
 metis/gcc/5.1.0

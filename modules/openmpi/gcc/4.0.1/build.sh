@@ -14,11 +14,11 @@
 #
 set -o errexit
 
-. ../../../../../common/module.sh
+. ../../../../common/module.sh
 
 pkg_name=openmpi
 pkg_version=4.0.1
-pkg_moduledir="${pkg_name}/gcc/64/${pkg_version}"
+pkg_moduledir="${pkg_name}/gcc/${pkg_version}"
 pkg_description="A High Performance Message Passing Library"
 pkg_url="https://www.open-mpi.org"
 src_url="https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-${pkg_version}.tar.bz2"

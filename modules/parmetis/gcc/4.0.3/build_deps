@@ -1,2 +1,2 @@
 cmake/gcc/3.15.2
-openmpi/gcc/64/4.0.1
+openmpi/gcc/4.0.1
