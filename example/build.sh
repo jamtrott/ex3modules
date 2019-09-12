@@ -51,9 +51,13 @@ function main()
     pushd "${pkg_build_dir}/${src_dir}"
 
     ## In this section, the commands that are required to build the
-    ## software package should be run. For packages based on
-    ## Autotools, this is the usual sequence of 'configure', 'make',
-    ## and 'make install' commands.
+    ## software package should be run.
+
+    ## Autotools
+    ## ---------
+    ## For packages based on Autotools, a package is built by using
+    ## the usual sequence of 'configure', 'make', and 'make install'
+    ## commands.
     ##
     ## In the example below, configure is invoked with the '--prefix'
     ## option to install the package in the desired location.
@@ -65,6 +69,20 @@ function main()
     # ./configure --prefix="${pkg_prefix}"
     # make -j"${JOBS}"
     # make install
+
+    ## CMake
+    ## -----
+    ## For packages using cmake, the installation directory is set
+    ## with the option '-DCMAKE_INSTALL_PREFIX'. Also, cmake is
+    ## usually run from a dedicated build directory, as shown in the
+    ## example below.
+
+    # mkdir -p build
+    # pushd build
+    # cmake .. -DCMAKE_INSTALL_PREFIX="${pkg_prefix}"
+    # make
+    # make install
+    # popd
 
     popd
 
