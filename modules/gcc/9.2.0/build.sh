@@ -64,7 +64,7 @@ function main()
     popd
 
     # Write the module file
-    pkg_modulefile="${DESTDIR}${prefix}/${modulefilesdir}/${pkg_moduledir}"
+    pkg_modulefile=$(module_build_modulefile "${prefix}" "${modulefilesdir}" "${pkg_moduledir}")
     mkdir -p "$(dirname ${pkg_modulefile})"
     cat >"${pkg_modulefile}" <<EOF
 #%Module

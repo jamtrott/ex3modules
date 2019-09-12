@@ -46,8 +46,7 @@ function main()
     python3 -m pip install --prefix="${pkg_prefix}" $([ ! -z "${DESTDIR}" ] && --root="${DESTDIR}") "${pkg_name}"=="${pkg_version}"
 
     # Write the module file
-    pkg_modulefile="${DESTDIR}${prefix}/${modulefilesdir}/${pkg_moduledir}"
-    mkdir -p $(dirname "${pkg_modulefile}")
+    pkg_modulefile=$(module_build_modulefile "${prefix}" "${modulefilesdir}" "${pkg_moduledir}")
     cat >"${pkg_modulefile}" <<EOF
 #%Module
 # ${pkg_name} ${pkg_version}
