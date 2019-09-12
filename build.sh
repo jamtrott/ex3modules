@@ -11,7 +11,7 @@
 # The module can then be loaded as follows:
 #
 #   module use $HOME/modulefiles
-#   MODULES_PREFIX=$HOME module load openmpi/gcc/64/4.0.1
+#   module load openmpi/gcc/64/4.0.1
 #
 #
 set -o errexit
@@ -23,6 +23,8 @@ modulefilesdir=modulefiles
 build_dependencies=no
 print_dependencies=
 dry_run=
+verbose=
+
 top_modules=
 stdout_log_path=build-output.log
 stderr_log_path=build-error.log
@@ -50,6 +52,7 @@ help() {
     printf "  %-20s\t%s\n" "--print-dependencies" "Print module dependencies"
     printf "  %-20s\t%s\n" "--dry-run" "Print the commands that would be executed, but do not execute them"
     printf "  %-20s\t%s\n" "-j [N], --jobs[=N]" "Allow N jobs at once."
+    printf "  %-20s\t%s\n" "--verbose" "Be more verbose"
     exit 1
 }
 
@@ -71,6 +74,7 @@ function parse_command_line_args() {
 		esac ;;
 	    -j*) JOBS="${1#-j}"; shift 1;;
             --jobs=*) JOBS="${1#*=}"; shift 1;;
+	    --verbose) verbose=1; shift 1;;
 	    --) shift; break;;
 	    -*) echo "unknown option: ${1}" >&2; exit 1;;
 	    *) top_modules="${top_modules} ${1}"; shift 1;;
@@ -144,14 +148,15 @@ function build_module()
     printf "%s: Building %s\n" "${0}" "${module}"
     if [ -z "${dry_run}" ]; then
 	pushd "modules/${module}"
-	DESTDIR="${DESTDIR}" MODULES_PREFIX="${DESTDIR}" JOBS="${JOBS}" \
+	MODULES_PREFIX="${DESTDIR}" JOBS="${JOBS}" \
 	       ./build.sh \
 	       --prefix="${prefix}" \
-	       --modulefilesdir="${modulefilesdir}"
+	       --modulefilesdir="${modulefilesdir}" \
+	       $([[ "${verbose}" ]] && echo "--verbose")
 	popd
     else
 	echo "pushd modules/${module}"
-	echo "DESTDIR=${DESTDIR} MODULES_PREFIX=${DESTDIR} " \
+	echo "MODULES_PREFIX=${DESTDIR} " \
 	     "./build.sh " \
 	     "--prefix=${prefix} " \
 	     "--modulefilesdir=${modulefilesdir}"
@@ -167,11 +172,11 @@ function build_modules()
     printf "%s: Building the following modules:\n%s\n" "${0}" "${modules}"
 
     if [ -z "${dry_run}" ]; then
-	mkdir -p "${prefix}/${modulefilesdir}"
-	module use "${prefix}/${modulefilesdir}"
+	mkdir -p "${DESTDIR}${prefix}/${modulefilesdir}"
+	module use "${DESTDIR}${prefix}/${modulefilesdir}"
     else
-	echo "mkdir -p ${prefix}/${modulefilesdir}"
-	echo "module use ${prefix}/${modulefilesdir}"
+	echo "mkdir -p ${DESTDIR}${prefix}/${modulefilesdir}"
+	echo "module use ${DESTDIR}${prefix}/${modulefilesdir}"
     fi
     for module in ${modules}; do
         # Use `module is-avail` to query the availability of a module, and use
