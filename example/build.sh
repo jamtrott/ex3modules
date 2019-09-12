@@ -51,11 +51,27 @@ function main()
     # Build
     pushd "${pkg_build_dir}/${src_dir}"
 
-    # The commands used to build the module For packages based on
-    # Autotools, this is the usual sequence of commands:
-    ./configure --prefix="${pkg_prefix}"
-    make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    ## In this section, the commands that are required to build the
+    ## software package should be run. For packages based on
+    ## Autotools, this is the usual sequence of 'configure', 'make',
+    ## and 'make install' commands.
+    ##
+    ## In the example below, configure is invoked with the '--prefix'
+    ## option to install the package in the desired location.
+    ##
+    ## For packages that support parallel builds, the '-j' option can
+    ## be used with make. The number of simultaneous jobs is usually
+    ## specified by setting the environment variable 'JOBS'.
+    ##
+    ## Finally, for software packages that follow the GNU coding
+    ## standards, the environment variable 'DESTDIR' can be used to
+    ## perform a staged installation, where the installed files are
+    ## not placed directly into their expected location but are
+    ## instead copied into a temporary location (DESTDIR).
+
+    # ./configure --prefix="${pkg_prefix}"
+    # make -j"${JOBS}"
+    # make install DESTDIR="${DESTDIR}"
 
     popd
 
