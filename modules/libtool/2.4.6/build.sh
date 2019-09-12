@@ -52,7 +52,7 @@ function main()
     pushd "${pkg_build_dir}/${src_dir}"
     ./configure --prefix="${pkg_prefix}"
     make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
 
     # Write the module file

@@ -53,7 +53,7 @@ function main()
 
     make config shared=1 prefix="${pkg_prefix}"
     make
-    make install DESTDIR="${DESTDIR}"
+    make install
 
     # Workaround for an issue that causes metis.h to not be installed
     # (see http://glaros.dtc.umn.edu/gkhome/node/832).

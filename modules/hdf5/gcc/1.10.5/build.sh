@@ -56,7 +56,7 @@ function main()
       --enable-fortran \
       --enable-parallel
     make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
 
     # Write the module file

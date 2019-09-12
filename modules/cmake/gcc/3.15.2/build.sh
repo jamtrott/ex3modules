@@ -55,7 +55,7 @@ function main()
 	--parallel="${JOBS}" \
 	-- -DCMAKE_BUILD_TYPE:STRING=Release
     make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
 
     # Write the module file

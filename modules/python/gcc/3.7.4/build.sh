@@ -59,7 +59,7 @@ function main()
 	   --with-system-ffi \
 	   --with-openssl="${OPENSSL_ROOT}"
     make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
 
     # Write the module file

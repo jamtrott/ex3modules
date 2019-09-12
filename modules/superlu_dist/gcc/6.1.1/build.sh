@@ -61,7 +61,7 @@ function main()
       -DTPL_PARMETIS_INCLUDE_DIRS="${PARMETIS_INCDIR}" \
       -DTPL_PARMETIS_LIBRARIES="${PARMETIS_LIBDIR}/libparmetis.so"
     make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
     popd
 

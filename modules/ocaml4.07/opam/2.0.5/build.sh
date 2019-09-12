@@ -54,7 +54,7 @@ function main()
     ./configure --prefix="${pkg_prefix}"
     make lib-ext
     make
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
 
     # Write the module file

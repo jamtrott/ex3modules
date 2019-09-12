@@ -62,16 +62,10 @@ function main()
     ## For packages that support parallel builds, the '-j' option can
     ## be used with make. The number of simultaneous jobs is usually
     ## specified by setting the environment variable 'JOBS'.
-    ##
-    ## Finally, for software packages that follow the GNU coding
-    ## standards, the environment variable 'DESTDIR' can be used to
-    ## perform a staged installation, where the installed files are
-    ## not placed directly into their expected location but are
-    ## instead copied into a temporary location (DESTDIR).
 
     # ./configure --prefix="${pkg_prefix}"
     # make -j"${JOBS}"
-    # make install DESTDIR="${DESTDIR}"
+    # make install
 
     popd
 

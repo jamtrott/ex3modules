@@ -55,7 +55,7 @@ function main()
 	--with-openssl-prefix="${OPENSSL_ROOT}" \
 	--with-crypto-lib=openssl
     make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
 
     # Write the module file

@@ -66,7 +66,7 @@ function main()
 	  -DSUPERLU_LIBRARIES="${SUPERLU_LIBDIR}/libsuperlu.so" \
 	  -DCMAKE_CXX_FLAGS="-O3"
     make
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
     popd
 

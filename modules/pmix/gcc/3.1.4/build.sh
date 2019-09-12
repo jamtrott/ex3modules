@@ -59,7 +59,7 @@ function main()
 	--with-libevent="${LIBEVENT_ROOT}"
     make -j"${JOBS}" all
     make check -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
     popd
 

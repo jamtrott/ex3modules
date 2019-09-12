@@ -60,7 +60,7 @@ function main()
 	--disable-multilib \
 	--program-suffix="${program_suffix}"
     make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
     popd
 

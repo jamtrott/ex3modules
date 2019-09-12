@@ -61,7 +61,7 @@ function main()
 	--enable-mpi-fortran=all \
 	--enable-mpi1-compatibility
     make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
 
     # Write the module file

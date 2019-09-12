@@ -52,7 +52,7 @@ function main()
     pushd "${pkg_build_dir}/${src_dir}"
     make config shared=1 prefix="${pkg_prefix}"
     make
-    make DESTDIR="${DESTDIR}" install
+    make install
     popd
 
     # Write the module file

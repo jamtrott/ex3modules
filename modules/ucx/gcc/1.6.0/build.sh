@@ -62,7 +62,7 @@ function main()
 	--disable-params-check
     make -j"${JOBS}"
     make check -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
 
     # Write the module file

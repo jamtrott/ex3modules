@@ -53,7 +53,7 @@ function main()
     ./bootstrap.sh
     ./configure --prefix="${pkg_prefix}"
     make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
 
     # Write the module file

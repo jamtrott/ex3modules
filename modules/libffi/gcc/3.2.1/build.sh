@@ -55,7 +55,7 @@ function main()
     # Autotools, this is the usual sequence of commands:
     ./configure --prefix="${pkg_prefix}"
     make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
 
     popd
 

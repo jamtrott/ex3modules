@@ -63,7 +63,7 @@ function main()
 	  -DCHOLMOD_DIR="${SUITESPARSE_ROOT}" \
 	  -DUMFPACK_DIR="${SUITESPARSE_ROOT}"
     make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
     popd
 

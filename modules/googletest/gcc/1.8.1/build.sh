@@ -56,7 +56,7 @@ function main()
 	  -DCMAKE_INSTALL_PREFIX="${pkg_prefix}" \
 	  -DBUILD_SHARED_LIBS=TRUE
     make
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
     popd
 

@@ -54,7 +54,7 @@ function main()
 	--prefix="${pkg_prefix}" \
 	CC=mpicc CXX=mpicxx
     make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
 
     # Write the module file

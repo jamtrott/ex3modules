@@ -53,7 +53,7 @@ function main()
     ./config --prefix="${pkg_prefix}"
     make -j"${JOBS}"
     make test -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
 
     # Write the module file

@@ -57,7 +57,7 @@ function main()
 	  -DBUILD_SHARED_LIBS=TRUE \
 	  -Denable_blaslib=OFF
     make
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
     popd
 

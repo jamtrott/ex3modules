@@ -54,7 +54,7 @@ function main()
 	--prefix="${pkg_prefix}" \
 	--with-gmp="${GMP_ROOT}"
     make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
 
     # Write the module file

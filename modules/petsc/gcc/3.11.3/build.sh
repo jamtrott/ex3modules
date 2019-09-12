@@ -76,7 +76,7 @@ function main()
 	CXXOPTFLAGS="${CXXOPTFLAGS}" \
 	FOPTFLAGS="${FOPTFLAGS}"
     make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
 
     # Write the module file

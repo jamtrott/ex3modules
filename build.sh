@@ -148,7 +148,7 @@ function build_module()
     printf "%s: Building %s\n" "${0}" "${module}"
     if [ -z "${dry_run}" ]; then
 	pushd "modules/${module}"
-	DESTDIR="${DESTDIR}" MODULES_PREFIX="${DESTDIR}" JOBS="${JOBS}" \
+	MODULES_PREFIX="${DESTDIR}" JOBS="${JOBS}" \
 	       ./build.sh \
 	       --prefix="${prefix}" \
 	       --modulefilesdir="${modulefilesdir}" \
@@ -156,7 +156,7 @@ function build_module()
 	popd
     else
 	echo "pushd modules/${module}"
-	echo "DESTDIR=${DESTDIR} MODULES_PREFIX=${DESTDIR} " \
+	echo "MODULES_PREFIX=${DESTDIR} " \
 	     "./build.sh " \
 	     "--prefix=${prefix} " \
 	     "--modulefilesdir=${modulefilesdir}"
@@ -172,11 +172,11 @@ function build_modules()
     printf "%s: Building the following modules:\n%s\n" "${0}" "${modules}"
 
     if [ -z "${dry_run}" ]; then
-	mkdir -p "${prefix}/${modulefilesdir}"
-	module use "${prefix}/${modulefilesdir}"
+	mkdir -p "${DESTDIR}${prefix}/${modulefilesdir}"
+	module use "${DESTDIR}${prefix}/${modulefilesdir}"
     else
-	echo "mkdir -p ${prefix}/${modulefilesdir}"
-	echo "module use ${prefix}/${modulefilesdir}"
+	echo "mkdir -p ${DESTDIR}${prefix}/${modulefilesdir}"
+	echo "module use ${DESTDIR}${prefix}/${modulefilesdir}"
     fi
     for module in ${modules}; do
         # Use `module is-avail` to query the availability of a module, and use

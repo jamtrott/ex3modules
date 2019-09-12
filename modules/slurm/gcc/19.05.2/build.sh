@@ -56,7 +56,7 @@ function main()
 	--with-hwloc="${HWLOC_ROOT}" \
 	--with-ucx="${UCX_ROOT}"
     make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
 
     # Write the module file

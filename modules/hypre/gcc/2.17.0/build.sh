@@ -62,7 +62,7 @@ function main()
 	--with-lapack-lib-dirs="${BLASDIR}" --with-lapack-libs="${BLASLIB}" \
 	CFLAGS="-O3"
     make -j"${JOBS}"
-    make install DESTDIR="${DESTDIR}"
+    make install
     popd
 
     # Write the module file
