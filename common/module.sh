@@ -101,11 +101,10 @@ function module_build_create_build_dir()
 function module_build_download_package()
 {
     local src_url="${1}"
-    local pkg_build_dir="${2}"
-    pkg_src="${pkg_build_dir}/$(basename ${src_url})"
+    local destination="${2}"
     [[ "${module_build_verbose}" ]] && \
-	echo "curl --fail -Lo ${pkg_src} ${src_url}"
-    curl --fail -Lo "${pkg_src}" "${src_url}"
+	echo "curl --fail -Lo ${destination} ${src_url}"
+    curl --fail -Lo "${destination}" "${src_url}"
 }
 
 # Unpack a module's source package

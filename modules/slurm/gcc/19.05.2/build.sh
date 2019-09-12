@@ -44,7 +44,8 @@ function main()
     # Download and unpack source
     pkg_prefix=$(module_build_prefix "${prefix}" "${pkg_moduledir}")
     pkg_build_dir=$(module_build_create_build_dir "${pkg_name}" "${pkg_version}")
-    module_build_download_package "${src_url}" "${pkg_build_dir}"
+    pkg_src="${pkg_build_dir}/$(basename ${src_url})"
+    module_build_download_package "${src_url}" "${pkg_src}"
     module_build_unpack "${pkg_src}" "${pkg_build_dir}" -xj
 
     # Build
