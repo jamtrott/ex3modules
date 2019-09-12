@@ -80,7 +80,7 @@ function main()
     # mkdir -p build
     # pushd build
     # cmake .. -DCMAKE_INSTALL_PREFIX="${pkg_prefix}"
-    # make
+    # make -j"${JOBS}"
     # make install
     # popd
 
