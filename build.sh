@@ -11,7 +11,7 @@
 # The module can then be loaded as follows:
 #
 #   module use $HOME/modulefiles
-#   MODULES_PREFIX=$HOME module load openmpi/gcc/64/4.0.1
+#   module load openmpi/gcc/64/4.0.1
 #
 #
 set -o errexit
