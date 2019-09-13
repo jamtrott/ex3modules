@@ -1,0 +1,14 @@
+boost/1.71.0
+openblas/0.3.7
+openmpi/4.0.1
+hwloc/2.0.4
+hypre/2.17.0
+metis/5.1.0
+mumps/5.2.1
+parmetis/4.0.3
+scalapack/2.0.2
+scotch/6.0.7
+suitesparse/5.4.0
+superlu/5.2.1
+superlu_dist/6.1.1
+cuda-toolkit/10.1.243

@@ -6,12 +6,12 @@
 # dependencies, and install the modules and module files to the
 # current user's home directory:
 #
-#   ./build.sh --prefix=$HOME openmpi/gcc/64/4.0.1
+#   ./build.sh --prefix=$HOME openmpi/4.0.1
 #
 # The module can then be loaded as follows:
 #
 #   module use $HOME/modulefiles
-#   module load openmpi/gcc/64/4.0.1
+#   module load openmpi/4.0.1
 #
 #
 set -o errexit
