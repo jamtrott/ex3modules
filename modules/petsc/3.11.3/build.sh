@@ -52,7 +52,7 @@ function main()
     COPTFLAGS="-O3"
     CXXOPTFLAGS="-O3"
     FOPTFLAGS="-O3"
-    ./configure \
+    python3 ./configure \
 	--prefix="${pkg_prefix}" \
 	--with-cxx-dialect=C++11 \
 	--with-openmp=1 \
