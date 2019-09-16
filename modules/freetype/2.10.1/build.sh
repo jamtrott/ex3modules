@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
 #
-# Build petsc
+# Build freetype
 #
 # The following command will build the module, write a module file,
-# and install them to the directory 'modules' in your home directory:
+# and temporarily install them to your home directory, so that you may
+# test them before moving them to their final destinations:
 #
-#   build.sh --prefix=$HOME/modules 2>&1 | tee build.log
+#   DESTDIR=$HOME ./build.sh 2>&1 | tee build.log
 #
 # The module can then be loaded as follows:
 #
-#   module use $HOME/modules/modulefiles
-#   module load petsc
+#   module use $HOME/$prefix/$modulefilesdir
+#   MODULES_PREFIX=$HOME module load freetype
 #
 set -o errexit
 
 . ../../../common/module.sh
 
-pkg_name=petsc
-pkg_version_NUMBER=3.11.3
-pkg_version="${pkg_version_NUMBER}-cuda"
+pkg_name=freetype
+pkg_version=2.10.1
 pkg_moduledir="${pkg_name}/${pkg_version}"
-pkg_description="Portable, Extensible Toolkit for Scientific Computation"
-pkg_url="https://www.mcs.anl.gov/petsc/"
-src_url="http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-${pkg_version_NUMBER}.tar.gz"
-src_dir="${pkg_name}-${pkg_version_NUMBER}"
+pkg_description="Font rendering library"
+pkg_url="https://www.freetype.org"
+src_url="https://download.savannah.gnu.org/releases/freetype/freetype-${pkg_version}.tar.gz"
+src_dir="${pkg_name}-${pkg_version}"
 
 function main()
 {
@@ -50,41 +50,14 @@ function main()
 
     # Build
     pushd "${pkg_build_dir}/${src_dir}"
-    COPTFLAGS="-O3"
-    CXXOPTFLAGS="-O3"
-    FOPTFLAGS="-O3"
-    python3 ./configure \
-	--prefix="${pkg_prefix}" \
-	--with-cc=mpicc \
-	--with-cxx=mpicxx \
-	--with-fc=mpifort \
-	--with-cxx-dialect=C++11 \
-	--with-openmp=1 \
-	--with-blaslapack-lib="${BLASDIR}/lib${BLASLIB}.so" \
-	--with-boost --with-boost-dir="${BOOST_ROOT}" \
-	--with-hwloc --with-hwloc-dir="${HWLOC_ROOT}" \
-	--with-hypre --with-hypre-dir="${HYPRE_ROOT}" \
-	--with-metis --with-metis-dir="${METIS_ROOT}" \
-	--with-mpi --with-mpi-dir="${MPI_ROOT}" \
-	--with-mumps --with-mumps-dir="${MUMPS_ROOT}" \
-	--with-parmetis --with-parmetis-dir="${PARMETIS_ROOT}" \
-	--with-ptscotch --with-ptscotch-dir="${SCOTCH_ROOT}" --with-ptscotch-libs=libz.so \
-	--with-scalapack --with-scalapack-dir="${SCALAPACK_ROOT}" \
-	--with-suitesparse --with-suitesparse-dir="${SUITESPARSE_ROOT}" \
-	--with-superlu --with-superlu-dir="${SUPERLU_ROOT}" \
-	--with-superlu_dist --with-superlu_dist-dir="${SUPERLU_DIST_ROOT}" \
-	--with-cuda=1 --with-cuda-dir="${CUDA_ROOT}" \
-	--with-x=0 \
-	--with-debugging=0 \
-	COPTFLAGS="${COPTFLAGS}" \
-	CXXOPTFLAGS="${CXXOPTFLAGS}" \
-	FOPTFLAGS="${FOPTFLAGS}"
+    ./configure --prefix="${pkg_prefix}"
     make -j"${JOBS}"
     make install
     popd
 
     # Write the module file
     pkg_modulefile=$(module_build_modulefile "${prefix}" "${modulefilesdir}" "${pkg_moduledir}")
+    mkdir -p $(dirname "${pkg_modulefile}")
     cat >"${pkg_modulefile}" <<EOF
 #%Module
 # ${pkg_name} ${pkg_version}
@@ -100,7 +73,6 @@ ${pkg_prereqs}
 
 set MODULES_PREFIX [getenv MODULES_PREFIX ""]
 setenv ${pkg_name^^}_ROOT \$MODULES_PREFIX${pkg_prefix}
-setenv ${pkg_name^^}_DIR \$MODULES_PREFIX${pkg_prefix}
 setenv ${pkg_name^^}_INCDIR \$MODULES_PREFIX${pkg_prefix}/include
 setenv ${pkg_name^^}_INCLUDEDIR \$MODULES_PREFIX${pkg_prefix}/include
 setenv ${pkg_name^^}_LIBDIR \$MODULES_PREFIX${pkg_prefix}/lib
@@ -110,6 +82,7 @@ prepend-path CPLUS_INCLUDE_PATH \$MODULES_PREFIX${pkg_prefix}/include
 prepend-path LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib
 prepend-path LD_LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib
 prepend-path PKG_CONFIG_PATH \$MODULES_PREFIX${pkg_prefix}/lib/pkgconfig
+prepend-path ACLOCAL_PATH \$MODULES_PREFIX${pkg_prefix}/share/aclocal
 set MSG "${pkg_name} ${pkg_version}"
 EOF
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Build numpy
+# Build cython
 #
 # The following command will build the module, write a module file,
 # and install them to the directory 'modules' in your home directory:
@@ -10,21 +10,19 @@
 # The module can then be loaded as follows:
 #
 #   module use $HOME/modules/modulefiles
-#   module load python<version>/numpy
+#   module load python<version>/cython
 #
 set -o errexit
 
 . ../../../../common/module.sh
 
 # Package details
-pkg_name=scipy
-pkg_version=1.3.1
+pkg_name=cython
+pkg_version=0.29.13
 PYTHON_VERSION_SHORT=3.7
 pkg_moduledir="python${PYTHON_VERSION_SHORT}/${pkg_name}/${pkg_version}"
-pkg_description="Fundamental package for scientific computing with Python"
-pkg_url="https://www.scipy.org/"
-src_url="https://github.com/scipy/scipy/archive/v${pkg_version}.tar.gz"
-src_dir="${pkg_name}-${pkg_version}"
+pkg_description="Optimising static compiler for Python"
+pkg_url="https://www.cython.org/"
 
 function main()
 {
@@ -42,32 +40,9 @@ function main()
     module_load_build_deps build_deps
     pkg_prereqs=$(module_prereqs prereqs)
 
-    # Download and unpack source
+    # Download and install from pip
     pkg_prefix=$(module_build_prefix "${prefix}" "${pkg_moduledir}")
-    pkg_build_dir=$(module_build_create_build_dir "${pkg_name}" "${pkg_version}")
-    pkg_src="${pkg_build_dir}/$(basename ${src_url})"
-    module_build_download_package "${src_url}" "${pkg_src}"
-    module_build_unpack "${pkg_src}" "${pkg_build_dir}"
-
-    # Build
-    pushd "${pkg_build_dir}/${src_dir}"
-
-    cat >site.cfg <<EOF
-[openblas]
-libraries = ${BLASLIB}
-library_dirs = ${OPENBLAS_LIBDIR}
-include_dirs = ${OPENBLAS_INCDIR}
-runtime_library_dirs = ${OPENBLAS_LIBDIR}
-EOF
-
-    # The installation directory must be added to PYTHONPATH before installing
-    PYTHONPATH="${PYTHONPATH}:${DESTDIR}${pkg_prefix}/lib/python${PYTHON_VERSION_SHORT}/site-packages"
-    mkdir -p "${DESTDIR}${pkg_prefix}/lib/python${PYTHON_VERSION_SHORT}/site-packages"
-    python3 setup.py build
-    python3 setup.py install \
-	    --prefix="${pkg_prefix}" \
-	    $(! [ -z "${DESTDIR}" ] && --root="${DESTDIR}")
-    popd
+    python3 -m pip install --prefix="${pkg_prefix}" $([ ! -z "${DESTDIR}" ] && --root="${DESTDIR}") "${pkg_name}"=="${pkg_version}"
 
     # Write the module file
     pkg_modulefile=$(module_build_modulefile "${prefix}" "${modulefilesdir}" "${pkg_moduledir}")

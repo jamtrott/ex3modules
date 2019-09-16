@@ -122,9 +122,11 @@ function module_build_unpack()
 function module_build_cleanup()
 {
     local pkg_build_dir="${1}"
-    [[ "${module_build_verbose}" ]] && \
-	echo "rm -rf ${pkg_build_dir}"
-    rm -rf "${pkg_build_dir}"
+    if ! [[ -z "${pkg_build_dir}" ]]; then
+	[[ "${module_build_verbose}" ]] && \
+	    echo "rm -rf ${pkg_build_dir}"
+	rm -rf "${pkg_build_dir}"
+    fi
 }
 
 function module_build_modulefile()
