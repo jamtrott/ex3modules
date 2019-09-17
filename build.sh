@@ -171,13 +171,14 @@ function build_modules()
     modules="$1"
     printf "%s: Building the following modules:\n%s\n" "${0}" "${modules}"
 
-    if [ -z "${dry_run}" ]; then
-	mkdir -p "${DESTDIR}${prefix}/${modulefilesdir}"
-	module use "${DESTDIR}${prefix}/${modulefilesdir}"
-    else
+    if [[ ! -z "${dry_run}" ]] || [[ ! -z "${verbose}" ]]; then
 	echo "mkdir -p ${DESTDIR}${prefix}/${modulefilesdir}"
 	echo "module use ${DESTDIR}${prefix}/${modulefilesdir}"
+    elif [[ -z "${dry_run}" ]]; then
+	mkdir -p "${DESTDIR}${prefix}/${modulefilesdir}"
+	module use "${DESTDIR}${prefix}/${modulefilesdir}"
     fi
+
     for module in ${modules}; do
         # Use `module is-avail` to query the availability of a module, and use
         # the return code to determine if it is already built.
