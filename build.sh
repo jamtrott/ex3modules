@@ -52,7 +52,7 @@ help() {
     printf "  %-20s\t%s\n" "--print-dependencies" "Print module dependencies"
     printf "  %-20s\t%s\n" "--dry-run" "Print the commands that would be executed, but do not execute them"
     printf "  %-20s\t%s\n" "-j [N], --jobs[=N]" "Allow N jobs at once."
-    printf "  %-20s\t%s\n" "--verbose" "Be more verbose"
+    printf "  %-20s\t%s\n" "-v, --verbose" "Be more verbose"
     exit 1
 }
 
@@ -74,7 +74,7 @@ function parse_command_line_args() {
 		esac ;;
 	    -j*) JOBS="${1#-j}"; shift 1;;
             --jobs=*) JOBS="${1#*=}"; shift 1;;
-	    --verbose) verbose=1; shift 1;;
+	    -v | --verbose) verbose=1; shift 1;;
 	    --) shift; break;;
 	    -*) echo "unknown option: ${1}" >&2; exit 1;;
 	    *) top_modules="${top_modules} ${1}"; shift 1;;
