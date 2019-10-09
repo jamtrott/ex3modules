@@ -72,9 +72,8 @@ module-whatis "${pkg_url}"
 
 ${pkg_prereqs}
 
-set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-setenv ${pkg_name^^}_ROOT \$MODULES_PREFIX${pkg_prefix}
-prepend-path PATH \$MODULES_PREFIX${pkg_prefix}/bin
+setenv ${pkg_name^^}_ROOT ${pkg_prefix}
+prepend-path PATH ${pkg_prefix}/bin
 set MSG "${pkg_name} ${pkg_version}"
 EOF
 

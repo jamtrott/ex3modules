@@ -73,19 +73,18 @@ module-whatis "${pkg_url}"
 
 ${pkg_prereqs}
 
-set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-setenv CUDA_ROOT \$MODULES_PREFIX${pkg_prefix}
-setenv CUDA_INCDIR \$MODULES_PREFIX${pkg_prefix}/include
-setenv CUDA_INCLUDEDIR \$MODULES_PREFIX${pkg_prefix}/include
-setenv CUDA_LIBDIR \$MODULES_PREFIX${pkg_prefix}/lib64
-setenv CUDA_LIBRARYDIR \$MODULES_PREFIX${pkg_prefix}/lib64
-prepend-path PATH \$MODULES_PREFIX${pkg_prefix}/bin
-prepend-path C_INCLUDE_PATH \$MODULES_PREFIX${pkg_prefix}/include
-prepend-path CPLUS_INCLUDE_PATH \$MODULES_PREFIX${pkg_prefix}/include
-prepend-path LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib64
-prepend-path LD_LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib64
-prepend-path PKG_CONFIG_PATH \$MODULES_PREFIX${pkg_prefix}/lib/pkgconfig
-prepend-path MANPATH \$MODULES_PREFIX${pkg_prefix}/doc/man
+setenv CUDA_ROOT ${pkg_prefix}
+setenv CUDA_INCDIR ${pkg_prefix}/include
+setenv CUDA_INCLUDEDIR ${pkg_prefix}/include
+setenv CUDA_LIBDIR ${pkg_prefix}/lib64
+setenv CUDA_LIBRARYDIR ${pkg_prefix}/lib64
+prepend-path PATH ${pkg_prefix}/bin
+prepend-path C_INCLUDE_PATH ${pkg_prefix}/include
+prepend-path CPLUS_INCLUDE_PATH ${pkg_prefix}/include
+prepend-path LIBRARY_PATH ${pkg_prefix}/lib64
+prepend-path LD_LIBRARY_PATH ${pkg_prefix}/lib64
+prepend-path PKG_CONFIG_PATH ${pkg_prefix}/lib/pkgconfig
+prepend-path MANPATH ${pkg_prefix}/doc/man
 set MSG "${pkg_name} ${pkg_version}"
 EOF
 

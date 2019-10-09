@@ -59,8 +59,7 @@ module-whatis "${pkg_url}"
 
 ${pkg_prereqs}
 
-set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-prepend-path PYTHONPATH \$MODULES_PREFIX${pkg_prefix}/lib/python${PYTHON_VERSION_SHORT}/site-packages
+prepend-path PYTHONPATH ${pkg_prefix}/lib/python${PYTHON_VERSION_SHORT}/site-packages
 set MSG "${pkg_name} ${pkg_version}"
 EOF
 

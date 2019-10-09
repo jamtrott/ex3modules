@@ -72,8 +72,7 @@ module-whatis "${pkg_url}"
 
 ${pkg_prereqs}
 
-set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-setenv OSU_MICRO_BENCHMARKS_ROOT \$MODULES_PREFIX${pkg_prefix}
+setenv OSU_MICRO_BENCHMARKS_ROOT ${pkg_prefix}
 set MSG "${pkg_name} ${pkg_version}"
 EOF
 

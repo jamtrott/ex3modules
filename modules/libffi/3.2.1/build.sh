@@ -73,15 +73,14 @@ module-whatis "${pkg_url}"
 
 ${pkg_prereqs}
 
-set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-setenv ${pkg_name^^}_ROOT \$MODULES_PREFIX${pkg_prefix}
-setenv ${pkg_name^^}_LIBDIR \$MODULES_PREFIX${pkg_prefix}/lib
-setenv ${pkg_name^^}_LIBRARYDIR \$MODULES_PREFIX${pkg_prefix}/lib
-prepend-path LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib
-prepend-path LD_LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib
-prepend-path PKG_CONFIG_PATH \$MODULES_PREFIX${pkg_prefix}/lib/pkgconfig
-prepend-path MANPATH \$MODULES_PREFIX${pkg_prefix}/share/man
-prepend-path INFOPATH \$MODULES_PREFIX${pkg_prefix}/share/info
+setenv ${pkg_name^^}_ROOT ${pkg_prefix}
+setenv ${pkg_name^^}_LIBDIR ${pkg_prefix}/lib
+setenv ${pkg_name^^}_LIBRARYDIR ${pkg_prefix}/lib
+prepend-path LIBRARY_PATH ${pkg_prefix}/lib
+prepend-path LD_LIBRARY_PATH ${pkg_prefix}/lib
+prepend-path PKG_CONFIG_PATH ${pkg_prefix}/lib/pkgconfig
+prepend-path MANPATH ${pkg_prefix}/share/man
+prepend-path INFOPATH ${pkg_prefix}/share/info
 set MSG "${pkg_name} ${pkg_version}"
 EOF
 

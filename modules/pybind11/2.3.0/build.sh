@@ -74,13 +74,12 @@ module-whatis "${pkg_url}"
 
 ${pkg_prereqs}
 
-set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-setenv ${pkg_name^^}_ROOT \$MODULES_PREFIX${pkg_prefix}
-setenv ${pkg_name^^}_INCDIR \$MODULES_PREFIX${pkg_prefix}/include
-setenv ${pkg_name^^}_INCLUDEDIR \$MODULES_PREFIX${pkg_prefix}/include
-prepend-path C_INCLUDE_PATH \$MODULES_PREFIX${pkg_prefix}/include
-prepend-path CPLUS_INCLUDE_PATH \$MODULES_PREFIX${pkg_prefix}/include
-prepend-path CMAKE_MODULE_PATH \$MODULES_PREFIX${pkg_prefix}/share/cmake/pybind11
+setenv ${pkg_name^^}_ROOT ${pkg_prefix}
+setenv ${pkg_name^^}_INCDIR ${pkg_prefix}/include
+setenv ${pkg_name^^}_INCLUDEDIR ${pkg_prefix}/include
+prepend-path C_INCLUDE_PATH ${pkg_prefix}/include
+prepend-path CPLUS_INCLUDE_PATH ${pkg_prefix}/include
+prepend-path CMAKE_MODULE_PATH ${pkg_prefix}/share/cmake/pybind11
 set MSG "${pkg_name} ${pkg_version}"
 EOF
 

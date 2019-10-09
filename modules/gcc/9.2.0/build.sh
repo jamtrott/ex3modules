@@ -79,27 +79,26 @@ module-whatis "${pkg_url}"
 
 ${pkg_prereqs}
 
-set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-setenv CC \$MODULES_PREFIX${pkg_prefix}/bin/gcc${program_suffix}
-setenv GCC \$MODULES_PREFIX${pkg_prefix}/bin/gcc${program_suffix}
-setenv CXX \$MODULES_PREFIX${pkg_prefix}/bin/g++${program_suffix}
-setenv FC \$MODULES_PREFIX${pkg_prefix}/bin/gfortran${program_suffix}
-setenv F77 \$MODULES_PREFIX${pkg_prefix}/bin/gfortran${program_suffix}
-setenv F90 \$MODULES_PREFIX${pkg_prefix}/bin/gfortran${program_suffix}
-setenv F95 \$MODULES_PREFIX${pkg_prefix}/bin/gfortran${program_suffix}
-prepend-path PATH \$MODULES_PREFIX${pkg_prefix}/bin
-prepend-path C_INCLUDE_PATH \$MODULES_PREFIX${pkg_prefix}/include
-prepend-path CPLUS_INCLUDE_PATH \$MODULES_PREFIX${pkg_prefix}/include
-prepend-path LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib
-prepend-path LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/libx32
-prepend-path LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib32
-prepend-path LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib64
-prepend-path LD_LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib
-prepend-path LD_LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/libx32
-prepend-path LD_LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib32
-prepend-path LD_LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib64
-prepend-path MANPATH \$MODULES_PREFIX${pkg_prefix}/share/man
-prepend-path INFOPATH \$MODULES_PREFIX${pkg_prefix}/share/info
+setenv CC ${pkg_prefix}/bin/gcc${program_suffix}
+setenv GCC ${pkg_prefix}/bin/gcc${program_suffix}
+setenv CXX ${pkg_prefix}/bin/g++${program_suffix}
+setenv FC ${pkg_prefix}/bin/gfortran${program_suffix}
+setenv F77 ${pkg_prefix}/bin/gfortran${program_suffix}
+setenv F90 ${pkg_prefix}/bin/gfortran${program_suffix}
+setenv F95 ${pkg_prefix}/bin/gfortran${program_suffix}
+prepend-path PATH ${pkg_prefix}/bin
+prepend-path C_INCLUDE_PATH ${pkg_prefix}/include
+prepend-path CPLUS_INCLUDE_PATH ${pkg_prefix}/include
+prepend-path LIBRARY_PATH ${pkg_prefix}/lib
+prepend-path LIBRARY_PATH ${pkg_prefix}/libx32
+prepend-path LIBRARY_PATH ${pkg_prefix}/lib32
+prepend-path LIBRARY_PATH ${pkg_prefix}/lib64
+prepend-path LD_LIBRARY_PATH ${pkg_prefix}/lib
+prepend-path LD_LIBRARY_PATH ${pkg_prefix}/libx32
+prepend-path LD_LIBRARY_PATH ${pkg_prefix}/lib32
+prepend-path LD_LIBRARY_PATH ${pkg_prefix}/lib64
+prepend-path MANPATH ${pkg_prefix}/share/man
+prepend-path INFOPATH ${pkg_prefix}/share/info
 set MSG "${pkg_name} ${pkg_version}"
 EOF
 

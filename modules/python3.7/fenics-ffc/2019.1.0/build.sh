@@ -76,10 +76,9 @@ module-whatis "${pkg_url}"
 
 ${pkg_prereqs}
 
-set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-prepend-path PATH \$MODULES_PREFIX${pkg_prefix}/bin
-prepend-path PYTHONPATH \$MODULES_PREFIX${pkg_prefix}/lib/python${PYTHON_VERSION_SHORT}/site-packages
-prepend-path MANPATH \$MODULES_PREFIX${pkg_prefix}/share/man
+prepend-path PATH ${pkg_prefix}/bin
+prepend-path PYTHONPATH ${pkg_prefix}/lib/python${PYTHON_VERSION_SHORT}/site-packages
+prepend-path MANPATH ${pkg_prefix}/share/man
 set MSG "${pkg_name} ${pkg_version}"
 EOF
 

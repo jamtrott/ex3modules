@@ -76,13 +76,12 @@ module-whatis "${pkg_url}"
 
 ${pkg_prereqs}
 
-set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-setenv ${pkg_name^^}_ROOT \$MODULES_PREFIX${pkg_prefix}
-setenv OCAMLLIB \$MODULES_PREFIX${pkg_prefix}/lib/ocaml
-prepend-path PATH \$MODULES_PREFIX${pkg_prefix}/bin
-prepend-path LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib
-prepend-path LD_LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib
-prepend-path MANPATH \$MODULES_PREFIX${pkg_prefix}/share/man
+setenv ${pkg_name^^}_ROOT ${pkg_prefix}
+setenv OCAMLLIB ${pkg_prefix}/lib/ocaml
+prepend-path PATH ${pkg_prefix}/bin
+prepend-path LIBRARY_PATH ${pkg_prefix}/lib
+prepend-path LD_LIBRARY_PATH ${pkg_prefix}/lib
+prepend-path MANPATH ${pkg_prefix}/share/man
 set MSG "${pkg_name} ${pkg_version}"
 EOF
 

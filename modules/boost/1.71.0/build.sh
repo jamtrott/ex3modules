@@ -75,18 +75,17 @@ module-whatis "${pkg_url}"
 
 ${pkg_prereqs}
 
-set MODULES_PREFIX [getenv MODULES_PREFIX ""]
-setenv ${pkg_name^^}_ROOT \$MODULES_PREFIX${pkg_prefix}
-setenv ${pkg_name^^}_INCDIR \$MODULES_PREFIX${pkg_prefix}/include
-setenv ${pkg_name^^}_INCLUDEDIR \$MODULES_PREFIX${pkg_prefix}/include
-setenv ${pkg_name^^}_LIBDIR \$MODULES_PREFIX${pkg_prefix}/lib
-setenv ${pkg_name^^}_LIBRARYDIR \$MODULES_PREFIX${pkg_prefix}/lib
-prepend-path C_INCLUDE_PATH \$MODULES_PREFIX${pkg_prefix}/include
-prepend-path CPLUS_INCLUDE_PATH \$MODULES_PREFIX${pkg_prefix}/include
-prepend-path LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib
-prepend-path LD_LIBRARY_PATH \$MODULES_PREFIX${pkg_prefix}/lib
-prepend-path CMAKE_MODULE_PATH \$MODULES_PREFIX${pkg_prefix}/lib/cmake
-prepend-path CMAKE_MODULE_PATH \$MODULES_PREFIX${pkg_prefix}/lib/cmake/Boost-${pkg_version}
+setenv ${pkg_name^^}_ROOT ${pkg_prefix}
+setenv ${pkg_name^^}_INCDIR ${pkg_prefix}/include
+setenv ${pkg_name^^}_INCLUDEDIR ${pkg_prefix}/include
+setenv ${pkg_name^^}_LIBDIR ${pkg_prefix}/lib
+setenv ${pkg_name^^}_LIBRARYDIR ${pkg_prefix}/lib
+prepend-path C_INCLUDE_PATH ${pkg_prefix}/include
+prepend-path CPLUS_INCLUDE_PATH ${pkg_prefix}/include
+prepend-path LIBRARY_PATH ${pkg_prefix}/lib
+prepend-path LD_LIBRARY_PATH ${pkg_prefix}/lib
+prepend-path CMAKE_MODULE_PATH ${pkg_prefix}/lib/cmake
+prepend-path CMAKE_MODULE_PATH ${pkg_prefix}/lib/cmake/Boost-${pkg_version}
 set MSG "${pkg_name} ${pkg_version}"
 EOF
 

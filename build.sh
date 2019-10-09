@@ -148,7 +148,7 @@ function build_module()
     printf "%s: Building %s\n" "${0}" "${module}"
     if [ -z "${dry_run}" ]; then
 	pushd "modules/${module}"
-	MODULES_PREFIX="${DESTDIR}" JOBS="${JOBS}" \
+	JOBS="${JOBS}" \
 	       ./build.sh \
 	       --prefix="${prefix}" \
 	       --modulefilesdir="${modulefilesdir}" \
@@ -156,8 +156,7 @@ function build_module()
 	popd
     else
 	echo "pushd modules/${module}"
-	echo "MODULES_PREFIX=${DESTDIR} " \
-	     "./build.sh " \
+	echo "./build.sh " \
 	     "--prefix=${prefix} " \
 	     "--modulefilesdir=${modulefilesdir}"
 	echo "popd"
