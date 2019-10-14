@@ -1,6 +1,22 @@
 # ex3-modules
 This repository contains scripts for building and installing a variety of software packages to an Environment Modules system. It is used to install software on the **eX3** cluster, a national Experimental Infrastructure for Exploration of Exascale Computing at Simula Research Laboratory, Norway.
 
+## Example usage
+To install PETSc 3.11.3 with dependencies into `$HOME/local`, run
+```
+./build.sh --prefix=$HOME/local --build-dependencies petsc/3.11.3
+```
+
+Remember to add `$PREFIX/modulefiles` to your modulepath
+```
+module use $PREFIX/modulefiles
+```
+If the modulepath isn't set correctly, the scripts will be unable to detect which modules are already built, causing unnecessary rebuilds of existing modules.
+
+For a complete list of options, run
+```
+./build.sh --help
+```
 
 ## Modules
 The available modules are shown in the table below.
