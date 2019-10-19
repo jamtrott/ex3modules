@@ -1,5 +1,7 @@
 # ex3-modules
-This repository contains scripts for building and installing a variety of software packages to an Environment Modules system. It is used to install software on the **eX3** cluster, a national Experimental Infrastructure for Exploration of Exascale Computing at Simula Research Laboratory, Norway.
+This repository contains scripts for **building and installing a variety of software packages** on systems that use [Environment Modules](http://modules.sourceforge.net/), a software packaging system that is typically used to manage software on supercomputing clusters.
+
+For example, *ex3-modules* has been used to install software on [**eX3**](https://www.ex3.simula.no), a national Experimental Infrastructure for Exploration of Exascale Computing at Simula Research Laboratory, Norway.
 
 ## Example usage
 To install PETSc 3.11.3 with dependencies into `$HOME/local`, run
