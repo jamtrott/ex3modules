@@ -1,3 +1,7 @@
+Modules
+=======
+The available modules are shown in the table below.
+
 | Package | Version | Module name | Description | Dependencies |
 | :---    | ---:    | :---        | :---        | :---         |
 | [binutils](https://www.gnu.org/software/binutils/) | 2.32 | binutils/2.32 | Tools for creating and managing binary programs |  |
