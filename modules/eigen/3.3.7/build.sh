@@ -14,8 +14,6 @@
 #
 set -o errexit
 
-. ../../../common/module.sh
-
 pkg_name=eigen
 pkg_version=3.3.7
 pkg_moduledir="${pkg_name}/${pkg_version}"
@@ -26,6 +24,8 @@ src_dir="eigen-eigen-323c052e1731"
 
 function main()
 {
+    . ../../../common/module.sh
+
     # Parse program options
     module_build_parse_command_line_args \
 	"${0}" \

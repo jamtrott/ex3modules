@@ -14,8 +14,6 @@
 #
 set -o errexit
 
-. ../../../common/module.sh
-
 pkg_name=gcc
 pkg_version=9.2.0
 pkg_moduledir="${pkg_name}/${pkg_version}"
@@ -27,6 +25,8 @@ program_suffix="-${pkg_version%.*}"
 
 function main()
 {
+    . ../../../common/module.sh
+
     # Parse program options
     module_build_parse_command_line_args \
 	"${0}" \

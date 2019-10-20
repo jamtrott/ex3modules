@@ -14,8 +14,6 @@
 #
 set -o errexit
 
-. ../../../../common/module.sh
-
 # Package details
 pkg_name=breathe
 pkg_version=4.13.1
@@ -26,6 +24,8 @@ pkg_url="https://breathe.readthedocs.io/"
 
 function main()
 {
+    . ../../../../common/module.sh
+
     # Parse program options
     module_build_parse_command_line_args \
 	"${0}" \

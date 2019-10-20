@@ -14,8 +14,6 @@
 #
 set -o errexit
 
-. ../../../common/module.sh
-
 pkg_name=petsc
 pkg_version_NUMBER=3.11.3
 pkg_version="${pkg_version_NUMBER}-cuda"
@@ -27,6 +25,8 @@ src_dir="${pkg_name}-${pkg_version_NUMBER}"
 
 function main()
 {
+    . ../../../common/module.sh
+
     # Parse program options
     module_build_parse_command_line_args \
 	"${0}" \

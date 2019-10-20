@@ -14,8 +14,6 @@
 #
 set -o errexit
 
-. ../../../../common/module.sh
-
 # Package details
 pkg_name=petsc4py
 pkg_version=3.11.0
@@ -26,6 +24,8 @@ pkg_url="https://bitbucket.org/petsc/petsc4py"
 
 function main()
 {
+    . ../../../../common/module.sh
+
     # Parse program options
     module_build_parse_command_line_args \
 	"${0}" \

@@ -14,8 +14,6 @@
 #
 set -o errexit
 
-. ../../../../common/module.sh
-
 pkg_name=fenics
 pkg_version=2019.1.0.post0
 PYTHON_VERSION_SHORT=3.7
@@ -27,6 +25,8 @@ src_dir="dolfin-${pkg_version}/python"
 
 function main()
 {
+    . ../../../../common/module.sh
+
     # Parse program options
     module_build_parse_command_line_args \
 	"${0}" \

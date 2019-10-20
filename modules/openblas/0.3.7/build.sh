@@ -14,8 +14,6 @@
 #
 set -o errexit
 
-. ../../../common/module.sh
-
 pkg_name=openblas
 pkg_version=0.3.7
 pkg_moduledir="${pkg_name}/${pkg_version}"
@@ -26,6 +24,8 @@ src_dir="OpenBLAS-${pkg_version}"
 
 function main()
 {
+    . ../../../common/module.sh
+
     # Parse program options
     module_build_parse_command_line_args \
 	"${0}" \

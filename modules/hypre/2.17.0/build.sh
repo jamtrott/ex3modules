@@ -14,8 +14,6 @@
 #
 set -o errexit
 
-. ../../../common/module.sh
-
 pkg_name=hypre
 pkg_version=2.17.0
 pkg_moduledir="${pkg_name}/${pkg_version}"
@@ -26,6 +24,8 @@ src_dir="${pkg_name}-${pkg_version}/src"
 
 function main()
 {
+    . ../../../common/module.sh
+
     # Parse program options
     module_build_parse_command_line_args \
 	"${0}" \

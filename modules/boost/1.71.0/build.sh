@@ -14,8 +14,6 @@
 #
 set -o errexit
 
-. ../../../common/module.sh
-
 pkg_name=boost
 pkg_version=1.71.0
 pkg_moduledir="${pkg_name}/${pkg_version}"
@@ -26,6 +24,8 @@ src_dir="${pkg_name}_${pkg_version//./_}"
 
 function main()
 {
+    . ../../../common/module.sh
+
     # Parse program options
     module_build_parse_command_line_args \
 	"${0}" \

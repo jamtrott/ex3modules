@@ -15,8 +15,6 @@
 #
 set -o errexit
 
-. ../../../common/module.sh
-
 pkg_name=freetype
 pkg_version=2.10.1
 pkg_moduledir="${pkg_name}/${pkg_version}"
@@ -27,6 +25,8 @@ src_dir="${pkg_name}-${pkg_version}"
 
 function main()
 {
+    . ../../../common/module.sh
+
     # Parse program options
     module_build_parse_command_line_args \
 	"${0}" \

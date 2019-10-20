@@ -14,8 +14,6 @@
 #
 set -o errexit
 
-. ../../../common/module.sh
-
 pkg_name=fenics
 pkg_version=2019.1.0
 pkg_moduledir="${pkg_name}/${pkg_version}"
@@ -24,6 +22,8 @@ pkg_url="https://fenicsproject.org"
 
 function main()
 {
+    . ../../../common/module.sh
+
     # Parse program options
     module_build_parse_command_line_args \
 	"${0}" \

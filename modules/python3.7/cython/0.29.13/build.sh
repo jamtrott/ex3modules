@@ -14,8 +14,6 @@
 #
 set -o errexit
 
-. ../../../../common/module.sh
-
 # Package details
 pkg_name=cython
 pkg_version=0.29.13
@@ -26,6 +24,8 @@ pkg_url="https://www.cython.org/"
 
 function main()
 {
+    . ../../../../common/module.sh
+
     # Parse program options
     module_build_parse_command_line_args \
 	"${0}" \

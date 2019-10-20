@@ -14,8 +14,6 @@
 #
 set -o errexit
 
-. ../../../../common/module.sh
-
 pkg_name=opam
 pkg_version=2.0.5
 ocaml_version=4.07
@@ -27,6 +25,8 @@ src_dir="${pkg_name}-${pkg_version}"
 
 function main()
 {
+    . ../../../../common/module.sh
+
     # Parse program options
     module_build_parse_command_line_args \
 	"${0}" \

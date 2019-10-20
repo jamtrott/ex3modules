@@ -14,8 +14,6 @@
 #
 set -o errexit
 
-. ../../../../common/module.sh
-
 # Package details
 pkg_name=pkgconfig
 pkg_version=1.5.1
@@ -26,6 +24,8 @@ pkg_url="https://github.com/matze/pkgconfig"
 
 function main()
 {
+    . ../../../../common/module.sh
+
     # Parse program options
     module_build_parse_command_line_args \
 	"${0}" \
