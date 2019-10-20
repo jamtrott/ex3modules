@@ -74,7 +74,7 @@ function module_build_parse_command_line_args()
 	    --verbose) module_build_verbose=1; shift 1;;
 	    --) shift; break;;
 	    -*) echo "unknown option: ${1}" >&2; exit 1;;
-	    *) handle_argument "${1}"; shift 1;;
+	    *) echo "unknown argument: ${1}" >&2; shift 1;;
 	esac
     done
 }
