@@ -50,7 +50,8 @@ function main()
     # Build
     pushd "${pkg_build_dir}/${src_dir}"
     make DYNAMIC_ARCH=1 \
-	 USE_THREAD=0
+	 USE_THREAD=0 \
+	 MAKE_NB_JOBS=${JOBS}
     make install PREFIX="${pkg_prefix}"
     popd
 
