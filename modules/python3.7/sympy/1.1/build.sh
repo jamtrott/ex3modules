@@ -14,4 +14,4 @@
 #
 set -o errexit
 source build
-build "@"
+build "$@"
