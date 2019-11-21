@@ -6,7 +6,7 @@ pkg_url="https://bitbucket.org/fenics-project/dolfin/"
 src_url="https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-${pkg_version}.tar.gz"
 src_dir="${pkg_name}-${pkg_version}"
 
-function main()
+function build()
 {
     . ../../../common/module.sh
 
