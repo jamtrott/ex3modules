@@ -54,7 +54,7 @@ function module_build_parse_command_line_args()
     shift 6
 
     # Set default options
-    prefix=/cm/shared/apps/
+    prefix=
     modulefilesdir=modulefiles
     module_build_verbose=
 
