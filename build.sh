@@ -113,8 +113,8 @@ function log() {
 
 function print_modules()
 {
-    build_files=$(find modules -name build.sh)
-    modules=$(
+    local build_files=$(find modules -name build.sh)
+    local modules=$(
 	for f in "${build_files}"; do
 	    echo "${f}" | sed -e "s/^modules\///" -e "s/\/build.sh$//";
 	done)
@@ -124,9 +124,9 @@ function print_modules()
 
 function build_deps()
 {
-    module=$1
+    local module="${1}"
 
-    module_build_deps="modules/${module}/build_deps"
+    local module_build_deps="modules/${module}/build_deps"
     if [ ! -f "${module_build_deps}" ]; then
 	printf "%s: No such file or directory\n" "${module_build_deps}" >&2
 	exit 1
@@ -144,7 +144,10 @@ function build_deps()
 
 function build_module()
 {
-    module=$1
+    local module="${1}"
+    local prefix="${2}"
+    local modulefilesdir="${3}"
+
     printf "%s: Building %s\n" "${0}" "${module}"
     if [ -z "${dry_run}" ]; then
 	pushd "modules/${module}"
@@ -167,7 +170,10 @@ function build_module()
 
 function build_modules()
 {
-    modules="$1"
+    local modules="${1}"
+    local prefix="${2}"
+    local modulefilesdir="${3}"
+
     printf "%s: Building the following modules:\n%s\n" "${0}" "${modules}"
 
     if [[ ! -z "${dry_run}" ]] || [[ ! -z "${verbose}" ]]; then
@@ -199,7 +205,7 @@ function build_modules()
             echo "Skipping building of dependency ${module}, since it has already been built"
             continue
         fi
-        build_module ${module}
+        build_module "${module}" "${prefix}" "${modulefilesdir}"
     done
 }
 
@@ -215,7 +221,7 @@ function main()
 
     init_log
 
-    modules="${top_modules}"
+    local modules="${top_modules}"
     if [ "${build_dependencies}" != "no" ] || [ ! -z "${print_dependencies}" ]; then
 	# Get a list of required build-time dependencies by recursively
 	# traversing modules and their dependencies.
@@ -235,7 +241,8 @@ function main()
     fi
 
     # Build the required modules
-    (build_modules "${modules}" | log "${stdout_log_path}") 3>&1 1>&2 2>&3 | log "${stderr_log_path}"
+    (build_modules "${modules}" "${prefix}" "${modulefilesdir}" |
+	 log "${stdout_log_path}") 3>&1 1>&2 2>&3 | log "${stderr_log_path}"
 }
 
 main "$@"
