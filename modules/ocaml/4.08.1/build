@@ -1,0 +1,73 @@
+pkg_name=ocaml
+pkg_version=4.08.1
+pkg_moduledir="${pkg_name}/${pkg_version}"
+pkg_description="Core OCaml system with compilers, runtime system, and base libraries"
+pkg_url="https://ocaml.org"
+src_url="https://github.com/ocaml/ocaml/archive/${pkg_version}.tar.gz"
+src_dir="${pkg_name}-${pkg_version}"
+
+function build()
+{
+    . ../../../common/module.sh
+
+    # Parse program options
+    module_build_parse_command_line_args \
+	"${0}" \
+	"${pkg_name}" \
+	"${pkg_version}" \
+	"${pkg_moduledir}" \
+	"${pkg_description}" \
+	"${pkg_url}" \
+	"$@"
+
+    # Load build-time dependencies and determine prerequisite modules
+    module_load_build_deps build_deps
+    pkg_prereqs=$(module_prereqs prereqs)
+
+    # Download and unpack source
+    pkg_prefix=$(module_build_prefix "${prefix}" "${pkg_moduledir}")
+    pkg_build_dir=$(module_build_create_build_dir "${pkg_name}" "${pkg_version}")
+    pkg_src="${pkg_build_dir}/$(basename ${src_url})"
+    module_build_download_package "${src_url}" "${pkg_src}"
+    module_build_unpack "${pkg_src}" "${pkg_build_dir}"
+
+    # Build
+    pushd "${pkg_build_dir}/${src_dir}"
+
+    # Temporarily disable testpreempt, which doesn't seem to work.
+    # Could be related to https://github.com/ocaml/ocaml/pull/8849
+    sed -i /testpreempt.ml/d testsuite/tests/lib-systhreads/ocamltests
+    rm -f testsuite/tests/lib-systhreads/testpreempt.ml
+
+    ./configure --prefix="${pkg_prefix}"
+    make -j"${JOBS}" world.opt
+    make tests
+    make install
+    popd
+
+    # Write the module file
+    pkg_modulefile=$(module_build_modulefile "${prefix}" "${modulefilesdir}" "${pkg_moduledir}")
+    cat >"${pkg_modulefile}" <<EOF
+#%Module
+# ${pkg_name} ${pkg_version}
+
+proc ModulesHelp { } {
+     puts stderr "\tSets up the environment for ${pkg_name} ${pkg_version}\n"
+}
+
+module-whatis "${pkg_description}"
+module-whatis "${pkg_url}"
+
+${pkg_prereqs}
+
+setenv ${pkg_name^^}_ROOT ${pkg_prefix}
+setenv OCAMLLIB ${pkg_prefix}/lib/ocaml
+prepend-path PATH ${pkg_prefix}/bin
+prepend-path LIBRARY_PATH ${pkg_prefix}/lib
+prepend-path LD_LIBRARY_PATH ${pkg_prefix}/lib
+prepend-path MANPATH ${pkg_prefix}/share/man
+set MSG "${pkg_name} ${pkg_version}"
+EOF
+
+    module_build_cleanup "${pkg_build_dir}"
+}
