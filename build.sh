@@ -173,7 +173,8 @@ function build_modules()
     if [[ ! -z "${dry_run}" ]] || [[ ! -z "${verbose}" ]]; then
 	echo "mkdir -p ${DESTDIR}${prefix}/${modulefilesdir}"
 	echo "module use ${DESTDIR}${prefix}/${modulefilesdir}"
-    elif [[ -z "${dry_run}" ]]; then
+    fi
+    if [[ -z "${dry_run}" ]]; then
 	mkdir -p "${DESTDIR}${prefix}/${modulefilesdir}"
 	module use "${DESTDIR}${prefix}/${modulefilesdir}"
     fi
