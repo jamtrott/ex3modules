@@ -18,7 +18,7 @@ set -o errexit
 
 # Default options
 list_modules=
-prefix=/cm/shared/apps
+prefix=/cm/shared/apps/
 modulefilesdir=modulefiles
 build_dependencies=no
 print_dependencies=

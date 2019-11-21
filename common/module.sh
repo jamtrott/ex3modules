@@ -54,7 +54,7 @@ function module_build_parse_command_line_args()
     shift 6
 
     # Set default options
-    prefix=/cm/shared/apps
+    prefix=/cm/shared/apps/
     modulefilesdir=modulefiles
     module_build_verbose=
 
@@ -84,7 +84,7 @@ function module_build_prefix()
 {
     local prefix="${1}"
     local moduledir="${2}"
-    printf "%s/%s" "${prefix}" "${moduledir}"
+    printf "%s%s" "${prefix}" "${moduledir}"
 }
 
 # Create a temporary directory for building a module
