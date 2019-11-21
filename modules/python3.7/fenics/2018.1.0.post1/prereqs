@@ -1,0 +1,12 @@
+python/3.7.4
+python3.7/numpy/1.17.0
+python3.7/pkgconfig/1.5.1
+python3.7/fenics-dijitso/2018.1.0
+python3.7/fenics-fiat/2018.1.0
+python3.7/fenics-ufl/2018.1.0
+python3.7/fenics-ffc/2018.1.0
+pybind11/2.3.0
+python3.7/ply/3.11
+python3.7/mpi4py/3.0.2
+python3.7/petsc4py/3.11.0
+fenics-dolfin/2018.1.0.post1

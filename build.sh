@@ -42,7 +42,7 @@ fi
 # Parse program options
 help() {
     printf "Usage: ${0} [OPTION]... <MODULE>...\n"
-    printf " Build modules and their dependencies"
+    printf " Build modules and their dependencies\n\n"
     printf " Options are:\n"
     printf "  %-20s\t%s\n" "-h, --help" "display this help and exit"
     printf "  %-20s\t%s\n" "--list-modules" "list available modules"

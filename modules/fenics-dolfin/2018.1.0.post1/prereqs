@@ -1,0 +1,15 @@
+boost/1.71.0
+openmpi/4.0.1
+openblas/0.3.7
+hdf5/1.10.5
+parmetis/4.0.3
+scotch/6.0.7
+suitesparse/5.4.0
+metis/5.1.0
+eigen/3.3.7
+petsc/3.11.3
+python/3.7.4
+python3.7/fenics-dijitso/2018.1.0
+python3.7/fenics-fiat/2018.1.0
+python3.7/fenics-ufl/2018.1.0
+python3.7/fenics-ffc/2018.1.0
