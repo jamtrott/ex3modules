@@ -55,9 +55,9 @@ function print_module()
 	 done <build_deps) |
 	    sed 's/, $//')
     printf "| [%s](%s) | %s | %s | %s | %s |\n" \
-	   "${pkg_name}" "${pkg_url}" \
+	   "${pkg_name//_/\\_}" "${pkg_url}" \
 	   "${pkg_version}" \
-	   "${pkg_moduledir}" \
+	   "${pkg_moduledir//_/\\_}" \
 	   "${pkg_description}" \
 	   "${pkg_build_deps}"
     popd > /dev/null
