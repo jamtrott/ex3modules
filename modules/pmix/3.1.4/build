@@ -4,7 +4,7 @@ pkg_moduledir="${pkg_name}/${pkg_version}"
 pkg_description="PMIx: Process management for exascale environments"
 pkg_url="https://pmix.org"
 src_url=https://github.com/pmix/pmix/archive/v3.1.4.tar.gz
-src_dir="${pkg_name}-${pkg_version}"
+src_dir="openpmix-${pkg_version}"
 
 function build()
 {
