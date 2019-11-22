@@ -6,12 +6,12 @@
 # and temporarily install them to your home directory, so that you may
 # test them before moving them to their final destinations:
 #
-#   DESTDIR=$HOME ./build.sh 2>&1 | tee build.log
+#   build.sh --prefix=$HOME/modules 2>&1 | tee build.log
 #
 # The module can then be loaded as follows:
 #
-#   module use $HOME/$prefix/$modulefilesdir
-#   MODULES_PREFIX=$HOME module load freetype
+#   module use $HOME/modules/modulefiles
+#   module load freetype
 #
 set -o errexit
 source build
