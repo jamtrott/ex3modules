@@ -1,0 +1,76 @@
+pkg_name=bzip2
+pkg_version=1.0.8
+pkg_moduledir="${pkg_name}/${pkg_version}"
+pkg_description="Data compression program and library"
+pkg_url="https://www.sourceware.org/bzip2/"
+src_url="https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz"
+src_dir="${pkg_name}-${pkg_version}"
+
+function build()
+{
+    . ../../../common/module.sh
+
+    # Parse program options
+    module_build_parse_command_line_args \
+	"${0}" \
+	"${pkg_name}" \
+	"${pkg_version}" \
+	"${pkg_moduledir}" \
+	"${pkg_description}" \
+	"${pkg_url}" \
+	"$@"
+
+    # Load build-time dependencies and determine prerequisite modules
+    module_load_build_deps build_deps
+    pkg_prereqs=$(module_prereqs prereqs)
+
+    # Download and unpack source
+    pkg_prefix=$(module_build_prefix "${prefix}" "${pkg_moduledir}")
+    pkg_build_dir=$(module_build_create_build_dir "${pkg_name}" "${pkg_version}")
+    pkg_src="${pkg_build_dir}/$(basename ${src_url})"
+    module_build_download_package "${src_url}" "${pkg_src}"
+    module_build_unpack "${pkg_src}" "${pkg_build_dir}"
+
+    # Build
+    pushd "${pkg_build_dir}/${src_dir}"
+    # See http://www.linuxfromscratch.org/lfs/view/development/chapter06/bzip2.html
+    sed -i 's@\(ln -s -f \)$(PREFIX)/bin/@\1@' Makefile
+    sed -i "s@(PREFIX)/man@(PREFIX)/share/man@g" Makefile
+    make -f Makefile-libbz2_so
+    make clean
+    make
+    make PREFIX="${pkg_prefix}" install
+    cp -av libbz2.so* "${pkg_prefix}/lib"
+    popd
+
+    # Write the module file
+    pkg_modulefile=$(module_build_modulefile "${prefix}" "${modulefilesdir}" "${pkg_moduledir}")
+    cat >"${pkg_modulefile}" <<EOF
+#%Module
+# ${pkg_name} ${pkg_version}
+
+proc ModulesHelp { } {
+     puts stderr "\tSets up the environment for ${pkg_name} ${pkg_version}\n"
+}
+
+module-whatis "${pkg_description}"
+module-whatis "${pkg_url}"
+
+${pkg_prereqs}
+
+setenv ${pkg_name^^}_ROOT ${pkg_prefix}
+setenv ${pkg_name^^}_INCDIR ${pkg_prefix}/include
+setenv ${pkg_name^^}_INCLUDEDIR ${pkg_prefix}/include
+setenv ${pkg_name^^}_LIBDIR ${pkg_prefix}/lib
+setenv ${pkg_name^^}_LIBRARYDIR ${pkg_prefix}/lib
+prepend-path PATH ${pkg_prefix}/bin
+prepend-path C_INCLUDE_PATH ${pkg_prefix}/include
+prepend-path CPLUS_INCLUDE_PATH ${pkg_prefix}/include
+prepend-path LIBRARY_PATH ${pkg_prefix}/lib
+prepend-path LD_LIBRARY_PATH ${pkg_prefix}/lib
+prepend-path MANPATH ${pkg_prefix}/share/man
+set MSG "${pkg_name} ${pkg_version}"
+EOF
+
+    module_build_cleanup "${pkg_build_dir}"
+}
