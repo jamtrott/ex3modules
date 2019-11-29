@@ -36,7 +36,7 @@ function build()
     make SHARED=yes -j"${JOBS}"
     mkdir -p "${pkg_prefix}/share/man"
     make PREFIX="${pkg_prefix}" install install-lib
-    ln -s "${pkg_prefix}/lib/libpci.so.${pkg_version}" "${pkg_prefix}/lib/libpci.so"
+    ln -s -f "${pkg_prefix}/lib/libpci.so.${pkg_version}" "${pkg_prefix}/lib/libpci.so"
     popd
 
     # Write the module file
