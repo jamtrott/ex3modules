@@ -41,6 +41,7 @@ function build()
     make
     make PREFIX="${pkg_prefix}" install
     cp -av libbz2.so* "${pkg_prefix}/lib"
+    rm "${pkg_prefix}/lib/libbz2.a"
     popd
 
     # Write the module file
