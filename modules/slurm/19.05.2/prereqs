@@ -1,5 +1,5 @@
 pmix/3.1.4
 ucx/1.6.0
-numactl/2.0.12
+numactl/2.0.13
 hwloc/2.0.4
 munge/0.5.13

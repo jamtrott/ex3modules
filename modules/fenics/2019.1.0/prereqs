@@ -1,4 +1,4 @@
-numactl/2.0.12
+numactl/2.0.13
 ucx/1.6.0
 openmpi/4.0.1
 openblas/0.3.7

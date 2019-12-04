@@ -1,4 +1,4 @@
-numactl/2.0.12
+numactl/2.0.13
 elfutils/0.177
 openssl/1.1.1c
 libunwind/1.3.1

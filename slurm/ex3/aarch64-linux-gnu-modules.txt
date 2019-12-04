@@ -37,7 +37,7 @@ mpfr/4.0.2
 mumps/5.2.1
 munge/0.5.13
 ncurses/6.1
-numactl/2.0.12
+numactl/2.0.13
 ocaml/4.07.1
 ocaml/4.08.1
 ocaml4.07/opam/2.0.5
