@@ -1,0 +1,24 @@
+From 39a11e1c19a1b7b3531821608ee1fc03b30dc08d Mon Sep 17 00:00:00 2001
+From: "James D. Trotter" <james@simula.no>
+Date: Thu, 5 Dec 2019 14:20:31 +0100
+Subject: [PATCH] Disable bind_range test
+
+See https://github.com/numactl/numactl/issues/85.
+---
+ test/regress2 | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/test/regress2 b/test/regress2
+index aa6ea41..a645e7d 100755
+--- a/test/regress2
++++ b/test/regress2
+@@ -24,5 +24,5 @@ T "${builddir}/test/nodemap"
+ T "${srcdir}/test/checkaffinity"
+ T "${srcdir}/test/checktopology"
+ T "${builddir}/test/tbitmap"
+-T "${srcdir}/test/bind_range"
++#T "${srcdir}/test/bind_range"
+ #T "${builddir}/test/randmap"
+-- 
+1.8.3.1
+
