@@ -35,7 +35,10 @@ function build()
     pushd "${pkg_build_dir}/${src_dir}"
     ./configure --prefix="${pkg_prefix}"
     make -j"${JOBS}"
-    make check -j"${JOBS}"
+
+    ## Disable tests for now, see https://github.com/open-mpi/hwloc/issues/374.
+    # make check
+
     make install
     popd
 
