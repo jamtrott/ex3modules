@@ -62,7 +62,7 @@ function parse_command_line_args() {
 	case "${1}" in
 	    -h | --help) help; exit 0;;
 	    --list-modules) list_modules=1; shift 1;;
-            --prefix=*) prefix=$(realpath "${1#*=}")/; shift 1;;
+	    --prefix=*) prefix=$(realpath "${1#*=}")/; shift 1;;
 	    --modulefilesdir=*) modulefilesdir="${1#*=}"; shift 1;;
 	    --build-dependencies) build_dependencies=missing-only; shift 1;;
             --build-dependencies=*) build_dependencies="${1#*=}"; shift 1;;
