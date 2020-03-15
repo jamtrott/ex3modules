@@ -10,6 +10,7 @@ set -o errexit
 
 # Default options
 modules_paths=
+show_dependencies=
 
 # Parse program options
 help() {
@@ -17,6 +18,7 @@ help() {
     printf " Print a list of modules as a table in markdown format"
     printf " Options are:\n"
     printf "  %-20s\t%s\n" "-h, --help" "display this help and exit"
+    printf "  %-20s\t%s\n" "--show-dependencies" "Print each module's dependencies"
     exit 1
 }
 
@@ -25,6 +27,7 @@ function parse_command_line_args() {
     while [ "$#" -gt 0 ]; do
 	case "${1}" in
 	    -h | --help) help; exit 0;;
+	    --show-dependencies) show_dependencies=1; shift 1;;
 	    --) shift; break;;
 	    -*) echo "unknown option: ${1}" >&2; exit 1;;
 	    *) modules_paths="${modules_paths} ${1}"; shift 1;;
@@ -39,8 +42,13 @@ function parse_command_line_args() {
 
 function print_heading()
 {
-    printf "| Package | Version | Module name | Description | Dependencies |\n"
-    printf "| :---    | ---:    | :---        | :---        | :---         |\n"
+    if [[ -n "${show_dependencies}" ]]; then
+	printf "| Package | Version | Module name | Description | Dependencies |\n"
+	printf "| :---    | ---:    | :---        | :---        | :---         |\n"
+    else
+	printf "| Package | Version | Module name | Description |\n"
+	printf "| :---    | ---:    | :---        | :---        |\n"
+    fi
 }
 
 
@@ -49,17 +57,25 @@ function print_module()
     local module_build_path="${1}"
     pushd $(dirname "${module_build_path}") > /dev/null
     . build
-    local pkg_build_deps=$(
-	(while read build_dep; do
-	     printf "%s, " "$(echo ${build_dep} | sed 's,_,\\_,g')"
-	 done <build_deps) |
-	    sed 's/, $//')
-    printf "| [%s](%s) | %s | %s | %s | %s |\n" \
-	   "${pkg_name//_/\\_}" "${pkg_url}" \
-	   "${pkg_version}" \
-	   "${pkg_moduledir//_/\\_}" \
-	   "${pkg_description}" \
-	   "${pkg_build_deps}"
+    if [[ -n "${show_dependencies}" ]]; then
+	local pkg_build_deps=$(
+	    (while read build_dep; do
+		 printf "%s, " "$(echo ${build_dep} | sed 's,_,\\_,g')"
+	     done <build_deps) |
+		sed 's/, $//')
+	printf "| [%s](%s) | %s | %s | %s | %s |\n" \
+	       "${pkg_name//_/\\_}" "${pkg_url}" \
+	       "${pkg_version}" \
+	       "${pkg_moduledir//_/\\_}" \
+	       "${pkg_description}" \
+	       "${pkg_build_deps}"
+    else
+	printf "| [%s](%s) | %s | %s | %s |\n" \
+	       "${pkg_name//_/\\_}" "${pkg_url}" \
+	       "${pkg_version}" \
+	       "${pkg_moduledir//_/\\_}" \
+	       "${pkg_description}"
+    fi
     popd > /dev/null
 }
 
