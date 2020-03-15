@@ -31,7 +31,7 @@ The available modules are shown in the table below.
 | [googletest](https://github.com/google/googletest) | 1.10.0 | googletest/1.10.0 | Googletest - Google Testing and Mocking Framework | cmake/3.15.2 |
 | [googletest](https://github.com/google/googletest) | 1.8.1 | googletest/1.8.1 | Googletest - Google Testing and Mocking Framework | cmake/3.15.2 |
 | [gsl](https://www.gnu.org/software/gsl/) | 2.6 | gsl/2.6 | The GNU Scientific Library (GSL) is a collection of routines for numerical computing. |  |
-| [harfbuzz](Text shaping engine) | 2.6.4 | harfbuzz/2.6.4 |  | fontconfig/2.13.1, freetype/2.10.1, cairo/1.16.0 |
+| [harfbuzz](https://www.freedesktop.org/wiki/Software/HarfBuzz/) | 2.6.4 | harfbuzz/2.6.4 | Text shaping engine | fontconfig/2.13.1, freetype/2.10.1, cairo/1.16.0 |
 | [hdf5](https://www.hdfgroup.org/solutions/hdf5/) | 1.10.5 | hdf5/1.10.5 | HDF5 high performance data software library and file format | openmpi/4.0.1 |
 | [hpl](http://www.netlib.org/benchmark/hpl/) | 2.3 | hpl/2.3 | Portable implementation of the High-Performance Linpack Benchmark for distributed-memory computers | openblas/0.3.7, openmpi/4.0.1 |
 | [hwloc](https://www.open-mpi.org/projects/hwloc/) | 2.0.4 | hwloc/2.0.4 | Portable abstraction of hierarchical topology of modern architectures | cairo/1.16.0 |

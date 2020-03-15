@@ -1,8 +1,8 @@
 pkg_name=harfbuzz
 pkg_version=2.6.4
 pkg_moduledir="${pkg_name}/${pkg_version}"
-pkg_description=""
-pkg_url="Text shaping engine"
+pkg_description="Text shaping engine"
+pkg_url="https://www.freedesktop.org/wiki/Software/HarfBuzz/"
 src_url="https://www.freedesktop.org/software/harfbuzz/release/harfbuzz-${pkg_version}.tar.xz"
 src_dir="${pkg_name}-${pkg_version}"
 pkg_name_env_var=$(echo "${pkg_name}" | tr '[:lower:]' '[:upper:]' | tr -c '[:alnum:]\n' '_')
