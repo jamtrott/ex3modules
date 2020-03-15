@@ -1,8 +1,8 @@
 pkg_name=libcerf
 pkg_version=1.13
 pkg_moduledir="${pkg_name}/${pkg_version}"
-pkg_description=""
-pkg_url="Numeric library for complex error functions"
+pkg_description="Numeric library for complex error functions"
+pkg_url="https://jugit.fz-juelich.de/mlz/libcerf"
 src_url="https://jugit.fz-juelich.de/mlz/libcerf/-/archive/v${pkg_version}/libcerf-v${pkg_version}.tar.gz"
 src_dir="${pkg_name}-v${pkg_version}"
 pkg_name_env_var=$(echo "${pkg_name}" | tr '[:lower:]' '[:upper:]' | tr -c '[:alnum:]\n' '_')

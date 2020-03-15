@@ -39,7 +39,7 @@ The available modules are shown in the table below.
 | [iperf](https://sourceforge.net/projects/iperf2/) | 2.0.13 | iperf/2.0.13 | Network traffic tool for measuring TCP and UDP performance |  |
 | [knem](http://knem.gforge.inria.fr/) | 1.1.3 | knem/1.1.3 | High-Performance Intra-Node MPI Communication | hwloc/2.0.4 |
 | [libarchive](https://www.libarchive.org/) | 3.4.2 | libarchive/3.4.2 | Multi-format archive and compression library |  |
-| [libcerf](Numeric library for complex error functions) | 1.13 | libcerf/1.13 |  |  |
+| [libcerf](https://jugit.fz-juelich.de/mlz/libcerf) | 1.13 | libcerf/1.13 | Numeric library for complex error functions |  |
 | [libevent](https://libevent.org) | 2.1.11-stable | libevent/2.1.11-stable | Event notification library |  |
 | [libffi](https://sourceware.org/libffi/) | 3.2.1 | libffi/3.2.1 | A Portable Foreign Function Interface Library |  |
 | [libgd](https://libgd.github.io/) | 2.2.5 | libgd/2.2.5 | Library for the dynamic creation of images by programmers | libjpeg-turbo/2.0.4, libpng/1.6.37, libwebp/1.1.0, freetype/2.10.1, fontconfig/2.13.1 |
