@@ -9,7 +9,7 @@ pkg_name_env_var=$(echo "${pkg_name}" | tr '[:lower:]' '[:upper:]' | tr -c '[:al
 
 function build()
 {
-    . ../../../../common/module.sh
+    . ../../../common/module.sh
 
     # Parse program options
     module_build_parse_command_line_args \
