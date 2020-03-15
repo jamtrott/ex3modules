@@ -1,0 +1,10 @@
+meson/0.53.2
+ninja/1.10.0
+cmake/3.15.2
+libffi/3.2.1
+harfbuzz/2.6.4
+fontconfig/2.13.1
+freetype/2.10.1
+cairo/1.16.0
+glib/2.64.1
+gobject-introspection/1.64.0
