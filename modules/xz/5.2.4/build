@@ -3,7 +3,7 @@ pkg_version=5.2.4
 pkg_moduledir="${pkg_name}/${pkg_version}"
 pkg_description="General-purpose data compression software with a high compression ratio"
 pkg_url="https://tukaani.org/xz/"
-src_url="https://tukaani.org/xz/xz-5.2.4.tar.xz"
+src_url="https://tukaani.org/xz/xz-${pkg_version}.tar.xz"
 src_dir="${pkg_name}-${pkg_version}"
 
 function build()
@@ -29,7 +29,7 @@ function build()
     pkg_build_dir=$(module_build_create_build_dir "${pkg_name}" "${pkg_version}")
     pkg_src="${pkg_build_dir}/$(basename ${src_url})"
     module_build_download_package "${src_url}" "${pkg_src}"
-    module_build_unpack "${pkg_src}" "${pkg_build_dir}"
+    module_build_unpack "${pkg_src}" "${pkg_build_dir}" -x
 
     # Build
     pushd "${pkg_build_dir}/${src_dir}"
