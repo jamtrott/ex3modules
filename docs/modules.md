@@ -53,7 +53,7 @@ The available modules are shown in the table below.
 | [libwebp](https://developers.google.com/speed/webp) | 1.1.0 | libwebp/1.1.0 | WebP is a modern image format that provides superior lossless and lossy |
 | [libxext](https://www.x.org/) | 1.3.4 | libxext/1.3.4 | X Window System client interface to several extensions to the X protocol. |
 | [matio](https://sourceforge.net/projects/matio/) | 1.5.17 | matio/1.5.17 | MATLAB MAT file I/O library |
-| [meson](https://mesonbuild.com/) | 0.53.2 | python3.7/meson/0.53.2 | Open source build system implemented in Python |
+| [meson](https://mesonbuild.com/) | 0.53.2 | meson/0.53.2 | Open source build system implemented in Python |
 | [metis](http://glaros.dtc.umn.edu/gkhome/metis/metis/overview) | 5.1.0 | metis/5.1.0 | Serial Graph Partitioning and Fill-reducing Matrix Ordering |
 | [mpc](http://www.multiprecision.org/mpc) | 1.1.0 | mpc/1.1.0 | Library for arbitrary precision complex arithmetic with correct rounding |
 | [mpfr](https://www.mpfr.org) | 4.0.2 | mpfr/4.0.2 | C library for multiple-precision floating-point computations |
