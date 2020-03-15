@@ -23,6 +23,7 @@ gnuplot/5.2.8
 gobject-introspection/1.64.0
 googletest/1.10.0
 googletest/1.8.1
+gperf/3.1
 gsl/2.6
 harfbuzz/2.6.4
 hdf5/1.10.5
