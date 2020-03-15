@@ -77,5 +77,3 @@ EOF
 
     module_build_cleanup "${pkg_build_dir}"
 }
-
-main "$@"
