@@ -39,7 +39,6 @@ function build()
     meson --prefix="${pkg_prefix}" \
 	  --libdir="${pkg_prefix}/lib" \
 	  -Dselinux=disabled \
-	  -Dman=true \
 	  ..
     ninja
     ninja install
