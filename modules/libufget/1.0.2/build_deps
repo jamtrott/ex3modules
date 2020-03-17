@@ -3,3 +3,4 @@ matio/1.5.17
 sqlite/3.31.1
 openblas/0.3.7
 libarchive/3.4.2
+curl/7.69.1
