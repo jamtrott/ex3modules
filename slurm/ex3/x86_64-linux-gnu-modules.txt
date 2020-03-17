@@ -4,6 +4,7 @@ bzip2/1.0.8
 cairo/1.16.0
 cmake/3.15.2
 cpupower/4.19.75
+curl/7.69.1
 cuda-toolkit/10.1.243
 doxygen/1.8.16
 eigen/3.3.7
