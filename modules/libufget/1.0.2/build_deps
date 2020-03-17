@@ -4,3 +4,6 @@ sqlite/3.31.1
 openblas/0.3.7
 libarchive/3.4.2
 curl/7.69.1
+bzip2/1.0.8
+libarchive/3.4.2
+xz/5.2.4
