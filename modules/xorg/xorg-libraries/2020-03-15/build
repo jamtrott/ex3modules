@@ -82,18 +82,23 @@ EOF
 	case $src_dir in
 	    libICE*)
 		./configure --prefix="${pkg_prefix}" \
-			    ICE_LIBS=-lpthread;;
+			    ICE_LIBS=-lpthread \
+			    --disable-static;;
 	    libSM*)
 		./configure --prefix="${pkg_prefix}" \
-			    LIBUUID_CFLAGS="-I${UTIL_LINUX_INCLUDEDIR}";;
+			    LIBUUID_CFLAGS="-I${UTIL_LINUX_INCLUDEDIR}" \
+			    --disable-static;;
 	    libXfont2-[0-9]*)
 		./configure --prefix="${pkg_prefix}" \
-			    --disable-devel-docs;;
+			    --disable-devel-docs \
+			    --disable-static;;
 	    libXt-[0-9]*)
 		./configure --prefix="${pkg_prefix}" \
-			    --with-appdefaultdir="${pkg_prefix}/etc/X11/app-defaults";;
+			    --with-appdefaultdir="${pkg_prefix}/etc/X11/app-defaults" \
+			    --disable-static;;
 	    *)
-		./configure --prefix="${pkg_prefix}";;
+		./configure --prefix="${pkg_prefix}" \
+			    --disable-static;;
 	esac
 	make -j"${JOBS}"
 	make install
