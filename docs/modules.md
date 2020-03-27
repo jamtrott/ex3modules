@@ -10,6 +10,7 @@ The available modules are shown in the table below.
 | [cairo](https://www.cairographics.org/) | 1.16.0 | cairo/1.16.0 | 2D graphics library |
 | [cmake](https://cmake.org/) | 3.15.2 | cmake/3.15.2 | Open-source, cross-platform tools to build, test and package software |
 | [cpupower](https://www.kernel.org/) | 4.19.75 | cpupower/4.19.75 | Tools for accessing cpufreq core and drivers in the Linux kernel |
+| [curl](https://curl.haxx.se/) | 7.69.1 | curl/7.69.1 | Command line tool and library for transferring data with URLs |
 | [cuda-toolkit](https://developer.nvidia.com/cuda-toolkit) | 10.1.243 | cuda-toolkit/10.1.243 | Development environment for high performance GPU-accelerated applications |
 | [doxygen](http://www.doxygen.nl/) | 1.8.16 | doxygen/1.8.16 | Tool for generating documentation from annotated C++ source code |
 | [eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) | 3.3.7 | eigen/3.3.7 | C++ template library for linear algebra |
@@ -30,6 +31,7 @@ The available modules are shown in the table below.
 | [gobject-introspection](https://gi.readthedocs.io/) | 1.64.0 | gobject-introspection/1.64.0 | Middleware layer between C libraries (using GObject) and language bindings |
 | [googletest](https://github.com/google/googletest) | 1.10.0 | googletest/1.10.0 | Googletest - Google Testing and Mocking Framework |
 | [googletest](https://github.com/google/googletest) | 1.8.1 | googletest/1.8.1 | Googletest - Google Testing and Mocking Framework |
+| [gperf](https://www.gnu.org/software/gperf/) | 3.1 | gperf/3.1 | Perfect hash function generator |
 | [gsl](https://www.gnu.org/software/gsl/) | 2.6 | gsl/2.6 | The GNU Scientific Library (GSL) is a collection of routines for numerical computing. |
 | [harfbuzz](https://www.freedesktop.org/wiki/Software/HarfBuzz/) | 2.6.4 | harfbuzz/2.6.4 | Text shaping engine |
 | [hdf5](https://www.hdfgroup.org/solutions/hdf5/) | 1.10.5 | hdf5/1.10.5 | HDF5 high performance data software library and file format |
@@ -51,7 +53,6 @@ The available modules are shown in the table below.
 | [libufget](https://zenodo.org/record/897632) | 1.0.2 | libufget/1.0.2 | C interface to the SuiteSparse Matrix Collection |
 | [libunwind](https://www.nongnu.org/libunwind/) | 1.3.1 | libunwind/1.3.1 | Library for working with program call-chains |
 | [libwebp](https://developers.google.com/speed/webp) | 1.1.0 | libwebp/1.1.0 | WebP is a modern image format that provides superior lossless and lossy |
-| [libxext](https://www.x.org/) | 1.3.4 | libxext/1.3.4 | X Window System client interface to several extensions to the X protocol. |
 | [matio](https://sourceforge.net/projects/matio/) | 1.5.17 | matio/1.5.17 | MATLAB MAT file I/O library |
 | [meson](https://mesonbuild.com/) | 0.53.2 | meson/0.53.2 | Open source build system implemented in Python |
 | [metis](http://glaros.dtc.umn.edu/gkhome/metis/metis/overview) | 5.1.0 | metis/5.1.0 | Serial Graph Partitioning and Fill-reducing Matrix Ordering |
@@ -122,4 +123,11 @@ The available modules are shown in the table below.
 | [superlu\_dist](https://github.com/xiaoyeli/superlu_dist) | 6.1.1 | superlu\_dist/6.1.1 | MPI-based direct solver for large, sparse non-symmetric systems of equations in distributed memory |
 | [ucx](http://www.openucx.org) | 1.6.0 | ucx/1.6.0 | Optimized communication layer for MPI, PGAS/OpenSHMEM and RPC/data-centric applications |
 | [util-linux](https://www.kernel.org/) | 2.34 | util-linux/2.34 | Miscellaneous utility programs, including tools for handling file systems, consoles, partitions, and messages |
+| [libxau](http://x.org/) | 1.0.9 | xorg/libxau/1.0.9 | X authorization file management libary |
+| [libxcb](http://x.org/) | 1.14 | xorg/libxcb/1.14 | X Window System protocol library |
+| [libxdmcp](http://x.org/) | 1.1.3 | xorg/libxdmcp/1.1.3 | X Display Manager Control Protocol library |
+| [xorg-util-macros](http://x.org/) | 1.19.2 | xorg/xorg-util-macros/1.19.2 | Autoconf macros for Xorg packages |
+| [xcb-proto](http://x.org/) | 1.14 | xorg/xcb-proto/1.14 | X protocol descriptions for XCB |
+| [xorg-libraries](http://x.org/) | 2020-03-15 | xorg/xorg-libraries/2020-03-15 | X Window System libraries |
+| [xorgproto](http://x.org/) | 2019.2 | xorg/xorgproto/2019.2 | Header files for the X Window system |
 | [xz](https://tukaani.org/xz/) | 5.2.4 | xz/5.2.4 | General-purpose data compression software with a high compression ratio |

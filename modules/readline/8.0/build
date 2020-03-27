@@ -33,10 +33,14 @@ function build()
 
     # Build
     pushd "${pkg_build_dir}/${src_dir}"
-    ./configure --prefix="${pkg_prefix}"
-    make -j"${JOBS}"
-    sed -i '/Requires.private: termcap/d' readline.pc
-    make install
+    sed -i '/MV.*old/d' Makefile.in
+    sed -i '/{OLDSUFF}/c:' support/shlib-install
+    ./configure --prefix="${pkg_prefix}" \
+		--with-curses \
+		--disable-static
+    make SHLIB_LIBS="-L${NCURSES_LIBRARYDIR} -lncursesw" -j"${JOBS}"
+    sed -i 's/Requires.private: ncurses/Requires.private: ncursesw/' readline.pc
+    make SHLIB_LIBS="-L${NCURSES_LIBRARYDIR} -lncursesw" install
     popd
 
     # Write the module file

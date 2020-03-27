@@ -4,6 +4,7 @@ bzip2/1.0.8
 cairo/1.16.0
 cmake/3.15.2
 cpupower/4.19.75
+curl/7.69.1
 cuda-toolkit/10.1.243
 doxygen/1.8.16
 eigen/3.3.7
@@ -24,6 +25,7 @@ gnuplot/5.2.8
 gobject-introspection/1.64.0
 googletest/1.10.0
 googletest/1.8.1
+gperf/3.1
 gsl/2.6
 harfbuzz/2.6.4
 hdf5/1.10.5
@@ -45,7 +47,6 @@ libtool/2.4.6
 libufget/1.0.2
 libunwind/1.3.1
 libwebp/1.1.0
-libxext/1.3.4
 matio/1.5.17
 meson/0.53.2
 metis/5.1.0
@@ -116,4 +117,11 @@ superlu/5.2.1
 superlu_dist/6.1.1
 ucx/1.6.0
 util-linux/2.34
+xorg/libxau/1.0.9
+xorg/libxcb/1.14
+xorg/libxdmcp/1.1.3
+xorg/xorg-util-macros/1.19.2
+xorg/xcb-proto/1.14
+xorg/xorg-libraries/2020-03-15
+xorg/xorgproto/2019.2
 xz/5.2.4

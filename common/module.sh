@@ -102,9 +102,10 @@ function module_build_download_package()
 {
     local src_url="${1}"
     local destination="${2}"
+    local curl_retries=5
     [[ "${module_build_verbose}" ]] && \
-	echo "curl --fail -Lo ${destination} ${src_url}"
-    curl --fail -Lo "${destination}" "${src_url}"
+	echo "curl --fail --retry ${curl_retries} -Lo ${destination} ${src_url}"
+    curl --fail --retry "${curl_retries}" -Lo "${destination}" "${src_url}"
 }
 
 # Unpack a module's source package
