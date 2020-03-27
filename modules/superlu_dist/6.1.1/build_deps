@@ -1,4 +1,4 @@
-cmake/3.15.2
+cmake/3.17.0
 openblas/0.3.7
 openmpi/4.0.1
 parmetis/4.0.3

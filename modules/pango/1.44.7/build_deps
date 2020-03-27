@@ -1,6 +1,6 @@
 meson/0.53.2
 ninja/1.10.0
-cmake/3.15.2
+cmake/3.17.0
 libffi/3.2.1
 harfbuzz/2.6.4
 fontconfig/2.13.1
