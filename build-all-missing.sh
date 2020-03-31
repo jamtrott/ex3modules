@@ -8,7 +8,7 @@
 # Example usage: Build and install modules and module files to the
 # current user's home directory:
 #
-#   ./build.sh --prefix=$HOME
+#   ./build-all-missing.sh --prefix=$HOME
 #
 # The newly installed modules can be made available by executing the
 # following command:
