@@ -128,4 +128,4 @@ xorg/xcb-proto/1.14
 xorg/xorg-libraries/2020-03-15
 xorg/xorg-util-macros/1.19.2
 xorg/xorgproto/2019.2
-xz/5.2.4
+xz/5.2.5

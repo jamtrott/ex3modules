@@ -130,4 +130,4 @@ The available modules are shown in the table below.
 | [xcb-proto](http://x.org/) | 1.14 | xorg/xcb-proto/1.14 | X protocol descriptions for XCB |
 | [xorg-libraries](http://x.org/) | 2020-03-15 | xorg/xorg-libraries/2020-03-15 | X Window System libraries |
 | [xorgproto](http://x.org/) | 2019.2 | xorg/xorgproto/2019.2 | Header files for the X Window system |
-| [xz](https://tukaani.org/xz/) | 5.2.4 | xz/5.2.4 | General-purpose data compression software with a high compression ratio |
+| [xz](https://tukaani.org/xz/) | 5.2.5 | xz/5.2.4 | General-purpose data compression software with a high compression ratio |
