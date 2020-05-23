@@ -7,7 +7,7 @@ cpupower/4.19.75
 cuda-toolkit/10.1.243
 curl/7.69.1
 dealii/9.1.1
-doxygen/1.8.16
+doxygen/1.8.18
 eigen/3.3.7
 elfutils/0.177
 expat/2.2.9

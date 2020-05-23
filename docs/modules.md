@@ -12,7 +12,7 @@ The available modules are shown in the table below.
 | [cpupower](https://www.kernel.org/) | 4.19.75 | cpupower/4.19.75 | Tools for accessing cpufreq core and drivers in the Linux kernel |
 | [curl](https://curl.haxx.se/) | 7.69.1 | curl/7.69.1 | Command line tool and library for transferring data with URLs |
 | [cuda-toolkit](https://developer.nvidia.com/cuda-toolkit) | 10.1.243 | cuda-toolkit/10.1.243 | Development environment for high performance GPU-accelerated applications |
-| [doxygen](http://www.doxygen.nl/) | 1.8.16 | doxygen/1.8.16 | Tool for generating documentation from annotated C++ source code |
+| [doxygen](http://www.doxygen.nl/) | 1.8.18 | doxygen/1.8.18 | Tool for generating documentation from annotated C++ source code |
 | [eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page) | 3.3.7 | eigen/3.3.7 | C++ template library for linear algebra |
 | [elfutils](https://sourceware.org/elfutils/) | 0.177 | elfutils/0.177 | Collection of utilities to handle ELF objects |
 | [expat](https://libexpat.github.io/) | 2.2.9 | expat/2.2.9 | C library for parsing XML |

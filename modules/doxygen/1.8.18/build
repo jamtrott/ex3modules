@@ -1,9 +1,9 @@
 pkg_name=doxygen
-pkg_version=1.8.16
+pkg_version=1.8.18
 pkg_moduledir="${pkg_name}/${pkg_version}"
 pkg_description="Tool for generating documentation from annotated C++ source code"
 pkg_url="http://www.doxygen.nl/"
-src_url="http://doxygen.nl/files/doxygen-1.8.16.src.tar.gz"
+src_url="https://github.com/doxygen/doxygen/archive/Release_1_8_18.tar.gz"
 src_dir="${pkg_name}-${pkg_version}"
 
 function build()
