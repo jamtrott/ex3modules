@@ -82,6 +82,7 @@ pmix/3.1.4
 pybind11/2.3.0
 python/3.7.4
 python3.7/breathe/4.13.1
+python3.7/cffi/1.14.0
 python3.7/cython/0.29.13
 python3.7/dateutil/2.0
 python3.7/fenics-dijitso/2018.1.0
