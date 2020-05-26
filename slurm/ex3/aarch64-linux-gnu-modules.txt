@@ -17,6 +17,7 @@ fenics/2019.1.0
 fontconfig/2.13.1
 freetype/2.10.1
 gcc/9.2.0
+gcc/10.1.0
 giflib/5.2.1
 glib/2.64.1
 gmp/6.1.2

@@ -23,6 +23,7 @@ The available modules are shown in the table below.
 | [fontconfig](https://www.freedesktop.org/wiki/Software/fontconfig/) | 2.13.1 | fontconfig/2.13.1 | Library for configuring and customizing font access |
 | [freetype](https://www.freetype.org) | 2.10.1 | freetype/2.10.1 | Font rendering library |
 | [gcc](https://gcc.gnu.org) | 9.2.0 | gcc/9.2.0 | GNU Compiler Collection |
+| [gcc](https://gcc.gnu.org) | 10.1.0 | gcc/10.1.0 | GNU Compiler Collection |
 | [giflib](http://giflib.sourceforge.net/) | 5.2.1 | giflib/5.2.1 | Library for reading and writing gif images |
 | [glib](https://developer.gnome.org/glib/) | 2.64.1 | glib/2.64.1 | Core object system used in GNOME |
 | [gmp](https://gmplib.org) | 6.1.2 | gmp/6.1.2 | Library for arbitrary precision arithmetic |
