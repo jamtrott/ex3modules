@@ -8,7 +8,7 @@ The available modules are shown in the table below.
 | [boost](https://www.boost.org) | 1.71.0 | boost/1.71.0 | Libraries for the C++ programming language |
 | [bzip2](https://www.sourceware.org/bzip2/) | 1.0.8 | bzip2/1.0.8 | Data compression program and library |
 | [cairo](https://www.cairographics.org/) | 1.16.0 | cairo/1.16.0 | 2D graphics library |
-| [cmake](https://cmake.org/) | 3.15.2 | cmake/3.15.2 | Open-source, cross-platform tools to build, test and package software |
+| [cmake](https://cmake.org/) | 3.17.2 | cmake/3.17.2 | Open-source, cross-platform tools to build, test and package software |
 | [cpupower](https://www.kernel.org/) | 4.19.75 | cpupower/4.19.75 | Tools for accessing cpufreq core and drivers in the Linux kernel |
 | [curl](https://curl.haxx.se/) | 7.69.1 | curl/7.69.1 | Command line tool and library for transferring data with URLs |
 | [cuda-toolkit](https://developer.nvidia.com/cuda-toolkit) | 10.1.243 | cuda-toolkit/10.1.243 | Development environment for high performance GPU-accelerated applications |

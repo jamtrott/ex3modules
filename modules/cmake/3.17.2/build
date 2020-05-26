@@ -1,5 +1,5 @@
 pkg_name=cmake
-pkg_version=3.15.2
+pkg_version=3.17.2
 pkg_moduledir="${pkg_name}/${pkg_version}"
 pkg_description="Open-source, cross-platform tools to build, test and package software"
 pkg_url="https://cmake.org/"
