@@ -26,9 +26,10 @@ function main()
 
     #prefix="${HOME}/modules/$(gcc -dumpmachine)/"
     #prefix="${workdir}/ex3-modules/"
-    local prefix=/cm/shared/ex3-modules/apps/
+    local prefix=/cm/shared/ex3-modules/0.4.0/apps/
     local modulefilesdir=../modulefiles
 
+    mkdir -p "${prefix}"
     cp -R -T "${ex3_modules_dir}" "${ex3_modules_workdir}"
     pushd "${ex3_modules_workdir}"
     local version="$(git describe --no-match --always --abbrev=40 --dirty)"
