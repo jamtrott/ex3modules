@@ -42,7 +42,8 @@ function build()
 	--with-pmi=/cm/shared/apps/slurm/18.08.8 \
 	--enable-mpi-cxx \
 	--enable-mpi-fortran=all \
-	--enable-mpi1-compatibility
+	--enable-mpi1-compatibility \
+	--without-verbs
     make -j"${JOBS}"
     make install
     popd
