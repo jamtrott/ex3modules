@@ -1,0 +1,67 @@
+pkg_name=execnet
+pkg_version=1.7.1
+PYTHON_VERSION_SHORT=3.7
+pkg_moduledir="python${PYTHON_VERSION_SHORT}/${pkg_name}/${pkg_version}"
+pkg_description="execnet: rapid multi-Python deployment"
+pkg_url="https://execnet.readthedocs.io/en/latest/"
+src_url="https://files.pythonhosted.org/packages/5a/61/1b50e0891d9b934154637fdaac88c68a82fd8dc5648dfb04e65937fc6234/execnet-1.7.1.tar.gz"
+src_dir="${pkg_name}-${pkg_version}"
+
+function build()
+{
+    . ../../../../common/module.sh
+
+    # Parse program options
+    module_build_parse_command_line_args \
+	"${0}" \
+	"${pkg_name}" \
+	"${pkg_version}" \
+	"${pkg_moduledir}" \
+	"${pkg_description}" \
+	"${pkg_url}" \
+	"$@"
+
+    # Load build-time dependencies and determine prerequisite modules
+    module_load_build_deps build_deps
+    pkg_prereqs=$(module_prereqs prereqs)
+
+    # Download and unpack source
+    pkg_prefix=$(module_build_prefix "${prefix}" "${pkg_moduledir}")
+    pkg_build_dir=$(module_build_create_build_dir "${pkg_name}" "${pkg_version}")
+    pkg_src="${pkg_build_dir}/$(basename ${src_url})"
+    module_build_download_package "${src_url}" "${pkg_src}"
+    module_build_unpack "${pkg_src}" "${pkg_build_dir}"
+
+    # Build
+    pushd "${pkg_build_dir}/${src_dir}"
+    # The installation directory must be added to PYTHONPATH before installing
+    PYTHONPATH="${PYTHONPATH}:${DESTDIR}${pkg_prefix}/lib/python${PYTHON_VERSION_SHORT}/site-packages"
+    mkdir -p "${DESTDIR}${pkg_prefix}/lib/python${PYTHON_VERSION_SHORT}/site-packages"
+    python3 setup.py build
+    python3 setup.py install \
+	    --prefix="${pkg_prefix}" \
+	    $(! [ -z "${DESTDIR}" ] && --root="${DESTDIR}")
+    popd
+
+    # Write the module file
+    pkg_modulefile=$(module_build_modulefile "${prefix}" "${modulefilesdir}" "${pkg_moduledir}")
+    cat >"${pkg_modulefile}" <<EOF
+#%Module
+# ${pkg_name} ${pkg_version}
+
+proc ModulesHelp { } {
+     puts stderr "\tSets up the environment for ${pkg_name} ${pkg_version}\n"
+}
+
+module-whatis "${pkg_description}"
+module-whatis "${pkg_url}"
+
+${pkg_prereqs}
+
+prepend-path PATH ${pkg_prefix}/bin
+prepend-path PYTHONPATH ${pkg_prefix}/lib/python${PYTHON_VERSION_SHORT}/site-packages
+set MSG "${pkg_name} ${pkg_version}"
+EOF
+
+    module_build_cleanup "${pkg_build_dir}"
+}
