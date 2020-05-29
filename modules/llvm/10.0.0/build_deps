@@ -1,0 +1,4 @@
+cmake/3.17.2
+ninja/1.10.0
+libffi/3.2.1
+libpfm/4.10.1
