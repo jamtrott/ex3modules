@@ -43,11 +43,11 @@ function parse_command_line_args() {
 function print_heading()
 {
     if [[ -n "${show_dependencies}" ]]; then
-	printf "| Package | Version | Module name | Description | Dependencies |\n"
-	printf "| :---    | ---:    | :---        | :---        | :---         |\n"
+	printf "| Package | Module name | Description | Dependencies |\n"
+	printf "| :---    | :---        | :---        | :---         |\n"
     else
-	printf "| Package | Version | Module name | Description |\n"
-	printf "| :---    | ---:    | :---        | :---        |\n"
+	printf "| Package | Module name | Description |\n"
+	printf "| :---    | :---        | :---        |\n"
     fi
 }
 
@@ -63,14 +63,14 @@ function print_module()
 		 printf "%s, " "$(echo ${build_dep} | sed 's,_,\\_,g')"
 	     done <build_deps) |
 		sed 's/, $//')
-	printf "| [%s](%s) | %s | %s | %s | %s |\n" \
+	printf "| [%s](%s) %s | %s | %s | %s |\n" \
 	       "${pkg_name//_/\\_}" "${pkg_url}" \
 	       "${pkg_version}" \
 	       "${pkg_moduledir//_/\\_}" \
 	       "${pkg_description}" \
 	       "${pkg_build_deps}"
     else
-	printf "| [%s](%s) | %s | %s | %s |\n" \
+	printf "| [%s](%s) %s | %s | %s |\n" \
 	       "${pkg_name//_/\\_}" "${pkg_url}" \
 	       "${pkg_version}" \
 	       "${pkg_moduledir//_/\\_}" \
