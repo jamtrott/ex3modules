@@ -37,24 +37,15 @@ function build()
     # Search for sqlite in non-standard directory
     sed -i "s|sqlite_inc_paths = \[ '/usr/include',|sqlite_inc_paths = \[ '${SQLITE_INCLUDEDIR}', '/usr/include',|" setup.py
 
-    # https://mail.python.org/pipermail/python-list/2018-December/738568.html
-    CFLAGS="$(pkg-config --cflags libffi)"
-    CFLAGS+=" $(pkg-config --cflags ncursesw)"
-    CFLAGS+=" $(pkg-config --cflags readline)"
-    CFLAGS+=" $(pkg-config --cflags liblzma)"
-    CFLAGS+=" -I${BZIP2_LIBRARYDIR}"
-    LDFLAGS+="$(pkg-config --libs-only-L libffi)"
-    LDFLAGS+=" $(pkg-config --libs-only-L ncursesw)"
-    LDFLAGS+=" $(pkg-config --libs-only-L readline)"
-    LDFLAGS+=" $(pkg-config --libs-only-L liblzma)"
-    LDFLAGS+=" -L${BZIP2_LIBRARYDIR}"
-    CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" ./configure \
-	  --prefix="${pkg_prefix}" \
-	  --enable-shared \
-	  --enable-optimizations \
-	  --with-ensurepip=install \
-	  --with-system-ffi \
-	  --with-openssl="${OPENSSL_ROOT}"
+    # See https://bugs.python.org/issue14527 for suggestions on how to
+    # build with libffi in a non-standard location.
+    PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 LDFLAGS=$(pkg-config --libs-only-L libffi) ./configure \
+				  --prefix="${pkg_prefix}" \
+				  --enable-shared \
+				  --enable-optimizations \
+				  --with-ensurepip=install \
+				  --with-system-ffi \
+				  --with-openssl="${OPENSSL_ROOT}"
     make -j"${JOBS}"
     make install
     popd
