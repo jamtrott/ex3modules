@@ -33,6 +33,10 @@ function build()
 
     # Build
     pushd "${pkg_build_dir}/${src_dir}"
+
+    # Search for sqlite in non-standard directory
+    sed -i "s|sqlite_inc_paths = \[ '/usr/include',|sqlite_inc_paths = \[ '${SQLITE_INCLUDEDIR}', '/usr/include',|" setup.py
+
     # https://mail.python.org/pipermail/python-list/2018-December/738568.html
     CFLAGS="$(pkg-config --cflags libffi)"
     CFLAGS+=" $(pkg-config --cflags ncursesw)"
