@@ -5,6 +5,7 @@ pkg_description="A Portable Foreign Function Interface Library"
 pkg_url="https://sourceware.org/libffi/"
 src_url="ftp://sourceware.org/pub/libffi/libffi-${pkg_version}.tar.gz"
 src_dir="${pkg_name}-${pkg_version}"
+pkg_name_env_var=$(echo "${pkg_name}" | tr '[:lower:]' '[:upper:]' | tr -c '[:alnum:]\n' '_')
 
 function build()
 {
@@ -34,12 +35,16 @@ function build()
     # Build
     pushd "${pkg_build_dir}/${src_dir}"
 
-    # The commands used to build the module For packages based on
-    # Autotools, this is the usual sequence of commands:
+    # Modify the Makefile to install headers in ${prefix}/include
+    # instead of ${prefix}/lib/libffi-<version>/include.
+    sed -e '/^includesdir/ s/$(libdir).*$/$(includedir)/' \
+	-i include/Makefile.in
+    sed -e '/^includedir/ s/=.*$/=@includedir@/' \
+	-i libffi.pc.in
+
     ./configure --prefix="${pkg_prefix}"
     make -j"${JOBS}"
     make install
-
     popd
 
     # Write the module file
@@ -57,9 +62,13 @@ module-whatis "${pkg_url}"
 
 ${pkg_prereqs}
 
-setenv ${pkg_name^^}_ROOT ${pkg_prefix}
-setenv ${pkg_name^^}_LIBDIR ${pkg_prefix}/lib
-setenv ${pkg_name^^}_LIBRARYDIR ${pkg_prefix}/lib
+setenv ${pkg_name_env_var}_ROOT ${pkg_prefix}
+setenv ${pkg_name_env_var}_INCDIR ${pkg_prefix}/include
+setenv ${pkg_name_env_var}_INCLUDEDIR ${pkg_prefix}/include
+setenv ${pkg_name_env_var}_LIBDIR ${pkg_prefix}/lib
+setenv ${pkg_name_env_var}_LIBRARYDIR ${pkg_prefix}/lib
+prepend-path C_INCLUDE_PATH ${pkg_prefix}/include
+prepend-path CPLUS_INCLUDE_PATH ${pkg_prefix}/include
 prepend-path LIBRARY_PATH ${pkg_prefix}/lib
 prepend-path LD_LIBRARY_PATH ${pkg_prefix}/lib
 prepend-path PKG_CONFIG_PATH ${pkg_prefix}/lib/pkgconfig
