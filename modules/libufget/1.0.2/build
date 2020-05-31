@@ -2,9 +2,9 @@ pkg_name=libufget
 pkg_version=1.0.2
 pkg_moduledir="${pkg_name}/${pkg_version}"
 pkg_description="C interface to the SuiteSparse Matrix Collection"
-pkg_url="https://zenodo.org/record/897632"
-src_url="https://zenodo.org/record/897632/files/libufget-1.0.2.tar.gz?download=1"
-src_dir="${pkg_name}-${pkg_version}"
+pkg_url="https://gitlab.mpi-magdeburg.mpg.de/software/libufget-release"
+src_url="https://gitlab.mpi-magdeburg.mpg.de/software/libufget-release/-/archive/v${pkg_version}/libufget-release-v${pkg_version}.tar.gz"
+src_dir="libufget-release-v${pkg_version}"
 pkg_name_env_var=$(echo "${pkg_name}" | tr '[:lower:]' '[:upper:]' | tr -c '[:alnum:]\n' '_')
 
 function build()
