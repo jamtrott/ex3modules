@@ -3,7 +3,7 @@ pkg_version=2.0.4
 pkg_moduledir="${pkg_name}/${pkg_version}"
 pkg_description="JPEG image codec that uses SIMD instructions"
 pkg_url="https://libjpeg-turbo.org/"
-src_url="https://sourceforge.net/projects/libjpeg-turbo/files/${pkg_version}/libjpeg-turbo-${pkg_version}.tar.gz/download"
+src_url="https://sourceforge.net/projects/libjpeg-turbo/files/${pkg_version}/libjpeg-turbo-${pkg_version}.tar.gz/download?use_mirror=netcologne"
 src_dir="${pkg_name}-${pkg_version}"
 pkg_name_env_var=$(echo "${pkg_name}" | tr '[:lower:]' '[:upper:]' | tr -c '[:alnum:]\n' '_')
 
