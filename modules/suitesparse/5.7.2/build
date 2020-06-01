@@ -1,10 +1,10 @@
 pkg_name=suitesparse
-pkg_version=5.4.0
+pkg_version=5.7.2
 pkg_moduledir="${pkg_name}/${pkg_version}"
 pkg_description="A suite of sparse matrix software"
 pkg_url="http://faculty.cse.tamu.edu/davis/suitesparse.html"
-src_url="http://faculty.cse.tamu.edu/davis/SuiteSparse/SuiteSparse-${pkg_version}.tar.gz"
-src_dir=SuiteSparse
+src_url="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/v${pkg_version}.tar.gz"
+src_dir="SuiteSparse-${pkg_version}"
 
 function build()
 {

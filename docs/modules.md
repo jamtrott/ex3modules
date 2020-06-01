@@ -155,7 +155,7 @@ The available modules are shown in the table below.
 | [scotch](https://www.labri.fr/perso/pelegrin/scotch/) 6.0.7 | scotch/6.0.7 | Static Mapping, Graph, Mesh and Hypergraph Partitioning, and Parallel and Sequential Sparse Matrix Ordering Package |
 | [slurm](https://www.schedmd.com) 19.05.2 | slurm/19.05.2 | Highly configurable open-source workload manager |
 | [sqlite](https://www.sqlite.org/index.html) 3.31.1 | sqlite/3.31.1 | Small, fast, self-contained, high-reliability, full-featured, SQL database engine |
-| [suitesparse](http://faculty.cse.tamu.edu/davis/suitesparse.html) 5.4.0 | suitesparse/5.4.0 | A suite of sparse matrix software |
+| [suitesparse](http://faculty.cse.tamu.edu/davis/suitesparse.html) 5.7.2 | suitesparse/5.7.2 | A suite of sparse matrix software |
 | [superlu](https://github.com/xiaoyeli/superlu) 5.2.1 | superlu/5.2.1 | Direct solver for large, sparse non-symmetric systems of linear equations |
 | [superlu\_dist](https://github.com/xiaoyeli/superlu_dist) 6.1.1 | superlu\_dist/6.1.1 | MPI-based direct solver for large, sparse non-symmetric systems of equations in distributed memory |
 | [ucx](http://www.openucx.org) 1.6.0 | ucx/1.6.0 | Optimized communication layer for MPI, PGAS/OpenSHMEM and RPC/data-centric applications |

@@ -3,6 +3,6 @@ boost/1.71.0
 mpfr/4.0.2
 gmp/6.1.2
 metis/5.1.0
-suitesparse/5.4.0
+suitesparse/5.7.2
 openblas/0.3.7
 superlu/5.2.1

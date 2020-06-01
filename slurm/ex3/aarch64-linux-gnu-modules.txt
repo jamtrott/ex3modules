@@ -168,7 +168,7 @@ scalapack/2.0.2
 scotch/6.0.7
 slurm/19.05.2
 sqlite/3.31.1
-suitesparse/5.4.0
+suitesparse/5.7.2
 superlu/5.2.1
 superlu_dist/6.1.1
 ucx/1.6.0

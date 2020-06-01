@@ -4,7 +4,7 @@ openblas/0.3.7
 hdf5/1.10.5
 parmetis/4.0.3
 scotch/6.0.7
-suitesparse/5.4.0
+suitesparse/5.7.2
 metis/5.1.0
 eigen/3.3.7
 petsc/3.11.3

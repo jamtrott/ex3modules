@@ -9,6 +9,6 @@ parmetis/4.0.3
 python/3.7.4
 scalapack/2.0.2
 scotch/6.0.7
-suitesparse/5.4.0
+suitesparse/5.7.2
 superlu/5.2.1
 superlu_dist/6.1.1
