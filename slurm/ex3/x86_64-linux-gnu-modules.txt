@@ -139,7 +139,7 @@ python3.7/setuptools/47.1.1
 python3.7/setuptools_scm/4.1.1
 python3.7/six/1.13.0
 python3.7/snowballstemmer/2.0.0
-python3.7/sphinx/2.2.0
+python3.7/sphinx/3.0.4
 python3.7/sympy/1.1
 python3.7/sympy/1.4
 python3.7/wcwidth/0.1.9

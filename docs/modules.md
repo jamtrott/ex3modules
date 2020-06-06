@@ -143,7 +143,7 @@ The available modules are shown in the table below.
 | [setuptools](https://github.com/pypa/setuptools) 47.1.1 | python3.7/setuptools/47.1.1 | Easily download, build, install, upgrade, and uninstall Python packages |
 | [setuptools\_scm](https://github.com/pypa/setuptools_scm) 4.1.1 | python3.7/setuptools\_scm/4.1.1 | Managing Python package versions in SCM metadata |
 | [six](https://github.com/benjaminp/six) 1.13.0 | python3.7/six/1.13.0 | Six is a Python 2 and 3 compatibility library. |
-| [sphinx](https://www.sphinx-doc.org/) 2.2.0 | python3.7/sphinx/2.2.0 | Python documentation generator |
+| [sphinx](https://www.sphinx-doc.org/) 3.0.4 | python3.7/sphinx/3.0.4 | Python documentation generator |
 | [sympy](https://www.sympy.org/) 1.1 | python3.7/sympy/1.1 | Computer algebra system written in pure Python |
 | [sympy](https://www.sympy.org/) 1.4 | python3.7/sympy/1.4 | Computer algebra system written in pure Python |
 | [wcwidth](https://github.com/jquast/wcwidth) 0.1.9 | python3.7/wcwidth/0.1.9 | Measures number of Terminal column cells of wide-character codes |

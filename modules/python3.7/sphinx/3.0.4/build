@@ -1,9 +1,11 @@
 pkg_name=sphinx
-pkg_version=2.2.0
+pkg_version=3.0.4
 PYTHON_VERSION_SHORT=3.7
 pkg_moduledir="python${PYTHON_VERSION_SHORT}/${pkg_name}/${pkg_version}"
 pkg_description="Python documentation generator"
 pkg_url="https://www.sphinx-doc.org/"
+src_url="https://files.pythonhosted.org/packages/74/20/2909215d83e4bf925afd875fd995b71e4b34cee6ad1c7eba5d1ce74bd14c/Sphinx-3.0.4.tar.gz"
+src_dir="Sphinx-${pkg_version}"
 
 function build()
 {
@@ -23,9 +25,24 @@ function build()
     module_load_build_deps build_deps
     pkg_prereqs=$(module_prereqs prereqs)
 
-    # Download and install from pip
+    # Download and unpack source
     pkg_prefix=$(module_build_prefix "${prefix}" "${pkg_moduledir}")
-    python3 -m pip install --prefix="${pkg_prefix}" $([ ! -z "${DESTDIR}" ] && --root="${DESTDIR}") "${pkg_name}"=="${pkg_version}"
+    pkg_build_dir=$(module_build_create_build_dir "${pkg_name}" "${pkg_version}")
+    pkg_src="${pkg_build_dir}/$(basename ${src_url})"
+    module_build_download_package "${src_url}" "${pkg_src}"
+    module_build_unpack "${pkg_src}" "${pkg_build_dir}"
+
+    # Build
+    pushd "${pkg_build_dir}/${src_dir}"
+
+    # The installation directory must be added to PYTHONPATH before installing
+    PYTHONPATH="${PYTHONPATH}:${DESTDIR}${pkg_prefix}/lib/python${PYTHON_VERSION_SHORT}/site-packages"
+    mkdir -p "${DESTDIR}${pkg_prefix}/lib/python${PYTHON_VERSION_SHORT}/site-packages"
+    python3 setup.py build
+    python3 setup.py install \
+	    --prefix="${pkg_prefix}" \
+	    $(! [ -z "${DESTDIR}" ] && --root="${DESTDIR}")
+    popd
 
     # Write the module file
     pkg_modulefile=$(module_build_modulefile "${prefix}" "${modulefilesdir}" "${pkg_moduledir}")

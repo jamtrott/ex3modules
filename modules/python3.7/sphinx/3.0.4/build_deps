@@ -1,0 +1,17 @@
+python/3.7.4
+python3.7/sphinxcontrib-applehelp/1.0.2
+python3.7/sphinxcontrib-devhelp/1.0.2
+python3.7/sphinxcontrib-jsmath/1.0.1
+python3.7/sphinxcontrib-htmlhelp/1.0.3
+python3.7/sphinxcontrib-serializinghtml/1.1.4
+python3.7/sphinxcontrib-qthelp/1.0.3
+python3.7/jinja2/2.11.2
+python3.7/pygments/2.6.1
+python3.7/docutils/0.16
+python3.7/snowballstemmer/2.0.0
+python3.7/babel/2.8.0
+python3.7/alabaster/0.7.12
+python3.7/imagesize/1.2.0
+python3.7/requests/2.23.0
+python3.7/setuptools/47.1.1
+python3.7/packaging/20.4
