@@ -1,5 +1,5 @@
 binutils/2.32
-boost/1.71.0
+boost/1.73.0
 bzip2/1.0.8
 cairo/1.16.0
 clang/10.0.0

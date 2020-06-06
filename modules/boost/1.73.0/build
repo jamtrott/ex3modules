@@ -1,9 +1,10 @@
 pkg_name=boost
-pkg_version=1.71.0
+pkg_version=1.73.0
 pkg_moduledir="${pkg_name}/${pkg_version}"
 pkg_description="Libraries for the C++ programming language"
 pkg_url="https://www.boost.org"
-src_url="https://dl.bintray.com/boostorg/release/${pkg_version}/source/boost_${pkg_version//./_}.tar.gz"
+src_url="https://downloads.sourceforge.net/project/boost/boost/${pkg_version}/boost_${pkg_version//./_}.tar.gz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fboost%2Ffiles%2Fboost%2F${pkg_version}%2Fboost_${pkg_version//./_}.tar.gz%2Fdownload&ts=1591460613&use_mirror=netcologne"
+# src_url="https://dl.bintray.com/boostorg/release/${pkg_version}/source/boost_${pkg_version//./_}.tar.gz"
 src_dir="${pkg_name}_${pkg_version//./_}"
 
 function build()

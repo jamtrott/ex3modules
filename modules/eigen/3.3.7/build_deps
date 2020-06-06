@@ -1,5 +1,5 @@
 cmake/3.17.2
-boost/1.71.0
+boost/1.73.0
 mpfr/4.0.2
 gmp/6.1.2
 metis/5.1.0

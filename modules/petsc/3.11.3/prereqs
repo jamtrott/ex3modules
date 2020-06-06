@@ -1,4 +1,4 @@
-boost/1.71.0
+boost/1.73.0
 openblas/0.3.7
 openmpi/4.0.1
 hwloc/2.0.4

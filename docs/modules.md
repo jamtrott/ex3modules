@@ -5,7 +5,7 @@ The available modules are shown in the table below.
 | Package | Module name | Description |
 | :---    | :---        | :---        |
 | [binutils](https://www.gnu.org/software/binutils/) 2.32 | binutils/2.32 | Tools for creating and managing binary programs |
-| [boost](https://www.boost.org) 1.71.0 | boost/1.71.0 | Libraries for the C++ programming language |
+| [boost](https://www.boost.org) 1.73.0 | boost/1.73.0 | Libraries for the C++ programming language |
 | [bzip2](https://www.sourceware.org/bzip2/) 1.0.8 | bzip2/1.0.8 | Data compression program and library |
 | [cairo](https://www.cairographics.org/) 1.16.0 | cairo/1.16.0 | 2D graphics library |
 | [clang](https://clang.llvm.org/) 10.0.0 | clang/10.0.0 | Compiler front-end based on LLVM |
