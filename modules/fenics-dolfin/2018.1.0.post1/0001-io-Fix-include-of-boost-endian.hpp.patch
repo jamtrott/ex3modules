@@ -1,0 +1,39 @@
+From 885920473521b4f861a65b5fc130800ce8dd65cc Mon Sep 17 00:00:00 2001
+From: "James D. Trotter" <james@simula.no>
+Date: Sun, 7 Jun 2020 10:35:14 +0200
+Subject: [PATCH 1/3] io: Fix include of <boost/endian.hpp>
+
+---
+ dolfin/io/VTKFile.cpp   | 2 +-
+ dolfin/io/VTKWriter.cpp | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/dolfin/io/VTKFile.cpp b/dolfin/io/VTKFile.cpp
+index 2fee53b7b..9baebd938 100644
+--- a/dolfin/io/VTKFile.cpp
++++ b/dolfin/io/VTKFile.cpp
+@@ -20,7 +20,7 @@
+ #include <vector>
+ #include <iomanip>
+ #include <boost/cstdint.hpp>
+-#include <boost/detail/endian.hpp>
++#include <boost/endian.hpp>
+ 
+ #include "pugixml.hpp"
+ 
+diff --git a/dolfin/io/VTKWriter.cpp b/dolfin/io/VTKWriter.cpp
+index eff693472..2d9b57004 100644
+--- a/dolfin/io/VTKWriter.cpp
++++ b/dolfin/io/VTKWriter.cpp
+@@ -24,7 +24,7 @@
+ #include <sstream>
+ #include <vector>
+ #include <iomanip>
+-#include <boost/detail/endian.hpp>
++#include <boost/endian.hpp>
+ 
+ #include <dolfin/fem/GenericDofMap.h>
+ #include <dolfin/fem/FiniteElement.h>
+-- 
+2.17.1
+

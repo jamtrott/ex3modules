@@ -32,8 +32,11 @@ function build()
     module_build_download_package "${src_url}" "${pkg_src}"
     module_build_unpack "${pkg_src}" "${pkg_build_dir}"
 
-    # Apply patch
+    # Apply patches
     patch -d "${pkg_build_dir}/${src_dir}" -p1 <0001-SNESTEST-is-removed.patch
+    patch -d "${pkg_build_dir}/${src_dir}" -p1 <0001-io-Fix-include-of-boost-endian.hpp.patch
+    patch -d "${pkg_build_dir}/${src_dir}" -p1 <0002-Require-C-17.patch
+    patch -d "${pkg_build_dir}/${src_dir}" -p1 <0003-dolfin-mesh-MeshFunction.h-Add-missing-algorithm-inc.patch
 
     # Build
     pushd "${pkg_build_dir}/${src_dir}"
