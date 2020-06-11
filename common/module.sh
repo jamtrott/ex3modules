@@ -106,6 +106,9 @@ function module_build_download_package()
     [[ "${module_build_verbose}" ]] && \
 	echo "curl --fail --retry ${curl_retries} -Lo ${destination} ${src_url}"
     curl --fail --retry "${curl_retries}" -Lo "${destination}" "${src_url}"
+    md5sum "${destination}"
+    sha1sum "${destination}"
+    sha256sum "${destination}"
 }
 
 # Unpack a module's source package
