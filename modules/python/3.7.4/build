@@ -76,7 +76,6 @@ prepend-path C_INCLUDE_PATH ${pkg_prefix}/include/python${pkg_version%.*}m
 prepend-path CPLUS_INCLUDE_PATH ${pkg_prefix}/include/python${pkg_version%.*}m
 prepend-path LIBRARY_PATH ${pkg_prefix}/lib
 prepend-path LD_LIBRARY_PATH ${pkg_prefix}/lib
-prepend-path PYTHONPATH ${pkg_prefix}/lib/python${pkg_version%.*}
 prepend-path PKG_CONFIG_PATH ${pkg_prefix}/lib/pkgconfig
 prepend-path MANPATH ${pkg_prefix}/share/man
 set MSG "${pkg_name} ${pkg_version}"
