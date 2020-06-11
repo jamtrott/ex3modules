@@ -37,7 +37,7 @@ function build()
 	--prefix="${pkg_prefix}" \
 	--with-knem="${KNEM_ROOT}" \
 	--with-ucx="${UCX_ROOT}" \
-	--with-slurm=/cm/shared/apps/slurm/18.08.8 \
+	--with-slurm=/cm/shared/apps/slurm/18.08.9 \
 	--enable-fortran=all
     make -j"${JOBS}"
     make install

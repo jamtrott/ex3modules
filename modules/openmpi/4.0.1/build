@@ -39,7 +39,7 @@ function build()
 	--with-knem="${KNEM_ROOT}" \
 	--with-libevent="${LIBEVENT_ROOT}" \
 	--with-ucx="${UCX_ROOT}" \
-	--with-pmi=/cm/shared/apps/slurm/18.08.8 \
+	--with-pmi=/cm/shared/apps/slurm/18.08.9 \
 	--enable-mpi-cxx \
 	--enable-mpi-fortran=all \
 	--enable-mpi1-compatibility \
