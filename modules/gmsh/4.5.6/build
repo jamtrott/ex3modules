@@ -1,5 +1,5 @@
 pkg_name=gmsh
-pkg_version=4.4.1
+pkg_version=4.5.6
 pkg_moduledir="${pkg_name}/${pkg_version}"
 pkg_description="A three-dimensional finite element mesh generator with built-in pre- and post-processing facilities"
 pkg_url="http://gmsh.info/"
