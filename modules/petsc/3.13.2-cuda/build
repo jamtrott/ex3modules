@@ -1,5 +1,5 @@
 pkg_name=petsc
-pkg_version_NUMBER=3.11.3
+pkg_version_NUMBER=3.13.2
 pkg_version="${pkg_version_NUMBER}-cuda"
 pkg_moduledir="${pkg_name}/${pkg_version}"
 pkg_description="Portable, Extensible Toolkit for Scientific Computation"
@@ -31,6 +31,9 @@ function build()
     pkg_src="${pkg_build_dir}/$(basename ${src_url})"
     module_build_download_package "${src_url}" "${pkg_src}"
     module_build_unpack "${pkg_src}" "${pkg_build_dir}"
+
+    # Apply patches
+    patch -d "${pkg_build_dir}/${src_dir}" -p1 <0001-configure-Don-t-require-libcuda.patch
 
     # Build
     pushd "${pkg_build_dir}/${src_dir}"

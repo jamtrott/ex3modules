@@ -37,6 +37,7 @@ function build()
     patch -d "${pkg_build_dir}/${src_dir}" -p1 <0001-io-Fix-include-of-boost-endian.hpp.patch
     patch -d "${pkg_build_dir}/${src_dir}" -p1 <0002-Require-C-17.patch
     patch -d "${pkg_build_dir}/${src_dir}" -p1 <0003-dolfin-mesh-MeshFunction.h-Add-missing-algorithm-inc.patch
+    patch -d "${pkg_build_dir}/${src_dir}" -p1 <0001-dolfin-la-Include-petscsys.h-instead-of-petscoptions.patch
 
     # Build
     pushd "${pkg_build_dir}/${src_dir}"

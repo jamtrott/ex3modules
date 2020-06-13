@@ -14,7 +14,7 @@ scalapack/2.0.2
 superlu/5.2.1
 superlu_dist/6.1.1
 eigen/3.3.7
-petsc/3.11.3
+petsc/3.13.2
 python/3.7.4
 python3.7/numpy/1.17.0
 python3.7/mpmath/1.1.0
@@ -22,7 +22,7 @@ python3.7/sympy/1.4
 pybind11/2.3.0
 python3.7/ply/3.11
 python3.7/mpi4py/3.0.2
-python3.7/petsc4py/3.11.0
+python3.7/petsc4py/3.13.0
 python3.7/fenics-dijitso/2019.1.0
 python3.7/fenics-fiat/2019.1.0
 python3.7/fenics-ufl/2019.1.0

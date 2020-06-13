@@ -1,0 +1,25 @@
+From ed6fde7a7dc6847c27f30c40523a7c93b0107569 Mon Sep 17 00:00:00 2001
+From: "James D. Trotter" <james@simula.no>
+Date: Sun, 14 Jun 2020 13:06:53 +0200
+Subject: [PATCH] dolfin/la: Include <petscsys.h> instead of <petscoptions.h>
+
+---
+ dolfin/la/PETScOptions.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/dolfin/la/PETScOptions.h b/dolfin/la/PETScOptions.h
+index 37e5054b3..5ae24e6f5 100644
+--- a/dolfin/la/PETScOptions.h
++++ b/dolfin/la/PETScOptions.h
+@@ -22,7 +22,7 @@
+ 
+ #include <string>
+ #include <boost/lexical_cast.hpp>
+-#include <petscoptions.h>
++#include <petscsys.h>
+ #include <dolfin/common/SubSystemsManager.h>
+ #include <dolfin/log/log.h>
+ #include "PETScObject.h"
+-- 
+2.17.1
+

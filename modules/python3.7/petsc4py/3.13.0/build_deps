@@ -1,4 +1,4 @@
-petsc/3.11.3
+petsc/3.13.2
 python/3.7.4
 python3.7/numpy/1.17.0
 python3.7/mpi4py/3.0.2

@@ -1,5 +1,5 @@
 pkg_name=petsc4py
-pkg_version=3.11.0
+pkg_version=3.13.0
 PYTHON_VERSION_SHORT=3.7
 pkg_moduledir="python${PYTHON_VERSION_SHORT}/${pkg_name}/${pkg_version}"
 pkg_description="Python bindings for PETSc"

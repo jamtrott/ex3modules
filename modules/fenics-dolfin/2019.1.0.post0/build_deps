@@ -8,7 +8,7 @@ scotch/6.0.7
 suitesparse/5.7.2
 metis/5.1.0
 eigen/3.3.7
-petsc/3.11.3
+petsc/3.13.2
 python/3.7.4
 python3.7/fenics-dijitso/2019.1.0
 python3.7/fenics-fiat/2019.1.0

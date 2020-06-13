@@ -87,8 +87,8 @@ The available modules are shown in the table below.
 | [pcre](https://www.pcre.org/) 8.44 | pcre/8.44 | Library for regular expression pattern matching |
 | [perf](https://perf.wiki.kernel.org/index.php/Main_Page) 4.19.75 | perf/4.19.75 | Performance analysis tools for Linux |
 | [perl](https://www.perl.org/) 5.30.2 | perl/5.30.2 | Perl programming language |
-| [petsc](https://www.mcs.anl.gov/petsc/) 3.11.3-cuda | petsc/3.11.3-cuda | Portable, Extensible Toolkit for Scientific Computation |
-| [petsc](https://www.mcs.anl.gov/petsc/) 3.11.3 | petsc/3.11.3 | Portable, Extensible Toolkit for Scientific Computation |
+| [petsc](https://www.mcs.anl.gov/petsc/) 3.13.2-cuda | petsc/3.13.2-cuda | Portable, Extensible Toolkit for Scientific Computation |
+| [petsc](https://www.mcs.anl.gov/petsc/) 3.13.2 | petsc/3.13.2 | Portable, Extensible Toolkit for Scientific Computation |
 | [pixman](http://www.pixman.org/) 0.38.4 | pixman/0.38.4 | Low-level software library for pixel manipulation |
 | [pmix](https://pmix.org) 3.1.4 | pmix/3.1.4 | PMIx: Process management for exascale environments |
 | [pybind11](https://github.com/pybind/pybind11) 2.3.0 | pybind11/2.3.0 | Seamless operability between C++11 and Python |
@@ -124,7 +124,7 @@ The available modules are shown in the table below.
 | [numpy](https://www.numpy.org/) 1.17.0 | python3.7/numpy/1.17.0 | Fundamental package for scientific computing with Python |
 | [packaging](https://github.com/pypa/packaging) 20.4 | python3.7/packaging/20.4 | Core utilities for Python packages |
 | [pandas](https://pandas.pydata.org/) 1.0.3 | python3.7/pandas/1.0.3 | Python data analysis library |
-| [petsc4py](https://bitbucket.org/petsc/petsc4py) 3.11.0 | python3.7/petsc4py/3.11.0 | Python bindings for PETSc |
+| [petsc4py](https://bitbucket.org/petsc/petsc4py) 3.13.0 | python3.7/petsc4py/3.13.0 | Python bindings for PETSc |
 | [pkgconfig](https://github.com/matze/pkgconfig) 1.5.1 | python3.7/pkgconfig/1.5.1 | Python interface to the pkg-config command line tool |
 | [pluggy](https://github.com/pytest-dev/pluggy) 0.13.1 | python3.7/pluggy/0.13.1 | plugin and hook calling mechanisms for python |
 | [ply](https://www.dabeaz.com/ply/) 3.11 | python3.7/ply/3.11 | lex and yacc parsing tools for Python |

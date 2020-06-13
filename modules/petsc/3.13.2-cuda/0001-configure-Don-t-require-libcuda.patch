@@ -1,0 +1,31 @@
+From 9fc691131e85e7ecd7a35e34b09e4a959ba013eb Mon Sep 17 00:00:00 2001
+From: "James D. Trotter" <james@simula.no>
+Date: Sat, 13 Jun 2020 16:56:23 +0200
+Subject: [PATCH] configure: Don't require libcuda
+
+---
+ config/BuildSystem/config/packages/cuda.py | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/config/BuildSystem/config/packages/cuda.py b/config/BuildSystem/config/packages/cuda.py
+index 733c8c23f7..4c88798fce 100644
+--- a/config/BuildSystem/config/packages/cuda.py
++++ b/config/BuildSystem/config/packages/cuda.py
+@@ -8,10 +8,10 @@ class Configure(config.package.Package):
+     self.versionname      = 'CUDA_VERSION'
+     self.versioninclude   = 'cuda.h'
+     self.requiresversion  = 1
+-    self.functions        = ['cublasInit', 'cufftDestroy','cuInit']
+-    self.includes         = ['cublas.h','cufft.h','cusparse.h','cusolverDn.h','thrust/version.h']
+-    self.liblist          = [['libcufft.a', 'libcublas.a','libcudart.a','libcusparse.a','libcusolver.a','libcuda.a'],
+-                             ['cufft.lib','cublas.lib','cudart.lib','cusparse.lib','cusolver.lib','cuda.lib']]
++    self.functions        = ['cublasInit', 'cufftDestroy','cudaSetDevice']
++    self.includes         = ['cuda_runtime.h', 'cublas.h','cufft.h','cusparse.h','cusolverDn.h','thrust/version.h']
++    self.liblist          = [['libcufft.a', 'libcublas.a','libcudart.a','libcusparse.a','libcusolver.a'],
++                             ['cufft.lib','cublas.lib','cudart.lib','cusparse.lib','cusolver.lib']]
+     self.precisions       = ['single','double']
+     self.cxx              = 0
+     self.complex          = 1
+-- 
+2.17.1
+
