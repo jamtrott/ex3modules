@@ -1,0 +1,23 @@
+From 35c7dbdacb3042833cd2fd0aea616d02110e1a97 Mon Sep 17 00:00:00 2001
+From: Timo Heister <timo.heister@gmail.com>
+Date: Fri, 8 May 2020 10:30:27 -0400
+Subject: [PATCH] remove boost include to fix compilation
+
+fixes #10088
+---
+ include/deal.II/grid/grid_tools.h | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/include/deal.II/grid/grid_tools.h b/include/deal.II/grid/grid_tools.h
+index 4bbc47a11c2..45da52d05b1 100644
+--- a/include/deal.II/grid/grid_tools.h
++++ b/include/deal.II/grid/grid_tools.h
+@@ -44,7 +44,6 @@
+ DEAL_II_DISABLE_EXTRA_DIAGNOSTICS
+ #  include <boost/archive/binary_iarchive.hpp>
+ #  include <boost/archive/binary_oarchive.hpp>
+-#  include <boost/geometry/index/detail/serialization.hpp>
+ #  include <boost/geometry/index/rtree.hpp>
+ #  include <boost/serialization/array.hpp>
+ #  include <boost/serialization/vector.hpp>
+ 
