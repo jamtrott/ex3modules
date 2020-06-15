@@ -1,3 +1,5 @@
 readline/8.0
 python/3.7.4
 python3.7/six/1.13.0
+texinfo/6.7
+mpfr/4.0.2
