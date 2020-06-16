@@ -55,7 +55,7 @@ The available modules are shown in the table below.
 | [libpng](http://www.libpng.org/pub/png/libpng.html) 1.6.37 | libpng/1.6.37 | Official Portable Network Graphics reference library for handling PNG images |
 | [libtiff](http://www.simplesystems.org/libtiff/) 4.1.0 | libtiff/4.1.0 | Library and tools for the Tag Image File Format (TIFF) |
 | [libtool](https://www.gnu.org/software/libtool/) 2.4.6 | libtool/2.4.6 | The GNU Portable Library Tool |
-| [libufget](https://zenodo.org/record/897632) 1.0.2 | libufget/1.0.2 | C interface to the SuiteSparse Matrix Collection |
+| [libufget](https://zenodo.org/record/897632) 1.0.3 | libufget/1.0.3 | C interface to the SuiteSparse Matrix Collection |
 | [libunwind](https://www.nongnu.org/libunwind/) 1.3.1 | libunwind/1.3.1 | Library for working with program call-chains |
 | [libwebp](https://developers.google.com/speed/webp) 1.1.0 | libwebp/1.1.0 | WebP is a modern image format that provides superior lossless and lossy |
 | [llvm](https://llvm.org/) 10.0.0 | llvm/10.0.0 | LLVM Compiler Infrastructure |
