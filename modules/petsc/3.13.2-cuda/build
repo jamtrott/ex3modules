@@ -40,6 +40,7 @@ function build()
     COPTFLAGS="-O3"
     CXXOPTFLAGS="-O3"
     FOPTFLAGS="-O3"
+    CUDAOPTFLAGS="-O3"
     python3 ./configure \
 	--prefix="${pkg_prefix}" \
 	--with-cc=mpicc \
@@ -65,7 +66,8 @@ function build()
 	--with-debugging=0 \
 	COPTFLAGS="${COPTFLAGS}" \
 	CXXOPTFLAGS="${CXXOPTFLAGS}" \
-	FOPTFLAGS="${FOPTFLAGS}"
+	FOPTFLAGS="${FOPTFLAGS}" \
+	CUDAOPTFLAGS="${CUDAOPTFLAGS}"
     make -j"${JOBS}"
     make install
     popd
