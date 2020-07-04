@@ -151,7 +151,7 @@ The available modules are shown in the table below.
 | [zipp](https://github.com/jaraco/zipp) 3.1.0 | python3.7/zipp/3.1.0 | Backport of pathlib-compatible object wrapper for zip files |
 | [qperf](https://github.com/linux-rdma/qperf) 0.4.11 | qperf/0.4.11 | Tool for measuring socket and RDMA performance |
 | [readline](https://tiswww.case.edu/php/chet/readline/rltop.html) 8.0 | readline/8.0 | Library for line editing and command history |
-| [scalapack](http://www.netlib.org/scalapack/) 2.0.2 | scalapack/2.0.2 | Scalable Linear Algebra PACKage |
+| [scalapack](http://www.netlib.org/scalapack/) 2.1.0 | scalapack/2.1.0 | Scalable Linear Algebra PACKage |
 | [scotch](https://www.labri.fr/perso/pelegrin/scotch/) 6.0.7 | scotch/6.0.7 | Static Mapping, Graph, Mesh and Hypergraph Partitioning, and Parallel and Sequential Sparse Matrix Ordering Package |
 | [slurm](https://www.schedmd.com) 19.05.2 | slurm/19.05.2 | Highly configurable open-source workload manager |
 | [sqlite](https://www.sqlite.org/index.html) 3.31.1 | sqlite/3.31.1 | Small, fast, self-contained, high-reliability, full-featured, SQL database engine |

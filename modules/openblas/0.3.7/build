@@ -61,6 +61,7 @@ setenv ${pkg_name^^}_LIBDIR ${pkg_prefix}/lib
 setenv ${pkg_name^^}_LIBRARYDIR ${pkg_prefix}/lib
 setenv BLASDIR ${pkg_prefix}/lib
 setenv BLASLIB openblas
+setenv LAPACKLIB openblas
 prepend-path PATH ${pkg_prefix}/bin
 prepend-path C_INCLUDE_PATH ${pkg_prefix}/include
 prepend-path CPLUS_INCLUDE_PATH ${pkg_prefix}/include

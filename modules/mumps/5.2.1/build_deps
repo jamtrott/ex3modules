@@ -3,4 +3,4 @@ openmpi/4.0.1
 metis/5.1.0
 parmetis/4.0.3
 scotch/6.0.7
-scalapack/2.0.2
+scalapack/2.1.0

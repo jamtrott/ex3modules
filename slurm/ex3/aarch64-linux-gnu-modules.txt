@@ -165,7 +165,7 @@ python3.7/xarray/0.15.1
 python3.7/zipp/3.1.0
 qperf/0.4.11
 readline/8.0
-scalapack/2.0.2
+scalapack/2.1.0
 scotch/6.0.7
 slurm/19.05.2
 sqlite/3.31.1

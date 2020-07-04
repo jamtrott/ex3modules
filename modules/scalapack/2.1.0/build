@@ -1,5 +1,5 @@
 pkg_name=scalapack
-pkg_version=2.0.2
+pkg_version=2.1.0
 pkg_moduledir="${pkg_name}/${pkg_version}"
 pkg_description="Scalable Linear Algebra PACKage"
 pkg_url="http://www.netlib.org/scalapack/"
@@ -37,7 +37,10 @@ function build()
     pushd build
     cmake .. \
 	  -DCMAKE_INSTALL_PREFIX="${pkg_prefix}" \
-	  -DBUILD_SHARED_LIBS=TRUE
+	  -DBUILD_SHARED_LIBS=ON \
+	  -DBUILD_STATIC_LIBS=OFF \
+	  -DBLAS_LIBRARIES="${BLASLIB}" \
+	  -DLAPACK_LIBRARIES="${LAPACKLIB}"
     make -j"${JOBS}"
     make install
     popd
@@ -64,6 +67,7 @@ setenv ${pkg_name^^}_LIBRARYDIR ${pkg_prefix}/lib
 prepend-path LIBRARY_PATH ${pkg_prefix}/lib
 prepend-path LD_LIBRARY_PATH ${pkg_prefix}/lib
 prepend-path PKG_CONFIG_PATH ${pkg_prefix}/lib/pkgconfig
+prepend-path CMAKE_MODULE_PATH ${pkg_prefix}/lib/cmake/${pkg_name}-${pkg_version}
 set MSG "${pkg_name} ${pkg_version}"
 EOF
 
