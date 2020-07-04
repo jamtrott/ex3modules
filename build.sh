@@ -139,6 +139,18 @@ function build_deps()
 	    printf "%s\n" "$(build_deps ${dep})"
 	done<${module_build_deps}
     ) | cat
+
+    local arch="$(uname -m)"
+    local module_build_deps_arch="modules/${module}/build_deps-${arch}"
+    if [ -f "${module_build_deps_arch}" ]; then
+	(
+	    printf "%s %s\n" "${module}" "${module}"
+	    while read dep; do
+		printf "%s %s\n" "${module}" "${dep}"
+		printf "%s\n" "$(build_deps ${dep})"
+	    done<${module_build_deps_arch}
+	) | cat
+    fi
 }
 
 
