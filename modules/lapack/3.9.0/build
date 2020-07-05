@@ -1,0 +1,90 @@
+pkg_name=lapack
+pkg_version=3.9.0
+pkg_moduledir="${pkg_name}/${pkg_version}"
+pkg_description="Linear Algebra PACKage"
+pkg_url="http://www.netlib.org/lapack/"
+src_url="http://www.netlib.org/lapack/lapack-${pkg_version}.tgz"
+src_dir="${pkg_name}-${pkg_version}"
+
+function build()
+{
+    . ../../../common/module.sh
+
+    # Parse program options
+    module_build_parse_command_line_args \
+	"${0}" \
+	"${pkg_name}" \
+	"${pkg_version}" \
+	"${pkg_moduledir}" \
+	"${pkg_description}" \
+	"${pkg_url}" \
+	"$@"
+
+    # Load build-time dependencies and determine prerequisite modules
+    module_load_build_deps build_deps
+    pkg_prereqs=$(module_prereqs prereqs)
+
+    # Download and unpack source
+    pkg_prefix=$(module_build_prefix "${prefix}" "${pkg_moduledir}")
+    pkg_build_dir=$(module_build_create_build_dir "${pkg_name}" "${pkg_version}")
+    pkg_src="${pkg_build_dir}/$(basename ${src_url})"
+    module_build_download_package "${src_url}" "${pkg_src}"
+    module_build_unpack "${pkg_src}" "${pkg_build_dir}"
+
+    # Build
+    pushd "${pkg_build_dir}/${src_dir}"
+
+    # Compile libraries
+    cp make.inc.example make.inc
+    make -j"${JOBS}" blaslib
+    make -j"${JOBS}" cblaslib
+    make -j"${JOBS}" lapacklib tmglib
+    make -j"${JOBS}" lapackelib
+
+    # Install header files
+    mkdir -p ${pkg_prefix}/include
+    install -m 644 -t ${pkg_prefix}/include CBLAS/include/cblas.h
+    install -m 644 -t ${pkg_prefix}/include CBLAS/include/cblas_f77.h
+    install -m 644 -t ${pkg_prefix}/include CBLAS/include/cblas_test.h
+    install -m 644 -t ${pkg_prefix}/include CBLAS/include/cblas_mangling.h
+    install -m 644 -t ${pkg_prefix}/include LAPACKE/include/lapack.h
+    install -m 644 -t ${pkg_prefix}/include LAPACKE/include/lapacke.h
+    install -m 644 -t ${pkg_prefix}/include LAPACKE/include/lapacke_config.h
+    install -m 644 -t ${pkg_prefix}/include LAPACKE/include/lapacke_mangling.h
+    install -m 644 -t ${pkg_prefix}/include LAPACKE/include/lapacke_utils.h
+
+    # Install libraries
+    mkdir -p ${pkg_prefix}/lib
+    install -m 644 -t ${pkg_prefix}/lib librefblas.a
+    install -m 644 -t ${pkg_prefix}/lib libcblas.a
+    install -m 644 -t ${pkg_prefix}/lib liblapack.a
+    install -m 644 -t ${pkg_prefix}/lib liblapacke.a
+    install -m 644 -t ${pkg_prefix}/lib libtmglib.a
+    popd
+
+    # Write the module file
+    pkg_modulefile=$(module_build_modulefile "${prefix}" "${modulefilesdir}" "${pkg_moduledir}")
+    cat >"${pkg_modulefile}" <<EOF
+#%Module
+# ${pkg_name} ${pkg_version}
+
+proc ModulesHelp { } {
+     puts stderr "\tSets up the environment for ${pkg_name} ${pkg_version}\n"
+}
+
+module-whatis "${pkg_description}"
+module-whatis "${pkg_url}"
+
+${pkg_prereqs}
+
+setenv ${pkg_name^^}_ROOT ${pkg_prefix}
+setenv ${pkg_name^^}_LIBDIR ${pkg_prefix}/lib
+setenv ${pkg_name^^}_LIBRARYDIR ${pkg_prefix}/lib
+prepend-path C_INCLUDE_PATH ${pkg_prefix}/include
+prepend-path CPLUS_INCLUDE_PATH ${pkg_prefix}/include
+prepend-path LIBRARY_PATH ${pkg_prefix}/lib
+set MSG "${pkg_name} ${pkg_version}"
+EOF
+
+    module_build_cleanup "${pkg_build_dir}"
+}
