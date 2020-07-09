@@ -70,6 +70,10 @@ function build()
 	CUDAOPTFLAGS="${CUDAOPTFLAGS}"
     make -j"${JOBS}"
     make install
+
+    # Modify PETSc's shared library to add a dependency to libcuda
+    patchelf --add-needed libcuda.so "${pkg_prefix}/lib/libpetsc.so"
+
     popd
 
     # Write the module file
