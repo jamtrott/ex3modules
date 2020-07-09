@@ -45,6 +45,7 @@ function build()
 	  -DLLVM_BUILD_LLVM_DYLIB=ON \
 	  -DLLVM_LINK_LLVM_DYLIB=ON \
 	  -DLLVM_ENABLE_RTTI=ON \
+	  -DLLVM_ENABLE_BINDINGS=OFF \
 	  -Wno-dev -G Ninja
     ninja
     ninja install
