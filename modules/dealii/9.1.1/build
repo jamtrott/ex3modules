@@ -35,12 +35,20 @@ function build()
     # Apply patches
     patch -d "${pkg_build_dir}/${src_dir}" -p1 <0001-remove-boost-include-to-fix-compilation.patch
 
+    # The use of threads requires Intel Thread Building Blocks, which
+    # is not supported on aarch64
+    with_threads=OFF
+    if [[ "$(uname -m)" = "x86_64" ]]; then
+	with_threads=ON
+    fi
+
     # Build
     pushd "${pkg_build_dir}/${src_dir}"
     mkdir -p build
     pushd build
     cmake .. \
 	  -DCMAKE_INSTALL_PREFIX="${pkg_prefix}" \
+	  -DDEAL_II_WITH_THREADS=${with_threads} \
 	  -DDEAL_II_WITH_MPI=ON \
 	  -DGSL_LIBRARY="${GSL_LIBDIR}/libgsl.so" \
 	  -DGSL_INCLUDE_DIR="${GSL_INCDIR}" \
