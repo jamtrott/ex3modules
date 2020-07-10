@@ -30,7 +30,7 @@ The available modules are shown in the table below.
 | [giflib](http://giflib.sourceforge.net/) 5.2.1 | giflib/5.2.1 | Library for reading and writing gif images |
 | [glib](https://developer.gnome.org/glib/) 2.64.1 | glib/2.64.1 | Core object system used in GNOME |
 | [gmp](https://gmplib.org) 6.1.2 | gmp/6.1.2 | Library for arbitrary precision arithmetic |
-| [gmsh](http://gmsh.info/) 4.4.1 | gmsh/4.4.1 | A three-dimensional finite element mesh generator with built-in pre- and post-processing facilities |
+| [gmsh](http://gmsh.info/) 4.5.6 | gmsh/4.5.6 | A three-dimensional finite element mesh generator with built-in pre- and post-processing facilities |
 | [gnuplot](http://www.gnuplot.info/) 5.2.8 | gnuplot/5.2.8 | Command-line driven graphing utility |
 | [gobject-introspection](https://gi.readthedocs.io/) 1.64.0 | gobject-introspection/1.64.0 | Middleware layer between C libraries (using GObject) and language bindings |
 | [googletest](https://github.com/google/googletest) 1.10.0 | googletest/1.10.0 | Googletest - Google Testing and Mocking Framework |
@@ -45,6 +45,7 @@ The available modules are shown in the table below.
 | [hypre](https://github.com/hypre-space/hypre) 2.17.0 | hypre/2.17.0 | Scalable Linear Solvers and Multigrid Methods |
 | [iperf](https://sourceforge.net/projects/iperf2/) 2.0.13 | iperf/2.0.13 | Network traffic tool for measuring TCP and UDP performance |
 | [knem](http://knem.gforge.inria.fr/) 1.1.3 | knem/1.1.3 | High-Performance Intra-Node MPI Communication |
+| [lapack](http://www.netlib.org/lapack/) 3.9.0 | lapack/3.9.0 | Linear Algebra PACKage |
 | [libarchive](https://www.libarchive.org/) 3.4.2 | libarchive/3.4.2 | Multi-format archive and compression library |
 | [libcerf](https://jugit.fz-juelich.de/mlz/libcerf) 1.13 | libcerf/1.13 | Numeric library for complex error functions |
 | [libevent](https://libevent.org) 2.1.11-stable | libevent/2.1.11-stable | Event notification library |
@@ -55,7 +56,7 @@ The available modules are shown in the table below.
 | [libpng](http://www.libpng.org/pub/png/libpng.html) 1.6.37 | libpng/1.6.37 | Official Portable Network Graphics reference library for handling PNG images |
 | [libtiff](http://www.simplesystems.org/libtiff/) 4.1.0 | libtiff/4.1.0 | Library and tools for the Tag Image File Format (TIFF) |
 | [libtool](https://www.gnu.org/software/libtool/) 2.4.6 | libtool/2.4.6 | The GNU Portable Library Tool |
-| [libufget](https://zenodo.org/record/897632) 1.0.3 | libufget/1.0.3 | C interface to the SuiteSparse Matrix Collection |
+| [libufget](https://gitlab.mpi-magdeburg.mpg.de/software/libufget-release) 1.0.3 | libufget/1.0.3 | C interface to the SuiteSparse Matrix Collection |
 | [libunwind](https://www.nongnu.org/libunwind/) 1.3.1 | libunwind/1.3.1 | Library for working with program call-chains |
 | [libwebp](https://developers.google.com/speed/webp) 1.1.0 | libwebp/1.1.0 | WebP is a modern image format that provides superior lossless and lossy |
 | [llvm](https://llvm.org/) 10.0.0 | llvm/10.0.0 | LLVM Compiler Infrastructure |
@@ -93,14 +94,19 @@ The available modules are shown in the table below.
 | [pmix](https://pmix.org) 3.1.4 | pmix/3.1.4 | PMIx: Process management for exascale environments |
 | [pybind11](https://github.com/pybind/pybind11) 2.3.0 | pybind11/2.3.0 | Seamless operability between C++11 and Python |
 | [python](https://www.python.org/) 3.7.4 | python/3.7.4 | Python programming language |
+| [alabaster](https://alabaster.readthedocs.io/) 0.7.12 | python3.7/alabaster/0.7.12 | A configurable sidebar-enabled Sphinx theme |
 | [apipkg](https://github.com/pytest-dev/apipkg) 1.5 | python3.7/apipkg/1.5 | apipkg: namespace control and lazy-import mechanism |
 | [atomicwrites](https://github.com/untitaker/python-atomicwrites) 1.4.0 | python3.7/atomicwrites/1.4.0 | Atomic file writes |
 | [attrs](https://www.attrs.org/) 19.3.0 | python3.7/attrs/19.3.0 | Classes Without Boilerplate |
+| [babel](http://babel.pocoo.org/) 2.8.0 | python3.7/babel/2.8.0 | Internationalization utilities |
 | [breathe](https://breathe.readthedocs.io/) 4.13.1 | python3.7/breathe/4.13.1 | Bridge between the Sphinx and Doxygen documentation systems |
+| [certifi](https://certifiio.readthedocs.io/en/latest/) 2020.4.5.1 | python3.7/certifi/2020.4.5.1 | Python package for providing Mozilla's CA Bundle |
 | [cffi](https://cffi.readthedocs.io/en/latest/) 1.14.0 | python3.7/cffi/1.14.0 | Foreign Function Interface for Python calling C code |
+| [chardet](https://github.com/chardet/chardet) 3.0.4 | python3.7/chardet/3.0.4 | Universal encoding detector for Python 2 and 3 |
 | [coverage](https://github.com/nedbat/coveragepy) 5.1 | python3.7/coverage/5.1 | Code coverage measurement for Python |
 | [cython](https://www.cython.org/) 0.29.13 | python3.7/cython/0.29.13 | Optimising static compiler for Python |
 | [dateutil](https://launchpad.net/dateutil) 2.0 | python3.7/dateutil/2.0 | Extensions to the standard datetime module |
+| [docutils](http://docutils.sourceforge.net/) 0.16 | python3.7/docutils/0.16 | Python Documentation Utilities |
 | [execnet](https://execnet.readthedocs.io/en/latest/) 1.7.1 | python3.7/execnet/1.7.1 | execnet: rapid multi-Python deployment |
 | [fenics-dijitso](https://bitbucket.org/fenics-project/dijitso/) 2018.1.0 | python3.7/fenics-dijitso/2018.1.0 | FEniCS Project: Distributed just-in-time compilation |
 | [fenics-dijitso](https://bitbucket.org/fenics-project/dijitso/) 2019.1.0 | python3.7/fenics-dijitso/2019.1.0 | FEniCS Project: Distributed just-in-time compilation |
@@ -114,8 +120,12 @@ The available modules are shown in the table below.
 | [fenics](https://bitbucket.org/fenics-project/dolfin/) 2019.1.0.post0 | python3.7/fenics/2019.1.0.post0 | Python interface to the FEniCS computing platform for solving partial differential equations |
 | [flake8](https://gitlab.com/pycqa/flake8) 3.8.2 | python3.7/flake8/3.8.2 | Python source code checker |
 | [h5py](https://www.h5py.org/) 2.10.0 | python3.7/h5py/2.10.0 | The h5py package is a Pythonic interface to the HDF5 binary data format |
+| [idna](https://github.com/kjd/idna) 2.9 | python3.7/idna/2.9 | Internationalized Domain Names in Applications (IDNA) |
+| [imagesize](https://github.com/shibukawa/imagesize_py) 1.2.0 | python3.7/imagesize/1.2.0 | Getting image size from png/jpeg/jpeg2000/gif file |
 | [importlib\_metadata](http://importlib-metadata.readthedocs.io/) 1.6.0 | python3.7/importlib\_metadata/1.6.0 | Library for accessing Python package metadata |
 | [ipython](https://www.ipython.org/) 7.14.0 | python3.7/ipython/7.14.0 | Interactive Python shell |
+| [jinja2](https://palletsprojects.com/p/jinja/) 2.11.2 | python3.7/jinja2/2.11.2 | A very fast and expressive template engine |
+| [markupsafe](https://palletsprojects.com/p/markupsafe/) 1.1.1 | python3.7/markupsafe/1.1.1 | Safely add untrusted strings to HTML/XML markup |
 | [matplotlib](https://matplotlib.org) 3.1.1 | python3.7/matplotlib/3.1.1 | 2D plotting library |
 | [mccabe](https://github.com/pycqa/mccabe) 0.6.1 | python3.7/mccabe/0.6.1 | McCabe checker, plugin for flake8 |
 | [more-itertools](https://github.com/more-itertools/more-itertools) 8.3.0 | python3.7/more-itertools/8.3.0 | More routines for operating on iterables, beyond itertools |
@@ -128,10 +138,13 @@ The available modules are shown in the table below.
 | [pkgconfig](https://github.com/matze/pkgconfig) 1.5.1 | python3.7/pkgconfig/1.5.1 | Python interface to the pkg-config command line tool |
 | [pluggy](https://github.com/pytest-dev/pluggy) 0.13.1 | python3.7/pluggy/0.13.1 | plugin and hook calling mechanisms for python |
 | [ply](https://www.dabeaz.com/ply/) 3.11 | python3.7/ply/3.11 | lex and yacc parsing tools for Python |
+| [psutil](https://github.com/giampaolo/psutil) 5.7.0 | python3.7/psutil/5.7.0 | Cross-platform library for process and system monitoring in Python |
 | [py](http://py.readthedocs.io/) 1.8.1 | python3.7/py/1.8.1 | Library with cross-python path, ini-parsing, io, code, log facilities |
 | [pycodestyle](https://pycodestyle.readthedocs.io/) 2.6.0 | python3.7/pycodestyle/2.6.0 | Python style guide checker |
 | [pycparser](https://github.com/eliben/pycparser) 2.20 | python3.7/pycparser/2.20 | Parser of the C language, written in pure Python using the PLY parsing library |
+| [pydocstyle](https://github.com/PyCQA/pydocstyle/) 5.0.2 | python3.7/pydocstyle/5.0.2 | Python docstring style checker |
 | [pyflakes](https://github.com/PyCQA/pyflakes) 2.2.0 | python3.7/pyflakes/2.2.0 | A simple program which checks Python source files for errors |
+| [pygments](https://pygments.org/) 2.6.1 | python3.7/pygments/2.6.1 | Syntax highlighting package written in Python |
 | [pygraphviz](http://pygraphviz.github.io/) 1.5 | python3.7/pygraphviz/1.5 | Python interface to the Graphviz graph layout and visualization package |
 | [pyparsing](https://github.com/pyparsing/pyparsing/) 2.4.7 | python3.7/pyparsing/2.4.7 | Python parsing module |
 | [pytest-cov](https://github.com/pytest-dev/pytest-cov) 2.9.0 | python3.7/pytest-cov/2.9.0 | Pytest plugin for measuring coverage |
@@ -139,13 +152,23 @@ The available modules are shown in the table below.
 | [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) 1.32.0 | python3.7/pytest-xdist/1.32.0 | pytest xdist plugin for distributed testing and loop-on-failing modes |
 | [pytest](https://docs.pytest.org/) 5.1.0 | python3.7/pytest/5.1.0 | Python testing framework |
 | [pytz](https://launchpad.net/pytz) 2020.1 | python3.7/pytz/2020.1 | Timezone calculations and access to the Olson timezone database |
+| [requests](https://requests.readthedocs.io/) 2.23.0 | python3.7/requests/2.23.0 | HTTP library for Python |
 | [scipy](https://www.scipy.org/) 1.3.1 | python3.7/scipy/1.3.1 | Fundamental package for scientific computing with Python |
 | [setuptools](https://github.com/pypa/setuptools) 47.1.1 | python3.7/setuptools/47.1.1 | Easily download, build, install, upgrade, and uninstall Python packages |
 | [setuptools\_scm](https://github.com/pypa/setuptools_scm) 4.1.1 | python3.7/setuptools\_scm/4.1.1 | Managing Python package versions in SCM metadata |
 | [six](https://github.com/benjaminp/six) 1.13.0 | python3.7/six/1.13.0 | Six is a Python 2 and 3 compatibility library. |
+| [snowballstemmer](https://github.com/snowballstem/snowball) 2.0.0 | python3.7/snowballstemmer/2.0.0 | This package provides 26 stemmers for 25 languages generated from Snowball algorithms |
 | [sphinx](https://www.sphinx-doc.org/) 3.0.4 | python3.7/sphinx/3.0.4 | Python documentation generator |
+| [sphinx\_rtd\_theme](https://github.com/rtfd/sphinx_rtd_theme/) 0.4.3 | python3.7/sphinx\_rtd\_theme/0.4.3 | Read the Docs theme for Sphinx |
+| [sphinxcontrib-applehelp](http://sphinx-doc.org/) 1.0.2 | python3.7/sphinxcontrib-applehelp/1.0.2 | Sphinx extension which outputs Apple help books |
+| [sphinxcontrib-devhelp](http://sphinx-doc.org/) 1.0.2 | python3.7/sphinxcontrib-devhelp/1.0.2 | Sphinx extension which outputs Devhelp document |
+| [sphinxcontrib-htmlhelp](http://sphinx-doc.org/) 1.0.3 | python3.7/sphinxcontrib-htmlhelp/1.0.3 | Sphinx extension which renders HTML help files |
+| [sphinxcontrib-jsmath](http://sphinx-doc.org/) 1.0.1 | python3.7/sphinxcontrib-jsmath/1.0.1 | Sphinx extension which renders display math in HTML via JavaScript |
+| [sphinxcontrib-qthelp](http://sphinx-doc.org/) 1.0.3 | python3.7/sphinxcontrib-qthelp/1.0.3 | Sphinx extension which outputs QtHelp document |
+| [sphinxcontrib-serializinghtml](http://sphinx-doc.org/) 1.1.4 | python3.7/sphinxcontrib-serializinghtml/1.1.4 | Sphinx extension which outputs \serialized\ HTML files |
 | [sympy](https://www.sympy.org/) 1.1 | python3.7/sympy/1.1 | Computer algebra system written in pure Python |
 | [sympy](https://www.sympy.org/) 1.4 | python3.7/sympy/1.4 | Computer algebra system written in pure Python |
+| [urllib3](https://urllib3.readthedocs.io/) 1.25.9 | python3.7/urllib3/1.25.9 | HTTP library with thread-safe connection pooling, file post, and more |
 | [wcwidth](https://github.com/jquast/wcwidth) 0.1.9 | python3.7/wcwidth/0.1.9 | Measures number of Terminal column cells of wide-character codes |
 | [xarray](http://xarray.pydata.org/) 0.15.1 | python3.7/xarray/0.15.1 | Python package for working with multi-dimensional arrays |
 | [zipp](https://github.com/jaraco/zipp) 3.1.0 | python3.7/zipp/3.1.0 | Backport of pathlib-compatible object wrapper for zip files |
@@ -158,6 +181,7 @@ The available modules are shown in the table below.
 | [suitesparse](http://faculty.cse.tamu.edu/davis/suitesparse.html) 5.7.2 | suitesparse/5.7.2 | A suite of sparse matrix software |
 | [superlu](https://github.com/xiaoyeli/superlu) 5.2.1 | superlu/5.2.1 | Direct solver for large, sparse non-symmetric systems of linear equations |
 | [superlu\_dist](https://github.com/xiaoyeli/superlu_dist) 6.1.1 | superlu\_dist/6.1.1 | MPI-based direct solver for large, sparse non-symmetric systems of equations in distributed memory |
+| [texinfo](https://www.gnu.org/software/texinfo/) 6.7 | texinfo/6.7 | Official documentation format of the GNU project |
 | [ucx](http://www.openucx.org) 1.6.0 | ucx/1.6.0 | Optimized communication layer for MPI, PGAS/OpenSHMEM and RPC/data-centric applications |
 | [util-linux](https://www.kernel.org/) 2.34 | util-linux/2.34 | Miscellaneous utility programs, including tools for handling file systems, consoles, partitions, and messages |
 | [libxau](http://x.org/) 1.0.9 | xorg/libxau/1.0.9 | X authorization file management libary |
