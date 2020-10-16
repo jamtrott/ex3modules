@@ -27,6 +27,7 @@ function build()
     # Add support for CUDA, if we are building for x86_64
     if [[ "$(uname -m)" = "x86_64" ]]; then
 	module_load_build_deps build_deps-x86_64
+	pkg_prereqs=$(printf '%s\n%s\n' "${pkg_prereqs}" "$(module_prereqs prereqs-x86_64)")
 	cuda_options=--with-cuda="${CUDA_ROOT}"
     fi
 
@@ -84,7 +85,6 @@ prepend-path LIBRARY_PATH ${pkg_prefix}/lib
 prepend-path LD_LIBRARY_PATH ${pkg_prefix}/lib
 prepend-path PKG_CONFIG_PATH ${pkg_prefix}/lib/pkgconfig
 prepend-path MANPATH ${pkg_prefix}/share/man
-setenv OMPI_MCA_opal_warn_on_missing_libcuda 0
 set MSG "${pkg_name} ${pkg_version}"
 EOF
 
