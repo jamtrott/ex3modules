@@ -4,7 +4,7 @@ pkg_moduledir="${pkg_name}/${pkg_version}"
 pkg_description="C++ template library for linear algebra"
 pkg_url="http://eigen.tuxfamily.org/index.php?title=Main_Page"
 src_url="https://gitlab.com/libeigen/eigen/-/archive/${pkg_version}/eigen-${pkg_version}.tar.gz"
-src_dir="eigen-eigen-323c052e1731"
+src_dir="eigen-${pkg_version}"
 
 function build()
 {
