@@ -1,0 +1,155 @@
+#!/bin/bash
+# ex3modules - Makefiles for installing software on the eX3 cluster
+# Copyright (C) 2020 James D. Trotter
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#
+# Authors: James D. Trotter <james@simula.no>
+#
+# This script builds and installs software packages and Environment
+# Modules scripts on the eX3 cluster.
+#
+# Example usage:
+#
+#  $ ./ex3modules --prefix=/work/${USER}/ex3modules
+
+set -o errexit
+
+program_name=ex3modules
+program_version=0.5.0
+
+function help()
+{
+    printf "Usage: ${0} [OPTION]..\n"
+    printf " Build and install software packages and Environment Modules scripts for eX3\n"
+    printf "\n"
+    printf " Options are:\n"
+    printf "  %-20s\t%s\n" "--prefix=PREFIX" "install files in PREFIX"
+    printf "  %-20s\t%s\n" "--pkgsrcdir=DIR" "package sources [PREFIX/src]"
+    printf "  %-20s\t%s\n" "--pkgdir=DIR" "installed packages [PREFIX/pkgs]"
+    printf "  %-20s\t%s\n" "--modulefilesdir=DIR" "Environment Modules scripts [PREFIX/modulefiles]"
+    printf "\n"
+    printf "  %-20s\t%s\n" "--list-packages" "list available packages"
+    printf "  %-20s\t%s\n" "--describe-package" "describe packages"
+    printf "\n"
+    printf "  %-20s\t%s\n" "-v, --verbose" "be more verbose"
+    printf "  %-20s\t%s\n" "-h, --help" "display this help and exit"
+    printf "  %-20s\t%s\n" "--version" "display version information and exit"
+    printf "\n"
+    printf " Any additional options are passed on to make.\n"
+    printf "\n"
+    printf " Report bugs to: <james@simula.no>.\n"
+}
+
+function version()
+{
+    printf "%s %s\n" "${program_name}" "${program_version}"
+    printf "Copyright (C) 2020 James D. Trotter\n"
+    printf "License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\n"
+    printf "This is free software: you are free to change and redistribute it.\n"
+    printf "There is NO WARRANTY, to the extent permitted by law.\n"
+}
+
+function list_packages()
+{
+    make list-packages
+}
+
+function describe_packages()
+{
+    while [ "$#" -gt 0 ]; do
+	make "${1}-describe"
+	shift 1
+    done
+}
+
+function parse_program_options()
+{
+    # Default options
+    EXTRA_OPTIONS=()
+
+    # Parse program options
+    while [ "$#" -gt 0 ]; do
+	case "${1}" in
+	    -h | --help) help; exit 0;;
+	    --version) version; exit 0;;
+	    --list-packages) list_packages; exit 0;;
+	    --describe-package) describe_package=1; shift 1;;
+	    --prefix) prefix="${2}"; shift 2;;
+	    --prefix=*) prefix="${1#*=}"; shift 1;;
+	    --pkgscdir) pkgscdir="${2}"; shift 2;;
+	    --pkgscdir=*) pkgscdir="${1#*=}"; shift 1;;
+	    --pkgdir) pkgdir="${2}"; shift 2;;
+	    --pkgdir=*) pkgdir="${1#*=}"; shift 1;;
+	    --modulefilesdir) modulefilesdir="${2}"; shift 2;;
+	    --modulefilesdir=*) modulefilesdir="${1#*=}"; shift 1;;
+	    -v | --verbose) verbose=1; shift 1;;
+	    --) shift; break;;
+	    *) EXTRA_OPTIONS+=("${1}"); shift 1;;
+	esac
+    done
+    EXTRA_OPTIONS+="$@"
+
+    set -- "${EXTRA_OPTIONS[@]}"
+}
+
+function diagnostics ()
+{
+    echo "prefix=${prefix}" >&2
+    echo "pkgsrcdir=${pkgsrcdir}" >&2
+    echo "pkgdir=${pkgdir}" >&2
+    echo "modulefilesdir=${modulefilesdir}" >&2
+    echo "EXTRA_OPTIONS=${EXTRA_OPTIONS[@]}" >&2
+    echo "PWD=${PWD}" >&2
+    echo "PATH=${PATH}" >&2
+    echo "TMPDIR=${TMPDIR}" >&2
+    echo "SHELL=${SHELL}" >&2
+    echo "CC=${CC}" >&2
+    echo "CFLAGS=${CFLAGS}" >&2
+    echo "CXX=${CXX}" >&2
+    echo "CXXFLAGS=${CXXFLAGS}" >&2
+    set +o errexit
+    set -x
+    uname -a >&2
+    lscpu >&2
+    numactl -H >&2
+    { set +x; } 2>/dev/null
+    set -o errexit
+}
+
+function main ()
+{
+    parse_program_options "$@"
+
+    # Print some extra information
+    if [ ! -z "${verbose}" ]; then
+	diagnostics
+    fi
+
+    # Describe packages
+    if [ ! -z "${describe_package}" ]; then
+	describe_packages ${EXTRA_OPTIONS[@]}
+	exit 0
+    fi
+
+    # Build ex3modules
+    make_options=""
+    [ ! -z "${prefix}" ] && make_options+=" prefix=${prefix}"
+    [ ! -z "${pkgsrcdir}" ] && make_options+=" pkgsrcdir=${pkgsrcdir}"
+    [ ! -z "${pkgdir}" ] && make_options+=" pkgdir=${pkgdir}"
+    [ ! -z "${modulefilesdir}" ] && make_options+=" modulefilesdir=${modulefilesdir}"
+    make ${make_options} ${EXTRA_OPTIONS[@]}
+}
+
+main "$@"

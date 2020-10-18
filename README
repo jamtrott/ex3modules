@@ -1,0 +1,67 @@
+This is the README file for ex3modules, a collection of makefiles for
+building and installing a variety of software packages together with
+Environment Modules scripts (see http://modules.sourceforge.net/).
+Such scripts are typically used to manage software on supercomputing
+clusters.
+
+  Copyright (C) 2020 James D. Trotter
+
+  Copying and distribution of this file, with or without modification,
+  are permitted in any medium without royalty provided the copyright
+  notice and this notice are preserved.
+
+
+ex3modules has been used to install software on eX3, a national
+Experimental Infrastructure for Exploration of Exascale Computing at
+Simula Research Laboratory, Norway.  For more information, see
+https://www.ex3.simula.no.
+
+Usage
+-----
+Packages are built and installed with `ex3modules'. The installation
+directory is configured by passing the option `--prefix'. Here is an
+example:
+
+     ex3modules --prefix=${HOME}/ex3modules
+
+Further customisation is possible by passing options `--pkgsrcdir',
+`--pkgdir' and `--modulefilesdir' to choose directories for package
+sources, installed packages, and Environment Modules scripts,
+respectively.
+
+By default, all available packages are built. Otherwise, individual
+packages can be built by supplying their names on the command-line,
+for example:
+
+     ex3modules --prefix=${HOME}/ex3modules ncurses-6.1
+
+The option `--list-packages' is used to show a list of available
+packages:
+
+     ex3modules --list-packages
+
+Once packages have been built and installed, they can be made
+available through the Environment Modules system. Following the
+example above, packages installed in `${HOME}/ex3modules' are made
+available with the command:
+
+     module use ${HOME}/ex3modules/modulefiles
+
+The module `ncurses-6.1', for example, can now be loaded with the
+command:
+
+     module load ncurses-6.1
+
+
+As an alternative, packages can be built and installed using `make'
+directly, instead of using the `ex3modules' program. Installation
+directories, such as `prefix' are provided as program options, as in
+the following example:
+
+     make prefix=${HOME}/ex3modules ncurses-6.1
+
+
+Copying
+-------
+ex3modules is free software. See the file COPYING for copying
+conditions.
