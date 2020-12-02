@@ -116,6 +116,7 @@ $(example)-modulefile: $($(example)-modulefile)
 $(example)-clean:
 	rm -rf $($(example)-modulefile)
 	rm -rf $($(example)-prefix)
+	rm -rf $($(example)-builddir)
 	rm -rf $($(example)-srcdir)
 	rm -rf $($(example)-src)
 $(example): $(example)-src $(example)-unpack $(example)-patch $(example)-build $(example)-check $(example)-install $(example)-modulefile
