@@ -62,11 +62,11 @@ $($(libarchive)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,
 	@touch $@
 
 $($(libarchive)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libarchive)-builddeps),$(modulefilesdir)/$$(dep)) $($(libarchive)-builddir)/.markerfile $($(libarchive)-prefix)/.pkgbuild
-	cd $($(libarchive)-builddir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(libarchive)-builddeps) && \
-		$(MAKE) check
+# 	cd $($(libarchive)-builddir) && \
+# 		$(MODULESINIT) && \
+# 		$(MODULE) use $(modulefilesdir) && \
+# 		$(MODULE) load $($(libarchive)-builddeps) && \
+# 		$(MAKE) check
 	@touch $@
 
 $($(libarchive)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libarchive)-builddeps),$(modulefilesdir)/$$(dep)) $($(libarchive)-builddir)/.markerfile $($(libarchive)-prefix)/.pkgcheck

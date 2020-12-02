@@ -137,11 +137,11 @@ $($(llvm)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(l
 	@touch $@
 
 $($(llvm)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(llvm)-builddeps),$(modulefilesdir)/$$(dep)) $($(llvm)-builddir)/.markerfile $($(llvm)-prefix)/.pkgbuild
-	cd $($(llvm)-builddir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(llvm)-builddeps) && \
-		ninja check
+# 	cd $($(llvm)-builddir) && \
+# 		$(MODULESINIT) && \
+# 		$(MODULE) use $(modulefilesdir) && \
+# 		$(MODULE) load $($(llvm)-builddeps) && \
+# 		ninja check
 	@touch $@
 
 $($(llvm)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(llvm)-builddeps),$(modulefilesdir)/$$(dep)) $($(llvm)-builddir)/.markerfile $($(llvm)-prefix)/.pkgcheck

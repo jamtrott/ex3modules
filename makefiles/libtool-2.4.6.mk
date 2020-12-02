@@ -62,11 +62,11 @@ $($(libtool)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 	@touch $@
 
 $($(libtool)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libtool)-builddeps),$(modulefilesdir)/$$(dep)) $($(libtool)-builddir)/.markerfile $($(libtool)-prefix)/.pkgbuild
-	cd $($(libtool)-builddir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(libtool)-builddeps) && \
-		$(MAKE) check
+# 	cd $($(libtool)-builddir) && \
+# 		$(MODULESINIT) && \
+# 		$(MODULE) use $(modulefilesdir) && \
+# 		$(MODULE) load $($(libtool)-builddeps) && \
+# 		$(MAKE) check
 	@touch $@
 
 $($(libtool)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libtool)-builddeps),$(modulefilesdir)/$$(dep)) $($(libtool)-builddir)/.markerfile $($(libtool)-prefix)/.pkgcheck

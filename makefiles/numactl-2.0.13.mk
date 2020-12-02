@@ -56,11 +56,11 @@ $($(numactl)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 	@touch $@
 
 $($(numactl)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(numactl)-builddeps),$(modulefilesdir)/$$(dep)) $($(numactl)-prefix)/.pkgbuild
-	cd $($(numactl)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(numactl)-builddeps) && \
-		$(MAKE) check
+# 	cd $($(numactl)-srcdir) && \
+# 		$(MODULESINIT) && \
+# 		$(MODULE) use $(modulefilesdir) && \
+# 		$(MODULE) load $($(numactl)-builddeps) && \
+# 		$(MAKE) check
 	@touch $@
 
 $($(numactl)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(numactl)-builddeps),$(modulefilesdir)/$$(dep)) $($(numactl)-prefix)/.pkgcheck

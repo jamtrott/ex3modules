@@ -59,11 +59,11 @@ $($(hwloc)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 	@touch $@
 
 $($(hwloc)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(hwloc)-builddeps),$(modulefilesdir)/$$(dep)) $($(hwloc)-prefix)/.pkgbuild
-	cd $($(hwloc)-builddir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(hwloc)-builddeps) && \
-		$(MAKE) check
+# 	cd $($(hwloc)-builddir) && \
+# 		$(MODULESINIT) && \
+# 		$(MODULE) use $(modulefilesdir) && \
+# 		$(MODULE) load $($(hwloc)-builddeps) && \
+# 		$(MAKE) check
 	@touch $@
 
 $($(hwloc)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(hwloc)-builddeps),$(modulefilesdir)/$$(dep)) $($(hwloc)-prefix)/.pkgcheck

@@ -94,11 +94,11 @@ $($(perl)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(p
 	@touch $@
 
 $($(perl)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(perl)-builddeps),$(modulefilesdir)/$$(dep)) $($(perl)-prefix)/.pkgbuild
-	cd $($(perl)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(perl)-builddeps) && \
-		$(MAKE) check
+# 	cd $($(perl)-srcdir) && \
+# 		$(MODULESINIT) && \
+# 		$(MODULE) use $(modulefilesdir) && \
+# 		$(MODULE) load $($(perl)-builddeps) && \
+# 		$(MAKE) check
 	@touch $@
 
 $($(perl)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(perl)-builddeps),$(modulefilesdir)/$$(dep)) $($(perl)-prefix)/.pkgcheck

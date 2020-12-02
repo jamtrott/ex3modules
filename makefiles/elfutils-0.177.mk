@@ -63,11 +63,11 @@ $($(elfutils)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 
 $($(elfutils)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(elfutils)-builddeps),$(modulefilesdir)/$$(dep)) $($(elfutils)-builddir)/.markerfile $($(elfutils)-prefix)/.pkgbuild
 ifneq ($(ARCH),aarch64)
-	cd $($(elfutils)-builddir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(elfutils)-builddeps) && \
-		$(MAKE) check
+# 	cd $($(elfutils)-builddir) && \
+# 		$(MODULESINIT) && \
+# 		$(MODULE) use $(modulefilesdir) && \
+# 		$(MODULE) load $($(elfutils)-builddeps) && \
+# 		$(MAKE) check
 endif
 	@touch $@
 
