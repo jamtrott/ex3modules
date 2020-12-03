@@ -16,17 +16,18 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# superlu_dist-6.1.1
+# superlu_dist-6.4.0
 
-superlu_dist-version = 6.1.1
+superlu_dist-version = 6.4.0
 superlu_dist = superlu_dist-$(superlu_dist-version)
 $(superlu_dist)-description = MPI-based direct solver for large, sparse non-symmetric systems of equations in distributed memory
 $(superlu_dist)-url = https://github.com/xiaoyeli/superlu_dist/
 $(superlu_dist)-srcurl = https://github.com/xiaoyeli/superlu_dist/archive/v$(superlu_dist-version).tar.gz
-$(superlu_dist)-src = $(pkgsrcdir)/$(notdir $($(superlu_dist)-srcurl))
+$(superlu_dist)-builddeps = $(cmake) $(blas) $(mpi) $(parmetis) $(combblas)
+$(superlu_dist)-prereqs = $(blas) $(mpi) $(parmetis) $(combblas)
+$(superlu_dist)-src = $(pkgsrcdir)/superlu_dist-$(notdir $($(superlu_dist)-srcurl))
 $(superlu_dist)-srcdir = $(pkgsrcdir)/$(superlu_dist)
-$(superlu_dist)-builddeps = $(cmake) $(blas) $(mpi) $(parmetis)
-$(superlu_dist)-prereqs = $(blas) $(mpi) $(parmetis)
+$(superlu_dist)-builddir = $($(superlu_dist)-srcdir)/build
 $(superlu_dist)-modulefile = $(modulefilesdir)/$(superlu_dist)
 $(superlu_dist)-prefix = $(pkgdir)/$(superlu_dist)
 
@@ -39,15 +40,21 @@ $($(superlu_dist)-srcdir)/.markerfile:
 $($(superlu_dist)-prefix)/.markerfile:
 	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
 
-$($(superlu_dist)-prefix)/.pkgunpack: $($(superlu_dist)-src) $($(superlu_dist)-srcdir)/.markerfile $($(superlu_dist)-prefix)/.markerfile
+$($(superlu_dist)-prefix)/.pkgunpack: $$($(superlu_dist)-src) $($(superlu_dist)-srcdir)/.markerfile $($(superlu_dist)-prefix)/.markerfile
 	tar -C $($(superlu_dist)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
-$($(superlu_dist)-prefix)/.pkgpatch: $($(superlu_dist)-prefix)/.pkgunpack
+$($(superlu_dist)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(superlu_dist)-builddeps),$(modulefilesdir)/$$(dep)) $($(superlu_dist)-prefix)/.pkgunpack
+	sed -i 's,set(CMAKE_CXX_STANDARD 11),set(CMAKE_CXX_STANDARD 14),' $($(superlu_dist)-srcdir)/CMakeLists.txt
 	@touch $@
 
-$($(superlu_dist)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(superlu_dist)-builddeps),$(modulefilesdir)/$$(dep)) $($(superlu_dist)-prefix)/.pkgpatch
-	cd $($(superlu_dist)-srcdir)/build && \
+ifneq ($($(superlu_dist)-builddir),$($(superlu_dist)-srcdir))
+$($(superlu_dist)-builddir)/.markerfile: $($(superlu_dist)-prefix)/.pkgunpack
+	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+endif
+
+$($(superlu_dist)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(superlu_dist)-builddeps),$(modulefilesdir)/$$(dep)) $($(superlu_dist)-builddir)/.markerfile $($(superlu_dist)-prefix)/.pkgpatch
+	cd $($(superlu_dist)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(superlu_dist)-builddeps) && \
@@ -60,17 +67,20 @@ $($(superlu_dist)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 			-DTPL_LAPACK_LIBRARIES="$${BLASDIR}/lib$${BLASLIB}.so" \
 			-DTPL_PARMETIS_INCLUDE_DIRS="$${PARMETIS_INCDIR}" \
 			-DTPL_PARMETIS_LIBRARIES="$${PARMETIS_LIBDIR}/libparmetis.so" \
+			-DTPL_ENABLE_COMBBLASLIB=ON \
+			-DTPL_COMBBLAS_INCLUDE_DIRS="$${COMBBLAS_INCDIR}/CombBLAS;$${COMBBLAS_INCDIR}/CombBLAS/BipartiteMatchings" \
+			-DTPL_COMBBLAS_LIBRARIES="$${COMBBLAS_LIBDIR}/libCombBLAS.so" \
 			-DCMAKE_C_COMPILER=$${MPICC} \
 			-DCMAKE_CXX_COMPILER=$${MPICXX} \
 			-DCMAKE_FC_COMPILER=$${MPIFORT} && \
-		$(MAKE)
+		$(MAKE) VERBOSE=1
 	@touch $@
 
-$($(superlu_dist)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(superlu_dist)-builddeps),$(modulefilesdir)/$$(dep)) $($(superlu_dist)-prefix)/.pkgbuild
+$($(superlu_dist)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(superlu_dist)-builddeps),$(modulefilesdir)/$$(dep)) $($(superlu_dist)-builddir)/.markerfile $($(superlu_dist)-prefix)/.pkgbuild
 	@touch $@
 
-$($(superlu_dist)-prefix)/.pkginstall: $($(superlu_dist)-prefix)/.pkgcheck
-	cd $($(superlu_dist)-srcdir)/build && \
+$($(superlu_dist)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(superlu_dist)-builddeps),$(modulefilesdir)/$$(dep)) $($(superlu_dist)-builddir)/.markerfile $($(superlu_dist)-prefix)/.pkgcheck
+	cd $($(superlu_dist)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(superlu_dist)-builddeps) && \
@@ -96,13 +106,14 @@ $($(superlu_dist)-modulefile): $(modulefilesdir)/.markerfile $($(superlu_dist)-p
 	echo "setenv SUPERLU_DIST_INCLUDEDIR $($(superlu_dist)-prefix)/include" >>$@
 	echo "setenv SUPERLU_DIST_LIBDIR $($(superlu_dist)-prefix)/lib" >>$@
 	echo "setenv SUPERLU_DIST_LIBRARYDIR $($(superlu_dist)-prefix)/lib" >>$@
+	echo "prepend-path PATH $($(superlu_dist)-prefix)/bin" >>$@
 	echo "prepend-path C_INCLUDE_PATH $($(superlu_dist)-prefix)/include" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(superlu_dist)-prefix)/include" >>$@
 	echo "prepend-path LIBRARY_PATH $($(superlu_dist)-prefix)/lib" >>$@
 	echo "prepend-path LD_LIBRARY_PATH $($(superlu_dist)-prefix)/lib" >>$@
 	echo "set MSG \"$(superlu_dist)\"" >>$@
 
-$(superlu_dist)-src: $($(superlu_dist)-src)
+$(superlu_dist)-src: $$($(superlu_dist)-src)
 $(superlu_dist)-unpack: $($(superlu_dist)-prefix)/.pkgunpack
 $(superlu_dist)-patch: $($(superlu_dist)-prefix)/.pkgpatch
 $(superlu_dist)-build: $($(superlu_dist)-prefix)/.pkgbuild
@@ -112,6 +123,7 @@ $(superlu_dist)-modulefile: $($(superlu_dist)-modulefile)
 $(superlu_dist)-clean:
 	rm -rf $($(superlu_dist)-modulefile)
 	rm -rf $($(superlu_dist)-prefix)
+	rm -rf $($(superlu_dist)-builddir)
 	rm -rf $($(superlu_dist)-srcdir)
 	rm -rf $($(superlu_dist)-src)
 $(superlu_dist): $(superlu_dist)-src $(superlu_dist)-unpack $(superlu_dist)-patch $(superlu_dist)-build $(superlu_dist)-check $(superlu_dist)-install $(superlu_dist)-modulefile

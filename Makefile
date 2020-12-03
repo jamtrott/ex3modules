@@ -81,6 +81,7 @@ pkgs = \
 	cblas \
 	clang-11.0.0 \
 	cmake-3.17.2 \
+	combblas-1.6.2 \
 	cpupower-4.19.75 \
 	cuda-toolkit-10.1.243 \
 	curl-7.69.1 \
@@ -93,8 +94,8 @@ pkgs = \
 	fenics-dolfin-2018.1.0.post1 \
 	fenics-dolfin-2019-src-2019.1.0.post0 \
 	fenics-dolfin-2019.1.0.post0 \
-	fenics-dolfinx-src-20200525 \
 	fenics-dolfinx-20200525 \
+	fenics-dolfinx-src-20200525 \
 	fftw-3.3.8 \
 	flex-2.6.4 \
 	fontconfig-2.13.91 \
@@ -327,7 +328,7 @@ pkgs = \
 	sqlite-3.31.1 \
 	suitesparse-5.7.2 \
 	superlu-5.2.1 \
-	superlu_dist-6.1.1 \
+	superlu_dist-6.4.0 \
 	texinfo-6.7 \
 	ucx-1.9.0 \
 	util-linux-2.34 \
