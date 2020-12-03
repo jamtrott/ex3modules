@@ -34,10 +34,10 @@ $($(perl)-src): $(dir $($(perl)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(perl)-srcurl)
 
 $($(perl)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(perl)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(perl)-prefix)/.pkgunpack: $($(perl)-src) $($(perl)-srcdir)/.markerfile $($(perl)-prefix)/.markerfile
 	tar -C $($(perl)-srcdir) --strip-components 1 -xz -f $<

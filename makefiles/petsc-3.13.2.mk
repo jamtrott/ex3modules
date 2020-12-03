@@ -34,10 +34,10 @@ $($(petsc)-src): $(dir $($(petsc)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(petsc)-srcurl)
 
 $($(petsc)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(petsc)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(petsc)-prefix)/.pkgunpack: $($(petsc)-src) $($(petsc)-srcdir)/.markerfile $($(petsc)-prefix)/.markerfile
 	tar -C $($(petsc)-srcdir) --strip-components 1 -xz -f $<

@@ -35,10 +35,10 @@ $($(python-distlib)-src): $(dir $($(python-distlib)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-distlib)-srcurl)
 
 $($(python-distlib)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-distlib)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-distlib)-prefix)/.pkgunpack: $$($(python-distlib)-src) $($(python-distlib)-srcdir)/.markerfile $($(python-distlib)-prefix)/.markerfile
 	unzip -d $($(python-distlib)-srcdir) $<
@@ -48,7 +48,7 @@ $($(python-distlib)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach 
 	@touch $@
 
 $($(python-distlib)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-distlib)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-distlib)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-distlib)-prefix)/.pkgpatch

@@ -35,10 +35,10 @@ $($(python-kiwisolver)-src): $(dir $($(python-kiwisolver)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-kiwisolver)-srcurl)
 
 $($(python-kiwisolver)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-kiwisolver)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-kiwisolver)-prefix)/.pkgunpack: $$($(python-kiwisolver)-src) $($(python-kiwisolver)-srcdir)/.markerfile $($(python-kiwisolver)-prefix)/.markerfile
 	tar -C $($(python-kiwisolver)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-kiwisolver)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(forea
 	@touch $@
 
 $($(python-kiwisolver)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-kiwisolver)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-kiwisolver)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-kiwisolver)-prefix)/.pkgpatch

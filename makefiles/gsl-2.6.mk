@@ -35,10 +35,10 @@ $($(gsl)-src): $(dir $($(gsl)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(gsl)-srcurl)
 
 $($(gsl)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gsl)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gsl)-prefix)/.pkgunpack: $($(gsl)-src) $($(gsl)-srcdir)/.markerfile $($(gsl)-prefix)/.markerfile
 	tar -C $($(gsl)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(gsl)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(gs
 
 ifneq ($($(gsl)-builddir),$($(gsl)-srcdir))
 $($(gsl)-builddir)/.markerfile: $($(gsl)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(gsl)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(gsl)-builddeps),$(modulefilesdir)/$$(dep)) $($(gsl)-builddir)/.markerfile $($(gsl)-prefix)/.pkgpatch

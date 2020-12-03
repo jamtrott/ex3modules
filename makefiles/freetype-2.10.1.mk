@@ -34,10 +34,10 @@ $($(freetype)-src): $(dir $($(freetype)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(freetype)-srcurl)
 
 $($(freetype)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(freetype)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(freetype)-prefix)/.pkgunpack: $($(freetype)-src) $($(freetype)-srcdir)/.markerfile $($(freetype)-prefix)/.markerfile
 	tar -C $($(freetype)-srcdir) --strip-components 1 -xz -f $<

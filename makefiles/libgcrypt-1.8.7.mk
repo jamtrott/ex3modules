@@ -35,10 +35,10 @@ $($(libgcrypt)-src): $(dir $($(libgcrypt)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libgcrypt)-srcurl)
 
 $($(libgcrypt)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libgcrypt)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libgcrypt)-prefix)/.pkgunpack: $($(libgcrypt)-src) $($(libgcrypt)-srcdir)/.markerfile $($(libgcrypt)-prefix)/.markerfile
 	tar -C $($(libgcrypt)-srcdir) --strip-components 1 -xj -f $<
@@ -49,7 +49,7 @@ $($(libgcrypt)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$
 
 ifneq ($($(libgcrypt)-builddir),$($(libgcrypt)-srcdir))
 $($(libgcrypt)-builddir)/.markerfile: $($(libgcrypt)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(libgcrypt)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libgcrypt)-builddeps),$(modulefilesdir)/$$(dep)) $($(libgcrypt)-builddir)/.markerfile $($(libgcrypt)-prefix)/.pkgpatch

@@ -32,10 +32,10 @@ $(fenics-dolfin-2019)-modulefile = $(modulefilesdir)/$(fenics-dolfin-2019)
 $(fenics-dolfin-2019)-prefix = $(pkgdir)/$(fenics-dolfin-2019)
 
 $($(fenics-dolfin-2019)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(fenics-dolfin-2019)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(fenics-dolfin-2019)-prefix)/.pkgunpack: $$($(fenics-dolfin-2019)-src) $($(fenics-dolfin-2019)-srcdir)/.markerfile $($(fenics-dolfin-2019)-prefix)/.markerfile
 	tar -C $($(fenics-dolfin-2019)-srcdir) --strip-components 1 -xz -f $<
@@ -157,54 +157,15 @@ $($(fenics-dolfin-2019)-srcdir)/0003-Add-missing-algorithm-include.patch: $($(fe
 	@echo '2.28.0' >>$@.tmp
 	@mv $@.tmp $@
 
-$($(fenics-dolfin-2019)-srcdir)/0004-Fix-install-directory-permissions.patch: $($(fenics-dolfin-2019)-prefix)/.pkgunpack
-	@printf '' >$@.tmp
-	@echo 'From 8f40b5de2fa3414c12349522e058de7257defa6f Mon Sep 17 00:00:00 2001' >>$@.tmp
-	@echo 'From: "James D. Trotter" <james@simula.no>' >>$@.tmp
-	@echo 'Date: Mon, 23 Nov 2020 18:15:24 +0100' >>$@.tmp
-	@echo 'Subject: [PATCH] Fix install directory permissions' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '---' >>$@.tmp
-	@echo ' CMakeLists.txt | 4 +++-' >>$@.tmp
-	@echo ' 1 file changed, 3 insertions(+), 1 deletion(-)' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo 'diff --git a/CMakeLists.txt b/CMakeLists.txt' >>$@.tmp
-	@echo 'index a2dc33e..68fabc9 100644' >>$@.tmp
-	@echo '--- a/CMakeLists.txt' >>$@.tmp
-	@echo '+++ b/CMakeLists.txt' >>$@.tmp
-	@echo '@@ -703,6 +703,7 @@ endif()' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo ' # Install the demo source files' >>$@.tmp
-	@echo ' install(DIRECTORY demo DESTINATION $${DOLFIN_SHARE_DIR}' >>$@.tmp
-	@echo '+  DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '   FILES_MATCHING' >>$@.tmp
-	@echo '   PATTERN "CMakeLists.txt"' >>$@.tmp
-	@echo '   PATTERN "*.cpp"' >>$@.tmp
-	@echo '@@ -714,7 +715,8 @@ install(DIRECTORY demo DESTINATION $${DOLFIN_SHARE_DIR}' >>$@.tmp
-	@echo '   PATTERN "CMakeFiles" EXCLUDE)' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '  # Install meshes (data directory)' >>$@.tmp
-	@echo '-install(DIRECTORY data DESTINATION $${DOLFIN_SHARE_DIR})' >>$@.tmp
-	@echo '+install(DIRECTORY data DESTINATION $${DOLFIN_SHARE_DIR}' >>$@.tmp
-	@echo '+   DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE)' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo ' #------------------------------------------------------------------------------' >>$@.tmp
-	@echo ' # Generate documentation' >>$@.tmp
-	@echo '--' >>$@.tmp
-	@echo '2.17.1' >>$@.tmp
-	@echo '' >>$@.tmp
-	@mv $@.tmp $@
-
-$($(fenics-dolfin-2019)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fenics-dolfin-2019)-builddeps),$(modulefilesdir)/$$(dep)) $($(fenics-dolfin-2019)-srcdir)/0001-io-Fix-include-of-boost-endian.hpp.patch $($(fenics-dolfin-2019)-srcdir)/0002-Require-C-17.patch $($(fenics-dolfin-2019)-prefix)/.pkgunpack $($(fenics-dolfin-2019)-srcdir)/0003-Add-missing-algorithm-include.patch $($(fenics-dolfin-2019)-srcdir)/0004-Fix-install-directory-permissions.patch
+$($(fenics-dolfin-2019)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fenics-dolfin-2019)-builddeps),$(modulefilesdir)/$$(dep)) $($(fenics-dolfin-2019)-srcdir)/0001-io-Fix-include-of-boost-endian.hpp.patch $($(fenics-dolfin-2019)-srcdir)/0002-Require-C-17.patch $($(fenics-dolfin-2019)-prefix)/.pkgunpack $($(fenics-dolfin-2019)-srcdir)/0003-Add-missing-algorithm-include.patch
 	cd $($(fenics-dolfin-2019)-srcdir) && \
 		patch -t -p1 <0001-io-Fix-include-of-boost-endian.hpp.patch && \
 		patch -t -p1 <0002-Require-C-17.patch && \
-		patch -t -p1 <0003-Add-missing-algorithm-include.patch && \
-		patch -t -p1 <0004-Fix-install-directory-permissions.patch
+		patch -t -p1 <0003-Add-missing-algorithm-include.patch
 	@touch $@
 
 $($(fenics-dolfin-2019)-builddir)/.markerfile: $($(fenics-dolfin-2019)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(fenics-dolfin-2019)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fenics-dolfin-2019)-builddeps),$(modulefilesdir)/$$(dep)) $($(fenics-dolfin-2019)-builddir)/.markerfile $($(fenics-dolfin-2019)-prefix)/.pkgpatch
 	cd $($(fenics-dolfin-2019)-builddir) && \
@@ -213,7 +174,6 @@ $($(fenics-dolfin-2019)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) load $($(fenics-dolfin-2019)-builddeps) && \
 		cmake .. \
 			-DCMAKE_INSTALL_PREFIX=$($(fenics-dolfin-2019)-prefix) \
-			-DCMAKE_INSTALL_DEFAULT_DIRECTORY_PERMISSIONS=OWNER_READ\;OWNER_EXECUTE\;OWNER_WRITE\;GROUP_READ\;GROUP_EXECUTE\;SETGID\;WORLD_READ\;WORLD_EXECUTE \
 			-DCMAKE_POLICY_DEFAULT_CMP0074=NEW \
 			-DBUILD_SHARED_LIBS=TRUE \
 			-DDOLFIN_SKIP_BUILD_TESTS=TRUE \

@@ -35,10 +35,10 @@ $($(python-imagesize)-src): $(dir $($(python-imagesize)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-imagesize)-srcurl)
 
 $($(python-imagesize)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-imagesize)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-imagesize)-prefix)/.pkgunpack: $$($(python-imagesize)-src) $($(python-imagesize)-srcdir)/.markerfile $($(python-imagesize)-prefix)/.markerfile
 	tar -C $($(python-imagesize)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-imagesize)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreac
 	@touch $@
 
 $($(python-imagesize)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-imagesize)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-imagesize)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-imagesize)-prefix)/.pkgpatch

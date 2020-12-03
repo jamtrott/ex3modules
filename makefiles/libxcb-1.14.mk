@@ -34,10 +34,10 @@ $($(libxcb)-src): $(dir $($(libxcb)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxcb)-srcurl)
 
 $($(libxcb)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxcb)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxcb)-prefix)/.pkgunpack: $($(libxcb)-src) $($(libxcb)-srcdir)/.markerfile $($(libxcb)-prefix)/.markerfile
 	tar -C $($(libxcb)-srcdir) --strip-components 1 -x -f $<

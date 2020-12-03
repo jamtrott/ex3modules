@@ -45,10 +45,10 @@ $(blis-x86_64): $(blis-x86_64)-src $(blis-x86_64)-unpack $(blis-x86_64)-patch $(
 
 else
 $($(blis-x86_64)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(blis-x86_64)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(blis-x86_64)-prefix)/.pkgunpack: $$($(blis-x86_64)-src) $($(blis-x86_64)-srcdir)/.markerfile $($(blis-x86_64)-prefix)/.markerfile
 	tar -C $($(blis-x86_64)-srcdir) --strip-components 1 -xz -f $<
@@ -59,7 +59,7 @@ $($(blis-x86_64)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep
 
 ifneq ($($(blis-x86_64)-builddir),$($(blis-x86_64)-srcdir))
 $($(blis-x86_64)-builddir)/.markerfile: $($(blis-x86_64)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(blis-x86_64)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(blis-x86_64)-builddeps),$(modulefilesdir)/$$(dep)) $($(blis-x86_64)-builddir)/.markerfile $($(blis-x86_64)-prefix)/.pkgpatch

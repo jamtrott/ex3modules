@@ -35,10 +35,10 @@ $($(python-fenics-dijitso-2019)-src): $(dir $($(python-fenics-dijitso-2019)-src)
 	$(CURL) $(curl_options) --output $@ $($(python-fenics-dijitso-2019)-srcurl)
 
 $($(python-fenics-dijitso-2019)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-fenics-dijitso-2019)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-fenics-dijitso-2019)-prefix)/.pkgunpack: $$($(python-fenics-dijitso-2019)-src) $($(python-fenics-dijitso-2019)-srcdir)/.markerfile $($(python-fenics-dijitso-2019)-prefix)/.markerfile
 	tar -C $($(python-fenics-dijitso-2019)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-fenics-dijitso-2019)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile
 	@touch $@
 
 $($(python-fenics-dijitso-2019)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-fenics-dijitso-2019)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-fenics-dijitso-2019)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-fenics-dijitso-2019)-prefix)/.pkgpatch

@@ -34,10 +34,10 @@ $($(xcb-proto)-src): $(dir $($(xcb-proto)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(xcb-proto)-srcurl)
 
 $($(xcb-proto)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(xcb-proto)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(xcb-proto)-prefix)/.pkgunpack: $($(xcb-proto)-src) $($(xcb-proto)-srcdir)/.markerfile $($(xcb-proto)-prefix)/.markerfile
 	tar -C $($(xcb-proto)-srcdir) --strip-components 1 -x -f $<

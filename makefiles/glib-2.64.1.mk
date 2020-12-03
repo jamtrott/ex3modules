@@ -37,13 +37,13 @@ $($(glib)-src): $(dir $($(glib)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(glib)-srcurl)
 
 $($(glib)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(glib)-srcdir)/build/.markerfile: $($(glib)-srcdir)/.markerfile
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(glib)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(glib)-prefix)/.pkgunpack: $($(glib)-src) $($(glib)-srcdir)/.markerfile $($(glib)-prefix)/.markerfile
 	tar -C $($(glib)-srcdir) --strip-components 1 -x -f $<

@@ -35,10 +35,10 @@ $($(libnl)-src): $(dir $($(libnl)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libnl)-srcurl)
 
 $($(libnl)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libnl)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libnl)-prefix)/.pkgunpack: $$($(libnl)-src) $($(libnl)-srcdir)/.markerfile $($(libnl)-prefix)/.markerfile
 	tar -C $($(libnl)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(libnl)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 
 ifneq ($($(libnl)-builddir),$($(libnl)-srcdir))
 $($(libnl)-builddir)/.markerfile: $($(libnl)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(libnl)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libnl)-builddeps),$(modulefilesdir)/$$(dep)) $($(libnl)-builddir)/.markerfile $($(libnl)-prefix)/.pkgpatch

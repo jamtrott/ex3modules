@@ -35,10 +35,10 @@ $($(python-colorama)-src): $(dir $($(python-colorama)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-colorama)-srcurl)
 
 $($(python-colorama)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-colorama)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-colorama)-prefix)/.pkgunpack: $$($(python-colorama)-src) $($(python-colorama)-srcdir)/.markerfile $($(python-colorama)-prefix)/.markerfile
 	tar -C $($(python-colorama)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-colorama)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach
 	@touch $@
 
 $($(python-colorama)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-colorama)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-colorama)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-colorama)-prefix)/.pkgpatch

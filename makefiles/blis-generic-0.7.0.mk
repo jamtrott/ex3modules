@@ -32,10 +32,10 @@ $(blis-generic)-modulefile = $(modulefilesdir)/$(blis-generic)
 $(blis-generic)-prefix = $(pkgdir)/$(blis-generic)
 
 $($(blis-generic)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(blis-generic)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(blis-generic)-prefix)/.pkgunpack: $$($(blis-generic)-src) $($(blis-generic)-srcdir)/.markerfile $($(blis-generic)-prefix)/.markerfile
 	tar -C $($(blis-generic)-srcdir) --strip-components 1 -xz -f $<
@@ -46,7 +46,7 @@ $($(blis-generic)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach de
 
 ifneq ($($(blis-generic)-builddir),$($(blis-generic)-srcdir))
 $($(blis-generic)-builddir)/.markerfile: $($(blis-generic)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(blis-generic)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(blis-generic)-builddeps),$(modulefilesdir)/$$(dep)) $($(blis-generic)-builddir)/.markerfile $($(blis-generic)-prefix)/.pkgpatch

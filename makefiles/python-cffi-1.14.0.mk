@@ -35,10 +35,10 @@ $($(python-cffi)-src): $(dir $($(python-cffi)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-cffi)-srcurl)
 
 $($(python-cffi)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-cffi)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-cffi)-prefix)/.pkgunpack: $$($(python-cffi)-src) $($(python-cffi)-srcdir)/.markerfile $($(python-cffi)-prefix)/.markerfile
 	tar -C $($(python-cffi)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-cffi)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep
 	@touch $@
 
 $($(python-cffi)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-cffi)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-cffi)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-cffi)-prefix)/.pkgpatch

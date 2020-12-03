@@ -34,10 +34,10 @@ $($(libxdamage)-src): $(dir $($(libxdamage)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxdamage)-srcurl)
 
 $($(libxdamage)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxdamage)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxdamage)-prefix)/.pkgunpack: $($(libxdamage)-src) $($(libxdamage)-srcdir)/.markerfile $($(libxdamage)-prefix)/.markerfile
 	tar -C $($(libxdamage)-srcdir) --strip-components 1 -xj -f $<

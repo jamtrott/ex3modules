@@ -34,10 +34,10 @@ $($(pixman)-src): $(dir $($(pixman)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(pixman)-srcurl)
 
 $($(pixman)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(pixman)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(pixman)-prefix)/.pkgunpack: $($(pixman)-src) $($(pixman)-srcdir)/.markerfile $($(pixman)-prefix)/.markerfile
 	tar -C $($(pixman)-srcdir) --strip-components 1 -xz -f $<

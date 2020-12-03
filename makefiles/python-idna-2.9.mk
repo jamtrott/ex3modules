@@ -35,10 +35,10 @@ $($(python-idna)-src): $(dir $($(python-idna)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-idna)-srcurl)
 
 $($(python-idna)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-idna)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-idna)-prefix)/.pkgunpack: $$($(python-idna)-src) $($(python-idna)-srcdir)/.markerfile $($(python-idna)-prefix)/.markerfile
 	tar -C $($(python-idna)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-idna)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep
 	@touch $@
 
 $($(python-idna)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-idna)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-idna)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-idna)-prefix)/.pkgpatch

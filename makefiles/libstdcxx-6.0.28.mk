@@ -32,10 +32,10 @@ $(libstdcxx)-modulefile = $(modulefilesdir)/$(libstdcxx)
 $(libstdcxx)-prefix = $(pkgdir)/$(libstdcxx)
 
 $($(libstdcxx)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libstdcxx)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libstdcxx)-prefix)/.pkgunpack: $$($(libstdcxx)-src) $($(libstdcxx)-srcdir)/.markerfile $($(libstdcxx)-prefix)/.markerfile
 	@touch $@
@@ -45,7 +45,7 @@ $($(libstdcxx)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$
 
 ifneq ($($(libstdcxx)-builddir),$($(libstdcxx)-srcdir))
 $($(libstdcxx)-builddir)/.markerfile: $($(libstdcxx)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(libstdcxx)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libstdcxx)-builddeps),$(modulefilesdir)/$$(dep)) $($(libstdcxx)-builddir)/.markerfile $($(libstdcxx)-prefix)/.pkgpatch

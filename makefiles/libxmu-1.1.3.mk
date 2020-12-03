@@ -34,10 +34,10 @@ $($(libxmu)-src): $(dir $($(libxmu)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxmu)-srcurl)
 
 $($(libxmu)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxmu)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxmu)-prefix)/.pkgunpack: $($(libxmu)-src) $($(libxmu)-srcdir)/.markerfile $($(libxmu)-prefix)/.markerfile
 	tar -C $($(libxmu)-srcdir) --strip-components 1 -xj -f $<

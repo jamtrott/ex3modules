@@ -35,10 +35,10 @@ $($(python-snowballstemmer)-src): $(dir $($(python-snowballstemmer)-src)).marker
 	$(CURL) $(curl_options) --output $@ $($(python-snowballstemmer)-srcurl)
 
 $($(python-snowballstemmer)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-snowballstemmer)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-snowballstemmer)-prefix)/.pkgunpack: $$($(python-snowballstemmer)-src) $($(python-snowballstemmer)-srcdir)/.markerfile $($(python-snowballstemmer)-prefix)/.markerfile
 	tar -C $($(python-snowballstemmer)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-snowballstemmer)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(
 	@touch $@
 
 $($(python-snowballstemmer)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-snowballstemmer)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-snowballstemmer)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-snowballstemmer)-prefix)/.pkgpatch

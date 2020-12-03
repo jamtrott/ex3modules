@@ -34,10 +34,10 @@ $($(libxi)-src): $(dir $($(libxi)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxi)-srcurl)
 
 $($(libxi)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxi)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxi)-prefix)/.pkgunpack: $($(libxi)-src) $($(libxi)-srcdir)/.markerfile $($(libxi)-prefix)/.markerfile
 	tar -C $($(libxi)-srcdir) --strip-components 1 -xj -f $<

@@ -35,10 +35,10 @@ $($(gmsh)-src): $(dir $($(gmsh)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(gmsh)-srcurl)
 
 $($(gmsh)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gmsh)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gmsh)-prefix)/.pkgunpack: $($(gmsh)-src) $($(gmsh)-srcdir)/.markerfile $($(gmsh)-prefix)/.markerfile
 	tar -C $($(gmsh)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(gmsh)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(g
 
 ifneq ($($(gmsh)-builddir),$($(gmsh)-srcdir))
 $($(gmsh)-builddir)/.markerfile: $($(gmsh)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(gmsh)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(gmsh)-builddeps),$(modulefilesdir)/$$(dep)) $($(gmsh)-builddir)/.markerfile $($(gmsh)-prefix)/.pkgpatch

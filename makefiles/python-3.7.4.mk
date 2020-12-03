@@ -38,10 +38,10 @@ $($(python)-src): $(dir $($(python)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python)-srcurl)
 
 $($(python)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python)-prefix)/.pkgunpack: $($(python)-src) $($(python)-srcdir)/.markerfile $($(python)-prefix)/.markerfile
 	tar -C $($(python)-srcdir) --strip-components 1 -x -f $<

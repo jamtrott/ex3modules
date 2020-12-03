@@ -34,10 +34,10 @@ $($(libxaw)-src): $(dir $($(libxaw)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxaw)-srcurl)
 
 $($(libxaw)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxaw)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxaw)-prefix)/.pkgunpack: $($(libxaw)-src) $($(libxaw)-srcdir)/.markerfile $($(libxaw)-prefix)/.markerfile
 	tar -C $($(libxaw)-srcdir) --strip-components 1 -xj -f $<

@@ -35,10 +35,10 @@ $($(munge)-src): $(dir $($(munge)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(munge)-srcurl)
 
 $($(munge)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(munge)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(munge)-prefix)/.pkgunpack: $($(munge)-src) $($(munge)-srcdir)/.markerfile $($(munge)-prefix)/.markerfile
 	tar -C $($(munge)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(munge)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 
 ifneq ($($(munge)-builddir),$($(munge)-srcdir))
 $($(munge)-builddir)/.markerfile: $($(munge)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(munge)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(munge)-builddeps),$(modulefilesdir)/$$(dep)) $($(munge)-builddir)/.markerfile $($(munge)-prefix)/.pkgpatch

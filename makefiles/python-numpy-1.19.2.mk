@@ -35,10 +35,10 @@ $($(python-numpy)-src): $(dir $($(python-numpy)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-numpy)-srcurl)
 
 $($(python-numpy)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-numpy)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-numpy)-prefix)/.pkgunpack: $$($(python-numpy)-src) $($(python-numpy)-srcdir)/.markerfile $($(python-numpy)-prefix)/.markerfile
 	tar -C $($(python-numpy)-srcdir) --strip-components 1 -xz -f $<
@@ -95,7 +95,7 @@ $($(python-numpy)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach de
 	@touch $@
 
 $($(python-numpy)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-numpy)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-numpy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-numpy)-prefix)/.pkgpatch

@@ -34,10 +34,10 @@ $($(libpng)-src): $(dir $($(libpng)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libpng)-srcurl)
 
 $($(libpng)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libpng)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libpng)-prefix)/.pkgunpack: $($(libpng)-src) $($(libpng)-srcdir)/.markerfile $($(libpng)-prefix)/.markerfile
 	tar -C $($(libpng)-srcdir) --strip-components 1 -x -f $<

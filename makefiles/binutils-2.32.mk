@@ -35,10 +35,10 @@ $($(binutils)-src): $(dir $($(binutils)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(binutils)-srcurl)
 
 $($(binutils)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(binutils)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(binutils)-prefix)/.pkgunpack: $($(binutils)-src) $($(binutils)-srcdir)/.markerfile $($(binutils)-prefix)/.markerfile
 	tar -C $($(binutils)-srcdir) --strip-components 1 -x -f $<
@@ -49,7 +49,7 @@ $($(binutils)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 
 ifneq ($($(binutils)-builddir),$($(binutils)-srcdir))
 $($(binutils)-builddir)/.markerfile: $($(binutils)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(binutils)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(foreach dep,$$($(binutils)-builddeps),$(modulefilesdir)/$$(dep)),$(modulefilesdir)/$$(dep)) $($(binutils)-builddir)/.markerfile $($(binutils)-prefix)/.pkgpatch

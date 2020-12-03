@@ -34,10 +34,10 @@ $($(libice)-src): $(dir $($(libice)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libice)-srcurl)
 
 $($(libice)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libice)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libice)-prefix)/.pkgunpack: $($(libice)-src) $($(libice)-srcdir)/.markerfile $($(libice)-prefix)/.markerfile
 	tar -C $($(libice)-srcdir) --strip-components 1 -xj -f $<

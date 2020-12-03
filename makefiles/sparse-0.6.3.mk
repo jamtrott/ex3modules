@@ -35,10 +35,10 @@ $($(sparse)-src): $(dir $($(sparse)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(sparse)-srcurl)
 
 $($(sparse)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(sparse)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(sparse)-prefix)/.pkgunpack: $($(sparse)-src) $($(sparse)-srcdir)/.markerfile $($(sparse)-prefix)/.markerfile
 	tar -C $($(sparse)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(sparse)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($
 
 ifneq ($($(sparse)-builddir),$($(sparse)-srcdir))
 $($(sparse)-builddir)/.markerfile: $($(sparse)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(sparse)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(sparse)-builddeps),$(modulefilesdir)/$$(dep)) $($(sparse)-builddir)/.markerfile $($(sparse)-prefix)/.pkgpatch

@@ -35,10 +35,10 @@ $($(python-sympy-1.4)-src): $(dir $($(python-sympy-1.4)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-sympy-1.4)-srcurl)
 
 $($(python-sympy-1.4)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sympy-1.4)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sympy-1.4)-prefix)/.pkgunpack: $$($(python-sympy-1.4)-src) $($(python-sympy-1.4)-srcdir)/.markerfile $($(python-sympy-1.4)-prefix)/.markerfile
 	tar -C $($(python-sympy-1.4)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-sympy-1.4)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreac
 	@touch $@
 
 $($(python-sympy-1.4)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-sympy-1.4)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sympy-1.4)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sympy-1.4)-prefix)/.pkgpatch

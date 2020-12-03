@@ -34,13 +34,13 @@ $($(gobject-introspection)-src): $(dir $($(gobject-introspection)-src)).markerfi
 	$(CURL) $(curl_options) --output $@ $($(gobject-introspection)-srcurl)
 
 $($(gobject-introspection)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gobject-introspection)-srcdir)/build/.markerfile: $($(gobject-introspection)-srcdir)/.markerfile
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gobject-introspection)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gobject-introspection)-prefix)/.pkgunpack: $($(gobject-introspection)-src) $($(gobject-introspection)-srcdir)/.markerfile $($(gobject-introspection)-prefix)/.markerfile
 	tar -C $($(gobject-introspection)-srcdir) --strip-components 1 -x -f $<
@@ -64,10 +64,10 @@ $($(gobject-introspection)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(f
 	@touch $@
 
 $($(gobject-introspection)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(gobject-introspection)-builddeps),$(modulefilesdir)/$$(dep)) $($(gobject-introspection)-prefix)/.pkgcheck $($(gobject-introspection)-srcdir)/build/.markerfile
-	$(INSTALL) -m=6755 -d $($(gobject-introspection)-prefix)/lib/gobject-introspection/giscanner/doctemplates/mallard/Python
-	$(INSTALL) -m=6755 -d $($(gobject-introspection)-prefix)/lib/gobject-introspection/giscanner/doctemplates/mallard/Gjs
-	$(INSTALL) -m=6755 -d $($(gobject-introspection)-prefix)/lib/gobject-introspection/giscanner/doctemplates/mallard/C
-	$(INSTALL) -m=6755 -d $($(gobject-introspection)-prefix)/lib/gobject-introspection/giscanner/doctemplates/devdocs/Gjs
+	$(INSTALL) -d $($(gobject-introspection)-prefix)/lib/gobject-introspection/giscanner/doctemplates/mallard/Python
+	$(INSTALL) -d $($(gobject-introspection)-prefix)/lib/gobject-introspection/giscanner/doctemplates/mallard/Gjs
+	$(INSTALL) -d $($(gobject-introspection)-prefix)/lib/gobject-introspection/giscanner/doctemplates/mallard/C
+	$(INSTALL) -d $($(gobject-introspection)-prefix)/lib/gobject-introspection/giscanner/doctemplates/devdocs/Gjs
 	cd $($(gobject-introspection)-srcdir)/build && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \

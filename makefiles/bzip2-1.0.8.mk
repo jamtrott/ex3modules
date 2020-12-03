@@ -35,10 +35,10 @@ $($(bzip2)-src): $(dir $($(bzip2)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(bzip2)-srcurl)
 
 $($(bzip2)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(bzip2)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(bzip2)-prefix)/.pkgunpack: $($(bzip2)-src) $($(bzip2)-srcdir)/.markerfile $($(bzip2)-prefix)/.markerfile
 	tar -C $($(bzip2)-srcdir) --strip-components 1 -xz -f $<
@@ -52,7 +52,7 @@ $($(bzip2)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 
 ifneq ($($(bzip2)-builddir),$($(bzip2)-srcdir))
 $($(bzip2)-builddir)/.markerfile: $($(bzip2)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(bzip2)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(bzip2)-builddeps),$(modulefilesdir)/$$(dep)) $($(bzip2)-builddir)/.markerfile $($(bzip2)-prefix)/.pkgpatch

@@ -34,10 +34,10 @@ $($(libxext)-src): $(dir $($(libxext)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxext)-srcurl)
 
 $($(libxext)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxext)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxext)-prefix)/.pkgunpack: $($(libxext)-src) $($(libxext)-srcdir)/.markerfile $($(libxext)-prefix)/.markerfile
 	tar -C $($(libxext)-srcdir) --strip-components 1 -xj -f $<

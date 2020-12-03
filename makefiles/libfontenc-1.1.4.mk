@@ -34,10 +34,10 @@ $($(libfontenc)-src): $(dir $($(libfontenc)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libfontenc)-srcurl)
 
 $($(libfontenc)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libfontenc)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libfontenc)-prefix)/.pkgunpack: $($(libfontenc)-src) $($(libfontenc)-srcdir)/.markerfile $($(libfontenc)-prefix)/.markerfile
 	tar -C $($(libfontenc)-srcdir) --strip-components 1 -xj -f $<

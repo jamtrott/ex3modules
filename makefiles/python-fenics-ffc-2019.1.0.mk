@@ -35,10 +35,10 @@ $($(python-fenics-ffc-2019)-src): $(dir $($(python-fenics-ffc-2019)-src)).marker
 	$(CURL) $(curl_options) --output $@ $($(python-fenics-ffc-2019)-srcurl)
 
 $($(python-fenics-ffc-2019)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-fenics-ffc-2019)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-fenics-ffc-2019)-prefix)/.pkgunpack: $$($(python-fenics-ffc-2019)-src) $($(python-fenics-ffc-2019)-srcdir)/.markerfile $($(python-fenics-ffc-2019)-prefix)/.markerfile
 	tar -C $($(python-fenics-ffc-2019)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-fenics-ffc-2019)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(
 	@touch $@
 
 $($(python-fenics-ffc-2019)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-fenics-ffc-2019)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-fenics-ffc-2019)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-fenics-ffc-2019)-prefix)/.pkgpatch
@@ -67,7 +67,7 @@ $($(python-fenics-ffc-2019)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(
 	@touch $@
 
 $($(python-fenics-ffc-2019)-prefix)/include/.markerfile: $($(python-fenics-ffc-2019)-prefix)/.pkgcheck
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-fenics-ffc-2019)-prefix)/include/ufc.h: $($(python-fenics-ffc-2019)-prefix)/include/.markerfile $($(python-fenics-ffc-2019)-prefix)/.pkgcheck

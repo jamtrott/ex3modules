@@ -32,10 +32,10 @@ $(hwloc)-modulefile = $(modulefilesdir)/$(hwloc)
 $(hwloc)-prefix = $(pkgdir)/$(hwloc)
 
 $($(hwloc)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(hwloc)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(hwloc)-prefix)/.pkgunpack: $$($(hwloc)-src) $($(hwloc)-srcdir)/.markerfile $($(hwloc)-prefix)/.markerfile
 	tar -C $($(hwloc)-srcdir) --strip-components 1 -xz -f $<
@@ -46,7 +46,7 @@ $($(hwloc)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 
 ifneq ($($(hwloc)-builddir),$($(hwloc)-srcdir))
 $($(hwloc)-builddir)/.markerfile: $($(hwloc)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(hwloc)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(hwloc)-builddeps),$(modulefilesdir)/$$(dep)) $($(hwloc)-prefix)/.pkgpatch

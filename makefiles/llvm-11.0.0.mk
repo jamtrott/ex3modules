@@ -35,86 +35,21 @@ $($(llvm)-src): $(dir $($(llvm)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(llvm)-srcurl)
 
 $($(llvm)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(llvm)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(llvm)-prefix)/.pkgunpack: $($(llvm)-src) $($(llvm)-srcdir)/.markerfile $($(llvm)-prefix)/.markerfile
 	tar -C $($(llvm)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 
-$($(llvm)-srcdir)/0001-Fix-install-directory-permissions.patch: $($(llvm)-srcdir)/.markerfile
-	@printf '' >$@.tmp
-	@echo 'From 6ae293b7dd0bc8d05ae0b24e14f45363908e7135 Mon Sep 17 00:00:00 2001' >>$@.tmp
-	@echo 'From: "James D. Trotter" <james@simula.no>' >>$@.tmp
-	@echo 'Date: Fri, 27 Nov 2020 09:54:16 +0100' >>$@.tmp
-	@echo 'Subject: [PATCH] Fix install directory permissions' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '---' >>$@.tmp
-	@echo ' CMakeLists.txt               | 4 ++++' >>$@.tmp
-	@echo ' cmake/modules/CMakeLists.txt | 1 +' >>$@.tmp
-	@echo ' 2 files changed, 5 insertions(+)' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo 'diff --git a/CMakeLists.txt b/CMakeLists.txt' >>$@.tmp
-	@echo 'index 038139a..10643d3 100644' >>$@.tmp
-	@echo '--- a/CMakeLists.txt' >>$@.tmp
-	@echo '+++ b/CMakeLists.txt' >>$@.tmp
-	@echo '@@ -1109,6 +1109,7 @@ endif()' >>$@.tmp
-	@echo ' if (NOT LLVM_INSTALL_TOOLCHAIN_ONLY)' >>$@.tmp
-	@echo '   install(DIRECTORY include/llvm include/llvm-c' >>$@.tmp
-	@echo '     DESTINATION include' >>$@.tmp
-	@echo '+    DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '     COMPONENT llvm-headers' >>$@.tmp
-	@echo '     FILES_MATCHING' >>$@.tmp
-	@echo '     PATTERN "*.def"' >>$@.tmp
-	@echo '@@ -1121,6 +1122,7 @@ if (NOT LLVM_INSTALL_TOOLCHAIN_ONLY)' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '   install(DIRECTORY $${LLVM_INCLUDE_DIR}/llvm $${LLVM_INCLUDE_DIR}/llvm-c' >>$@.tmp
-	@echo '     DESTINATION include' >>$@.tmp
-	@echo '+    DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '     COMPONENT llvm-headers' >>$@.tmp
-	@echo '     FILES_MATCHING' >>$@.tmp
-	@echo '     PATTERN "*.def"' >>$@.tmp
-	@echo '@@ -1136,12 +1138,14 @@ if (NOT LLVM_INSTALL_TOOLCHAIN_ONLY)' >>$@.tmp
-	@echo '   if (LLVM_INSTALL_MODULEMAPS)' >>$@.tmp
-	@echo '     install(DIRECTORY include/llvm include/llvm-c' >>$@.tmp
-	@echo '             DESTINATION include' >>$@.tmp
-	@echo '+            DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '             COMPONENT llvm-headers' >>$@.tmp
-	@echo '             FILES_MATCHING' >>$@.tmp
-	@echo '             PATTERN "module.modulemap"' >>$@.tmp
-	@echo '             )' >>$@.tmp
-	@echo '     install(FILES include/llvm/module.install.modulemap' >>$@.tmp
-	@echo '             DESTINATION include/llvm' >>$@.tmp
-	@echo '+            DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '             COMPONENT llvm-headers' >>$@.tmp
-	@echo '             RENAME "module.extern.modulemap"' >>$@.tmp
-	@echo '             )' >>$@.tmp
-	@echo 'diff --git a/cmake/modules/CMakeLists.txt b/cmake/modules/CMakeLists.txt' >>$@.tmp
-	@echo 'index 4b8879f..2f5add6 100644' >>$@.tmp
-	@echo '--- a/cmake/modules/CMakeLists.txt' >>$@.tmp
-	@echo '+++ b/cmake/modules/CMakeLists.txt' >>$@.tmp
-	@echo '@@ -150,6 +150,7 @@ if (NOT LLVM_INSTALL_TOOLCHAIN_ONLY)' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '   install(DIRECTORY .' >>$@.tmp
-	@echo '     DESTINATION $${LLVM_INSTALL_PACKAGE_DIR}' >>$@.tmp
-	@echo '+    DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '     COMPONENT cmake-exports' >>$@.tmp
-	@echo '     FILES_MATCHING PATTERN *.cmake' >>$@.tmp
-	@echo '     PATTERN .svn EXCLUDE' >>$@.tmp
-	@echo '--' >>$@.tmp
-	@echo '2.17.1' >>$@.tmp
-	@echo '' >>$@.tmp
-	@mv $@.tmp $@
-
-$($(llvm)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(llvm)-builddeps),$(modulefilesdir)/$$(dep)) $($(llvm)-prefix)/.pkgunpack $($(llvm)-srcdir)/0001-Fix-install-directory-permissions.patch
-	cd $($(llvm)-srcdir) && patch -t -p1 <0001-Fix-install-directory-permissions.patch
+$($(llvm)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(llvm)-builddeps),$(modulefilesdir)/$$(dep)) $($(llvm)-prefix)/.pkgunpack
 	@touch $@
 
 ifneq ($($(llvm)-builddir),$($(llvm)-srcdir))
 $($(llvm)-builddir)/.markerfile: $($(llvm)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(llvm)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(llvm)-builddeps),$(modulefilesdir)/$$(dep)) $($(llvm)-builddir)/.markerfile $($(llvm)-prefix)/.pkgpatch

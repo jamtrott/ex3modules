@@ -57,10 +57,10 @@ $(blis-skx): $(blis-skx)-src $(blis-skx)-unpack $(blis-skx)-patch $(blis-skx)-bu
 
 else
 $($(blis-skx)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(blis-skx)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(blis-skx)-prefix)/.pkgunpack: $$($(blis-skx)-src) $($(blis-skx)-srcdir)/.markerfile $($(blis-skx)-prefix)/.markerfile
 	tar -C $($(blis-skx)-srcdir) --strip-components 1 -xz -f $<
@@ -71,7 +71,7 @@ $($(blis-skx)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 
 ifneq ($($(blis-skx)-builddir),$($(blis-skx)-srcdir))
 $($(blis-skx)-builddir)/.markerfile: $($(blis-skx)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(blis-skx)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(blis-skx)-builddeps),$(modulefilesdir)/$$(dep)) $($(blis-skx)-builddir)/.markerfile $($(blis-skx)-prefix)/.pkgpatch

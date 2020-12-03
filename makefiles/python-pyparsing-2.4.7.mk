@@ -35,10 +35,10 @@ $($(python-pyparsing)-src): $(dir $($(python-pyparsing)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pyparsing)-srcurl)
 
 $($(python-pyparsing)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pyparsing)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pyparsing)-prefix)/.pkgunpack: $$($(python-pyparsing)-src) $($(python-pyparsing)-srcdir)/.markerfile $($(python-pyparsing)-prefix)/.markerfile
 	tar -C $($(python-pyparsing)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-pyparsing)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreac
 	@touch $@
 
 $($(python-pyparsing)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-pyparsing)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pyparsing)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pyparsing)-prefix)/.pkgpatch

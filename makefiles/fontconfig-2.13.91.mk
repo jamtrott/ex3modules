@@ -34,10 +34,10 @@ $($(fontconfig)-src): $(dir $($(fontconfig)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(fontconfig)-srcurl)
 
 $($(fontconfig)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(fontconfig)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(fontconfig)-prefix)/.pkgunpack: $($(fontconfig)-src) $($(fontconfig)-srcdir)/.markerfile $($(fontconfig)-prefix)/.markerfile
 	tar -C $($(fontconfig)-srcdir) --strip-components 1 -xz -f $<
@@ -53,7 +53,7 @@ $($(fontconfig)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,
 		$(MODULE) load $($(fontconfig)-builddeps) && \
 		./configure --prefix=$($(fontconfig)-prefix) \
 			--disable-docs \
-			MKDIR_P="$(INSTALL) -m=6755 -d" && \
+			MKDIR_P="$(INSTALL) -d" && \
 		$(MAKE)
 	@touch $@
 
@@ -66,8 +66,8 @@ $($(fontconfig)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,
 	@touch $@
 
 $($(fontconfig)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fontconfig)-builddeps),$(modulefilesdir)/$$(dep)) $($(fontconfig)-prefix)/.pkgcheck
-	$(INSTALL) -m=6755 -d $($(fontconfig)-prefix)
-	$(INSTALL) -m=6755 -d $($(fontconfig)-prefix)/var
+	$(INSTALL) -d $($(fontconfig)-prefix)
+	$(INSTALL) -d $($(fontconfig)-prefix)/var
 	cd $($(fontconfig)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \

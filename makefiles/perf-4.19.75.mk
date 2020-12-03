@@ -32,10 +32,10 @@ $(perf)-modulefile = $(modulefilesdir)/$(perf)
 $(perf)-prefix = $(pkgdir)/$(perf)
 
 $($(perf)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(perf)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(perf)-prefix)/.pkgunpack: $$($(perf)-src) $($(perf)-srcdir)/.markerfile $($(perf)-prefix)/.markerfile
 	tar -C $($(perf)-srcdir) --strip-components 1 -x -f $<
@@ -46,7 +46,7 @@ $($(perf)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(p
 
 ifneq ($($(perf)-builddir),$($(perf)-srcdir))
 $($(perf)-builddir)/.markerfile: $($(perf)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(perf)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(perf)-builddeps),$(modulefilesdir)/$$(dep)) $($(perf)-builddir)/.markerfile $($(perf)-prefix)/.pkgpatch

@@ -35,10 +35,10 @@ $($(python-sortedcontainers)-src): $(dir $($(python-sortedcontainers)-src)).mark
 	$(CURL) $(curl_options) --output $@ $($(python-sortedcontainers)-srcurl)
 
 $($(python-sortedcontainers)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sortedcontainers)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sortedcontainers)-prefix)/.pkgunpack: $$($(python-sortedcontainers)-src) $($(python-sortedcontainers)-srcdir)/.markerfile $($(python-sortedcontainers)-prefix)/.markerfile
 	tar -C $($(python-sortedcontainers)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-sortedcontainers)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$
 	@touch $@
 
 $($(python-sortedcontainers)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-sortedcontainers)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sortedcontainers)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sortedcontainers)-prefix)/.pkgpatch

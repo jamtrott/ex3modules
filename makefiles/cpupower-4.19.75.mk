@@ -32,10 +32,10 @@ $(cpupower)-modulefile = $(modulefilesdir)/$(cpupower)
 $(cpupower)-prefix = $(pkgdir)/$(cpupower)
 
 $($(cpupower)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(cpupower)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(cpupower)-prefix)/.pkgunpack: $$($(cpupower)-src) $($(cpupower)-srcdir)/.markerfile $($(cpupower)-prefix)/.markerfile
 	tar -C $($(cpupower)-srcdir) --strip-components 1 -x -f $<
@@ -46,7 +46,7 @@ $($(cpupower)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 
 ifneq ($($(cpupower)-builddir),$($(cpupower)-srcdir))
 $($(cpupower)-builddir)/.markerfile: $($(cpupower)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(cpupower)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cpupower)-builddeps),$(modulefilesdir)/$$(dep)) $($(cpupower)-builddir)/.markerfile $($(cpupower)-prefix)/.pkgpatch
@@ -54,8 +54,7 @@ $($(cpupower)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(cpupower)-builddeps) && \
-		$(MAKE) confdir=$($(cpupower)-prefix)/etc/ \
-			INSTALL="$(INSTALL) -m=6755"
+		$(MAKE) confdir=$($(cpupower)-prefix)/etc/
 	@touch $@
 
 $($(cpupower)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cpupower)-builddeps),$(modulefilesdir)/$$(dep)) $($(cpupower)-builddir)/.markerfile $($(cpupower)-prefix)/.pkgbuild
@@ -66,7 +65,7 @@ $($(cpupower)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(cpupower)-builddeps) && \
-		$(MAKE) \
+		$(MAKE) install \
 			bindir=$($(cpupower)-prefix)/bin \
 			sbindir=$($(cpupower)-prefix)/sbin \
 			libdir=$($(cpupower)-prefix)/lib \
@@ -75,9 +74,7 @@ $($(cpupower)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,
 			localedir=$($(cpupower)-prefix)/share/locale \
 			docdir=$($(cpupower)-prefix)/share/doc/packages/cpupower \
 			confdir=$($(cpupower)-prefix)/etc/ \
-			bash_completion_dir=$($(cpupower)-prefix)/share/bash-completion/completions \
-			INSTALL="$(INSTALL) -m=6755" \
-		install
+			bash_completion_dir=$($(cpupower)-prefix)/share/bash-completion/completions
 	@touch $@
 
 $($(cpupower)-modulefile): $(modulefilesdir)/.markerfile $($(cpupower)-prefix)/.pkginstall

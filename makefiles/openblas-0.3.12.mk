@@ -34,10 +34,10 @@ $($(openblas)-src): $(dir $($(openblas)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(openblas)-srcurl)
 
 $($(openblas)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(openblas)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(openblas)-prefix)/.pkgunpack: $($(openblas)-src) $($(openblas)-srcdir)/.markerfile $($(openblas)-prefix)/.markerfile
 	tar -C $($(openblas)-srcdir) --strip-components 1 -xz -f $<

@@ -35,10 +35,10 @@ $($(texinfo)-src): $(dir $($(texinfo)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(texinfo)-srcurl)
 
 $($(texinfo)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(texinfo)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(texinfo)-prefix)/.pkgunpack: $($(texinfo)-src) $($(texinfo)-srcdir)/.markerfile $($(texinfo)-prefix)/.markerfile
 	tar -C $($(texinfo)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(texinfo)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 
 ifneq ($($(texinfo)-builddir),$($(texinfo)-srcdir))
 $($(texinfo)-builddir)/.markerfile: $($(texinfo)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(texinfo)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(texinfo)-builddeps),$(modulefilesdir)/$$(dep)) $($(texinfo)-builddir)/.markerfile $($(texinfo)-prefix)/.pkgpatch

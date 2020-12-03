@@ -35,10 +35,10 @@ $($(flex)-src): $(dir $($(flex)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(flex)-srcurl)
 
 $($(flex)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(flex)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(flex)-prefix)/.pkgunpack: $$($(flex)-src) $($(flex)-srcdir)/.markerfile $($(flex)-prefix)/.markerfile
 	tar -C $($(flex)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(flex)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(f
 
 ifneq ($($(flex)-builddir),$($(flex)-srcdir))
 $($(flex)-builddir)/.markerfile: $($(flex)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(flex)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(flex)-builddeps),$(modulefilesdir)/$$(dep)) $($(flex)-builddir)/.markerfile $($(flex)-prefix)/.pkgpatch

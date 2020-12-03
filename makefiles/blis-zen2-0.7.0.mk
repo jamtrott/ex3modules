@@ -45,10 +45,10 @@ $(blis-zen2): $(blis-zen2)-src $(blis-zen2)-unpack $(blis-zen2)-patch $(blis-zen
 
 else
 $($(blis-zen2)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(blis-zen2)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(blis-zen2)-prefix)/.pkgunpack: $$($(blis-zen2)-src) $($(blis-zen2)-srcdir)/.markerfile $($(blis-zen2)-prefix)/.markerfile
 	tar -C $($(blis-zen2)-srcdir) --strip-components 1 -xz -f $<
@@ -59,7 +59,7 @@ $($(blis-zen2)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$
 
 ifneq ($($(blis-zen2)-builddir),$($(blis-zen2)-srcdir))
 $($(blis-zen2)-builddir)/.markerfile: $($(blis-zen2)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(blis-zen2)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(blis-zen2)-builddeps),$(modulefilesdir)/$$(dep)) $($(blis-zen2)-builddir)/.markerfile $($(blis-zen2)-prefix)/.pkgpatch

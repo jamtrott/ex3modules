@@ -35,10 +35,10 @@ $($(python-sphinxcontrib-devhelp)-src): $(dir $($(python-sphinxcontrib-devhelp)-
 	$(CURL) $(curl_options) --output $@ $($(python-sphinxcontrib-devhelp)-srcurl)
 
 $($(python-sphinxcontrib-devhelp)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sphinxcontrib-devhelp)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sphinxcontrib-devhelp)-prefix)/.pkgunpack: $$($(python-sphinxcontrib-devhelp)-src) $($(python-sphinxcontrib-devhelp)-srcdir)/.markerfile $($(python-sphinxcontrib-devhelp)-prefix)/.markerfile
 	tar -C $($(python-sphinxcontrib-devhelp)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-sphinxcontrib-devhelp)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfi
 	@touch $@
 
 $($(python-sphinxcontrib-devhelp)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-sphinxcontrib-devhelp)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-devhelp)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinxcontrib-devhelp)-prefix)/.pkgpatch

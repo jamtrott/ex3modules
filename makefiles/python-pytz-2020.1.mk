@@ -35,10 +35,10 @@ $($(python-pytz)-src): $(dir $($(python-pytz)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pytz)-srcurl)
 
 $($(python-pytz)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pytz)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pytz)-prefix)/.pkgunpack: $$($(python-pytz)-src) $($(python-pytz)-srcdir)/.markerfile $($(python-pytz)-prefix)/.markerfile
 	tar -C $($(python-pytz)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-pytz)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep
 	@touch $@
 
 $($(python-pytz)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-pytz)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pytz)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pytz)-prefix)/.pkgpatch

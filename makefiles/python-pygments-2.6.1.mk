@@ -35,10 +35,10 @@ $($(python-pygments)-src): $(dir $($(python-pygments)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pygments)-srcurl)
 
 $($(python-pygments)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pygments)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pygments)-prefix)/.pkgunpack: $$($(python-pygments)-src) $($(python-pygments)-srcdir)/.markerfile $($(python-pygments)-prefix)/.markerfile
 	tar -C $($(python-pygments)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-pygments)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach
 	@touch $@
 
 $($(python-pygments)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-pygments)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pygments)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pygments)-prefix)/.pkgpatch

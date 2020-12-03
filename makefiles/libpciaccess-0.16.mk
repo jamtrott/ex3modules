@@ -34,10 +34,10 @@ $($(libpciaccess)-src): $(dir $($(libpciaccess)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libpciaccess)-srcurl)
 
 $($(libpciaccess)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libpciaccess)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libpciaccess)-prefix)/.pkgunpack: $($(libpciaccess)-src) $($(libpciaccess)-srcdir)/.markerfile $($(libpciaccess)-prefix)/.markerfile
 	tar -C $($(libpciaccess)-srcdir) --strip-components 1 -xj -f $<

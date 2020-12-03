@@ -34,10 +34,10 @@ $($(xtrans)-src): $(dir $($(xtrans)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(xtrans)-srcurl)
 
 $($(xtrans)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(xtrans)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(xtrans)-prefix)/.pkgunpack: $($(xtrans)-src) $($(xtrans)-srcdir)/.markerfile $($(xtrans)-prefix)/.markerfile
 	tar -C $($(xtrans)-srcdir) --strip-components 1 -xj -f $<

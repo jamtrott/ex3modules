@@ -35,10 +35,10 @@ $($(python-toml)-src): $(dir $($(python-toml)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-toml)-srcurl)
 
 $($(python-toml)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-toml)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-toml)-prefix)/.pkgunpack: $$($(python-toml)-src) $($(python-toml)-srcdir)/.markerfile $($(python-toml)-prefix)/.markerfile
 	tar -C $($(python-toml)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-toml)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep
 	@touch $@
 
 $($(python-toml)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-toml)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-toml)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-toml)-prefix)/.pkgpatch

@@ -35,10 +35,10 @@ $($(gnuplot)-src): $(dir $($(gnuplot)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(gnuplot)-srcurl)
 
 $($(gnuplot)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gnuplot)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gnuplot)-prefix)/.pkgunpack: $($(gnuplot)-src) $($(gnuplot)-srcdir)/.markerfile $($(gnuplot)-prefix)/.markerfile
 	tar -C $($(gnuplot)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(gnuplot)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 
 ifneq ($($(gnuplot)-builddir),$($(gnuplot)-srcdir))
 $($(gnuplot)-builddir)/.markerfile: $($(gnuplot)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(gnuplot)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(gnuplot)-builddeps),$(modulefilesdir)/$$(dep)) $($(gnuplot)-builddir)/.markerfile $($(gnuplot)-prefix)/.pkgpatch

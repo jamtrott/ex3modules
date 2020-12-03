@@ -35,10 +35,10 @@ $($(python-petsc4py)-src): $(dir $($(python-petsc4py)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-petsc4py)-srcurl)
 
 $($(python-petsc4py)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-petsc4py)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-petsc4py)-prefix)/.pkgunpack: $$($(python-petsc4py)-src) $($(python-petsc4py)-srcdir)/.markerfile $($(python-petsc4py)-prefix)/.markerfile
 	tar -C $($(python-petsc4py)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-petsc4py)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach
 	@touch $@
 
 $($(python-petsc4py)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-petsc4py)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-petsc4py)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-petsc4py)-prefix)/.pkgpatch

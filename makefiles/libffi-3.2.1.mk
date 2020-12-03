@@ -35,10 +35,10 @@ $($(libffi)-src): $(dir $($(libffi)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libffi)-srcurl)
 
 $($(libffi)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libffi)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libffi)-prefix)/.pkgunpack: $$($(libffi)-src) $($(libffi)-srcdir)/.markerfile $($(libffi)-prefix)/.markerfile
 	tar -C $($(libffi)-srcdir) --strip-components 1 -xz -f $<
@@ -143,7 +143,7 @@ $($(libffi)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($
 
 ifneq ($($(libffi)-builddir),$($(libffi)-srcdir))
 $($(libffi)-builddir)/.markerfile: $($(libffi)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(libffi)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libffi)-builddeps),$(modulefilesdir)/$$(dep)) $($(libffi)-builddir)/.markerfile $($(libffi)-prefix)/.pkgpatch

@@ -35,52 +35,20 @@ $($(pybind11)-src): $(dir $($(pybind11)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(pybind11)-srcurl)
 
 $($(pybind11)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(pybind11)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(pybind11)-prefix)/.pkgunpack: $($(pybind11)-src) $($(pybind11)-srcdir)/.markerfile $($(pybind11)-prefix)/.markerfile
 	tar -C $($(pybind11)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
-$($(pybind11)-srcdir)/0001-fix-install-directory-permissions.patch: $($(pybind11)-srcdir)/.markerfile
-	@printf '' >$@.tmp
-	@echo 'From 479482e603b72282bf5db6e7e4d85be611deb2e2 Mon Sep 17 00:00:00 2001' >>$@.tmp
-	@echo 'From: "James D. Trotter" <james@simula.no>' >>$@.tmp
-	@echo 'Date: Mon, 23 Nov 2020 19:58:55 +0100' >>$@.tmp
-	@echo 'Subject: [PATCH] Fix install directory permissions' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '---' >>$@.tmp
-	@echo ' CMakeLists.txt | 3 ++-' >>$@.tmp
-	@echo ' 1 file changed, 2 insertions(+), 1 deletion(-)' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo 'diff --git a/CMakeLists.txt b/CMakeLists.txt' >>$@.tmp
-	@echo 'index 85ecd90..6420a83 100644' >>$@.tmp
-	@echo '--- a/CMakeLists.txt' >>$@.tmp
-	@echo '+++ b/CMakeLists.txt' >>$@.tmp
-	@echo '@@ -120,7 +120,8 @@ if(NOT (CMAKE_VERSION VERSION_LESS 3.0))  # CMake >= 3.0' >>$@.tmp
-	@echo ' endif()' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo ' if (PYBIND11_INSTALL)' >>$@.tmp
-	@echo '-  install(DIRECTORY $${PYBIND11_INCLUDE_DIR}/pybind11 DESTINATION $${CMAKE_INSTALL_INCLUDEDIR})' >>$@.tmp
-	@echo '+  install(DIRECTORY $${PYBIND11_INCLUDE_DIR}/pybind11 DESTINATION $${CMAKE_INSTALL_INCLUDEDIR}' >>$@.tmp
-	@echo '+    DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE)' >>$@.tmp
-	@echo '   # GNUInstallDirs "DATADIR" wrong here; CMake search path wants "share".' >>$@.tmp
-	@echo '   set(PYBIND11_CMAKECONFIG_INSTALL_DIR "share/cmake/$${PROJECT_NAME}" CACHE STRING "install path for pybind11Config.cmake")' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '--' >>$@.tmp
-	@echo '2.17.1' >>$@.tmp
-	@echo '' >>$@.tmp
-	@mv $@.tmp $@
-
-$($(pybind11)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(pybind11)-builddeps),$(modulefilesdir)/$$(dep)) $($(pybind11)-prefix)/.pkgunpack $($(pybind11)-srcdir)/0001-fix-install-directory-permissions.patch
-	cd $($(pybind11)-srcdir) && \
-		patch -t -p1 <0001-fix-install-directory-permissions.patch
+$($(pybind11)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(pybind11)-builddeps),$(modulefilesdir)/$$(dep)) $($(pybind11)-prefix)/.pkgunpack
 	@touch $@
 
 $($(pybind11)-builddir)/.markerfile: $($(pybind11)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(pybind11)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(pybind11)-builddeps),$(modulefilesdir)/$$(dep)) $($(pybind11)-builddir)/.markerfile $($(pybind11)-prefix)/.pkgpatch
 	cd $($(pybind11)-builddir) && \
@@ -88,7 +56,6 @@ $($(pybind11)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(pybind11)-builddeps) && \
 		cmake .. -DCMAKE_INSTALL_PREFIX=$($(pybind11)-prefix) \
-			-DCMAKE_INSTALL_DEFAULT_DIRECTORY_PERMISSIONS=OWNER_READ\;OWNER_EXECUTE\;OWNER_WRITE\;GROUP_READ\;GROUP_EXECUTE\;SETGID\;WORLD_READ\;WORLD_EXECUTE \
 			-DBUILD_SHARED_LIBS=TRUE && \
 		$(MAKE)
 	@touch $@

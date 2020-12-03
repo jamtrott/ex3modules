@@ -35,10 +35,10 @@ $($(python-sphinxcontrib-jsmath)-src): $(dir $($(python-sphinxcontrib-jsmath)-sr
 	$(CURL) $(curl_options) --output $@ $($(python-sphinxcontrib-jsmath)-srcurl)
 
 $($(python-sphinxcontrib-jsmath)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sphinxcontrib-jsmath)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sphinxcontrib-jsmath)-prefix)/.pkgunpack: $$($(python-sphinxcontrib-jsmath)-src) $($(python-sphinxcontrib-jsmath)-srcdir)/.markerfile $($(python-sphinxcontrib-jsmath)-prefix)/.markerfile
 	tar -C $($(python-sphinxcontrib-jsmath)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-sphinxcontrib-jsmath)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfil
 	@touch $@
 
 $($(python-sphinxcontrib-jsmath)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-sphinxcontrib-jsmath)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-jsmath)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinxcontrib-jsmath)-prefix)/.pkgpatch

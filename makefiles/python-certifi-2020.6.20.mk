@@ -35,10 +35,10 @@ $($(python-certifi)-src): $(dir $($(python-certifi)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-certifi)-srcurl)
 
 $($(python-certifi)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-certifi)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-certifi)-prefix)/.pkgunpack: $$($(python-certifi)-src) $($(python-certifi)-srcdir)/.markerfile $($(python-certifi)-prefix)/.markerfile
 	tar -C $($(python-certifi)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-certifi)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach 
 	@touch $@
 
 $($(python-certifi)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-certifi)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-certifi)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-certifi)-prefix)/.pkgpatch

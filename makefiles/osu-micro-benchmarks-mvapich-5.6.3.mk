@@ -31,10 +31,10 @@ $(osu-micro-benchmarks-mvapich)-modulefile = $(modulefilesdir)/$(osu-micro-bench
 $(osu-micro-benchmarks-mvapich)-prefix = $(pkgdir)/$(osu-micro-benchmarks-mvapich)
 
 $($(osu-micro-benchmarks-mvapich)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(osu-micro-benchmarks-mvapich)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(osu-micro-benchmarks-mvapich)-prefix)/.pkgunpack: $$($(osu-micro-benchmarks-mvapich)-src) $($(osu-micro-benchmarks-mvapich)-srcdir)/.markerfile $($(osu-micro-benchmarks-mvapich)-prefix)/.markerfile
 	tar -C $($(osu-micro-benchmarks-mvapich)-srcdir) --strip-components 1 -xz -f $<

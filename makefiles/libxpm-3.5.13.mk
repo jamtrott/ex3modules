@@ -34,10 +34,10 @@ $($(libxpm)-src): $(dir $($(libxpm)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxpm)-srcurl)
 
 $($(libxpm)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxpm)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxpm)-prefix)/.pkgunpack: $($(libxpm)-src) $($(libxpm)-srcdir)/.markerfile $($(libxpm)-prefix)/.markerfile
 	tar -C $($(libxpm)-srcdir) --strip-components 1 -xj -f $<

@@ -35,10 +35,10 @@ $($(libunwind)-src): $(dir $($(libunwind)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libunwind)-srcurl)
 
 $($(libunwind)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libunwind)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libunwind)-prefix)/.pkgunpack: $($(libunwind)-src) $($(libunwind)-srcdir)/.markerfile $($(libunwind)-prefix)/.markerfile
 	tar -C $($(libunwind)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(libunwind)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$
 
 ifneq ($($(libunwind)-builddir),$($(libunwind)-srcdir))
 $($(libunwind)-builddir)/.markerfile: $($(libunwind)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(libunwind)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libunwind)-builddeps),$(modulefilesdir)/$$(dep)) $($(libunwind)-builddir)/.markerfile $($(libunwind)-prefix)/.pkgpatch

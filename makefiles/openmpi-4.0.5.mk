@@ -34,10 +34,10 @@ $($(openmpi)-src): $(dir $($(openmpi)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(openmpi)-srcurl)
 
 $($(openmpi)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(openmpi)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(openmpi)-prefix)/.pkgunpack: $($(openmpi)-src) $($(openmpi)-srcdir)/.markerfile $($(openmpi)-prefix)/.markerfile
 	tar -C $($(openmpi)-srcdir) --strip-components 1 -xj -f $<

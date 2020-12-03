@@ -35,10 +35,10 @@ $($(combblas)-src): $(dir $($(combblas)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(combblas)-srcurl)
 
 $($(combblas)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(combblas)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(combblas)-prefix)/.pkgunpack: $$($(combblas)-src) $($(combblas)-srcdir)/.markerfile $($(combblas)-prefix)/.markerfile
 	tar -C $($(combblas)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(combblas)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 
 ifneq ($($(combblas)-builddir),$($(combblas)-srcdir))
 $($(combblas)-builddir)/.markerfile: $($(combblas)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(combblas)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(combblas)-builddeps),$(modulefilesdir)/$$(dep)) $($(combblas)-builddir)/.markerfile $($(combblas)-prefix)/.pkgpatch
@@ -72,7 +72,7 @@ $($(combblas)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(combblas)-builddeps) && \
 		$(MAKE) install
-	$(INSTALL) -m=6755 -d $($(combblas)-prefix)/include/CombBLAS/BipartiteMatchings
+	$(INSTALL) -d $($(combblas)-prefix)/include/CombBLAS/BipartiteMatchings
 	$(INSTALL) -m=644 $($(combblas)-srcdir)/BipartiteMatchings/* $($(combblas)-prefix)/include/CombBLAS/BipartiteMatchings/
 	sed -i 's/double t1Comp, t1Comm, t2Comp, t2Comm, t3Comp, t3Comm, t4Comp, t4Comm, t5Comp, t5Comm, tUpdateMateComp;/static double t1Comp, t1Comm, t2Comp, t2Comm, t3Comp, t3Comm, t4Comp, t4Comm, t5Comp, t5Comm, tUpdateMateComp;/' $($(combblas)-prefix)/include/CombBLAS/BipartiteMatchings/ApproxWeightPerfectMatching.h
 	sed -i 's/int ThreadBuffLenForBinning(int itemsize, int nbins)/static int ThreadBuffLenForBinning(int itemsize, int nbins)/' $($(combblas)-prefix)/include/CombBLAS/BipartiteMatchings/ApproxWeightPerfectMatching.h

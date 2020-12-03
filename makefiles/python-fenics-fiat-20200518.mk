@@ -36,15 +36,15 @@ $($(python-fenics-fiat-20200518)-src): $(dir $($(python-fenics-fiat-20200518)-sr
 	$(CURL) $(curl_options) --output $@ $($(python-fenics-fiat-20200518)-srcurl)
 
 $($(python-fenics-fiat-20200518)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 ifneq ($($(python-fenics-fiat-20200518)-builddir),$($(python-fenics-fiat-20200518)-srcdir))
 $($(python-fenics-fiat-20200518)-builddir)/.markerfile: $($(python-fenics-fiat-20200518)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(python-fenics-fiat-20200518)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-fenics-fiat-20200518)-prefix)/.pkgunpack: $$($(python-fenics-fiat-20200518)-src) $($(python-fenics-fiat-20200518)-srcdir)/.markerfile $($(python-fenics-fiat-20200518)-prefix)/.markerfile
 	cd $($(python-fenics-fiat-20200518)-srcdir) && unzip -o $<
@@ -54,7 +54,7 @@ $($(python-fenics-fiat-20200518)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfil
 	@touch $@
 
 $($(python-fenics-fiat-20200518)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-fenics-fiat-20200518)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-fenics-fiat-20200518)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-fenics-fiat-20200518)-prefix)/.pkgpatch $($(python-fenics-fiat-20200518)-builddir)/.markerfile

@@ -35,10 +35,10 @@ $($(python-execnet)-src): $(dir $($(python-execnet)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-execnet)-srcurl)
 
 $($(python-execnet)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-execnet)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-execnet)-prefix)/.pkgunpack: $$($(python-execnet)-src) $($(python-execnet)-srcdir)/.markerfile $($(python-execnet)-prefix)/.markerfile
 	tar -C $($(python-execnet)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-execnet)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach 
 	@touch $@
 
 $($(python-execnet)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-execnet)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-execnet)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-execnet)-prefix)/.pkgpatch

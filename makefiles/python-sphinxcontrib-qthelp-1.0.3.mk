@@ -35,10 +35,10 @@ $($(python-sphinxcontrib-qthelp)-src): $(dir $($(python-sphinxcontrib-qthelp)-sr
 	$(CURL) $(curl_options) --output $@ $($(python-sphinxcontrib-qthelp)-srcurl)
 
 $($(python-sphinxcontrib-qthelp)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sphinxcontrib-qthelp)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sphinxcontrib-qthelp)-prefix)/.pkgunpack: $$($(python-sphinxcontrib-qthelp)-src) $($(python-sphinxcontrib-qthelp)-srcdir)/.markerfile $($(python-sphinxcontrib-qthelp)-prefix)/.markerfile
 	tar -C $($(python-sphinxcontrib-qthelp)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-sphinxcontrib-qthelp)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfil
 	@touch $@
 
 $($(python-sphinxcontrib-qthelp)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-sphinxcontrib-qthelp)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-qthelp)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinxcontrib-qthelp)-prefix)/.pkgpatch

@@ -35,10 +35,10 @@ $($(python-h5py)-src): $(dir $($(python-h5py)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-h5py)-srcurl)
 
 $($(python-h5py)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-h5py)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-h5py)-prefix)/.pkgunpack: $$($(python-h5py)-src) $($(python-h5py)-srcdir)/.markerfile $($(python-h5py)-prefix)/.markerfile
 	tar -C $($(python-h5py)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-h5py)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep
 	@touch $@
 
 $($(python-h5py)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-h5py)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-h5py)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-h5py)-prefix)/.pkgpatch

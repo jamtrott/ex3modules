@@ -35,10 +35,10 @@ $($(python-virtualenv)-src): $(dir $($(python-virtualenv)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-virtualenv)-srcurl)
 
 $($(python-virtualenv)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-virtualenv)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-virtualenv)-prefix)/.pkgunpack: $$($(python-virtualenv)-src) $($(python-virtualenv)-srcdir)/.markerfile $($(python-virtualenv)-prefix)/.markerfile
 	tar -C $($(python-virtualenv)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-virtualenv)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(forea
 	@touch $@
 
 $($(python-virtualenv)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-virtualenv)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-virtualenv)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-virtualenv)-prefix)/.pkgpatch

@@ -36,15 +36,15 @@ $($(python-fenics-ffcx-20200522)-src): $(dir $($(python-fenics-ffcx-20200522)-sr
 	$(CURL) $(curl_options) --output $@ $($(python-fenics-ffcx-20200522)-srcurl)
 
 $($(python-fenics-ffcx-20200522)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 ifneq ($($(python-fenics-ffcx-20200522)-builddir),$($(python-fenics-ffcx-20200522)-srcdir))
 $($(python-fenics-ffcx-20200522)-builddir)/.markerfile: $($(python-fenics-ffcx-20200522)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(python-fenics-ffcx-20200522)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-fenics-ffcx-20200522)-prefix)/.pkgunpack: $$($(python-fenics-ffcx-20200522)-src) $($(python-fenics-ffcx-20200522)-srcdir)/.markerfile $($(python-fenics-ffcx-20200522)-prefix)/.markerfile
 	cd $($(python-fenics-ffcx-20200522)-srcdir) && unzip -o $<
@@ -54,7 +54,7 @@ $($(python-fenics-ffcx-20200522)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfil
 	@touch $@
 
 $($(python-fenics-ffcx-20200522)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-fenics-ffcx-20200522)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-fenics-ffcx-20200522)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-fenics-ffcx-20200522)-prefix)/.pkgpatch $($(python-fenics-ffcx-20200522)-builddir)/.markerfile
@@ -73,7 +73,7 @@ $($(python-fenics-ffcx-20200522)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfil
 	@touch $@
 
 $($(python-fenics-ffcx-20200522)-prefix)/include/.markerfile: $($(python-fenics-ffcx-20200522)-prefix)/.pkgcheck
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-fenics-ffcx-20200522)-prefix)/include/ufc.h: $($(python-fenics-ffcx-20200522)-prefix)/include/.markerfile $($(python-fenics-ffcx-20200522)-prefix)/.pkgcheck

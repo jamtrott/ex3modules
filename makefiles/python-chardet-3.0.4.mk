@@ -35,10 +35,10 @@ $($(python-chardet)-src): $(dir $($(python-chardet)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-chardet)-srcurl)
 
 $($(python-chardet)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-chardet)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-chardet)-prefix)/.pkgunpack: $$($(python-chardet)-src) $($(python-chardet)-srcdir)/.markerfile $($(python-chardet)-prefix)/.markerfile
 	tar -C $($(python-chardet)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-chardet)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach 
 	@touch $@
 
 $($(python-chardet)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-chardet)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-chardet)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-chardet)-prefix)/.pkgpatch

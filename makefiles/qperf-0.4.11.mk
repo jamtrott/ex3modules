@@ -35,10 +35,10 @@ $($(qperf)-src): $(dir $($(qperf)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(qperf)-srcurl)
 
 $($(qperf)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(qperf)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(qperf)-prefix)/.pkgunpack: $($(qperf)-src) $($(qperf)-srcdir)/.markerfile $($(qperf)-prefix)/.markerfile
 	tar -C $($(qperf)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(qperf)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 
 ifneq ($($(qperf)-builddir),$($(qperf)-srcdir))
 $($(qperf)-builddir)/.markerfile: $($(qperf)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(qperf)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(qperf)-builddeps),$(modulefilesdir)/$$(dep)) $($(qperf)-builddir)/.markerfile $($(qperf)-prefix)/.pkgpatch

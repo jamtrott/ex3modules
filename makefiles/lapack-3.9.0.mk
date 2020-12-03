@@ -35,10 +35,10 @@ $($(lapack)-src): $(dir $($(lapack)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(lapack)-srcurl)
 
 $($(lapack)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(lapack)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(lapack)-prefix)/.pkgunpack: $($(lapack)-src) $($(lapack)-srcdir)/.markerfile $($(lapack)-prefix)/.markerfile
 	tar -C $($(lapack)-srcdir) --strip-components 1 -xz -f $<
@@ -72,7 +72,7 @@ $($(lapack)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($
 
 ifneq ($($(lapack)-builddir),$($(lapack)-srcdir))
 $($(lapack)-builddir)/.markerfile: $($(lapack)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(lapack)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(lapack)-builddeps),$(modulefilesdir)/$$(dep)) $($(lapack)-builddir)/.markerfile $($(lapack)-prefix)/.pkgpatch
@@ -117,16 +117,16 @@ $($(lapack)-srcdir)/lapacke.pc: $($(lapack)-srcdir)/.markerfile
 	@mv $@.tmp $@
 
 $($(lapack)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(lapack)-builddeps),$(modulefilesdir)/$$(dep)) $($(lapack)-builddir)/.markerfile $($(lapack)-prefix)/.pkgcheck $($(lapack)-srcdir)/lapack.pc $($(lapack)-srcdir)/lapacke.pc
-	$(INSTALL) -m=6755 -d $($(lapack)-prefix)/include
+	$(INSTALL) -d $($(lapack)-prefix)/include
 	$(INSTALL) -m644 $($(lapack)-srcdir)/LAPACKE/include/lapack.h $($(lapack)-prefix)/include
 	$(INSTALL) -m644 $($(lapack)-srcdir)/LAPACKE/include/lapacke.h $($(lapack)-prefix)/include
 	$(INSTALL) -m644 $($(lapack)-srcdir)/LAPACKE/include/lapacke_config.h $($(lapack)-prefix)/include
 	$(INSTALL) -m644 $($(lapack)-srcdir)/LAPACKE/include/lapacke_mangling.h $($(lapack)-prefix)/include
 	$(INSTALL) -m644 $($(lapack)-srcdir)/LAPACKE/include/lapacke_utils.h $($(lapack)-prefix)/include
-	$(INSTALL) -m=6755 -d $($(lapack)-prefix)/lib
+	$(INSTALL) -d $($(lapack)-prefix)/lib
 	$(INSTALL) -m755 $($(lapack)-builddir)/liblapack.so $($(lapack)-prefix)/lib
 	$(INSTALL) -m755 $($(lapack)-builddir)/liblapacke.so $($(lapack)-prefix)/lib
-	$(INSTALL) -m=6755 -d $($(lapack)-prefix)/lib/pkgconfig
+	$(INSTALL) -d $($(lapack)-prefix)/lib/pkgconfig
 	$(INSTALL) -m644 $($(lapack)-srcdir)/lapack.pc $($(lapack)-prefix)/lib/pkgconfig
 	$(INSTALL) -m644 $($(lapack)-srcdir)/lapacke.pc $($(lapack)-prefix)/lib/pkgconfig
 	@touch $@

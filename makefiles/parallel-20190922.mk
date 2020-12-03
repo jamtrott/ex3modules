@@ -35,10 +35,10 @@ $($(parallel)-src): $(dir $($(parallel)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(parallel)-srcurl)
 
 $($(parallel)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(parallel)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(parallel)-prefix)/.pkgunpack: $($(parallel)-src) $($(parallel)-srcdir)/.markerfile $($(parallel)-prefix)/.markerfile
 	tar -C $($(parallel)-srcdir) --strip-components 1 -xj -f $<
@@ -49,7 +49,7 @@ $($(parallel)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 
 ifneq ($($(parallel)-builddir),$($(parallel)-srcdir))
 $($(parallel)-builddir)/.markerfile: $($(parallel)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(parallel)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(parallel)-builddeps),$(modulefilesdir)/$$(dep)) $($(parallel)-builddir)/.markerfile $($(parallel)-prefix)/.pkgpatch

@@ -35,10 +35,10 @@ $($(parmetis)-src): $(dir $($(parmetis)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(parmetis)-srcurl)
 
 $($(parmetis)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(parmetis)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(parmetis)-prefix)/.pkgunpack: $($(parmetis)-src) $($(parmetis)-srcdir)/.markerfile $($(parmetis)-prefix)/.markerfile
 	tar -C $($(parmetis)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(parmetis)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 
 ifneq ($($(parmetis)-builddir),$($(parmetis)-srcdir))
 $($(parmetis)-builddir)/.markerfile: $($(parmetis)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(parmetis)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(parmetis)-builddeps),$(modulefilesdir)/$$(dep)) $($(parmetis)-builddir)/.markerfile $($(parmetis)-prefix)/.pkgpatch

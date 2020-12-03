@@ -34,10 +34,10 @@ $($(libwebp)-src): $(dir $($(libwebp)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libwebp)-srcurl)
 
 $($(libwebp)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libwebp)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libwebp)-prefix)/.pkgunpack: $($(libwebp)-src) $($(libwebp)-srcdir)/.markerfile $($(libwebp)-prefix)/.markerfile
 	tar -C $($(libwebp)-srcdir) --strip-components 1 -xz -f $<

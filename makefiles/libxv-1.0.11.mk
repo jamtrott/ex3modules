@@ -34,10 +34,10 @@ $($(libxv)-src): $(dir $($(libxv)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxv)-srcurl)
 
 $($(libxv)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxv)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxv)-prefix)/.pkgunpack: $($(libxv)-src) $($(libxv)-srcdir)/.markerfile $($(libxv)-prefix)/.markerfile
 	tar -C $($(libxv)-srcdir) --strip-components 1 -xj -f $<

@@ -34,10 +34,10 @@ $($(xorg-util-macros)-src): $(dir $($(xorg-util-macros)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(xorg-util-macros)-srcurl)
 
 $($(xorg-util-macros)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(xorg-util-macros)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(xorg-util-macros)-prefix)/.pkgunpack: $($(xorg-util-macros)-src) $($(xorg-util-macros)-srcdir)/.markerfile $($(xorg-util-macros)-prefix)/.markerfile
 	tar -C $($(xorg-util-macros)-srcdir) --strip-components 1 -xj -f $<

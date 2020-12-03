@@ -34,10 +34,10 @@ $($(harfbuzz)-src): $(dir $($(harfbuzz)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(harfbuzz)-srcurl)
 
 $($(harfbuzz)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(harfbuzz)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(harfbuzz)-prefix)/.pkgunpack: $($(harfbuzz)-src) $($(harfbuzz)-srcdir)/.markerfile $($(harfbuzz)-prefix)/.markerfile
 	tar -C $($(harfbuzz)-srcdir) --strip-components 1 -x -f $<

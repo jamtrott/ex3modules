@@ -34,10 +34,10 @@ $($(libxscrnsaver)-src): $(dir $($(libxscrnsaver)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxscrnsaver)-srcurl)
 
 $($(libxscrnsaver)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxscrnsaver)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxscrnsaver)-prefix)/.pkgunpack: $($(libxscrnsaver)-src) $($(libxscrnsaver)-srcdir)/.markerfile $($(libxscrnsaver)-prefix)/.markerfile
 	tar -C $($(libxscrnsaver)-srcdir) --strip-components 1 -xj -f $<

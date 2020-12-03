@@ -35,10 +35,10 @@ $($(python-freezegun)-src): $(dir $($(python-freezegun)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-freezegun)-srcurl)
 
 $($(python-freezegun)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-freezegun)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-freezegun)-prefix)/.pkgunpack: $$($(python-freezegun)-src) $($(python-freezegun)-srcdir)/.markerfile $($(python-freezegun)-prefix)/.markerfile
 	tar -C $($(python-freezegun)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-freezegun)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreac
 	@touch $@
 
 $($(python-freezegun)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-freezegun)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-freezegun)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-freezegun)-prefix)/.pkgpatch

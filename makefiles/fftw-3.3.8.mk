@@ -35,10 +35,10 @@ $($(fftw)-src): $(dir $($(fftw)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(fftw)-srcurl)
 
 $($(fftw)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(fftw)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(fftw)-prefix)/.pkgunpack: $$($(fftw)-src) $($(fftw)-srcdir)/.markerfile $($(fftw)-prefix)/.markerfile
 	tar -C $($(fftw)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(fftw)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(f
 
 ifneq ($($(fftw)-builddir),$($(fftw)-srcdir))
 $($(fftw)-builddir)/.markerfile: $($(fftw)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(fftw)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fftw)-builddeps),$(modulefilesdir)/$$(dep)) $($(fftw)-builddir)/.markerfile $($(fftw)-prefix)/.pkgpatch

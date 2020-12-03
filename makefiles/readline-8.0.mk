@@ -34,10 +34,10 @@ $($(readline)-src): $(dir $($(readline)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(readline)-srcurl)
 
 $($(readline)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(readline)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(readline)-prefix)/.pkgunpack: $($(readline)-src) $($(readline)-srcdir)/.markerfile $($(readline)-prefix)/.markerfile
 	tar -C $($(readline)-srcdir) --strip-components 1 -xz -f $<

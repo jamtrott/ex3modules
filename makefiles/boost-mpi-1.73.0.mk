@@ -31,10 +31,10 @@ $(boost-mpi)-modulefile = $(modulefilesdir)/$(boost-mpi)
 $(boost-mpi)-prefix = $(pkgdir)/$(boost-mpi)
 
 $($(boost-mpi)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(boost-mpi)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(boost-mpi)-prefix)/.pkgunpack: $$($(boost-mpi)-src) $($(boost-mpi)-srcdir)/.markerfile $($(boost-mpi)-prefix)/.markerfile
 	tar -C $($(boost-mpi)-srcdir) --strip-components 1 -xj -f $<

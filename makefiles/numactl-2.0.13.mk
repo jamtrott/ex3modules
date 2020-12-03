@@ -31,13 +31,13 @@ $(numactl)-modulefile = $(modulefilesdir)/$(numactl)
 $(numactl)-prefix = $(pkgdir)/$(numactl)
 
 $($(numactl)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(numactl)-src): $(dir $($(numactl)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(numactl)-srcurl)
 
 $($(numactl)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(numactl)-prefix)/.pkgunpack: $($(numactl)-src) $($(numactl)-srcdir)/.markerfile $($(numactl)-prefix)/.markerfile
 	tar -C $($(numactl)-srcdir) --strip-components 1 -xz -f $<

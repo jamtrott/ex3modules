@@ -31,10 +31,10 @@ $(osu-micro-benchmarks-openmpi)-modulefile = $(modulefilesdir)/$(osu-micro-bench
 $(osu-micro-benchmarks-openmpi)-prefix = $(pkgdir)/$(osu-micro-benchmarks-openmpi)
 
 $($(osu-micro-benchmarks-openmpi)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(osu-micro-benchmarks-openmpi)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(osu-micro-benchmarks-openmpi)-prefix)/.pkgunpack: $$($(osu-micro-benchmarks-openmpi)-src) $($(osu-micro-benchmarks-openmpi)-srcdir)/.markerfile $($(osu-micro-benchmarks-openmpi)-prefix)/.markerfile
 	tar -C $($(osu-micro-benchmarks-openmpi)-srcdir) --strip-components 1 -xz -f $<

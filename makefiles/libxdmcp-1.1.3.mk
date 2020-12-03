@@ -34,10 +34,10 @@ $($(libxdmcp)-src): $(dir $($(libxdmcp)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxdmcp)-srcurl)
 
 $($(libxdmcp)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxdmcp)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxdmcp)-prefix)/.pkgunpack: $($(libxdmcp)-src) $($(libxdmcp)-srcdir)/.markerfile $($(libxdmcp)-prefix)/.markerfile
 	tar -C $($(libxdmcp)-srcdir) --strip-components 1 -xj -f $<

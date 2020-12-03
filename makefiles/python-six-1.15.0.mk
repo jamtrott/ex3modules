@@ -35,10 +35,10 @@ $($(python-six)-src): $(dir $($(python-six)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-six)-srcurl)
 
 $($(python-six)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-six)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-six)-prefix)/.pkgunpack: $$($(python-six)-src) $($(python-six)-srcdir)/.markerfile $($(python-six)-prefix)/.markerfile
 	tar -C $($(python-six)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-six)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,
 	@touch $@
 
 $($(python-six)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-six)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-six)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-six)-prefix)/.pkgpatch

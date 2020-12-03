@@ -35,10 +35,10 @@ $($(meson)-src): $(dir $($(meson)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(meson)-srcurl)
 
 $($(meson)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(meson)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(meson)-prefix)/.pkgunpack: $($(meson)-src) $($(meson)-srcdir)/.markerfile $($(meson)-prefix)/.markerfile
 	tar -C $($(meson)-srcdir) --strip-components 1 -xz -f $<
@@ -64,7 +64,7 @@ $($(meson)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 	@touch $@
 
 $($(meson)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(meson)-builddeps),$(modulefilesdir)/$$(dep)) $($(meson)-prefix)/.pkgcheck
-	$(INSTALL) -m=6755 -d $($(meson)-site-packages)
+	$(INSTALL) -d $($(meson)-site-packages)
 	cd $($(meson)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \

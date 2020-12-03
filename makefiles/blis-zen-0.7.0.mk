@@ -45,10 +45,10 @@ $(blis-zen): $(blis-zen)-src $(blis-zen)-unpack $(blis-zen)-patch $(blis-zen)-bu
 
 else
 $($(blis-zen)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(blis-zen)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(blis-zen)-prefix)/.pkgunpack: $$($(blis-zen)-src) $($(blis-zen)-srcdir)/.markerfile $($(blis-zen)-prefix)/.markerfile
 	tar -C $($(blis-zen)-srcdir) --strip-components 1 -xz -f $<
@@ -59,7 +59,7 @@ $($(blis-zen)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 
 ifneq ($($(blis-zen)-builddir),$($(blis-zen)-srcdir))
 $($(blis-zen)-builddir)/.markerfile: $($(blis-zen)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(blis-zen)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(blis-zen)-builddeps),$(modulefilesdir)/$$(dep)) $($(blis-zen)-builddir)/.markerfile $($(blis-zen)-prefix)/.pkgpatch

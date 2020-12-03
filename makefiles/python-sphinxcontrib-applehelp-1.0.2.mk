@@ -35,10 +35,10 @@ $($(python-sphinxcontrib-applehelp)-src): $(dir $($(python-sphinxcontrib-applehe
 	$(CURL) $(curl_options) --output $@ $($(python-sphinxcontrib-applehelp)-srcurl)
 
 $($(python-sphinxcontrib-applehelp)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sphinxcontrib-applehelp)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sphinxcontrib-applehelp)-prefix)/.pkgunpack: $$($(python-sphinxcontrib-applehelp)-src) $($(python-sphinxcontrib-applehelp)-srcdir)/.markerfile $($(python-sphinxcontrib-applehelp)-prefix)/.markerfile
 	tar -C $($(python-sphinxcontrib-applehelp)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-sphinxcontrib-applehelp)-prefix)/.pkgpatch: $(modulefilesdir)/.marker
 	@touch $@
 
 $($(python-sphinxcontrib-applehelp)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-sphinxcontrib-applehelp)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-applehelp)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinxcontrib-applehelp)-prefix)/.pkgpatch

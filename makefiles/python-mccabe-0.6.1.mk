@@ -35,10 +35,10 @@ $($(python-mccabe)-src): $(dir $($(python-mccabe)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-mccabe)-srcurl)
 
 $($(python-mccabe)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-mccabe)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-mccabe)-prefix)/.pkgunpack: $$($(python-mccabe)-src) $($(python-mccabe)-srcdir)/.markerfile $($(python-mccabe)-prefix)/.markerfile
 	tar -C $($(python-mccabe)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-mccabe)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach d
 	@touch $@
 
 $($(python-mccabe)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-mccabe)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-mccabe)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-mccabe)-prefix)/.pkgpatch

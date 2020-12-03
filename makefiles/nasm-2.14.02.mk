@@ -34,10 +34,10 @@ $($(nasm)-src): $(dir $($(nasm)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(nasm)-srcurl)
 
 $($(nasm)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(nasm)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(nasm)-prefix)/.pkgunpack: $($(nasm)-src) $($(nasm)-srcdir)/.markerfile $($(nasm)-prefix)/.markerfile
 	tar -C $($(nasm)-srcdir) --strip-components 1 -xz -f $<

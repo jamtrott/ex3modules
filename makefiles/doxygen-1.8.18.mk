@@ -35,10 +35,10 @@ $($(doxygen)-src): $(dir $($(doxygen)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(doxygen)-srcurl)
 
 $($(doxygen)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(doxygen)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(doxygen)-prefix)/.pkgunpack: $($(doxygen)-src) $($(doxygen)-srcdir)/.markerfile $($(doxygen)-prefix)/.markerfile
 	tar -C $($(doxygen)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(doxygen)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 
 ifneq ($($(doxygen)-builddir),$($(doxygen)-srcdir))
 $($(doxygen)-builddir)/.markerfile: $($(doxygen)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(doxygen)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(doxygen)-builddeps),$(modulefilesdir)/$$(dep)) $($(doxygen)-builddir)/.markerfile $($(doxygen)-prefix)/.pkgpatch

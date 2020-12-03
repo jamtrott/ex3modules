@@ -35,10 +35,10 @@ $($(bison)-src): $(dir $($(bison)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(bison)-srcurl)
 
 $($(bison)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(bison)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(bison)-prefix)/.pkgunpack: $$($(bison)-src) $($(bison)-srcdir)/.markerfile $($(bison)-prefix)/.markerfile
 	tar -C $($(bison)-srcdir) --strip-components 1 -x -f $<
@@ -49,7 +49,7 @@ $($(bison)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 
 ifneq ($($(bison)-builddir),$($(bison)-srcdir))
 $($(bison)-builddir)/.markerfile: $($(bison)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(bison)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(bison)-builddeps),$(modulefilesdir)/$$(dep)) $($(bison)-builddir)/.markerfile $($(bison)-prefix)/.pkgpatch

@@ -35,10 +35,10 @@ $($(python-tox)-src): $(dir $($(python-tox)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-tox)-srcurl)
 
 $($(python-tox)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-tox)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-tox)-prefix)/.pkgunpack: $$($(python-tox)-src) $($(python-tox)-srcdir)/.markerfile $($(python-tox)-prefix)/.markerfile
 	tar -C $($(python-tox)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-tox)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,
 	@touch $@
 
 $($(python-tox)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-tox)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-tox)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-tox)-prefix)/.pkgpatch

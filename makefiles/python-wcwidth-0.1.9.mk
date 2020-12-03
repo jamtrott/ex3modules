@@ -35,10 +35,10 @@ $($(python-wcwidth)-src): $(dir $($(python-wcwidth)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-wcwidth)-srcurl)
 
 $($(python-wcwidth)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-wcwidth)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-wcwidth)-prefix)/.pkgunpack: $$($(python-wcwidth)-src) $($(python-wcwidth)-srcdir)/.markerfile $($(python-wcwidth)-prefix)/.markerfile
 	tar -C $($(python-wcwidth)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-wcwidth)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach 
 	@touch $@
 
 $($(python-wcwidth)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-wcwidth)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-wcwidth)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-wcwidth)-prefix)/.pkgpatch

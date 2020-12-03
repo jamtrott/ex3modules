@@ -35,10 +35,10 @@ $($(python-scipy)-src): $(dir $($(python-scipy)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-scipy)-srcurl)
 
 $($(python-scipy)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-scipy)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-scipy)-prefix)/.pkgunpack: $$($(python-scipy)-src) $($(python-scipy)-srcdir)/.markerfile $($(python-scipy)-prefix)/.markerfile
 	tar -C $($(python-scipy)-srcdir) --strip-components 1 -xz -f $<
@@ -60,7 +60,7 @@ $($(python-scipy)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach de
 	@touch $@
 
 $($(python-scipy)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-scipy)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-scipy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-scipy)-prefix)/.pkgpatch

@@ -34,10 +34,10 @@ $($(pcre)-src): $(dir $($(pcre)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(pcre)-srcurl)
 
 $($(pcre)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(pcre)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(pcre)-prefix)/.pkgunpack: $($(pcre)-src) $($(pcre)-srcdir)/.markerfile $($(pcre)-prefix)/.markerfile
 	tar -C $($(pcre)-srcdir) --strip-components 1 -xz -f $<

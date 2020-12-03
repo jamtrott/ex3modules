@@ -35,10 +35,10 @@ $($(python-pycparser)-src): $(dir $($(python-pycparser)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pycparser)-srcurl)
 
 $($(python-pycparser)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pycparser)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pycparser)-prefix)/.pkgunpack: $$($(python-pycparser)-src) $($(python-pycparser)-srcdir)/.markerfile $($(python-pycparser)-prefix)/.markerfile
 	tar -C $($(python-pycparser)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-pycparser)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreac
 	@touch $@
 
 $($(python-pycparser)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-pycparser)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pycparser)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pycparser)-prefix)/.pkgpatch

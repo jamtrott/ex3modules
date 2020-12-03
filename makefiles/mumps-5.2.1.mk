@@ -34,10 +34,10 @@ $($(mumps)-src): $(dir $($(mumps)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(mumps)-srcurl)
 
 $($(mumps)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(mumps)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(mumps)-prefix)/.pkgunpack: $($(mumps)-src) $($(mumps)-srcdir)/.markerfile $($(mumps)-prefix)/.markerfile
 	tar -C $($(mumps)-srcdir) --strip-components 1 -xz -f $<
@@ -120,7 +120,7 @@ $($(mumps)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 	@touch $@
 
 $($(mumps)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mumps)-builddeps),$(modulefilesdir)/$$(dep)) $($(mumps)-prefix)/.pkgcheck
-	$(INSTALL) -m=6755 -d $($(mumps)-prefix)/include $($(mumps)-prefix)/lib $($(mumps)-prefix)/share/doc
+	$(INSTALL) -d $($(mumps)-prefix)/include $($(mumps)-prefix)/lib $($(mumps)-prefix)/share/doc
 	$(INSTALL) -m644 -t $($(mumps)-prefix)/include $($(mumps)-srcdir)/include/*
 	$(INSTALL) -m755 -t $($(mumps)-prefix)/lib $($(mumps)-srcdir)/lib/*
 	$(INSTALL) -m644 -t  $($(mumps)-prefix)/share/doc $($(mumps)-srcdir)/doc/*

@@ -34,10 +34,10 @@ $($(libxvmc)-src): $(dir $($(libxvmc)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxvmc)-srcurl)
 
 $($(libxvmc)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxvmc)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxvmc)-prefix)/.pkgunpack: $($(libxvmc)-src) $($(libxvmc)-srcdir)/.markerfile $($(libxvmc)-prefix)/.markerfile
 	tar -C $($(libxvmc)-srcdir) --strip-components 1 -xj -f $<

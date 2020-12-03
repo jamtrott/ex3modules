@@ -34,57 +34,16 @@ $($(cmake)-src): $(dir $($(cmake)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(cmake)-srcurl)
 
 $($(cmake)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(cmake)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(cmake)-prefix)/.pkgunpack: $($(cmake)-src) $($(cmake)-srcdir)/.markerfile $($(cmake)-prefix)/.markerfile
 	tar -C $($(cmake)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
-$($(cmake)-srcdir)/0001-add-setgid-to-permissions-of-installed-directories.patch: $($(cmake)-srcdir)/.markerfile
-	@printf '' >$@.tmp
-	@echo 'From 2fa5769337de5f7845a7fb21df76035d70a898b7 Mon Sep 17 00:00:00 2001' >>$@.tmp
-	@echo 'From: "James D. Trotter" <james@simula.no>' >>$@.tmp
-	@echo 'Date: Wed, 18 Nov 2020 09:11:58 +0100' >>$@.tmp
-	@echo 'Subject: [PATCH] Add setgid to permissions of installed directories' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '---' >>$@.tmp
-	@echo ' Auxiliary/CMakeLists.txt | 2 +-' >>$@.tmp
-	@echo ' CMakeLists.txt           | 2 +-' >>$@.tmp
-	@echo ' 2 files changed, 2 insertions(+), 2 deletions(-)' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo 'diff --git a/Auxiliary/CMakeLists.txt b/Auxiliary/CMakeLists.txt' >>$@.tmp
-	@echo 'index 53cf2c5..a8858a6 100644' >>$@.tmp
-	@echo '--- a/Auxiliary/CMakeLists.txt' >>$@.tmp
-	@echo '+++ b/Auxiliary/CMakeLists.txt' >>$@.tmp
-	@echo '@@ -1,4 +1,4 @@' >>$@.tmp
-	@echo '-install(DIRECTORY vim/indent vim/syntax DESTINATION $${CMAKE_DATA_DIR}/editors/vim)' >>$@.tmp
-	@echo '+install(DIRECTORY vim/indent vim/syntax DESTINATION $${CMAKE_DATA_DIR}/editors/vim DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE)' >>$@.tmp
-	@echo ' install(FILES cmake-mode.el DESTINATION $${CMAKE_DATA_DIR}/editors/emacs)' >>$@.tmp
-	@echo ' install(FILES cmake.m4 DESTINATION $${CMAKE_XDGDATA_DIR}/aclocal)' >>$@.tmp
-	@echo ' add_subdirectory (bash-completion)' >>$@.tmp
-	@echo 'diff --git a/CMakeLists.txt b/CMakeLists.txt' >>$@.tmp
-	@echo 'index fb7b9b7..02e0742 100644' >>$@.tmp
-	@echo '--- a/CMakeLists.txt' >>$@.tmp
-	@echo '+++ b/CMakeLists.txt' >>$@.tmp
-	@echo '@@ -805,7 +805,7 @@ if(NOT CMake_TEST_EXTERNAL_CMAKE)' >>$@.tmp
-	@echo '     DESTINATION $${CMAKE_DATA_DIR}' >>$@.tmp
-	@echo '     FILE_PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ' >>$@.tmp
-	@echo '     DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE' >>$@.tmp
-	@echo '-                          GROUP_READ GROUP_EXECUTE' >>$@.tmp
-	@echo '+                          GROUP_READ GROUP_EXECUTE SETGID' >>$@.tmp
-	@echo '                           WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '     PATTERN "*.sh*" PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE' >>$@.tmp
-	@echo '                                 GROUP_READ GROUP_EXECUTE' >>$@.tmp
-	@echo '--' >>$@.tmp
-	@echo '1.8.3.1' >>$@.tmp
-	@mv $@.tmp $@
-
-$($(cmake)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cmake)-builddeps),$(modulefilesdir)/$$(dep)) $($(cmake)-prefix)/.pkgunpack $($(cmake)-srcdir)/0001-add-setgid-to-permissions-of-installed-directories.patch
-	cd $($(cmake)-srcdir) && \
-		patch -t -p1 <0001-add-setgid-to-permissions-of-installed-directories.patch
+$($(cmake)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cmake)-builddeps),$(modulefilesdir)/$$(dep)) $($(cmake)-prefix)/.pkgunpack
 	@touch $@
 
 $($(cmake)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cmake)-builddeps),$(modulefilesdir)/$$(dep)) $($(cmake)-prefix)/.pkgpatch

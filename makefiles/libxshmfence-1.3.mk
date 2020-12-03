@@ -34,10 +34,10 @@ $($(libxshmfence)-src): $(dir $($(libxshmfence)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxshmfence)-srcurl)
 
 $($(libxshmfence)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxshmfence)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxshmfence)-prefix)/.pkgunpack: $($(libxshmfence)-src) $($(libxshmfence)-srcdir)/.markerfile $($(libxshmfence)-prefix)/.markerfile
 	tar -C $($(libxshmfence)-srcdir) --strip-components 1 -xj -f $<

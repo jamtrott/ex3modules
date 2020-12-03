@@ -388,13 +388,13 @@ $(pkgdescribe):
 .PHONY: $(pkgclean)
 
 $(pkgsrcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	touch $@
 $(pkgdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	touch $@
 $(modulefilesdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	touch $@
 
 .SECONDEXPANSION:

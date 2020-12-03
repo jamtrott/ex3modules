@@ -35,10 +35,10 @@ $($(graphviz)-src): $(dir $($(graphviz)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(graphviz)-srcurl)
 
 $($(graphviz)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(graphviz)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(graphviz)-prefix)/.pkgunpack: $($(graphviz)-src) $($(graphviz)-srcdir)/.markerfile $($(graphviz)-prefix)/.markerfile
 	tar -C $($(graphviz)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(graphviz)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 
 ifneq ($($(graphviz)-builddir),$($(graphviz)-srcdir))
 $($(graphviz)-builddir)/.markerfile: $($(graphviz)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(graphviz)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(graphviz)-builddeps),$(modulefilesdir)/$$(dep)) $($(graphviz)-builddir)/.markerfile $($(graphviz)-prefix)/.pkgpatch

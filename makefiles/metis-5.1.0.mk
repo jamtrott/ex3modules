@@ -35,10 +35,10 @@ $($(metis)-src): $(dir $($(metis)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(metis)-srcurl)
 
 $($(metis)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(metis)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(metis)-prefix)/.pkgunpack: $($(metis)-src) $($(metis)-srcdir)/.markerfile $($(metis)-prefix)/.markerfile
 	tar -C $($(metis)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(metis)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 
 ifneq ($($(metis)-builddir),$($(metis)-srcdir))
 $($(metis)-builddir)/.markerfile: $($(metis)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(metis)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(metis)-builddeps),$(modulefilesdir)/$$(dep)) $($(metis)-builddir)/.markerfile $($(metis)-prefix)/.pkgpatch

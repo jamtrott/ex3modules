@@ -35,10 +35,10 @@ $($(python-babel)-src): $(dir $($(python-babel)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-babel)-srcurl)
 
 $($(python-babel)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-babel)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-babel)-prefix)/.pkgunpack: $$($(python-babel)-src) $($(python-babel)-srcdir)/.markerfile $($(python-babel)-prefix)/.markerfile
 	tar -C $($(python-babel)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-babel)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach de
 	@touch $@
 
 $($(python-babel)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-babel)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-babel)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-babel)-prefix)/.pkgpatch

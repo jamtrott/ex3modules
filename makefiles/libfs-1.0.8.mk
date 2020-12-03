@@ -34,10 +34,10 @@ $($(libfs)-src): $(dir $($(libfs)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libfs)-srcurl)
 
 $($(libfs)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libfs)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libfs)-prefix)/.pkgunpack: $($(libfs)-src) $($(libfs)-srcdir)/.markerfile $($(libfs)-prefix)/.markerfile
 	tar -C $($(libfs)-srcdir) --strip-components 1 -xj -f $<

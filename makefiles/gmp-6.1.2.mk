@@ -34,10 +34,10 @@ $($(gmp)-src): $(dir $($(gmp)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(gmp)-srcurl)
 
 $($(gmp)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gmp)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gmp)-prefix)/.pkgunpack: $($(gmp)-src) $($(gmp)-srcdir)/.markerfile $($(gmp)-prefix)/.markerfile
 	tar -C $($(gmp)-srcdir) --strip-components 1 -x -f $<

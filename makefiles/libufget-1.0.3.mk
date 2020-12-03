@@ -35,10 +35,10 @@ $($(libufget)-src): $(dir $($(libufget)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libufget)-srcurl)
 
 $($(libufget)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libufget)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libufget)-prefix)/.pkgunpack: $($(libufget)-src) $($(libufget)-srcdir)/.markerfile $($(libufget)-prefix)/.markerfile
 	tar -C $($(libufget)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(libufget)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 
 ifneq ($($(libufget)-builddir),$($(libufget)-srcdir))
 $($(libufget)-builddir)/.markerfile: $($(libufget)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(libufget)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libufget)-builddeps),$(modulefilesdir)/$$(dep)) $($(libufget)-builddir)/.markerfile $($(libufget)-prefix)/.pkgpatch

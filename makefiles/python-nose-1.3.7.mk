@@ -35,10 +35,10 @@ $($(python-nose)-src): $(dir $($(python-nose)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-nose)-srcurl)
 
 $($(python-nose)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-nose)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-nose)-prefix)/.pkgunpack: $$($(python-nose)-src) $($(python-nose)-srcdir)/.markerfile $($(python-nose)-prefix)/.markerfile
 	tar -C $($(python-nose)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-nose)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep
 	@touch $@
 
 $($(python-nose)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-nose)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-nose)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-nose)-prefix)/.pkgpatch

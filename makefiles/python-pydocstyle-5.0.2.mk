@@ -35,10 +35,10 @@ $($(python-pydocstyle)-src): $(dir $($(python-pydocstyle)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pydocstyle)-srcurl)
 
 $($(python-pydocstyle)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pydocstyle)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pydocstyle)-prefix)/.pkgunpack: $$($(python-pydocstyle)-src) $($(python-pydocstyle)-srcdir)/.markerfile $($(python-pydocstyle)-prefix)/.markerfile
 	tar -C $($(python-pydocstyle)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-pydocstyle)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(forea
 	@touch $@
 
 $($(python-pydocstyle)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-pydocstyle)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pydocstyle)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pydocstyle)-prefix)/.pkgpatch

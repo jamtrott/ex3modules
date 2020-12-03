@@ -35,10 +35,10 @@ $($(python-jinja2)-src): $(dir $($(python-jinja2)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-jinja2)-srcurl)
 
 $($(python-jinja2)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-jinja2)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-jinja2)-prefix)/.pkgunpack: $$($(python-jinja2)-src) $($(python-jinja2)-srcdir)/.markerfile $($(python-jinja2)-prefix)/.markerfile
 	tar -C $($(python-jinja2)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-jinja2)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach d
 	@touch $@
 
 $($(python-jinja2)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-jinja2)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-jinja2)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-jinja2)-prefix)/.pkgpatch

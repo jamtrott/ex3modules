@@ -35,10 +35,10 @@ $($(python-atomicwrites)-src): $(dir $($(python-atomicwrites)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-atomicwrites)-srcurl)
 
 $($(python-atomicwrites)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-atomicwrites)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-atomicwrites)-prefix)/.pkgunpack: $$($(python-atomicwrites)-src) $($(python-atomicwrites)-srcdir)/.markerfile $($(python-atomicwrites)-prefix)/.markerfile
 	tar -C $($(python-atomicwrites)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-atomicwrites)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(for
 	@touch $@
 
 $($(python-atomicwrites)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-atomicwrites)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-atomicwrites)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-atomicwrites)-prefix)/.pkgpatch

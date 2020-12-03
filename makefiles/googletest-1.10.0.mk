@@ -35,52 +35,21 @@ $($(googletest)-src): $(dir $($(googletest)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(googletest)-srcurl)
 
 $($(googletest)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(googletest)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(googletest)-prefix)/.pkgunpack: $($(googletest)-src) $($(googletest)-srcdir)/.markerfile $($(googletest)-prefix)/.markerfile
 	tar -C $($(googletest)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
-$($(googletest)-srcdir)/0001-Fix-install-directory-permissions.patch: $($(googletest)-srcdir)/.markerfile
-	@printf '' >$@.tmp
-	@echo 'From 92b26c56fbcd9f3536358ac308c4a0584352f4b8 Mon Sep 17 00:00:00 2001' >>$@.tmp
-	@echo 'From: "James D. Trotter" <james@simula.no>' >>$@.tmp
-	@echo 'Date: Mon, 30 Nov 2020 18:47:33 +0100' >>$@.tmp
-	@echo 'Subject: [PATCH] Fix install directory permissions' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '---' >>$@.tmp
-	@echo ' googletest/cmake/internal_utils.cmake | 3 ++-' >>$@.tmp
-	@echo ' 1 file changed, 2 insertions(+), 1 deletion(-)' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo 'diff --git a/googletest/cmake/internal_utils.cmake b/googletest/cmake/internal_utils.cmake' >>$@.tmp
-	@echo 'index 2f70f0b..48a21ef 100644' >>$@.tmp
-	@echo '--- a/googletest/cmake/internal_utils.cmake' >>$@.tmp
-	@echo '+++ b/googletest/cmake/internal_utils.cmake' >>$@.tmp
-	@echo '@@ -327,7 +327,8 @@ endfunction()' >>$@.tmp
-	@echo ' function(install_project)' >>$@.tmp
-	@echo '   if(INSTALL_GTEST)' >>$@.tmp
-	@echo '     install(DIRECTORY "$${PROJECT_SOURCE_DIR}/include/"' >>$@.tmp
-	@echo '-      DESTINATION "$${CMAKE_INSTALL_INCLUDEDIR}")' >>$@.tmp
-	@echo '+      DESTINATION "$${CMAKE_INSTALL_INCLUDEDIR}"' >>$@.tmp
-	@echo '+      DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE)' >>$@.tmp
-	@echo '     # Install the project targets.' >>$@.tmp
-	@echo '     install(TARGETS $${ARGN}' >>$@.tmp
-	@echo '       EXPORT $${targets_export_name}' >>$@.tmp
-	@echo '--' >>$@.tmp
-	@echo '2.17.1' >>$@.tmp
-	@echo '' >>$@.tmp
-	@mv $@.tmp $@
-
-$($(googletest)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(googletest)-builddeps),$(modulefilesdir)/$$(dep)) $($(googletest)-prefix)/.pkgunpack $($(googletest)-srcdir)/0001-Fix-install-directory-permissions.patch
-	cd $($(googletest)-srcdir) && patch -t -p1 <0001-Fix-install-directory-permissions.patch
+$($(googletest)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(googletest)-builddeps),$(modulefilesdir)/$$(dep)) $($(googletest)-prefix)/.pkgunpack
 	@touch $@
 
 ifneq ($($(googletest)-builddir),$($(googletest)-srcdir))
 $($(googletest)-builddir)/.markerfile: $($(googletest)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(googletest)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(googletest)-builddeps),$(modulefilesdir)/$$(dep)) $($(googletest)-builddir)/.markerfile $($(googletest)-prefix)/.pkgpatch

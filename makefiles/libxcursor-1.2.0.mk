@@ -34,10 +34,10 @@ $($(libxcursor)-src): $(dir $($(libxcursor)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxcursor)-srcurl)
 
 $($(libxcursor)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxcursor)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxcursor)-prefix)/.pkgunpack: $($(libxcursor)-src) $($(libxcursor)-srcdir)/.markerfile $($(libxcursor)-prefix)/.markerfile
 	tar -C $($(libxcursor)-srcdir) --strip-components 1 -xj -f $<

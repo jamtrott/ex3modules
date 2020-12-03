@@ -34,10 +34,10 @@ $($(suitesparse)-src): $(dir $($(suitesparse)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(suitesparse)-srcurl)
 
 $($(suitesparse)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(suitesparse)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(suitesparse)-prefix)/.pkgunpack: $($(suitesparse)-src) $($(suitesparse)-srcdir)/.markerfile $($(suitesparse)-prefix)/.markerfile
 	tar -C $($(suitesparse)-srcdir) --strip-components 1 -xz -f $<

@@ -31,10 +31,10 @@ $(xorg-libraries)-modulefile = $(modulefilesdir)/$(xorg-libraries)
 $(xorg-libraries)-prefix = $(pkgdir)/$(xorg-libraries)
 
 $($(xorg-libraries)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(xorg-libraries)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(xorg-libraries)-prefix)/.pkgunpack: $($(xorg-libraries)-prefix)/.markerfile
 	@touch $@

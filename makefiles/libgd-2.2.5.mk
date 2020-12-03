@@ -34,10 +34,10 @@ $($(libgd)-src): $(dir $($(libgd)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libgd)-srcurl)
 
 $($(libgd)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libgd)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libgd)-prefix)/.pkgunpack: $($(libgd)-src) $($(libgd)-srcdir)/.markerfile $($(libgd)-prefix)/.markerfile
 	tar -C $($(libgd)-srcdir) --strip-components 1 -xz -f $<

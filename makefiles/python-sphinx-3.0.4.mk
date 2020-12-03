@@ -35,10 +35,10 @@ $($(python-sphinx)-src): $(dir $($(python-sphinx)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-sphinx)-srcurl)
 
 $($(python-sphinx)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sphinx)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sphinx)-prefix)/.pkgunpack: $$($(python-sphinx)-src) $($(python-sphinx)-srcdir)/.markerfile $($(python-sphinx)-prefix)/.markerfile
 	tar -C $($(python-sphinx)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-sphinx)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach d
 	@touch $@
 
 $($(python-sphinx)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-sphinx)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinx)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinx)-prefix)/.pkgpatch

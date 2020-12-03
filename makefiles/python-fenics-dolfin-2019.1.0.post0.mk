@@ -33,10 +33,10 @@ $(python-fenics-dolfin-2019)-prefix = $(pkgdir)/$(python-fenics-dolfin-2019)
 $(python-fenics-dolfin-2019)-site-packages = $($(python-fenics-dolfin-2019)-prefix)/lib/python$(python-version-short)/site-packages
 
 $($(python-fenics-dolfin-2019)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-fenics-dolfin-2019)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-fenics-dolfin-2019)-prefix)/.pkgunpack: $$($(python-fenics-dolfin-2019)-src) $($(python-fenics-dolfin-2019)-srcdir)/.markerfile $($(python-fenics-dolfin-2019)-prefix)/.markerfile
 	tar -C $($(python-fenics-dolfin-2019)-srcdir) --strip-components 1 -xz -f $<
@@ -46,11 +46,11 @@ $($(python-fenics-dolfin-2019)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile 
 	@touch $@
 
 $($(python-fenics-dolfin-2019)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-fenics-dolfin-2019)-builddir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-fenics-dolfin-2019)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-fenics-dolfin-2019)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-fenics-dolfin-2019)-prefix)/.pkgpatch $($(python-fenics-dolfin-2019)-builddir)/.markerfile

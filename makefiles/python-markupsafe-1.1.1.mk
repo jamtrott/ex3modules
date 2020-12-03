@@ -35,10 +35,10 @@ $($(python-markupsafe)-src): $(dir $($(python-markupsafe)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-markupsafe)-srcurl)
 
 $($(python-markupsafe)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-markupsafe)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-markupsafe)-prefix)/.pkgunpack: $$($(python-markupsafe)-src) $($(python-markupsafe)-srcdir)/.markerfile $($(python-markupsafe)-prefix)/.markerfile
 	tar -C $($(python-markupsafe)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-markupsafe)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(forea
 	@touch $@
 
 $($(python-markupsafe)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-markupsafe)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-markupsafe)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-markupsafe)-prefix)/.pkgpatch

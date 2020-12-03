@@ -34,10 +34,10 @@ $($(xorgproto)-src): $(dir $($(xorgproto)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(xorgproto)-srcurl)
 
 $($(xorgproto)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(xorgproto)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(xorgproto)-prefix)/.pkgunpack: $($(xorgproto)-src) $($(xorgproto)-srcdir)/.markerfile $($(xorgproto)-prefix)/.markerfile
 	tar -C $($(xorgproto)-srcdir) --strip-components 1 -xj -f $<
@@ -47,7 +47,7 @@ $($(xorgproto)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$
 	@touch $@
 
 $($(xorgproto)-srcdir)/build/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(xorgproto)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(xorgproto)-builddeps),$(modulefilesdir)/$$(dep)) $($(xorgproto)-prefix)/.pkgpatch $($(xorgproto)-srcdir)/build/.markerfile

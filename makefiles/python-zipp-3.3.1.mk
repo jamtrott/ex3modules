@@ -35,10 +35,10 @@ $($(python-zipp)-src): $(dir $($(python-zipp)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-zipp)-srcurl)
 
 $($(python-zipp)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-zipp)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-zipp)-prefix)/.pkgunpack: $$($(python-zipp)-src) $($(python-zipp)-srcdir)/.markerfile $($(python-zipp)-prefix)/.markerfile
 	tar -C $($(python-zipp)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-zipp)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep
 	@touch $@
 
 $($(python-zipp)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-zipp)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-zipp)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-zipp)-prefix)/.pkgpatch

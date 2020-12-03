@@ -35,10 +35,10 @@ $($(python-cython)-src): $(dir $($(python-cython)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-cython)-srcurl)
 
 $($(python-cython)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-cython)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-cython)-prefix)/.pkgunpack: $$($(python-cython)-src) $($(python-cython)-srcdir)/.markerfile $($(python-cython)-prefix)/.markerfile
 	tar -C $($(python-cython)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-cython)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach d
 	@touch $@
 
 $($(python-cython)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-cython)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-cython)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-cython)-prefix)/.pkgpatch

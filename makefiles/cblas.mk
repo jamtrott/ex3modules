@@ -35,10 +35,10 @@ $($(cblas)-src): $(dir $($(cblas)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(cblas)-srcurl)
 
 $($(cblas)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(cblas)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(cblas)-prefix)/.pkgunpack: $($(cblas)-src) $($(cblas)-srcdir)/.markerfile $($(cblas)-prefix)/.markerfile
 	tar -C $($(cblas)-srcdir) --strip-components 1 -xz -f $<
@@ -102,7 +102,7 @@ $($(cblas)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 
 ifneq ($($(cblas)-builddir),$($(cblas)-srcdir))
 $($(cblas)-builddir)/.markerfile: $($(cblas)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(cblas)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cblas)-builddeps),$(modulefilesdir)/$$(dep)) $($(cblas)-builddir)/.markerfile $($(cblas)-prefix)/.pkgpatch
@@ -167,11 +167,11 @@ $($(cblas)-builddir)/cblas.pc: $($(cblas)-builddir)/.markerfile
 	@mv $@.tmp $@
 
 $($(cblas)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cblas)-builddeps),$(modulefilesdir)/$$(dep)) $($(cblas)-builddir)/.markerfile $($(cblas)-prefix)/.pkgcheck $($(cblas)-builddir)/cblas.pc
-	$(INSTALL) -m=6755 -d $($(cblas)-prefix)/lib
+	$(INSTALL) -d $($(cblas)-prefix)/lib
 	$(INSTALL) -m755 $($(cblas)-builddir)/libcblas.so $($(cblas)-prefix)/lib
-	$(INSTALL) -m=6755 -d $($(cblas)-prefix)/lib/pkgconfig
+	$(INSTALL) -d $($(cblas)-prefix)/lib/pkgconfig
 	$(INSTALL) -m644 $($(cblas)-builddir)/cblas.pc $($(cblas)-prefix)/lib/pkgconfig
-	$(INSTALL) -m=6755 -d $($(cblas)-prefix)/include
+	$(INSTALL) -d $($(cblas)-prefix)/include
 	$(INSTALL) -m644 $($(cblas)-srcdir)/include/cblas.h $($(cblas)-prefix)/include
 	$(INSTALL) -m644 $($(cblas)-srcdir)/include/cblas_f77.h $($(cblas)-prefix)/include
 	@touch $@

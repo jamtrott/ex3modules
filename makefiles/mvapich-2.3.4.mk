@@ -35,10 +35,10 @@ $($(mvapich)-src): $(dir $($(mvapich)-src)).markerfile
 	$(CURL) --insecure $(curl_options) --output $@ $($(mvapich)-srcurl)
 
 $($(mvapich)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(mvapich)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(mvapich)-prefix)/.pkgunpack: $($(mvapich)-src) $($(mvapich)-srcdir)/.markerfile $($(mvapich)-prefix)/.markerfile
 	tar -C $($(mvapich)-srcdir) --strip-components 1 -xz -f $<
@@ -122,7 +122,7 @@ $($(mvapich)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 
 ifneq ($($(mvapich)-builddir),$($(mvapich)-srcdir))
 $($(mvapich)-builddir)/.markerfile: $($(mvapich)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(mvapich)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mvapich)-builddeps),$(modulefilesdir)/$$(dep)) $($(mvapich)-builddir)/.markerfile $($(mvapich)-prefix)/.pkgpatch

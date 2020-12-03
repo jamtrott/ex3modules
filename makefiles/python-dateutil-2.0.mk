@@ -35,10 +35,10 @@ $($(python-dateutil)-src): $(dir $($(python-dateutil)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-dateutil)-srcurl)
 
 $($(python-dateutil)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-dateutil)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-dateutil)-prefix)/.pkgunpack: $$($(python-dateutil)-src) $($(python-dateutil)-srcdir)/.markerfile $($(python-dateutil)-prefix)/.markerfile
 	tar -C $($(python-dateutil)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-dateutil)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach
 	@touch $@
 
 $($(python-dateutil)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-dateutil)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-dateutil)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-dateutil)-prefix)/.pkgpatch

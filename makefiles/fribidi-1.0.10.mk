@@ -35,10 +35,10 @@ $($(fribidi)-src): $(dir $($(fribidi)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(fribidi)-srcurl)
 
 $($(fribidi)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(fribidi)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(fribidi)-prefix)/.pkgunpack: $$($(fribidi)-src) $($(fribidi)-srcdir)/.markerfile $($(fribidi)-prefix)/.markerfile
 	tar -C $($(fribidi)-srcdir) --strip-components 1 -x -f $<
@@ -49,7 +49,7 @@ $($(fribidi)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 
 ifneq ($($(fribidi)-builddir),$($(fribidi)-srcdir))
 $($(fribidi)-builddir)/.markerfile: $($(fribidi)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(fribidi)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fribidi)-builddeps),$(modulefilesdir)/$$(dep)) $($(fribidi)-builddir)/.markerfile $($(fribidi)-prefix)/.pkgpatch

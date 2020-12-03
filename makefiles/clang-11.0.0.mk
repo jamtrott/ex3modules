@@ -35,97 +35,21 @@ $($(clang)-src): $(dir $($(clang)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(clang)-srcurl)
 
 $($(clang)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(clang)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(clang)-prefix)/.pkgunpack: $($(clang)-src) $($(clang)-srcdir)/.markerfile $($(clang)-prefix)/.markerfile
 	tar -C $($(clang)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 
-$($(clang)-srcdir)/0001-Fix-install-directory-permissions.patch: $($(clang)-srcdir)/.markerfile
-	@printf '' >$@.tmp
-	@echo 'From a8d2fcffc93c0061e14b3a9c847ef78132e77429 Mon Sep 17 00:00:00 2001' >>$@.tmp
-	@echo 'From: "James D. Trotter" <james@simula.no>' >>$@.tmp
-	@echo 'Date: Fri, 27 Nov 2020 16:24:49 +0100' >>$@.tmp
-	@echo 'Subject: [PATCH] Fix install directory permissions' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '---' >>$@.tmp
-	@echo ' CMakeLists.txt                | 2 ++' >>$@.tmp
-	@echo ' docs/CMakeLists.txt           | 3 ++-' >>$@.tmp
-	@echo ' tools/libclang/CMakeLists.txt | 5 ++++-' >>$@.tmp
-	@echo ' 3 files changed, 8 insertions(+), 2 deletions(-)' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo 'diff --git a/CMakeLists.txt b/CMakeLists.txt' >>$@.tmp
-	@echo 'index 2e06c5fd..a7e4b12a 100644' >>$@.tmp
-	@echo '--- a/CMakeLists.txt' >>$@.tmp
-	@echo '+++ b/CMakeLists.txt' >>$@.tmp
-	@echo '@@ -448,6 +448,7 @@ include_directories(BEFORE' >>$@.tmp
-	@echo ' if (NOT LLVM_INSTALL_TOOLCHAIN_ONLY)' >>$@.tmp
-	@echo '   install(DIRECTORY include/clang include/clang-c' >>$@.tmp
-	@echo '     DESTINATION include' >>$@.tmp
-	@echo '+    DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '     COMPONENT clang-headers' >>$@.tmp
-	@echo '     FILES_MATCHING' >>$@.tmp
-	@echo '     PATTERN "*.def"' >>$@.tmp
-	@echo '@@ -458,6 +459,7 @@ if (NOT LLVM_INSTALL_TOOLCHAIN_ONLY)' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '   install(DIRECTORY $${CMAKE_CURRENT_BINARY_DIR}/include/clang' >>$@.tmp
-	@echo '     DESTINATION include' >>$@.tmp
-	@echo '+    DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '     COMPONENT clang-headers' >>$@.tmp
-	@echo '     FILES_MATCHING' >>$@.tmp
-	@echo '     PATTERN "CMakeFiles" EXCLUDE' >>$@.tmp
-	@echo 'diff --git a/docs/CMakeLists.txt b/docs/CMakeLists.txt' >>$@.tmp
-	@echo 'index 2d3ac5db..efbd9752 100644' >>$@.tmp
-	@echo '--- a/docs/CMakeLists.txt' >>$@.tmp
-	@echo '+++ b/docs/CMakeLists.txt' >>$@.tmp
-	@echo '@@ -85,7 +85,8 @@ if (LLVM_ENABLE_DOXYGEN)' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '   if (NOT LLVM_INSTALL_TOOLCHAIN_ONLY)' >>$@.tmp
-	@echo '     install(DIRECTORY $${CMAKE_CURRENT_BINARY_DIR}/doxygen/html' >>$@.tmp
-	@echo '-      DESTINATION docs/html)' >>$@.tmp
-	@echo '+      DESTINATION docs/html' >>$@.tmp
-	@echo '+      DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE)' >>$@.tmp
-	@echo '   endif()' >>$@.tmp
-	@echo ' endif()' >>$@.tmp
-	@echo ' endif()' >>$@.tmp
-	@echo 'diff --git a/tools/libclang/CMakeLists.txt b/tools/libclang/CMakeLists.txt' >>$@.tmp
-	@echo 'index a4077140..80ad8186 100644' >>$@.tmp
-	@echo '--- a/tools/libclang/CMakeLists.txt' >>$@.tmp
-	@echo '+++ b/tools/libclang/CMakeLists.txt' >>$@.tmp
-	@echo '@@ -170,6 +170,7 @@ endif()' >>$@.tmp
-	@echo ' install(DIRECTORY ../../include/clang-c' >>$@.tmp
-	@echo '   COMPONENT libclang-headers' >>$@.tmp
-	@echo '   DESTINATION "$${LIBCLANG_HEADERS_INSTALL_DESTINATION}"' >>$@.tmp
-	@echo '+  DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '   FILES_MATCHING' >>$@.tmp
-	@echo '   PATTERN "*.h"' >>$@.tmp
-	@echo '   PATTERN ".svn" EXCLUDE' >>$@.tmp
-	@echo '@@ -195,7 +196,9 @@ foreach(PythonVersion $${CLANG_PYTHON_BINDINGS_VERSIONS})' >>$@.tmp
-	@echo '           COMPONENT' >>$@.tmp
-	@echo '             libclang-python-bindings' >>$@.tmp
-	@echo '           DESTINATION' >>$@.tmp
-	@echo '-            "lib$${LLVM_LIBDIR_SUFFIX}/python$${PythonVersion}/site-packages")' >>$@.tmp
-	@echo '+            "lib$${LLVM_LIBDIR_SUFFIX}/python$${PythonVersion}/site-packages"' >>$@.tmp
-	@echo '+	  DIRECTORY_PERMISSIONS' >>$@.tmp
-	@echo '+	    OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE)' >>$@.tmp
-	@echo ' endforeach()' >>$@.tmp
-	@echo ' if(NOT LLVM_ENABLE_IDE)' >>$@.tmp
-	@echo '   add_custom_target(libclang-python-bindings)' >>$@.tmp
-	@echo '--' >>$@.tmp
-	@echo '2.17.1' >>$@.tmp
-	@echo '' >>$@.tmp
-	@mv $@.tmp $@
-
-$($(clang)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(clang)-builddeps),$(modulefilesdir)/$$(dep)) $($(clang)-prefix)/.pkgunpack $($(clang)-srcdir)/0001-Fix-install-directory-permissions.patch
-	cd $($(clang)-srcdir) && patch -t -p1 <0001-Fix-install-directory-permissions.patch
+$($(clang)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(clang)-builddeps),$(modulefilesdir)/$$(dep)) $($(clang)-prefix)/.pkgunpack
 	@touch $@
 
 ifneq ($($(clang)-builddir),$($(clang)-srcdir))
 $($(clang)-builddir)/.markerfile: $($(clang)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(clang)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(clang)-builddeps),$(modulefilesdir)/$$(dep)) $($(clang)-builddir)/.markerfile $($(clang)-prefix)/.pkgpatch

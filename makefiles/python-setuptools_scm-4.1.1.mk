@@ -35,10 +35,10 @@ $($(python-setuptools_scm)-src): $(dir $($(python-setuptools_scm)-src)).markerfi
 	$(CURL) $(curl_options) --output $@ $($(python-setuptools_scm)-srcurl)
 
 $($(python-setuptools_scm)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-setuptools_scm)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-setuptools_scm)-prefix)/.pkgunpack: $$($(python-setuptools_scm)-src) $($(python-setuptools_scm)-srcdir)/.markerfile $($(python-setuptools_scm)-prefix)/.markerfile
 	tar -C $($(python-setuptools_scm)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-setuptools_scm)-prefix)/.pkgpatch: $($(python-setuptools_scm)-prefix)
 	@touch $@
 
 $($(python-setuptools_scm)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-setuptools_scm)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-setuptools_scm)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-setuptools_scm)-prefix)/.pkgpatch

@@ -34,10 +34,10 @@ $($(libxxf86vm)-src): $(dir $($(libxxf86vm)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxxf86vm)-srcurl)
 
 $($(libxxf86vm)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxxf86vm)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxxf86vm)-prefix)/.pkgunpack: $($(libxxf86vm)-src) $($(libxxf86vm)-srcdir)/.markerfile $($(libxxf86vm)-prefix)/.markerfile
 	tar -C $($(libxxf86vm)-srcdir) --strip-components 1 -xj -f $<

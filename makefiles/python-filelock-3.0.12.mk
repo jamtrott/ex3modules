@@ -35,10 +35,10 @@ $($(python-filelock)-src): $(dir $($(python-filelock)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-filelock)-srcurl)
 
 $($(python-filelock)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-filelock)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-filelock)-prefix)/.pkgunpack: $$($(python-filelock)-src) $($(python-filelock)-srcdir)/.markerfile $($(python-filelock)-prefix)/.markerfile
 	tar -C $($(python-filelock)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-filelock)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach
 	@touch $@
 
 $($(python-filelock)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-filelock)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-filelock)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-filelock)-prefix)/.pkgpatch

@@ -34,10 +34,10 @@ $($(libdmx)-src): $(dir $($(libdmx)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libdmx)-srcurl)
 
 $($(libdmx)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libdmx)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libdmx)-prefix)/.pkgunpack: $($(libdmx)-src) $($(libdmx)-srcdir)/.markerfile $($(libdmx)-prefix)/.markerfile
 	tar -C $($(libdmx)-srcdir) --strip-components 1 -xj -f $<

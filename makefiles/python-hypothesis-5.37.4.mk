@@ -35,10 +35,10 @@ $($(python-hypothesis)-src): $(dir $($(python-hypothesis)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-hypothesis)-srcurl)
 
 $($(python-hypothesis)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-hypothesis)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-hypothesis)-prefix)/.pkgunpack: $$($(python-hypothesis)-src) $($(python-hypothesis)-srcdir)/.markerfile $($(python-hypothesis)-prefix)/.markerfile
 	tar -C $($(python-hypothesis)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-hypothesis)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(forea
 	@touch $@
 
 $($(python-hypothesis)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-hypothesis)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-hypothesis)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-hypothesis)-prefix)/.pkgpatch

@@ -32,49 +32,20 @@ $(fenics-dolfinx-20200525)-modulefile = $(modulefilesdir)/$(fenics-dolfinx-20200
 $(fenics-dolfinx-20200525)-prefix = $(pkgdir)/$(fenics-dolfinx-20200525)
 
 $($(fenics-dolfinx-20200525)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(fenics-dolfinx-20200525)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(fenics-dolfinx-20200525)-prefix)/.pkgunpack: $$($(fenics-dolfinx-20200525)-src) $($(fenics-dolfinx-20200525)-srcdir)/.markerfile $($(fenics-dolfinx-20200525)-prefix)/.markerfile
 	cd $($(fenics-dolfinx-20200525)-srcdir) && unzip -o $<
 	@touch $@
 
-$($(fenics-dolfinx-20200525)-srcdir)/0001-Fix-install-directory-permissions.patch: $($(fenics-dolfinx-20200525)-srcdir)/.markerfile
-	@printf '' >$@.tmp
-	@echo 'From 2d65dc56727ecc8b22e3b03a89650397672d04fa Mon Sep 17 00:00:00 2001' >>$@.tmp
-	@echo 'From: "James D. Trotter" <james@simula.no>' >>$@.tmp
-	@echo 'Date: Wed, 2 Dec 2020 10:53:41 +0100' >>$@.tmp
-	@echo 'Subject: [PATCH] Fix install directory permissions' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '---' >>$@.tmp
-	@echo ' dolfinx-29274633248cfbce175599ad2127d0949afdb166/cpp/CMakeLists.txt | 1 +' >>$@.tmp
-	@echo ' 1 file changed, 1 insertion(+)' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo 'diff --git a/dolfinx-29274633248cfbce175599ad2127d0949afdb166/cpp/CMakeLists.txt b/cpp/CMakeLists.txt' >>$@.tmp
-	@echo 'index 03db9a6..c0e7254 100644' >>$@.tmp
-	@echo '--- a/dolfinx-29274633248cfbce175599ad2127d0949afdb166/cpp/CMakeLists.txt' >>$@.tmp
-	@echo '+++ b/dolfinx-29274633248cfbce175599ad2127d0949afdb166/cpp/CMakeLists.txt' >>$@.tmp
-	@echo '@@ -337,6 +337,7 @@ endif()' >>$@.tmp
-	@echo ' #------------------------------------------------------------------------------' >>$@.tmp
-	@echo ' # Install the demo source files' >>$@.tmp
-	@echo ' install(DIRECTORY $${CMAKE_CURRENT_BINARY_DIR}/demo DESTINATION $${CMAKE_INSTALL_DATAROOTDIR}/dolfinx' >>$@.tmp
-	@echo '+  DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '   FILES_MATCHING' >>$@.tmp
-	@echo '   PATTERN "CMakeLists.txt"' >>$@.tmp
-	@echo '   PATTERN "*.h"' >>$@.tmp
-	@echo '--' >>$@.tmp
-	@echo '1.8.3.1' >>$@.tmp
-	@echo '' >>$@.tmp
-	@mv $@.tmp $@
-
-$($(fenics-dolfinx-20200525)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fenics-dolfinx-20200525)-builddeps),$(modulefilesdir)/$$(dep)) $($(fenics-dolfinx-20200525)-srcdir)/0001-Fix-install-directory-permissions.patch
-	cd $($(fenics-dolfinx-20200525)-srcdir) && patch -t -p1 <0001-Fix-install-directory-permissions.patch
+$($(fenics-dolfinx-20200525)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fenics-dolfinx-20200525)-builddeps),$(modulefilesdir)/$$(dep))
 	@touch $@
 
 $($(fenics-dolfinx-20200525)-builddir)/.markerfile: $($(fenics-dolfinx-20200525)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(fenics-dolfinx-20200525)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fenics-dolfinx-20200525)-builddeps),$(modulefilesdir)/$$(dep)) $($(fenics-dolfinx-20200525)-builddir)/.markerfile $($(fenics-dolfinx-20200525)-prefix)/.pkgpatch
 	cd $($(fenics-dolfinx-20200525)-builddir) && \
@@ -83,7 +54,6 @@ $($(fenics-dolfinx-20200525)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$
 		$(MODULE) load $($(fenics-dolfinx-20200525)-builddeps) && \
 		cmake .. \
 			-DCMAKE_INSTALL_PREFIX=$($(fenics-dolfinx-20200525)-prefix) \
-			-DCMAKE_INSTALL_DEFAULT_DIRECTORY_PERMISSIONS=OWNER_READ\;OWNER_EXECUTE\;OWNER_WRITE\;GROUP_READ\;GROUP_EXECUTE\;SETGID\;WORLD_READ\;WORLD_EXECUTE \
 			-DCMAKE_POLICY_DEFAULT_CMP0074=NEW \
 			-DBUILD_SHARED_LIBS=TRUE \
 			-DDOLFINX_SKIP_BUILD_TESTS=TRUE \

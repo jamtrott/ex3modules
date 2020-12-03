@@ -35,10 +35,10 @@ $($(python-ipython)-src): $(dir $($(python-ipython)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-ipython)-srcurl)
 
 $($(python-ipython)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-ipython)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-ipython)-prefix)/.pkgunpack: $$($(python-ipython)-src) $($(python-ipython)-srcdir)/.markerfile $($(python-ipython)-prefix)/.markerfile
 	tar -C $($(python-ipython)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-ipython)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach 
 	@touch $@
 
 $($(python-ipython)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-ipython)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-ipython)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-ipython)-prefix)/.pkgpatch

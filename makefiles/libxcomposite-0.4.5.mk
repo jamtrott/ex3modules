@@ -34,10 +34,10 @@ $($(libxcomposite)-src): $(dir $($(libxcomposite)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxcomposite)-srcurl)
 
 $($(libxcomposite)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxcomposite)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxcomposite)-prefix)/.pkgunpack: $($(libxcomposite)-src) $($(libxcomposite)-srcdir)/.markerfile $($(libxcomposite)-prefix)/.markerfile
 	tar -C $($(libxcomposite)-srcdir) --strip-components 1 -xj -f $<

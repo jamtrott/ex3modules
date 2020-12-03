@@ -35,10 +35,10 @@ $($(python-alabaster)-src): $(dir $($(python-alabaster)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-alabaster)-srcurl)
 
 $($(python-alabaster)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-alabaster)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-alabaster)-prefix)/.pkgunpack: $$($(python-alabaster)-src) $($(python-alabaster)-srcdir)/.markerfile $($(python-alabaster)-prefix)/.markerfile
 	tar -C $($(python-alabaster)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-alabaster)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreac
 	@touch $@
 
 $($(python-alabaster)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-alabaster)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-alabaster)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-alabaster)-prefix)/.pkgpatch

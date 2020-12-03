@@ -35,10 +35,10 @@ $($(python-mpi4py)-src): $(dir $($(python-mpi4py)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-mpi4py)-srcurl)
 
 $($(python-mpi4py)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-mpi4py)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-mpi4py)-prefix)/.pkgunpack: $$($(python-mpi4py)-src) $($(python-mpi4py)-srcdir)/.markerfile $($(python-mpi4py)-prefix)/.markerfile
 	tar -C $($(python-mpi4py)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-mpi4py)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach d
 	@touch $@
 
 $($(python-mpi4py)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-mpi4py)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-mpi4py)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-mpi4py)-prefix)/.pkgpatch

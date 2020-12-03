@@ -35,10 +35,10 @@ $($(python-coverage)-src): $(dir $($(python-coverage)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-coverage)-srcurl)
 
 $($(python-coverage)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-coverage)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-coverage)-prefix)/.pkgunpack: $$($(python-coverage)-src) $($(python-coverage)-srcdir)/.markerfile $($(python-coverage)-prefix)/.markerfile
 	tar -C $($(python-coverage)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-coverage)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach
 	@touch $@
 
 $($(python-coverage)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-coverage)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-coverage)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-coverage)-prefix)/.pkgpatch

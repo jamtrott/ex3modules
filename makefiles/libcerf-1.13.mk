@@ -35,10 +35,10 @@ $($(libcerf)-src): $(dir $($(libcerf)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libcerf)-srcurl)
 
 $($(libcerf)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libcerf)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libcerf)-prefix)/.pkgunpack: $($(libcerf)-src) $($(libcerf)-srcdir)/.markerfile $($(libcerf)-prefix)/.markerfile
 	tar -C $($(libcerf)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(libcerf)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 
 ifneq ($($(libcerf)-builddir),$($(libcerf)-srcdir))
 $($(libcerf)-builddir)/.markerfile: $($(libcerf)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(libcerf)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libcerf)-builddeps),$(modulefilesdir)/$$(dep)) $($(libcerf)-builddir)/.markerfile $($(libcerf)-prefix)/.pkgpatch

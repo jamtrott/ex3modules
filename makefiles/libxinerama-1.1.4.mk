@@ -34,10 +34,10 @@ $($(libxinerama)-src): $(dir $($(libxinerama)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxinerama)-srcurl)
 
 $($(libxinerama)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxinerama)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxinerama)-prefix)/.pkgunpack: $($(libxinerama)-src) $($(libxinerama)-srcdir)/.markerfile $($(libxinerama)-prefix)/.markerfile
 	tar -C $($(libxinerama)-srcdir) --strip-components 1 -xj -f $<

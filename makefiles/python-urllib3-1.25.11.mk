@@ -35,10 +35,10 @@ $($(python-urllib3)-src): $(dir $($(python-urllib3)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-urllib3)-srcurl)
 
 $($(python-urllib3)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-urllib3)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-urllib3)-prefix)/.pkgunpack: $$($(python-urllib3)-src) $($(python-urllib3)-srcdir)/.markerfile $($(python-urllib3)-prefix)/.markerfile
 	tar -C $($(python-urllib3)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-urllib3)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach 
 	@touch $@
 
 $($(python-urllib3)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-urllib3)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-urllib3)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-urllib3)-prefix)/.pkgpatch

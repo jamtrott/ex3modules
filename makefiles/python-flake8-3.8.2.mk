@@ -35,10 +35,10 @@ $($(python-flake8)-src): $(dir $($(python-flake8)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-flake8)-srcurl)
 
 $($(python-flake8)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-flake8)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-flake8)-prefix)/.pkgunpack: $$($(python-flake8)-src) $($(python-flake8)-srcdir)/.markerfile $($(python-flake8)-prefix)/.markerfile
 	tar -C $($(python-flake8)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-flake8)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach d
 	@touch $@
 
 $($(python-flake8)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-flake8)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-flake8)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-flake8)-prefix)/.pkgpatch

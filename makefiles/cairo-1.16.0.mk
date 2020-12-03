@@ -34,10 +34,10 @@ $($(cairo)-src): $(dir $($(cairo)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(cairo)-srcurl)
 
 $($(cairo)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(cairo)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(cairo)-prefix)/.pkgunpack: $($(cairo)-src) $($(cairo)-srcdir)/.markerfile $($(cairo)-prefix)/.markerfile
 	tar -C $($(cairo)-srcdir) --strip-components 1 -x -f $<

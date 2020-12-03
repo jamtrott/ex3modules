@@ -34,10 +34,10 @@ $($(libevent)-src): $(dir $($(libevent)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libevent)-srcurl)
 
 $($(libevent)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libevent)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libevent)-prefix)/.pkgunpack: $($(libevent)-src) $($(libevent)-srcdir)/.markerfile $($(libevent)-prefix)/.markerfile
 	tar -C $($(libevent)-srcdir) --strip-components 1 -xz -f $<

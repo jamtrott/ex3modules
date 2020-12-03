@@ -35,10 +35,10 @@ $($(python-pyflakes)-src): $(dir $($(python-pyflakes)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pyflakes)-srcurl)
 
 $($(python-pyflakes)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pyflakes)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pyflakes)-prefix)/.pkgunpack: $$($(python-pyflakes)-src) $($(python-pyflakes)-srcdir)/.markerfile $($(python-pyflakes)-prefix)/.markerfile
 	tar -C $($(python-pyflakes)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-pyflakes)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach
 	@touch $@
 
 $($(python-pyflakes)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-pyflakes)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pyflakes)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pyflakes)-prefix)/.pkgpatch

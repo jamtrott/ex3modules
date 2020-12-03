@@ -35,10 +35,10 @@ $($(python-pygraphviz)-src): $(dir $($(python-pygraphviz)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pygraphviz)-srcurl)
 
 $($(python-pygraphviz)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pygraphviz)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pygraphviz)-prefix)/.pkgunpack: $$($(python-pygraphviz)-src) $($(python-pygraphviz)-srcdir)/.markerfile $($(python-pygraphviz)-prefix)/.markerfile
 	tar -C $($(python-pygraphviz)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-pygraphviz)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(forea
 	@touch $@
 
 $($(python-pygraphviz)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-pygraphviz)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pygraphviz)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pygraphviz)-prefix)/.pkgpatch

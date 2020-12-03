@@ -36,10 +36,10 @@ $($(ucx)-src): $(dir $($(ucx)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(ucx)-srcurl)
 
 $($(ucx)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(ucx)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(ucx)-prefix)/.pkgunpack: $($(ucx)-src) $($(ucx)-srcdir)/.markerfile $($(ucx)-prefix)/.markerfile
 	tar -C $($(ucx)-srcdir) --strip-components 1 -xz -f $<

@@ -35,10 +35,10 @@ $($(python-flaky)-src): $(dir $($(python-flaky)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-flaky)-srcurl)
 
 $($(python-flaky)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-flaky)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-flaky)-prefix)/.pkgunpack: $$($(python-flaky)-src) $($(python-flaky)-srcdir)/.markerfile $($(python-flaky)-prefix)/.markerfile
 	tar -C $($(python-flaky)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-flaky)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach de
 	@touch $@
 
 $($(python-flaky)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-flaky)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-flaky)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-flaky)-prefix)/.pkgpatch

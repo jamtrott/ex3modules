@@ -35,10 +35,10 @@ $($(libpfm)-src): $(dir $($(libpfm)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libpfm)-srcurl)
 
 $($(libpfm)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libpfm)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libpfm)-prefix)/.pkgunpack: $($(libpfm)-src) $($(libpfm)-srcdir)/.markerfile $($(libpfm)-prefix)/.markerfile
 	tar -C $($(libpfm)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(libpfm)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($
 
 ifneq ($($(libpfm)-builddir),$($(libpfm)-srcdir))
 $($(libpfm)-builddir)/.markerfile: $($(libpfm)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(libpfm)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libpfm)-builddeps),$(modulefilesdir)/$$(dep)) $($(libpfm)-builddir)/.markerfile $($(libpfm)-prefix)/.pkgpatch

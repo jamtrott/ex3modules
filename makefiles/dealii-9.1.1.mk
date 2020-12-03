@@ -35,10 +35,10 @@ $($(dealii)-src): $(dir $($(dealii)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(dealii)-srcurl)
 
 $($(dealii)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(dealii)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(dealii)-prefix)/.pkgunpack: $($(dealii)-src) $($(dealii)-srcdir)/.markerfile $($(dealii)-prefix)/.markerfile
 	tar -C $($(dealii)-srcdir) --strip-components 1 -xz -f $<
@@ -72,101 +72,14 @@ $($(dealii)-srcdir)/0001-remove-boost-include-to-fix-compilation.patch: $($(deal
 	@echo ' ' >>$@.tmp
 	mv $@.tmp $@
 
-$($(dealii)-srcdir)/0002-Fix-install-directory-permissions.patch: $($(dealii)-srcdir)/.markerfile
-	@printf '' >$@.tmp
-	@echo 'From d5127b4c8524a49b48c22183d7963c4a48e1994a Mon Sep 17 00:00:00 2001' >>$@.tmp
-	@echo 'From: "James D. Trotter" <james@simula.no>' >>$@.tmp
-	@echo 'Date: Fri, 27 Nov 2020 20:32:52 +0100' >>$@.tmp
-	@echo 'Subject: [PATCH] Fix install directory permissions' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '---' >>$@.tmp
-	@echo ' bundled/CMakeLists.txt  | 3 +++' >>$@.tmp
-	@echo ' examples/CMakeLists.txt | 1 +' >>$@.tmp
-	@echo ' include/CMakeLists.txt  | 3 +++' >>$@.tmp
-	@echo ' 3 files changed, 7 insertions(+)' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo 'diff --git a/bundled/CMakeLists.txt b/bundled/CMakeLists.txt' >>$@.tmp
-	@echo 'index a99cc2e..4ef79d7 100644' >>$@.tmp
-	@echo '--- a/bundled/CMakeLists.txt' >>$@.tmp
-	@echo '+++ b/bundled/CMakeLists.txt' >>$@.tmp
-	@echo '@@ -24,6 +24,7 @@ IF(FEATURE_BOOST_BUNDLED_CONFIGURED)' >>$@.tmp
-	@echo '   INSTALL(DIRECTORY $${BOOST_FOLDER}/include/boost' >>$@.tmp
-	@echo '     DESTINATION $${DEAL_II_INCLUDE_RELDIR}/deal.II/bundled' >>$@.tmp
-	@echo '     COMPONENT library' >>$@.tmp
-	@echo '+    DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '     )' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '   ADD_SUBDIRECTORY($${BOOST_FOLDER}/libs/serialization/src)' >>$@.tmp
-	@echo '@@ -41,6 +42,7 @@ IF(FEATURE_THREADS_BUNDLED_CONFIGURED)' >>$@.tmp
-	@echo '   INSTALL(DIRECTORY $${TBB_FOLDER}/include/tbb' >>$@.tmp
-	@echo '     DESTINATION $${DEAL_II_INCLUDE_RELDIR}/deal.II/bundled' >>$@.tmp
-	@echo '     COMPONENT library' >>$@.tmp
-	@echo '+    DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '     FILES_MATCHING PATTERN "*.h"' >>$@.tmp
-	@echo '     )' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '@@ -57,6 +59,7 @@ IF(FEATURE_UMFPACK_BUNDLED_CONFIGURED)' >>$@.tmp
-	@echo '       $${UMFPACK_FOLDER}/AMD/Include/' >>$@.tmp
-	@echo '     DESTINATION $${DEAL_II_INCLUDE_RELDIR}/deal.II/bundled' >>$@.tmp
-	@echo '     COMPONENT library' >>$@.tmp
-	@echo '+    DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '     FILES_MATCHING PATTERN "*.h"' >>$@.tmp
-	@echo '     )' >>$@.tmp
-	@echo ' ENDIF()' >>$@.tmp
-	@echo 'diff --git a/examples/CMakeLists.txt b/examples/CMakeLists.txt' >>$@.tmp
-	@echo 'index 7ea0ea5..1a6d0ae 100644' >>$@.tmp
-	@echo '--- a/examples/CMakeLists.txt' >>$@.tmp
-	@echo '+++ b/examples/CMakeLists.txt' >>$@.tmp
-	@echo '@@ -19,6 +19,7 @@ IF(DEAL_II_COMPONENT_EXAMPLES)' >>$@.tmp
-	@echo '   INSTALL(DIRECTORY $${CMAKE_CURRENT_SOURCE_DIR}/' >>$@.tmp
-	@echo '     DESTINATION $${DEAL_II_EXAMPLES_RELDIR}' >>$@.tmp
-	@echo '     COMPONENT examples' >>$@.tmp
-	@echo '+    DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '     FILES_MATCHING' >>$@.tmp
-	@echo '     #' >>$@.tmp
-	@echo '     # Exclude folder structures: doc, doxygen, CMakeFiles,...' >>$@.tmp
-	@echo 'diff --git a/include/CMakeLists.txt b/include/CMakeLists.txt' >>$@.tmp
-	@echo 'index c144778..e745f5d 100644' >>$@.tmp
-	@echo '--- a/include/CMakeLists.txt' >>$@.tmp
-	@echo '+++ b/include/CMakeLists.txt' >>$@.tmp
-	@echo '@@ -31,6 +31,7 @@ CONFIGURE_FILE(' >>$@.tmp
-	@echo ' INSTALL(DIRECTORY deal.II' >>$@.tmp
-	@echo '   DESTINATION $${DEAL_II_INCLUDE_RELDIR}' >>$@.tmp
-	@echo '   COMPONENT library' >>$@.tmp
-	@echo '+  DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '   FILES_MATCHING PATTERN "*.h"' >>$@.tmp
-	@echo '   )' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '@@ -38,6 +39,7 @@ IF(DEAL_II_WITH_CUDA)' >>$@.tmp
-	@echo '   INSTALL(DIRECTORY deal.II' >>$@.tmp
-	@echo '     DESTINATION $${DEAL_II_INCLUDE_RELDIR}' >>$@.tmp
-	@echo '     COMPONENT library' >>$@.tmp
-	@echo '+    DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '     FILES_MATCHING PATTERN "*.cuh"' >>$@.tmp
-	@echo '     )' >>$@.tmp
-	@echo ' ENDIF()' >>$@.tmp
-	@echo '@@ -48,6 +50,7 @@ ENDIF()' >>$@.tmp
-	@echo ' INSTALL(DIRECTORY $${CMAKE_CURRENT_BINARY_DIR}/deal.II' >>$@.tmp
-	@echo '   DESTINATION $${DEAL_II_INCLUDE_RELDIR}' >>$@.tmp
-	@echo '   COMPONENT library' >>$@.tmp
-	@echo '+  DIRECTORY_PERMISSIONS OWNER_READ OWNER_EXECUTE OWNER_WRITE GROUP_READ GROUP_EXECUTE SETGID WORLD_READ WORLD_EXECUTE' >>$@.tmp
-	@echo '   FILES_MATCHING PATTERN "*.h"' >>$@.tmp
-	@echo '   )' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '--' >>$@.tmp
-	@echo '2.17.1' >>$@.tmp
-	@echo '' >>$@.tmp
-	@mv $@.tmp $@
-
-$($(dealii)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(dealii)-builddeps),$(modulefilesdir)/$$(dep)) $($(dealii)-prefix)/.pkgunpack $($(dealii)-srcdir)/0001-remove-boost-include-to-fix-compilation.patch $($(dealii)-srcdir)/0002-Fix-install-directory-permissions.patch
+$($(dealii)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(dealii)-builddeps),$(modulefilesdir)/$$(dep)) $($(dealii)-prefix)/.pkgunpack $($(dealii)-srcdir)/0001-remove-boost-include-to-fix-compilation.patch
 	cd $($(dealii)-srcdir) && \
-		patch -t -p1 <0001-remove-boost-include-to-fix-compilation.patch && \
-		patch -t -p1 <0002-Fix-install-directory-permissions.patch
+		patch -t -p1 <0001-remove-boost-include-to-fix-compilation.patch
 	@touch $@
 
 ifneq ($($(dealii)-builddir),$($(dealii)-srcdir))
 $($(dealii)-builddir)/.markerfile: $($(dealii)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(dealii)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(dealii)-builddeps),$(modulefilesdir)/$$(dep)) $($(dealii)-builddir)/.markerfile $($(dealii)-prefix)/.pkgpatch

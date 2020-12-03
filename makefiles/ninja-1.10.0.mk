@@ -34,10 +34,10 @@ $($(ninja)-src): $(dir $($(ninja)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(ninja)-srcurl)
 
 $($(ninja)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(ninja)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(ninja)-prefix)/.pkgunpack: $($(ninja)-src) $($(ninja)-srcdir)/.markerfile $($(ninja)-prefix)/.markerfile
 	tar -C $($(ninja)-srcdir) --strip-components 1 -xz -f $<
@@ -58,8 +58,8 @@ $($(ninja)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 	@touch $@
 
 $($(ninja)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(ninja)-builddeps),$(modulefilesdir)/$$(dep)) $($(ninja)-prefix)/.pkgcheck
-	$(INSTALL) -m=6755 -d $($(ninja)-prefix)
-	$(INSTALL) -m=6755 -d $($(ninja)-prefix)/bin
+	$(INSTALL) -d $($(ninja)-prefix)
+	$(INSTALL) -d $($(ninja)-prefix)/bin
 	$(INSTALL) $($(ninja)-srcdir)/ninja $($(ninja)-prefix)/bin
 	@touch $@
 

@@ -34,10 +34,10 @@ $($(hypre)-src): $(dir $($(hypre)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(hypre)-srcurl)
 
 $($(hypre)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(hypre)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(hypre)-prefix)/.pkgunpack: $($(hypre)-src) $($(hypre)-srcdir)/.markerfile $($(hypre)-prefix)/.markerfile
 	tar -C $($(hypre)-srcdir) --strip-components 1 -xz -f $<

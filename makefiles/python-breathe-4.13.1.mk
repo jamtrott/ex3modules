@@ -34,10 +34,10 @@ $($(python-breathe)-src): $(dir $($(python-breathe)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-breathe)-srcurl)
 
 $($(python-breathe)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-breathe)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-breathe)-prefix)/.pkgunpack: $$($(python-breathe)-src) $($(python-breathe)-srcdir)/.markerfile $($(python-breathe)-prefix)/.markerfile
 	tar -C $($(python-breathe)-srcdir) --strip-components 1 -xz -f $<
@@ -47,7 +47,7 @@ $($(python-breathe)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach 
 	@touch $@
 
 $($(python-breathe)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-breathe)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-breathe)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-breathe)-prefix)/.pkgpatch

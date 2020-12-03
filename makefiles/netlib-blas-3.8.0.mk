@@ -35,10 +35,10 @@ $($(netlib-blas)-src): $(dir $($(netlib-blas)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(netlib-blas)-srcurl)
 
 $($(netlib-blas)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(netlib-blas)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(netlib-blas)-prefix)/.pkgunpack: $($(netlib-blas)-src) $($(netlib-blas)-srcdir)/.markerfile $($(netlib-blas)-prefix)/.markerfile
 	tar -C $($(netlib-blas)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(netlib-blas)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep
 
 ifneq ($($(netlib-blas)-builddir),$($(netlib-blas)-srcdir))
 $($(netlib-blas)-builddir)/.markerfile: $($(netlib-blas)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(netlib-blas)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(netlib-blas)-builddeps),$(modulefilesdir)/$$(dep)) $($(netlib-blas)-builddir)/.markerfile $($(netlib-blas)-prefix)/.pkgpatch
@@ -76,9 +76,9 @@ $($(netlib-blas)-builddir)/blas.pc: $($(netlib-blas)-builddir)/.markerfile
 	@mv $@.tmp $@
 
 $($(netlib-blas)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(netlib-blas)-builddeps),$(modulefilesdir)/$$(dep)) $($(netlib-blas)-builddir)/.markerfile $($(netlib-blas)-prefix)/.pkgcheck $($(netlib-blas)-builddir)/blas.pc
-	$(INSTALL) -m=6755 -d $($(netlib-blas)-prefix)/lib
+	$(INSTALL) -d $($(netlib-blas)-prefix)/lib
 	$(INSTALL) -m755 $($(netlib-blas)-builddir)/libblas.so $($(netlib-blas)-prefix)/lib
-	$(INSTALL) -m=6755 -d $($(netlib-blas)-prefix)/lib/pkgconfig
+	$(INSTALL) -d $($(netlib-blas)-prefix)/lib/pkgconfig
 	$(INSTALL) -m644 $($(netlib-blas)-builddir)/blas.pc $($(netlib-blas)-prefix)/lib/pkgconfig
 	@touch $@
 

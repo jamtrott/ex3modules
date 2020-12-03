@@ -35,10 +35,10 @@ $($(python-pkgconfig)-src): $(dir $($(python-pkgconfig)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pkgconfig)-srcurl)
 
 $($(python-pkgconfig)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pkgconfig)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pkgconfig)-prefix)/.pkgunpack: $$($(python-pkgconfig)-src) $($(python-pkgconfig)-srcdir)/.markerfile $($(python-pkgconfig)-prefix)/.markerfile
 	tar -C $($(python-pkgconfig)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-pkgconfig)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreac
 	@touch $@
 
 $($(python-pkgconfig)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-pkgconfig)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pkgconfig)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pkgconfig)-prefix)/.pkgpatch

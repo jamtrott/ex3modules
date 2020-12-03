@@ -32,10 +32,10 @@ $(hwloc-cairo)-modulefile = $(modulefilesdir)/$(hwloc-cairo)
 $(hwloc-cairo)-prefix = $(pkgdir)/$(hwloc-cairo)
 
 $($(hwloc-cairo)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(hwloc-cairo)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(hwloc-cairo)-prefix)/.pkgunpack: $$($(hwloc-cairo)-src) $($(hwloc-cairo)-srcdir)/.markerfile $($(hwloc-cairo)-prefix)/.markerfile
 	tar -C $($(hwloc-cairo)-srcdir) --strip-components 1 -xz -f $<
@@ -46,7 +46,7 @@ $($(hwloc-cairo)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep
 
 ifneq ($($(hwloc-cairo)-builddir),$($(hwloc-cairo)-srcdir))
 $($(hwloc-cairo)-builddir)/.markerfile: $($(hwloc-cairo)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(hwloc-cairo)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(hwloc-cairo)-builddeps),$(modulefilesdir)/$$(dep)) $($(hwloc-cairo)-prefix)/.pkgpatch

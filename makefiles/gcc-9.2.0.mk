@@ -35,10 +35,10 @@ $($(gcc-9.2.0)-src): $(dir $($(gcc-9.2.0)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(gcc-9.2.0)-srcurl)
 
 $($(gcc-9.2.0)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gcc-9.2.0)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gcc-9.2.0)-prefix)/.pkgunpack: $($(gcc-9.2.0)-src) $($(gcc-9.2.0)-srcdir)/.markerfile $($(gcc-9.2.0)-prefix)/.markerfile
 	tar -C $($(gcc-9.2.0)-srcdir) --strip-components 1 -xz -f $<

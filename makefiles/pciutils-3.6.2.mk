@@ -35,10 +35,10 @@ $($(pciutils)-src): $(dir $($(pciutils)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(pciutils)-srcurl)
 
 $($(pciutils)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(pciutils)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(pciutils)-prefix)/.pkgunpack: $($(pciutils)-src) $($(pciutils)-srcdir)/.markerfile $($(pciutils)-prefix)/.markerfile
 	tar -C $($(pciutils)-srcdir) --strip-components 1 -xz -f $<
@@ -50,7 +50,7 @@ $($(pciutils)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 
 ifneq ($($(pciutils)-builddir),$($(pciutils)-srcdir))
 $($(pciutils)-builddir)/.markerfile: $($(pciutils)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(pciutils)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(pciutils)-builddeps),$(modulefilesdir)/$$(dep)) $($(pciutils)-builddir)/.markerfile $($(pciutils)-prefix)/.pkgpatch

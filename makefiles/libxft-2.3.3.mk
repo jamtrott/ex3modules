@@ -34,10 +34,10 @@ $($(libxft)-src): $(dir $($(libxft)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxft)-srcurl)
 
 $($(libxft)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxft)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxft)-prefix)/.pkgunpack: $($(libxft)-src) $($(libxft)-srcdir)/.markerfile $($(libxft)-prefix)/.markerfile
 	tar -C $($(libxft)-srcdir) --strip-components 1 -xj -f $<

@@ -35,10 +35,10 @@ $($(pango)-src): $(dir $($(pango)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(pango)-srcurl)
 
 $($(pango)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(pango)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(pango)-prefix)/.pkgunpack: $($(pango)-src) $($(pango)-srcdir)/.markerfile $($(pango)-prefix)/.markerfile
 	tar -C $($(pango)-srcdir) --strip-components 1 -x -f $<
@@ -48,7 +48,7 @@ $($(pango)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 	@touch $@
 
 $($(pango)-builddir)/.markerfile: $($(pango)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(pango)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(pango)-builddeps),$(modulefilesdir)/$$(dep)) $($(pango)-prefix)/.pkgpatch $($(pango)-builddir)/.markerfile
 	cd $($(pango)-builddir) && \

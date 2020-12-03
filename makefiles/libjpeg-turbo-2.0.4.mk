@@ -34,13 +34,13 @@ $($(libjpeg-turbo)-src): $(dir $($(libjpeg-turbo)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libjpeg-turbo)-srcurl)
 
 $($(libjpeg-turbo)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libjpeg-turbo)-srcdir)/build/.markerfile: $($(libjpeg-turbo)-srcdir)/.markerfile
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libjpeg-turbo)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libjpeg-turbo)-prefix)/.pkgunpack: $($(libjpeg-turbo)-src) $($(libjpeg-turbo)-srcdir)/.markerfile $($(libjpeg-turbo)-prefix)/.markerfile
 	tar -C $($(libjpeg-turbo)-srcdir) --strip-components 1 -xz -f $<

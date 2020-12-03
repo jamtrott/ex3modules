@@ -34,10 +34,10 @@ $($(rdma-core)-src): $(dir $($(rdma-core)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(rdma-core)-srcurl)
 
 $($(rdma-core)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(rdma-core)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(rdma-core)-prefix)/.pkgunpack: $($(rdma-core)-src) $($(rdma-core)-srcdir)/.markerfile $($(rdma-core)-prefix)/.markerfile
 	tar -C $($(rdma-core)-srcdir) --strip-components 1 -xz -f $<
@@ -47,7 +47,7 @@ $($(rdma-core)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$
 	@touch $@
 
 $($(rdma-core)-srcdir)/build/.markerfile: $($(rdma-core)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(rdma-core)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(rdma-core)-builddeps),$(modulefilesdir)/$$(dep)) $($(rdma-core)-prefix)/.pkgpatch $($(rdma-core)-srcdir)/build/.markerfile

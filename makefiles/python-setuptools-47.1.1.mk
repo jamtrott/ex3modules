@@ -35,20 +35,20 @@ $($(python-setuptools)-src): $(dir $($(python-setuptools)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-setuptools)-srcurl)
 
 $($(python-setuptools)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-setuptools)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-setuptools)-prefix)/.pkgunpack: $$($(python-setuptools)-src) $($(python-setuptools)-srcdir)/.markerfile $($(python-setuptools)-prefix)/.markerfile
-	$(INSTALL) -m=6755 -d $(dir $@) && tar -C $($(python-setuptools)-srcdir) --strip-components 1 -xz -f $<
+	$(INSTALL) -d $(dir $@) && tar -C $($(python-setuptools)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
 $($(python-setuptools)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-setuptools)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-setuptools)-prefix)/.pkgunpack
 	@touch $@
 
 $($(python-setuptools)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-setuptools)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-setuptools)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-setuptools)-prefix)/.pkgpatch

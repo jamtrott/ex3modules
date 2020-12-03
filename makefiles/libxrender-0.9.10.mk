@@ -34,10 +34,10 @@ $($(libxrender)-src): $(dir $($(libxrender)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxrender)-srcurl)
 
 $($(libxrender)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxrender)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxrender)-prefix)/.pkgunpack: $($(libxrender)-src) $($(libxrender)-srcdir)/.markerfile $($(libxrender)-prefix)/.markerfile
 	tar -C $($(libxrender)-srcdir) --strip-components 1 -xj -f $<

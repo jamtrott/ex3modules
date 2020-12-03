@@ -35,10 +35,10 @@ $($(libfabric-fabtests)-src): $(dir $($(libfabric-fabtests)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libfabric-fabtests)-srcurl)
 
 $($(libfabric-fabtests)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libfabric-fabtests)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libfabric-fabtests)-prefix)/.pkgunpack: $$($(libfabric-fabtests)-src) $($(libfabric-fabtests)-srcdir)/.markerfile $($(libfabric-fabtests)-prefix)/.markerfile
 	tar -C $($(libfabric-fabtests)-srcdir) --strip-components 1 -xj -f $<
@@ -49,7 +49,7 @@ $($(libfabric-fabtests)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(fore
 
 ifneq ($($(libfabric-fabtests)-builddir),$($(libfabric-fabtests)-srcdir))
 $($(libfabric-fabtests)-builddir)/.markerfile: $($(libfabric-fabtests)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(libfabric-fabtests)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libfabric-fabtests)-builddeps),$(modulefilesdir)/$$(dep)) $($(libfabric-fabtests)-builddir)/.markerfile $($(libfabric-fabtests)-prefix)/.pkgpatch

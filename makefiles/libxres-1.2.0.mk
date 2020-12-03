@@ -34,10 +34,10 @@ $($(libxres)-src): $(dir $($(libxres)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxres)-srcurl)
 
 $($(libxres)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxres)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxres)-prefix)/.pkgunpack: $($(libxres)-src) $($(libxres)-srcdir)/.markerfile $($(libxres)-prefix)/.markerfile
 	tar -C $($(libxres)-srcdir) --strip-components 1 -xj -f $<

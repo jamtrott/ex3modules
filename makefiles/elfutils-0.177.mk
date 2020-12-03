@@ -35,10 +35,10 @@ $($(elfutils)-src): $(dir $($(elfutils)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(elfutils)-srcurl)
 
 $($(elfutils)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(elfutils)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(elfutils)-prefix)/.pkgunpack: $($(elfutils)-src) $($(elfutils)-srcdir)/.markerfile $($(elfutils)-prefix)/.markerfile
 	tar -C $($(elfutils)-srcdir) --strip-components 1 -xj -f $<
@@ -49,7 +49,7 @@ $($(elfutils)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 
 ifneq ($($(elfutils)-builddir),$($(elfutils)-srcdir))
 $($(elfutils)-builddir)/.markerfile: $($(elfutils)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(elfutils)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(elfutils)-builddeps),$(modulefilesdir)/$$(dep)) $($(elfutils)-builddir)/.markerfile $($(elfutils)-prefix)/.pkgpatch

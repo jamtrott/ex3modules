@@ -35,10 +35,10 @@ $($(python-pycodestyle)-src): $(dir $($(python-pycodestyle)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pycodestyle)-srcurl)
 
 $($(python-pycodestyle)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pycodestyle)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pycodestyle)-prefix)/.pkgunpack: $$($(python-pycodestyle)-src) $($(python-pycodestyle)-srcdir)/.markerfile $($(python-pycodestyle)-prefix)/.markerfile
 	tar -C $($(python-pycodestyle)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-pycodestyle)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(fore
 	@touch $@
 
 $($(python-pycodestyle)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-pycodestyle)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pycodestyle)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pycodestyle)-prefix)/.pkgpatch

@@ -35,10 +35,10 @@ $($(slurm-19.05)-src): $(dir $($(slurm-19.05)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(slurm-19.05)-srcurl)
 
 $($(slurm-19.05)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(slurm-19.05)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(slurm-19.05)-prefix)/.pkgunpack: $($(slurm-19.05)-src) $($(slurm-19.05)-srcdir)/.markerfile $($(slurm-19.05)-prefix)/.markerfile
 	tar -C $($(slurm-19.05)-srcdir) --strip-components 1 -xj -f $<
@@ -49,7 +49,7 @@ $($(slurm-19.05)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep
 
 ifneq ($($(slurm-19.05)-builddir),$($(slurm-19.05)-srcdir))
 $($(slurm-19.05)-builddir)/.markerfile: $($(slurm-19.05)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(slurm-19.05)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm-19.05)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm-19.05)-builddir)/.markerfile $($(slurm-19.05)-prefix)/.pkgpatch

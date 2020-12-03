@@ -35,10 +35,10 @@ $($(python-xarray)-src): $(dir $($(python-xarray)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-xarray)-srcurl)
 
 $($(python-xarray)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-xarray)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-xarray)-prefix)/.pkgunpack: $$($(python-xarray)-src) $($(python-xarray)-srcdir)/.markerfile $($(python-xarray)-prefix)/.markerfile
 	tar -C $($(python-xarray)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-xarray)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach d
 	@touch $@
 
 $($(python-xarray)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-xarray)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-xarray)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-xarray)-prefix)/.pkgpatch

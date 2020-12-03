@@ -35,10 +35,10 @@ $($(python-matplotlib)-src): $(dir $($(python-matplotlib)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-matplotlib)-srcurl)
 
 $($(python-matplotlib)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-matplotlib)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-matplotlib)-prefix)/.pkgunpack: $$($(python-matplotlib)-src) $($(python-matplotlib)-srcdir)/.markerfile $($(python-matplotlib)-prefix)/.markerfile
 	tar -C $($(python-matplotlib)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-matplotlib)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(forea
 	@touch $@
 
 $($(python-matplotlib)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-matplotlib)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-matplotlib)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-matplotlib)-prefix)/.pkgpatch

@@ -34,11 +34,11 @@ $($(scotch)-src): $(dir $($(scotch)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(scotch)-srcurl)
 
 $($(scotch)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(scotch)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(scotch)-prefix)/.pkgunpack: $($(scotch)-src) $($(scotch)-srcdir)/.markerfile $($(scotch)-prefix)/.markerfile
 	tar -C $($(scotch)-srcdir) --strip-components 1 -xz -f $<

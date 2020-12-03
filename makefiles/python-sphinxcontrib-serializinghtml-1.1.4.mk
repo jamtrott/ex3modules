@@ -35,10 +35,10 @@ $($(python-sphinxcontrib-serializinghtml)-src): $(dir $($(python-sphinxcontrib-s
 	$(CURL) $(curl_options) --output $@ $($(python-sphinxcontrib-serializinghtml)-srcurl)
 
 $($(python-sphinxcontrib-serializinghtml)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sphinxcontrib-serializinghtml)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sphinxcontrib-serializinghtml)-prefix)/.pkgunpack: $$($(python-sphinxcontrib-serializinghtml)-src) $($(python-sphinxcontrib-serializinghtml)-srcdir)/.markerfile $($(python-sphinxcontrib-serializinghtml)-prefix)/.markerfile
 	tar -C $($(python-sphinxcontrib-serializinghtml)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-sphinxcontrib-serializinghtml)-prefix)/.pkgpatch: $(modulefilesdir)/.
 	@touch $@
 
 $($(python-sphinxcontrib-serializinghtml)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-sphinxcontrib-serializinghtml)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-serializinghtml)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinxcontrib-serializinghtml)-prefix)/.pkgpatch

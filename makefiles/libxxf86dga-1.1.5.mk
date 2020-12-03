@@ -34,10 +34,10 @@ $($(libxxf86dga)-src): $(dir $($(libxxf86dga)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxxf86dga)-srcurl)
 
 $($(libxxf86dga)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxxf86dga)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxxf86dga)-prefix)/.pkgunpack: $($(libxxf86dga)-src) $($(libxxf86dga)-srcdir)/.markerfile $($(libxxf86dga)-prefix)/.markerfile
 	tar -C $($(libxxf86dga)-srcdir) --strip-components 1 -xj -f $<

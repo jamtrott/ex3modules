@@ -35,10 +35,10 @@ $($(python-importlib_metadata)-src): $(dir $($(python-importlib_metadata)-src)).
 	$(CURL) $(curl_options) --output $@ $($(python-importlib_metadata)-srcurl)
 
 $($(python-importlib_metadata)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-importlib_metadata)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-importlib_metadata)-prefix)/.pkgunpack: $$($(python-importlib_metadata)-src) $($(python-importlib_metadata)-srcdir)/.markerfile $($(python-importlib_metadata)-prefix)/.markerfile
 	tar -C $($(python-importlib_metadata)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-importlib_metadata)-prefix)/.pkgpatch: $($(python-importlib_metadata)
 	@touch $@
 
 $($(python-importlib_metadata)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-importlib_metadata)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-importlib_metadata)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-importlib_metadata)-prefix)/.pkgpatch

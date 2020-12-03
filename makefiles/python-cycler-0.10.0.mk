@@ -35,10 +35,10 @@ $($(python-cycler)-src): $(dir $($(python-cycler)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-cycler)-srcurl)
 
 $($(python-cycler)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-cycler)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-cycler)-prefix)/.pkgunpack: $$($(python-cycler)-src) $($(python-cycler)-srcdir)/.markerfile $($(python-cycler)-prefix)/.markerfile
 	tar -C $($(python-cycler)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-cycler)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach d
 	@touch $@
 
 $($(python-cycler)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-cycler)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-cycler)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-cycler)-prefix)/.pkgpatch

@@ -35,10 +35,10 @@ $($(llvm-openmp)-src): $(dir $($(llvm-openmp)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(llvm-openmp)-srcurl)
 
 $($(llvm-openmp)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(llvm-openmp)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(llvm-openmp)-prefix)/.pkgunpack: $($(llvm-openmp)-src) $($(llvm-openmp)-srcdir)/.markerfile $($(llvm-openmp)-prefix)/.markerfile
 	tar -C $($(llvm-openmp)-srcdir) --strip-components 1 -x -f $<
@@ -49,7 +49,7 @@ $($(llvm-openmp)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep
 
 ifneq ($($(llvm-openmp)-builddir),$($(llvm-openmp)-srcdir))
 $($(llvm-openmp)-builddir)/.markerfile: $($(llvm-openmp)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(llvm-openmp)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(llvm-openmp)-builddeps),$(modulefilesdir)/$$(dep)) $($(llvm-openmp)-builddir)/.markerfile $($(llvm-openmp)-prefix)/.pkgpatch

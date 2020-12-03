@@ -32,10 +32,10 @@ $(libgfortran)-modulefile = $(modulefilesdir)/$(libgfortran)
 $(libgfortran)-prefix = $(pkgdir)/$(libgfortran)
 
 $($(libgfortran)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libgfortran)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libgfortran)-prefix)/.pkgunpack: $$($(libgfortran)-src) $($(libgfortran)-srcdir)/.markerfile $($(libgfortran)-prefix)/.markerfile
 	@touch $@
@@ -45,7 +45,7 @@ $($(libgfortran)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep
 
 ifneq ($($(libgfortran)-builddir),$($(libgfortran)-srcdir))
 $($(libgfortran)-builddir)/.markerfile: $($(libgfortran)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(libgfortran)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libgfortran)-builddeps),$(modulefilesdir)/$$(dep)) $($(libgfortran)-builddir)/.markerfile $($(libgfortran)-prefix)/.pkgpatch

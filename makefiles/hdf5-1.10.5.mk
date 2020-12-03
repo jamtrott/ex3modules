@@ -32,10 +32,10 @@ $(hdf5)-modulefile = $(modulefilesdir)/$(hdf5)
 $(hdf5)-prefix = $(pkgdir)/$(hdf5)
 
 $($(hdf5)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(hdf5)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(hdf5)-prefix)/.pkgunpack: $$($(hdf5)-src) $($(hdf5)-srcdir)/.markerfile $($(hdf5)-prefix)/.markerfile
 	tar -C $($(hdf5)-srcdir) --strip-components 1 -xz -f $<
@@ -46,7 +46,7 @@ $($(hdf5)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(h
 
 ifneq ($($(hdf5)-builddir),$($(hdf5)-srcdir))
 $($(hdf5)-builddir)/.markerfile: $($(hdf5)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(hdf5)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(hdf5)-builddeps),$(modulefilesdir)/$$(dep)) $($(hdf5)-prefix)/.pkgpatch

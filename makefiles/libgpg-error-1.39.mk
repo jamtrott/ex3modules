@@ -35,10 +35,10 @@ $($(libgpg-error)-src): $(dir $($(libgpg-error)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libgpg-error)-srcurl)
 
 $($(libgpg-error)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libgpg-error)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libgpg-error)-prefix)/.pkgunpack: $($(libgpg-error)-src) $($(libgpg-error)-srcdir)/.markerfile $($(libgpg-error)-prefix)/.markerfile
 	tar -C $($(libgpg-error)-srcdir) --strip-components 1 -xj -f $<
@@ -49,7 +49,7 @@ $($(libgpg-error)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach de
 
 ifneq ($($(libgpg-error)-builddir),$($(libgpg-error)-srcdir))
 $($(libgpg-error)-builddir)/.markerfile: $($(libgpg-error)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(libgpg-error)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libgpg-error)-builddeps),$(modulefilesdir)/$$(dep)) $($(libgpg-error)-builddir)/.markerfile $($(libgpg-error)-prefix)/.pkgpatch

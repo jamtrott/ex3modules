@@ -35,10 +35,10 @@ $($(freeipmi)-src): $(dir $($(freeipmi)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(freeipmi)-srcurl)
 
 $($(freeipmi)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(freeipmi)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(freeipmi)-prefix)/.pkgunpack: $($(freeipmi)-src) $($(freeipmi)-srcdir)/.markerfile $($(freeipmi)-prefix)/.markerfile
 	tar -C $($(freeipmi)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(freeipmi)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 
 ifneq ($($(freeipmi)-builddir),$($(freeipmi)-srcdir))
 $($(freeipmi)-builddir)/.markerfile: $($(freeipmi)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(freeipmi)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(freeipmi)-builddeps),$(modulefilesdir)/$$(dep)) $($(freeipmi)-builddir)/.markerfile $($(freeipmi)-prefix)/.pkgpatch

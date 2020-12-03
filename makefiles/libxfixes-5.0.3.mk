@@ -34,10 +34,10 @@ $($(libxfixes)-src): $(dir $($(libxfixes)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxfixes)-srcurl)
 
 $($(libxfixes)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxfixes)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxfixes)-prefix)/.pkgunpack: $($(libxfixes)-src) $($(libxfixes)-srcdir)/.markerfile $($(libxfixes)-prefix)/.markerfile
 	tar -C $($(libxfixes)-srcdir) --strip-components 1 -xj -f $<

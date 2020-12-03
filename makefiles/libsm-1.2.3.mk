@@ -34,10 +34,10 @@ $($(libsm)-src): $(dir $($(libsm)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libsm)-srcurl)
 
 $($(libsm)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libsm)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libsm)-prefix)/.pkgunpack: $($(libsm)-src) $($(libsm)-srcdir)/.markerfile $($(libsm)-prefix)/.markerfile
 	tar -C $($(libsm)-srcdir) --strip-components 1 -xj -f $<

@@ -35,10 +35,10 @@ $($(scalapack)-src): $(dir $($(scalapack)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(scalapack)-srcurl)
 
 $($(scalapack)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(scalapack)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(scalapack)-prefix)/.pkgunpack: $$($(scalapack)-src) $($(scalapack)-srcdir)/.markerfile $($(scalapack)-prefix)/.markerfile
 	tar -C $($(scalapack)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(scalapack)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$
 
 ifneq ($($(scalapack)-builddir),$($(scalapack)-srcdir))
 $($(scalapack)-builddir)/.markerfile: $($(scalapack)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(scalapack)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(scalapack)-builddeps),$(modulefilesdir)/$$(dep)) $($(scalapack)-builddir)/.markerfile $($(scalapack)-prefix)/.pkgpatch

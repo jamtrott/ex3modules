@@ -34,10 +34,10 @@ $($(libxfont2)-src): $(dir $($(libxfont2)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxfont2)-srcurl)
 
 $($(libxfont2)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxfont2)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxfont2)-prefix)/.pkgunpack: $($(libxfont2)-src) $($(libxfont2)-srcdir)/.markerfile $($(libxfont2)-prefix)/.markerfile
 	tar -C $($(libxfont2)-srcdir) --strip-components 1 -xj -f $<

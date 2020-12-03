@@ -35,10 +35,10 @@ $($(gdb)-src): $(dir $($(gdb)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(gdb)-srcurl)
 
 $($(gdb)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gdb)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gdb)-prefix)/.pkgunpack: $($(gdb)-src) $($(gdb)-srcdir)/.markerfile $($(gdb)-prefix)/.markerfile
 	tar -C $($(gdb)-srcdir) --strip-components 1 -x -f $<
@@ -49,7 +49,7 @@ $($(gdb)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(gd
 
 ifneq ($($(gdb)-builddir),$($(gdb)-srcdir))
 $($(gdb)-builddir)/.markerfile: $($(gdb)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(gdb)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(gdb)-builddeps),$(modulefilesdir)/$$(dep)) $($(gdb)-builddir)/.markerfile $($(gdb)-prefix)/.pkgpatch

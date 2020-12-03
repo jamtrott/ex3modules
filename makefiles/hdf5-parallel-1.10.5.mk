@@ -32,10 +32,10 @@ $(hdf5-parallel)-modulefile = $(modulefilesdir)/$(hdf5-parallel)
 $(hdf5-parallel)-prefix = $(pkgdir)/$(hdf5-parallel)
 
 $($(hdf5-parallel)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(hdf5-parallel)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(hdf5-parallel)-prefix)/.pkgunpack: $$($(hdf5-parallel)-src) $($(hdf5-parallel)-srcdir)/.markerfile $($(hdf5-parallel)-prefix)/.markerfile
 	tar -C $($(hdf5-parallel)-srcdir) --strip-components 1 -xz -f $<
@@ -46,7 +46,7 @@ $($(hdf5-parallel)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach d
 
 ifneq ($($(hdf5-parallel)-builddir),$($(hdf5-parallel)-srcdir))
 $($(hdf5-parallel)-builddir)/.markerfile: $($(hdf5-parallel)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(hdf5-parallel)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(hdf5-parallel)-builddeps),$(modulefilesdir)/$$(dep)) $($(hdf5-parallel)-builddir)/.markerfile $($(hdf5-parallel)-prefix)/.pkgpatch

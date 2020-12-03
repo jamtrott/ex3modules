@@ -35,10 +35,10 @@ $($(giflib)-src): $(dir $($(giflib)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(giflib)-srcurl)
 
 $($(giflib)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(giflib)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(giflib)-prefix)/.pkgunpack: $($(giflib)-src) $($(giflib)-srcdir)/.markerfile $($(giflib)-prefix)/.markerfile
 	tar -C $($(giflib)-srcdir) --strip-components 1 -xz -f $<
@@ -59,16 +59,16 @@ $($(giflib)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($
 	@touch $@
 
 $($(giflib)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(giflib)-builddeps),$(modulefilesdir)/$$(dep)) $($(giflib)-prefix)/.pkgcheck
-	$(INSTALL) -m=6755 -d "$($(giflib)-prefix)/bin"
+	$(INSTALL) -d "$($(giflib)-prefix)/bin"
 	cd $($(giflib)-srcdir) && $(INSTALL) gif2rgb gifbuild giffix giftext giftool gifclrmp "$($(giflib)-prefix)/bin"
-	$(INSTALL) -m=6755 -d "$($(giflib)-prefix)/include"
+	$(INSTALL) -d "$($(giflib)-prefix)/include"
 	cd $($(giflib)-srcdir) && $(INSTALL) -m 644 gif_lib.h "$($(giflib)-prefix)/include"
-	$(INSTALL) -m=6755 -d "$($(giflib)-prefix)/lib"
+	$(INSTALL) -d "$($(giflib)-prefix)/lib"
 	cd $($(giflib)-srcdir) && $(INSTALL) -m 644 libgif.a "$($(giflib)-prefix)/lib/libgif.a"
 	cd $($(giflib)-srcdir) && $(INSTALL) -m 755 libgif.so "$($(giflib)-prefix)/lib/libgif.so.$(giflib-version)"
 	cd $($(giflib)-prefix)/lib/ && ln -sf libgif.so.$(giflib-version) "$($(giflib)-prefix)/lib/libgif.so.$(giflib-major-version)"
 	cd $($(giflib)-prefix)/lib/ && ln -sf libgif.so.$(giflib-major-version) "$($(giflib)-prefix)/lib/libgif.so"
-	$(INSTALL) -m=6755 -d "$($(giflib)-prefix)/share/man/man1"
+	$(INSTALL) -d "$($(giflib)-prefix)/share/man/man1"
 	cd $($(giflib)-srcdir) && $(INSTALL) -m 644 doc/*.1 "$($(giflib)-prefix)/share/man/man1"
 	@touch $@
 

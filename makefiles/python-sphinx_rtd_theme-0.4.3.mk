@@ -35,10 +35,10 @@ $($(python-sphinx_rtd_theme)-src): $(dir $($(python-sphinx_rtd_theme)-src)).mark
 	$(CURL) $(curl_options) --output $@ $($(python-sphinx_rtd_theme)-srcurl)
 
 $($(python-sphinx_rtd_theme)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sphinx_rtd_theme)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-sphinx_rtd_theme)-prefix)/.pkgunpack: $$($(python-sphinx_rtd_theme)-src) $($(python-sphinx_rtd_theme)-srcdir)/.markerfile $($(python-sphinx_rtd_theme)-prefix)/.markerfile
 	tar -C $($(python-sphinx_rtd_theme)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-sphinx_rtd_theme)-prefix)/.pkgpatch: $($(python-sphinx_rtd_theme)-pre
 	@touch $@
 
 $($(python-sphinx_rtd_theme)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-sphinx_rtd_theme)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinx_rtd_theme)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinx_rtd_theme)-prefix)/.pkgpatch

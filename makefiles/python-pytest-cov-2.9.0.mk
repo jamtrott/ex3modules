@@ -35,10 +35,10 @@ $($(python-pytest-cov)-src): $(dir $($(python-pytest-cov)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pytest-cov)-srcurl)
 
 $($(python-pytest-cov)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pytest-cov)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pytest-cov)-prefix)/.pkgunpack: $$($(python-pytest-cov)-src) $($(python-pytest-cov)-srcdir)/.markerfile $($(python-pytest-cov)-prefix)/.markerfile
 	tar -C $($(python-pytest-cov)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-pytest-cov)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(forea
 	@touch $@
 
 $($(python-pytest-cov)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-pytest-cov)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pytest-cov)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pytest-cov)-prefix)/.pkgpatch

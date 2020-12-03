@@ -34,10 +34,10 @@ $($(libxau)-src): $(dir $($(libxau)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxau)-srcurl)
 
 $($(libxau)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxau)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxau)-prefix)/.pkgunpack: $($(libxau)-src) $($(libxau)-srcdir)/.markerfile $($(libxau)-prefix)/.markerfile
 	tar -C $($(libxau)-srcdir) --strip-components 1 -xj -f $<

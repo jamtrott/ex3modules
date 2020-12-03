@@ -35,10 +35,10 @@ $($(ocaml-opam)-src): $(dir $($(ocaml-opam)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(ocaml-opam)-srcurl)
 
 $($(ocaml-opam)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(ocaml-opam)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(ocaml-opam)-prefix)/.pkgunpack: $($(ocaml-opam)-src) $($(ocaml-opam)-srcdir)/.markerfile $($(ocaml-opam)-prefix)/.markerfile
 	tar -C $($(ocaml-opam)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(ocaml-opam)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,
 
 ifneq ($($(ocaml-opam)-builddir),$($(ocaml-opam)-srcdir))
 $($(ocaml-opam)-builddir)/.markerfile: $($(ocaml-opam)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(ocaml-opam)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(ocaml-opam)-builddeps),$(modulefilesdir)/$$(dep)) $($(ocaml-opam)-builddir)/.markerfile $($(ocaml-opam)-prefix)/.pkgpatch

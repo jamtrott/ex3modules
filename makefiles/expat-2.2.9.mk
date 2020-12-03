@@ -34,10 +34,10 @@ $($(expat)-src): $(dir $($(expat)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(expat)-srcurl)
 
 $($(expat)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(expat)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(expat)-prefix)/.pkgunpack: $($(expat)-src) $($(expat)-srcdir)/.markerfile $($(expat)-prefix)/.markerfile
 	tar -C $($(expat)-srcdir) --strip-components 1 -xz -f $<

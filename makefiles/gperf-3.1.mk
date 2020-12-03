@@ -34,10 +34,10 @@ $($(gperf)-src): $(dir $($(gperf)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(gperf)-srcurl)
 
 $($(gperf)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gperf)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gperf)-prefix)/.pkgunpack: $($(gperf)-src) $($(gperf)-srcdir)/.markerfile $($(gperf)-prefix)/.markerfile
 	tar -C $($(gperf)-srcdir) --strip-components 1 -xz -f $<

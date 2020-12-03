@@ -34,10 +34,10 @@ $($(knem)-src): $(dir $($(knem)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(knem)-srcurl)
 
 $($(knem)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(knem)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(knem)-prefix)/.pkgunpack: $($(knem)-src) $($(knem)-srcdir)/.markerfile $($(knem)-prefix)/.markerfile
 	tar -C $($(knem)-srcdir) --strip-components 1 -xz -f $<

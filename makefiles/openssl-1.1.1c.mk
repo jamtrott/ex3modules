@@ -35,10 +35,10 @@ $($(openssl)-src): $(dir $($(openssl)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(openssl)-srcurl)
 
 $($(openssl)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(openssl)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(openssl)-prefix)/.pkgunpack: $($(openssl)-src) $($(openssl)-srcdir)/.markerfile $($(openssl)-prefix)/.markerfile
 	tar -C $($(openssl)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(openssl)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 
 ifneq ($($(openssl)-builddir),$($(openssl)-srcdir))
 $($(openssl)-builddir)/.markerfile: $($(openssl)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(openssl)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openssl)-builddeps),$(modulefilesdir)/$$(dep)) $($(openssl)-builddir)/.markerfile $($(openssl)-prefix)/.pkgpatch

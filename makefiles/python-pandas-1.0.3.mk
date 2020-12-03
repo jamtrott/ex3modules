@@ -35,10 +35,10 @@ $($(python-pandas)-src): $(dir $($(python-pandas)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pandas)-srcurl)
 
 $($(python-pandas)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pandas)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-pandas)-prefix)/.pkgunpack: $$($(python-pandas)-src) $($(python-pandas)-srcdir)/.markerfile $($(python-pandas)-prefix)/.markerfile
 	tar -C $($(python-pandas)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-pandas)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach d
 	@touch $@
 
 $($(python-pandas)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-pandas)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pandas)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pandas)-prefix)/.pkgpatch

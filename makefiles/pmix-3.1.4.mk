@@ -35,10 +35,10 @@ $($(pmix)-src): $(dir $($(pmix)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(pmix)-srcurl)
 
 $($(pmix)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(pmix)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(pmix)-prefix)/.pkgunpack: $($(pmix)-src) $($(pmix)-srcdir)/.markerfile $($(pmix)-prefix)/.markerfile
 	tar -C $($(pmix)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(pmix)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(p
 
 ifneq ($($(pmix)-builddir),$($(pmix)-srcdir))
 $($(pmix)-builddir)/.markerfile: $($(pmix)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(pmix)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(pmix)-builddeps),$(modulefilesdir)/$$(dep)) $($(pmix)-builddir)/.markerfile $($(pmix)-prefix)/.pkgpatch

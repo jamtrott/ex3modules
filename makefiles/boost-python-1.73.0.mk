@@ -31,10 +31,10 @@ $(boost-python)-modulefile = $(modulefilesdir)/$(boost-python)
 $(boost-python)-prefix = $(pkgdir)/$(boost-python)
 
 $($(boost-python)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(boost-python)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(boost-python)-prefix)/.pkgunpack: $$($(boost-python)-src) $($(boost-python)-srcdir)/.markerfile $($(boost-python)-prefix)/.markerfile
 	tar -C $($(boost-python)-srcdir) --strip-components 1 -xj -f $<

@@ -34,10 +34,10 @@ $($(superlu)-src): $(dir $($(superlu)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(superlu)-srcurl)
 
 $($(superlu)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(superlu)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(superlu)-prefix)/.pkgunpack: $($(superlu)-src) $($(superlu)-srcdir)/.markerfile $($(superlu)-prefix)/.markerfile
 	tar -C $($(superlu)-srcdir) --strip-components 1 -xz -f $<
@@ -47,7 +47,7 @@ $($(superlu)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 	@touch $@
 
 $($(superlu)-srcdir)/build/.markerfile: $($(superlu)-srcdir)/.markerfile
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(superlu)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(superlu)-builddeps),$(modulefilesdir)/$$(dep)) $($(superlu)-prefix)/.pkgpatch $($(superlu)-srcdir)/build/.markerfile
 	cd $($(superlu)-srcdir)/build && \

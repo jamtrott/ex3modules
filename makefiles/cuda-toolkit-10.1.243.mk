@@ -48,10 +48,10 @@ $($(cuda-toolkit)-src): $(dir $($(cuda-toolkit)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(cuda-toolkit)-srcurl)
 
 $($(cuda-toolkit)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(cuda-toolkit)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(cuda-toolkit)-prefix)/.pkgunpack: $($(cuda-toolkit)-src) $($(cuda-toolkit)-srcdir)/.markerfile $($(cuda-toolkit)-prefix)/.markerfile
 	@touch $@
@@ -61,7 +61,7 @@ $($(cuda-toolkit)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach de
 
 ifneq ($($(cuda-toolkit)-builddir),$($(cuda-toolkit)-srcdir))
 $($(cuda-toolkit)-builddir)/.markerfile: $($(cuda-toolkit)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(cuda-toolkit)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cuda-toolkit)-builddeps),$(modulefilesdir)/$$(dep)) $($(cuda-toolkit)-builddir)/.markerfile $($(cuda-toolkit)-prefix)/.pkgpatch

@@ -45,10 +45,10 @@ $(blis-thunderx2): $(blis-thunderx2)-src $(blis-thunderx2)-unpack $(blis-thunder
 
 else
 $($(blis-thunderx2)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(blis-thunderx2)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(blis-thunderx2)-prefix)/.pkgunpack: $$($(blis-thunderx2)-src) $($(blis-thunderx2)-srcdir)/.markerfile $($(blis-thunderx2)-prefix)/.markerfile
 	tar -C $($(blis-thunderx2)-srcdir) --strip-components 1 -xz -f $<
@@ -59,7 +59,7 @@ $($(blis-thunderx2)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach 
 
 ifneq ($($(blis-thunderx2)-builddir),$($(blis-thunderx2)-srcdir))
 $($(blis-thunderx2)-builddir)/.markerfile: $($(blis-thunderx2)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(blis-thunderx2)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(blis-thunderx2)-builddeps),$(modulefilesdir)/$$(dep)) $($(blis-thunderx2)-builddir)/.markerfile $($(blis-thunderx2)-prefix)/.pkgpatch

@@ -34,10 +34,10 @@ $($(libxrandr)-src): $(dir $($(libxrandr)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libxrandr)-srcurl)
 
 $($(libxrandr)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxrandr)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libxrandr)-prefix)/.pkgunpack: $($(libxrandr)-src) $($(libxrandr)-srcdir)/.markerfile $($(libxrandr)-prefix)/.markerfile
 	tar -C $($(libxrandr)-srcdir) --strip-components 1 -xj -f $<

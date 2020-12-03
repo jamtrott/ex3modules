@@ -34,10 +34,10 @@ $($(mpfr)-src): $(dir $($(mpfr)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(mpfr)-srcurl)
 
 $($(mpfr)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(mpfr)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(mpfr)-prefix)/.pkgunpack: $($(mpfr)-src) $($(mpfr)-srcdir)/.markerfile $($(mpfr)-prefix)/.markerfile
 	tar -C $($(mpfr)-srcdir) --strip-components 1 -xz -f $<

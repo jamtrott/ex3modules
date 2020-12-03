@@ -35,10 +35,10 @@ $($(matio)-src): $(dir $($(matio)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(matio)-srcurl)
 
 $($(matio)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(matio)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(matio)-prefix)/.pkgunpack: $($(matio)-src) $($(matio)-srcdir)/.markerfile $($(matio)-prefix)/.markerfile
 	tar -C $($(matio)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(matio)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 
 ifneq ($($(matio)-builddir),$($(matio)-srcdir))
 $($(matio)-builddir)/.markerfile: $($(matio)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(matio)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(matio)-builddeps),$(modulefilesdir)/$$(dep)) $($(matio)-builddir)/.markerfile $($(matio)-prefix)/.pkgpatch

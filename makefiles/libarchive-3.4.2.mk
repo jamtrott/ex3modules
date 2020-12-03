@@ -35,10 +35,10 @@ $($(libarchive)-src): $(dir $($(libarchive)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libarchive)-srcurl)
 
 $($(libarchive)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libarchive)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libarchive)-prefix)/.pkgunpack: $($(libarchive)-src) $($(libarchive)-srcdir)/.markerfile $($(libarchive)-prefix)/.markerfile
 	tar -C $($(libarchive)-srcdir) --strip-components 1 -xz -f $<
@@ -49,7 +49,7 @@ $($(libarchive)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,
 
 ifneq ($($(libarchive)-builddir),$($(libarchive)-srcdir))
 $($(libarchive)-builddir)/.markerfile: $($(libarchive)-prefix)/.pkgunpack
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
 $($(libarchive)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libarchive)-builddeps),$(modulefilesdir)/$$(dep)) $($(libarchive)-builddir)/.markerfile $($(libarchive)-prefix)/.pkgpatch

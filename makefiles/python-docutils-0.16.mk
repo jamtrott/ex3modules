@@ -35,10 +35,10 @@ $($(python-docutils)-src): $(dir $($(python-docutils)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-docutils)-srcurl)
 
 $($(python-docutils)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-docutils)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-docutils)-prefix)/.pkgunpack: $$($(python-docutils)-src) $($(python-docutils)-srcdir)/.markerfile $($(python-docutils)-prefix)/.markerfile
 	tar -C $($(python-docutils)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-docutils)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach
 	@touch $@
 
 $($(python-docutils)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-docutils)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-docutils)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-docutils)-prefix)/.pkgpatch

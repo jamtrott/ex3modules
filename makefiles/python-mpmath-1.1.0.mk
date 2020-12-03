@@ -35,10 +35,10 @@ $($(python-mpmath)-src): $(dir $($(python-mpmath)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-mpmath)-srcurl)
 
 $($(python-mpmath)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-mpmath)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(python-mpmath)-prefix)/.pkgunpack: $$($(python-mpmath)-src) $($(python-mpmath)-srcdir)/.markerfile $($(python-mpmath)-prefix)/.markerfile
 	tar -C $($(python-mpmath)-srcdir) --strip-components 1 -xz -f $<
@@ -48,7 +48,7 @@ $($(python-mpmath)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach d
 	@touch $@
 
 $($(python-mpmath)-site-packages)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@)
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-mpmath)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-mpmath)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-mpmath)-prefix)/.pkgpatch

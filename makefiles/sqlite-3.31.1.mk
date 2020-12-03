@@ -34,10 +34,10 @@ $($(sqlite)-src): $(dir $($(sqlite)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(sqlite)-srcurl)
 
 $($(sqlite)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(sqlite)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(sqlite)-prefix)/.pkgunpack: $($(sqlite)-src) $($(sqlite)-srcdir)/.markerfile $($(sqlite)-prefix)/.markerfile
 	tar -C $($(sqlite)-srcdir) --strip-components 1 -xz -f $<

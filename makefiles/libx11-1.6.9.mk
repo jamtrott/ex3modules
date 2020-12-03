@@ -34,10 +34,10 @@ $($(libx11)-src): $(dir $($(libx11)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(libx11)-srcurl)
 
 $($(libx11)-srcdir)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libx11)-prefix)/.markerfile:
-	$(INSTALL) -m=6755 -d $(dir $@) && touch $@
+	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libx11)-prefix)/.pkgunpack: $($(libx11)-src) $($(libx11)-srcdir)/.markerfile $($(libx11)-prefix)/.markerfile
 	tar -C $($(libx11)-srcdir) --strip-components 1 -xj -f $<
