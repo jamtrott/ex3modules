@@ -25,7 +25,7 @@ $(boost-src)-url = https://www.boost.org/
 $(boost-src)-srcurl = https://dl.bintray.com/boostorg/release/$(boost-src-version)/source/boost_$(subst .,_,$(boost-src-version)).tar.bz2
 $(boost-src)-builddeps =
 $(boost-src)-prereqs =
-$(boost-src)-src = $(pkgsrcdir)/boost-$(notdir $($(boost-src)-srcurl))
+$(boost-src)-src = $(pkgsrcdir)/$(notdir $($(boost-src)-srcurl))
 
 $($(boost-src)-src): $(dir $($(boost-src)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(boost-src)-srcurl)

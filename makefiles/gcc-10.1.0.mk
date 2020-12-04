@@ -23,17 +23,14 @@ gcc-10.1.0-version = 10.1.0
 gcc-10.1.0 = gcc-$(gcc-10.1.0-version)
 $(gcc-10.1.0)-description = GNU Compiler Collection
 $(gcc-10.1.0)-url = https://gcc.gnu.org/
-$(gcc-10.1.0)-srcurl = ftp://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-$(gcc-10.1.0-version)/gcc-$(gcc-10.1.0-version).tar.gz
+$(gcc-10.1.0)-srcurl =
 $(gcc-10.1.0)-builddeps = $(mpfr) $(gmp) $(mpc)
 $(gcc-10.1.0)-prereqs = $(mpfr) $(gmp) $(mpc)
-$(gcc-10.1.0)-src = $(pkgsrcdir)/$(notdir $($(gcc-10.1.0)-srcurl))
+$(gcc-10.1.0)-src = $($(gcc-src-10.1.0)-src)
 $(gcc-10.1.0)-srcdir = $(pkgsrcdir)/$(gcc-10.1.0)
 $(gcc-10.1.0)-builddir = $($(gcc-10.1.0)-srcdir)
 $(gcc-10.1.0)-modulefile = $(modulefilesdir)/$(gcc-10.1.0)
 $(gcc-10.1.0)-prefix = $(pkgdir)/$(gcc-10.1.0)
-
-$($(gcc-10.1.0)-src): $(dir $($(gcc-10.1.0)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(gcc-10.1.0)-srcurl)
 
 $($(gcc-10.1.0)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
@@ -130,5 +127,4 @@ $(gcc-10.1.0)-clean:
 	rm -rf $($(gcc-10.1.0)-modulefile)
 	rm -rf $($(gcc-10.1.0)-prefix)
 	rm -rf $($(gcc-10.1.0)-srcdir)
-	rm -rf $($(gcc-10.1.0)-src)
 $(gcc-10.1.0): $(gcc-10.1.0)-src $(gcc-10.1.0)-unpack $(gcc-10.1.0)-patch $(gcc-10.1.0)-build $(gcc-10.1.0)-check $(gcc-10.1.0)-install $(gcc-10.1.0)-modulefile

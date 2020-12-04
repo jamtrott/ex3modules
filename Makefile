@@ -104,6 +104,7 @@ pkgs = \
 	fribidi-1.0.10 \
 	gcc-10.1.0 \
 	gcc-9.2.0 \
+	gcc-src-10.1.0 \
 	gdb-9.2 \
 	gettext-0.21 \
 	giflib-5.2.1 \
@@ -137,6 +138,7 @@ pkgs = \
 	libffi-3.2.1 \
 	libfontenc-1.1.4 \
 	libfs-1.0.8 \
+	libgccjit-10.1.0 \
 	libgcrypt-1.8.7 \
 	libgd-2.2.5 \
 	libgfortran-5.0.0 \
