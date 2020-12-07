@@ -18,46 +18,46 @@
 #
 # slurm-18.08.9
 
-slurm-version = 18.08.9
-slurm = slurm-$(slurm-version)
-$(slurm)-description = Highly configurable open-source workload manager
-$(slurm)-url = https://www.schedmd.com/
-$(slurm)-srcurl = https://download.schedmd.com/slurm/slurm-$(slurm-version).tar.bz2
-$(slurm)-builddeps = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(openssl) $(curl) $(readline)
-$(slurm)-prereqs = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(openssl) $(curl) $(readline)
-$(slurm)-src = $(pkgsrcdir)/$(notdir $($(slurm)-srcurl))
-$(slurm)-srcdir = $(pkgsrcdir)/$(slurm)
-$(slurm)-builddir = $($(slurm)-srcdir)
-$(slurm)-modulefile = $(modulefilesdir)/$(slurm)
-$(slurm)-prefix = $(pkgdir)/$(slurm)
+slurm-18.08-version = 18.08.9
+slurm-18.08 = slurm-$(slurm-18.08-version)
+$(slurm-18.08)-description = Highly configurable open-source workload manager
+$(slurm-18.08)-url = https://www.schedmd.com/
+$(slurm-18.08)-srcurl = https://download.schedmd.com/slurm/slurm-$(slurm-18.08-version).tar.bz2
+$(slurm-18.08)-builddeps = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(openssl) $(curl) $(readline)
+$(slurm-18.08)-prereqs = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(openssl) $(curl) $(readline)
+$(slurm-18.08)-src = $(pkgsrcdir)/$(notdir $($(slurm-18.08)-srcurl))
+$(slurm-18.08)-srcdir = $(pkgsrcdir)/$(slurm-18.08)
+$(slurm-18.08)-builddir = $($(slurm-18.08)-srcdir)
+$(slurm-18.08)-modulefile = $(modulefilesdir)/$(slurm-18.08)
+$(slurm-18.08)-prefix = $(pkgdir)/$(slurm-18.08)
 
-$($(slurm)-src): $(dir $($(slurm)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(slurm)-srcurl)
+$($(slurm-18.08)-src): $(dir $($(slurm-18.08)-src)).markerfile
+	$(CURL) $(curl_options) --output $@ $($(slurm-18.08)-srcurl)
 
-$($(slurm)-srcdir)/.markerfile:
+$($(slurm-18.08)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(slurm)-prefix)/.markerfile:
+$($(slurm-18.08)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(slurm)-prefix)/.pkgunpack: $($(slurm)-src) $($(slurm)-srcdir)/.markerfile $($(slurm)-prefix)/.markerfile
-	tar -C $($(slurm)-srcdir) --strip-components 1 -xj -f $<
+$($(slurm-18.08)-prefix)/.pkgunpack: $($(slurm-18.08)-src) $($(slurm-18.08)-srcdir)/.markerfile $($(slurm-18.08)-prefix)/.markerfile
+	tar -C $($(slurm-18.08)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 
-$($(slurm)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm)-prefix)/.pkgunpack
+$($(slurm-18.08)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm-18.08)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm-18.08)-prefix)/.pkgunpack
 	@touch $@
 
-ifneq ($($(slurm)-builddir),$($(slurm)-srcdir))
-$($(slurm)-builddir)/.markerfile: $($(slurm)-prefix)/.pkgunpack
+ifneq ($($(slurm-18.08)-builddir),$($(slurm-18.08)-srcdir))
+$($(slurm-18.08)-builddir)/.markerfile: $($(slurm-18.08)-prefix)/.pkgunpack
 	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
-$($(slurm)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm)-builddir)/.markerfile $($(slurm)-prefix)/.pkgpatch
-	cd $($(slurm)-builddir) && \
+$($(slurm-18.08)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm-18.08)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm-18.08)-builddir)/.markerfile $($(slurm-18.08)-prefix)/.pkgpatch
+	cd $($(slurm-18.08)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(slurm)-builddeps) && \
-		./configure --prefix=$($(slurm)-prefix) \
+		$(MODULE) load $($(slurm-18.08)-builddeps) && \
+		./configure --prefix=$($(slurm-18.08)-prefix) \
 			--sysconfdir=/etc/slurm \
 			--with-hwloc=$${HWLOC_ROOT} \
 			--with-freeipmi=$${FREEIPMI_ROOT} \
@@ -68,63 +68,63 @@ $($(slurm)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 		$(MAKE)
 	@touch $@
 
-$($(slurm)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm)-builddir)/.markerfile $($(slurm)-prefix)/.pkgbuild
-	cd $($(slurm)-builddir) && \
+$($(slurm-18.08)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm-18.08)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm-18.08)-builddir)/.markerfile $($(slurm-18.08)-prefix)/.pkgbuild
+	cd $($(slurm-18.08)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(slurm)-builddeps) && \
+		$(MODULE) load $($(slurm-18.08)-builddeps) && \
 		$(MAKE) check
 	@touch $@
 
-$($(slurm)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm)-builddir)/.markerfile $($(slurm)-prefix)/.pkgcheck
-	cd $($(slurm)-builddir) && \
+$($(slurm-18.08)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm-18.08)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm-18.08)-builddir)/.markerfile $($(slurm-18.08)-prefix)/.pkgcheck
+	cd $($(slurm-18.08)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(slurm)-builddeps) && \
+		$(MODULE) load $($(slurm-18.08)-builddeps) && \
 		$(MAKE) install && \
 		$(MAKE) -C contribs/pmi install && \
 		$(MAKE) -C contribs/pmi2 install
 	@touch $@
 
-$($(slurm)-modulefile): $(modulefilesdir)/.markerfile $($(slurm)-prefix)/.pkginstall
+$($(slurm-18.08)-modulefile): $(modulefilesdir)/.markerfile $($(slurm-18.08)-prefix)/.pkginstall
 	printf "" >$@
 	echo "#%Module" >>$@
-	echo "# $(slurm)" >>$@
+	echo "# $(slurm-18.08)" >>$@
 	echo "" >>$@
 	echo "proc ModulesHelp { } {" >>$@
-	echo "     puts stderr \"\tSets up the environment for $(slurm)\\n\"" >>$@
+	echo "     puts stderr \"\tSets up the environment for $(slurm-18.08)\\n\"" >>$@
 	echo "}" >>$@
 	echo "" >>$@
-	echo "module-whatis \"$($(slurm)-description)\"" >>$@
-	echo "module-whatis \"$($(slurm)-url)\"" >>$@
-	printf "$(foreach prereq,$($(slurm)-prereqs),\n$(MODULE) load $(prereq))" >>$@
+	echo "module-whatis \"$($(slurm-18.08)-description)\"" >>$@
+	echo "module-whatis \"$($(slurm-18.08)-url)\"" >>$@
+	printf "$(foreach prereq,$($(slurm-18.08)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv SLURM_ROOT $($(slurm)-prefix)" >>$@
-	echo "setenv SLURM_INCDIR $($(slurm)-prefix)/include" >>$@
-	echo "setenv SLURM_INCLUDEDIR $($(slurm)-prefix)/include" >>$@
-	echo "setenv SLURM_LIBDIR $($(slurm)-prefix)/lib" >>$@
-	echo "setenv SLURM_LIBRARYDIR $($(slurm)-prefix)/lib" >>$@
-	echo "prepend-path PATH $($(slurm)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(slurm)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(slurm)-prefix)/include" >>$@
-	echo "prepend-path LIBRARY_PATH $($(slurm)-prefix)/lib" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(slurm)-prefix)/lib" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(slurm)-prefix)/lib/pkgconfig" >>$@
-	echo "prepend-path MANPATH $($(slurm)-prefix)/share/man" >>$@
-	echo "prepend-path INFOPATH $($(slurm)-prefix)/share/info" >>$@
-	echo "set MSG \"$(slurm)\"" >>$@
+	echo "setenv SLURM_ROOT $($(slurm-18.08)-prefix)" >>$@
+	echo "setenv SLURM_INCDIR $($(slurm-18.08)-prefix)/include" >>$@
+	echo "setenv SLURM_INCLUDEDIR $($(slurm-18.08)-prefix)/include" >>$@
+	echo "setenv SLURM_LIBDIR $($(slurm-18.08)-prefix)/lib" >>$@
+	echo "setenv SLURM_LIBRARYDIR $($(slurm-18.08)-prefix)/lib" >>$@
+	echo "prepend-path PATH $($(slurm-18.08)-prefix)/bin" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(slurm-18.08)-prefix)/include" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(slurm-18.08)-prefix)/include" >>$@
+	echo "prepend-path LIBRARY_PATH $($(slurm-18.08)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(slurm-18.08)-prefix)/lib" >>$@
+	echo "prepend-path PKG_CONFIG_PATH $($(slurm-18.08)-prefix)/lib/pkgconfig" >>$@
+	echo "prepend-path MANPATH $($(slurm-18.08)-prefix)/share/man" >>$@
+	echo "prepend-path INFOPATH $($(slurm-18.08)-prefix)/share/info" >>$@
+	echo "set MSG \"$(slurm-18.08)\"" >>$@
 
-$(slurm)-src: $($(slurm)-src)
-$(slurm)-unpack: $($(slurm)-prefix)/.pkgunpack
-$(slurm)-patch: $($(slurm)-prefix)/.pkgpatch
-$(slurm)-build: $($(slurm)-prefix)/.pkgbuild
-$(slurm)-check: $($(slurm)-prefix)/.pkgcheck
-$(slurm)-install: $($(slurm)-prefix)/.pkginstall
-$(slurm)-modulefile: $($(slurm)-modulefile)
-$(slurm)-clean:
-	rm -rf $($(slurm)-modulefile)
-	rm -rf $($(slurm)-prefix)
-	rm -rf $($(slurm)-srcdir)
-	rm -rf $($(slurm)-src)
-$(slurm): $(slurm)-src $(slurm)-unpack $(slurm)-patch $(slurm)-build $(slurm)-check $(slurm)-install $(slurm)-modulefile
+$(slurm-18.08)-src: $($(slurm-18.08)-src)
+$(slurm-18.08)-unpack: $($(slurm-18.08)-prefix)/.pkgunpack
+$(slurm-18.08)-patch: $($(slurm-18.08)-prefix)/.pkgpatch
+$(slurm-18.08)-build: $($(slurm-18.08)-prefix)/.pkgbuild
+$(slurm-18.08)-check: $($(slurm-18.08)-prefix)/.pkgcheck
+$(slurm-18.08)-install: $($(slurm-18.08)-prefix)/.pkginstall
+$(slurm-18.08)-modulefile: $($(slurm-18.08)-modulefile)
+$(slurm-18.08)-clean:
+	rm -rf $($(slurm-18.08)-modulefile)
+	rm -rf $($(slurm-18.08)-prefix)
+	rm -rf $($(slurm-18.08)-srcdir)
+	rm -rf $($(slurm-18.08)-src)
+$(slurm-18.08): $(slurm-18.08)-src $(slurm-18.08)-unpack $(slurm-18.08)-patch $(slurm-18.08)-build $(slurm-18.08)-check $(slurm-18.08)-install $(slurm-18.08)-modulefile

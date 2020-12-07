@@ -23,8 +23,8 @@ slurm-19.05 = slurm-$(slurm-19.05-version)
 $(slurm-19.05)-description = Highly configurable open-source workload manager
 $(slurm-19.05)-url = https://www.schedmd.com/
 $(slurm-19.05)-srcurl = https://download.schedmd.com/slurm/slurm-$(slurm-19.05-version).tar.bz2
-$(slurm-19.05)-builddeps = $(pmix) $(ucx) $(numactl) $(hwloc) $(munge)
-$(slurm-19.05)-prereqs = $(pmix) $(ucx) $(numactl) $(hwloc) $(munge)
+$(slurm-19.05)-builddeps = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(openssl) $(curl) $(readline)
+$(slurm-19.05)-prereqs = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(openssl) $(curl) $(readline)
 $(slurm-19.05)-src = $(pkgsrcdir)/$(notdir $($(slurm-19.05)-srcurl))
 $(slurm-19.05)-srcdir = $(pkgsrcdir)/$(slurm-19.05)
 $(slurm-19.05)-builddir = $($(slurm-19.05)-srcdir)
@@ -58,9 +58,13 @@ $($(slurm-19.05)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(slurm-19.05)-builddeps) && \
 		./configure --prefix=$($(slurm-19.05)-prefix) \
-			--with-pmix=$${PMIX_ROOT} \
+			--sysconfdir=/etc/slurm \
 			--with-hwloc=$${HWLOC_ROOT} \
-			--with-ucx=$${UCX_ROOT} && \
+			--with-freeipmi=$${FREEIPMI_ROOT} \
+			--with-ucx=$${UCX_ROOT} \
+			--with-ssl=$${OPENSSL_ROOT} \
+			--with-munge=$${MUNGE_ROOT} \
+			--with-libcurl=$${CURL_ROOT} && \
 		$(MAKE)
 	@touch $@
 
@@ -77,7 +81,9 @@ $($(slurm-19.05)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(slurm-19.05)-builddeps) && \
-		$(MAKE) install
+		$(MAKE) install && \
+		$(MAKE) -C contribs/pmi install && \
+		$(MAKE) -C contribs/pmi2 install
 	@touch $@
 
 $($(slurm-19.05)-modulefile): $(modulefilesdir)/.markerfile $($(slurm-19.05)-prefix)/.pkginstall
