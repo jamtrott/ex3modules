@@ -36,7 +36,7 @@
 #SBATCH --partition=defq
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=256
+#SBATCH --cpus-per-task=128
 #SBATCH --output=slurm/ex3/jobs/%j-%x-out.txt
 #SBATCH --error=slurm/ex3/jobs/%j-%x-err.txt
 
