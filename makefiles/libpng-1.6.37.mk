@@ -43,7 +43,113 @@ $($(libpng)-prefix)/.pkgunpack: $($(libpng)-src) $($(libpng)-srcdir)/.markerfile
 	tar -C $($(libpng)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 
+$($(libpng)-srcdir)/0001-Avoid-random-test-failures-by-running-pngtest-sequentially.patch: $($(libpng)-srcdir)/.markerfile
+	@printf '' >$@.tmp
+	@echo 'From 72fa126446460347a504f3d9b90f24aed1365595 Mon Sep 17 00:00:00 2001' >>$@.tmp
+	@echo 'From: Cosmin Truta <ctruta@gmail.com>' >>$@.tmp
+	@echo 'Date: Sun, 21 Apr 2019 00:30:14 -0400' >>$@.tmp
+	@echo 'Subject: [PATCH] Avoid random test failures by running pngtest sequentially' >>$@.tmp
+	@echo ' only' >>$@.tmp
+	@echo '' >>$@.tmp
+	@echo 'It is unreliable to run pngtest in parallel, due to competing writes' >>$@.tmp
+	@echo 'to the same intermediate/output file ("pngout.png").' >>$@.tmp
+	@echo '' >>$@.tmp
+	@echo 'Customization of this output file name should be possible, but it is' >>$@.tmp
+	@echo 'currently broken.' >>$@.tmp
+	@echo '---' >>$@.tmp
+	@echo ' Makefile.am                            |  3 +--' >>$@.tmp
+	@echo ' Makefile.in                            | 16 ++++------------' >>$@.tmp
+	@echo ' tests/pngtest                          |  2 --' >>$@.tmp
+	@echo ' tests/{pngtest-badpngs => pngtest-all} |  7 +++++--' >>$@.tmp
+	@echo ' 4 files changed, 10 insertions(+), 18 deletions(-)' >>$@.tmp
+	@echo ' delete mode 100755 tests/pngtest' >>$@.tmp
+	@echo ' rename tests/{pngtest-badpngs => pngtest-all} (80%)' >>$@.tmp
+	@echo '' >>$@.tmp
+	@echo 'diff --git a/Makefile.am b/Makefile.am' >>$@.tmp
+	@echo 'index 4f621aa4d6..f21107e65e 100644' >>$@.tmp
+	@echo '--- a/Makefile.am' >>$@.tmp
+	@echo '+++ b/Makefile.am' >>$@.tmp
+	@echo '@@ -59,8 +59,7 @@ pngcp_LDADD = libpng@PNGLIB_MAJOR@@PNGLIB_MINOR@.la' >>$@.tmp
+	@echo ' # Generally these are single line shell scripts to run a test with a particular' >>$@.tmp
+	@echo ' # set of parameters:' >>$@.tmp
+	@echo ' TESTS =\' >>$@.tmp
+	@echo '-   tests/pngtest\' >>$@.tmp
+	@echo '-   tests/pngtest-badpngs\' >>$@.tmp
+	@echo '+   tests/pngtest-all\' >>$@.tmp
+	@echo '    tests/pngvalid-gamma-16-to-8 tests/pngvalid-gamma-alpha-mode\' >>$@.tmp
+	@echo '    tests/pngvalid-gamma-background tests/pngvalid-gamma-expand16-alpha-mode\' >>$@.tmp
+	@echo '    tests/pngvalid-gamma-expand16-background\' >>$@.tmp
+	@echo 'diff --git a/Makefile.in b/Makefile.in' >>$@.tmp
+	@echo 'index 81ac1c8552..31a82d25a4 100644' >>$@.tmp
+	@echo '--- a/Makefile.in' >>$@.tmp
+	@echo '+++ b/Makefile.in' >>$@.tmp
+	@echo '@@ -736,8 +736,7 @@ pngcp_LDADD = libpng@PNGLIB_MAJOR@@PNGLIB_MINOR@.la' >>$@.tmp
+	@echo ' # Generally these are single line shell scripts to run a test with a particular' >>$@.tmp
+	@echo ' # set of parameters:' >>$@.tmp
+	@echo ' TESTS = \' >>$@.tmp
+	@echo '-   tests/pngtest\' >>$@.tmp
+	@echo '-   tests/pngtest-badpngs\' >>$@.tmp
+	@echo '+   tests/pngtest-all\' >>$@.tmp
+	@echo '    tests/pngvalid-gamma-16-to-8 tests/pngvalid-gamma-alpha-mode\' >>$@.tmp
+	@echo '    tests/pngvalid-gamma-background tests/pngvalid-gamma-expand16-alpha-mode\' >>$@.tmp
+	@echo '    tests/pngvalid-gamma-expand16-background\' >>$@.tmp
+	@echo '@@ -1578,16 +1577,9 @@ recheck: all $$(check_PROGRAMS)' >>$@.tmp
+	@echo ' 	        am__force_recheck=am--force-recheck \' >>$@.tmp
+	@echo ' 	        TEST_LOGS="$$$$log_list"; \' >>$@.tmp
+	@echo ' 	exit $$$$?' >>$@.tmp
+	@echo '-tests/pngtest.log: tests/pngtest' >>$@.tmp
+	@echo '-	@p='"'"'tests/pngtest'"'"'; \' >>$@.tmp
+	@echo '-	b='"'"'tests/pngtest'"'"'; \' >>$@.tmp
+	@echo '-	$$(am__check_pre) $$(LOG_DRIVER) --test-name "$$$$f" \' >>$@.tmp
+	@echo '-	--log-file $$$$b.log --trs-file $$$$b.trs \' >>$@.tmp
+	@echo '-	$$(am__common_driver_flags) $$(AM_LOG_DRIVER_FLAGS) $$(LOG_DRIVER_FLAGS) -- $$(LOG_COMPILE) \' >>$@.tmp
+	@echo '-	"$$$$tst" $$(AM_TESTS_FD_REDIRECT)' >>$@.tmp
+	@echo '-tests/pngtest-badpngs.log: tests/pngtest-badpngs' >>$@.tmp
+	@echo '-	@p='"'"'tests/pngtest-badpngs'"'"'; \' >>$@.tmp
+	@echo '-	b='"'"'tests/pngtest-badpngs'"'"'; \' >>$@.tmp
+	@echo '+tests/pngtest-all.log: tests/pngtest-all' >>$@.tmp
+	@echo '+	@p='"'"'tests/pngtest-all'"'"'; \' >>$@.tmp
+	@echo '+	b='"'"'tests/pngtest-all'"'"'; \' >>$@.tmp
+	@echo ' 	$$(am__check_pre) $$(LOG_DRIVER) --test-name "$$$$f" \' >>$@.tmp
+	@echo ' 	--log-file $$$$b.log --trs-file $$$$b.trs \' >>$@.tmp
+	@echo ' 	$$(am__common_driver_flags) $$(AM_LOG_DRIVER_FLAGS) $$(LOG_DRIVER_FLAGS) -- $$(LOG_COMPILE) \' >>$@.tmp
+	@echo 'diff --git a/tests/pngtest b/tests/pngtest' >>$@.tmp
+	@echo 'deleted file mode 100755' >>$@.tmp
+	@echo 'index 813973b23e..0000000000' >>$@.tmp
+	@echo '--- a/tests/pngtest' >>$@.tmp
+	@echo '+++ /dev/null' >>$@.tmp
+	@echo '@@ -1,2 +0,0 @@' >>$@.tmp
+	@echo '-#!/bin/sh' >>$@.tmp
+	@echo '-exec ./pngtest --strict $${srcdir}/pngtest.png' >>$@.tmp
+	@echo 'diff --git a/tests/pngtest-badpngs b/tests/pngtest-all' >>$@.tmp
+	@echo 'similarity index 80%' >>$@.tmp
+	@echo 'rename from tests/pngtest-badpngs' >>$@.tmp
+	@echo 'rename to tests/pngtest-all' >>$@.tmp
+	@echo 'index 77775232b2..5e96451d37 100755' >>$@.tmp
+	@echo '--- a/tests/pngtest-badpngs' >>$@.tmp
+	@echo '+++ b/tests/pngtest-all' >>$@.tmp
+	@echo '@@ -1,5 +1,9 @@' >>$@.tmp
+	@echo ' #!/bin/sh' >>$@.tmp
+	@echo ' ' >>$@.tmp
+	@echo '+# normal execution' >>$@.tmp
+	@echo '+' >>$@.tmp
+	@echo '+./pngtest --strict $${srcdir}/pngtest.png' >>$@.tmp
+	@echo '+' >>$@.tmp
+	@echo ' # various crashers' >>$@.tmp
+	@echo ' # using --relaxed because some come from fuzzers that don'"'"'t maintain CRC'"'"'s' >>$@.tmp
+	@echo ' ' >>$@.tmp
+	@echo '@@ -9,5 +13,4 @@' >>$@.tmp
+	@echo ' ./pngtest --xfail $${srcdir}/contrib/testpngs/crashers/empty_ancillary_chunks.png' >>$@.tmp
+	@echo ' ./pngtest --xfail $${srcdir}/contrib/testpngs/crashers/huge_*_chunk.png \' >>$@.tmp
+	@echo '     $${srcdir}/contrib/testpngs/crashers/huge_*safe_to_copy.png' >>$@.tmp
+	@echo '-' >>$@.tmp
+	@echo '-exec ./pngtest --xfail $${srcdir}/contrib/testpngs/crashers/huge_IDAT.png' >>$@.tmp
+	@echo '+./pngtest --xfail $${srcdir}/contrib/testpngs/crashers/huge_IDAT.png' >>$@.tmp
+	@mv $@.tmp $@
+
 $($(libpng)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libpng)-builddeps),$(modulefilesdir)/$$(dep)) $($(libpng)-prefix)/.pkgunpack
+$($(libpng)-prefix)/.pkgpatch: $($(libpng)-srcdir)/0001-Avoid-random-test-failures-by-running-pngtest-sequentially.patch
+	cd $($(libpng)-srcdir) && patch -t -p1 <0001-Avoid-random-test-failures-by-running-pngtest-sequentially.patch
 	@touch $@
 
 $($(libpng)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libpng)-builddeps),$(modulefilesdir)/$$(dep)) $($(libpng)-prefix)/.pkgpatch
