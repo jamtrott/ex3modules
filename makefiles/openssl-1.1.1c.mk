@@ -62,11 +62,12 @@ $($(openssl)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 	@touch $@
 
 $($(openssl)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openssl)-builddeps),$(modulefilesdir)/$$(dep)) $($(openssl)-builddir)/.markerfile $($(openssl)-prefix)/.pkgbuild
+# Note: test_afalg fails on aarch64 (see https://github.com/openssl/openssl/issues/12242)
 	cd $($(openssl)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(openssl)-builddeps) && \
-		$(MAKE) test
+		$(MAKE) TESTS=-test_afalg test
 	@touch $@
 
 $($(openssl)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openssl)-builddeps),$(modulefilesdir)/$$(dep)) $($(openssl)-builddir)/.markerfile $($(openssl)-prefix)/.pkgcheck
