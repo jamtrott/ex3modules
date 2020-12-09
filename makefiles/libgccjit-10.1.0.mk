@@ -64,6 +64,7 @@ $($(libgccjit-10.1.0)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreac
 
 $($(libgccjit-10.1.0)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libgccjit-10.1.0)-builddeps),$(modulefilesdir)/$$(dep)) $($(libgccjit-10.1.0)-builddir)/.markerfile $($(libgccjit-10.1.0)-prefix)/.pkgbuild
 	cd $($(libgccjit-10.1.0)-builddir)/gcc && \
+		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(libgccjit-10.1.0)-builddeps) && \
 		$(MAKE) check-jit
