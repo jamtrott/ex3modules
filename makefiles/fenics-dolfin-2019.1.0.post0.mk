@@ -174,6 +174,7 @@ $($(fenics-dolfin-2019)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) load $($(fenics-dolfin-2019)-builddeps) && \
 		cmake .. \
 			-DCMAKE_INSTALL_PREFIX=$($(fenics-dolfin-2019)-prefix) \
+			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DCMAKE_POLICY_DEFAULT_CMP0074=NEW \
 			-DBUILD_SHARED_LIBS=TRUE \
 			-DDOLFIN_SKIP_BUILD_TESTS=TRUE \

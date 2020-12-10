@@ -54,6 +54,7 @@ $($(fenics-dolfinx-20200525)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$
 		$(MODULE) load $($(fenics-dolfinx-20200525)-builddeps) && \
 		cmake .. \
 			-DCMAKE_INSTALL_PREFIX=$($(fenics-dolfinx-20200525)-prefix) \
+			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DCMAKE_POLICY_DEFAULT_CMP0074=NEW \
 			-DBUILD_SHARED_LIBS=TRUE \
 			-DDOLFINX_SKIP_BUILD_TESTS=TRUE \
