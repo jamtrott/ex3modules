@@ -59,7 +59,7 @@ blas = openblas-0.3.12
 # MPI implementations: openmpi, mpich and mvapich.
 mpi = openmpi-4.0.5
 
-# SLURM versions: 18.08.9, 19.05.2 and 20.02.5
+# SLURM versions: 18.08.9, 19.05.6 and 20.02.5
 slurm = slurm-20.02.5
 
 #
@@ -328,7 +328,7 @@ pkgs = \
 	scalapack-2.1.0 \
 	scotch-6.0.7 \
 	slurm-18.08.9 \
-	slurm-19.05.2 \
+	slurm-19.05.6 \
 	slurm-20.02.5 \
 	sparse-0.6.3 \
 	sqlite-3.31.1 \
