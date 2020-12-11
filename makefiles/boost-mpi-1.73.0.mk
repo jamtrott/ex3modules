@@ -49,13 +49,13 @@ $($(boost-mpi)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(boost-mpi)-builddeps) && \
 		./bootstrap.sh --prefix=$($(boost-mpi)-prefix) \
+			 --with-toolset=gcc \
 			--with-python=$${PYTHON_ROOT}/bin/python3 \
 			--with-python-version=$${PYTHON_VERSION_SHORT} \
 			--with-python-root=$${PYTHON_ROOT} && \
 		echo "using gcc : $$($${CC} -dumpfullversion) : $${CC} ;" >>tools/build/src/user-config.jam && \
 		echo "using mpi ;" >>project-config.jam && \
-		cat project-config.jam && \
-		./b2 --with-mpi
+		./b2 --toolset=gcc-10.1 --with-mpi
 	@touch $@
 
 $($(boost-mpi)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost-mpi)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost-mpi)-prefix)/.pkgbuild
@@ -66,7 +66,7 @@ $($(boost-mpi)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(boost-mpi)-builddeps) && \
-		./b2 --with-mpi install
+		./b2 --toolset=gcc-10.1 --with-mpi install
 	@touch $@
 
 $($(boost-mpi)-modulefile): $(modulefilesdir)/.markerfile $($(boost-mpi)-prefix)/.pkginstall

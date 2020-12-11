@@ -23,8 +23,8 @@ boost = boost-$(boost-version)
 $(boost)-description = Libraries for the C++ programming language
 $(boost)-url = https://www.boost.org/
 $(boost)-srcurl =
-$(boost)-builddeps =
-$(boost)-prereqs =
+$(boost)-builddeps = $(gcc-10.1.0) $(xz)
+$(boost)-prereqs = $(xz)
 $(boost)-src = $($(boost-src)-src)
 $(boost)-srcdir = $(pkgsrcdir)/$(boost)
 $(boost)-modulefile = $(modulefilesdir)/$(boost)
@@ -48,9 +48,9 @@ $($(boost)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(boost)-builddeps) && \
-		./bootstrap.sh --prefix=$($(boost)-prefix) && \
-		cat project-config.jam && \
-		./b2 --without-python --without-mpi
+		./bootstrap.sh --prefix=$($(boost)-prefix) \
+			 --with-toolset=gcc && \
+		./b2 --toolset=gcc-10.1 --without-python --without-mpi
 	@touch $@
 
 $($(boost)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost)-prefix)/.pkgbuild
@@ -61,7 +61,7 @@ $($(boost)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(boost)-builddeps) && \
-		./b2 --without-python --without-mpi install
+		./b2 --toolset=gcc-10.1 --without-python --without-mpi install
 	@touch $@
 
 $($(boost)-modulefile): $(modulefilesdir)/.markerfile $($(boost)-prefix)/.pkginstall
