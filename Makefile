@@ -207,6 +207,7 @@ pkgs = \
 	numactl-2.0.13 \
 	ocaml-4.08.1 \
 	openblas-0.3.12 \
+	opencl-headers-2020.06.16 \
 	openmpi-4.0.5 \
 	openssl-1.1.1c \
 	osu-micro-benchmarks-mpich-5.6.3 \
