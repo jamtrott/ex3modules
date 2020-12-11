@@ -188,6 +188,7 @@ pkgs = \
 	libxxf86dga-1.1.5 \
 	libxxf86vm-1.1.4 \
 	linux-src-4.19.75 \
+	llvm-10.0.1 \
 	llvm-11.0.0 \
 	llvm-openmp-11.0.0 \
 	matio-1.5.17 \
@@ -269,6 +270,7 @@ pkgs = \
 	python-ipython-7.14.0 \
 	python-jinja2-2.11.2 \
 	python-kiwisolver-1.2.0 \
+	python-llvmlite-0.35.0 \
 	python-markupsafe-1.1.1 \
 	python-matplotlib-3.1.1 \
 	python-mccabe-0.6.1 \
@@ -276,6 +278,7 @@ pkgs = \
 	python-mpi4py-3.0.3 \
 	python-mpmath-1.1.0 \
 	python-nose-1.3.7 \
+	python-numba-0.52.0 \
 	python-numpy-1.19.2 \
 	python-packaging-20.4 \
 	python-pandas-1.0.3 \
