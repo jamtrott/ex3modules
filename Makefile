@@ -113,7 +113,7 @@ pkgs = \
 	giflib-5.2.1 \
 	glib-2.64.1 \
 	gmp-6.1.2 \
-	gmsh-4.5.6 \
+	gmsh-4.7.1 \
 	gnuplot-5.2.8 \
 	gobject-introspection-1.64.0 \
 	googletest-1.10.0 \

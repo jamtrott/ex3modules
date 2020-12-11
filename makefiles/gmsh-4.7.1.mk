@@ -16,15 +16,15 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# gmsh-4.5.6
+# gmsh-4.7.1
 
-gmsh-version = 4.5.6
+gmsh-version = 4.7.1
 gmsh = gmsh-$(gmsh-version)
 $(gmsh)-description = A three-dimensional finite element mesh generator with built-in pre- and post-processing facilities
 $(gmsh)-url = http://gmsh.info/
 $(gmsh)-srcurl = http://gmsh.info/src/gmsh-$(gmsh-version)-source.tgz
-$(gmsh)-builddeps = $(cmake)
-$(gmsh)-prereqs =
+$(gmsh)-builddeps = $(gcc-10.1.0) $(cmake) $(eigen)
+$(gmsh)-prereqs = $(eigen)
 $(gmsh)-src = $(pkgsrcdir)/$(notdir $($(gmsh)-srcurl))
 $(gmsh)-srcdir = $(pkgsrcdir)/$(gmsh)
 $(gmsh)-builddir = $($(gmsh)-srcdir)/build
