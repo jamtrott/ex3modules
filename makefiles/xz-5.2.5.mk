@@ -43,48 +43,7 @@ $($(xz)-prefix)/.pkgunpack: $($(xz)-src) $($(xz)-srcdir)/.markerfile $($(xz)-pre
 	tar -C $($(xz)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
-$($(xz)-srcdir)/0001-compat-libs.patch: $($(xz)-srcdir)/.markerfile
-	@printf '' >$@.tmp
-	@echo 'We provided two 5.1.2alpha symbols (lzma_stream_encoder_mt and' >>$@.tmp
-	@echo 'lzma_stream_encoder_mt_memusage) before we updated to xz-5.2.2-1 in RHEL7.3.' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo 'Those symbols did not change ABI in 5.2.2 so it should be safe to provide' >>$@.tmp
-	@echo '(except for 5.0 and 5.2 symbols) also the two 5.1.2alpha symbols and' >>$@.tmp
-	@echo 'use 5.1.2alpha symbol version as parent for 5.2.' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo 'For better reasoning look at container.h in 5.1.2alpha -- those two symbols' >>$@.tmp
-	@echo 'were for testing purposes only, and thus not considered to be API/ABI.' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo 'diff --git a/src/liblzma/liblzma.map b/src/liblzma/liblzma.map' >>$@.tmp
-	@echo 'index f53a4ea..9c3002a 100644' >>$@.tmp
-	@echo '--- a/src/liblzma/liblzma.map' >>$@.tmp
-	@echo '+++ b/src/liblzma/liblzma.map' >>$@.tmp
-	@echo '@@ -95,7 +95,13 @@ global:' >>$@.tmp
-	@echo '   lzma_vli_size;' >>$@.tmp
-	@echo ' };' >>$@.tmp
-	@echo ' ' >>$@.tmp
-	@echo '-XZ_5.2 {' >>$@.tmp
-	@echo '+XZ_5.1.2alpha {' >>$@.tmp
-	@echo '+global:' >>$@.tmp
-	@echo '+	lzma_stream_encoder_mt;' >>$@.tmp
-	@echo '+	lzma_stream_encoder_mt_memusage;' >>$@.tmp
-	@echo '+} XZ_5.0;' >>$@.tmp
-	@echo '+' >>$@.tmp
-	@echo '+XZ_5.2.2 {' >>$@.tmp
-	@echo ' global:' >>$@.tmp
-	@echo '	lzma_block_uncomp_encode;' >>$@.tmp
-	@echo ' 	lzma_cputhreads;' >>$@.tmp
-	@echo '@@ -105,4 +111,4 @@ global:' >>$@.tmp
-	@echo ' ' >>$@.tmp
-	@echo ' local:' >>$@.tmp
-	@echo '	*;' >>$@.tmp
-	@echo '-} XZ_5.0;' >>$@.tmp
-	@echo '+} XZ_5.1.2alpha;' >>$@.tmp
-	@mv $@.tmp $@
-
 $($(xz)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(xz)-builddeps),$(modulefilesdir)/$$(dep)) $($(xz)-prefix)/.pkgunpack
-$($(xz)-prefix)/.pkgpatch: $($(xz)-srcdir)/0001-compat-libs.patch
-	cd $($(xz)-srcdir) && patch -t -p1 <0001-compat-libs.patch
 	@touch $@
 
 $($(xz)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(xz)-builddeps),$(modulefilesdir)/$$(dep)) $($(xz)-prefix)/.pkgpatch
