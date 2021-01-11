@@ -61,7 +61,11 @@ $($(ucx)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(uc
 			--with-rdmacm=$${RDMA_CORE_ROOT} \
 			--with-verbs=$${RDMA_CORE_ROOT} \
 			--with-mlx5-dv=$${RDMA_CORE_ROOT} \
+			--without-cuda \
+			--without-rocm \
+			--without-gdrcopy \
 			--without-java \
+			--enable-mt \
 			--enable-optimizations \
 			--enable-compiler-opt=3 \
 			--without-mpi \
