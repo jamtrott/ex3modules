@@ -52,13 +52,13 @@ ifeq ($(ARCH),x86_64)
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(openblas)-builddeps) && \
-		$(MAKE) DYNAMIC_ARCH=1 TARGET=HASWELL USE_OPENMP=1 NUM_THREADS=256
+		$(MAKE) DYNAMIC_ARCH=1 TARGET=HASWELL USE_THREAD=1 USE_OPENMP=0 NUM_THREADS=256 NO_AFFINITY=1
 else ifeq ($(ARCH),aarch64)
 	cd $($(openblas)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(openblas)-builddeps) && \
-		$(MAKE) DYNAMIC_ARCH=1 TARGET=ARMV8 USE_OPENMP=1 NUM_THREADS=256
+		$(MAKE) DYNAMIC_ARCH=1 TARGET=ARMV8 USE_THREAD=1 USE_OPENMP=0 NUM_THREADS=256 NO_AFFINITY=1
 endif
 	@touch $@
 
@@ -95,6 +95,7 @@ $($(openblas)-modulefile): $(modulefilesdir)/.markerfile $($(openblas)-prefix)/.
 	echo "setenv BLASDIR $($(openblas)-prefix)/lib" >>$@
 	echo "setenv BLASLIB openblas" >>$@
 	echo "setenv LAPACKLIB openblas" >>$@
+	echo "setenv OPENBLAS_NUM_THREADS 1" >>$@
 	echo "prepend-path PATH $($(openblas)-prefix)/bin" >>$@
 	echo "prepend-path C_INCLUDE_PATH $($(openblas)-prefix)/include" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(openblas)-prefix)/include" >>$@
