@@ -343,6 +343,7 @@ pkgs = \
 	texinfo-6.7 \
 	ucx-1.9.0 \
 	util-linux-2.34 \
+	valgrind-3.16.1 \
 	xcb-proto-1.14 \
 	xorg-libraries-2020-03-15 \
 	xorg-util-macros-1.19.2 \
