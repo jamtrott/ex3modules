@@ -61,7 +61,9 @@ $($(superlu_dist)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 		cmake .. \
 			-DCMAKE_INSTALL_PREFIX=$($(superlu_dist)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
+			-DCMAKE_BUILD_TYPE=DEBUG \
 			-DBUILD_SHARED_LIBS=TRUE \
+			-Denable_openmp=OFF \
 			-DTPL_ENABLE_BLASLIB=OFF \
 			-DTPL_BLAS_LIBRARIES="$${BLASDIR}/lib$${BLASLIB}.so" \
 			-DTPL_LAPACK_LIBRARIES="$${BLASDIR}/lib$${BLASLIB}.so" \

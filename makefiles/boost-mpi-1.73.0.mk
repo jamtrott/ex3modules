@@ -53,7 +53,6 @@ $($(boost-mpi)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$
 			--with-python=$${PYTHON_ROOT}/bin/python3 \
 			--with-python-version=$${PYTHON_VERSION_SHORT} \
 			--with-python-root=$${PYTHON_ROOT} && \
-		echo "using gcc : $$($${CC} -dumpfullversion) : $${CC} ;" >>tools/build/src/user-config.jam && \
 		echo "using mpi ;" >>project-config.jam && \
 		./b2 --toolset=gcc-10.1 --with-mpi
 	@touch $@
