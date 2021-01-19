@@ -113,7 +113,7 @@ pkgs = \
 	giflib-5.2.1 \
 	glib-2.64.1 \
 	gmp-6.1.2 \
-	gmsh-4.5.6 \
+	gmsh-4.7.1 \
 	gnuplot-5.2.8 \
 	gobject-introspection-1.64.0 \
 	googletest-1.10.0 \
@@ -188,6 +188,7 @@ pkgs = \
 	libxxf86dga-1.1.5 \
 	libxxf86vm-1.1.4 \
 	linux-src-4.19.75 \
+	llvm-10.0.1 \
 	llvm-11.0.0 \
 	llvm-openmp-11.0.0 \
 	matio-1.5.17 \
@@ -206,6 +207,7 @@ pkgs = \
 	numactl-2.0.13 \
 	ocaml-4.08.1 \
 	openblas-0.3.12 \
+	opencl-headers-2020.06.16 \
 	openmpi-4.0.5 \
 	openssl-1.1.1c \
 	osu-micro-benchmarks-mpich-5.6.3 \
@@ -269,13 +271,16 @@ pkgs = \
 	python-ipython-7.14.0 \
 	python-jinja2-2.11.2 \
 	python-kiwisolver-1.2.0 \
+	python-llvmlite-0.35.0 \
 	python-markupsafe-1.1.1 \
 	python-matplotlib-3.1.1 \
 	python-mccabe-0.6.1 \
+	python-meshio-4.3.6 \
 	python-more-itertools-8.3.0 \
 	python-mpi4py-3.0.3 \
 	python-mpmath-1.1.0 \
 	python-nose-1.3.7 \
+	python-numba-0.52.0 \
 	python-numpy-1.19.2 \
 	python-packaging-20.4 \
 	python-pandas-1.0.3 \
