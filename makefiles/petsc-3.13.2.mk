@@ -68,8 +68,8 @@ $($(petsc)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 			--with-superlu --with-superlu-dir="$${SUPERLU_ROOT}" \
 			--with-superlu_dist --with-superlu_dist-dir="$${SUPERLU_DIST_ROOT}" \
 			--with-x=0 \
-			--with-debugging=0 \
-			COPTFLAGS="-O3" CXXOPTFLAGS="-O3" FOPTFLAGS="-O3" && \
+			--with-debugging=1 \
+			COPTFLAGS="-O3 -g" CXXOPTFLAGS="-O3 -g" FOPTFLAGS="-O3" && \
 		$(MAKE)
 	@touch $@
 
