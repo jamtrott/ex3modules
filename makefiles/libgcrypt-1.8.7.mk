@@ -103,6 +103,7 @@ $($(libgcrypt)-modulefile): $(modulefilesdir)/.markerfile $($(libgcrypt)-prefix)
 	echo "prepend-path LIBRARY_PATH $($(libgcrypt)-prefix)/lib" >>$@
 	echo "prepend-path LD_LIBRARY_PATH $($(libgcrypt)-prefix)/lib" >>$@
 	echo "prepend-path PKG_CONFIG_PATH $($(libgcrypt)-prefix)/lib/pkgconfig" >>$@
+	echo "prepend-path ACLOCAL_PATH $($(libgcrypt)-prefix)/share/aclocal" >>$@
 	echo "prepend-path MANPATH $($(libgcrypt)-prefix)/share/man" >>$@
 	echo "prepend-path INFOPATH $($(libgcrypt)-prefix)/share/info" >>$@
 	echo "set MSG \"$(libgcrypt)\"" >>$@
