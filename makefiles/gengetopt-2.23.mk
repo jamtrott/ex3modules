@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2021 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,9 +14,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
+# Authors: Kristian Gregorius Hustad <kghustad@simula.no>
 # Authors: James D. Trotter <james@simula.no>
 #
-# gengetopt-1.0
+# gengetopt-2.23
 
 gengetopt-version = 2.23
 gengetopt = gengetopt-$(gengetopt-version)
@@ -41,7 +42,7 @@ $($(gengetopt)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(gengetopt)-prefix)/.pkgunpack: $$($(gengetopt)-src) $($(gengetopt)-srcdir)/.markerfile $($(gengetopt)-prefix)/.markerfile
-	tar -C $($(gengetopt)-srcdir) --strip-components 1 -xz -f $<
+	tar -C $($(gengetopt)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 
 $($(gengetopt)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(gengetopt)-builddeps),$(modulefilesdir)/$$(dep)) $($(gengetopt)-prefix)/.pkgunpack
@@ -92,16 +93,7 @@ $($(gengetopt)-modulefile): $(modulefilesdir)/.markerfile $($(gengetopt)-prefix)
 	echo "" >>$@
 	echo "" >>$@
 	echo "setenv gengetopt_ROOT $($(gengetopt)-prefix)" >>$@
-	echo "setenv gengetopt_INCDIR $($(gengetopt)-prefix)/include" >>$@
-	echo "setenv gengetopt_INCLUDEDIR $($(gengetopt)-prefix)/include" >>$@
-	echo "setenv gengetopt_LIBDIR $($(gengetopt)-prefix)/lib" >>$@
-	echo "setenv gengetopt_LIBRARYDIR $($(gengetopt)-prefix)/lib" >>$@
 	echo "prepend-path PATH $($(gengetopt)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(gengetopt)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(gengetopt)-prefix)/include" >>$@
-	echo "prepend-path LIBRARY_PATH $($(gengetopt)-prefix)/lib" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(gengetopt)-prefix)/lib" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(gengetopt)-prefix)/lib/pkgconfig" >>$@
 	echo "prepend-path MANPATH $($(gengetopt)-prefix)/share/man" >>$@
 	echo "prepend-path INFOPATH $($(gengetopt)-prefix)/share/info" >>$@
 	echo "set MSG \"$(gengetopt)\"" >>$@
