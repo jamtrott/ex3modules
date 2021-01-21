@@ -109,6 +109,7 @@ pkgs = \
 	gcc-9.2.0 \
 	gcc-src-10.1.0 \
 	gdb-9.2 \
+	gengetopt-2.23 \
 	gettext-0.21 \
 	giflib-5.2.1 \
 	glib-2.64.1 \
