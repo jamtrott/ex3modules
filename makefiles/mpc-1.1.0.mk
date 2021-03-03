@@ -51,7 +51,9 @@ $($(mpc)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mp
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(mpc)-builddeps) && \
-		./configure --prefix=$($(mpc)-prefix) && \
+		./configure --prefix=$($(mpc)-prefix) \
+			--with-gmp=$${GMP_ROOT} \
+			--with-mpfr=$${MPFR_ROOT} && \
 		$(MAKE)
 	@touch $@
 

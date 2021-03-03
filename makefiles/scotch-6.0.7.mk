@@ -98,7 +98,11 @@ $($(scotch)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MODULE) load $($(scotch)-builddeps) && \
 		$(MAKE) install prefix=$($(scotch)-prefix) \
 			MAKEFLAGS="AR=$${CC} CCS=$${CC} CCP=$${MPICC} CCD=$${CC}" && \
-		patchelf --add-needed libz.so $($(scotch)-prefix)/lib/*.so
+		patchelf --add-needed libz.so $($(scotch)-prefix)/lib/*.so && \
+		patchelf --add-needed libscotcherr.so $($(scotch)-prefix)/lib/libscotch.so && \
+		patchelf --add-needed libscotch.so $($(scotch)-prefix)/lib/libptscotch.so && \
+		patchelf --add-needed libptscotch.so $($(scotch)-prefix)/lib/libptscotchparmetis.so && \
+		patchelf --add-needed libscotch.so $($(scotch)-prefix)/lib/libscotchmetis.so
 	@touch $@
 
 $($(scotch)-modulefile): $(modulefilesdir)/.markerfile $($(scotch)-prefix)/.pkginstall
