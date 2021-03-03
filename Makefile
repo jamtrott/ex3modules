@@ -66,6 +66,7 @@ slurm = slurm-19.05.6
 # Packages
 #
 pkgs = \
+	autoconf-2.70 \
 	binutils-2.32 \
 	bison-3.7.4 \
 	blis-generic-0.7.0 \
