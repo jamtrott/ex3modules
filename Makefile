@@ -62,6 +62,9 @@ mpi = openmpi-4.0.5
 # SLURM versions: 18.08.9, 19.05.6 and 20.02.5
 slurm = slurm-20.02.5
 
+# munge versions: 0.5.11 and 0.5.13
+munge = munge-0.5.13
+
 #
 # Packages
 #
@@ -200,6 +203,7 @@ pkgs = \
 	mpfr-4.0.2 \
 	mpich-3.3.2 \
 	mumps-5.2.1 \
+	munge-0.5.11 \
 	munge-0.5.13 \
 	mvapich-2.3.4 \
 	nasm-2.14.02 \

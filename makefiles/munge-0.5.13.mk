@@ -18,46 +18,46 @@
 #
 # munge-0.5.13
 
-munge-version = 0.5.13
-munge = munge-$(munge-version)
-$(munge)-description = Authentication service for creating and validating credentials
-$(munge)-url = https://dun.github.io/munge/
-$(munge)-srcurl = https://github.com/dun/munge/archive/munge-$(munge-version).tar.gz
-$(munge)-builddeps = $(openssl)
-$(munge)-prereqs = $(openssl)
-$(munge)-src = $(pkgsrcdir)/$(notdir $($(munge)-srcurl))
-$(munge)-srcdir = $(pkgsrcdir)/$(munge)
-$(munge)-builddir = $($(munge)-srcdir)
-$(munge)-modulefile = $(modulefilesdir)/$(munge)
-$(munge)-prefix = $(pkgdir)/$(munge)
+munge-0.5.13-version = 0.5.13
+munge-0.5.13 = munge-$(munge-0.5.13-version)
+$(munge-0.5.13)-description = Authentication service for creating and validating credentials
+$(munge-0.5.13)-url = https://dun.github.io/munge/
+$(munge-0.5.13)-srcurl = https://github.com/dun/munge/archive/munge-$(munge-0.5.13-version).tar.gz
+$(munge-0.5.13)-builddeps = $(openssl)
+$(munge-0.5.13)-prereqs = $(openssl)
+$(munge-0.5.13)-src = $(pkgsrcdir)/$(notdir $($(munge-0.5.13)-srcurl))
+$(munge-0.5.13)-srcdir = $(pkgsrcdir)/$(munge-0.5.13)
+$(munge-0.5.13)-builddir = $($(munge-0.5.13)-srcdir)
+$(munge-0.5.13)-modulefile = $(modulefilesdir)/$(munge-0.5.13)
+$(munge-0.5.13)-prefix = $(pkgdir)/$(munge-0.5.13)
 
-$($(munge)-src): $(dir $($(munge)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(munge)-srcurl)
+$($(munge-0.5.13)-src): $(dir $($(munge-0.5.13)-src)).markerfile
+	$(CURL) $(curl_options) --output $@ $($(munge-0.5.13)-srcurl)
 
-$($(munge)-srcdir)/.markerfile:
+$($(munge-0.5.13)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(munge)-prefix)/.markerfile:
+$($(munge-0.5.13)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(munge)-prefix)/.pkgunpack: $($(munge)-src) $($(munge)-srcdir)/.markerfile $($(munge)-prefix)/.markerfile
-	tar -C $($(munge)-srcdir) --strip-components 1 -xz -f $<
+$($(munge-0.5.13)-prefix)/.pkgunpack: $($(munge-0.5.13)-src) $($(munge-0.5.13)-srcdir)/.markerfile $($(munge-0.5.13)-prefix)/.markerfile
+	tar -C $($(munge-0.5.13)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
-$($(munge)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(munge)-builddeps),$(modulefilesdir)/$$(dep)) $($(munge)-prefix)/.pkgunpack
+$($(munge-0.5.13)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(munge-0.5.13)-builddeps),$(modulefilesdir)/$$(dep)) $($(munge-0.5.13)-prefix)/.pkgunpack
 	@touch $@
 
-ifneq ($($(munge)-builddir),$($(munge)-srcdir))
-$($(munge)-builddir)/.markerfile: $($(munge)-prefix)/.pkgunpack
+ifneq ($($(munge-0.5.13)-builddir),$($(munge-0.5.13)-srcdir))
+$($(munge-0.5.13)-builddir)/.markerfile: $($(munge-0.5.13)-prefix)/.pkgunpack
 	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
-$($(munge)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(munge)-builddeps),$(modulefilesdir)/$$(dep)) $($(munge)-builddir)/.markerfile $($(munge)-prefix)/.pkgpatch
-	cd $($(munge)-builddir) && \
+$($(munge-0.5.13)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(munge-0.5.13)-builddeps),$(modulefilesdir)/$$(dep)) $($(munge-0.5.13)-builddir)/.markerfile $($(munge-0.5.13)-prefix)/.pkgpatch
+	cd $($(munge-0.5.13)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(munge)-builddeps) && \
-		./configure --prefix=$($(munge)-prefix) \
+		$(MODULE) load $($(munge-0.5.13)-builddeps) && \
+		./configure --prefix=$($(munge-0.5.13)-prefix) \
 			--with-openssl-prefix=$${OPENSSL_ROOT} \
 			--with-crypto-lib=openssl \
 			--sysconfdir=/etc \
@@ -66,61 +66,61 @@ $($(munge)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 		$(MAKE)
 	@touch $@
 
-$($(munge)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(munge)-builddeps),$(modulefilesdir)/$$(dep)) $($(munge)-builddir)/.markerfile $($(munge)-prefix)/.pkgbuild
-	cd $($(munge)-builddir) && \
+$($(munge-0.5.13)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(munge-0.5.13)-builddeps),$(modulefilesdir)/$$(dep)) $($(munge-0.5.13)-builddir)/.markerfile $($(munge-0.5.13)-prefix)/.pkgbuild
+	cd $($(munge-0.5.13)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(munge)-builddeps) && \
+		$(MODULE) load $($(munge-0.5.13)-builddeps) && \
 		$(MAKE) check
 	@touch $@
 
-$($(munge)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(munge)-builddeps),$(modulefilesdir)/$$(dep)) $($(munge)-builddir)/.markerfile $($(munge)-prefix)/.pkgcheck
-	cd $($(munge)-builddir) && \
+$($(munge-0.5.13)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(munge-0.5.13)-builddeps),$(modulefilesdir)/$$(dep)) $($(munge-0.5.13)-builddir)/.markerfile $($(munge-0.5.13)-prefix)/.pkgcheck
+	cd $($(munge-0.5.13)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(munge)-builddeps) && \
+		$(MODULE) load $($(munge-0.5.13)-builddeps) && \
 		$(MAKE) -i install
 	@touch $@
 
-$($(munge)-modulefile): $(modulefilesdir)/.markerfile $($(munge)-prefix)/.pkginstall
+$($(munge-0.5.13)-modulefile): $(modulefilesdir)/.markerfile $($(munge-0.5.13)-prefix)/.pkginstall
 	printf "" >$@
 	echo "#%Module" >>$@
-	echo "# $(munge)" >>$@
+	echo "# $(munge-0.5.13)" >>$@
 	echo "" >>$@
 	echo "proc ModulesHelp { } {" >>$@
-	echo "     puts stderr \"\tSets up the environment for $(munge)\\n\"" >>$@
+	echo "     puts stderr \"\tSets up the environment for $(munge-0.5.13)\\n\"" >>$@
 	echo "}" >>$@
 	echo "" >>$@
-	echo "module-whatis \"$($(munge)-description)\"" >>$@
-	echo "module-whatis \"$($(munge)-url)\"" >>$@
-	printf "$(foreach prereq,$($(munge)-prereqs),\n$(MODULE) load $(prereq))" >>$@
+	echo "module-whatis \"$($(munge-0.5.13)-description)\"" >>$@
+	echo "module-whatis \"$($(munge-0.5.13)-url)\"" >>$@
+	printf "$(foreach prereq,$($(munge-0.5.13)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv MUNGE_ROOT $($(munge)-prefix)" >>$@
-	echo "setenv MUNGE_INCDIR $($(munge)-prefix)/include" >>$@
-	echo "setenv MUNGE_INCLUDEDIR $($(munge)-prefix)/include" >>$@
-	echo "setenv MUNGE_LIBDIR $($(munge)-prefix)/lib" >>$@
-	echo "setenv MUNGE_LIBRARYDIR $($(munge)-prefix)/lib" >>$@
-	echo "prepend-path PATH $($(munge)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(munge)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(munge)-prefix)/include" >>$@
-	echo "prepend-path LIBRARY_PATH $($(munge)-prefix)/lib" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(munge)-prefix)/lib" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(munge)-prefix)/lib/pkgconfig" >>$@
-	echo "prepend-path MANPATH $($(munge)-prefix)/share/man" >>$@
-	echo "prepend-path INFOPATH $($(munge)-prefix)/share/info" >>$@
-	echo "set MSG \"$(munge)\"" >>$@
+	echo "setenv MUNGE_ROOT $($(munge-0.5.13)-prefix)" >>$@
+	echo "setenv MUNGE_INCDIR $($(munge-0.5.13)-prefix)/include" >>$@
+	echo "setenv MUNGE_INCLUDEDIR $($(munge-0.5.13)-prefix)/include" >>$@
+	echo "setenv MUNGE_LIBDIR $($(munge-0.5.13)-prefix)/lib" >>$@
+	echo "setenv MUNGE_LIBRARYDIR $($(munge-0.5.13)-prefix)/lib" >>$@
+	echo "prepend-path PATH $($(munge-0.5.13)-prefix)/bin" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(munge-0.5.13)-prefix)/include" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(munge-0.5.13)-prefix)/include" >>$@
+	echo "prepend-path LIBRARY_PATH $($(munge-0.5.13)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(munge-0.5.13)-prefix)/lib" >>$@
+	echo "prepend-path PKG_CONFIG_PATH $($(munge-0.5.13)-prefix)/lib/pkgconfig" >>$@
+	echo "prepend-path MANPATH $($(munge-0.5.13)-prefix)/share/man" >>$@
+	echo "prepend-path INFOPATH $($(munge-0.5.13)-prefix)/share/info" >>$@
+	echo "set MSG \"$(munge-0.5.13)\"" >>$@
 
-$(munge)-src: $($(munge)-src)
-$(munge)-unpack: $($(munge)-prefix)/.pkgunpack
-$(munge)-patch: $($(munge)-prefix)/.pkgpatch
-$(munge)-build: $($(munge)-prefix)/.pkgbuild
-$(munge)-check: $($(munge)-prefix)/.pkgcheck
-$(munge)-install: $($(munge)-prefix)/.pkginstall
-$(munge)-modulefile: $($(munge)-modulefile)
-$(munge)-clean:
-	rm -rf $($(munge)-modulefile)
-	rm -rf $($(munge)-prefix)
-	rm -rf $($(munge)-srcdir)
-	rm -rf $($(munge)-src)
-$(munge): $(munge)-src $(munge)-unpack $(munge)-patch $(munge)-build $(munge)-check $(munge)-install $(munge)-modulefile
+$(munge-0.5.13)-src: $($(munge-0.5.13)-src)
+$(munge-0.5.13)-unpack: $($(munge-0.5.13)-prefix)/.pkgunpack
+$(munge-0.5.13)-patch: $($(munge-0.5.13)-prefix)/.pkgpatch
+$(munge-0.5.13)-build: $($(munge-0.5.13)-prefix)/.pkgbuild
+$(munge-0.5.13)-check: $($(munge-0.5.13)-prefix)/.pkgcheck
+$(munge-0.5.13)-install: $($(munge-0.5.13)-prefix)/.pkginstall
+$(munge-0.5.13)-modulefile: $($(munge-0.5.13)-modulefile)
+$(munge-0.5.13)-clean:
+	rm -rf $($(munge-0.5.13)-modulefile)
+	rm -rf $($(munge-0.5.13)-prefix)
+	rm -rf $($(munge-0.5.13)-srcdir)
+	rm -rf $($(munge-0.5.13)-src)
+$(munge-0.5.13): $(munge-0.5.13)-src $(munge-0.5.13)-unpack $(munge-0.5.13)-patch $(munge-0.5.13)-build $(munge-0.5.13)-check $(munge-0.5.13)-install $(munge-0.5.13)-modulefile
