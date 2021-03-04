@@ -58,7 +58,8 @@ $($(libgccjit-10.1.0)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreac
 			--enable-host-shared \
 			--enable-languages=jit,c++ \
 			--disable-bootstrap \
-			--enable-checking=release && \
+			--enable-checking=release \
+			--disable-multilib && \
 		$(MAKE)
 	@touch $@
 
