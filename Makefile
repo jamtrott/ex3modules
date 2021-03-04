@@ -269,6 +269,7 @@ pkgs = \
 	python-flake8-3.8.2 \
 	python-flaky-3.7.0 \
 	python-freezegun-1.0.0 \
+	python-future-0.18.2 \
 	python-h5py-2.10.0 \
 	python-hypothesis-5.37.4 \
 	python-idna-2.9 \
