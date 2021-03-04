@@ -276,6 +276,7 @@ pkgs = \
 	python-imagesize-1.2.0 \
 	python-importlib_metadata-1.6.0 \
 	python-iniconfig-1.1.1 \
+	python-ipopt-0.3.0 \
 	python-ipython-7.14.0 \
 	python-jinja2-2.11.2 \
 	python-kiwisolver-1.2.0 \
