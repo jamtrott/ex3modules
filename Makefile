@@ -295,6 +295,7 @@ pkgs = \
 	python-pandas-1.0.3 \
 	python-pathlib2-2.3.5 \
 	python-petsc4py-3.13.0 \
+	python-pillow-8.1.1 \
 	python-pkgconfig-1.5.1 \
 	python-pluggy-0.13.1 \
 	python-ply-3.11 \
