@@ -63,7 +63,7 @@ mpi = openmpi-4.0.5
 slurm = slurm-19.05.6
 
 # munge versions: 0.5.11 and 0.5.13
-munge = munge-0.5.11
+munge = munge-0.5.13
 
 #
 # Packages
