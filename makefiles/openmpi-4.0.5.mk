@@ -25,8 +25,8 @@ $(openmpi)-url = https://www.open-mpi.org/
 $(openmpi)-srcurl = https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-$(openmpi-version).tar.bz2
 $(openmpi)-src = $(pkgsrcdir)/$(notdir $($(openmpi)-srcurl))
 $(openmpi)-srcdir = $(pkgsrcdir)/$(openmpi)
-$(openmpi)-builddeps = $(gcc-10.1.0) $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(slurm)
-$(openmpi)-prereqs = $(gcc-10.1.0) $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(slurm)
+$(openmpi)-builddeps = $(gcc-10.1.0) $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(slurm) $(pmix)
+$(openmpi)-prereqs = $(gcc-10.1.0) $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(slurm) $(pmix)
 $(openmpi)-modulefile = $(modulefilesdir)/$(openmpi)
 $(openmpi)-prefix = $(pkgdir)/$(openmpi)
 
@@ -58,7 +58,9 @@ $($(openmpi)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 			--with-ucx="$${UCX_ROOT}" \
 			--with-ofi="$${LIBFABRIC_ROOT}" \
 			--with-verbs="$${RDMA_CORE_ROOT}" \
+			--with-slurm \
 			--with-pmi="$${SLURM_ROOT}" \
+			--with-pmix="$${PMIX_ROOT}" \
 			--without-verbs \
 			--enable-mpi-cxx \
 			--enable-mpi-fortran=all \

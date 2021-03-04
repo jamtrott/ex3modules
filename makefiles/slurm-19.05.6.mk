@@ -23,8 +23,8 @@ slurm-19.05 = slurm-$(slurm-19.05-version)
 $(slurm-19.05)-description = Highly configurable open-source workload manager
 $(slurm-19.05)-url = https://www.schedmd.com/
 $(slurm-19.05)-srcurl = https://download.schedmd.com/slurm/slurm-$(slurm-19.05-version).tar.bz2
-$(slurm-19.05)-builddeps = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(openssl) $(curl) $(readline)
-$(slurm-19.05)-prereqs = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(openssl) $(curl) $(readline)
+$(slurm-19.05)-builddeps = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(openssl) $(curl) $(readline) $(pmix)
+$(slurm-19.05)-prereqs = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(openssl) $(curl) $(readline) $(pmix)
 $(slurm-19.05)-src = $(pkgsrcdir)/$(notdir $($(slurm-19.05)-srcurl))
 $(slurm-19.05)-srcdir = $(pkgsrcdir)/$(slurm-19.05)
 $(slurm-19.05)-builddir = $($(slurm-19.05)-srcdir)
@@ -64,6 +64,7 @@ $($(slurm-19.05)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 			--with-ucx=$${UCX_ROOT} \
 			--with-ssl=$${OPENSSL_ROOT} \
 			--with-munge=$${MUNGE_ROOT} \
+			--with-pmix=$${PMIX_ROOT} \
 			--with-libcurl=$${CURL_ROOT} && \
 		$(MAKE)
 	@touch $@
