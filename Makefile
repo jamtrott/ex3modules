@@ -135,6 +135,7 @@ pkgs = \
 	hwloc-src-2.0.4 \
 	hypre-2.17.0 \
 	iperf-2.0.13 \
+	ipopt-3.13.3 \
 	knem-1.1.4 \
 	lapack-3.9.0 \
 	libarchive-3.4.2 \
