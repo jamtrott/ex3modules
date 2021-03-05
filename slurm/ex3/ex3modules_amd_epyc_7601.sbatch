@@ -18,7 +18,7 @@
 # Authors: James D. Trotter <james@simula.no>
 #
 # This script builds and installs software packages and Environment
-# Modules scripts for aarch64 systems on the eX3 cluster. The build is
+# Modules scripts for x86_64 systems on the eX3 cluster. The build is
 # performed on a dual-socket AMD Epyc 7601 node on eX3.
 #
 # The SLURM job must be submitted from the top-level directory of
