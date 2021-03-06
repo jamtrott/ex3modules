@@ -64,8 +64,7 @@ $($(scalapack)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$
 			-DBUILD_STATIC_LIBS=OFF \
 			-DBLAS_LIBRARIES=$${BLASLIB} \
 			-DLAPACK_LIBRARIES=$${LAPACKLIB} \
-			-DMPI_BASE_DIR=$${MPI_HOME} \
-			-DCMAKE_Fortran_FLAGS="-fallow-argument-mismatch" && \
+			-DMPI_BASE_DIR=$${MPI_HOME} && \
 		$(MAKE)
 	@touch $@
 
