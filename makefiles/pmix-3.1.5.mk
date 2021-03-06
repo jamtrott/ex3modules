@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# pmix-3.1.4
+# pmix-3.1.5
 
-pmix-version = 3.1.4
+pmix-version = 3.1.5
 pmix = pmix-$(pmix-version)
 $(pmix)-description = PMIx: Process management for exascale environments
 $(pmix)-url = https://pmix.org
