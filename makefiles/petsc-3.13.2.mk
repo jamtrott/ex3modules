@@ -22,16 +22,13 @@ petsc-version = 3.13.2
 petsc = petsc-$(petsc-version)
 $(petsc)-description = Portable, Extensible Toolkit for Scientific Computation
 $(petsc)-url = https://www.mcs.anl.gov/petsc/
-$(petsc)-srcurl = http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-$(petsc-version).tar.gz
-$(petsc)-src = $(pkgsrcdir)/$(notdir $($(petsc)-srcurl))
-$(petsc)-srcdir = $(pkgsrcdir)/$(petsc)
+$(petsc)-srcurl =
 $(petsc)-builddeps = $(boost) $(blas) $(mpi) $(hwloc) $(hypre) $(metis) $(mumps) $(parmetis) $(python) $(scalapack) $(scotch) $(suitesparse) $(superlu) $(superlu_dist)
 $(petsc)-prereqs = $(boost) $(blas) $(mpi) $(hwloc) $(hypre) $(metis) $(mumps) $(parmetis) $(scalapack) $(scotch) $(suitesparse) $(superlu) $(superlu_dist)
+$(petsc)-src = $($(petsc-src)-src)
+$(petsc)-srcdir = $(pkgsrcdir)/$(petsc)
 $(petsc)-modulefile = $(modulefilesdir)/$(petsc)
 $(petsc)-prefix = $(pkgdir)/$(petsc)
-
-$($(petsc)-src): $(dir $($(petsc)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(petsc)-srcurl)
 
 $($(petsc)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
@@ -39,7 +36,7 @@ $($(petsc)-srcdir)/.markerfile:
 $($(petsc)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(petsc)-prefix)/.pkgunpack: $($(petsc)-src) $($(petsc)-srcdir)/.markerfile $($(petsc)-prefix)/.markerfile
+$($(petsc)-prefix)/.pkgunpack: $$($(petsc)-src) $($(petsc)-srcdir)/.markerfile $($(petsc)-prefix)/.markerfile
 	tar -C $($(petsc)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
@@ -116,7 +113,7 @@ $($(petsc)-modulefile): $(modulefilesdir)/.markerfile $($(petsc)-prefix)/.pkgins
 	echo "prepend-path PKG_CONFIG_PATH $($(petsc)-prefix)/lib/pkgconfig" >>$@
 	echo "set MSG \"$(petsc)\"" >>$@
 
-$(petsc)-src: $($(petsc)-src)
+$(petsc)-src: $$($(petsc)-src)
 $(petsc)-unpack: $($(petsc)-prefix)/.pkgunpack
 $(petsc)-patch: $($(petsc)-prefix)/.pkgpatch
 $(petsc)-build: $($(petsc)-prefix)/.pkgbuild
