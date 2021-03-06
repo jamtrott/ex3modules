@@ -99,7 +99,7 @@ $($(mumps)-srcdir)/Makefile.inc: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 	echo 'CDEFS   = -DAdd_' >>$@ && \
 	echo '' >>$@ && \
 	echo '#Begin Optimized options' >>$@ && \
-	echo 'OPTF    = -fPIC -O3 -fopenmp -fallow-argument-mismatch' >>$@ && \
+	echo 'OPTF    = -fPIC -O3 -fopenmp' >>$@ && \
 	echo 'OPTL    = -fPIC -O3 -fopenmp' >>$@ && \
 	echo 'OPTC    = -fPIC -O3 -fopenmp' >>$@ && \
 	echo '#End Optimized options' >>$@ && \
