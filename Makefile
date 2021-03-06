@@ -110,6 +110,7 @@ pkgs = \
 	freetype-2.10.1 \
 	fribidi-1.0.10 \
 	gcc-10.1.0 \
+	gcc-8.4.0 \
 	gcc-9.2.0 \
 	gcc-src-10.1.0 \
 	gdb-9.2 \
