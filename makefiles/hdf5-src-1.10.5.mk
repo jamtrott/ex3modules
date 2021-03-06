@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2021 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as puhdf5hed by
@@ -22,7 +22,7 @@ hdf5-src-version = 1.10.5
 hdf5-src = hdf5-src-$(hdf5-src-version)
 $(hdf5-src)-description = HDF5 high performance data software library and file format (source)
 $(hdf5-src)-url = https://www.hdfgroup.org/solutions/hdf5/
-$(hdf5-src)-srcurl = https://support.hdfgroup.org/ftp/HDF5/current/src/hdf5-$(hdf5-version).tar.gz
+$(hdf5-src)-srcurl = https://support.hdfgroup.org/ftp/HDF5/current/src/hdf5-$(hdf5-src-version).tar.gz
 $(hdf5-src)-builddeps =
 $(hdf5-src)-prereqs =
 $(hdf5-src)-src = $(pkgsrcdir)/$(notdir $($(hdf5-src)-srcurl))
