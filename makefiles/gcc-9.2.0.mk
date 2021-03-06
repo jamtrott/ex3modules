@@ -18,7 +18,7 @@
 #
 # gcc-9.2.0
 
-gcc-9.2.0-program-suffix = 9.2
+gcc-9.2.0-program-suffix = -9.2
 gcc-9.2.0-version = 9.2.0
 gcc-9.2.0 = gcc-$(gcc-9.2.0-version)
 $(gcc-9.2.0)-description = GNU Compiler Collection
