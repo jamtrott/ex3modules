@@ -23,7 +23,7 @@ boost-mpi = boost-mpi-$(boost-mpi-version)
 $(boost-mpi)-description = C++ interface library for MPI
 $(boost-mpi)-url = https://www.boost.org/
 $(boost-mpi)-srcurl =
-$(boost-mpi)-builddeps = $(gcc-10.1.0) $(python) $(mpi)
+$(boost-mpi)-builddeps = $(gcc) $(python) $(mpi)
 $(boost-mpi)-prereqs = $(mpi)
 $(boost-mpi)-src = $($(boost-src)-src)
 $(boost-mpi)-srcdir = $(pkgsrcdir)/$(boost-mpi)
@@ -54,7 +54,7 @@ $($(boost-mpi)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$
 			--with-python-version=$${PYTHON_VERSION_SHORT} \
 			--with-python-root=$${PYTHON_ROOT} && \
 		echo "using mpi ;" >>project-config.jam && \
-		./b2 --toolset=gcc-10.1 --with-mpi
+		./b2 --toolset=gcc$($(gcc)-program-suffix) --with-mpi
 	@touch $@
 
 $($(boost-mpi)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost-mpi)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost-mpi)-prefix)/.pkgbuild
@@ -65,7 +65,7 @@ $($(boost-mpi)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(boost-mpi)-builddeps) && \
-		./b2 --toolset=gcc-10.1 --with-mpi install
+		./b2 --toolset=gcc$($(gcc)-program-suffix) --with-mpi install
 	@touch $@
 
 $($(boost-mpi)-modulefile): $(modulefilesdir)/.markerfile $($(boost-mpi)-prefix)/.pkginstall

@@ -52,6 +52,9 @@ MODULE := module
 # Preferred packages
 #
 
+# GCC versions: 8.4.0, 9.2.0, 10.1.0
+gcc = gcc-8.4.0
+
 # BLAS implementations: netlib-blas, openblas, blis-generic, blis-skx,
 # blis-x86_64, blis-zen, blis-zen2 and gsl.
 blas = openblas-0.3.12

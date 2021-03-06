@@ -23,7 +23,7 @@ libstdcxx = libstdcxx-$(libstdcxx-version)
 $(libstdcxx)-description = GNU C++ Standard Library
 $(libstdcxx)-url = https://gcc.gnu.org/
 $(libstdcxx)-srcurl =
-$(libstdcxx)-builddeps = $(gcc-10.1.0)
+$(libstdcxx)-builddeps = $(gcc)
 $(libstdcxx)-prereqs =
 $(libstdcxx)-src =
 $(libstdcxx)-srcdir = $(pkgsrcdir)/$(libstdcxx)
@@ -71,14 +71,14 @@ $($(libstdcxx)-modulefile): $(modulefilesdir)/.markerfile $($(libstdcxx)-prefix)
 	printf "$(foreach prereq,$($(libstdcxx)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv LIBSTDCXX_ROOT $($(gcc-10.1.0)-prefix)" >>$@
-	echo "setenv LIBSTDCXX_INCDIR $($(gcc-10.1.0)-prefix)/include" >>$@
-	echo "setenv LIBSTDCXX_INCLUDEDIR $($(gcc-10.1.0)-prefix)/include" >>$@
-	echo "setenv LIBSTDCXX_LIBDIR $($(gcc-10.1.0)-prefix)/lib" >>$@
-	echo "setenv LIBSTDCXX_LIBRARYDIR $($(gcc-10.1.0)-prefix)/lib" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(gcc-10.1.0)-prefix)/include/c++/$(gcc-10.1.0-version)" >>$@
-	echo "prepend-path LIBRARY_PATH $($(gcc-10.1.0)-prefix)/lib64" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(gcc-10.1.0)-prefix)/lib64" >>$@
+	echo "setenv LIBSTDCXX_ROOT $($(gcc)-prefix)" >>$@
+	echo "setenv LIBSTDCXX_INCDIR $($(gcc)-prefix)/include" >>$@
+	echo "setenv LIBSTDCXX_INCLUDEDIR $($(gcc)-prefix)/include" >>$@
+	echo "setenv LIBSTDCXX_LIBDIR $($(gcc)-prefix)/lib" >>$@
+	echo "setenv LIBSTDCXX_LIBRARYDIR $($(gcc)-prefix)/lib" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(gcc)-prefix)/include/c++/$(gcc-version)" >>$@
+	echo "prepend-path LIBRARY_PATH $($(gcc)-prefix)/lib64" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(gcc)-prefix)/lib64" >>$@
 	echo "set MSG \"$(libstdcxx)\"" >>$@
 
 $(libstdcxx)-src: $$($(libstdcxx)-src)

@@ -23,7 +23,7 @@ libgfortran = libgfortran-$(libgfortran-version)
 $(libgfortran)-description = GNU Fortran Runtime Library
 $(libgfortran)-url = https://gcc.gnu.org/
 $(libgfortran)-srcurl =
-$(libgfortran)-builddeps = $(gcc-10.1.0)
+$(libgfortran)-builddeps = $(gcc)
 $(libgfortran)-prereqs =
 $(libgfortran)-src =
 $(libgfortran)-srcdir = $(pkgsrcdir)/$(libgfortran)
@@ -71,13 +71,13 @@ $($(libgfortran)-modulefile): $(modulefilesdir)/.markerfile $($(libgfortran)-pre
 	printf "$(foreach prereq,$($(libgfortran)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv LIBGFORTRAN_ROOT $($(gcc-10.1.0)-prefix)" >>$@
-	echo "setenv LIBGFORTRAN_INCDIR $($(gcc-10.1.0)-prefix)/include" >>$@
-	echo "setenv LIBGFORTRAN_INCLUDEDIR $($(gcc-10.1.0)-prefix)/include" >>$@
-	echo "setenv LIBGFORTRAN_LIBDIR $($(gcc-10.1.0)-prefix)/lib" >>$@
-	echo "setenv LIBGFORTRAN_LIBRARYDIR $($(gcc-10.1.0)-prefix)/lib" >>$@
-	echo "prepend-path LIBRARY_PATH $($(gcc-10.1.0)-prefix)/lib64" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(gcc-10.1.0)-prefix)/lib64" >>$@
+	echo "setenv LIBGFORTRAN_ROOT $($(gcc)-prefix)" >>$@
+	echo "setenv LIBGFORTRAN_INCDIR $($(gcc)-prefix)/include" >>$@
+	echo "setenv LIBGFORTRAN_INCLUDEDIR $($(gcc)-prefix)/include" >>$@
+	echo "setenv LIBGFORTRAN_LIBDIR $($(gcc)-prefix)/lib" >>$@
+	echo "setenv LIBGFORTRAN_LIBRARYDIR $($(gcc)-prefix)/lib" >>$@
+	echo "prepend-path LIBRARY_PATH $($(gcc)-prefix)/lib64" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(gcc)-prefix)/lib64" >>$@
 	echo "set MSG \"$(libgfortran)\"" >>$@
 
 $(libgfortran)-src: $$($(libgfortran)-src)
