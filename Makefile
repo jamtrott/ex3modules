@@ -235,7 +235,7 @@ pkgs = \
 	petsc-cuda-3.13.2 \
 	petsc-src-3.13.2 \
 	pixman-0.38.4 \
-	pmix-3.1.4 \
+	pmix-3.1.5 \
 	pybind11-2.3.0 \
 	python-3.7.4 \
 	python-alabaster-0.7.12 \
