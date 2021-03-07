@@ -22,16 +22,13 @@ openmpi-version = 4.0.5
 openmpi = openmpi-$(openmpi-version)
 $(openmpi)-description = A High Performance Message Passing Library
 $(openmpi)-url = https://www.open-mpi.org/
-$(openmpi)-srcurl = https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-$(openmpi-version).tar.bz2
-$(openmpi)-src = $(pkgsrcdir)/$(notdir $($(openmpi)-srcurl))
-$(openmpi)-srcdir = $(pkgsrcdir)/$(openmpi)
+$(openmpi)-srcurl =
 $(openmpi)-builddeps = $(gcc) $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(slurm) $(pmix)
 $(openmpi)-prereqs = $(gcc) $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(slurm) $(pmix)
+$(openmpi)-src = $($(openmpi-src)-src)
+$(openmpi)-srcdir = $(pkgsrcdir)/$(openmpi)
 $(openmpi)-modulefile = $(modulefilesdir)/$(openmpi)
 $(openmpi)-prefix = $(pkgdir)/$(openmpi)
-
-$($(openmpi)-src): $(dir $($(openmpi)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(openmpi)-srcurl)
 
 $($(openmpi)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
@@ -39,7 +36,7 @@ $($(openmpi)-srcdir)/.markerfile:
 $($(openmpi)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openmpi)-prefix)/.pkgunpack: $($(openmpi)-src) $($(openmpi)-srcdir)/.markerfile $($(openmpi)-prefix)/.markerfile
+$($(openmpi)-prefix)/.pkgunpack: $$($(openmpi)-src) $($(openmpi)-srcdir)/.markerfile $($(openmpi)-prefix)/.markerfile
 	tar -C $($(openmpi)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 
@@ -129,7 +126,7 @@ $($(openmpi)-modulefile): $(modulefilesdir)/.markerfile $($(openmpi)-prefix)/.pk
 	echo "prepend-path INFOPATH $($(openmpi)-prefix)/share/info" >>$@
 	echo "set MSG \"$(openmpi)\"" >>$@
 
-$(openmpi)-src: $($(openmpi)-src)
+$(openmpi)-src: $$($(openmpi)-src)
 $(openmpi)-unpack: $($(openmpi)-prefix)/.pkgunpack
 $(openmpi)-patch: $($(openmpi)-prefix)/.pkgpatch
 $(openmpi)-build: $($(openmpi)-prefix)/.pkgbuild
@@ -140,5 +137,4 @@ $(openmpi)-clean:
 	rm -rf $($(openmpi)-modulefile)
 	rm -rf $($(openmpi)-prefix)
 	rm -rf $($(openmpi)-srcdir)
-	rm -rf $($(openmpi)-src)
 $(openmpi): $(openmpi)-src $(openmpi)-unpack $(openmpi)-patch $(openmpi)-build $(openmpi)-check $(openmpi)-install $(openmpi)-modulefile
