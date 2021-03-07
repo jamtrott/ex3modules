@@ -59,14 +59,17 @@ gcc = gcc-8.4.0
 # blis-x86_64, blis-zen, blis-zen2 and gsl.
 blas = openblas-0.3.12
 
-# MPI implementations: openmpi, mpich and mvapich.
-mpi = openmpi-4.0.5
-
-# SLURM versions: 18.08.9, 19.05.6 and 20.02.5
-slurm = slurm-19.05.6
+# MPI implementations: openmpi, openmpi-cuda, mpich and mvapich.
+mpi = openmpi-cuda-4.0.5
 
 # munge versions: 0.5.11 and 0.5.13
 munge = munge-0.5.13
+
+# PETSc implementations: petsc-default, petsc-cuda
+petsc = petsc-cuda-3.13.2
+
+# SLURM versions: 18.08.9, 19.05.6 and 20.02.5
+slurm = slurm-19.05.6
 
 #
 # Packages
@@ -218,6 +221,8 @@ pkgs = \
 	openblas-0.3.12 \
 	opencl-headers-2020.06.16 \
 	openmpi-4.0.5 \
+	openmpi-cuda-4.0.5 \
+	openmpi-src-4.0.5 \
 	openssl-1.1.1c \
 	osu-micro-benchmarks-mpich-5.6.3 \
 	osu-micro-benchmarks-mvapich-5.6.3 \
