@@ -82,8 +82,8 @@ else
 petsc = petsc-default-3.13.2
 endif
 
-# SLURM versions: 18.08.9, 19.05.6, 20.02.5 and 20.02.6
-slurm = slurm-20.02.6
+# SLURM versions: 18.08.9, 19.05.6, 20.02.5 and 20.02.6, 20.11.3
+slurm = slurm-20.11.3
 
 pkgs = \
 	$(blas) \
