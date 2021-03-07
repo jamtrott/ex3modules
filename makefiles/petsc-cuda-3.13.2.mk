@@ -165,5 +165,4 @@ $(petsc-cuda)-clean:
 	rm -rf $($(petsc-cuda)-modulefile)
 	rm -rf $($(petsc-cuda)-prefix)
 	rm -rf $($(petsc-cuda)-srcdir)
-	rm -rf $($(petsc-cuda)-src)
 $(petsc-cuda): $(petsc-cuda)-src $(petsc-cuda)-unpack $(petsc-cuda)-patch $(petsc-cuda)-build $(petsc-cuda)-check $(petsc-cuda)-install $(petsc-cuda)-modulefile

@@ -68,6 +68,9 @@ slurm = slurm-20.02.5
 # munge versions: 0.5.11 and 0.5.13
 munge = munge-0.5.13
 
+# PETSc implementations: petsc-default, petsc-cuda
+petsc = petsc-cuda-3.13.2
+
 #
 # Packages
 #
@@ -220,6 +223,8 @@ pkgs = \
 	openblas-0.3.12 \
 	opencl-headers-2020.06.16 \
 	openmpi-4.0.5 \
+	openmpi-cuda-4.0.5 \
+	openmpi-src-4.0.5 \
 	openssl-1.1.1c \
 	osu-micro-benchmarks-mpich-5.6.3 \
 	osu-micro-benchmarks-mvapich-5.6.3 \
