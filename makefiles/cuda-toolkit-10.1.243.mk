@@ -98,14 +98,17 @@ $($(cuda-toolkit)-modulefile): $(modulefilesdir)/.markerfile $($(cuda-toolkit)-p
 	echo "setenv CUDA_TOOLKIT_ROOT $($(cuda-toolkit)-prefix)" >>$@
 	echo "setenv CUDA_TOOLKIT_INCDIR $($(cuda-toolkit)-prefix)/include" >>$@
 	echo "setenv CUDA_TOOLKIT_INCLUDEDIR $($(cuda-toolkit)-prefix)/include" >>$@
-	echo "setenv CUDA_TOOLKIT_LIBDIR $($(cuda-toolkit)-prefix)/lib" >>$@
-	echo "setenv CUDA_TOOLKIT_LIBRARYDIR $($(cuda-toolkit)-prefix)/lib" >>$@
+	echo "setenv CUDA_TOOLKIT_LIBDIR $($(cuda-toolkit)-prefix)/lib64" >>$@
+	echo "setenv CUDA_TOOLKIT_LIBRARYDIR $($(cuda-toolkit)-prefix)/lib64" >>$@
 	echo "prepend-path PATH $($(cuda-toolkit)-prefix)/bin" >>$@
 	echo "prepend-path C_INCLUDE_PATH $($(cuda-toolkit)-prefix)/include" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(cuda-toolkit)-prefix)/include" >>$@
 	echo "prepend-path LIBRARY_PATH $($(cuda-toolkit)-prefix)/lib" >>$@
+	echo "prepend-path LIBRARY_PATH $($(cuda-toolkit)-prefix)/lib64" >>$@
 	echo "prepend-path LD_LIBRARY_PATH $($(cuda-toolkit)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(cuda-toolkit)-prefix)/lib64" >>$@
 	echo "prepend-path PKG_CONFIG_PATH $($(cuda-toolkit)-prefix)/lib/pkgconfig" >>$@
+	echo "prepend-path PKG_CONFIG_PATH $($(cuda-toolkit)-prefix)/lib64/pkgconfig" >>$@
 	echo "prepend-path MANPATH $($(cuda-toolkit)-prefix)/share/man" >>$@
 	echo "set MSG \"$(cuda-toolkit)\"" >>$@
 
