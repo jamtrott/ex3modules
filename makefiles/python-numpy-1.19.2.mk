@@ -25,8 +25,8 @@ $(python-numpy)-url = https://www.numpy.org/
 $(python-numpy)-srcurl = https://github.com/numpy/numpy/releases/download/v$(python-numpy-version)/numpy-$(python-numpy-version).tar.gz
 $(python-numpy)-src = $(pkgsrcdir)/$(notdir $($(python-numpy)-srcurl))
 $(python-numpy)-srcdir = $(pkgsrcdir)/$(python-numpy)
-$(python-numpy)-builddeps = $(python) $(python-cython) $(openblas) $(cblas) $(netlib-blas) $(lapack) $(fftw)
-$(python-numpy)-prereqs = $(python) $(openblas) $(cblas) $(netlib-blas) $(lapack) $(fftw)
+$(python-numpy)-builddeps = $(python) $(python-cython) $(blas) $(lapack) $(fftw)
+$(python-numpy)-prereqs = $(python) $(blas) $(lapack) $(fftw)
 $(python-numpy)-modulefile = $(modulefilesdir)/$(python-numpy)
 $(python-numpy)-prefix = $(pkgdir)/$(python-numpy)
 $(python-numpy)-site-packages = $($(python-numpy)-prefix)/lib/python$(python-version-short)/site-packages
@@ -52,19 +52,22 @@ $($(python-numpy)-srcdir)/site.cfg: $$(foreach dep,$$($(python-numpy)-builddeps)
 	@echo '' >>$@.tmp
 	@echo '[atlas]' >>$@.tmp
 	@echo '' >>$@.tmp
+ifeq ($(blas),$(netlib-blas))
 	@echo '[blas]' >>$@.tmp
 	@echo 'libraries = cblas' >>$@.tmp
 	@echo 'library_dirs = $($(cblas)-prefix)/lib:$($(netlib-blas)-prefix)/lib' >>$@.tmp
 	@echo 'include_dirs = $($(cblas)-prefix)/include' >>$@.tmp
 	@echo 'runtime_library_dirs = $($(cblas)-prefix)/lib:$($(netlib-blas)-prefix)/lib' >>$@.tmp
+else ifeq ($(blas),$(openblas))
 	@echo '' >>$@.tmp
 	@echo '[openblas]' >>$@.tmp
 	@echo 'libraries = openblas' >>$@.tmp
 	@echo 'library_dirs = $($(openblas)-prefix)/lib' >>$@.tmp
 	@echo 'include_dirs = $($(openblas)-prefix)/include' >>$@.tmp
 	@echo 'runtime_library_dirs = $($(openblas)-prefix)/lib' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '[blis]' >>$@.tmp
+else
+$(error Unsupported BLAS library)
+endif
 	@echo '' >>$@.tmp
 	@echo '[lapack]' >>$@.tmp
 	@echo 'libraries = lapack' >>$@.tmp
