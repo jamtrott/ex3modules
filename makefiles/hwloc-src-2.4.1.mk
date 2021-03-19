@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# hwloc-src-2.0.4
+# hwloc-src-2.4.1
 
-hwloc-src-version = 2.0.4
+hwloc-src-version = 2.4.1
 hwloc-src = hwloc-src-$(hwloc-src-version)
 $(hwloc-src)-description = Portable abstraction of hierarchical topology of modern architectures (source)
 $(hwloc-src)-url = https://www.open-mpi.org/projects/hwloc/
-$(hwloc-src)-srcurl = https://download.open-mpi.org/release/hwloc/v2.0/hwloc-$(hwloc-version).tar.gz
+$(hwloc-src)-srcurl = https://download.open-mpi.org/release/hwloc/v2.4/hwloc-$(hwloc-version).tar.gz
 $(hwloc-src)-builddeps =
 $(hwloc-src)-prereqs =
 $(hwloc-src)-src = $(pkgsrcdir)/$(notdir $($(hwloc-src)-srcurl))

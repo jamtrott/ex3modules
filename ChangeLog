@@ -2,6 +2,8 @@
 
         Released version 0.6.0.
 
+	Upgrade hwloc 2.0.4 -> 2.4.1.
+
 2020-10-25 James D. Trotter <james@simula.no>
 
         Initial version.

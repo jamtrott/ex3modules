@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# hwloc-cairo-2.0.4
+# hwloc-cairo-2.4.1
 
-hwloc-cairo-version = 2.0.4
+hwloc-cairo-version = 2.4.1
 hwloc-cairo = hwloc-cairo-$(hwloc-cairo-version)
 $(hwloc-cairo)-description = Portable abstraction of hierarchical topology of modern architectures
 $(hwloc-cairo)-url = https://www.open-mpi.org/projects/hwloc/

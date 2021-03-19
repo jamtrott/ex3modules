@@ -158,9 +158,9 @@ pkgs := $(pkgs) \
 	hdf5-parallel-1.10.5 \
 	hdf5-src-1.10.5 \
 	hpl-2.3 \
-	hwloc-2.0.4 \
-	hwloc-cairo-2.0.4 \
-	hwloc-src-2.0.4 \
+	hwloc-2.4.1 \
+	hwloc-cairo-2.4.1 \
+	hwloc-src-2.4.1 \
 	hypre-2.17.0 \
 	iperf-2.0.13 \
 	ipopt-3.13.3 \

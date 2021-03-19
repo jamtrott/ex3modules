@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# hwloc-2.0.4
+# hwloc-2.4.1
 
-hwloc-version = 2.0.4
+hwloc-version = 2.4.1
 hwloc = hwloc-$(hwloc-version)
 $(hwloc)-description = Portable abstraction of hierarchical topology of modern architectures
 $(hwloc)-url = https://www.open-mpi.org/projects/hwloc/
