@@ -106,6 +106,8 @@ $($(blis-x86_64)-modulefile): $(modulefilesdir)/.markerfile $($(blis-x86_64)-pre
 	echo "setenv BLIS_INCLUDEDIR $($(blis-x86_64)-prefix)/include" >>$@
 	echo "setenv BLIS_LIBDIR $($(blis-x86_64)-prefix)/lib" >>$@
 	echo "setenv BLIS_LIBRARYDIR $($(blis-x86_64)-prefix)/lib" >>$@
+	echo "setenv BLASDIR $($(blis-x86_64)-prefix)/lib" >>$@
+	echo "setenv BLASLIB blis" >>$@
 	echo "prepend-path PATH $($(blis-x86_64)-prefix)/bin" >>$@
 	echo "prepend-path C_INCLUDE_PATH $($(blis-x86_64)-prefix)/include" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(blis-x86_64)-prefix)/include" >>$@

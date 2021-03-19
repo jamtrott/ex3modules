@@ -106,6 +106,8 @@ $($(blis-thunderx2)-modulefile): $(modulefilesdir)/.markerfile $($(blis-thunderx
 	echo "setenv BLIS_INCLUDEDIR $($(blis-thunderx2)-prefix)/include" >>$@
 	echo "setenv BLIS_LIBDIR $($(blis-thunderx2)-prefix)/lib" >>$@
 	echo "setenv BLIS_LIBRARYDIR $($(blis-thunderx2)-prefix)/lib" >>$@
+	echo "setenv BLASDIR $($(blis-thunderx2)-prefix)/lib" >>$@
+	echo "setenv BLASLIB blis" >>$@
 	echo "prepend-path PATH $($(blis-thunderx2)-prefix)/bin" >>$@
 	echo "prepend-path C_INCLUDE_PATH $($(blis-thunderx2)-prefix)/include" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(blis-thunderx2)-prefix)/include" >>$@

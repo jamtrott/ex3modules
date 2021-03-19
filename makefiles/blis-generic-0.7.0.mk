@@ -93,6 +93,8 @@ $($(blis-generic)-modulefile): $(modulefilesdir)/.markerfile $($(blis-generic)-p
 	echo "setenv BLIS_INCLUDEDIR $($(blis-generic)-prefix)/include" >>$@
 	echo "setenv BLIS_LIBDIR $($(blis-generic)-prefix)/lib" >>$@
 	echo "setenv BLIS_LIBRARYDIR $($(blis-generic)-prefix)/lib" >>$@
+	echo "setenv BLASDIR $($(blis-generic)-prefix)/lib" >>$@
+	echo "setenv BLASLIB blis" >>$@
 	echo "prepend-path PATH $($(blis-generic)-prefix)/bin" >>$@
 	echo "prepend-path C_INCLUDE_PATH $($(blis-generic)-prefix)/include" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(blis-generic)-prefix)/include" >>$@

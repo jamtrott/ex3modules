@@ -57,7 +57,8 @@ $($(ipopt)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(ipopt)-builddeps) && \
-		./configure --prefix=$($(ipopt)-prefix) && \
+		./configure --prefix=$($(ipopt)-prefix) \
+		--with-lapack="-L$${LAPACKDIR} -l$${LAPACKLIB} -L$${BLASDIR} -l$${BLASLIB}" && \
 		$(MAKE)
 	@touch $@
 

@@ -118,6 +118,8 @@ $($(blis-skx)-modulefile): $(modulefilesdir)/.markerfile $($(blis-skx)-prefix)/.
 	echo "setenv BLIS_INCLUDEDIR $($(blis-skx)-prefix)/include" >>$@
 	echo "setenv BLIS_LIBDIR $($(blis-skx)-prefix)/lib" >>$@
 	echo "setenv BLIS_LIBRARYDIR $($(blis-skx)-prefix)/lib" >>$@
+	echo "setenv BLASDIR $($(blis-skx)-prefix)/lib" >>$@
+	echo "setenv BLASLIB blis" >>$@
 	echo "prepend-path PATH $($(blis-skx)-prefix)/bin" >>$@
 	echo "prepend-path C_INCLUDE_PATH $($(blis-skx)-prefix)/include" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(blis-skx)-prefix)/include" >>$@

@@ -94,6 +94,7 @@ $($(openblas)-modulefile): $(modulefilesdir)/.markerfile $($(openblas)-prefix)/.
 	echo "setenv OPENBLAS_LIBRARYDIR $($(openblas)-prefix)/lib" >>$@
 	echo "setenv BLASDIR $($(openblas)-prefix)/lib" >>$@
 	echo "setenv BLASLIB openblas" >>$@
+	echo "setenv LAPACKDIR $($(openblas)-prefix)/lib" >>$@
 	echo "setenv LAPACKLIB openblas" >>$@
 	echo "setenv OPENBLAS_NUM_THREADS 1" >>$@
 	echo "prepend-path PATH $($(openblas)-prefix)/bin" >>$@

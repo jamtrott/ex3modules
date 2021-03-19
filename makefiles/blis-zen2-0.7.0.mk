@@ -106,6 +106,8 @@ $($(blis-zen2)-modulefile): $(modulefilesdir)/.markerfile $($(blis-zen2)-prefix)
 	echo "setenv BLIS_INCLUDEDIR $($(blis-zen2)-prefix)/include" >>$@
 	echo "setenv BLIS_LIBDIR $($(blis-zen2)-prefix)/lib" >>$@
 	echo "setenv BLIS_LIBRARYDIR $($(blis-zen2)-prefix)/lib" >>$@
+	echo "setenv BLASDIR $($(blis-zen2)-prefix)/lib" >>$@
+	echo "setenv BLASLIB blis" >>$@
 	echo "prepend-path PATH $($(blis-zen2)-prefix)/bin" >>$@
 	echo "prepend-path C_INCLUDE_PATH $($(blis-zen2)-prefix)/include" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(blis-zen2)-prefix)/include" >>$@
