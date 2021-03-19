@@ -52,29 +52,51 @@ MODULE := module
 # Preferred packages
 #
 
-# GCC versions: 8.4.0, 9.2.0, 10.1.0
-gcc = gcc-8.4.0
-
 # BLAS implementations: netlib-blas, openblas, blis-generic, blis-skx,
 # blis-x86_64, blis-zen, blis-zen2 and gsl.
 blas = openblas-0.3.12
 
-# MPI implementations: openmpi, openmpi-cuda, mpich and mvapich.
-mpi = openmpi-cuda-4.0.5
+# CUDA toolkit versions: 10.1.243 (only supported on x86_64)
+ifeq ($(ARCH),x86_64)
+cuda-toolkit = cuda-toolkit-10.1.243
+endif
 
-# SLURM versions: 18.08.9, 19.05.6 and 20.02.5
-slurm = slurm-20.02.5
+# GCC versions: 8.4.0, 9.2.0, 10.1.0
+gcc = gcc-8.4.0
+
+# MPI implementations: openmpi, openmpi-cuda, mpich and mvapich.
+ifeq ($(ARCH),x86_64)
+mpi = openmpi-cuda-4.0.5
+else ifeq ($(ARCH),aarch64)
+mpi = openmpi-4.0.5
+endif
 
 # munge versions: 0.5.11 and 0.5.13
 munge = munge-0.5.13
 
 # PETSc implementations: petsc-default, petsc-cuda
+ifeq ($(ARCH),x86_64)
 petsc = petsc-cuda-3.13.2
+else ifeq ($(ARCH),aarch64)
+petsc = petsc-default-3.13.2
+endif
+
+# SLURM versions: 18.08.9, 19.05.6 and 20.02.5
+slurm = slurm-20.02.5
+
+pkgs = \
+	$(blas) \
+	$(cuda-toolkit) \
+	$(gcc) \
+	$(mpi) \
+	$(munge) \
+	$(petsc) \
+	$(slurm)
 
 #
-# Packages
+# Default packages
 #
-pkgs = \
+pkgs := $(pkgs) \
 	autoconf-2.70 \
 	binutils-2.32 \
 	bison-3.7.4 \
@@ -96,7 +118,6 @@ pkgs = \
 	cmake-3.17.2 \
 	combblas-1.6.2 \
 	cpupower-4.19.75 \
-	cuda-toolkit-10.1.243 \
 	curl-7.69.1 \
 	dealii-9.1.1 \
 	doxygen-1.8.18 \
@@ -211,8 +232,6 @@ pkgs = \
 	mpfr-4.0.2 \
 	mpich-3.3.2 \
 	mumps-5.2.1 \
-	munge-0.5.11 \
-	munge-0.5.13 \
 	mvapich-2.3.4 \
 	nasm-2.14.02 \
 	ncurses-6.1 \
@@ -223,7 +242,6 @@ pkgs = \
 	openblas-0.3.12 \
 	opencl-headers-2020.06.16 \
 	openmpi-4.0.5 \
-	openmpi-cuda-4.0.5 \
 	openmpi-src-4.0.5 \
 	openssl-1.1.1c \
 	osu-micro-benchmarks-mpich-5.6.3 \
@@ -238,7 +256,6 @@ pkgs = \
 	pcre-8.44 \
 	perf-4.19.75 \
 	perl-5.30.2 \
-	petsc-cuda-3.13.2 \
 	petsc-default-3.13.2 \
 	petsc-src-3.13.2 \
 	pixman-0.38.4 \
@@ -354,9 +371,6 @@ pkgs = \
 	readline-8.0 \
 	scalapack-2.1.0 \
 	scotch-6.0.7 \
-	slurm-18.08.9 \
-	slurm-19.05.6 \
-	slurm-20.02.5 \
 	sparse-0.6.3 \
 	sqlite-3.31.1 \
 	suitesparse-5.7.2 \
@@ -371,7 +385,11 @@ pkgs = \
 	xorg-util-macros-1.19.2 \
 	xorgproto-2019.2 \
 	xtrans-1.4.0 \
-	xz-5.2.5 \
+	xz-5.2.5
+
+# Sort package list and remove duplicates
+uniq = $(if $1,$(firstword $1) $(call uniq,$(filter-out $(firstword $1),$1)))
+pkgs := $(call uniq,$(sort $(pkgs)))
 
 makefiles = $(pkgs:%=makefiles/%.mk)
 pkgsrc = $(pkgs:%=%-src)

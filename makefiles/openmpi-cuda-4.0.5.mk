@@ -36,7 +36,7 @@ $($(openmpi-cuda)-srcdir)/.markerfile:
 $($(openmpi-cuda)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openmpi-cuda)-prefix)/.pkgunpack: $$($(openmpi)-src) $($(openmpi-cuda)-srcdir)/.markerfile $($(openmpi-cuda)-prefix)/.markerfile
+$($(openmpi-cuda)-prefix)/.pkgunpack: $$($(openmpi-cuda)-src) $($(openmpi-cuda)-srcdir)/.markerfile $($(openmpi-cuda)-prefix)/.markerfile
 	tar -C $($(openmpi-cuda)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 
@@ -127,7 +127,7 @@ $($(openmpi-cuda)-modulefile): $(modulefilesdir)/.markerfile $($(openmpi-cuda)-p
 	echo "prepend-path INFOPATH $($(openmpi-cuda)-prefix)/share/info" >>$@
 	echo "set MSG \"$(openmpi-cuda)\"" >>$@
 
-$(openmpi-cuda)-src: $$($(openmpi)-src)
+$(openmpi-cuda)-src: $$($(openmpi-cuda)-src)
 $(openmpi-cuda)-unpack: $($(openmpi-cuda)-prefix)/.pkgunpack
 $(openmpi-cuda)-patch: $($(openmpi-cuda)-prefix)/.pkgpatch
 $(openmpi-cuda)-build: $($(openmpi-cuda)-prefix)/.pkgbuild
