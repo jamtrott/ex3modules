@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2021 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ $($(texinfo)-srcdir)/.markerfile:
 $($(texinfo)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(texinfo)-prefix)/.pkgunpack: $($(texinfo)-src) $($(texinfo)-srcdir)/.markerfile $($(texinfo)-prefix)/.markerfile
+$($(texinfo)-prefix)/.pkgunpack: $$($(texinfo)-src) $($(texinfo)-srcdir)/.markerfile $($(texinfo)-prefix)/.markerfile
 	tar -C $($(texinfo)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
@@ -93,19 +93,16 @@ $($(texinfo)-modulefile): $(modulefilesdir)/.markerfile $($(texinfo)-prefix)/.pk
 	echo "" >>$@
 	echo "" >>$@
 	echo "setenv TEXINFO_ROOT $($(texinfo)-prefix)" >>$@
-	echo "setenv TEXINFO_INCDIR $($(texinfo)-prefix)/include" >>$@
-	echo "setenv TEXINFO_INCLUDEDIR $($(texinfo)-prefix)/include" >>$@
 	echo "setenv TEXINFO_LIBDIR $($(texinfo)-prefix)/lib" >>$@
 	echo "setenv TEXINFO_LIBRARYDIR $($(texinfo)-prefix)/lib" >>$@
 	echo "prepend-path PATH $($(texinfo)-prefix)/bin" >>$@
 	echo "prepend-path LIBRARY_PATH $($(texinfo)-prefix)/lib" >>$@
 	echo "prepend-path LD_LIBRARY_PATH $($(texinfo)-prefix)/lib" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(texinfo)-prefix)/lib/pkgconfig" >>$@
 	echo "prepend-path MANPATH $($(texinfo)-prefix)/share/man" >>$@
 	echo "prepend-path INFOPATH $($(texinfo)-prefix)/share/info" >>$@
 	echo "set MSG \"$(texinfo)\"" >>$@
 
-$(texinfo)-src: $($(texinfo)-src)
+$(texinfo)-src: $$($(texinfo)-src)
 $(texinfo)-unpack: $($(texinfo)-prefix)/.pkgunpack
 $(texinfo)-patch: $($(texinfo)-prefix)/.pkgpatch
 $(texinfo)-build: $($(texinfo)-prefix)/.pkgbuild
@@ -115,6 +112,7 @@ $(texinfo)-modulefile: $($(texinfo)-modulefile)
 $(texinfo)-clean:
 	rm -rf $($(texinfo)-modulefile)
 	rm -rf $($(texinfo)-prefix)
+	rm -rf $($(texinfo)-builddir)
 	rm -rf $($(texinfo)-srcdir)
 	rm -rf $($(texinfo)-src)
 $(texinfo): $(texinfo)-src $(texinfo)-unpack $(texinfo)-patch $(texinfo)-build $(texinfo)-check $(texinfo)-install $(texinfo)-modulefile
