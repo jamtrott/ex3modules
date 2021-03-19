@@ -1,0 +1,6 @@
+* Noteworthy changes in release 0.6.0 (2021-03-19)
+
+This release includes several new modules, including OpenMPI and PETSc
+with CUDA support, gcc 8.4, Ipopt, autoconf, GNU gengetopt, Valgrind,
+meshio, numba, libgccjit, Slurm 20.02.5, and an experimental version
+of FEniCS-X.
