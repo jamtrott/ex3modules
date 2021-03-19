@@ -238,8 +238,8 @@ pkgs = \
 	pcre-8.44 \
 	perf-4.19.75 \
 	perl-5.30.2 \
-	petsc-3.13.2 \
 	petsc-cuda-3.13.2 \
+	petsc-default-3.13.2 \
 	petsc-src-3.13.2 \
 	pixman-0.38.4 \
 	pmix-3.1.5 \
