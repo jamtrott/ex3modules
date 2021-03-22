@@ -1,3 +1,7 @@
+2021-03-22 James D. Trotter <james@simula.no>
+
+	Add an option and make flag to enable CUDA support instead of relying on ARCH
+
 2021-03-19 James D. Trotter <james@simula.no>
 
         Released version 0.6.0.

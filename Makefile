@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2021 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@ MAKEOVERRIDES:=$(filter-out prefix=% PREFIX=%,$(MAKEOVERRIDES))
 # Detect architecture
 ARCH ?= $(shell uname -m)
 AVX512F := $(shell [ "$$(grep avx512f /proc/cpuinfo)" ] && echo true)
+ENABLE_CUDA :=
 
 # Programs used by makefiles
 INSTALL := install
@@ -57,7 +58,7 @@ MODULE := module
 blas = openblas-0.3.12
 
 # CUDA toolkit versions: 10.1.243 (only supported on x86_64)
-ifeq ($(ARCH),x86_64)
+ifneq ($(ENABLE_CUDA),)
 cuda-toolkit = cuda-toolkit-10.1.243
 endif
 
@@ -65,9 +66,9 @@ endif
 gcc = gcc-8.4.0
 
 # MPI implementations: openmpi, openmpi-cuda, mpich and mvapich.
-ifeq ($(ARCH),x86_64)
+ifneq ($(ENABLE_CUDA),)
 mpi = openmpi-cuda-4.0.5
-else ifeq ($(ARCH),aarch64)
+else
 mpi = openmpi-4.0.5
 endif
 
@@ -75,9 +76,9 @@ endif
 munge = munge-0.5.13
 
 # PETSc implementations: petsc-default, petsc-cuda
-ifeq ($(ARCH),x86_64)
+ifneq ($(ENABLE_CUDA),)
 petsc = petsc-cuda-3.13.2
-else ifeq ($(ARCH),aarch64)
+else
 petsc = petsc-default-3.13.2
 endif
 
