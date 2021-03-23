@@ -25,7 +25,7 @@ $(fenics-dolfinx-src)-url = https://github.com/FEniCS/dolfinx/
 $(fenics-dolfinx-src)-srcurl = https://github.com/FEniCS/dolfinx/archive/29274633248cfbce175599ad2127d0949afdb166.zip
 $(fenics-dolfinx-src)-builddeps =
 $(fenics-dolfinx-src)-prereqs =
-$(fenics-dolfinx-src)-src = $(pkgsrcdir)/$(notdir $($(fenics-dolfinx-src)-srcurl))
+$(fenics-dolfinx-src)-src = $(pkgsrcdir)/fenics-dolfinx-$(notdir $($(fenics-dolfinx-src)-srcurl))
 
 $($(fenics-dolfinx-src)-src): $(dir $($(fenics-dolfinx-src)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(fenics-dolfinx-src)-srcurl)
