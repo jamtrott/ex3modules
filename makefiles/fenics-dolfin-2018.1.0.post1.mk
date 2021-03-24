@@ -209,11 +209,11 @@ $($(fenics-dolfin-2018)-srcdir)/0005-dolfin-la-Include-petscsys.h-instead-of-pet
 
 $($(fenics-dolfin-2018)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fenics-dolfin-2018)-builddeps),$(modulefilesdir)/$$(dep)) $($(fenics-dolfin-2018)-srcdir)/0001-SNESTEST-is-removed.patch $($(fenics-dolfin-2018)-srcdir)/0002-io-Fix-include-of-boost-endian.hpp.patch $($(fenics-dolfin-2018)-srcdir)/0003-Require-C-17.patch $($(fenics-dolfin-2018)-prefix)/.pkgunpack $($(fenics-dolfin-2018)-srcdir)/0004-dolfin-mesh-MeshFunction.h-Add-missing-algorithm-inc.patch $($(fenics-dolfin-2018)-srcdir)/0005-dolfin-la-Include-petscsys.h-instead-of-petscoptions.patch
 	cd $($(fenics-dolfin-2018)-srcdir) && \
-	patch -t -p1 <0001-SNESTEST-is-removed.patch && \
-	patch -t -p1 <0002-io-Fix-include-of-boost-endian.hpp.patch && \
-	patch -t -p1 <0003-Require-C-17.patch && \
-	patch -t -p1 <0004-dolfin-mesh-MeshFunction.h-Add-missing-algorithm-inc.patch && \
-	patch -t -p1 <0005-dolfin-la-Include-petscsys.h-instead-of-petscoptions.patch
+	patch -f -p1 <0001-SNESTEST-is-removed.patch && \
+	patch -f -p1 <0002-io-Fix-include-of-boost-endian.hpp.patch && \
+	patch -f -p1 <0003-Require-C-17.patch && \
+	patch -f -p1 <0004-dolfin-mesh-MeshFunction.h-Add-missing-algorithm-inc.patch && \
+	patch -f -p1 <0005-dolfin-la-Include-petscsys.h-instead-of-petscoptions.patch
 	@touch $@
 
 $($(fenics-dolfin-2018)-builddir)/.markerfile: $($(fenics-dolfin-2018)-prefix)/.pkgunpack

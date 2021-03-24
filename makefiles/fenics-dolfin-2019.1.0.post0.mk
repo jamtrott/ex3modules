@@ -159,9 +159,9 @@ $($(fenics-dolfin-2019)-srcdir)/0003-Add-missing-algorithm-include.patch: $($(fe
 
 $($(fenics-dolfin-2019)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fenics-dolfin-2019)-builddeps),$(modulefilesdir)/$$(dep)) $($(fenics-dolfin-2019)-srcdir)/0001-io-Fix-include-of-boost-endian.hpp.patch $($(fenics-dolfin-2019)-srcdir)/0002-Require-C-17.patch $($(fenics-dolfin-2019)-prefix)/.pkgunpack $($(fenics-dolfin-2019)-srcdir)/0003-Add-missing-algorithm-include.patch
 	cd $($(fenics-dolfin-2019)-srcdir) && \
-		patch -t -p1 <0001-io-Fix-include-of-boost-endian.hpp.patch && \
-		patch -t -p1 <0002-Require-C-17.patch && \
-		patch -t -p1 <0003-Add-missing-algorithm-include.patch
+		patch -f -p1 <0001-io-Fix-include-of-boost-endian.hpp.patch && \
+		patch -f -p1 <0002-Require-C-17.patch && \
+		patch -f -p1 <0003-Add-missing-algorithm-include.patch
 	@touch $@
 
 $($(fenics-dolfin-2019)-builddir)/.markerfile: $($(fenics-dolfin-2019)-prefix)/.pkgunpack

@@ -117,7 +117,7 @@ $($(mvapich)-srcdir)/0001-src-env-Fix-mpicc-mpicxx-linker-command-line.patch: $(
 
 $($(mvapich)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mvapich)-builddeps),$(modulefilesdir)/$$(dep)) $($(mvapich)-prefix)/.pkgunpack $($(mvapich)-srcdir)/0001-src-env-Fix-mpicc-mpicxx-linker-command-line.patch
 	cd $($(mvapich)-srcdir) && \
-		patch -t -p1 <0001-src-env-Fix-mpicc-mpicxx-linker-command-line.patch
+		patch -f -p1 <0001-src-env-Fix-mpicc-mpicxx-linker-command-line.patch
 	@touch $@
 
 ifneq ($($(mvapich)-builddir),$($(mvapich)-srcdir))

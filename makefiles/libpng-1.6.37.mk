@@ -149,7 +149,7 @@ $($(libpng)-srcdir)/0001-Avoid-random-test-failures-by-running-pngtest-sequentia
 
 $($(libpng)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libpng)-builddeps),$(modulefilesdir)/$$(dep)) $($(libpng)-prefix)/.pkgunpack
 $($(libpng)-prefix)/.pkgpatch: $($(libpng)-srcdir)/0001-Avoid-random-test-failures-by-running-pngtest-sequentially.patch
-	cd $($(libpng)-srcdir) && patch -t -p1 <0001-Avoid-random-test-failures-by-running-pngtest-sequentially.patch
+	cd $($(libpng)-srcdir) && patch -f -p1 <0001-Avoid-random-test-failures-by-running-pngtest-sequentially.patch
 	@touch $@
 
 $($(libpng)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libpng)-builddeps),$(modulefilesdir)/$$(dep)) $($(libpng)-prefix)/.pkgpatch

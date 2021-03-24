@@ -138,7 +138,7 @@ $($(libffi)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($
 		sed -e '/^includesdir/ s/$$(libdir).*$$/$$(includedir)/' -i include/Makefile.in && \
 		sed -e '/^includedir/ s/=.*$$/=@includedir@/' -i libffi.pc.in
 	cd $($(libffi)-srcdir) && \
-		patch -t -p1 <0001-disable-multi-os-directory.patch
+		patch -f -p1 <0001-disable-multi-os-directory.patch
 	@touch $@
 
 ifneq ($($(libffi)-builddir),$($(libffi)-srcdir))

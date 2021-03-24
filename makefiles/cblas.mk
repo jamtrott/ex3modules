@@ -97,7 +97,7 @@ $($(cblas)-srcdir)/0001-Making-FORTRAN-compilers-happy.patch: $($(cblas)-srcdir)
 
 $($(cblas)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cblas)-builddeps),$(modulefilesdir)/$$(dep)) $($(cblas)-prefix)/.pkgunpack $($(cblas)-srcdir)/0001-Making-FORTRAN-compilers-happy.patch
 	cd $($(cblas)-srcdir) && \
-		patch -t -p1 <0001-Making-FORTRAN-compilers-happy.patch
+		patch -f -p1 <0001-Making-FORTRAN-compilers-happy.patch
 	@touch $@
 
 ifneq ($($(cblas)-builddir),$($(cblas)-srcdir))

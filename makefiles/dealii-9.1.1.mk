@@ -74,7 +74,7 @@ $($(dealii)-srcdir)/0001-remove-boost-include-to-fix-compilation.patch: $($(deal
 
 $($(dealii)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(dealii)-builddeps),$(modulefilesdir)/$$(dep)) $($(dealii)-prefix)/.pkgunpack $($(dealii)-srcdir)/0001-remove-boost-include-to-fix-compilation.patch
 	cd $($(dealii)-srcdir) && \
-		patch -t -p1 <0001-remove-boost-include-to-fix-compilation.patch
+		patch -f -p1 <0001-remove-boost-include-to-fix-compilation.patch
 	@touch $@
 
 ifneq ($($(dealii)-builddir),$($(dealii)-srcdir))

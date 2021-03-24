@@ -76,7 +76,7 @@ $($(petsc-cuda)-srcdir)/0001-configure-Don-t-require-libcuda.patch: $($(petsc-cu
 
 $($(petsc-cuda)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(petsc-cuda)-builddeps),$(modulefilesdir)/$$(dep)) $($(petsc-cuda)-prefix)/.pkgunpack $($(petsc-cuda)-srcdir)/0001-configure-Don-t-require-libcuda.patch
 	cd $($(petsc-cuda)-srcdir) && \
-		patch -t -p1 <0001-configure-Don-t-require-libcuda.patch
+		patch -f -p1 <0001-configure-Don-t-require-libcuda.patch
 	@touch $@
 
 $($(petsc-cuda)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(petsc-cuda)-builddeps),$(modulefilesdir)/$$(dep)) $($(petsc-cuda)-prefix)/.pkgpatch
