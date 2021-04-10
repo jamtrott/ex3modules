@@ -242,6 +242,7 @@ pkgs := $(pkgs) \
 	ocaml-4.08.1 \
 	openblas-0.3.12 \
 	opencl-headers-2020.06.16 \
+	openjpeg-2.4.0 \
 	openmpi-4.0.5 \
 	openmpi-src-4.0.5 \
 	openssl-1.1.1c \
