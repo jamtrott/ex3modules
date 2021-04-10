@@ -184,6 +184,7 @@ pkgs := $(pkgs) \
 	libice-1.0.10 \
 	libjpeg-turbo-2.0.4 \
 	libnl-3.2.25 \
+	libpaper-1.1.24+nmu5 \
 	libpciaccess-0.16 \
 	libpfm-4.10.1 \
 	libpng-1.6.37 \
