@@ -152,6 +152,7 @@ pkgs := $(pkgs) \
 	gobject-introspection-1.64.0 \
 	googletest-1.10.0 \
 	gperf-3.1 \
+	graphite2-1.3.14 \
 	graphviz-2.44.0 \
 	gsl-2.6 \
 	harfbuzz-2.6.4 \
