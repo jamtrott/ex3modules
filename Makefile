@@ -166,6 +166,7 @@ pkgs := $(pkgs) \
 	hwloc-cairo-2.4.1 \
 	hwloc-src-2.4.1 \
 	hypre-2.17.0 \
+	icu-69.1 \
 	iperf-2.0.13 \
 	ipopt-3.13.3 \
 	knem-1.1.4 \
