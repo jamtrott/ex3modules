@@ -144,6 +144,7 @@ pkgs := $(pkgs) \
 	gdb-9.2 \
 	gengetopt-2.23 \
 	gettext-0.21 \
+	ghostscript-9.54.0 \
 	giflib-5.2.1 \
 	glib-2.64.1 \
 	gmp-6.1.2 \
