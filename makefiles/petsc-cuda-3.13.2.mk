@@ -102,7 +102,7 @@ $($(petsc-cuda)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,
 			--with-superlu_dist --with-superlu_dist-dir="$${SUPERLU_DIST_ROOT}" \
 			--with-cuda=1 --with-cuda-dir="$${CUDA_TOOLKIT_ROOT}" \
 			--with-x=0 \
-			--with-debugging=1 \
+			--with-debugging=0 \
 			COPTFLAGS="-O3 -g" \
 			CXXOPTFLAGS="-O3 -g" \
 			FOPTFLAGS="-O3" \
