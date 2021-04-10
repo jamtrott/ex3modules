@@ -137,6 +137,7 @@ pkgs := $(pkgs) \
 	freeipmi-1.6.6 \
 	freetype-2.10.1 \
 	fribidi-1.0.10 \
+	gc-8.0.4 \
 	gcc-10.1.0 \
 	gcc-8.4.0 \
 	gcc-9.2.0 \
