@@ -170,6 +170,7 @@ pkgs := $(pkgs) \
 	knem-1.1.4 \
 	lapack-3.9.0 \
 	libarchive-3.4.2 \
+	libatomic_ops-7.6.10 \
 	libcerf-1.13 \
 	libdmx-1.1.4 \
 	libevent-2.1.11-stable \
