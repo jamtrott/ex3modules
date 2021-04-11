@@ -20,7 +20,7 @@
 
 blis-x86_64-version = 0.7.0
 blis-x86_64 = blis-x86_64-$(blis-x86_64-version)
-$(blis-x86_64)-description = High-performance BLAS optimised for Intel Skylake-X CPUs
+$(blis-x86_64)-description = High-performance BLAS optimised for x86_64 CPUs
 $(blis-x86_64)-url = https://github.com/flame/blis
 $(blis-x86_64)-srcurl =
 $(blis-x86_64)-builddeps = $(gcc) $(libgfortran) $(libstdcxx)
