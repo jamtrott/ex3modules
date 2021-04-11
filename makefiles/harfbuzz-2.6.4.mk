@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2021 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,16 +22,14 @@ harfbuzz-version = 2.6.4
 harfbuzz = harfbuzz-$(harfbuzz-version)
 $(harfbuzz)-description = Text shaping engine
 $(harfbuzz)-url = https://www.freedesktop.org/wiki/Software/HarfBuzz/
-$(harfbuzz)-srcurl = https://www.freedesktop.org/software/harfbuzz/release/harfbuzz-$(harfbuzz-version).tar.xz
-$(harfbuzz)-src = $(pkgsrcdir)/$(notdir $($(harfbuzz)-srcurl))
+$(harfbuzz)-srcurl =
+$(harfbuzz)-builddeps = $(fontconfig) $(freetype) $(icu) $(cairo) $(glib)
+$(harfbuzz)-prereqs = $(fontconfig) $(freetype) $(icu) $(cairo) $(glib)
+$(harfbuzz)-src = $($(harfbuzz-src)-src)
 $(harfbuzz)-srcdir = $(pkgsrcdir)/$(harfbuzz)
-$(harfbuzz)-builddeps = $(fontconfig) $(freetype) $(cairo) $(glib)
-$(harfbuzz)-prereqs = $(fontconfig) $(freetype) $(cairo) $(glib)
+$(harfbuzz)-builddir = $($(harfbuzz)-srcdir)
 $(harfbuzz)-modulefile = $(modulefilesdir)/$(harfbuzz)
 $(harfbuzz)-prefix = $(pkgdir)/$(harfbuzz)
-
-$($(harfbuzz)-src): $(dir $($(harfbuzz)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(harfbuzz)-srcurl)
 
 $($(harfbuzz)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
@@ -39,12 +37,17 @@ $($(harfbuzz)-srcdir)/.markerfile:
 $($(harfbuzz)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(harfbuzz)-prefix)/.pkgunpack: $($(harfbuzz)-src) $($(harfbuzz)-srcdir)/.markerfile $($(harfbuzz)-prefix)/.markerfile
+$($(harfbuzz)-prefix)/.pkgunpack: $$($(harfbuzz)-src) $($(harfbuzz)-srcdir)/.markerfile $($(harfbuzz)-prefix)/.markerfile
 	tar -C $($(harfbuzz)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 
 $($(harfbuzz)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(harfbuzz)-builddeps),$(modulefilesdir)/$$(dep)) $($(harfbuzz)-prefix)/.pkgunpack
 	@touch $@
+
+ifneq ($($(harfbuzz)-builddir),$($(harfbuzz)-srcdir))
+$($(harfbuzz)-builddir)/.markerfile: $($(harfbuzz)-prefix)/.pkgunpack
+	$(INSTALL) -d $(dir $@) && touch $@
+endif
 
 $($(harfbuzz)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(harfbuzz)-builddeps),$(modulefilesdir)/$$(dep)) $($(harfbuzz)-prefix)/.pkgpatch
 	cd $($(harfbuzz)-srcdir) && \
@@ -97,7 +100,7 @@ $($(harfbuzz)-modulefile): $(modulefilesdir)/.markerfile $($(harfbuzz)-prefix)/.
 	echo "prepend-path INFOPATH $($(harfbuzz)-prefix)/share/info" >>$@
 	echo "set MSG \"$(harfbuzz)\"" >>$@
 
-$(harfbuzz)-src: $($(harfbuzz)-src)
+$(harfbuzz)-src: $$($(harfbuzz)-src)
 $(harfbuzz)-unpack: $($(harfbuzz)-prefix)/.pkgunpack
 $(harfbuzz)-patch: $($(harfbuzz)-prefix)/.pkgpatch
 $(harfbuzz)-build: $($(harfbuzz)-prefix)/.pkgbuild

@@ -45,7 +45,8 @@ $($(graphite2)-prefix)/.pkgunpack: $$($(graphite2)-src) $($(graphite2)-srcdir)/.
 	@touch $@
 
 $($(graphite2)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(graphite2)-builddeps),$(modulefilesdir)/$$(dep)) $($(graphite2)-prefix)/.pkgunpack
-	sed -i '/cmptest/d' ../tests/CMakeLists.txt # Disable tests that require FontTools
+	cd $($(graphite2)-srcdir) && \
+	sed -i '/cmptest/d' tests/CMakeLists.txt # Disable tests that require FontTools
 	@touch $@
 
 ifneq ($($(graphite2)-builddir),$($(graphite2)-srcdir))

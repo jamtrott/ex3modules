@@ -158,6 +158,8 @@ pkgs := $(pkgs) \
 	graphviz-2.44.0 \
 	gsl-2.6 \
 	harfbuzz-2.6.4 \
+	harfbuzz-graphite-2.6.4 \
+	harfbuzz-src-2.6.4 \
 	hdf5-1.10.5 \
 	hdf5-parallel-1.10.5 \
 	hdf5-src-1.10.5 \
