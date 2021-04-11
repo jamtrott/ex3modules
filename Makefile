@@ -388,6 +388,7 @@ pkgs := $(pkgs) \
 	superlu-5.2.1 \
 	superlu_dist-6.4.0 \
 	texinfo-6.7 \
+	texlive-20210325 \
 	ucx-1.9.0 \
 	util-linux-2.34 \
 	valgrind-3.16.1 \
