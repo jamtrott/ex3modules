@@ -92,13 +92,13 @@ $($(harfbuzz-graphite)-modulefile): $(modulefilesdir)/.markerfile $($(harfbuzz-g
 	echo "" >>$@
 	echo "" >>$@
 	echo "setenv HARFBUZZ_ROOT $($(harfbuzz-graphite)-prefix)" >>$@
-	echo "setenv HARFBUZZ_INCDIR $($(harfbuzz-graphite)-prefix)/include" >>$@
-	echo "setenv HARFBUZZ_INCLUDEDIR $($(harfbuzz-graphite)-prefix)/include" >>$@
+	echo "setenv HARFBUZZ_INCDIR $($(harfbuzz-graphite)-prefix)/include/harfbuzz" >>$@
+	echo "setenv HARFBUZZ_INCLUDEDIR $($(harfbuzz-graphite)-prefix)/include/harfbuzz" >>$@
 	echo "setenv HARFBUZZ_LIBDIR $($(harfbuzz-graphite)-prefix)/lib" >>$@
 	echo "setenv HARFBUZZ_LIBRARYDIR $($(harfbuzz-graphite)-prefix)/lib" >>$@
 	echo "prepend-path PATH $($(harfbuzz-graphite)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(harfbuzz-graphite)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(harfbuzz-graphite)-prefix)/include" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(harfbuzz-graphite)-prefix)/include/harfbuzz" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(harfbuzz-graphite)-prefix)/include/harfbuzz" >>$@
 	echo "prepend-path LIBRARY_PATH $($(harfbuzz-graphite)-prefix)/lib" >>$@
 	echo "prepend-path LD_LIBRARY_PATH $($(harfbuzz-graphite)-prefix)/lib" >>$@
 	echo "prepend-path PKG_CONFIG_PATH $($(harfbuzz-graphite)-prefix)/lib/pkgconfig" >>$@

@@ -86,13 +86,13 @@ $($(harfbuzz)-modulefile): $(modulefilesdir)/.markerfile $($(harfbuzz)-prefix)/.
 	echo "" >>$@
 	echo "" >>$@
 	echo "setenv HARFBUZZ_ROOT $($(harfbuzz)-prefix)" >>$@
-	echo "setenv HARFBUZZ_INCDIR $($(harfbuzz)-prefix)/include" >>$@
-	echo "setenv HARFBUZZ_INCLUDEDIR $($(harfbuzz)-prefix)/include" >>$@
+	echo "setenv HARFBUZZ_INCDIR $($(harfbuzz)-prefix)/include/harfbuzz" >>$@
+	echo "setenv HARFBUZZ_INCLUDEDIR $($(harfbuzz)-prefix)/include/harfbuzz" >>$@
 	echo "setenv HARFBUZZ_LIBDIR $($(harfbuzz)-prefix)/lib" >>$@
 	echo "setenv HARFBUZZ_LIBRARYDIR $($(harfbuzz)-prefix)/lib" >>$@
 	echo "prepend-path PATH $($(harfbuzz)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(harfbuzz)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(harfbuzz)-prefix)/include" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(harfbuzz)-prefix)/include/harfbuzz" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(harfbuzz)-prefix)/include/harfbuzz" >>$@
 	echo "prepend-path LIBRARY_PATH $($(harfbuzz)-prefix)/lib" >>$@
 	echo "prepend-path LD_LIBRARY_PATH $($(harfbuzz)-prefix)/lib" >>$@
 	echo "prepend-path PKG_CONFIG_PATH $($(harfbuzz)-prefix)/lib/pkgconfig" >>$@
