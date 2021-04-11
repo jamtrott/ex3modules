@@ -26,8 +26,8 @@ $(pango)-srcurl = http://ftp.gnome.org/pub/GNOME/sources/pango/1.44/pango-$(pang
 $(pango)-src = $(pkgsrcdir)/$(notdir $($(pango)-srcurl))
 $(pango)-srcdir = $(pkgsrcdir)/$(pango)
 $(pango)-builddir = $($(pango)-srcdir)/build
-$(pango)-builddeps = $(meson) $(ninja) $(cmake) $(libffi) $(harfbuzz) $(fontconfig) $(freetype) $(cairo) $(glib) $(gobject-introspection) $(fribidi)
-$(pango)-prereqs = $(libffi) $(harfbuzz) $(fontconfig) $(freetype) $(cairo) $(glib) $(gobject-introspection) $(fribidi)
+$(pango)-builddeps = $(meson) $(ninja) $(cmake) $(libffi) $(harfbuzz-graphite) $(fontconfig) $(freetype) $(cairo) $(glib) $(gobject-introspection) $(fribidi)
+$(pango)-prereqs = $(libffi) $(harfbuzz-graphite) $(fontconfig) $(freetype) $(cairo) $(glib) $(gobject-introspection) $(fribidi)
 $(pango)-modulefile = $(modulefilesdir)/$(pango)
 $(pango)-prefix = $(pkgdir)/$(pango)
 
