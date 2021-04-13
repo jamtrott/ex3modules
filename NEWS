@@ -1,3 +1,16 @@
+* Noteworthy changes in release 0.6.1 (2021-04-13)
+
+This release includes several new modules, including automake,
+TexLive, poppler, ICU, ghostscript, graphite2, libpaper and OpenJPEG.
+
+A circular dependency betwen harfbuzz, freetype and graphite2 has also
+been adressed. Further, pango now uses a version of harfbuzz with
+graphite2 support.
+
+Also, gobject-introspection is now built with the correct version of
+Python to ensure that its Python packages are properly available to
+other packages that need them.
+
 * Noteworthy changes in release 0.6.0 (2021-03-19)
 
 This release includes several new modules, including OpenMPI and PETSc

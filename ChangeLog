@@ -1,3 +1,11 @@
+2021-04-13 James D. Trotter <james@simula.no>
+
+	Add automake.
+
+	Add TexLive and a number of its dependencies. Also, partially
+	address circular dependency between harfbuzz, graphite2 and
+	freetype.
+
 2021-03-22 James D. Trotter <james@simula.no>
 
 	Add an option and make flag to enable CUDA support instead of relying on ARCH
