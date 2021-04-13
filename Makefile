@@ -99,6 +99,7 @@ pkgs = \
 #
 pkgs := $(pkgs) \
 	autoconf-2.70 \
+	automake-1.16.3 \
 	binutils-2.32 \
 	bison-3.7.4 \
 	blis-generic-0.7.0 \
