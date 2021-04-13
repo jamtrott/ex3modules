@@ -92,20 +92,11 @@ $($(automake)-modulefile): $(modulefilesdir)/.markerfile $($(automake)-prefix)/.
 	echo "" >>$@
 	echo "" >>$@
 	echo "setenv AUTOMAKE_ROOT $($(automake)-prefix)" >>$@
-	echo "setenv AUTOMAKE_INCDIR $($(automake)-prefix)/include" >>$@
-	echo "setenv AUTOMAKE_INCLUDEDIR $($(automake)-prefix)/include" >>$@
-	echo "setenv AUTOMAKE_LIBDIR $($(automake)-prefix)/lib" >>$@
-	echo "setenv AUTOMAKE_LIBRARYDIR $($(automake)-prefix)/lib" >>$@
 	echo "prepend-path PATH $($(automake)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(automake)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(automake)-prefix)/include" >>$@
-	echo "prepend-path LIBRARY_PATH $($(automake)-prefix)/lib" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(automake)-prefix)/lib" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(automake)-prefix)/lib/pkgconfig" >>$@
 	echo "prepend-path MANPATH $($(automake)-prefix)/share/man" >>$@
 	echo "prepend-path INFOPATH $($(automake)-prefix)/share/info" >>$@
 	echo "setenv AUTOMAKE_LIBDIR $($(automake)-prefix)/share/automake-$(shell echo $(automake-version) | cut -d. -f1-2)" >>$@
-	echo "setenv ACLOCAL_AUTOMAKE_DIR $($(automake)-prefix)/share/automake-$(shell echo $(automake-version) | cut -d. -f1-2)" >>$@
+	echo "setenv ACLOCAL_AUTOMAKE_DIR $($(automake)-prefix)/share/aclocal-$(shell echo $(automake-version) | cut -d. -f1-2)" >>$@
 	echo "set MSG \"$(automake)\"" >>$@
 
 $(automake)-src: $$($(automake)-src)
