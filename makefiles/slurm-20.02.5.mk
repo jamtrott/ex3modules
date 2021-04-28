@@ -18,46 +18,46 @@
 #
 # slurm-20.02.5
 
-slurm-20.02-version = 20.02.5
-slurm-20.02 = slurm-$(slurm-20.02-version)
-$(slurm-20.02)-description = Highly configurable open-source workload manager
-$(slurm-20.02)-url = https://www.schedmd.com/
-$(slurm-20.02)-srcurl = https://download.schedmd.com/slurm/slurm-$(slurm-20.02-version).tar.bz2
-$(slurm-20.02)-builddeps = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(openssl) $(curl) $(readline) $(pmix)
-$(slurm-20.02)-prereqs = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(openssl) $(curl) $(readline) $(pmix)
-$(slurm-20.02)-src = $(pkgsrcdir)/$(notdir $($(slurm-20.02)-srcurl))
-$(slurm-20.02)-srcdir = $(pkgsrcdir)/$(slurm-20.02)
-$(slurm-20.02)-builddir = $($(slurm-20.02)-srcdir)
-$(slurm-20.02)-modulefile = $(modulefilesdir)/$(slurm-20.02)
-$(slurm-20.02)-prefix = $(pkgdir)/$(slurm-20.02)
+slurm-20.02.5-version = 20.02.5
+slurm-20.02.5 = slurm-$(slurm-20.02.5-version)
+$(slurm-20.02.5)-description = Highly configurable open-source workload manager
+$(slurm-20.02.5)-url = https://www.schedmd.com/
+$(slurm-20.02.5)-srcurl = https://download.schedmd.com/slurm/slurm-$(slurm-20.02.5-version).tar.bz2
+$(slurm-20.02.5)-builddeps = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(openssl) $(curl) $(readline) $(pmix)
+$(slurm-20.02.5)-prereqs = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(openssl) $(curl) $(readline) $(pmix)
+$(slurm-20.02.5)-src = $(pkgsrcdir)/$(notdir $($(slurm-20.02.5)-srcurl))
+$(slurm-20.02.5)-srcdir = $(pkgsrcdir)/$(slurm-20.02.5)
+$(slurm-20.02.5)-builddir = $($(slurm-20.02.5)-srcdir)
+$(slurm-20.02.5)-modulefile = $(modulefilesdir)/$(slurm-20.02.5)
+$(slurm-20.02.5)-prefix = $(pkgdir)/$(slurm-20.02.5)
 
-$($(slurm-20.02)-src): $(dir $($(slurm-20.02)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(slurm-20.02)-srcurl)
+$($(slurm-20.02.5)-src): $(dir $($(slurm-20.02.5)-src)).markerfile
+	$(CURL) $(curl_options) --output $@ $($(slurm-20.02.5)-srcurl)
 
-$($(slurm-20.02)-srcdir)/.markerfile:
+$($(slurm-20.02.5)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(slurm-20.02)-prefix)/.markerfile:
+$($(slurm-20.02.5)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(slurm-20.02)-prefix)/.pkgunpack: $($(slurm-20.02)-src) $($(slurm-20.02)-srcdir)/.markerfile $($(slurm-20.02)-prefix)/.markerfile
-	tar -C $($(slurm-20.02)-srcdir) --strip-components 1 -xj -f $<
+$($(slurm-20.02.5)-prefix)/.pkgunpack: $($(slurm-20.02.5)-src) $($(slurm-20.02.5)-srcdir)/.markerfile $($(slurm-20.02.5)-prefix)/.markerfile
+	tar -C $($(slurm-20.02.5)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 
-$($(slurm-20.02)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm-20.02)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm-20.02)-prefix)/.pkgunpack
+$($(slurm-20.02.5)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm-20.02.5)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm-20.02.5)-prefix)/.pkgunpack
 	@touch $@
 
-ifneq ($($(slurm-20.02)-builddir),$($(slurm-20.02)-srcdir))
-$($(slurm-20.02)-builddir)/.markerfile: $($(slurm-20.02)-prefix)/.pkgunpack
+ifneq ($($(slurm-20.02.5)-builddir),$($(slurm-20.02.5)-srcdir))
+$($(slurm-20.02.5)-builddir)/.markerfile: $($(slurm-20.02.5)-prefix)/.pkgunpack
 	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
-$($(slurm-20.02)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm-20.02)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm-20.02)-builddir)/.markerfile $($(slurm-20.02)-prefix)/.pkgpatch
-	cd $($(slurm-20.02)-builddir) && \
+$($(slurm-20.02.5)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm-20.02.5)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm-20.02.5)-builddir)/.markerfile $($(slurm-20.02.5)-prefix)/.pkgpatch
+	cd $($(slurm-20.02.5)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(slurm-20.02)-builddeps) && \
-		./configure --prefix=$($(slurm-20.02)-prefix) \
+		$(MODULE) load $($(slurm-20.02.5)-builddeps) && \
+		./configure --prefix=$($(slurm-20.02.5)-prefix) \
 			--sysconfdir=/etc/slurm \
 			--with-hwloc=$${HWLOC_ROOT} \
 			--with-freeipmi=$${FREEIPMI_ROOT} \
@@ -69,63 +69,63 @@ $($(slurm-20.02)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MAKE)
 	@touch $@
 
-$($(slurm-20.02)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm-20.02)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm-20.02)-builddir)/.markerfile $($(slurm-20.02)-prefix)/.pkgbuild
-	cd $($(slurm-20.02)-builddir) && \
+$($(slurm-20.02.5)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm-20.02.5)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm-20.02.5)-builddir)/.markerfile $($(slurm-20.02.5)-prefix)/.pkgbuild
+	cd $($(slurm-20.02.5)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(slurm-20.02)-builddeps) && \
+		$(MODULE) load $($(slurm-20.02.5)-builddeps) && \
 		$(MAKE) check
 	@touch $@
 
-$($(slurm-20.02)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm-20.02)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm-20.02)-builddir)/.markerfile $($(slurm-20.02)-prefix)/.pkgcheck
-	cd $($(slurm-20.02)-builddir) && \
+$($(slurm-20.02.5)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(slurm-20.02.5)-builddeps),$(modulefilesdir)/$$(dep)) $($(slurm-20.02.5)-builddir)/.markerfile $($(slurm-20.02.5)-prefix)/.pkgcheck
+	cd $($(slurm-20.02.5)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(slurm-20.02)-builddeps) && \
+		$(MODULE) load $($(slurm-20.02.5)-builddeps) && \
 		$(MAKE) install && \
 		$(MAKE) -C contribs/pmi install && \
 		$(MAKE) -C contribs/pmi2 install
 	@touch $@
 
-$($(slurm-20.02)-modulefile): $(modulefilesdir)/.markerfile $($(slurm-20.02)-prefix)/.pkginstall
+$($(slurm-20.02.5)-modulefile): $(modulefilesdir)/.markerfile $($(slurm-20.02.5)-prefix)/.pkginstall
 	printf "" >$@
 	echo "#%Module" >>$@
-	echo "# $(slurm-20.02)" >>$@
+	echo "# $(slurm-20.02.5)" >>$@
 	echo "" >>$@
 	echo "proc ModulesHelp { } {" >>$@
-	echo "     puts stderr \"\tSets up the environment for $(slurm-20.02)\\n\"" >>$@
+	echo "     puts stderr \"\tSets up the environment for $(slurm-20.02.5)\\n\"" >>$@
 	echo "}" >>$@
 	echo "" >>$@
-	echo "module-whatis \"$($(slurm-20.02)-description)\"" >>$@
-	echo "module-whatis \"$($(slurm-20.02)-url)\"" >>$@
-	printf "$(foreach prereq,$($(slurm-20.02)-prereqs),\n$(MODULE) load $(prereq))" >>$@
+	echo "module-whatis \"$($(slurm-20.02.5)-description)\"" >>$@
+	echo "module-whatis \"$($(slurm-20.02.5)-url)\"" >>$@
+	printf "$(foreach prereq,$($(slurm-20.02.5)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv SLURM_ROOT $($(slurm-20.02)-prefix)" >>$@
-	echo "setenv SLURM_INCDIR $($(slurm-20.02)-prefix)/include" >>$@
-	echo "setenv SLURM_INCLUDEDIR $($(slurm-20.02)-prefix)/include" >>$@
-	echo "setenv SLURM_LIBDIR $($(slurm-20.02)-prefix)/lib" >>$@
-	echo "setenv SLURM_LIBRARYDIR $($(slurm-20.02)-prefix)/lib" >>$@
-	echo "prepend-path PATH $($(slurm-20.02)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(slurm-20.02)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(slurm-20.02)-prefix)/include" >>$@
-	echo "prepend-path LIBRARY_PATH $($(slurm-20.02)-prefix)/lib" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(slurm-20.02)-prefix)/lib" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(slurm-20.02)-prefix)/lib/pkgconfig" >>$@
-	echo "prepend-path MANPATH $($(slurm-20.02)-prefix)/share/man" >>$@
-	echo "prepend-path INFOPATH $($(slurm-20.02)-prefix)/share/info" >>$@
-	echo "set MSG \"$(slurm-20.02)\"" >>$@
+	echo "setenv SLURM_ROOT $($(slurm-20.02.5)-prefix)" >>$@
+	echo "setenv SLURM_INCDIR $($(slurm-20.02.5)-prefix)/include" >>$@
+	echo "setenv SLURM_INCLUDEDIR $($(slurm-20.02.5)-prefix)/include" >>$@
+	echo "setenv SLURM_LIBDIR $($(slurm-20.02.5)-prefix)/lib" >>$@
+	echo "setenv SLURM_LIBRARYDIR $($(slurm-20.02.5)-prefix)/lib" >>$@
+	echo "prepend-path PATH $($(slurm-20.02.5)-prefix)/bin" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(slurm-20.02.5)-prefix)/include" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(slurm-20.02.5)-prefix)/include" >>$@
+	echo "prepend-path LIBRARY_PATH $($(slurm-20.02.5)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(slurm-20.02.5)-prefix)/lib" >>$@
+	echo "prepend-path PKG_CONFIG_PATH $($(slurm-20.02.5)-prefix)/lib/pkgconfig" >>$@
+	echo "prepend-path MANPATH $($(slurm-20.02.5)-prefix)/share/man" >>$@
+	echo "prepend-path INFOPATH $($(slurm-20.02.5)-prefix)/share/info" >>$@
+	echo "set MSG \"$(slurm-20.02.5)\"" >>$@
 
-$(slurm-20.02)-src: $($(slurm-20.02)-src)
-$(slurm-20.02)-unpack: $($(slurm-20.02)-prefix)/.pkgunpack
-$(slurm-20.02)-patch: $($(slurm-20.02)-prefix)/.pkgpatch
-$(slurm-20.02)-build: $($(slurm-20.02)-prefix)/.pkgbuild
-$(slurm-20.02)-check: $($(slurm-20.02)-prefix)/.pkgcheck
-$(slurm-20.02)-install: $($(slurm-20.02)-prefix)/.pkginstall
-$(slurm-20.02)-modulefile: $($(slurm-20.02)-modulefile)
-$(slurm-20.02)-clean:
-	rm -rf $($(slurm-20.02)-modulefile)
-	rm -rf $($(slurm-20.02)-prefix)
-	rm -rf $($(slurm-20.02)-srcdir)
-	rm -rf $($(slurm-20.02)-src)
-$(slurm-20.02): $(slurm-20.02)-src $(slurm-20.02)-unpack $(slurm-20.02)-patch $(slurm-20.02)-build $(slurm-20.02)-check $(slurm-20.02)-install $(slurm-20.02)-modulefile
+$(slurm-20.02.5)-src: $($(slurm-20.02.5)-src)
+$(slurm-20.02.5)-unpack: $($(slurm-20.02.5)-prefix)/.pkgunpack
+$(slurm-20.02.5)-patch: $($(slurm-20.02.5)-prefix)/.pkgpatch
+$(slurm-20.02.5)-build: $($(slurm-20.02.5)-prefix)/.pkgbuild
+$(slurm-20.02.5)-check: $($(slurm-20.02.5)-prefix)/.pkgcheck
+$(slurm-20.02.5)-install: $($(slurm-20.02.5)-prefix)/.pkginstall
+$(slurm-20.02.5)-modulefile: $($(slurm-20.02.5)-modulefile)
+$(slurm-20.02.5)-clean:
+	rm -rf $($(slurm-20.02.5)-modulefile)
+	rm -rf $($(slurm-20.02.5)-prefix)
+	rm -rf $($(slurm-20.02.5)-srcdir)
+	rm -rf $($(slurm-20.02.5)-src)
+$(slurm-20.02.5): $(slurm-20.02.5)-src $(slurm-20.02.5)-unpack $(slurm-20.02.5)-patch $(slurm-20.02.5)-build $(slurm-20.02.5)-check $(slurm-20.02.5)-install $(slurm-20.02.5)-modulefile
