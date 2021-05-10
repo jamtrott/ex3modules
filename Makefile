@@ -379,7 +379,7 @@ pkgs := $(pkgs) \
 	python-xarray-0.15.1 \
 	python-zipp-3.3.1 \
 	qperf-0.4.11 \
-	rdma-core-31.0 \
+	rdma-core-35.0 \
 	readline-8.0 \
 	scalapack-2.1.0 \
 	scotch-6.0.7 \
