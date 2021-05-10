@@ -178,6 +178,7 @@ pkgs := $(pkgs) \
 	libarchive-3.4.2 \
 	libatomic_ops-7.6.10 \
 	libcerf-1.13 \
+	libcheck-0.15.2 \
 	libdmx-1.1.4 \
 	libevent-2.1.11-stable \
 	libfabric-1.11.1 \
