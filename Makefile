@@ -165,6 +165,7 @@ pkgs := $(pkgs) \
 	hdf5-parallel-1.10.5 \
 	hdf5-src-1.10.5 \
 	hpl-2.3 \
+	hunspell-1.7.0 \
 	hwloc-2.4.1 \
 	hwloc-cairo-2.4.1 \
 	hwloc-src-2.4.1 \

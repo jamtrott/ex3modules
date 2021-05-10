@@ -1,3 +1,8 @@
+* Noteworthy changes in the upcoming release
+
+This release includes libiconv and hunspell.
+
+
 * Noteworthy changes in release 0.6.1 (2021-04-13)
 
 This release includes several new modules, including automake,
@@ -10,6 +15,7 @@ graphite2 support.
 Also, gobject-introspection is now built with the correct version of
 Python to ensure that its Python packages are properly available to
 other packages that need them.
+
 
 * Noteworthy changes in release 0.6.0 (2021-03-19)
 
