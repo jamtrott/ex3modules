@@ -60,6 +60,7 @@ blas = openblas-0.3.12
 # CUDA toolkit versions: 10.1.243 (only supported on x86_64)
 ifneq ($(ENABLE_CUDA),)
 cuda-toolkit = cuda-toolkit-10.1.243
+gdrcopy = gdrcopy-2.2
 endif
 
 # GCC versions: 8.4.0, 9.2.0, 10.1.0
@@ -89,6 +90,7 @@ pkgs = \
 	$(blas) \
 	$(cuda-toolkit) \
 	$(gcc) \
+	$(gdrcopy) \
 	$(mpi) \
 	$(munge) \
 	$(petsc) \
