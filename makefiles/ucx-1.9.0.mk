@@ -22,18 +22,15 @@ ucx-version = 1.9.0
 ucx = ucx-$(ucx-version)
 $(ucx)-description = Optimized communication layer for MPI, PGAS/OpenSHMEM and RPC/data-centric applications
 $(ucx)-url = http://www.openucx.org/
-$(ucx)-srcurl = https://github.com/openucx/ucx/archive/v$(ucx-version).tar.gz
-$(ucx)-src = $(pkgsrcdir)/ucx-$(notdir $($(ucx)-srcurl))
-$(ucx)-srcdir = $(pkgsrcdir)/$(ucx)
+$(ucx)-srcurl =
 $(ucx)-builddeps = $(knem) $(numactl) $(rdma-core)
 $(ucx)-prereqs = $(knem) $(numactl) $(rdma-core)
+$(ucx)-src = $($(ucx-src)-src)
+$(ucx)-srcdir = $(pkgsrcdir)/$(ucx)
 $(ucx)-modulefile = $(modulefilesdir)/$(ucx)
 $(ucx)-prefix = $(pkgdir)/$(ucx)
 $(ucx)-configure-x86_64-opts = --with-avx --with-sse41 --with-sse42
 $(ucx)-configure-aarch64-opts =
-
-$($(ucx)-src): $(dir $($(ucx)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(ucx)-srcurl)
 
 $($(ucx)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
@@ -41,7 +38,7 @@ $($(ucx)-srcdir)/.markerfile:
 $($(ucx)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(ucx)-prefix)/.pkgunpack: $($(ucx)-src) $($(ucx)-srcdir)/.markerfile $($(ucx)-prefix)/.markerfile
+$($(ucx)-prefix)/.pkgunpack: $$($(ucx)-src) $($(ucx)-srcdir)/.markerfile $($(ucx)-prefix)/.markerfile
 	tar -C $($(ucx)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
@@ -114,7 +111,7 @@ $($(ucx)-modulefile): $(modulefilesdir)/.markerfile $($(ucx)-prefix)/.pkginstall
 	echo "prepend-path PKG_CONFIG_PATH $($(ucx)-prefix)/lib/pkgconfig" >>$@
 	echo "set MSG \"$(ucx)\"" >>$@
 
-$(ucx)-src: $($(ucx)-src)
+$(ucx)-src: $$($(ucx)-src)
 $(ucx)-unpack: $($(ucx)-prefix)/.pkgunpack
 $(ucx)-patch: $($(ucx)-prefix)/.pkgpatch
 $(ucx)-build: $($(ucx)-prefix)/.pkgbuild
@@ -125,5 +122,4 @@ $(ucx)-clean:
 	rm -rf $($(ucx)-modulefile)
 	rm -rf $($(ucx)-prefix)
 	rm -rf $($(ucx)-srcdir)
-	rm -rf $($(ucx)-src)
 $(ucx): $(ucx)-src $(ucx)-unpack $(ucx)-patch $(ucx)-build $(ucx)-check $(ucx)-install $(ucx)-modulefile

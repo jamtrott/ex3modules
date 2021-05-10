@@ -396,6 +396,7 @@ pkgs := $(pkgs) \
 	texinfo-6.7 \
 	texlive-20210325 \
 	ucx-1.9.0 \
+	ucx-src-1.9.0 \
 	util-linux-2.34 \
 	valgrind-3.16.1 \
 	xcb-proto-1.14 \
