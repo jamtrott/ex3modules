@@ -190,6 +190,7 @@ pkgs := $(pkgs) \
 	libgfortran-5.0.0 \
 	libgpg-error-1.39 \
 	libice-1.0.10 \
+	libiconv-1.16 \
 	libjpeg-turbo-2.0.4 \
 	libnl-3.2.25 \
 	libpaper-1.1.24+nmu5 \
