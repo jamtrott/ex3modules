@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# libfabric-1.11.1
+# libfabric-1.12.1
 
-libfabric-version = 1.11.1
+libfabric-version = 1.12.1
 libfabric = libfabric-$(libfabric-version)
 $(libfabric)-description = Library for OpenFabrics Interfaces
 $(libfabric)-url = http://libfabric.org/

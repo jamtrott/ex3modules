@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# libfabric-fabtests-1.11.1
+# libfabric-fabtests-1.12.1
 
-libfabric-fabtests-version = 1.11.1
+libfabric-fabtests-version = 1.12.1
 libfabric-fabtests = libfabric-fabtests-$(libfabric-fabtests-version)
 $(libfabric-fabtests)-description = Test suite for libfabric
 $(libfabric-fabtests)-url = http://libfabric.org/
