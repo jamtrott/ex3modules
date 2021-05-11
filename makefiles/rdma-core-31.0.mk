@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# rdma-core-35.0
+# rdma-core-31.0
 
-rdma-core-version = 35.0
+rdma-core-version = 31.0
 rdma-core = rdma-core-$(rdma-core-version)
 $(rdma-core)-description = Userspace components for the Linux infiniband subsystem
 $(rdma-core)-url = https://github.com/linux-rdma/rdma-core/
