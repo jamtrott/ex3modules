@@ -1,6 +1,7 @@
 * Noteworthy changes in the upcoming release
 
-This release includes libiconv and hunspell.
+This release includes libiconv, hunspell, Google's Protocol buffers
+and mysql-connector/python.
 
 
 * Noteworthy changes in release 0.6.1 (2021-04-13)

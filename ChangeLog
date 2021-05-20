@@ -1,3 +1,7 @@
+2021-05-20 James D. Trotter <james@simula.no>
+
+	Add protobuf-cpp, protobuf-python and mysql-connector-python.
+
 2021-05-10 James D. Trotter <james@simula.no>
 
 	Add hunspell.

@@ -86,6 +86,8 @@ endif
 # SLURM versions: 18.08.9, 19.05.6, 20.02.5 and 20.02.6
 slurm = slurm-20.02.6
 
+python-version-short = 3.7
+
 pkgs = \
 	$(blas) \
 	$(cuda-toolkit) \
@@ -248,6 +250,7 @@ pkgs := $(pkgs) \
 	mpich-3.3.2 \
 	mumps-5.2.1 \
 	mvapich-2.3.4 \
+	mysql-connector-python-8.0.23 \
 	nasm-2.14.02 \
 	ncurses-6.1 \
 	netlib-blas-3.8.0 \
@@ -277,6 +280,8 @@ pkgs := $(pkgs) \
 	pixman-0.38.4 \
 	pmix-3.1.5 \
 	poppler-21.04.0 \
+	protobuf-cpp-3.17.0 \
+	protobuf-python-3.17.0 \
 	pybind11-2.3.0 \
 	python-3.7.4 \
 	python-alabaster-0.7.12 \
