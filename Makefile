@@ -174,6 +174,7 @@ pkgs := $(pkgs) \
 	ipopt-3.13.3 \
 	knem-1.1.4 \
 	lapack-3.9.0 \
+	lcms2-2.12 \
 	libarchive-3.4.2 \
 	libatomic_ops-7.6.10 \
 	libcerf-1.13 \
