@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# slurm-20.02.5
+# slurm-20.02.7
 
-slurm-20.02-version = 20.02.5
+slurm-20.02-version = 20.02.7
 slurm-20.02 = slurm-$(slurm-20.02-version)
 $(slurm-20.02)-description = Highly configurable open-source workload manager
 $(slurm-20.02)-url = https://www.schedmd.com/
