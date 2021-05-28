@@ -106,11 +106,13 @@ $($(texlive)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 	@touch $@
 
 $($(texlive)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(texlive)-builddeps),$(modulefilesdir)/$$(dep)) $($(texlive)-builddir)/.markerfile $($(texlive)-prefix)/.pkgbuild
+ifneq ($(ARCH),aarch64)
 	cd $($(texlive)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(texlive)-builddeps) && \
 		$(MAKE) -k check
+endif
 	@touch $@
 
 $($(texlive)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(texlive)-builddeps),$(modulefilesdir)/$$(dep)) $($(texlive)-builddir)/.markerfile $($(texlive)-prefix)/.pkgcheck $$($(texlive)-texmf-src) $$($(texlive)-tlpdb-src)
