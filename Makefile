@@ -120,6 +120,8 @@ pkgs := $(pkgs) \
 	bzip2-1.0.8 \
 	cairo-1.16.0 \
 	cblas \
+	cgal-4.12.2 \
+	cgal-5.2.2 \
 	clang-11.0.0 \
 	cmake-3.17.2 \
 	combblas-1.6.2 \

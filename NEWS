@@ -1,7 +1,8 @@
+
 * Noteworthy changes in the upcoming release
 
-This release includes libiconv, hunspell, Google's Protocol buffers
-and mysql-connector/python, lcms2 (needed by ghostscript).
+This release includes libiconv, hunspell, Google's Protocol buffers,
+mysql-connector/python, lcms2 (needed by ghostscript), and CGAL.
 
 Upgrade to Slurm 20.02.7.
 
