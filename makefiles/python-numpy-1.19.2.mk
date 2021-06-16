@@ -25,8 +25,14 @@ $(python-numpy)-url = https://www.numpy.org/
 $(python-numpy)-srcurl = https://github.com/numpy/numpy/releases/download/v$(python-numpy-version)/numpy-$(python-numpy-version).tar.gz
 $(python-numpy)-src = $(pkgsrcdir)/$(notdir $($(python-numpy)-srcurl))
 $(python-numpy)-srcdir = $(pkgsrcdir)/$(python-numpy)
-$(python-numpy)-builddeps = $(python) $(python-cython) $(blas) $(lapack) $(fftw)
-$(python-numpy)-prereqs = $(python) $(blas) $(lapack) $(fftw)
+$(python-numpy)-builddeps = $(python) $(python-cython) $(blas) $(fftw) $(suitesparse)
+$(python-numpy)-prereqs = $(python) $(blas) $(fftw) $(suitesparse)
+ifneq ($(blas),$(openblas))
+# OpenBLAS already contains LAPACK routines, so there is no need to
+# add LAPACK as well.
+$(python-numpy)-builddeps += $(lapack)
+$(python-numpy)-prereqs += $(lapack)
+endif
 $(python-numpy)-modulefile = $(modulefilesdir)/$(python-numpy)
 $(python-numpy)-prefix = $(pkgdir)/$(python-numpy)
 $(python-numpy)-site-packages = $($(python-numpy)-prefix)/lib/python$(python-version-short)/site-packages
@@ -58,6 +64,12 @@ ifeq ($(blas),$(netlib-blas))
 	@echo 'library_dirs = $($(cblas)-prefix)/lib:$($(netlib-blas)-prefix)/lib' >>$@.tmp
 	@echo 'include_dirs = $($(cblas)-prefix)/include' >>$@.tmp
 	@echo 'runtime_library_dirs = $($(cblas)-prefix)/lib:$($(netlib-blas)-prefix)/lib' >>$@.tmp
+	@echo '' >>$@.tmp
+	@echo '[lapack]' >>$@.tmp
+	@echo 'libraries = lapack' >>$@.tmp
+	@echo 'library_dirs = $($(lapack)-prefix)/lib' >>$@.tmp
+	@echo 'include_dirs = $($(lapack)-prefix)/include' >>$@.tmp
+	@echo 'runtime_library_dirs = $($(lapack)-prefix)/lib' >>$@.tmp
 else ifeq ($(blas),$(openblas))
 	@echo '' >>$@.tmp
 	@echo '[openblas]' >>$@.tmp
@@ -68,12 +80,6 @@ else ifeq ($(blas),$(openblas))
 else
 $(error Unsupported BLAS library)
 endif
-	@echo '' >>$@.tmp
-	@echo '[lapack]' >>$@.tmp
-	@echo 'libraries = lapack' >>$@.tmp
-	@echo 'library_dirs = $($(lapack)-prefix)/lib' >>$@.tmp
-	@echo 'include_dirs = $($(lapack)-prefix)/include' >>$@.tmp
-	@echo 'runtime_library_dirs = $($(lapack)-prefix)/lib' >>$@.tmp
 	@echo '' >>$@.tmp
 	@echo '[amd]' >>$@.tmp
 	@echo 'libraries = amd' >>$@.tmp
