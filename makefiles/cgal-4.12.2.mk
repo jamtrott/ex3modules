@@ -23,8 +23,8 @@ cgal-4.12 = cgal-$(cgal-4.12-version)
 $(cgal-4.12)-description = C++ library of geometric algorithms
 $(cgal-4.12)-url = https://www.cgal.org/
 $(cgal-4.12)-srcurl = https://github.com/CGAL/cgal/releases/download/releases%2FCGAL-$(cgal-4.12-version)/CGAL-$(cgal-4.12-version).tar.xz
-$(cgal-4.12)-builddeps = $(boost) $(gmp) $(mpfr)
-$(cgal-4.12)-prereqs = $(boost) $(gmp) $(mpfr)
+$(cgal-4.12)-builddeps = $(cmake) $(boost) $(gmp) $(mpfr)
+$(cgal-4.12)-prereqs = $(cmake) $(boost) $(gmp) $(mpfr)
 $(cgal-4.12)-src = $(pkgsrcdir)/$(notdir $($(cgal-4.12)-srcurl))
 $(cgal-4.12)-srcdir = $(pkgsrcdir)/$(cgal-4.12)
 $(cgal-4.12)-builddir = $($(cgal-4.12)-srcdir)/build
@@ -58,6 +58,7 @@ $($(cgal-4.12)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(cgal-4.12)-builddeps) && \
 		cmake -DCMAKE_INSTALL_PREFIX=$($(cgal-4.12)-prefix) \
+		-DCMAKE_POLICY_DEFAULT_CMP0074=NEW \
 		-DMPFR_LIBRARIES="$$(pkg-config --libs mpfr)" \
 		-DMPFR_INCLUDE_DIR="$${MPFR_INCDIR}" \
 		.. && \

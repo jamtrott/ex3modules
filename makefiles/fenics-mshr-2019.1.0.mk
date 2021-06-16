@@ -65,7 +65,7 @@ $($(fenics-mshr-2019)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreac
 			-DGMP_INCLUDE_DIR="$${GMP_INCDIR}" \
 			-DMPFR_LIBRARIES="$${MPFR_LIBDIR}" \
 			-DMPFR_INCLUDE_DIR="$${MPFR_INCDIR}" \
-			-DEIGEN_INCLUDE_DIR="$${EIGEN_INCDIR}" \
+			-DEIGEN3_INCLUDE_DIR="$${EIGEN_INCDIR}" \
 			-DUSE_SYSTEM_CGAL=TRUE \
 			-DCGAL_ROOT="$${CGAL_ROOT}" && \
 		$(MAKE)

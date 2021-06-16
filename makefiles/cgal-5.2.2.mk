@@ -23,8 +23,8 @@ cgal = cgal-$(cgal-version)
 $(cgal)-description = C++ library of geometric algorithms
 $(cgal)-url = https://www.cgal.org/
 $(cgal)-srcurl = https://github.com/CGAL/cgal/releases/download/v$(cgal-version)/CGAL-$(cgal-version).tar.xz
-$(cgal)-builddeps = $(boost) $(gmp) $(mpfr)
-$(cgal)-prereqs = $(boost) $(gmp) $(mpfr)
+$(cgal)-builddeps = $(cgal) $(boost) $(gmp) $(mpfr)
+$(cgal)-prereqs = $(cgal) $(boost) $(gmp) $(mpfr)
 $(cgal)-src = $(pkgsrcdir)/$(notdir $($(cgal)-srcurl))
 $(cgal)-srcdir = $(pkgsrcdir)/$(cgal)
 $(cgal)-builddir = $($(cgal)-srcdir)/build
@@ -58,6 +58,7 @@ $($(cgal)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(c
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(cgal)-builddeps) && \
 		cmake -DCMAKE_INSTALL_PREFIX=$($(cgal)-prefix) \
+		-DCMAKE_POLICY_DEFAULT_CMP0074=NEW \
 		-DMPFR_LIBRARIES="$$(pkg-config --libs mpfr)" \
 		-DMPFR_INCLUDE_DIR="$${MPFR_INCDIR}" \
 		.. && \
