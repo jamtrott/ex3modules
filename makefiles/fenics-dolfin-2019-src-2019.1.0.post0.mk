@@ -20,7 +20,7 @@
 
 fenics-dolfin-2019-src-version = 2019.1.0.post0
 fenics-dolfin-2019-src = fenics-dolfin-2019-src-$(fenics-dolfin-2019-src-version)
-$(fenics-dolfin-2019-src)-description = FEniCS Project: DOLFIN Source Code
+$(fenics-dolfin-2019-src)-description = FEniCS Project: DOLFIN (source)
 $(fenics-dolfin-2019-src)-url = https://fenicsproject.org/
 $(fenics-dolfin-2019-src)-srcurl = https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-$(fenics-dolfin-2019-src-version).tar.gz
 $(fenics-dolfin-2019-src)-builddeps =

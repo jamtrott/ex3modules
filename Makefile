@@ -136,6 +136,8 @@ pkgs := $(pkgs) \
 	fenics-dolfin-2018.1.0.post1 \
 	fenics-dolfin-2019-src-2019.1.0.post0 \
 	fenics-dolfin-2019.1.0.post0 \
+	fenics-mshr-2019-src-2019.1.0 \
+	fenics-mshr-2019.1.0 \
 	fenics-dolfinx-20200525 \
 	fenics-dolfinx-src-20200525 \
 	fftw-3.3.8 \
@@ -315,6 +317,7 @@ pkgs := $(pkgs) \
 	python-fenics-fiat-2018.1.0 \
 	python-fenics-fiat-2019.1.0 \
 	python-fenics-fiat-20200518 \
+	python-fenics-mshr-2019.1.0 \
 	python-fenics-ufl-2018.1.0 \
 	python-fenics-ufl-2019.1.0 \
 	python-fenics-ufl-20200512 \

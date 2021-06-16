@@ -4,6 +4,8 @@
 This release includes libiconv, hunspell, Google's Protocol buffers,
 mysql-connector/python, lcms2 (needed by ghostscript), and CGAL.
 
+Add mshr, which is used for mesh generation in FEniCS.
+
 Upgrade to Slurm 20.02.7.
 
 

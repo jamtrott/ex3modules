@@ -23,8 +23,8 @@ fenics-dolfin-2019 = fenics-dolfin-$(fenics-dolfin-2019-version)
 $(fenics-dolfin-2019)-description = C++ interface to the FEniCS computing platform for solving partial differential equations
 $(fenics-dolfin-2019)-url = https://fenicsproject.org/
 $(fenics-dolfin-2019)-srcurl = $($(fenics-dolfin-2019-src)-srcurl)
-$(fenics-dolfin-2019)-builddeps = $(gcc) $(cmake) $(boost) $(mpi) $(hdf5-parallel) $(parmetis) $(scotch) $(suitesparse) $(metis) $(eigen) $(petsc) $(python) $(python-fenics-dijitso-2019) $(python-fenics-fiat-2019) $(python-fenics-ufl-2019) $(python-fenics-ffc-2019) $(python-pytest)
-$(fenics-dolfin-2019)-prereqs = $(libstdcxx) $(boost) $(mpi) $(hdf5-parallel) $(parmetis) $(scotch) $(suitesparse) $(metis) $(eigen) $(petsc) $(python) $(python-fenics-dijitso-2019) $(python-fenics-fiat-2019) $(python-fenics-ufl-2019) $(python-fenics-ffc-2019)
+$(fenics-dolfin-2019)-builddeps = $(cmake) $(boost) $(mpi) $(hdf5-parallel) $(parmetis) $(scotch) $(blas) $(suitesparse) $(metis) $(eigen) $(petsc) $(python) $(python-fenics-dijitso-2019) $(python-fenics-fiat-2019) $(python-fenics-ufl-2019) $(python-fenics-ffc-2019) $(python-pytest)
+$(fenics-dolfin-2019)-prereqs = $(libstdcxx) $(boost) $(mpi) $(hdf5-parallel) $(parmetis) $(scotch) $(blas) $(suitesparse) $(metis) $(eigen) $(petsc) $(python) $(python-fenics-dijitso-2019) $(python-fenics-fiat-2019) $(python-fenics-ufl-2019) $(python-fenics-ffc-2019)
 $(fenics-dolfin-2019)-src = $($(fenics-dolfin-2019-src)-src)
 $(fenics-dolfin-2019)-srcdir = $(pkgsrcdir)/$(fenics-dolfin-2019)
 $(fenics-dolfin-2019)-builddir = $($(fenics-dolfin-2019)-srcdir)/build
@@ -175,15 +175,28 @@ $($(fenics-dolfin-2019)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(fore
 		cmake .. \
 			-DCMAKE_INSTALL_PREFIX=$($(fenics-dolfin-2019)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
+			-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON \
 			-DCMAKE_POLICY_DEFAULT_CMP0074=NEW \
+			-DCMAKE_POLICY_DEFAULT_CMP0060=NEW \
 			-DBUILD_SHARED_LIBS=TRUE \
-			-DDOLFIN_SKIP_BUILD_TESTS=TRUE \
+			-DCMAKE_RULE_MESSAGES:BOOL=OFF \
+			-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
 			-DEIGEN3_INCLUDE_DIR="$${EIGEN_INCDIR}" \
+			-DDOLFIN_ENABLE_PARMETIS=YES \
 			-DPARMETIS_DIR="$${PARMETIS_ROOT}" \
+			-DDOLFIN_ENABLE_PETSC=YES \
+			-DPETSC_DIR="$${PETSC_DIR}" \
+			-DDOLFIN_ENABLE_SLEPC=NO \
+			-DDOLFIN_ENABLE_SCOTCH=YES \
 			-DSCOTCH_DIR="$${SCOTCH_ROOT}" \
-			-DAMD_DIR="$${SUITESPARSE_ROOT}" \
+			-DSCOTCH_DEBUG=ON \
+			-DDOLFIN_ENABLE_CHOLMOD=YES \
 			-DCHOLMOD_DIR="$${SUITESPARSE_ROOT}" \
-			-DUMFPACK_DIR="$${SUITESPARSE_ROOT}" && \
+			-DDOLFIN_ENABLE_UMFPACK=YES \
+			-DUMFPACK_DIR="$${SUITESPARSE_ROOT}" \
+			-DDOLFIN_ENABLE_TRILINOS=NO \
+			-DDOLFIN_ENABLE_SUNDIALS=NO \
+			&& \
 		$(MAKE)
 	@touch $@
 
@@ -196,6 +209,7 @@ $($(fenics-dolfin-2019)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fo
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(fenics-dolfin-2019)-builddeps) && \
 		$(MAKE) install
+	sed -i '/INTERFACE_LINK_LIBRARIES/d' $($(fenics-dolfin-2019)-prefix)/share/dolfin/cmake/DOLFINTargets.cmake
 	@touch $@
 
 $($(fenics-dolfin-2019)-modulefile): $(modulefilesdir)/.markerfile $($(fenics-dolfin-2019)-prefix)/.pkginstall
