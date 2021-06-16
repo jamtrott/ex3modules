@@ -23,8 +23,8 @@ slurm-20.02.7 = slurm-$(slurm-20.02.7-version)
 $(slurm-20.02.7)-description = Highly configurable open-source workload manager
 $(slurm-20.02.7)-url = https://www.schedmd.com/
 $(slurm-20.02.7)-srcurl = https://download.schedmd.com/slurm/slurm-$(slurm-20.02.7-version).tar.bz2
-$(slurm-20.02.7)-builddeps = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(openssl) $(curl) $(readline) $(pmix)
-$(slurm-20.02.7)-prereqs = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(openssl) $(curl) $(readline) $(pmix)
+$(slurm-20.02.7)-builddeps = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(curl) $(readline) $(pmix) $(hdf5)
+$(slurm-20.02.7)-prereqs = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(curl) $(readline) $(pmix) $(hdf5)
 $(slurm-20.02.7)-src = $(pkgsrcdir)/$(notdir $($(slurm-20.02.7)-srcurl))
 $(slurm-20.02.7)-srcdir = $(pkgsrcdir)/$(slurm-20.02.7)
 $(slurm-20.02.7)-builddir = $($(slurm-20.02.7)-srcdir)
@@ -62,10 +62,10 @@ $($(slurm-20.02.7)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 			--with-hwloc=$${HWLOC_ROOT} \
 			--with-freeipmi=$${FREEIPMI_ROOT} \
 			--with-ucx=$${UCX_ROOT} \
-			--with-ssl=$${OPENSSL_ROOT} \
 			--with-munge=$${MUNGE_ROOT} \
 			--with-pmix=$${PMIX_ROOT} \
-			--with-libcurl=$${CURL_ROOT} && \
+			--with-libcurl=$${CURL_ROOT} \
+			--with-hdf5=$${HDF5_ROOT} && \
 		$(MAKE)
 	@touch $@
 
