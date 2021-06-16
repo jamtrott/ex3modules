@@ -2,6 +2,8 @@
 
 	Add CGAL 4.12.2 and 5.2.2 and mshr 2019.1.0.
 
+	Disable multithreading in OpenBLAS.
+
 2021-05-20 James D. Trotter <james@simula.no>
 
 	Add protobuf-cpp, protobuf-python and mysql-connector-python.

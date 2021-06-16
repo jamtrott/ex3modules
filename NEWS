@@ -8,6 +8,8 @@ Add mshr, which is used for mesh generation in FEniCS.
 
 Upgrade to Slurm 20.02.7.
 
+OpenBLAS is now built without multithreading.
+
 
 * Noteworthy changes in release 0.6.1 (2021-04-13)
 
