@@ -189,6 +189,7 @@ pkgs := $(pkgs) \
 	libcerf-1.13 \
 	libcheck-0.15.2 \
 	libdmx-1.1.4 \
+	libdrm-2.4.107 \
 	libevent-2.1.11-stable \
 	libfabric-1.11.1 \
 	libfabric-fabtests-1.11.1 \
