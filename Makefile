@@ -338,6 +338,7 @@ pkgs := $(pkgs) \
 	python-jinja2-2.11.2 \
 	python-kiwisolver-1.2.0 \
 	python-llvmlite-0.35.0 \
+	python-mako-1.1.4 \
 	python-markupsafe-1.1.1 \
 	python-matplotlib-3.1.1 \
 	python-mccabe-0.6.1 \
