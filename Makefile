@@ -231,6 +231,7 @@ pkgs := $(pkgs) \
 	libxi-1.7.10 \
 	libxinerama-1.1.4 \
 	libxkbfile-1.1.0 \
+	libxml2-2.9.12 \
 	libxmu-1.1.3 \
 	libxpm-3.5.13 \
 	libxrandr-1.5.2 \
