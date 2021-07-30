@@ -415,6 +415,12 @@ pkgs := $(pkgs) \
 	util-linux-2.34 \
 	valgrind-3.16.1 \
 	xcb-proto-1.14 \
+	xcb-util-0.4.0 \
+	xcb-util-image-0.4.0 \
+	xcb-util-keysyms-0.4.0 \
+	xcb-util-renderutil-0.3.9 \
+	xcb-util-wm-0.4.1 \
+	xkbcommon-1.3.0 \
 	xorg-libraries-2020-03-15 \
 	xorg-util-macros-1.19.2 \
 	xorgproto-2019.2 \
