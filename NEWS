@@ -1,8 +1,12 @@
 
 * Noteworthy changes in the upcoming release
 
-This release includes libiconv, hunspell, Google's Protocol buffers,
-mysql-connector/python, lcms2 (needed by ghostscript), and CGAL.
+This release adds ParaView 5.9.1, as well as dependent packages, such
+as Qt5 and mesa.
+
+This release also includes libiconv, hunspell, Google's Protocol
+buffers, mysql-connector/python, lcms2 (needed by ghostscript), and
+CGAL.
 
 Add mshr, which is used for mesh generation in FEniCS.
 

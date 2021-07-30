@@ -277,6 +277,7 @@ pkgs := $(pkgs) \
 	osu-micro-benchmarks-src-5.6.3 \
 	pango-1.44.7 \
 	parallel-20190922 \
+	paraview-5.9.1 \
 	parmetis-4.0.3 \
 	patchelf-0.10 \
 	pciutils-3.6.2 \
