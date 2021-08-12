@@ -416,6 +416,7 @@ pkgs := $(pkgs) \
 	ucx-src-1.9.0 \
 	util-linux-2.34 \
 	valgrind-3.16.1 \
+	virtualgl-2.6.5 \
 	xcb-proto-1.14 \
 	xcb-util-0.4.0 \
 	xcb-util-image-0.4.0 \
