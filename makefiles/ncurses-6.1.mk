@@ -98,7 +98,9 @@ $($(ncurses)-modulefile): $(modulefilesdir)/.markerfile $($(ncurses)-prefix)/.pk
 	echo "setenv NCURSES_LIBRARYDIR $($(ncurses)-prefix)/lib" >>$@
 	echo "prepend-path PATH $($(ncurses)-prefix)/bin" >>$@
 	echo "prepend-path C_INCLUDE_PATH $($(ncurses)-prefix)/include" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(ncurses)-prefix)/include/ncursesw" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(ncurses)-prefix)/include" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(ncurses)-prefix)/include/ncursesw" >>$@
 	echo "prepend-path LIBRARY_PATH $($(ncurses)-prefix)/lib" >>$@
 	echo "prepend-path LD_LIBRARY_PATH $($(ncurses)-prefix)/lib" >>$@
 	echo "prepend-path PKG_CONFIG_PATH $($(ncurses)-prefix)/lib/pkgconfig" >>$@
