@@ -67,7 +67,7 @@ $($(gengetopt)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(gengetopt)-builddeps) && \
-		$(MAKE) check
+		$(MAKE) check -j1
 	@touch $@
 
 $($(gengetopt)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(gengetopt)-builddeps),$(modulefilesdir)/$$(dep)) $($(gengetopt)-builddir)/.markerfile $($(gengetopt)-prefix)/.pkgcheck
