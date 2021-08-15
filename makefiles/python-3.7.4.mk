@@ -29,8 +29,8 @@ $(python)-url = https://www.python.org/
 $(python)-srcurl = https://www.python.org/ftp/python/$(python-version)/Python-$(python-version).tar.xz
 $(python)-src = $(pkgsrcdir)/$(notdir $($(python)-srcurl))
 $(python)-srcdir = $(pkgsrcdir)/$(python)
-$(python)-builddeps = $(bzip2) $(xz) $(ncurses) $(readline) $(libffi) $(openssl) $(sqlite)
-$(python)-prereqs = $(bzip2) $(xz) $(ncurses) $(readline) $(libffi) $(openssl) $(sqlite)
+$(python)-builddeps = $(bzip2) $(xz) $(ncurses) $(readline) $(libffi) $(openssl) $(sqlite) $(expat)
+$(python)-prereqs = $(bzip2) $(xz) $(ncurses) $(readline) $(libffi) $(openssl) $(sqlite) $(expat)
 $(python)-modulefile = $(modulefilesdir)/$(python)
 $(python)-prefix = $(pkgdir)/$(python)
 
@@ -53,7 +53,8 @@ $($(python)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python)-builddeps) && \
-		sed -i "s|sqlite_inc_paths = \[ '/usr/include',|sqlite_inc_paths = \[ '$${SQLITE_INCLUDEDIR}', '/usr/include',|" setup.py
+		sed -i -e "s|sqlite_inc_paths = \[ '/usr/include',|sqlite_inc_paths = \[ '$${SQLITE_INCLUDEDIR}', '/usr/include',|" setup.py && \
+		sed -i "s|curses_includes = \[\]|curses_includes = \['$${NCURSES_INCDIR}/ncursesw'\]|" setup.py
 	@touch $@
 
 $($(python)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python)-builddeps),$(modulefilesdir)/$$(dep)) $($(python)-prefix)/.pkgpatch
@@ -70,8 +71,9 @@ $($(python)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($
 			--enable-shared \
 			--with-ensurepip=install \
 			--with-system-ffi \
+			--with-system-expat \
 			--with-openssl=$${OPENSSL_ROOT} && \
-		$(MAKE) MAKEFLAGS=
+		$(MAKE) LDFLAGS="-L$${NCURSES_LIBDIR} -L$${BZIP2_LIBDIR} -L$${READLINE_LIBDIR}" MAKEFLAGS=
 	@touch $@
 
 $($(python)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python)-builddeps),$(modulefilesdir)/$$(dep)) $($(python)-prefix)/.pkgbuild
