@@ -86,8 +86,8 @@ $($(freetype)-modulefile): $(modulefilesdir)/.markerfile $($(freetype)-prefix)/.
 	echo "setenv FREETYPE_INCLUDEDIR $($(freetype)-prefix)/include" >>$@
 	echo "setenv FREETYPE_LIBDIR $($(freetype)-prefix)/lib" >>$@
 	echo "setenv FREETYPE_LIBRARYDIR $($(freetype)-prefix)/lib" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(freetype)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(freetype)-prefix)/include" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(freetype)-prefix)/include/freetype2" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(freetype)-prefix)/include/freetype2" >>$@
 	echo "prepend-path LIBRARY_PATH $($(freetype)-prefix)/lib" >>$@
 	echo "prepend-path LD_LIBRARY_PATH $($(freetype)-prefix)/lib" >>$@
 	echo "prepend-path PKG_CONFIG_PATH $($(freetype)-prefix)/lib/pkgconfig" >>$@
