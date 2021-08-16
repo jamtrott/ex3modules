@@ -23,8 +23,8 @@ poppler = poppler-$(poppler-version)
 $(poppler)-description = PDF rendering library
 $(poppler)-url = https://poppler.freedesktop.org/
 $(poppler)-srcurl = https://poppler.freedesktop.org/poppler-$(poppler-version).tar.xz
-$(poppler)-builddeps = $(cmake) $(python) $(fontconfig) $(cairo) $(libjpeg-turbo) $(libpng) $(openjpeg) $(boost) $(curl) $(libtiff)
-$(poppler)-prereqs = $(fontconfig) $(cairo) $(libjpeg-turbo) $(libpng) $(openjpeg) $(boost) $(curl) $(libtiff)
+$(poppler)-builddeps = $(cmake) $(python) $(fontconfig) $(cairo) $(libjpeg-turbo) $(libpng) $(openjpeg) $(boost) $(curl) $(libtiff) $(nss) $(lcms2)
+$(poppler)-prereqs = $(fontconfig) $(cairo) $(libjpeg-turbo) $(libpng) $(openjpeg) $(boost) $(curl) $(libtiff) $(nss) $(lcms2)
 $(poppler)-src = $(pkgsrcdir)/$(notdir $($(poppler)-srcurl))
 $(poppler)-srcdir = $(pkgsrcdir)/$(poppler)
 $(poppler)-builddir = $($(poppler)-srcdir)/build
@@ -63,7 +63,10 @@ $($(poppler)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 			-DENABLE_UNSTABLE_API_ABI_HEADERS=ON \
 			-DTIFF_INCLUDE_DIR="$${LIBTIFF_INCDIR}" -DTIFF_LIBRARY="$${LIBTIFF_LIBDIR}/libtiff.so" \
 			-DFontconfig_INCLUDE_DIR="$${FONTCONFIG_INCDIR}" -DFontconfig_LIBRARY="$${FONTCONFIG_LIBDIR}/libfontconfig.so" \
-			-DFREETYPE_INCLUDE_DIR="$${FREETYPE_INCDIR}" -DFREETYPE_LIBRARY="$${FREETYPE_LIBDIR}/libfreetype.so" && \
+			-DFREETYPE_INCLUDE_DIRS="$${FREETYPE_INCDIR}" -DFREETYPE_LIBRARY="$${FREETYPE_LIBDIR}/libfreetype.so" \
+			-DJPEG_INCLUDE_DIR="$${LIBJPEG_TURBO_INCDIR}" -DJPEG_LIBRARY="$${LIBJPEG_TURBO_LIBDIR}/libjpeg.so" \
+			-DPNG_PNG_INCLUDE_DIR="$${LIBPNG_INCDIR}" -DPNG_LIBRARY="$${LIBPNG_LIBDIR}/libpng.so" \
+			-DNSS3_CFLAGS="$$(pkg-config --cflags nss)" && \
 		$(MAKE)
 	@touch $@
 
