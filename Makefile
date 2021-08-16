@@ -264,6 +264,7 @@ pkgs := $(pkgs) \
 	netlib-blas-3.8.0 \
 	ninja-1.10.0 \
 	nspr-4.32 \
+	nss-3.69 \
 	numactl-2.0.13 \
 	ocaml-4.08.1 \
 	openblas-0.3.12 \
