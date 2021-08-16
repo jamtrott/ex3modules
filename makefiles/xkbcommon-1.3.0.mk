@@ -59,7 +59,9 @@ $($(xkbcommon)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$
 		$(MODULE) load $($(xkbcommon)-builddeps) && \
 		meson --prefix=$($(xkbcommon)-prefix) \
 			--libdir=$($(xkbcommon)-prefix)/lib \
-			-Denable-docs=false .. && \
+			-Denable-docs=false \
+			-Denable-wayland=false \
+			.. && \
 		ninja
 	@touch $@
 
