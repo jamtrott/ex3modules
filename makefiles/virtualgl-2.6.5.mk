@@ -58,8 +58,12 @@ $($(virtualgl)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(virtualgl)-builddeps) && \
 		cmake -DCMAKE_INSTALL_PREFIX=$($(virtualgl)-prefix) \
+		-DVGL_FAKEOPENCL=0 \
 		-DVGL_USESSL=1 \
-		-DTJPEG_INCLUDE_DIR=$${LIBJPEG_TURBO_INCDIR} \
+		-DVGL_USEXV=1 \
+		-DTJPEG_INCLUDE_DIR="$${LIBJPEG_TURBO_INCDIR}" \
+		-DX11_Xtst_INCLUDE_PATH="$${LIBXTST_INCDIR}" \
+		-DX11_Xtst_LIB="$${LIBXTST_LIBDIR}/libXtst.so" \
 		.. && \
 		$(MAKE)
 	@touch $@
