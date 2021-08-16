@@ -263,6 +263,7 @@ pkgs := $(pkgs) \
 	ncurses-6.1 \
 	netlib-blas-3.8.0 \
 	ninja-1.10.0 \
+	nspr-4.32 \
 	numactl-2.0.13 \
 	ocaml-4.08.1 \
 	openblas-0.3.12 \
