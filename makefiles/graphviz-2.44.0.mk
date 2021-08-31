@@ -23,8 +23,8 @@ graphviz = graphviz-$(graphviz-version)
 $(graphviz)-description = Open source graph visualization software
 $(graphviz)-url = https://www.graphviz.org/
 $(graphviz)-srcurl = https://www2.graphviz.org/Packages/stable/portable_source/graphviz-$(graphviz-version).tar.gz
-$(graphviz)-builddeps = $(cairo) $(expat) $(freetype) $(libgd) $(fontconfig) $(glib) $(libpng) $(pango) $(perl) $(python)
-$(graphviz)-prereqs = $(cairo) $(expat) $(freetype) $(libgd) $(fontconfig) $(glib) $(libpng) $(pango) $(perl)
+$(graphviz)-builddeps = $(cairo) $(expat) $(freetype) $(libgd) $(fontconfig) $(glib) $(libpng) $(pango) $(python)
+$(graphviz)-prereqs = $(cairo) $(expat) $(freetype) $(libgd) $(fontconfig) $(glib) $(libpng) $(pango)
 $(graphviz)-src = $(pkgsrcdir)/$(notdir $($(graphviz)-srcurl))
 $(graphviz)-srcdir = $(pkgsrcdir)/$(graphviz)
 $(graphviz)-builddir = $($(graphviz)-srcdir)
@@ -57,7 +57,18 @@ $($(graphviz)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(graphviz)-builddeps) && \
-		./configure --prefix=$($(graphviz)-prefix) && \
+		./configure --prefix=$($(graphviz)-prefix) \
+			--disable-swig \
+			--disable-sharp \
+			--disable-guile \
+			--disable-java \
+			--disable-lua \
+			--disable-ocaml \
+			--disable-perl \
+			--disable-php \
+			--disable-ruby \
+			--disable-tcl \
+			&& \
 		$(MAKE)
 	@touch $@
 
