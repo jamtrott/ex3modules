@@ -25,7 +25,7 @@ $(python-execnet)-url = https://execnet.readthedocs.io/en/latest/
 $(python-execnet)-srcurl = https://files.pythonhosted.org/packages/5a/61/1b50e0891d9b934154637fdaac88c68a82fd8dc5648dfb04e65937fc6234/execnet-1.7.1.tar.gz
 $(python-execnet)-src = $(pkgsrcdir)/$(notdir $($(python-execnet)-srcurl))
 $(python-execnet)-srcdir = $(pkgsrcdir)/$(python-execnet)
-$(python-execnet)-builddeps = $(python) $(python-apipkg)
+$(python-execnet)-builddeps = $(python) $(python-apipkg) $(python-setuptools_scm)
 $(python-execnet)-prereqs = $(python) $(python-apipkg)
 $(python-execnet)-modulefile = $(modulefilesdir)/$(python-execnet)
 $(python-execnet)-prefix = $(pkgdir)/$(python-execnet)
@@ -60,10 +60,10 @@ $($(python-execnet)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 	@touch $@
 
 $($(python-execnet)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-execnet)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-execnet)-prefix)/.pkgbuild
-	# cd $($(python-execnet)-srcdir) && \
-	# 	$(MODULE) use $(modulefilesdir) && \
-	# 	$(MODULE) load $($(python-execnet)-builddeps) && \
-	# 	python3 setup.py test
+#	 cd $($(python-execnet)-srcdir) && \
+#	 	$(MODULE) use $(modulefilesdir) && \
+#	 	$(MODULE) load $($(python-execnet)-builddeps) && \
+#	 	python3 setup.py test
 	@touch $@
 
 $($(python-execnet)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-execnet)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-execnet)-prefix)/.pkgcheck $($(python-execnet)-site-packages)/.markerfile
