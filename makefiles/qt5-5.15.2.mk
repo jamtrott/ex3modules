@@ -23,7 +23,7 @@ qt5 = qt5-$(qt5-version)
 $(qt5)-description = Cross-platform framework and graphical toolkit
 $(qt5)-url = https://www.qt.io/
 $(qt5)-srcurl = http://download.qt.io/official_releases/qt/5.15/$(qt5-version)/single/qt-everywhere-src-$(qt5-version).tar.xz
-$(qt5)-builddeps = $(libxrender) $(libxcb) $(xcb-util) $(xcb-util-renderutil) $(xcb-util-keysyms) $(xcb-util-image) $(xcb-util-wm) $(xcbproto) $(xkbcommon) $(libxkbfile) $(libxext) $(libx11) $(libsm) $(libice) $(libxi) $(glib) $(fontconfig) $(freetype) $(libjpeg-turbo) $(libpng) $(pcre) $(harfbuzz) $(mesa)
+$(qt5)-builddeps = $(gcc-10.1.0) $(libxrender) $(libxcb) $(xcb-util) $(xcb-util-renderutil) $(xcb-util-keysyms) $(xcb-util-image) $(xcb-util-wm) $(xcbproto) $(xkbcommon) $(libxkbfile) $(libxext) $(libx11) $(libsm) $(libice) $(libxi) $(glib) $(fontconfig) $(freetype) $(libjpeg-turbo) $(libpng) $(pcre) $(harfbuzz) $(mesa)
 $(qt5)-prereqs = $(libxrender) $(libxcb) $(xcb-util) $(xcb-util-renderutil) $(xcb-util-keysyms) $(xcb-util-image) $(xcb-util-wm) $(xcbproto) $(xkbcommon) $(libxkbfile) $(libxext) $(libx11) $(libsm) $(libice) $(libxi) $(glib) $(fontconfig) $(freetype) $(libjpeg-turbo) $(libpng) $(pcre) $(harfbuzz) $(mesa)
 $(qt5)-src = $(pkgsrcdir)/$(notdir $($(qt5)-srcurl))
 $(qt5)-srcdir = $(pkgsrcdir)/$(qt5)
@@ -45,6 +45,12 @@ $($(qt5)-prefix)/.pkgunpack: $$($(qt5)-src) $($(qt5)-srcdir)/.markerfile $($(qt5
 	@touch $@
 
 $($(qt5)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(qt5)-builddeps),$(modulefilesdir)/$$(dep)) $($(qt5)-prefix)/.pkgunpack
+	cd $($(qt5)-srcdir) && \
+		$(MODULESINIT) && \
+		$(MODULE) use $(modulefilesdir) && \
+		$(MODULE) load $($(qt5)-builddeps) && \
+		sed -i "s,QMAKE_CC.*=.*,QMAKE_CC = $${CC}," qtbase/mkspecs/common/g++-base.conf && \
+		sed -i "s,QMAKE_CXX.*=.*,QMAKE_CXX = $${CXX}," qtbase/mkspecs/common/g++-base.conf
 	@touch $@
 
 ifneq ($($(qt5)-builddir),$($(qt5)-srcdir))
@@ -57,7 +63,10 @@ $($(qt5)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(qt
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(qt5)-builddeps) && \
-		./configure --prefix=$($(qt5)-prefix) \
+		./configure \
+			--prefix=$($(qt5)-prefix) \
+			-platform linux-g++ \
+			-verbose \
 			-opensource \
 			-confirm-license \
 			-system-zlib \
