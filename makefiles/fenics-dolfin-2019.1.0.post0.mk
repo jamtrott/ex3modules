@@ -157,11 +157,40 @@ $($(fenics-dolfin-2019)-srcdir)/0003-Add-missing-algorithm-include.patch: $($(fe
 	@echo '2.28.0' >>$@.tmp
 	@mv $@.tmp $@
 
-$($(fenics-dolfin-2019)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fenics-dolfin-2019)-builddeps),$(modulefilesdir)/$$(dep)) $($(fenics-dolfin-2019)-srcdir)/0001-io-Fix-include-of-boost-endian.hpp.patch $($(fenics-dolfin-2019)-srcdir)/0002-Require-C-17.patch $($(fenics-dolfin-2019)-prefix)/.pkgunpack $($(fenics-dolfin-2019)-srcdir)/0003-Add-missing-algorithm-include.patch
+$($(fenics-dolfin-2019)-srcdir)/0004-Look-for-metis-in-METIS_DIR.patch: $($(fenics-dolfin-2019)-prefix)/.pkgunpack
+	@printf "" >$@.tmp
+	@echo 'From 63d1947072406de28aefe249bef6cff5742223fb Mon Sep 17 00:00:00 2001' >>$@.tmp
+	@echo 'From: "James D. Trotter" <james@simula.no>' >>$@.tmp
+	@echo 'Date: Wed, 1 Sep 2021 11:44:02 +0200' >>$@.tmp
+	@echo 'Subject: [PATCH] Look for metis in METIS_DIR' >>$@.tmp
+	@echo '' >>$@.tmp
+	@echo '---' >>$@.tmp
+	@echo ' cmake/modules/FindParMETIS.cmake | 2 +-' >>$@.tmp
+	@echo ' 1 file changed, 1 insertion(+), 1 deletion(-)' >>$@.tmp
+	@echo '' >>$@.tmp
+	@echo 'diff --git a/cmake/modules/FindParMETIS.cmake b/cmake/modules/FindParMETIS.cmake' >>$@.tmp
+	@echo 'index c88e59a..489891f 100644' >>$@.tmp
+	@echo '--- a/cmake/modules/FindParMETIS.cmake' >>$@.tmp
+	@echo '+++ b/cmake/modules/FindParMETIS.cmake' >>$@.tmp
+	@echo '@@ -51,7 +51,7 @@ if (MPI_CXX_FOUND)' >>$@.tmp
+	@echo '   )' >>$@.tmp
+	@echo '' >>$@.tmp
+	@echo '   find_library(METIS_LIBRARY metis' >>$@.tmp
+	@echo '-    HINTS $${PARMETIS_DIR}/lib $$ENV{PARMETIS_DIR}/lib $${PETSC_LIBRARY_DIRS}' >>$@.tmp
+	@echo '+    HINTS $${METIS_DIR}/lib $$ENV{METIS_DIR}/lib $${PARMETIS_DIR}/lib $$ENV{PARMETIS_DIR}/lib $${PETSC_LIBRARY_DIRS}' >>$@.tmp
+	@echo '     NO_DEFAULT_PATH' >>$@.tmp
+	@echo '     DOC "Directory where the METIS library is located"' >>$@.tmp
+	@echo '   )' >>$@.tmp
+	@echo '--' >>$@.tmp
+	@echo '2.17.1' >>$@.tmp
+	@mv $@.tmp $@
+
+$($(fenics-dolfin-2019)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fenics-dolfin-2019)-builddeps),$(modulefilesdir)/$$(dep)) $($(fenics-dolfin-2019)-srcdir)/0001-io-Fix-include-of-boost-endian.hpp.patch $($(fenics-dolfin-2019)-srcdir)/0002-Require-C-17.patch $($(fenics-dolfin-2019)-prefix)/.pkgunpack $($(fenics-dolfin-2019)-srcdir)/0003-Add-missing-algorithm-include.patch $($(fenics-dolfin-2019)-srcdir)/0004-Look-for-metis-in-METIS_DIR.patch
 	cd $($(fenics-dolfin-2019)-srcdir) && \
 		patch -f -p1 <0001-io-Fix-include-of-boost-endian.hpp.patch && \
 		patch -f -p1 <0002-Require-C-17.patch && \
-		patch -f -p1 <0003-Add-missing-algorithm-include.patch
+		patch -f -p1 <0003-Add-missing-algorithm-include.patch && \
+		patch -f -p1 <0004-Look-for-metis-in-METIS_DIR.patch
 	@touch $@
 
 $($(fenics-dolfin-2019)-builddir)/.markerfile: $($(fenics-dolfin-2019)-prefix)/.pkgunpack
@@ -181,9 +210,11 @@ $($(fenics-dolfin-2019)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(fore
 			-DBUILD_SHARED_LIBS=TRUE \
 			-DCMAKE_RULE_MESSAGES:BOOL=OFF \
 			-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
+			-DDOLFIN_SKIP_BUILD_TESTS=YES \
 			-DEIGEN3_INCLUDE_DIR="$${EIGEN_INCDIR}" \
 			-DDOLFIN_ENABLE_PARMETIS=YES \
 			-DPARMETIS_DIR="$${PARMETIS_ROOT}" \
+			-DMETIS_DIR="$${METIS_ROOT}" \
 			-DDOLFIN_ENABLE_PETSC=YES \
 			-DPETSC_DIR="$${PETSC_DIR}" \
 			-DDOLFIN_ENABLE_SLEPC=NO \
