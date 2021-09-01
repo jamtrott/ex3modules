@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-pyadjoint-2019.1.0
+# python-pyadjoint-2019.1.1
 
-python-pyadjoint-version = 2019.1.0
+python-pyadjoint-version = 2019.1.1
 python-pyadjoint = python-pyadjoint-$(python-pyadjoint-version)
 $(python-pyadjoint)-description = Algorithmic differentiation framework for FEniCS and Firedrake
 $(python-pyadjoint)-url = http://www.dolfin-adjoint.org/

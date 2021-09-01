@@ -364,7 +364,7 @@ pkgs := $(pkgs) \
 	python-ply-3.11 \
 	python-psutil-5.7.0 \
 	python-py-1.9.0 \
-	python-pyadjoint-2019.1.0 \
+	python-pyadjoint-2019.1.1 \
 	python-pycodestyle-2.6.0 \
 	python-pycparser-2.20 \
 	python-pydocstyle-5.0.2 \
