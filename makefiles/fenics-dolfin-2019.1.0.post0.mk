@@ -23,8 +23,8 @@ fenics-dolfin-2019 = fenics-dolfin-$(fenics-dolfin-2019-version)
 $(fenics-dolfin-2019)-description = C++ interface to the FEniCS computing platform for solving partial differential equations
 $(fenics-dolfin-2019)-url = https://fenicsproject.org/
 $(fenics-dolfin-2019)-srcurl = $($(fenics-dolfin-2019-src)-srcurl)
-$(fenics-dolfin-2019)-builddeps = $(cmake) $(boost) $(mpi) $(hdf5-parallel) $(parmetis) $(scotch) $(blas) $(suitesparse) $(metis) $(eigen) $(petsc) $(python) $(python-fenics-dijitso-2019) $(python-fenics-fiat-2019) $(python-fenics-ufl-2019) $(python-fenics-ffc-2019) $(python-pytest)
-$(fenics-dolfin-2019)-prereqs = $(libstdcxx) $(boost) $(mpi) $(hdf5-parallel) $(parmetis) $(scotch) $(blas) $(suitesparse) $(metis) $(eigen) $(petsc) $(python) $(python-fenics-dijitso-2019) $(python-fenics-fiat-2019) $(python-fenics-ufl-2019) $(python-fenics-ffc-2019)
+$(fenics-dolfin-2019)-builddeps = $(cmake) $(boost) $(mpi) $(hdf5-parallel) $(parmetis) $(scotch) $(blas) $(libgfortran) $(suitesparse) $(metis) $(eigen) $(petsc) $(python) $(python-fenics-dijitso-2019) $(python-fenics-fiat-2019) $(python-fenics-ufl-2019) $(python-fenics-ffc-2019) $(python-pytest)
+$(fenics-dolfin-2019)-prereqs = $(libstdcxx) $(boost) $(mpi) $(hdf5-parallel) $(parmetis) $(scotch) $(blas) $(libgfortran) $(suitesparse) $(metis) $(eigen) $(petsc) $(python) $(python-fenics-dijitso-2019) $(python-fenics-fiat-2019) $(python-fenics-ufl-2019) $(python-fenics-ffc-2019)
 $(fenics-dolfin-2019)-src = $($(fenics-dolfin-2019-src)-src)
 $(fenics-dolfin-2019)-srcdir = $(pkgsrcdir)/$(fenics-dolfin-2019)
 $(fenics-dolfin-2019)-builddir = $($(fenics-dolfin-2019)-srcdir)/build
@@ -99,7 +99,7 @@ $($(fenics-dolfin-2019)-srcdir)/0002-Require-C-17.patch: $($(fenics-dolfin-2019)
 	@echo 'index fe4757422..85680ed22 100644' >>$@.tmp
 	@echo '--- a/CMakeLists.txt' >>$@.tmp
 	@echo '+++ b/CMakeLists.txt' >>$@.tmp
-	@echo '@@ -19,8 +19,8 @@\n'
+	@echo '@@ -19,8 +19,8 @@\n' >>$@.tmp
 	@echo ' #------------------------------------------------------------------------------' >>$@.tmp
 	@echo ' # Require and use C++11' >>$@.tmp
 	@echo ' ' >>$@.tmp
@@ -185,12 +185,61 @@ $($(fenics-dolfin-2019)-srcdir)/0004-Look-for-metis-in-METIS_DIR.patch: $($(feni
 	@echo '2.17.1' >>$@.tmp
 	@mv $@.tmp $@
 
-$($(fenics-dolfin-2019)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fenics-dolfin-2019)-builddeps),$(modulefilesdir)/$$(dep)) $($(fenics-dolfin-2019)-srcdir)/0001-io-Fix-include-of-boost-endian.hpp.patch $($(fenics-dolfin-2019)-srcdir)/0002-Require-C-17.patch $($(fenics-dolfin-2019)-prefix)/.pkgunpack $($(fenics-dolfin-2019)-srcdir)/0003-Add-missing-algorithm-include.patch $($(fenics-dolfin-2019)-srcdir)/0004-Look-for-metis-in-METIS_DIR.patch
+
+$($(fenics-dolfin-2019)-srcdir)/0005-Allow-overriding-Fortran-compiler.patch: $($(fenics-dolfin-2019)-prefix)/.pkgunpack
+	@printf "" >$@.tmp
+	@echo 'From 83781875acd6478be6f06d629c30df1b84349b56 Mon Sep 17 00:00:00 2001' >>$@.tmp
+	@echo 'From: "James D. Trotter" <james@simula.no>' >>$@.tmp
+	@echo 'Date: Mon, 13 Sep 2021 19:43:48 +0200' >>$@.tmp
+	@echo 'Subject: [PATCH] Allow overriding Fortran compiler' >>$@.tmp
+	@echo '' >>$@.tmp
+	@echo '---' >>$@.tmp
+	@echo ' cmake/modules/FindCHOLMOD.cmake | 4 +++-' >>$@.tmp
+	@echo ' cmake/modules/FindUMFPACK.cmake | 4 +++-' >>$@.tmp
+	@echo ' 2 files changed, 6 insertions(+), 2 deletions(-)' >>$@.tmp
+	@echo '' >>$@.tmp
+	@echo 'diff --git a/cmake/modules/FindCHOLMOD.cmake b/cmake/modules/FindCHOLMOD.cmake' >>$@.tmp
+	@echo 'index 011c343..60d3f55 100644' >>$@.tmp
+	@echo '--- a/cmake/modules/FindCHOLMOD.cmake' >>$@.tmp
+	@echo '+++ b/cmake/modules/FindCHOLMOD.cmake' >>$@.tmp
+	@echo '@@ -130,7 +130,9 @@ if (BLAS_FOUND)' >>$@.tmp
+	@echo '   set(CHOLMOD_LIBRARIES $${CHOLMOD_LIBRARIES} $${BLAS_LIBRARIES})' >>$@.tmp
+	@echo ' endif()' >>$@.tmp
+	@echo '' >>$@.tmp
+	@echo '-find_program(GFORTRAN_EXECUTABLE gfortran)' >>$@.tmp
+	@echo '+if (NOT GFORTRAN_EXECUTABLE)' >>$@.tmp
+	@echo '+  find_program(GFORTRAN_EXECUTABLE gfortran)' >>$@.tmp
+	@echo '+endif()' >>$@.tmp
+	@echo ' if (GFORTRAN_EXECUTABLE)' >>$@.tmp
+	@echo '   execute_process(COMMAND $${GFORTRAN_EXECUTABLE} -print-file-name=libgfortran.so' >>$@.tmp
+	@echo '   OUTPUT_VARIABLE GFORTRAN_LIBRARY' >>$@.tmp
+	@echo 'diff --git a/cmake/modules/FindUMFPACK.cmake b/cmake/modules/FindUMFPACK.cmake' >>$@.tmp
+	@echo 'index 33a3800..bafa910 100644' >>$@.tmp
+	@echo '--- a/cmake/modules/FindUMFPACK.cmake' >>$@.tmp
+	@echo '+++ b/cmake/modules/FindUMFPACK.cmake' >>$@.tmp
+	@echo '@@ -58,7 +58,9 @@ if (SUITESPARSECONFIG_LIBRARY)' >>$@.tmp
+	@echo '   set(UMFPACK_LIBRARIES $${UMFPACK_LIBRARIES} $${SUITESPARSECONFIG_LIBRARY})' >>$@.tmp
+	@echo ' endif()' >>$@.tmp
+	@echo '' >>$@.tmp
+	@echo '-find_program(GFORTRAN_EXECUTABLE gfortran)' >>$@.tmp
+	@echo '+if (NOT GFORTRAN_EXECUTABLE)' >>$@.tmp
+	@echo '+  find_program(GFORTRAN_EXECUTABLE gfortran)' >>$@.tmp
+	@echo '+endif()' >>$@.tmp
+	@echo ' if (GFORTRAN_EXECUTABLE)' >>$@.tmp
+	@echo '   execute_process(COMMAND $${GFORTRAN_EXECUTABLE} -print-file-name=libgfortran.so' >>$@.tmp
+	@echo '   OUTPUT_VARIABLE GFORTRAN_LIBRARY' >>$@.tmp
+	@echo '--' >>$@.tmp
+	@echo '2.17.1' >>$@.tmp
+	@echo '' >>$@.tmp
+	@mv $@.tmp $@
+
+$($(fenics-dolfin-2019)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fenics-dolfin-2019)-builddeps),$(modulefilesdir)/$$(dep)) $($(fenics-dolfin-2019)-srcdir)/0001-io-Fix-include-of-boost-endian.hpp.patch $($(fenics-dolfin-2019)-srcdir)/0002-Require-C-17.patch $($(fenics-dolfin-2019)-prefix)/.pkgunpack $($(fenics-dolfin-2019)-srcdir)/0003-Add-missing-algorithm-include.patch $($(fenics-dolfin-2019)-srcdir)/0004-Look-for-metis-in-METIS_DIR.patch $($(fenics-dolfin-2019)-srcdir)/0005-Allow-overriding-Fortran-compiler.patch
 	cd $($(fenics-dolfin-2019)-srcdir) && \
 		patch -f -p1 <0001-io-Fix-include-of-boost-endian.hpp.patch && \
 		patch -f -p1 <0002-Require-C-17.patch && \
 		patch -f -p1 <0003-Add-missing-algorithm-include.patch && \
-		patch -f -p1 <0004-Look-for-metis-in-METIS_DIR.patch
+		patch -f -p1 <0004-Look-for-metis-in-METIS_DIR.patch && \
+		patch -f -p1 <0005-Allow-overriding-Fortran-compiler.patch
 	@touch $@
 
 $($(fenics-dolfin-2019)-builddir)/.markerfile: $($(fenics-dolfin-2019)-prefix)/.pkgunpack
@@ -211,6 +260,9 @@ $($(fenics-dolfin-2019)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(fore
 			-DCMAKE_RULE_MESSAGES:BOOL=OFF \
 			-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
 			-DDOLFIN_SKIP_BUILD_TESTS=YES \
+			-DBLAS_LIBRARIES="-L$${BLASDIR} -l$${BLASLIB}" \
+			-DLAPACK_LIBRARIES="-L$${LAPACKDIR} -l$${LAPACKLIB}" \
+			-DGFORTRAN_EXECUTABLE="$${FC}" \
 			-DEIGEN3_INCLUDE_DIR="$${EIGEN_INCDIR}" \
 			-DDOLFIN_ENABLE_PARMETIS=YES \
 			-DPARMETIS_DIR="$${PARMETIS_ROOT}" \
@@ -224,6 +276,7 @@ $($(fenics-dolfin-2019)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(fore
 			-DDOLFIN_ENABLE_CHOLMOD=YES \
 			-DCHOLMOD_DIR="$${SUITESPARSE_ROOT}" \
 			-DDOLFIN_ENABLE_UMFPACK=YES \
+			-DAMD_DIR="$${SUITESPARSE_ROOT}" \
 			-DUMFPACK_DIR="$${SUITESPARSE_ROOT}" \
 			-DDOLFIN_ENABLE_TRILINOS=NO \
 			-DDOLFIN_ENABLE_SUNDIALS=NO \
