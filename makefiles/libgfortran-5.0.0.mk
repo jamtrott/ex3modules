@@ -72,10 +72,8 @@ $($(libgfortran)-modulefile): $(modulefilesdir)/.markerfile $($(libgfortran)-pre
 	echo "" >>$@
 	echo "" >>$@
 	echo "setenv LIBGFORTRAN_ROOT $($(gcc)-prefix)" >>$@
-	echo "setenv LIBGFORTRAN_INCDIR $($(gcc)-prefix)/include" >>$@
-	echo "setenv LIBGFORTRAN_INCLUDEDIR $($(gcc)-prefix)/include" >>$@
-	echo "setenv LIBGFORTRAN_LIBDIR $($(gcc)-prefix)/lib" >>$@
-	echo "setenv LIBGFORTRAN_LIBRARYDIR $($(gcc)-prefix)/lib" >>$@
+	echo "setenv LIBGFORTRAN_LIBDIR $($(gcc)-prefix)/lib64" >>$@
+	echo "setenv LIBGFORTRAN_LIBRARYDIR $($(gcc)-prefix)/lib64" >>$@
 	echo "prepend-path LIBRARY_PATH $($(gcc)-prefix)/lib64" >>$@
 	echo "prepend-path LD_LIBRARY_PATH $($(gcc)-prefix)/lib64" >>$@
 	echo "set MSG \"$(libgfortran)\"" >>$@
