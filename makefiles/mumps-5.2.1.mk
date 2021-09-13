@@ -25,8 +25,8 @@ $(mumps)-url = http://mumps.enseeiht.fr/
 $(mumps)-srcurl = http://mumps.enseeiht.fr/MUMPS_$(mumps-version).tar.gz
 $(mumps)-src = $(pkgsrcdir)/$(notdir $($(mumps)-srcurl))
 $(mumps)-srcdir = $(pkgsrcdir)/$(mumps)
-$(mumps)-builddeps = $(blas) $(mpi) $(metis) $(parmetis) $(scotch) $(scalapack)
-$(mumps)-prereqs = $(blas) $(mpi) $(metis) $(parmetis) $(scotch) $(scalapack)
+$(mumps)-builddeps = $(blas) $(mpi) $(metis) $(parmetis) $(scotch) $(scalapack) $(libgfortran) $(patchelf)
+$(mumps)-prereqs = $(blas) $(mpi) $(metis) $(parmetis) $(scotch) $(scalapack) $(libgfortran)
 $(mumps)-modulefile = $(modulefilesdir)/$(mumps)
 $(mumps)-prefix = $(pkgdir)/$(mumps)
 
@@ -82,26 +82,26 @@ $($(mumps)-srcdir)/Makefile.inc: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 	echo 'FL = $${MPIFORT}' >>$@ && \
 	echo 'AR = $$(CC) -shared -o ' >>$@ && \
 	echo 'RANLIB = echo' >>$@ && \
-	echo 'LAPACK = -l$${BLASLIB}' >>$@ && \
+	echo 'LAPACK = -L$${BLASDIR} -l$${BLASLIB}' >>$@ && \
 	echo 'SCALAP  = -lscalapack' >>$@ && \
 	echo '' >>$@ && \
 	echo 'INCPAR = # not needed with mpif90/mpicc:  -I/usr/include/openmpi' >>$@ && \
 	echo '' >>$@ && \
-	echo 'LIBPAR = $$(SCALAP) $$(LAPACK) # not needed with mpif90/mpicc: -lmpi_mpifh -lmpi' >>$@ && \
+	echo 'LIBPAR = $$(SCALAP) $$(LAPACK) -L$${LIBGFORTRAN_LIBDIR} -lgfortran -lmpi_mpifh -lmpi # not needed with mpif90/mpicc: -lmpi_mpifh -lmpi' >>$@ && \
 	echo '' >>$@ && \
 	echo 'INCSEQ = -I$$(topdir)/libseq' >>$@ && \
-	echo 'LIBSEQ  = $$(LAPACK) -L$$(topdir)/libseq -lmpiseq' >>$@ && \
+	echo 'LIBSEQ  = $$(LAPACK) -L$$(topdir)/libseq -lmpiseq -L$${LIBGFORTRAN_LIBDIR} -lgfortran' >>$@ && \
 	echo '' >>$@ && \
-	echo 'LIBBLAS = -l$${BLASLIB}' >>$@ && \
+	echo 'LIBBLAS = -L$${BLASDIR} -l$${BLASLIB}' >>$@ && \
 	echo 'LIBOTHERS = -lpthread' >>$@ && \
 	echo '' >>$@ && \
 	echo '#Preprocessor defs for calling Fortran from C (-DAdd_ or -DAdd__ or -DUPPER)' >>$@ && \
 	echo 'CDEFS   = -DAdd_' >>$@ && \
 	echo '' >>$@ && \
 	echo '#Begin Optimized options' >>$@ && \
-	echo 'OPTF    = -fPIC -O3 -fopenmp' >>$@ && \
-	echo 'OPTL    = -fPIC -O3 -fopenmp' >>$@ && \
-	echo 'OPTC    = -fPIC -O3 -fopenmp' >>$@ && \
+	echo 'OPTF    = -fPIC -O3' >>$@ && \
+	echo 'OPTL    = -fPIC -O3' >>$@ && \
+	echo 'OPTC    = -fPIC -O3' >>$@ && \
 	echo '#End Optimized options' >>$@ && \
 	echo '' >>$@ && \
 	echo 'INCS = $$(INCPAR)' >>$@ && \
@@ -113,17 +113,32 @@ $($(mumps)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(mumps)-builddeps) && \
-		$(MAKE) MAKEFLAGS= alllib --jobs=1 # Parallel builds not supported
+		$(MAKE) MAKEFLAGS='' alllib --jobs=1 # Parallel builds not supported
 	@touch $@
 
 $($(mumps)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mumps)-builddeps),$(modulefilesdir)/$$(dep)) $($(mumps)-prefix)/.pkgbuild
 	@touch $@
 
 $($(mumps)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mumps)-builddeps),$(modulefilesdir)/$$(dep)) $($(mumps)-prefix)/.pkgcheck
-	$(INSTALL) -d $($(mumps)-prefix)/include $($(mumps)-prefix)/lib $($(mumps)-prefix)/share/doc
-	$(INSTALL) -m644 -t $($(mumps)-prefix)/include $($(mumps)-srcdir)/include/*
-	$(INSTALL) -m755 -t $($(mumps)-prefix)/lib $($(mumps)-srcdir)/lib/*
-	$(INSTALL) -m644 -t  $($(mumps)-prefix)/share/doc $($(mumps)-srcdir)/doc/*
+	cd $($(mumps)-srcdir) && \
+		$(MODULESINIT) && \
+		$(MODULE) use $(modulefilesdir) && \
+		$(MODULE) load $($(mumps)-builddeps) && \
+		$(INSTALL) -d $($(mumps)-prefix)/include $($(mumps)-prefix)/lib $($(mumps)-prefix)/share/doc && \
+		$(INSTALL) -m644 -t $($(mumps)-prefix)/include $($(mumps)-srcdir)/include/* && \
+		$(INSTALL) -m755 -t $($(mumps)-prefix)/lib $($(mumps)-srcdir)/lib/* && \
+		$(INSTALL) -m644 -t  $($(mumps)-prefix)/share/doc $($(mumps)-srcdir)/doc/* && \
+		patchelf --add-needed libgfortran.so $($(mumps)-prefix)/lib/lib*.so && \
+		patchelf --add-needed libmpi_mpifh.so $($(mumps)-prefix)/lib/lib*.so && \
+		patchelf --add-needed libmpi.so $($(mumps)-prefix)/lib/lib*.so && \
+		patchelf --add-needed lib$${BLASLIB}.so $($(mumps)-prefix)/lib/lib*.so && \
+		patchelf --add-needed libscalapack.so $($(mumps)-prefix)/lib/lib*.so && \
+		patchelf --add-needed libmetis.so $($(mumps)-prefix)/lib/lib*.so && \
+		patchelf --add-needed libparmetis.so $($(mumps)-prefix)/lib/lib*.so && \
+		patchelf --add-needed libscotch.so $($(mumps)-prefix)/lib/lib*.so && \
+		patchelf --add-needed libptscotch.so $($(mumps)-prefix)/lib/lib*.so && \
+		patchelf --add-needed libesmumps.so $($(mumps)-prefix)/lib/lib*.so && \
+		patchelf --add-needed libptesmumps.so $($(mumps)-prefix)/lib/lib*.so
 	@touch $@
 
 $($(mumps)-modulefile): $(modulefilesdir)/.markerfile $($(mumps)-prefix)/.pkginstall
