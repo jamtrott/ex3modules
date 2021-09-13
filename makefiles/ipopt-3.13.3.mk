@@ -58,7 +58,9 @@ $($(ipopt)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(ipopt)-builddeps) && \
 		./configure --prefix=$($(ipopt)-prefix) \
-		--with-lapack="-L$${LAPACKDIR} -l$${LAPACKLIB} -L$${BLASDIR} -l$${BLASLIB}" && \
+		--with-lapack="-L$${LAPACKDIR} -l$${LAPACKLIB} -L$${BLASDIR} -l$${BLASLIB}" \
+		--with-mumps-cflags="-I$${MUMPS_INCDIR}" \
+		--with-mumps-lflags="-L$${MUMPS_LIBDIR} -lcmumps -ldmumps -lmumps_common -lpord -lsmumps -lzmumps -lmpi_cxx -lmpi_usempif08 -lmpi_usempi_ignore_tkr -lmpi_mpifh -lmpi -L$${LAPACKDIR} -l$${LAPACKLIB} -L$${BLASDIR} -l$${BLASLIB}" && \
 		$(MAKE)
 	@touch $@
 
