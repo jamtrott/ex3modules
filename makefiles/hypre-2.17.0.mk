@@ -55,6 +55,10 @@ $($(hypre)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 			--enable-shared \
 			--with-blas-lib-dirs="$${BLASDIR}" --with-blas-libs="$${BLASLIB}" \
 			--with-lapack-lib-dirs="$${BLASDIR}" --with-lapack-libs="$${BLASLIB}" \
+			--with-MPI-include="$${OPENMPI_INCDIR}" \
+			--with-MPI-lib-dirs="$${OPENMPI_LIBDIR}" \
+			--with-MPI-libs="$$(pkg-config --libs-only-l ompi)" \
+			--with-MPI-flags="$$(pkg-config --cflags-only-other --libs-only-other ompi)" \
 			CFLAGS="-O3" && \
 		$(MAKE)
 	@touch $@
