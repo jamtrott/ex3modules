@@ -342,6 +342,7 @@ pkgs := $(pkgs) \
 	python-ipython-7.14.0 \
 	python-jinja2-2.11.2 \
 	python-kiwisolver-1.2.0 \
+	python-ldrb-2021.0.0 \
 	python-llvmlite-0.35.0 \
 	python-mako-1.1.4 \
 	python-markupsafe-1.1.1 \
@@ -378,6 +379,7 @@ pkgs := $(pkgs) \
 	python-pytest-forked-1.1.3 \
 	python-pytest-xdist-1.32.0 \
 	python-pytz-2020.1 \
+	python-numpy-quaternion-2021.11.4.15.26.3 \
 	python-requests-2.23.0 \
 	python-scipy-1.5.4 \
 	python-setuptools-47.1.1 \

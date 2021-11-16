@@ -26,7 +26,7 @@ $(python-fenics-mshr-2019)-srcurl = $($(fenics-mshr-2019-src)-srcurl)
 $(python-fenics-mshr-2019)-src = $($(fenics-mshr-2019-src)-src)
 $(python-fenics-mshr-2019)-srcdir = $(pkgsrcdir)/$(python-fenics-mshr-2019)
 $(python-fenics-mshr-2019)-builddir = $(pkgsrcdir)/$(python-fenics-mshr-2019)/python
-$(python-fenics-mshr-2019)-builddeps = $(cmake) $(boost) $(gmp) $(mpfr) $(eigen) $(python) $(python-fenics-dolfin-2019) $(fenics-mshr-2019) $(cgal-4.12)
+$(python-fenics-mshr-2019)-builddeps = $(cmake) $(boost) $(gmp) $(mpfr) $(eigen) $(python) $(python-fenics-dolfin-2019) $(fenics-mshr-2019) $(cgal-4.12) $(patchelf)
 $(python-fenics-mshr-2019)-prereqs = $(boost) $(gmp) $(mpfr) $(eigen) $(python) $(python-fenics-dolfin-2019) $(fenics-mshr-2019) $(cgal-4.12)
 $(python-fenics-mshr-2019)-modulefile = $(modulefilesdir)/$(python-fenics-mshr-2019)
 $(python-fenics-mshr-2019)-prefix = $(pkgdir)/$(python-fenics-mshr-2019)
@@ -70,7 +70,8 @@ $($(python-fenics-mshr-2019)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-fenics-mshr-2019)-builddeps) && \
 		PYTHONPATH=$($(python-fenics-mshr-2019)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-fenics-mshr-2019)-prefix)
+		python3 setup.py install --prefix=$($(python-fenics-mshr-2019)-prefix) && \
+		patchelf  $($(python-fenics-mshr-2019)-prefix)/lib/libmshr.so --add-needed $${CGAL_LIBDIR}/libCGAL.so
 	@touch $@
 
 $($(python-fenics-mshr-2019)-modulefile): $(modulefilesdir)/.markerfile $($(python-fenics-mshr-2019)-prefix)/.pkginstall

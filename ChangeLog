@@ -1,3 +1,10 @@
+2021-11-16 James D. Trotter <james@simula.no>
+
+	Add ldrb 2021.0.0 and numpy-quaternion.
+
+	Also, ensure that h5py uses the correct HDF5 library, and that
+	mshr links to CGAL.
+
 2021-07-29 James D. Trotter <james@simula.no>
 
 	Add paraview 5.9.1, qt5 5.15.2, mesa 21.1.5, libdrrm 2.4.107 and
