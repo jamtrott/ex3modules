@@ -91,11 +91,15 @@ $($(cgal-4.12)-modulefile): $(modulefilesdir)/.markerfile $($(cgal-4.12)-prefix)
 	echo "" >>$@
 	echo "" >>$@
 	echo "setenv CGAL_ROOT $($(cgal-4.12)-prefix)" >>$@
+	echo "setenv CGAL_LIBDIR $($(cgal-4.12)-prefix)/lib" >>$@
+	echo "setenv CGAL_LIBRARYDIR $($(cgal-4.12)-prefix)/lib" >>$@
 	echo "setenv CGAL_INCDIR $($(cgal-4.12)-prefix)/include" >>$@
 	echo "setenv CGAL_INCLUDEDIR $($(cgal-4.12)-prefix)/include" >>$@
 	echo "prepend-path PATH $($(cgal-4.12)-prefix)/bin" >>$@
 	echo "prepend-path C_INCLUDE_PATH $($(cgal-4.12)-prefix)/include" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(cgal-4.12)-prefix)/include" >>$@
+	echo "prepend-path LIBRARY_PATH $($(cgal-4.12)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(cgal-4.12)-prefix)/lib" >>$@
 	echo "prepend-path MANPATH $($(cgal-4.12)-prefix)/share/man" >>$@
 	echo "prepend-path CMAKE_MODULE_PATH $($(cgal-4.12)-prefix)/lib/cmake/CGAL" >>$@
 	echo "set MSG \"$(cgal-4.12)\"" >>$@
