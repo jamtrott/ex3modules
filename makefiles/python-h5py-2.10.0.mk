@@ -56,7 +56,7 @@ $($(python-h5py)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-h5py)-builddeps) && \
-		python3 setup.py build
+		HDF5_DIR="$${HDF5_ROOT}" HDF5_MPI="ON" CC=mpicc python3 setup.py build
 	@touch $@
 
 $($(python-h5py)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-h5py)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-h5py)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-h5py)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-h5py)-builddeps) && \
-		PYTHONDONTWRITEBYTECODE=1 python3 setup.py test
+		HDF5_DIR="$${HDF5_ROOT}" HDF5_MPI="ON" CC=mpicc PYTHONDONTWRITEBYTECODE=1 python3 setup.py test
 	@touch $@
 
 $($(python-h5py)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-h5py)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-h5py)-prefix)/.pkgcheck $($(python-h5py)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-h5py)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-h5py)-builddeps) && \
 		PYTHONPATH=$($(python-h5py)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-h5py)-prefix)
+		HDF5_DIR="$${HDF5_ROOT}" HDF5_MPI="ON" CC=mpicc python3 setup.py install --prefix=$($(python-h5py)-prefix)
 	@touch $@
 
 $($(python-h5py)-modulefile): $(modulefilesdir)/.markerfile $($(python-h5py)-prefix)/.pkginstall
