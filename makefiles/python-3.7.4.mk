@@ -104,6 +104,8 @@ $($(python)-modulefile): $(modulefilesdir)/.markerfile $($(python)-prefix)/.pkgi
 	echo "setenv PYTHON_LIBRARYDIR $($(python)-prefix)/lib" >>$@
 	echo "setenv PYTHON_VERSION $(python-version)" >>$@
 	echo "setenv PYTHON_VERSION_SHORT $(python-version-short)" >>$@
+	echo "setenv PYTHON_VERSION_MAJOR $(python-version-major)" >>$@
+	echo "setenv PYTHON_VERSION_MINOR $(python-version-minor)" >>$@
 	echo "prepend-path PATH $($(python)-prefix)/bin" >>$@
 	echo "prepend-path C_INCLUDE_PATH $($(python)-prefix)/include/python$(python-version-major).$(python-version-minor)m" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(python)-prefix)/include/python$(python-version-major).$(python-version-minor)m" >>$@
