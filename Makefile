@@ -132,6 +132,7 @@ pkgs := $(pkgs) \
 	eigen-3.3.7 \
 	elfutils-0.177 \
 	expat-2.2.9 \
+	exprtk-93a9f44f9 \
 	fenics-dolfin-2018-src-2018.1.0.post1 \
 	fenics-dolfin-2018.1.0.post1 \
 	fenics-dolfin-2019-src-2019.1.0.post0 \
@@ -142,6 +143,7 @@ pkgs := $(pkgs) \
 	fenics-dolfinx-src-20200525 \
 	fftw-3.3.8 \
 	flex-2.6.4 \
+	fmt-8.0.1 \
 	fontconfig-2.13.91 \
 	freeipmi-1.6.6 \
 	freetype-2.10.1 \
@@ -181,6 +183,7 @@ pkgs := $(pkgs) \
 	icu-69.1 \
 	iperf-2.0.13 \
 	ipopt-3.13.3 \
+	itk-4.13.3 \
 	knem-1.1.4 \
 	lapack-3.9.0 \
 	lcms2-2.12 \
@@ -293,6 +296,7 @@ pkgs := $(pkgs) \
 	poppler-21.04.0 \
 	protobuf-cpp-3.17.0 \
 	protobuf-python-3.17.0 \
+	pugixml-1.11 \
 	pybind11-2.3.0 \
 	python-3.7.4 \
 	python-alabaster-0.7.12 \
@@ -419,9 +423,13 @@ pkgs := $(pkgs) \
 	texlive-20210325 \
 	ucx-1.9.0 \
 	ucx-src-1.9.0 \
+	utf8cpp-3.2.1 \
 	util-linux-2.34 \
 	valgrind-3.16.1 \
 	virtualgl-2.6.5 \
+	vmtk-1.4.0 \
+	vtk8-8.1.2 \
+	vtk9-9.1.0 \
 	xcb-proto-1.14 \
 	xcb-util-0.4.0 \
 	xcb-util-image-0.4.0 \
