@@ -25,7 +25,7 @@ $(ucx-src)-url = http://www.openucx.org/
 $(ucx-src)-srcurl = https://github.com/openucx/ucx/archive/v$(ucx-src-version).tar.gz
 $(ucx-src)-builddeps =
 $(ucx-src)-prereqs =
-$(ucx-src)-src = $(pkgsrcdir)/$(notdir $($(ucx-src)-srcurl))
+$(ucx-src)-src = $(pkgsrcdir)/ucx-$(notdir $($(ucx-src)-srcurl))
 
 $($(ucx-src)-src): $(dir $($(ucx-src)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(ucx-src)-srcurl)
