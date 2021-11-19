@@ -23,8 +23,8 @@ gmsh = gmsh-$(gmsh-version)
 $(gmsh)-description = A three-dimensional finite element mesh generator with built-in pre- and post-processing facilities
 $(gmsh)-url = http://gmsh.info/
 $(gmsh)-srcurl = http://gmsh.info/src/gmsh-$(gmsh-version)-source.tgz
-$(gmsh)-builddeps = $(gcc) $(cmake) $(eigen)
-$(gmsh)-prereqs = $(eigen)
+$(gmsh)-builddeps = $(gcc) $(cmake) $(eigen) $(python) $(opencascade)
+$(gmsh)-prereqs = $(eigen) $(python) $(opencascade)
 $(gmsh)-src = $(pkgsrcdir)/$(notdir $($(gmsh)-srcurl))
 $(gmsh)-srcdir = $(pkgsrcdir)/$(gmsh)
 $(gmsh)-builddir = $($(gmsh)-srcdir)/build
@@ -57,7 +57,12 @@ $($(gmsh)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(g
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(gmsh)-builddeps) && \
-		cmake .. -DCMAKE_INSTALL_PREFIX=$($(gmsh)-prefix) && \
+		cmake .. -DCMAKE_INSTALL_PREFIX=$($(gmsh)-prefix) \
+			-DCMAKE_INSTALL_LIBDIR=lib \
+			-DENABLE_BUILD_SHARED=ON \
+			-DENABLE_GRAPHICS=ON \
+			-DENABLE_OCC=ON \
+			-DCMAKE_PREFIX_PATH=$${OPENCASCADE_ROOT} && \
 		$(MAKE)
 	@touch $@
 
@@ -98,6 +103,7 @@ $($(gmsh)-modulefile): $(modulefilesdir)/.markerfile $($(gmsh)-prefix)/.pkginsta
 	echo "prepend-path LD_LIBRARY_PATH $($(gmsh)-prefix)/lib" >>$@
 	echo "prepend-path PKG_CONFIG_PATH $($(gmsh)-prefix)/lib/pkgconfig" >>$@
 	echo "prepend-path MANPATH $($(gmsh)-prefix)/share/man" >>$@
+	echo "prepend-path PYTHONPATH $($(gmsh)-prefix)/lib" >>$@
 	echo "set MSG \"$(gmsh)\"" >>$@
 
 $(gmsh)-src: $($(gmsh)-src)

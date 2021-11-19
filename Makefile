@@ -250,6 +250,7 @@ pkgs := $(pkgs) \
 	numactl-2.0.13 \
 	ocaml-4.08.1 \
 	openblas-0.3.12 \
+	opencascade-7.5.0 \
 	opencl-headers-2020.06.16 \
 	openjpeg-2.4.0 \
 	openmpi-4.0.5 \
