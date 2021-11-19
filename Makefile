@@ -398,6 +398,10 @@ pkgs := $(pkgs) \
 	xorg-libraries-2020-03-15 \
 	xorg-util-macros-1.19.2 \
 	xorgproto-2019.2 \
+	xsimd-8.0.3 \
+	xtensor-0.24.0 \
+	xtensor-blas-0.20.0 \
+	xtl-0.7.2 \
 	xtrans-1.4.0 \
 	xz-5.2.5
 
