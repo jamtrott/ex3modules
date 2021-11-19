@@ -126,6 +126,8 @@ pkgs := $(pkgs) \
 	eigen-3.3.7 \
 	elfutils-0.177 \
 	expat-2.2.9 \
+	fenics-basix-0.3.0 \
+	fenics-basix-src-0.3.0 \
 	fenics-dolfin-2018-src-2018.1.0.post1 \
 	fenics-dolfin-2018.1.0.post1 \
 	fenics-dolfin-2019-src-2019.1.0.post0 \
@@ -293,6 +295,7 @@ pkgs := $(pkgs) \
 	python-distlib-0.3.1 \
 	python-docutils-0.16 \
 	python-execnet-1.7.1 \
+	python-fenics-basix-0.3.0 \
 	python-fenics-dijitso-2018.1.0 \
 	python-fenics-dijitso-2019.1.0 \
 	python-fenics-dolfin-2018.1.0.post1 \
