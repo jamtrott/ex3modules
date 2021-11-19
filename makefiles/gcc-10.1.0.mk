@@ -56,10 +56,12 @@ $($(gcc-10.1.0)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(gcc-10.1.0)-builddeps) && \
 		./configure --prefix=$($(gcc-10.1.0)-prefix) \
-			--enable-languages=c,c++,fortran \
+			--program-suffix=$(gcc-10.1.0-program-suffix)  \
+			--enable-languages=c,c++,fortran,lto \
 			--enable-checking=release \
 			--disable-multilib \
-			--program-suffix=$(gcc-10.1.0-program-suffix) && \
+			--enable-lto=yes \
+			--enable-plugin && \
 		$(MAKE)
 	@touch $@
 
