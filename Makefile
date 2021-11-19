@@ -134,6 +134,8 @@ pkgs := $(pkgs) \
 	fenics-dolfin-2019.1.0.post0 \
 	fenics-dolfinx-20200525 \
 	fenics-dolfinx-src-20200525 \
+	fenics-dolfinx-0.3.0 \
+	fenics-dolfinx-src-0.3.0 \
 	fftw-3.3.8 \
 	flex-2.6.4 \
 	fontconfig-2.13.91 \
@@ -300,15 +302,19 @@ pkgs := $(pkgs) \
 	python-fenics-dijitso-2019.1.0 \
 	python-fenics-dolfin-2018.1.0.post1 \
 	python-fenics-dolfin-2019.1.0.post0 \
+	python-fenics-dolfinx-20200525 \
+	python-fenics-dolfinx-0.3.0 \
 	python-fenics-ffc-2018.1.0 \
 	python-fenics-ffc-2019.1.0 \
 	python-fenics-ffcx-20200522 \
+	python-fenics-ffcx-0.3.0 \
 	python-fenics-fiat-2018.1.0 \
 	python-fenics-fiat-2019.1.0 \
 	python-fenics-fiat-20200518 \
 	python-fenics-ufl-2018.1.0 \
 	python-fenics-ufl-2019.1.0 \
 	python-fenics-ufl-20200512 \
+	python-fenics-ufl-2021.1.0 \
 	python-filelock-3.0.12 \
 	python-flake8-3.8.2 \
 	python-flaky-3.7.0 \
