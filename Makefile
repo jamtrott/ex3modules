@@ -63,7 +63,7 @@ cuda-toolkit = cuda-toolkit-10.1.243
 gdrcopy = gdrcopy-2.2
 endif
 
-# GCC versions: 8.4.0, 9.2.0, 10.1.0
+# GCC versions: 8.4.0, 9.2.0, 10.1.0, 11.2.0
 gcc = gcc-8.4.0
 
 # MPI implementations: openmpi, openmpi-cuda, mpich and mvapich.
@@ -150,6 +150,7 @@ pkgs := $(pkgs) \
 	fribidi-1.0.10 \
 	gc-8.0.4 \
 	gcc-10.1.0 \
+	gcc-11.2.0 \
 	gcc-8.4.0 \
 	gcc-9.2.0 \
 	gcc-src-10.1.0 \
