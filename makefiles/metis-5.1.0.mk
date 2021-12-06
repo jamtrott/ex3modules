@@ -45,7 +45,6 @@ $($(metis)-prefix)/.pkgunpack: $($(metis)-src) $($(metis)-srcdir)/.markerfile $(
 	@touch $@
 
 $($(metis)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(metis)-builddeps),$(modulefilesdir)/$$(dep)) $($(metis)-prefix)/.pkgunpack
-	sed -i 's,#define IDXTYPEWIDTH 32,#define IDXTYPEWIDTH 64,' $($(parmetis)-srcdir)/metis/include/metis.h
 	@touch $@
 
 ifneq ($($(metis)-builddir),$($(metis)-srcdir))
