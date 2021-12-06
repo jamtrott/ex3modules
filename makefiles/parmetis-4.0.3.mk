@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2020 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,7 +45,6 @@ $($(parmetis)-prefix)/.pkgunpack: $($(parmetis)-src) $($(parmetis)-srcdir)/.mark
 	@touch $@
 
 $($(parmetis)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(parmetis)-builddeps),$(modulefilesdir)/$$(dep)) $($(parmetis)-prefix)/.pkgunpack
-	sed -i 's,#define IDXTYPEWIDTH 32,#define IDXTYPEWIDTH 64,' $($(parmetis)-srcdir)/metis/include/metis.h
 	@touch $@
 
 ifneq ($($(parmetis)-builddir),$($(parmetis)-srcdir))
