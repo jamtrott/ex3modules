@@ -123,6 +123,7 @@ pkgs := $(pkgs) \
 	cgal-4.12.2 \
 	cgal-5.2.2 \
 	clang-11.0.0 \
+	clang-13.0.0 \
 	cmake-3.17.2 \
 	combblas-1.6.2 \
 	cpupower-4.19.75 \
@@ -252,7 +253,9 @@ pkgs := $(pkgs) \
 	linux-src-4.19.75 \
 	llvm-10.0.1 \
 	llvm-11.0.0 \
+	llvm-13.0.0 \
 	llvm-openmp-11.0.0 \
+	llvm-openmp-13.0.0 \
 	matio-1.5.17 \
 	mesa-21.1.5 \
 	meson-0.53.2 \
