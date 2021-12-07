@@ -44,6 +44,7 @@ $($(suitesparse)-prefix)/.pkgunpack: $($(suitesparse)-src) $($(suitesparse)-srcd
 	@touch $@
 
 $($(suitesparse)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(suitesparse)-builddeps),$(modulefilesdir)/$$(dep)) $($(suitesparse)-prefix)/.pkgunpack
+	sed -i 's,CUDA = auto,CUDA = no,' $($(suitesparse)-srcdir)/SuiteSparse_config/SuiteSparse_config.mk
 	@touch $@
 
 $($(suitesparse)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(suitesparse)-builddeps),$(modulefilesdir)/$$(dep)) $($(suitesparse)-prefix)/.pkgpatch
