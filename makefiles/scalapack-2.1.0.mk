@@ -25,14 +25,11 @@ $(scalapack)-url = http://www.netlib.org/scalapack/
 $(scalapack)-srcurl = http://www.netlib.org/scalapack/scalapack-$(scalapack-version).tgz
 $(scalapack)-builddeps = $(gcc) $(libstdcxx) $(libgfortran) $(cmake) $(blas) $(mpi)
 $(scalapack)-prereqs = $(libgfortran) $(blas) $(mpi)
-$(scalapack)-src = $(pkgsrcdir)/$(notdir $($(scalapack)-srcurl))
+$(scalapack)-src = $($(scalapack-src)-src)
 $(scalapack)-srcdir = $(pkgsrcdir)/$(scalapack)
 $(scalapack)-builddir = $($(scalapack)-srcdir)/build
 $(scalapack)-modulefile = $(modulefilesdir)/$(scalapack)
 $(scalapack)-prefix = $(pkgdir)/$(scalapack)
-
-$($(scalapack)-src): $(dir $($(scalapack)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(scalapack)-srcurl)
 
 $($(scalapack)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@

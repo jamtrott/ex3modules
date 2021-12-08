@@ -23,15 +23,12 @@ scotch = scotch-$(scotch-version)
 $(scotch)-description = Static Mapping, Graph, Mesh and Hypergraph Partitioning, and Parallel and Sequential Sparse Matrix Ordering Package
 $(scotch)-url = https://www.labri.fr/perso/pelegrin/scotch/
 $(scotch)-srcurl = https://gforge.inria.fr/frs/download.php/file/38040/scotch_$(scotch-version).tar.gz
-$(scotch)-src = $(pkgsrcdir)/$(notdir $($(scotch)-srcurl))
+$(scotch)-src = $($(scotch-src)-src)
 $(scotch)-srcdir = $(pkgsrcdir)/$(scotch)
 $(scotch)-builddeps = $(mpi) $(patchelf)
 $(scotch)-prereqs = $(mpi)
 $(scotch)-modulefile = $(modulefilesdir)/$(scotch)
 $(scotch)-prefix = $(pkgdir)/$(scotch)
-
-$($(scotch)-src): $(dir $($(scotch)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(scotch)-srcurl)
 
 $($(scotch)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@)
@@ -40,7 +37,7 @@ $($(scotch)-srcdir)/.markerfile:
 $($(scotch)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(scotch)-prefix)/.pkgunpack: $($(scotch)-src) $($(scotch)-srcdir)/.markerfile $($(scotch)-prefix)/.markerfile
+$($(scotch)-prefix)/.pkgunpack: $$($(scotch)-src) $($(scotch)-srcdir)/.markerfile $($(scotch)-prefix)/.markerfile
 	tar -C $($(scotch)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

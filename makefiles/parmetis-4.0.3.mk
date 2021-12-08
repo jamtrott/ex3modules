@@ -25,14 +25,11 @@ $(parmetis)-url = http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview
 $(parmetis)-srcurl = http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis/parmetis-$(parmetis-version).tar.gz
 $(parmetis)-builddeps = $(cmake) $(mpi) $(metis)
 $(parmetis)-prereqs = $(mpi) $(metis)
-$(parmetis)-src = $(pkgsrcdir)/$(notdir $($(parmetis)-srcurl))
+$(parmetis)-src = $($(parmetis-src)-src)
 $(parmetis)-srcdir = $(pkgsrcdir)/$(parmetis)
 $(parmetis)-builddir = $($(parmetis)-srcdir)/build
 $(parmetis)-modulefile = $(modulefilesdir)/$(parmetis)
 $(parmetis)-prefix = $(pkgdir)/$(parmetis)
-
-$($(parmetis)-src): $(dir $($(parmetis)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(parmetis)-srcurl)
 
 $($(parmetis)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
@@ -40,7 +37,7 @@ $($(parmetis)-srcdir)/.markerfile:
 $($(parmetis)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(parmetis)-prefix)/.pkgunpack: $($(parmetis)-src) $($(parmetis)-srcdir)/.markerfile $($(parmetis)-prefix)/.markerfile
+$($(parmetis)-prefix)/.pkgunpack: $$($(parmetis)-src) $($(parmetis)-srcdir)/.markerfile $($(parmetis)-prefix)/.markerfile
 	tar -C $($(parmetis)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

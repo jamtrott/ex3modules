@@ -36,7 +36,7 @@ $($(hypre-cuda)-srcdir)/.markerfile:
 $($(hypre-cuda)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(hypre-cuda)-prefix)/.pkgunpack: $($(hypre-cuda)-src) $($(hypre-cuda)-srcdir)/.markerfile $($(hypre-cuda)-prefix)/.markerfile
+$($(hypre-cuda)-prefix)/.pkgunpack: $$($(hypre-cuda)-src) $($(hypre-cuda)-srcdir)/.markerfile $($(hypre-cuda)-prefix)/.markerfile
 	tar -C $($(hypre-cuda)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
@@ -54,7 +54,7 @@ $($(hypre-cuda)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,
 			--with-lapack-lib-dirs="$${BLASDIR}" --with-lapack-libs="$${BLASLIB}" \
 			--with-MPI-include="$${OPENMPI_INCDIR}" \
 			--with-MPI-lib-dirs="$${OPENMPI_LIBDIR}" \
-			--with-MPI-libs="$$(pkg-config --libs-only-l ompi)" \
+			--with-MPI-libs=mpi \
 			--with-MPI-flags="$$(pkg-config --cflags-only-other --libs-only-other ompi)" \
 			CFLAGS="-O3" && \
 		$(MAKE)

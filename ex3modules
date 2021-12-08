@@ -43,7 +43,7 @@ function help()
     printf "  %-20s\t%s\n" "--list-packages" "list available packages"
     printf "  %-20s\t%s\n" "--describe-package" "describe packages"
     printf "\n"
-    printf "  %-20s\t%s\n" "--with-cuda" "build with CUDA support"
+    printf "  %-20s\t%s\n" "--enable-cuda" "build with CUDA support"
     printf "\n"
     printf "  %-20s\t%s\n" "-v, --verbose" "be more verbose"
     printf "  %-20s\t%s\n" "-h, --help" "display this help and exit"
@@ -96,7 +96,7 @@ function parse_program_options()
 	    --pkgdir=*) pkgdir="${1#*=}"; shift 1;;
 	    --modulefilesdir) modulefilesdir="${2}"; shift 2;;
 	    --modulefilesdir=*) modulefilesdir="${1#*=}"; shift 1;;
-	    --with-cuda) with_cuda=1; shift 1;;
+	    --enable-cuda) with_cuda=1; shift 1;;
 	    -v | --verbose) verbose=1; shift 1;;
 	    --) shift; break;;
 	    *) EXTRA_OPTIONS+=("${1}"); shift 1;;

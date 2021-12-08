@@ -25,14 +25,11 @@ $(superlu_dist)-url = https://github.com/xiaoyeli/superlu_dist/
 $(superlu_dist)-srcurl = https://github.com/xiaoyeli/superlu_dist/archive/v$(superlu_dist-version).tar.gz
 $(superlu_dist)-builddeps = $(cmake) $(blas) $(mpi) $(parmetis) $(combblas)
 $(superlu_dist)-prereqs = $(blas) $(mpi) $(parmetis) $(combblas)
-$(superlu_dist)-src = $(pkgsrcdir)/superlu_dist-$(notdir $($(superlu_dist)-srcurl))
+$(superlu_dist)-src = $($(superlu_dist-src)-src)
 $(superlu_dist)-srcdir = $(pkgsrcdir)/$(superlu_dist)
 $(superlu_dist)-builddir = $($(superlu_dist)-srcdir)/build
 $(superlu_dist)-modulefile = $(modulefilesdir)/$(superlu_dist)
 $(superlu_dist)-prefix = $(pkgdir)/$(superlu_dist)
-
-$($(superlu_dist)-src): $(dir $($(superlu_dist)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(superlu_dist)-srcurl)
 
 $($(superlu_dist)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@

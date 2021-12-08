@@ -25,14 +25,11 @@ $(combblas)-url = https://people.eecs.berkeley.edu/~aydin/CombBLAS/html/
 $(combblas)-srcurl = http://eecs.berkeley.edu/~aydin/CombBLAS_FILES/CombBLAS_beta_16_2.tgz
 $(combblas)-builddeps = $(cmake) $(mpi)
 $(combblas)-prereqs = $(mpi)
-$(combblas)-src = $(pkgsrcdir)/$(notdir $($(combblas)-srcurl))
+$(combblas)-src = $($(combblas-src)-src)
 $(combblas)-srcdir = $(pkgsrcdir)/$(combblas)
 $(combblas)-builddir = $($(combblas)-srcdir)/build
 $(combblas)-modulefile = $(modulefilesdir)/$(combblas)
 $(combblas)-prefix = $(pkgdir)/$(combblas)
-
-$($(combblas)-src): $(dir $($(combblas)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(combblas)-srcurl)
 
 $($(combblas)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@

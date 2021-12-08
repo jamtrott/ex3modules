@@ -36,7 +36,7 @@ $($(hypre)-srcdir)/.markerfile:
 $($(hypre)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(hypre)-prefix)/.pkgunpack: $($(hypre)-src) $($(hypre)-srcdir)/.markerfile $($(hypre)-prefix)/.markerfile
+$($(hypre)-prefix)/.pkgunpack: $$($(hypre)-src) $($(hypre)-srcdir)/.markerfile $($(hypre)-prefix)/.markerfile
 	tar -C $($(hypre)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
@@ -54,7 +54,7 @@ $($(hypre)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 			--with-lapack-lib-dirs="$${BLASDIR}" --with-lapack-libs="$${BLASLIB}" \
 			--with-MPI-include="$${OPENMPI_INCDIR}" \
 			--with-MPI-lib-dirs="$${OPENMPI_LIBDIR}" \
-			--with-MPI-libs="$$(pkg-config --libs-only-l ompi)" \
+			--with-MPI-libs=mpi \
 			--with-MPI-flags="$$(pkg-config --cflags-only-other --libs-only-other ompi)" \
 			CFLAGS="-O3" && \
 		$(MAKE)

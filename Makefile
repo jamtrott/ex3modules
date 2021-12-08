@@ -57,46 +57,49 @@ MODULE := module
 # blis-x86_64, blis-zen, blis-zen2 and gsl.
 blas = openblas-0.3.12
 
-# CUDA toolkit versions: 10.1.243 (only supported on x86_64)
-ifneq ($(ENABLE_CUDA),)
-cuda-toolkit = cuda-toolkit-10.1.243
-gdrcopy = gdrcopy-2.2
-endif
-
 # GCC versions: 8.4.0, 9.2.0, 10.1.0, 11.2.0
 gcc = gcc-8.4.0
 
 # MPI implementations: openmpi, openmpi-cuda, mpich and mvapich.
-ifneq ($(ENABLE_CUDA),)
-mpi = openmpi-cuda-4.0.5
-else
 mpi = openmpi-4.0.5
-endif
 
 # munge versions: 0.5.11 and 0.5.13
 munge = munge-0.5.13
 
 # PETSc implementations: petsc-default, petsc-cuda
-ifneq ($(ENABLE_CUDA),)
-petsc = petsc-cuda-3.13.2
-else
 petsc = petsc-default-3.13.2
-endif
 
 # SLURM versions: 18.08.9, 19.05.6 and 20.02.7
 slurm = slurm-20.02.7
 
 python-version-short = 3.7
 
+# Select default package versions
 pkgs = \
 	$(blas) \
-	$(cuda-toolkit) \
 	$(gcc) \
-	$(gdrcopy) \
 	$(mpi) \
 	$(munge) \
 	$(petsc) \
 	$(slurm)
+
+# CUDA-related packages - note CUDA toolkit 10.1.243 is only supported
+# on x86_64.
+ifneq ($(ENABLE_CUDA),)
+pkgs := $(pkgs) \
+	combblas-cuda-1.6.2 \
+	cuda-toolkit-10.1.243 \
+	gdrcopy-2.2 \
+	hypre-cuda-2.17.0 \
+	mumps-cuda-5.2.1 \
+	openmpi-cuda-4.0.5 \
+	parmetis-cuda-4.0.3 \
+	petsc-cuda-3.13.2 \
+	scalapack-cuda-2.1.0 \
+	scotch-cuda-6.0.7 \
+	superlu_dist-cuda-6.4.0 \
+	ucx-cuda-1.9.0
+endif
 
 #
 # Default packages
@@ -125,6 +128,7 @@ pkgs := $(pkgs) \
 	clang-11.0.0 \
 	cmake-3.17.2 \
 	combblas-1.6.2 \
+	combblas-src-1.6.2 \
 	cpupower-4.19.75 \
 	curl-7.69.1 \
 	dealii-9.1.1 \
@@ -262,6 +266,7 @@ pkgs := $(pkgs) \
 	mpfr-4.0.2 \
 	mpich-3.3.2 \
 	mumps-5.2.1 \
+	mumps-src-5.2.1 \
 	mvapich-2.3.4 \
 	mysql-connector-python-8.0.23 \
 	nasm-2.14.02 \
@@ -287,6 +292,7 @@ pkgs := $(pkgs) \
 	parallel-20190922 \
 	paraview-5.9.1 \
 	parmetis-4.0.3 \
+	parmetis-src-4.0.3 \
 	patchelf-0.10 \
 	pciutils-3.6.2 \
 	pcre-8.44 \
@@ -416,12 +422,15 @@ pkgs := $(pkgs) \
 	rdma-core-31.0 \
 	readline-8.0 \
 	scalapack-2.1.0 \
+	scalapack-src-2.1.0 \
 	scotch-6.0.7 \
+	scotch-src-6.0.7 \
 	sparse-0.6.3 \
 	sqlite-3.31.1 \
 	suitesparse-5.7.2 \
 	superlu-5.2.1 \
 	superlu_dist-6.4.0 \
+	superlu_dist-src-6.4.0 \
 	texinfo-6.7 \
 	texlive-20210325 \
 	ucx-1.9.0 \

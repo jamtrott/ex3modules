@@ -23,15 +23,12 @@ mumps = mumps-$(mumps-version)
 $(mumps)-description = MUltifrontal Massively Parallel sparse direct Solver
 $(mumps)-url = http://mumps.enseeiht.fr/
 $(mumps)-srcurl = http://mumps.enseeiht.fr/MUMPS_$(mumps-version).tar.gz
-$(mumps)-src = $(pkgsrcdir)/$(notdir $($(mumps)-srcurl))
+$(mumps)-src = $($(mumps-src)-src)
 $(mumps)-srcdir = $(pkgsrcdir)/$(mumps)
 $(mumps)-builddeps = $(blas) $(mpi) $(metis) $(parmetis) $(scotch) $(scalapack) $(libgfortran) $(patchelf)
 $(mumps)-prereqs = $(blas) $(mpi) $(metis) $(parmetis) $(scotch) $(scalapack) $(libgfortran)
 $(mumps)-modulefile = $(modulefilesdir)/$(mumps)
 $(mumps)-prefix = $(pkgdir)/$(mumps)
-
-$($(mumps)-src): $(dir $($(mumps)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(mumps)-srcurl)
 
 $($(mumps)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
@@ -39,7 +36,7 @@ $($(mumps)-srcdir)/.markerfile:
 $($(mumps)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(mumps)-prefix)/.pkgunpack: $($(mumps)-src) $($(mumps)-srcdir)/.markerfile $($(mumps)-prefix)/.markerfile
+$($(mumps)-prefix)/.pkgunpack: $$($(mumps)-src) $($(mumps)-srcdir)/.markerfile $($(mumps)-prefix)/.markerfile
 	tar -C $($(mumps)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
