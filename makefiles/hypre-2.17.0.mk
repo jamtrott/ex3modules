@@ -23,15 +23,12 @@ hypre = hypre-$(hypre-version)
 $(hypre)-description = Scalable Linear Solvers and Multigrid Methods
 $(hypre)-url = https://github.com/hypre-space/hypre/
 $(hypre)-srcurl = https://github.com/hypre-space/hypre/archive/v$(hypre-version).tar.gz
-$(hypre)-src = $(pkgsrcdir)/hypre-$(notdir $($(hypre)-srcurl))
-$(hypre)-srcdir = $(pkgsrcdir)/$(hypre)
-$(hypre)-builddeps = $(blas) $(mpi)
+$(hypre)-builddeps = $(hypre-src) $(blas) $(mpi)
 $(hypre)-prereqs = $(blas) $(mpi)
+$(hypre)-src = $($(hypre-src)-src)
+$(hypre)-srcdir = $(pkgsrcdir)/$(hypre)
 $(hypre)-modulefile = $(modulefilesdir)/$(hypre)
 $(hypre)-prefix = $(pkgdir)/$(hypre)
-
-$($(hypre)-src): $(dir $($(hypre)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(hypre)-srcurl)
 
 $($(hypre)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
