@@ -95,6 +95,7 @@ pkgs := $(pkgs) \
 	openmpi-cuda-4.0.5 \
 	parmetis-cuda-4.0.3 \
 	petsc-cuda-3.13.2 \
+	petsc-cuda-3.16.2 \
 	scalapack-cuda-2.1.0 \
 	scotch-cuda-6.0.7 \
 	superlu_dist-cuda-6.4.0 \
@@ -298,8 +299,10 @@ pkgs := $(pkgs) \
 	pcre-8.44 \
 	perf-4.19.75 \
 	perl-5.30.2 \
+	petsc-3.16.2 \
 	petsc-default-3.13.2 \
 	petsc-src-3.13.2 \
+	petsc-src-3.16.2 \
 	pixman-0.38.4 \
 	pmix-3.1.5 \
 	poppler-21.04.0 \

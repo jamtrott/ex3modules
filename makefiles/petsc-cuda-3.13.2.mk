@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2021 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ $($(petsc-cuda)-srcdir)/.markerfile:
 $($(petsc-cuda)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(petsc-cuda)-prefix)/.pkgunpack: $$($(petsc)-src) $($(petsc-cuda)-srcdir)/.markerfile $($(petsc-cuda)-prefix)/.markerfile
+$($(petsc-cuda)-prefix)/.pkgunpack: $$($(petsc-cuda)-src) $($(petsc-cuda)-srcdir)/.markerfile $($(petsc-cuda)-prefix)/.markerfile
 	tar -C $($(petsc-cuda)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
