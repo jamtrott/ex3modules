@@ -23,7 +23,7 @@ hypre = hypre-$(hypre-version)
 $(hypre)-description = Scalable Linear Solvers and Multigrid Methods
 $(hypre)-url = https://github.com/hypre-space/hypre/
 $(hypre)-srcurl = https://github.com/hypre-space/hypre/archive/v$(hypre-version).tar.gz
-$(hypre)-builddeps = $(hypre-src) $(blas) $(mpi)
+$(hypre)-builddeps = $(blas) $(mpi)
 $(hypre)-prereqs = $(blas) $(mpi)
 $(hypre)-src = $($(hypre-src)-src)
 $(hypre)-srcdir = $(pkgsrcdir)/$(hypre)
@@ -52,11 +52,10 @@ $($(hypre)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 			--enable-shared \
 			--with-blas-lib-dirs="$${BLASDIR}" --with-blas-libs="$${BLASLIB}" \
 			--with-lapack-lib-dirs="$${BLASDIR}" --with-lapack-libs="$${BLASLIB}" \
-			--with-MPI-include="$${OPENMPI_INCDIR}" \
-			--with-MPI-lib-dirs="$${OPENMPI_LIBDIR}" \
-			--with-MPI-libs=mpi \
-			--with-MPI-flags="$$(pkg-config --cflags-only-other --libs-only-other ompi)" \
-			CFLAGS="-O3" && \
+			--with-MPI \
+			--with-MPI-include="$${MPI_HOME}/include" \
+			--with-MPI-lib-dirs="$${MPI_HOME}/lib" \
+			--with-MPI-libs=mpi && \
 		$(MAKE)
 	@touch $@
 

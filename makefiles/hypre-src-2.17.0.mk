@@ -25,7 +25,7 @@ $(hypre-src)-url = https://github.com/hypre-space/hypre/
 $(hypre-src)-srcurl = https://github.com/hypre-space/hypre/archive/v$(hypre-src-version).tar.gz
 $(hypre-src)-builddeps =
 $(hypre-src)-prereqs =
-$(hypre-src)-src = $(pkgsrcdir)/$(notdir $($(hypre-src)-srcurl))
+$(hypre-src)-src = $(pkgsrcdir)/hypre-$(notdir $($(hypre-src)-srcurl))
 
 $($(hypre-src)-src): $(dir $($(hypre-src)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(hypre-src)-srcurl)
