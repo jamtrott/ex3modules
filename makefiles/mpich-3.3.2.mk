@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2021 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -62,9 +62,7 @@ $($(mpich)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 			--with-knem=$${KNEM_ROOT} \
 			--with-device=ch4:ofi:verbs \
 			--with-pm=none \
-			--with-pmi=slurm \
-			--with-slurm=$${SLURM_ROOT} \
-			--with-slurm-include=$${SLURM_ROOT}/include/slurm \
+			$$([ ! -z "$(SLURM_ROOT)" ] && echo --with-pmi=slurm --with-slurm="$(SLURM_ROOT)" --with-slurm-include="$(SLURM_ROOT)/include/slurm") \
 			--enable-g=all \
 			--enable-fortran=all \
 			--enable-fast=O3,ndebug --without-timing --without-mpit-pvars && \

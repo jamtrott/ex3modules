@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2021 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,8 +23,8 @@ openmpi = openmpi-$(openmpi-version)
 $(openmpi)-description = A High Performance Message Passing Library
 $(openmpi)-url = https://www.open-mpi.org/
 $(openmpi)-srcurl =
-$(openmpi)-builddeps = $(gcc) $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(slurm) $(pmix)
-$(openmpi)-prereqs = $(gcc) $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(slurm) $(pmix)
+$(openmpi)-builddeps = $(gcc) $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(pmix) $(slurm)
+$(openmpi)-prereqs = $(gcc) $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(pmix) $(slurm)
 $(openmpi)-src = $($(openmpi-src)-src)
 $(openmpi)-srcdir = $(pkgsrcdir)/$(openmpi)
 $(openmpi)-modulefile = $(modulefilesdir)/$(openmpi)
@@ -55,8 +55,7 @@ $($(openmpi)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 			--with-ucx="$${UCX_ROOT}" \
 			--with-ofi="$${LIBFABRIC_ROOT}" \
 			--with-verbs="$${RDMA_CORE_ROOT}" \
-			--with-slurm \
-			--with-pmi="$${SLURM_ROOT}" \
+			$$([ ! -z "$(SLURM_ROOT)" ] && echo --with-slurm --with-pmi="$(SLURM_ROOT)") \
 			--with-pmix="$${PMIX_ROOT}" \
 			--without-verbs \
 			--enable-mpi-cxx \

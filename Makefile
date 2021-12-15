@@ -32,7 +32,10 @@ MAKEOVERRIDES:=$(filter-out prefix=% PREFIX=%,$(MAKEOVERRIDES))
 # Detect architecture
 ARCH ?= $(shell uname -m)
 AVX512F := $(shell [ "$$(grep avx512f /proc/cpuinfo)" ] && echo true)
+
+# Options
 ENABLE_CUDA :=
+SLURM_ROOT :=
 
 # Programs used by makefiles
 INSTALL := install
@@ -63,14 +66,8 @@ gcc = gcc-8.4.0
 # MPI implementations: openmpi, openmpi-cuda, mpich and mvapich.
 mpi = openmpi-4.0.5
 
-# munge versions: 0.5.11 and 0.5.13
-munge = munge-0.5.13
-
 # PETSc implementations: petsc-default, petsc-cuda
 petsc = petsc-default-3.13.2
-
-# SLURM versions: 18.08.9, 19.05.6 and 20.02.7
-slurm = slurm-20.02.7
 
 python-version-short = 3.7
 
@@ -80,8 +77,7 @@ pkgs = \
 	$(gcc) \
 	$(mpi) \
 	$(munge) \
-	$(petsc) \
-	$(slurm)
+	$(petsc)
 
 # CUDA-related packages - note CUDA toolkit 10.1.243 is only supported
 # on x86_64.
@@ -100,6 +96,30 @@ pkgs := $(pkgs) \
 	scotch-cuda-6.0.7 \
 	superlu_dist-cuda-6.4.0 \
 	ucx-cuda-1.9.0
+endif
+
+#
+# SLURM
+#
+ifeq ($(WITH_SLURM),internal)
+SLURM_ROOT = $(pkgdir)/slurm-20.02.7
+pkgs := $(pkgs) \
+	munge-0.5.13 \
+	slurm-20.02.7
+else
+ifneq ($(WITH_SLURM),)
+SLURM_ROOT = $(WITH_SLURM)
+endif
+endif
+
+ifneq ($(SLURM_ROOT),)
+export PATH := $(SLURM_ROOT)/bin:${PATH}
+export C_INCLUDE_PATH := $(SLURM_ROOT)/include:${C_INCLUDE_PATH}
+export CPLUS_INCLUDE_PATH := $(SLURM_ROOT)/include:${CPLUS_INCLUDE_PATH}
+export LIBRARY_PATH := $(SLURM_ROOT)/lib:${LIBRARY_PATH}
+export LIBRARY_PATH := $(SLURM_ROOT)/lib64:${LIBRARY_PATH}
+export LD_LIBRARY_PATH := $(SLURM_ROOT)/lib:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH := $(SLURM_ROOT)/lib64:${LD_LIBRARY_PATH}
 endif
 
 #
