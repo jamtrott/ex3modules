@@ -358,7 +358,7 @@ pkgs := $(pkgs) \
 	python-ipython-7.14.0 \
 	python-jinja2-2.11.2 \
 	python-kiwisolver-1.2.0 \
-	python-ldrb-2021.0.0 \
+	python-ldrb-2021.0.2 \
 	python-llvmlite-0.35.0 \
 	python-mako-1.1.4 \
 	python-markupsafe-1.1.1 \
