@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2021 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ parmetis-version = 4.0.3
 parmetis = parmetis-$(parmetis-version)
 $(parmetis)-description = Parallel Graph Partitioning and Fill-reducing Matrix Ordering
 $(parmetis)-url = http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview
-$(parmetis)-srcurl = http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis/parmetis-$(parmetis-version).tar.gz
+$(parmetis)-srcurl = $($(parmetis-src)-srcurl)
 $(parmetis)-builddeps = $(cmake) $(mpi) $(metis)
 $(parmetis)-prereqs = $(mpi) $(metis)
 $(parmetis)-src = $($(parmetis-src)-src)

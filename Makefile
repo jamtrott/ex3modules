@@ -164,6 +164,7 @@ pkgs := $(pkgs) \
 	gettext-0.21 \
 	ghostscript-9.54.0 \
 	giflib-5.2.1 \
+	gklib-5.1.0 \
 	glib-2.64.1 \
 	gmp-6.1.2 \
 	gmsh-4.7.1 \
@@ -263,6 +264,8 @@ pkgs := $(pkgs) \
 	mesa-21.1.5 \
 	meson-0.53.2 \
 	metis-5.1.0 \
+	metis-64-5.1.0 \
+	metis-src-5.1.0 \
 	mpc-1.1.0 \
 	mpfr-4.0.2 \
 	mpich-3.3.2 \
@@ -293,6 +296,7 @@ pkgs := $(pkgs) \
 	parallel-20190922 \
 	paraview-5.9.1 \
 	parmetis-4.0.3 \
+	parmetis-64-4.0.3 \
 	parmetis-src-4.0.3 \
 	patchelf-0.10 \
 	pciutils-3.6.2 \

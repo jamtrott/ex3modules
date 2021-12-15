@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2021 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,17 +22,14 @@ metis-version = 5.1.0
 metis = metis-$(metis-version)
 $(metis)-description = Serial Graph Partitioning and Fill-reducing Matrix Ordering
 $(metis)-url = http://glaros.dtc.umn.edu/gkhome/metis/metis/overview
-$(metis)-srcurl = http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/metis-$(metis-version).tar.gz
+$(metis)-srcurl = $($(metis-src)-srcurl)
 $(metis)-builddeps = $(cmake)
 $(metis)-prereqs =
-$(metis)-src = $(pkgsrcdir)/$(notdir $($(metis)-srcurl))
+$(metis)-src = $($(metis-src)-src)
 $(metis)-srcdir = $(pkgsrcdir)/$(metis)
 $(metis)-builddir = $($(metis)-srcdir)/build
 $(metis)-modulefile = $(modulefilesdir)/$(metis)
 $(metis)-prefix = $(pkgdir)/$(metis)
-
-$($(metis)-src): $(dir $($(metis)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(metis)-srcurl)
 
 $($(metis)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
@@ -40,11 +37,39 @@ $($(metis)-srcdir)/.markerfile:
 $($(metis)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(metis)-prefix)/.pkgunpack: $($(metis)-src) $($(metis)-srcdir)/.markerfile $($(metis)-prefix)/.markerfile
+$($(metis)-prefix)/.pkgunpack: $$($(metis)-src) $($(metis)-srcdir)/.markerfile $($(metis)-prefix)/.markerfile
 	tar -C $($(metis)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
-$($(metis)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(metis)-builddeps),$(modulefilesdir)/$$(dep)) $($(metis)-prefix)/.pkgunpack
+$($(metis)-srcdir)/0001-add_gklib_headers_to_install_into_include.patch: $($(metis)-prefix)/.pkgunpack
+	@printf "" >$@.tmp
+	@echo '# HG changeset patch' >>$@.tmp
+	@echo '# User Sean Farley <sean@mcs.anl.gov>' >>$@.tmp
+	@echo '# Date 1332269671 18000' >>$@.tmp
+	@echo '#      Tue Mar 20 13:54:31 2012 -0500' >>$@.tmp
+	@echo '# Node ID b95c0c2e1d8bf8e3273f7d45e856f0c0127d998e' >>$@.tmp
+	@echo '# Parent  88049269953c67c3fdcc4309bf901508a875f0dc' >>$@.tmp
+	@echo 'cmake: add gklib headers to install into include' >>$@.tmp
+	@echo '' >>$@.tmp
+	@echo 'diff -r 88049269953c -r b95c0c2e1d8b libmetis/CMakeLists.txt' >>$@.tmp
+	@echo 'Index: libmetis/CMakeLists.txt' >>$@.tmp
+	@echo '===================================================================' >>$@.tmp
+	@echo '--- a/libmetis/CMakeLists.txt Tue Mar 20 13:54:29 2012 -0500' >>$@.tmp
+	@echo '+++ b/libmetis/CMakeLists.txt Tue Mar 20 13:54:31 2012 -0500' >>$@.tmp
+	@echo '@@ -12,6 +12,8 @@ endif()' >>$@.tmp
+	@echo ' if(METIS_INSTALL)' >>$@.tmp
+	@echo '   install(TARGETS metis' >>$@.tmp
+	@echo '     LIBRARY DESTINATION lib' >>$@.tmp
+	@echo '     RUNTIME DESTINATION lib' >>$@.tmp
+	@echo '     ARCHIVE DESTINATION lib)' >>$@.tmp
+	@echo '+  install(FILES gklib_defs.h DESTINATION include)' >>$@.tmp
+	@echo '+  install(FILES gklib_rename.h DESTINATION include)' >>$@.tmp
+	@echo ' endif()' >>$@.tmp
+	@mv $@.tmp $@
+
+$($(metis)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(metis)-builddeps),$(modulefilesdir)/$$(dep)) $($(metis)-prefix)/.pkgunpack $($(metis)-srcdir)/0001-add_gklib_headers_to_install_into_include.patch
+	cd $($(metis)-srcdir) && \
+		patch -f -p1 <0001-add_gklib_headers_to_install_into_include.patch
 	@touch $@
 
 ifneq ($($(metis)-builddir),$($(metis)-srcdir))
