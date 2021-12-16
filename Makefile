@@ -113,13 +113,12 @@ endif
 endif
 
 ifneq ($(SLURM_ROOT),)
-export PATH := $(SLURM_ROOT)/bin:${PATH}
-export C_INCLUDE_PATH := $(SLURM_ROOT)/include:${C_INCLUDE_PATH}
-export CPLUS_INCLUDE_PATH := $(SLURM_ROOT)/include:${CPLUS_INCLUDE_PATH}
-export LIBRARY_PATH := $(SLURM_ROOT)/lib:${LIBRARY_PATH}
-export LIBRARY_PATH := $(SLURM_ROOT)/lib64:${LIBRARY_PATH}
-export LD_LIBRARY_PATH := $(SLURM_ROOT)/lib:${LD_LIBRARY_PATH}
-export LD_LIBRARY_PATH := $(SLURM_ROOT)/lib64:${LD_LIBRARY_PATH}
+export PATH := $(SLURM_ROOT)/include$(if $(PATH),:$(PATH),)
+export C_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
+export CPLUS_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
+export LIBRARY_PATH := $(SLURM_ROOT)/lib$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
+export LIBRARY_PATH := $(SLURM_ROOT)/lib:$(SLURM_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
+export LD_LIBRARY_PATH := $(SLURM_ROOT)/lib:$(SLURM_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
 endif
 
 #
