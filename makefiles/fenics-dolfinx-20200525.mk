@@ -41,7 +41,7 @@ $($(fenics-dolfinx-20200525)-prefix)/.pkgunpack: $$($(fenics-dolfinx-20200525)-s
 	cd $($(fenics-dolfinx-20200525)-srcdir) && unzip -o $<
 	@touch $@
 
-$($(fenics-dolfinx-20200525)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fenics-dolfinx-20200525)-builddeps),$(modulefilesdir)/$$(dep))
+$($(fenics-dolfinx-20200525)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fenics-dolfinx-20200525)-builddeps),$(modulefilesdir)/$$(dep)) $($(fenics-dolfinx-20200525)-prefix)/.pkgunpack
 	@touch $@
 
 $($(fenics-dolfinx-20200525)-builddir)/.markerfile: $($(fenics-dolfinx-20200525)-prefix)/.pkgunpack
