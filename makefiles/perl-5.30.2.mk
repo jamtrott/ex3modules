@@ -74,6 +74,7 @@ $($(perl)-srcdir)/0001-avoid-spurious-test-failure.patch: $($(perl)-srcdir)/.mar
 
 $($(perl)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(perl)-builddeps),$(modulefilesdir)/$$(dep)) $($(perl)-prefix)/.pkgunpack $($(perl)-srcdir)/0001-avoid-spurious-test-failure.patch
 	cd $($(perl)-srcdir) && \
+		chmod +w $($(perl)-srcdir)/lib/perlbug.t && \
 		patch -f -p1 <0001-avoid-spurious-test-failure.patch
 	@touch $@
 
