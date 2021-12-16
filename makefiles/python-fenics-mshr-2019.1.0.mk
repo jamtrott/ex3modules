@@ -38,7 +38,7 @@ $($(python-fenics-mshr-2019)-prefix)/.markerfile:
 $($(python-fenics-mshr-2019)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-fenics-mshr-2019)-prefix)/.pkgunpack: $$($(python-fenics-mshr-2019)-src) $($(python-fenics-mshr-2019)-srcdir)/.markerfile $($(python-fenics-mshr-2019)-prefix)/.markerfile
+$($(python-fenics-mshr-2019)-prefix)/.pkgunpack: $$($(python-fenics-mshr-2019)-src) $($(python-fenics-mshr-2019)-srcdir)/.markerfile $($(python-fenics-mshr-2019)-prefix)/.markerfile $$(foreach dep,$$($(python-fenics-mshr-2019)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-fenics-mshr-2019)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

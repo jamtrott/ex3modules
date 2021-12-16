@@ -40,7 +40,7 @@ $($(python-wcwidth)-srcdir)/.markerfile:
 $($(python-wcwidth)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-wcwidth)-prefix)/.pkgunpack: $$($(python-wcwidth)-src) $($(python-wcwidth)-srcdir)/.markerfile $($(python-wcwidth)-prefix)/.markerfile
+$($(python-wcwidth)-prefix)/.pkgunpack: $$($(python-wcwidth)-src) $($(python-wcwidth)-srcdir)/.markerfile $($(python-wcwidth)-prefix)/.markerfile $$(foreach dep,$$($(python-wcwidth)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-wcwidth)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

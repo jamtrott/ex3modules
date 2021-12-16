@@ -40,7 +40,7 @@ $($(giflib)-srcdir)/.markerfile:
 $($(giflib)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(giflib)-prefix)/.pkgunpack: $($(giflib)-src) $($(giflib)-srcdir)/.markerfile $($(giflib)-prefix)/.markerfile
+$($(giflib)-prefix)/.pkgunpack: $($(giflib)-src) $($(giflib)-srcdir)/.markerfile $($(giflib)-prefix)/.markerfile $$(foreach dep,$$($(giflib)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(giflib)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(libpaper)-srcdir)/.markerfile:
 $($(libpaper)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libpaper)-prefix)/.pkgunpack: $$($(libpaper)-src) $($(libpaper)-srcdir)/.markerfile $($(libpaper)-prefix)/.markerfile
+$($(libpaper)-prefix)/.pkgunpack: $$($(libpaper)-src) $($(libpaper)-srcdir)/.markerfile $($(libpaper)-prefix)/.markerfile $$(foreach dep,$$($(libpaper)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libpaper)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

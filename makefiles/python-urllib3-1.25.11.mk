@@ -40,7 +40,7 @@ $($(python-urllib3)-srcdir)/.markerfile:
 $($(python-urllib3)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-urllib3)-prefix)/.pkgunpack: $$($(python-urllib3)-src) $($(python-urllib3)-srcdir)/.markerfile $($(python-urllib3)-prefix)/.markerfile
+$($(python-urllib3)-prefix)/.pkgunpack: $$($(python-urllib3)-src) $($(python-urllib3)-srcdir)/.markerfile $($(python-urllib3)-prefix)/.markerfile $$(foreach dep,$$($(python-urllib3)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-urllib3)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -42,7 +42,7 @@ $($(gobject-introspection)-srcdir)/build/.markerfile: $($(gobject-introspection)
 $($(gobject-introspection)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(gobject-introspection)-prefix)/.pkgunpack: $($(gobject-introspection)-src) $($(gobject-introspection)-srcdir)/.markerfile $($(gobject-introspection)-prefix)/.markerfile
+$($(gobject-introspection)-prefix)/.pkgunpack: $($(gobject-introspection)-src) $($(gobject-introspection)-srcdir)/.markerfile $($(gobject-introspection)-prefix)/.markerfile $$(foreach dep,$$($(gobject-introspection)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(gobject-introspection)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

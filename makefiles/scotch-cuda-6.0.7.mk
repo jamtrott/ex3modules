@@ -37,7 +37,7 @@ $($(scotch-cuda)-srcdir)/.markerfile:
 $($(scotch-cuda)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(scotch-cuda)-prefix)/.pkgunpack: $$($(scotch-cuda)-src) $($(scotch-cuda)-srcdir)/.markerfile $($(scotch-cuda)-prefix)/.markerfile
+$($(scotch-cuda)-prefix)/.pkgunpack: $$($(scotch-cuda)-src) $($(scotch-cuda)-srcdir)/.markerfile $($(scotch-cuda)-prefix)/.markerfile $$(foreach dep,$$($(scotch-cuda)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(scotch-cuda)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

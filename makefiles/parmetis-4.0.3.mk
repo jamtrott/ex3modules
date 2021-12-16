@@ -37,7 +37,7 @@ $($(parmetis)-srcdir)/.markerfile:
 $($(parmetis)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(parmetis)-prefix)/.pkgunpack: $$($(parmetis)-src) $($(parmetis)-srcdir)/.markerfile $($(parmetis)-prefix)/.markerfile
+$($(parmetis)-prefix)/.pkgunpack: $$($(parmetis)-src) $($(parmetis)-srcdir)/.markerfile $($(parmetis)-prefix)/.markerfile $$(foreach dep,$$($(parmetis)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(parmetis)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

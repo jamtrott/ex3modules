@@ -39,7 +39,7 @@ $($(util-linux)-srcdir)/.markerfile:
 $($(util-linux)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(util-linux)-prefix)/.pkgunpack: $($(util-linux)-src) $($(util-linux)-srcdir)/.markerfile $($(util-linux)-prefix)/.markerfile
+$($(util-linux)-prefix)/.pkgunpack: $($(util-linux)-src) $($(util-linux)-srcdir)/.markerfile $($(util-linux)-prefix)/.markerfile $$(foreach dep,$$($(util-linux)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(util-linux)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

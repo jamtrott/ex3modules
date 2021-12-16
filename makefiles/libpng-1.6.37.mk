@@ -39,7 +39,7 @@ $($(libpng)-srcdir)/.markerfile:
 $($(libpng)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libpng)-prefix)/.pkgunpack: $($(libpng)-src) $($(libpng)-srcdir)/.markerfile $($(libpng)-prefix)/.markerfile
+$($(libpng)-prefix)/.pkgunpack: $($(libpng)-src) $($(libpng)-srcdir)/.markerfile $($(libpng)-prefix)/.markerfile $$(foreach dep,$$($(libpng)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libpng)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

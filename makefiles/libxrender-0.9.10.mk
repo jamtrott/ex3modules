@@ -39,7 +39,7 @@ $($(libxrender)-srcdir)/.markerfile:
 $($(libxrender)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxrender)-prefix)/.pkgunpack: $($(libxrender)-src) $($(libxrender)-srcdir)/.markerfile $($(libxrender)-prefix)/.markerfile
+$($(libxrender)-prefix)/.pkgunpack: $($(libxrender)-src) $($(libxrender)-srcdir)/.markerfile $($(libxrender)-prefix)/.markerfile $$(foreach dep,$$($(libxrender)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxrender)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

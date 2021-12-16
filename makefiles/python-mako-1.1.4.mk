@@ -40,7 +40,7 @@ $($(python-mako)-srcdir)/.markerfile:
 $($(python-mako)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-mako)-prefix)/.pkgunpack: $$($(python-mako)-src) $($(python-mako)-srcdir)/.markerfile $($(python-mako)-prefix)/.markerfile
+$($(python-mako)-prefix)/.pkgunpack: $$($(python-mako)-src) $($(python-mako)-srcdir)/.markerfile $($(python-mako)-prefix)/.markerfile $$(foreach dep,$$($(python-mako)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-mako)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

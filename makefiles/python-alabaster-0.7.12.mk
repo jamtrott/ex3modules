@@ -40,7 +40,7 @@ $($(python-alabaster)-srcdir)/.markerfile:
 $($(python-alabaster)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-alabaster)-prefix)/.pkgunpack: $$($(python-alabaster)-src) $($(python-alabaster)-srcdir)/.markerfile $($(python-alabaster)-prefix)/.markerfile
+$($(python-alabaster)-prefix)/.pkgunpack: $$($(python-alabaster)-src) $($(python-alabaster)-srcdir)/.markerfile $($(python-alabaster)-prefix)/.markerfile $$(foreach dep,$$($(python-alabaster)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-alabaster)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

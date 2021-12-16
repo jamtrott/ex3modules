@@ -40,7 +40,7 @@ $($(xkbcommon)-srcdir)/.markerfile:
 $($(xkbcommon)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(xkbcommon)-prefix)/.pkgunpack: $$($(xkbcommon)-src) $($(xkbcommon)-srcdir)/.markerfile $($(xkbcommon)-prefix)/.markerfile
+$($(xkbcommon)-prefix)/.pkgunpack: $$($(xkbcommon)-src) $($(xkbcommon)-srcdir)/.markerfile $($(xkbcommon)-prefix)/.markerfile $$(foreach dep,$$($(xkbcommon)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(xkbcommon)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

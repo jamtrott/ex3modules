@@ -40,7 +40,7 @@ $($(autoconf)-srcdir)/.markerfile:
 $($(autoconf)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(autoconf)-prefix)/.pkgunpack: $$($(autoconf)-src) $($(autoconf)-srcdir)/.markerfile $($(autoconf)-prefix)/.markerfile
+$($(autoconf)-prefix)/.pkgunpack: $$($(autoconf)-src) $($(autoconf)-srcdir)/.markerfile $($(autoconf)-prefix)/.markerfile $$(foreach dep,$$($(autoconf)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(autoconf)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

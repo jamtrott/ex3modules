@@ -40,7 +40,7 @@ $($(libtool)-srcdir)/.markerfile:
 $($(libtool)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libtool)-prefix)/.pkgunpack: $($(libtool)-src) $($(libtool)-srcdir)/.markerfile $($(libtool)-prefix)/.markerfile
+$($(libtool)-prefix)/.pkgunpack: $($(libtool)-src) $($(libtool)-srcdir)/.markerfile $($(libtool)-prefix)/.markerfile $$(foreach dep,$$($(libtool)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libtool)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

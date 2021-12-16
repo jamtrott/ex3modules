@@ -39,7 +39,7 @@ $($(xcb-proto)-srcdir)/.markerfile:
 $($(xcb-proto)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(xcb-proto)-prefix)/.pkgunpack: $($(xcb-proto)-src) $($(xcb-proto)-srcdir)/.markerfile $($(xcb-proto)-prefix)/.markerfile
+$($(xcb-proto)-prefix)/.pkgunpack: $($(xcb-proto)-src) $($(xcb-proto)-srcdir)/.markerfile $($(xcb-proto)-prefix)/.markerfile $$(foreach dep,$$($(xcb-proto)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(xcb-proto)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

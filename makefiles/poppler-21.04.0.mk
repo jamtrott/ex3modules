@@ -40,7 +40,7 @@ $($(poppler)-srcdir)/.markerfile:
 $($(poppler)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(poppler)-prefix)/.pkgunpack: $$($(poppler)-src) $($(poppler)-srcdir)/.markerfile $($(poppler)-prefix)/.markerfile
+$($(poppler)-prefix)/.pkgunpack: $$($(poppler)-src) $($(poppler)-srcdir)/.markerfile $($(poppler)-prefix)/.markerfile $$(foreach dep,$$($(poppler)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(poppler)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

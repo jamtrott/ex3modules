@@ -40,7 +40,7 @@ $($(python-pycparser)-srcdir)/.markerfile:
 $($(python-pycparser)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-pycparser)-prefix)/.pkgunpack: $$($(python-pycparser)-src) $($(python-pycparser)-srcdir)/.markerfile $($(python-pycparser)-prefix)/.markerfile
+$($(python-pycparser)-prefix)/.pkgunpack: $$($(python-pycparser)-src) $($(python-pycparser)-srcdir)/.markerfile $($(python-pycparser)-prefix)/.markerfile $$(foreach dep,$$($(python-pycparser)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-pycparser)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

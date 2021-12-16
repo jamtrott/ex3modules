@@ -37,7 +37,7 @@ $($(libgccjit-10.1.0)-srcdir)/.markerfile:
 $($(libgccjit-10.1.0)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libgccjit-10.1.0)-prefix)/.pkgunpack: $$($(libgccjit-10.1.0)-src) $($(libgccjit-10.1.0)-srcdir)/.markerfile $($(libgccjit-10.1.0)-prefix)/.markerfile
+$($(libgccjit-10.1.0)-prefix)/.pkgunpack: $$($(libgccjit-10.1.0)-src) $($(libgccjit-10.1.0)-srcdir)/.markerfile $($(libgccjit-10.1.0)-prefix)/.markerfile $$(foreach dep,$$($(libgccjit-10.1.0)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libgccjit-10.1.0)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

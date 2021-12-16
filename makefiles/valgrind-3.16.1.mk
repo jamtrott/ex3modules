@@ -40,7 +40,7 @@ $($(valgrind)-srcdir)/.markerfile:
 $($(valgrind)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(valgrind)-prefix)/.pkgunpack: $$($(valgrind)-src) $($(valgrind)-srcdir)/.markerfile $($(valgrind)-prefix)/.markerfile
+$($(valgrind)-prefix)/.pkgunpack: $$($(valgrind)-src) $($(valgrind)-srcdir)/.markerfile $($(valgrind)-prefix)/.markerfile $$(foreach dep,$$($(valgrind)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(valgrind)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

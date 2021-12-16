@@ -40,7 +40,7 @@ $($(python-pytest)-srcdir)/.markerfile:
 $($(python-pytest)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-pytest)-prefix)/.pkgunpack: $$($(python-pytest)-src) $($(python-pytest)-srcdir)/.markerfile $($(python-pytest)-prefix)/.markerfile
+$($(python-pytest)-prefix)/.pkgunpack: $$($(python-pytest)-src) $($(python-pytest)-srcdir)/.markerfile $($(python-pytest)-prefix)/.markerfile $$(foreach dep,$$($(python-pytest)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-pytest)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

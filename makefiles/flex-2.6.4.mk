@@ -40,7 +40,7 @@ $($(flex)-srcdir)/.markerfile:
 $($(flex)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(flex)-prefix)/.pkgunpack: $$($(flex)-src) $($(flex)-srcdir)/.markerfile $($(flex)-prefix)/.markerfile
+$($(flex)-prefix)/.pkgunpack: $$($(flex)-src) $($(flex)-srcdir)/.markerfile $($(flex)-prefix)/.markerfile $$(foreach dep,$$($(flex)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(flex)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

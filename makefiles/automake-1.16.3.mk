@@ -40,7 +40,7 @@ $($(automake)-srcdir)/.markerfile:
 $($(automake)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(automake)-prefix)/.pkgunpack: $$($(automake)-src) $($(automake)-srcdir)/.markerfile $($(automake)-prefix)/.markerfile
+$($(automake)-prefix)/.pkgunpack: $$($(automake)-src) $($(automake)-srcdir)/.markerfile $($(automake)-prefix)/.markerfile $$(foreach dep,$$($(automake)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(automake)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

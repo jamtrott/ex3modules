@@ -39,7 +39,7 @@ $($(libxv)-srcdir)/.markerfile:
 $($(libxv)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxv)-prefix)/.pkgunpack: $($(libxv)-src) $($(libxv)-srcdir)/.markerfile $($(libxv)-prefix)/.markerfile
+$($(libxv)-prefix)/.pkgunpack: $($(libxv)-src) $($(libxv)-srcdir)/.markerfile $($(libxv)-prefix)/.markerfile $$(foreach dep,$$($(libxv)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxv)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

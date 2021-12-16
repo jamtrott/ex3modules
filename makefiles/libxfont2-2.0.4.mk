@@ -39,7 +39,7 @@ $($(libxfont2)-srcdir)/.markerfile:
 $($(libxfont2)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxfont2)-prefix)/.pkgunpack: $($(libxfont2)-src) $($(libxfont2)-srcdir)/.markerfile $($(libxfont2)-prefix)/.markerfile
+$($(libxfont2)-prefix)/.pkgunpack: $($(libxfont2)-src) $($(libxfont2)-srcdir)/.markerfile $($(libxfont2)-prefix)/.markerfile $$(foreach dep,$$($(libxfont2)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxfont2)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

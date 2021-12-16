@@ -40,7 +40,7 @@ $($(icu)-srcdir)/.markerfile:
 $($(icu)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(icu)-prefix)/.pkgunpack: $$($(icu)-src) $($(icu)-srcdir)/.markerfile $($(icu)-prefix)/.markerfile
+$($(icu)-prefix)/.pkgunpack: $$($(icu)-src) $($(icu)-srcdir)/.markerfile $($(icu)-prefix)/.markerfile $$(foreach dep,$$($(icu)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(icu)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

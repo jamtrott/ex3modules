@@ -37,7 +37,7 @@ $($(perf)-srcdir)/.markerfile:
 $($(perf)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(perf)-prefix)/.pkgunpack: $$($(perf)-src) $($(perf)-srcdir)/.markerfile $($(perf)-prefix)/.markerfile
+$($(perf)-prefix)/.pkgunpack: $$($(perf)-src) $($(perf)-srcdir)/.markerfile $($(perf)-prefix)/.markerfile $$(foreach dep,$$($(perf)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(perf)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

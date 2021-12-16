@@ -40,7 +40,7 @@ $($(python-cffi)-srcdir)/.markerfile:
 $($(python-cffi)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-cffi)-prefix)/.pkgunpack: $$($(python-cffi)-src) $($(python-cffi)-srcdir)/.markerfile $($(python-cffi)-prefix)/.markerfile
+$($(python-cffi)-prefix)/.pkgunpack: $$($(python-cffi)-src) $($(python-cffi)-srcdir)/.markerfile $($(python-cffi)-prefix)/.markerfile $$(foreach dep,$$($(python-cffi)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-cffi)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

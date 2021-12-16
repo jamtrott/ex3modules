@@ -39,7 +39,7 @@ $($(libxaw)-srcdir)/.markerfile:
 $($(libxaw)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxaw)-prefix)/.pkgunpack: $($(libxaw)-src) $($(libxaw)-srcdir)/.markerfile $($(libxaw)-prefix)/.markerfile
+$($(libxaw)-prefix)/.pkgunpack: $($(libxaw)-src) $($(libxaw)-srcdir)/.markerfile $($(libxaw)-prefix)/.markerfile $$(foreach dep,$$($(libxaw)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxaw)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

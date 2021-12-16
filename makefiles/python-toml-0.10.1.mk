@@ -40,7 +40,7 @@ $($(python-toml)-srcdir)/.markerfile:
 $($(python-toml)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-toml)-prefix)/.pkgunpack: $$($(python-toml)-src) $($(python-toml)-srcdir)/.markerfile $($(python-toml)-prefix)/.markerfile
+$($(python-toml)-prefix)/.pkgunpack: $$($(python-toml)-src) $($(python-toml)-srcdir)/.markerfile $($(python-toml)-prefix)/.markerfile $$(foreach dep,$$($(python-toml)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-toml)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

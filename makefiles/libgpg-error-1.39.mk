@@ -40,7 +40,7 @@ $($(libgpg-error)-srcdir)/.markerfile:
 $($(libgpg-error)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libgpg-error)-prefix)/.pkgunpack: $($(libgpg-error)-src) $($(libgpg-error)-srcdir)/.markerfile $($(libgpg-error)-prefix)/.markerfile
+$($(libgpg-error)-prefix)/.pkgunpack: $($(libgpg-error)-src) $($(libgpg-error)-srcdir)/.markerfile $($(libgpg-error)-prefix)/.markerfile $$(foreach dep,$$($(libgpg-error)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libgpg-error)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

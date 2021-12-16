@@ -40,7 +40,7 @@ $($(nspr)-srcdir)/.markerfile:
 $($(nspr)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(nspr)-prefix)/.pkgunpack: $$($(nspr)-src) $($(nspr)-srcdir)/.markerfile $($(nspr)-prefix)/.markerfile
+$($(nspr)-prefix)/.pkgunpack: $$($(nspr)-src) $($(nspr)-srcdir)/.markerfile $($(nspr)-prefix)/.markerfile $$(foreach dep,$$($(nspr)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(nspr)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

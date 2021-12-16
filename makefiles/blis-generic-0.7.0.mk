@@ -37,7 +37,7 @@ $($(blis-generic)-srcdir)/.markerfile:
 $($(blis-generic)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(blis-generic)-prefix)/.pkgunpack: $$($(blis-generic)-src) $($(blis-generic)-srcdir)/.markerfile $($(blis-generic)-prefix)/.markerfile
+$($(blis-generic)-prefix)/.pkgunpack: $$($(blis-generic)-src) $($(blis-generic)-srcdir)/.markerfile $($(blis-generic)-prefix)/.markerfile $$(foreach dep,$$($(blis-generic)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(blis-generic)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

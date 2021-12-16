@@ -40,7 +40,7 @@ $($(ghostscript)-srcdir)/.markerfile:
 $($(ghostscript)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(ghostscript)-prefix)/.pkgunpack: $$($(ghostscript)-src) $($(ghostscript)-srcdir)/.markerfile $($(ghostscript)-prefix)/.markerfile
+$($(ghostscript)-prefix)/.pkgunpack: $$($(ghostscript)-src) $($(ghostscript)-srcdir)/.markerfile $($(ghostscript)-prefix)/.markerfile $$(foreach dep,$$($(ghostscript)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(ghostscript)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -39,7 +39,7 @@ $($(perl)-srcdir)/.markerfile:
 $($(perl)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(perl)-prefix)/.pkgunpack: $($(perl)-src) $($(perl)-srcdir)/.markerfile $($(perl)-prefix)/.markerfile
+$($(perl)-prefix)/.pkgunpack: $($(perl)-src) $($(perl)-srcdir)/.markerfile $($(perl)-prefix)/.markerfile $$(foreach dep,$$($(perl)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(perl)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

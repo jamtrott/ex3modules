@@ -39,7 +39,7 @@ $($(ninja)-srcdir)/.markerfile:
 $($(ninja)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(ninja)-prefix)/.pkgunpack: $($(ninja)-src) $($(ninja)-srcdir)/.markerfile $($(ninja)-prefix)/.markerfile
+$($(ninja)-prefix)/.pkgunpack: $($(ninja)-src) $($(ninja)-srcdir)/.markerfile $($(ninja)-prefix)/.markerfile $$(foreach dep,$$($(ninja)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(ninja)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

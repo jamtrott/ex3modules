@@ -40,7 +40,7 @@ $($(pango)-srcdir)/.markerfile:
 $($(pango)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(pango)-prefix)/.pkgunpack: $($(pango)-src) $($(pango)-srcdir)/.markerfile $($(pango)-prefix)/.markerfile
+$($(pango)-prefix)/.pkgunpack: $($(pango)-src) $($(pango)-srcdir)/.markerfile $($(pango)-prefix)/.markerfile $$(foreach dep,$$($(pango)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(pango)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

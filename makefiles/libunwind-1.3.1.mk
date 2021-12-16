@@ -40,7 +40,7 @@ $($(libunwind)-srcdir)/.markerfile:
 $($(libunwind)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libunwind)-prefix)/.pkgunpack: $($(libunwind)-src) $($(libunwind)-srcdir)/.markerfile $($(libunwind)-prefix)/.markerfile
+$($(libunwind)-prefix)/.pkgunpack: $($(libunwind)-src) $($(libunwind)-srcdir)/.markerfile $($(libunwind)-prefix)/.markerfile $$(foreach dep,$$($(libunwind)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libunwind)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(vmtk)-srcdir)/.markerfile:
 $($(vmtk)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(vmtk)-prefix)/.pkgunpack: $$($(vmtk)-src) $($(vmtk)-srcdir)/.markerfile $($(vmtk)-prefix)/.markerfile
+$($(vmtk)-prefix)/.pkgunpack: $$($(vmtk)-src) $($(vmtk)-srcdir)/.markerfile $($(vmtk)-prefix)/.markerfile $$(foreach dep,$$($(vmtk)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(vmtk)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

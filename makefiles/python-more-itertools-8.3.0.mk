@@ -40,7 +40,7 @@ $($(python-more-itertools)-srcdir)/.markerfile:
 $($(python-more-itertools)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-more-itertools)-prefix)/.pkgunpack: $$($(python-more-itertools)-src) $($(python-more-itertools)-srcdir)/.markerfile $($(python-more-itertools)-prefix)/.markerfile
+$($(python-more-itertools)-prefix)/.pkgunpack: $$($(python-more-itertools)-src) $($(python-more-itertools)-srcdir)/.markerfile $($(python-more-itertools)-prefix)/.markerfile $$(foreach dep,$$($(python-more-itertools)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-more-itertools)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

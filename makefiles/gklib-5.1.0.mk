@@ -37,7 +37,7 @@ $($(gklib)-srcdir)/.markerfile:
 $($(gklib)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(gklib)-prefix)/.pkgunpack: $$($(gklib)-src) $($(gklib)-srcdir)/.markerfile $($(gklib)-prefix)/.markerfile
+$($(gklib)-prefix)/.pkgunpack: $$($(gklib)-src) $($(gklib)-srcdir)/.markerfile $($(gklib)-prefix)/.markerfile $$(foreach dep,$$($(gklib)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(gklib)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

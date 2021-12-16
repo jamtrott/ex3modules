@@ -40,7 +40,7 @@ $($(opencascade)-srcdir)/.markerfile:
 $($(opencascade)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(opencascade)-prefix)/.pkgunpack: $$($(opencascade)-src) $($(opencascade)-srcdir)/.markerfile $($(opencascade)-prefix)/.markerfile
+$($(opencascade)-prefix)/.pkgunpack: $$($(opencascade)-src) $($(opencascade)-srcdir)/.markerfile $($(opencascade)-prefix)/.markerfile $$(foreach dep,$$($(opencascade)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(opencascade)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(python-distlib)-srcdir)/.markerfile:
 $($(python-distlib)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-distlib)-prefix)/.pkgunpack: $$($(python-distlib)-src) $($(python-distlib)-srcdir)/.markerfile $($(python-distlib)-prefix)/.markerfile
+$($(python-distlib)-prefix)/.pkgunpack: $$($(python-distlib)-src) $($(python-distlib)-srcdir)/.markerfile $($(python-distlib)-prefix)/.markerfile $$(foreach dep,$$($(python-distlib)-builddeps),$(modulefilesdir)/$$(dep))
 	unzip -d $($(python-distlib)-srcdir) $<
 	@touch $@
 

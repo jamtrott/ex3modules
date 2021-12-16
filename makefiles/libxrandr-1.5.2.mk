@@ -39,7 +39,7 @@ $($(libxrandr)-srcdir)/.markerfile:
 $($(libxrandr)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxrandr)-prefix)/.pkgunpack: $($(libxrandr)-src) $($(libxrandr)-srcdir)/.markerfile $($(libxrandr)-prefix)/.markerfile
+$($(libxrandr)-prefix)/.pkgunpack: $($(libxrandr)-src) $($(libxrandr)-srcdir)/.markerfile $($(libxrandr)-prefix)/.markerfile $$(foreach dep,$$($(libxrandr)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxrandr)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

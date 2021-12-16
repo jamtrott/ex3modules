@@ -39,7 +39,7 @@ $($(libxfixes)-srcdir)/.markerfile:
 $($(libxfixes)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxfixes)-prefix)/.pkgunpack: $($(libxfixes)-src) $($(libxfixes)-srcdir)/.markerfile $($(libxfixes)-prefix)/.markerfile
+$($(libxfixes)-prefix)/.pkgunpack: $($(libxfixes)-src) $($(libxfixes)-srcdir)/.markerfile $($(libxfixes)-prefix)/.markerfile $$(foreach dep,$$($(libxfixes)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxfixes)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

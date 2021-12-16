@@ -40,7 +40,7 @@ $($(python-petsc4py)-srcdir)/.markerfile:
 $($(python-petsc4py)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-petsc4py)-prefix)/.pkgunpack: $$($(python-petsc4py)-src) $($(python-petsc4py)-srcdir)/.markerfile $($(python-petsc4py)-prefix)/.markerfile
+$($(python-petsc4py)-prefix)/.pkgunpack: $$($(python-petsc4py)-src) $($(python-petsc4py)-srcdir)/.markerfile $($(python-petsc4py)-prefix)/.markerfile $$(foreach dep,$$($(python-petsc4py)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-petsc4py)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

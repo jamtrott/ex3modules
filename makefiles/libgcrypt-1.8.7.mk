@@ -40,7 +40,7 @@ $($(libgcrypt)-srcdir)/.markerfile:
 $($(libgcrypt)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libgcrypt)-prefix)/.pkgunpack: $($(libgcrypt)-src) $($(libgcrypt)-srcdir)/.markerfile $($(libgcrypt)-prefix)/.markerfile
+$($(libgcrypt)-prefix)/.pkgunpack: $($(libgcrypt)-src) $($(libgcrypt)-srcdir)/.markerfile $($(libgcrypt)-prefix)/.markerfile $$(foreach dep,$$($(libgcrypt)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libgcrypt)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

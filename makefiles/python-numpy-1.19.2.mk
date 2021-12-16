@@ -46,7 +46,7 @@ $($(python-numpy)-srcdir)/.markerfile:
 $($(python-numpy)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-numpy)-prefix)/.pkgunpack: $$($(python-numpy)-src) $($(python-numpy)-srcdir)/.markerfile $($(python-numpy)-prefix)/.markerfile
+$($(python-numpy)-prefix)/.pkgunpack: $$($(python-numpy)-src) $($(python-numpy)-srcdir)/.markerfile $($(python-numpy)-prefix)/.markerfile $$(foreach dep,$$($(python-numpy)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-numpy)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

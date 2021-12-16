@@ -40,7 +40,7 @@ $($(dealii)-srcdir)/.markerfile:
 $($(dealii)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(dealii)-prefix)/.pkgunpack: $($(dealii)-src) $($(dealii)-srcdir)/.markerfile $($(dealii)-prefix)/.markerfile
+$($(dealii)-prefix)/.pkgunpack: $($(dealii)-src) $($(dealii)-srcdir)/.markerfile $($(dealii)-prefix)/.markerfile $$(foreach dep,$$($(dealii)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(dealii)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

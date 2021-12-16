@@ -36,7 +36,7 @@ $($(petsc-cuda)-srcdir)/.markerfile:
 $($(petsc-cuda)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(petsc-cuda)-prefix)/.pkgunpack: $$($(petsc-cuda)-src) $($(petsc-cuda)-srcdir)/.markerfile $($(petsc-cuda)-prefix)/.markerfile
+$($(petsc-cuda)-prefix)/.pkgunpack: $$($(petsc-cuda)-src) $($(petsc-cuda)-srcdir)/.markerfile $($(petsc-cuda)-prefix)/.markerfile $$(foreach dep,$$($(petsc-cuda)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(petsc-cuda)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

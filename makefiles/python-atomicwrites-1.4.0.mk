@@ -40,7 +40,7 @@ $($(python-atomicwrites)-srcdir)/.markerfile:
 $($(python-atomicwrites)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-atomicwrites)-prefix)/.pkgunpack: $$($(python-atomicwrites)-src) $($(python-atomicwrites)-srcdir)/.markerfile $($(python-atomicwrites)-prefix)/.markerfile
+$($(python-atomicwrites)-prefix)/.pkgunpack: $$($(python-atomicwrites)-src) $($(python-atomicwrites)-srcdir)/.markerfile $($(python-atomicwrites)-prefix)/.markerfile $$(foreach dep,$$($(python-atomicwrites)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-atomicwrites)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

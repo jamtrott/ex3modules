@@ -39,7 +39,7 @@ $($(rdma-core)-srcdir)/.markerfile:
 $($(rdma-core)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(rdma-core)-prefix)/.pkgunpack: $($(rdma-core)-src) $($(rdma-core)-srcdir)/.markerfile $($(rdma-core)-prefix)/.markerfile
+$($(rdma-core)-prefix)/.pkgunpack: $($(rdma-core)-src) $($(rdma-core)-srcdir)/.markerfile $($(rdma-core)-prefix)/.markerfile $$(foreach dep,$$($(rdma-core)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(rdma-core)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

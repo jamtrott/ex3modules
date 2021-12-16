@@ -40,7 +40,7 @@ $($(gmsh)-srcdir)/.markerfile:
 $($(gmsh)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(gmsh)-prefix)/.pkgunpack: $($(gmsh)-src) $($(gmsh)-srcdir)/.markerfile $($(gmsh)-prefix)/.markerfile
+$($(gmsh)-prefix)/.pkgunpack: $($(gmsh)-src) $($(gmsh)-srcdir)/.markerfile $($(gmsh)-prefix)/.markerfile $$(foreach dep,$$($(gmsh)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(gmsh)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

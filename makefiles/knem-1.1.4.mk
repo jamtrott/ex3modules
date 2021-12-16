@@ -39,7 +39,7 @@ $($(knem)-srcdir)/.markerfile:
 $($(knem)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(knem)-prefix)/.pkgunpack: $($(knem)-src) $($(knem)-srcdir)/.markerfile $($(knem)-prefix)/.markerfile
+$($(knem)-prefix)/.pkgunpack: $($(knem)-src) $($(knem)-srcdir)/.markerfile $($(knem)-prefix)/.markerfile $$(foreach dep,$$($(knem)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(knem)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

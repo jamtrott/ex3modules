@@ -36,7 +36,7 @@ $($(boost-mpi)-srcdir)/.markerfile:
 $($(boost-mpi)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(boost-mpi)-prefix)/.pkgunpack: $$($(boost-mpi)-src) $($(boost-mpi)-srcdir)/.markerfile $($(boost-mpi)-prefix)/.markerfile
+$($(boost-mpi)-prefix)/.pkgunpack: $$($(boost-mpi)-src) $($(boost-mpi)-srcdir)/.markerfile $($(boost-mpi)-prefix)/.markerfile $$(foreach dep,$$($(boost-mpi)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(boost-mpi)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

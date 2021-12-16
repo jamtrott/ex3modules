@@ -40,7 +40,7 @@ $($(python-dateutil)-srcdir)/.markerfile:
 $($(python-dateutil)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-dateutil)-prefix)/.pkgunpack: $$($(python-dateutil)-src) $($(python-dateutil)-srcdir)/.markerfile $($(python-dateutil)-prefix)/.markerfile
+$($(python-dateutil)-prefix)/.pkgunpack: $$($(python-dateutil)-src) $($(python-dateutil)-srcdir)/.markerfile $($(python-dateutil)-prefix)/.markerfile $$(foreach dep,$$($(python-dateutil)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-dateutil)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

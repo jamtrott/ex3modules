@@ -40,7 +40,7 @@ $($(python-pyra-pytorch)-srcdir)/.markerfile:
 $($(python-pyra-pytorch)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-pyra-pytorch)-prefix)/.pkgunpack: $$($(python-pyra-pytorch)-src) $($(python-pyra-pytorch)-srcdir)/.markerfile $($(python-pyra-pytorch)-prefix)/.markerfile
+$($(python-pyra-pytorch)-prefix)/.pkgunpack: $$($(python-pyra-pytorch)-src) $($(python-pyra-pytorch)-srcdir)/.markerfile $($(python-pyra-pytorch)-prefix)/.markerfile $$(foreach dep,$$($(python-pyra-pytorch)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-pyra-pytorch)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

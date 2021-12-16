@@ -39,7 +39,7 @@ $($(libgd)-srcdir)/.markerfile:
 $($(libgd)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libgd)-prefix)/.pkgunpack: $($(libgd)-src) $($(libgd)-srcdir)/.markerfile $($(libgd)-prefix)/.markerfile
+$($(libgd)-prefix)/.pkgunpack: $($(libgd)-src) $($(libgd)-srcdir)/.markerfile $($(libgd)-prefix)/.markerfile $$(foreach dep,$$($(libgd)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libgd)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

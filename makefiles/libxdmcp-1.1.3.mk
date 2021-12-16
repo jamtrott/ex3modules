@@ -39,7 +39,7 @@ $($(libxdmcp)-srcdir)/.markerfile:
 $($(libxdmcp)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxdmcp)-prefix)/.pkgunpack: $($(libxdmcp)-src) $($(libxdmcp)-srcdir)/.markerfile $($(libxdmcp)-prefix)/.markerfile
+$($(libxdmcp)-prefix)/.pkgunpack: $($(libxdmcp)-src) $($(libxdmcp)-srcdir)/.markerfile $($(libxdmcp)-prefix)/.markerfile $$(foreach dep,$$($(libxdmcp)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxdmcp)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

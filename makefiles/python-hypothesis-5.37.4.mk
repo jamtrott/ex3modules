@@ -40,7 +40,7 @@ $($(python-hypothesis)-srcdir)/.markerfile:
 $($(python-hypothesis)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-hypothesis)-prefix)/.pkgunpack: $$($(python-hypothesis)-src) $($(python-hypothesis)-srcdir)/.markerfile $($(python-hypothesis)-prefix)/.markerfile
+$($(python-hypothesis)-prefix)/.pkgunpack: $$($(python-hypothesis)-src) $($(python-hypothesis)-srcdir)/.markerfile $($(python-hypothesis)-prefix)/.markerfile $$(foreach dep,$$($(python-hypothesis)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-hypothesis)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

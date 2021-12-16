@@ -40,7 +40,7 @@ $($(texinfo)-srcdir)/.markerfile:
 $($(texinfo)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(texinfo)-prefix)/.pkgunpack: $$($(texinfo)-src) $($(texinfo)-srcdir)/.markerfile $($(texinfo)-prefix)/.markerfile
+$($(texinfo)-prefix)/.pkgunpack: $$($(texinfo)-src) $($(texinfo)-srcdir)/.markerfile $($(texinfo)-prefix)/.markerfile $$(foreach dep,$$($(texinfo)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(texinfo)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

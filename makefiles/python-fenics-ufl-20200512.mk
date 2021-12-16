@@ -46,7 +46,7 @@ endif
 $($(python-fenics-ufl-20200512)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-fenics-ufl-20200512)-prefix)/.pkgunpack: $$($(python-fenics-ufl-20200512)-src) $($(python-fenics-ufl-20200512)-srcdir)/.markerfile $($(python-fenics-ufl-20200512)-prefix)/.markerfile
+$($(python-fenics-ufl-20200512)-prefix)/.pkgunpack: $$($(python-fenics-ufl-20200512)-src) $($(python-fenics-ufl-20200512)-srcdir)/.markerfile $($(python-fenics-ufl-20200512)-prefix)/.markerfile $$(foreach dep,$$($(python-fenics-ufl-20200512)-builddeps),$(modulefilesdir)/$$(dep))
 	cd $($(python-fenics-ufl-20200512)-srcdir) && unzip -o $<
 	@touch $@
 

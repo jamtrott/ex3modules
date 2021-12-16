@@ -39,7 +39,7 @@ $($(xorg-util-macros)-srcdir)/.markerfile:
 $($(xorg-util-macros)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(xorg-util-macros)-prefix)/.pkgunpack: $($(xorg-util-macros)-src) $($(xorg-util-macros)-srcdir)/.markerfile $($(xorg-util-macros)-prefix)/.markerfile
+$($(xorg-util-macros)-prefix)/.pkgunpack: $($(xorg-util-macros)-src) $($(xorg-util-macros)-srcdir)/.markerfile $($(xorg-util-macros)-prefix)/.markerfile $$(foreach dep,$$($(xorg-util-macros)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(xorg-util-macros)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

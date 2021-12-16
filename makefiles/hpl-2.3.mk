@@ -40,7 +40,7 @@ $($(hpl)-srcdir)/.markerfile:
 $($(hpl)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(hpl)-prefix)/.pkgunpack: $($(hpl)-src) $($(hpl)-srcdir)/.markerfile $($(hpl)-prefix)/.markerfile
+$($(hpl)-prefix)/.pkgunpack: $($(hpl)-src) $($(hpl)-srcdir)/.markerfile $($(hpl)-prefix)/.markerfile $$(foreach dep,$$($(hpl)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(hpl)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

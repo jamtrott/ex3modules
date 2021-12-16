@@ -39,7 +39,7 @@ $($(libxcomposite)-srcdir)/.markerfile:
 $($(libxcomposite)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxcomposite)-prefix)/.pkgunpack: $($(libxcomposite)-src) $($(libxcomposite)-srcdir)/.markerfile $($(libxcomposite)-prefix)/.markerfile
+$($(libxcomposite)-prefix)/.pkgunpack: $($(libxcomposite)-src) $($(libxcomposite)-srcdir)/.markerfile $($(libxcomposite)-prefix)/.markerfile $$(foreach dep,$$($(libxcomposite)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxcomposite)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

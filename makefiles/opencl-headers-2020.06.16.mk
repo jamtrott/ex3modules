@@ -40,7 +40,7 @@ $($(opencl-headers)-srcdir)/.markerfile:
 $($(opencl-headers)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(opencl-headers)-prefix)/.pkgunpack: $$($(opencl-headers)-src) $($(opencl-headers)-srcdir)/.markerfile $($(opencl-headers)-prefix)/.markerfile
+$($(opencl-headers)-prefix)/.pkgunpack: $$($(opencl-headers)-src) $($(opencl-headers)-srcdir)/.markerfile $($(opencl-headers)-prefix)/.markerfile $$(foreach dep,$$($(opencl-headers)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(opencl-headers)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -39,7 +39,7 @@ $($(cairo)-srcdir)/.markerfile:
 $($(cairo)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(cairo)-prefix)/.pkgunpack: $($(cairo)-src) $($(cairo)-srcdir)/.markerfile $($(cairo)-prefix)/.markerfile
+$($(cairo)-prefix)/.pkgunpack: $($(cairo)-src) $($(cairo)-srcdir)/.markerfile $($(cairo)-prefix)/.markerfile $$(foreach dep,$$($(cairo)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(cairo)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

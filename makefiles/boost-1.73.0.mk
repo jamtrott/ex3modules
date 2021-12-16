@@ -36,7 +36,7 @@ $($(boost)-srcdir)/.markerfile:
 $($(boost)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(boost)-prefix)/.pkgunpack: $$($(boost)-src) $($(boost)-srcdir)/.markerfile $($(boost)-prefix)/.markerfile
+$($(boost)-prefix)/.pkgunpack: $$($(boost)-src) $($(boost)-srcdir)/.markerfile $($(boost)-prefix)/.markerfile $$(foreach dep,$$($(boost)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(boost)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

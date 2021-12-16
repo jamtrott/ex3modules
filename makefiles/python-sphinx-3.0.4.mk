@@ -40,7 +40,7 @@ $($(python-sphinx)-srcdir)/.markerfile:
 $($(python-sphinx)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-sphinx)-prefix)/.pkgunpack: $$($(python-sphinx)-src) $($(python-sphinx)-srcdir)/.markerfile $($(python-sphinx)-prefix)/.markerfile
+$($(python-sphinx)-prefix)/.pkgunpack: $$($(python-sphinx)-src) $($(python-sphinx)-srcdir)/.markerfile $($(python-sphinx)-prefix)/.markerfile $$(foreach dep,$$($(python-sphinx)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-sphinx)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

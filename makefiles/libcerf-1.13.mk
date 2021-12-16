@@ -40,7 +40,7 @@ $($(libcerf)-srcdir)/.markerfile:
 $($(libcerf)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libcerf)-prefix)/.pkgunpack: $($(libcerf)-src) $($(libcerf)-srcdir)/.markerfile $($(libcerf)-prefix)/.markerfile
+$($(libcerf)-prefix)/.pkgunpack: $($(libcerf)-src) $($(libcerf)-srcdir)/.markerfile $($(libcerf)-prefix)/.markerfile $$(foreach dep,$$($(libcerf)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libcerf)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

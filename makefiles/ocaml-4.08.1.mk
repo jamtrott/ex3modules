@@ -40,7 +40,7 @@ $($(ocaml)-srcdir)/.markerfile:
 $($(ocaml)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(ocaml)-prefix)/.pkgunpack: $($(ocaml)-src) $($(ocaml)-srcdir)/.markerfile $($(ocaml)-prefix)/.markerfile
+$($(ocaml)-prefix)/.pkgunpack: $($(ocaml)-src) $($(ocaml)-srcdir)/.markerfile $($(ocaml)-prefix)/.markerfile $$(foreach dep,$$($(ocaml)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(ocaml)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

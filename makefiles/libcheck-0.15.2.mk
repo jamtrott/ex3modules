@@ -40,7 +40,7 @@ $($(libcheck)-srcdir)/.markerfile:
 $($(libcheck)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libcheck)-prefix)/.pkgunpack: $$($(libcheck)-src) $($(libcheck)-srcdir)/.markerfile $($(libcheck)-prefix)/.markerfile
+$($(libcheck)-prefix)/.pkgunpack: $$($(libcheck)-src) $($(libcheck)-srcdir)/.markerfile $($(libcheck)-prefix)/.markerfile $$(foreach dep,$$($(libcheck)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libcheck)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

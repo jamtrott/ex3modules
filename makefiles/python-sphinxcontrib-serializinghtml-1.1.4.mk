@@ -40,7 +40,7 @@ $($(python-sphinxcontrib-serializinghtml)-srcdir)/.markerfile:
 $($(python-sphinxcontrib-serializinghtml)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-sphinxcontrib-serializinghtml)-prefix)/.pkgunpack: $$($(python-sphinxcontrib-serializinghtml)-src) $($(python-sphinxcontrib-serializinghtml)-srcdir)/.markerfile $($(python-sphinxcontrib-serializinghtml)-prefix)/.markerfile
+$($(python-sphinxcontrib-serializinghtml)-prefix)/.pkgunpack: $$($(python-sphinxcontrib-serializinghtml)-src) $($(python-sphinxcontrib-serializinghtml)-srcdir)/.markerfile $($(python-sphinxcontrib-serializinghtml)-prefix)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-serializinghtml)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-sphinxcontrib-serializinghtml)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

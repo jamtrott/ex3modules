@@ -40,7 +40,7 @@ $($(python-matplotlib)-srcdir)/.markerfile:
 $($(python-matplotlib)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-matplotlib)-prefix)/.pkgunpack: $$($(python-matplotlib)-src) $($(python-matplotlib)-srcdir)/.markerfile $($(python-matplotlib)-prefix)/.markerfile
+$($(python-matplotlib)-prefix)/.pkgunpack: $$($(python-matplotlib)-src) $($(python-matplotlib)-srcdir)/.markerfile $($(python-matplotlib)-prefix)/.markerfile $$(foreach dep,$$($(python-matplotlib)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-matplotlib)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

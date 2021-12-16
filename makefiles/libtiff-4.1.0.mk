@@ -39,7 +39,7 @@ $($(libtiff)-srcdir)/.markerfile:
 $($(libtiff)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libtiff)-prefix)/.pkgunpack: $($(libtiff)-src) $($(libtiff)-srcdir)/.markerfile $($(libtiff)-prefix)/.markerfile
+$($(libtiff)-prefix)/.pkgunpack: $($(libtiff)-src) $($(libtiff)-srcdir)/.markerfile $($(libtiff)-prefix)/.markerfile $$(foreach dep,$$($(libtiff)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libtiff)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

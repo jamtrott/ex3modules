@@ -40,7 +40,7 @@ $($(python-pandas)-srcdir)/.markerfile:
 $($(python-pandas)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-pandas)-prefix)/.pkgunpack: $$($(python-pandas)-src) $($(python-pandas)-srcdir)/.markerfile $($(python-pandas)-prefix)/.markerfile
+$($(python-pandas)-prefix)/.pkgunpack: $$($(python-pandas)-src) $($(python-pandas)-srcdir)/.markerfile $($(python-pandas)-prefix)/.markerfile $$(foreach dep,$$($(python-pandas)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-pandas)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -39,7 +39,7 @@ $($(libxmu)-srcdir)/.markerfile:
 $($(libxmu)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxmu)-prefix)/.pkgunpack: $($(libxmu)-src) $($(libxmu)-srcdir)/.markerfile $($(libxmu)-prefix)/.markerfile
+$($(libxmu)-prefix)/.pkgunpack: $($(libxmu)-src) $($(libxmu)-srcdir)/.markerfile $($(libxmu)-prefix)/.markerfile $$(foreach dep,$$($(libxmu)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxmu)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

@@ -37,7 +37,7 @@ $($(hdf5-parallel)-srcdir)/.markerfile:
 $($(hdf5-parallel)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(hdf5-parallel)-prefix)/.pkgunpack: $$($(hdf5-parallel)-src) $($(hdf5-parallel)-srcdir)/.markerfile $($(hdf5-parallel)-prefix)/.markerfile
+$($(hdf5-parallel)-prefix)/.pkgunpack: $$($(hdf5-parallel)-src) $($(hdf5-parallel)-srcdir)/.markerfile $($(hdf5-parallel)-prefix)/.markerfile $$(foreach dep,$$($(hdf5-parallel)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(hdf5-parallel)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -41,7 +41,7 @@ $($(gengetopt)-srcdir)/.markerfile:
 $($(gengetopt)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(gengetopt)-prefix)/.pkgunpack: $$($(gengetopt)-src) $($(gengetopt)-srcdir)/.markerfile $($(gengetopt)-prefix)/.markerfile
+$($(gengetopt)-prefix)/.pkgunpack: $$($(gengetopt)-src) $($(gengetopt)-srcdir)/.markerfile $($(gengetopt)-prefix)/.markerfile $$(foreach dep,$$($(gengetopt)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(gengetopt)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

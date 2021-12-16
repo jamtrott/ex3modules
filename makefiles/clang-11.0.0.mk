@@ -40,7 +40,7 @@ $($(clang)-srcdir)/.markerfile:
 $($(clang)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(clang)-prefix)/.pkgunpack: $($(clang)-src) $($(clang)-srcdir)/.markerfile $($(clang)-prefix)/.markerfile
+$($(clang)-prefix)/.pkgunpack: $($(clang)-src) $($(clang)-srcdir)/.markerfile $($(clang)-prefix)/.markerfile $$(foreach dep,$$($(clang)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(clang)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

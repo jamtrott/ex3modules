@@ -39,7 +39,7 @@ $($(libx11)-srcdir)/.markerfile:
 $($(libx11)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libx11)-prefix)/.pkgunpack: $($(libx11)-src) $($(libx11)-srcdir)/.markerfile $($(libx11)-prefix)/.markerfile
+$($(libx11)-prefix)/.pkgunpack: $($(libx11)-src) $($(libx11)-srcdir)/.markerfile $($(libx11)-prefix)/.markerfile $$(foreach dep,$$($(libx11)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libx11)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

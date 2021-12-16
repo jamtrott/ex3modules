@@ -40,7 +40,7 @@ $($(slurm-20.02.6)-srcdir)/.markerfile:
 $($(slurm-20.02.6)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(slurm-20.02.6)-prefix)/.pkgunpack: $($(slurm-20.02.6)-src) $($(slurm-20.02.6)-srcdir)/.markerfile $($(slurm-20.02.6)-prefix)/.markerfile
+$($(slurm-20.02.6)-prefix)/.pkgunpack: $($(slurm-20.02.6)-src) $($(slurm-20.02.6)-srcdir)/.markerfile $($(slurm-20.02.6)-prefix)/.markerfile $$(foreach dep,$$($(slurm-20.02.6)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(slurm-20.02.6)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

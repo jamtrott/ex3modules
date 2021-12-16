@@ -41,7 +41,7 @@ $($(harfbuzz-graphite)-srcdir)/.markerfile:
 $($(harfbuzz-graphite)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(harfbuzz-graphite)-prefix)/.pkgunpack: $$($(harfbuzz-graphite)-src) $($(harfbuzz-graphite)-srcdir)/.markerfile $($(harfbuzz-graphite)-prefix)/.markerfile
+$($(harfbuzz-graphite)-prefix)/.pkgunpack: $$($(harfbuzz-graphite)-src) $($(harfbuzz-graphite)-srcdir)/.markerfile $($(harfbuzz-graphite)-prefix)/.markerfile $$(foreach dep,$$($(harfbuzz-graphite)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(harfbuzz-graphite)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

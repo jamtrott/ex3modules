@@ -40,7 +40,7 @@ $($(python-pillow)-srcdir)/.markerfile:
 $($(python-pillow)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-pillow)-prefix)/.pkgunpack: $$($(python-pillow)-src) $($(python-pillow)-srcdir)/.markerfile $($(python-pillow)-prefix)/.markerfile
+$($(python-pillow)-prefix)/.pkgunpack: $$($(python-pillow)-src) $($(python-pillow)-srcdir)/.markerfile $($(python-pillow)-prefix)/.markerfile $$(foreach dep,$$($(python-pillow)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-pillow)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

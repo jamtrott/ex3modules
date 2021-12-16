@@ -40,7 +40,7 @@ $($(fribidi)-srcdir)/.markerfile:
 $($(fribidi)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(fribidi)-prefix)/.pkgunpack: $$($(fribidi)-src) $($(fribidi)-srcdir)/.markerfile $($(fribidi)-prefix)/.markerfile
+$($(fribidi)-prefix)/.pkgunpack: $$($(fribidi)-src) $($(fribidi)-srcdir)/.markerfile $($(fribidi)-prefix)/.markerfile $$(foreach dep,$$($(fribidi)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(fribidi)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

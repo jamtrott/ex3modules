@@ -39,7 +39,7 @@ $($(libxi)-srcdir)/.markerfile:
 $($(libxi)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxi)-prefix)/.pkgunpack: $($(libxi)-src) $($(libxi)-srcdir)/.markerfile $($(libxi)-prefix)/.markerfile
+$($(libxi)-prefix)/.pkgunpack: $($(libxi)-src) $($(libxi)-srcdir)/.markerfile $($(libxi)-prefix)/.markerfile $$(foreach dep,$$($(libxi)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxi)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

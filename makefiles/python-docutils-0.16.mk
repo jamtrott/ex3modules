@@ -40,7 +40,7 @@ $($(python-docutils)-srcdir)/.markerfile:
 $($(python-docutils)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-docutils)-prefix)/.pkgunpack: $$($(python-docutils)-src) $($(python-docutils)-srcdir)/.markerfile $($(python-docutils)-prefix)/.markerfile
+$($(python-docutils)-prefix)/.pkgunpack: $$($(python-docutils)-src) $($(python-docutils)-srcdir)/.markerfile $($(python-docutils)-prefix)/.markerfile $$(foreach dep,$$($(python-docutils)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-docutils)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

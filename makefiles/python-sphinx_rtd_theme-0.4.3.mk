@@ -40,7 +40,7 @@ $($(python-sphinx_rtd_theme)-srcdir)/.markerfile:
 $($(python-sphinx_rtd_theme)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-sphinx_rtd_theme)-prefix)/.pkgunpack: $$($(python-sphinx_rtd_theme)-src) $($(python-sphinx_rtd_theme)-srcdir)/.markerfile $($(python-sphinx_rtd_theme)-prefix)/.markerfile
+$($(python-sphinx_rtd_theme)-prefix)/.pkgunpack: $$($(python-sphinx_rtd_theme)-src) $($(python-sphinx_rtd_theme)-srcdir)/.markerfile $($(python-sphinx_rtd_theme)-prefix)/.markerfile $$(foreach dep,$$($(python-sphinx_rtd_theme)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-sphinx_rtd_theme)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

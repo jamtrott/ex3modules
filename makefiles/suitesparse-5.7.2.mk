@@ -39,7 +39,7 @@ $($(suitesparse)-srcdir)/.markerfile:
 $($(suitesparse)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(suitesparse)-prefix)/.pkgunpack: $($(suitesparse)-src) $($(suitesparse)-srcdir)/.markerfile $($(suitesparse)-prefix)/.markerfile
+$($(suitesparse)-prefix)/.pkgunpack: $($(suitesparse)-src) $($(suitesparse)-srcdir)/.markerfile $($(suitesparse)-prefix)/.markerfile $$(foreach dep,$$($(suitesparse)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(suitesparse)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

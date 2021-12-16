@@ -36,7 +36,7 @@ $($(openmpi-cuda)-srcdir)/.markerfile:
 $($(openmpi-cuda)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openmpi-cuda)-prefix)/.pkgunpack: $$($(openmpi-cuda)-src) $($(openmpi-cuda)-srcdir)/.markerfile $($(openmpi-cuda)-prefix)/.markerfile
+$($(openmpi-cuda)-prefix)/.pkgunpack: $$($(openmpi-cuda)-src) $($(openmpi-cuda)-srcdir)/.markerfile $($(openmpi-cuda)-prefix)/.markerfile $$(foreach dep,$$($(openmpi-cuda)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(openmpi-cuda)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

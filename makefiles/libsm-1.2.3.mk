@@ -39,7 +39,7 @@ $($(libsm)-srcdir)/.markerfile:
 $($(libsm)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libsm)-prefix)/.pkgunpack: $($(libsm)-src) $($(libsm)-srcdir)/.markerfile $($(libsm)-prefix)/.markerfile
+$($(libsm)-prefix)/.pkgunpack: $($(libsm)-src) $($(libsm)-srcdir)/.markerfile $($(libsm)-prefix)/.markerfile $$(foreach dep,$$($(libsm)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libsm)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

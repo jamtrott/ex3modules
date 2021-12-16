@@ -39,7 +39,7 @@ $($(libxvmc)-srcdir)/.markerfile:
 $($(libxvmc)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxvmc)-prefix)/.pkgunpack: $($(libxvmc)-src) $($(libxvmc)-srcdir)/.markerfile $($(libxvmc)-prefix)/.markerfile
+$($(libxvmc)-prefix)/.pkgunpack: $($(libxvmc)-src) $($(libxvmc)-srcdir)/.markerfile $($(libxvmc)-prefix)/.markerfile $$(foreach dep,$$($(libxvmc)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxvmc)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

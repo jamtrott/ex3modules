@@ -40,7 +40,7 @@ $($(lapack)-srcdir)/.markerfile:
 $($(lapack)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(lapack)-prefix)/.pkgunpack: $($(lapack)-src) $($(lapack)-srcdir)/.markerfile $($(lapack)-prefix)/.markerfile
+$($(lapack)-prefix)/.pkgunpack: $($(lapack)-src) $($(lapack)-srcdir)/.markerfile $($(lapack)-prefix)/.markerfile $$(foreach dep,$$($(lapack)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(lapack)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

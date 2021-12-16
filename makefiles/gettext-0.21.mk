@@ -40,7 +40,7 @@ $($(gettext)-srcdir)/.markerfile:
 $($(gettext)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(gettext)-prefix)/.pkgunpack: $$($(gettext)-src) $($(gettext)-srcdir)/.markerfile $($(gettext)-prefix)/.markerfile
+$($(gettext)-prefix)/.pkgunpack: $$($(gettext)-src) $($(gettext)-srcdir)/.markerfile $($(gettext)-prefix)/.markerfile $$(foreach dep,$$($(gettext)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(gettext)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

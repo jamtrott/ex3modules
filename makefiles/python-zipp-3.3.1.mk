@@ -40,7 +40,7 @@ $($(python-zipp)-srcdir)/.markerfile:
 $($(python-zipp)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-zipp)-prefix)/.pkgunpack: $$($(python-zipp)-src) $($(python-zipp)-srcdir)/.markerfile $($(python-zipp)-prefix)/.markerfile
+$($(python-zipp)-prefix)/.pkgunpack: $$($(python-zipp)-src) $($(python-zipp)-srcdir)/.markerfile $($(python-zipp)-prefix)/.markerfile $$(foreach dep,$$($(python-zipp)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-zipp)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(python-numba)-srcdir)/.markerfile:
 $($(python-numba)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-numba)-prefix)/.pkgunpack: $$($(python-numba)-src) $($(python-numba)-srcdir)/.markerfile $($(python-numba)-prefix)/.markerfile
+$($(python-numba)-prefix)/.pkgunpack: $$($(python-numba)-src) $($(python-numba)-srcdir)/.markerfile $($(python-numba)-prefix)/.markerfile $$(foreach dep,$$($(python-numba)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-numba)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

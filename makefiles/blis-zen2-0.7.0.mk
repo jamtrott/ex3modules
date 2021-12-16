@@ -50,7 +50,7 @@ $($(blis-zen2)-srcdir)/.markerfile:
 $($(blis-zen2)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(blis-zen2)-prefix)/.pkgunpack: $$($(blis-zen2)-src) $($(blis-zen2)-srcdir)/.markerfile $($(blis-zen2)-prefix)/.markerfile
+$($(blis-zen2)-prefix)/.pkgunpack: $$($(blis-zen2)-src) $($(blis-zen2)-srcdir)/.markerfile $($(blis-zen2)-prefix)/.markerfile $$(foreach dep,$$($(blis-zen2)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(blis-zen2)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

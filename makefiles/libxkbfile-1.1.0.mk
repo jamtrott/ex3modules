@@ -39,7 +39,7 @@ $($(libxkbfile)-srcdir)/.markerfile:
 $($(libxkbfile)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxkbfile)-prefix)/.pkgunpack: $($(libxkbfile)-src) $($(libxkbfile)-srcdir)/.markerfile $($(libxkbfile)-prefix)/.markerfile
+$($(libxkbfile)-prefix)/.pkgunpack: $($(libxkbfile)-src) $($(libxkbfile)-srcdir)/.markerfile $($(libxkbfile)-prefix)/.markerfile $$(foreach dep,$$($(libxkbfile)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxkbfile)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

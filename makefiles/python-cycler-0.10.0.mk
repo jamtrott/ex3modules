@@ -40,7 +40,7 @@ $($(python-cycler)-srcdir)/.markerfile:
 $($(python-cycler)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-cycler)-prefix)/.pkgunpack: $$($(python-cycler)-src) $($(python-cycler)-srcdir)/.markerfile $($(python-cycler)-prefix)/.markerfile
+$($(python-cycler)-prefix)/.pkgunpack: $$($(python-cycler)-src) $($(python-cycler)-srcdir)/.markerfile $($(python-cycler)-prefix)/.markerfile $$(foreach dep,$$($(python-cycler)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-cycler)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

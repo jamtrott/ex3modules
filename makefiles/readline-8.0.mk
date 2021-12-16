@@ -39,7 +39,7 @@ $($(readline)-srcdir)/.markerfile:
 $($(readline)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(readline)-prefix)/.pkgunpack: $($(readline)-src) $($(readline)-srcdir)/.markerfile $($(readline)-prefix)/.markerfile
+$($(readline)-prefix)/.pkgunpack: $($(readline)-src) $($(readline)-srcdir)/.markerfile $($(readline)-prefix)/.markerfile $$(foreach dep,$$($(readline)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(readline)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

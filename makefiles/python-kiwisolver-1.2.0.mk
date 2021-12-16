@@ -40,7 +40,7 @@ $($(python-kiwisolver)-srcdir)/.markerfile:
 $($(python-kiwisolver)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-kiwisolver)-prefix)/.pkgunpack: $$($(python-kiwisolver)-src) $($(python-kiwisolver)-srcdir)/.markerfile $($(python-kiwisolver)-prefix)/.markerfile
+$($(python-kiwisolver)-prefix)/.pkgunpack: $$($(python-kiwisolver)-src) $($(python-kiwisolver)-srcdir)/.markerfile $($(python-kiwisolver)-prefix)/.markerfile $$(foreach dep,$$($(python-kiwisolver)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-kiwisolver)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

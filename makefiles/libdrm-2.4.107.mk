@@ -40,7 +40,7 @@ $($(libdrm)-srcdir)/.markerfile:
 $($(libdrm)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libdrm)-prefix)/.pkgunpack: $$($(libdrm)-src) $($(libdrm)-srcdir)/.markerfile $($(libdrm)-prefix)/.markerfile
+$($(libdrm)-prefix)/.pkgunpack: $$($(libdrm)-src) $($(libdrm)-srcdir)/.markerfile $($(libdrm)-prefix)/.markerfile $$(foreach dep,$$($(libdrm)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libdrm)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

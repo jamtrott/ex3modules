@@ -37,7 +37,7 @@ $($(superlu_dist-cuda)-srcdir)/.markerfile:
 $($(superlu_dist-cuda)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(superlu_dist-cuda)-prefix)/.pkgunpack: $$($(superlu_dist-cuda)-src) $($(superlu_dist-cuda)-srcdir)/.markerfile $($(superlu_dist-cuda)-prefix)/.markerfile
+$($(superlu_dist-cuda)-prefix)/.pkgunpack: $$($(superlu_dist-cuda)-src) $($(superlu_dist-cuda)-srcdir)/.markerfile $($(superlu_dist-cuda)-prefix)/.markerfile $$(foreach dep,$$($(superlu_dist-cuda)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(superlu_dist-cuda)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

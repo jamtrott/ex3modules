@@ -39,7 +39,7 @@ $($(xorgproto)-srcdir)/.markerfile:
 $($(xorgproto)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(xorgproto)-prefix)/.pkgunpack: $($(xorgproto)-src) $($(xorgproto)-srcdir)/.markerfile $($(xorgproto)-prefix)/.markerfile
+$($(xorgproto)-prefix)/.pkgunpack: $($(xorgproto)-src) $($(xorgproto)-srcdir)/.markerfile $($(xorgproto)-prefix)/.markerfile $$(foreach dep,$$($(xorgproto)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(xorgproto)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

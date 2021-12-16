@@ -39,7 +39,7 @@ $($(fontconfig)-srcdir)/.markerfile:
 $($(fontconfig)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(fontconfig)-prefix)/.pkgunpack: $($(fontconfig)-src) $($(fontconfig)-srcdir)/.markerfile $($(fontconfig)-prefix)/.markerfile
+$($(fontconfig)-prefix)/.pkgunpack: $($(fontconfig)-src) $($(fontconfig)-srcdir)/.markerfile $($(fontconfig)-prefix)/.markerfile $$(foreach dep,$$($(fontconfig)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(fontconfig)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

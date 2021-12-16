@@ -45,7 +45,7 @@ $($(glib)-srcdir)/build/.markerfile: $($(glib)-srcdir)/.markerfile
 $($(glib)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(glib)-prefix)/.pkgunpack: $($(glib)-src) $($(glib)-srcdir)/.markerfile $($(glib)-prefix)/.markerfile
+$($(glib)-prefix)/.pkgunpack: $($(glib)-src) $($(glib)-srcdir)/.markerfile $($(glib)-prefix)/.markerfile $$(foreach dep,$$($(glib)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(glib)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

@@ -37,7 +37,7 @@ $($(hwloc)-srcdir)/.markerfile:
 $($(hwloc)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(hwloc)-prefix)/.pkgunpack: $$($(hwloc)-src) $($(hwloc)-srcdir)/.markerfile $($(hwloc)-prefix)/.markerfile
+$($(hwloc)-prefix)/.pkgunpack: $$($(hwloc)-src) $($(hwloc)-srcdir)/.markerfile $($(hwloc)-prefix)/.markerfile $$(foreach dep,$$($(hwloc)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(hwloc)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

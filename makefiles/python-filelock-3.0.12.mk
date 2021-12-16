@@ -40,7 +40,7 @@ $($(python-filelock)-srcdir)/.markerfile:
 $($(python-filelock)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-filelock)-prefix)/.pkgunpack: $$($(python-filelock)-src) $($(python-filelock)-srcdir)/.markerfile $($(python-filelock)-prefix)/.markerfile
+$($(python-filelock)-prefix)/.pkgunpack: $$($(python-filelock)-src) $($(python-filelock)-srcdir)/.markerfile $($(python-filelock)-prefix)/.markerfile $$(foreach dep,$$($(python-filelock)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-filelock)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

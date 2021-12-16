@@ -40,7 +40,7 @@ $($(python-numpy-quaternion)-srcdir)/.markerfile:
 $($(python-numpy-quaternion)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-numpy-quaternion)-prefix)/.pkgunpack: $$($(python-numpy-quaternion)-src) $($(python-numpy-quaternion)-srcdir)/.markerfile $($(python-numpy-quaternion)-prefix)/.markerfile
+$($(python-numpy-quaternion)-prefix)/.pkgunpack: $$($(python-numpy-quaternion)-src) $($(python-numpy-quaternion)-srcdir)/.markerfile $($(python-numpy-quaternion)-prefix)/.markerfile $$(foreach dep,$$($(python-numpy-quaternion)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-numpy-quaternion)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

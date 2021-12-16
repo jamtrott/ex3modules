@@ -40,7 +40,7 @@ $($(python-freezegun)-srcdir)/.markerfile:
 $($(python-freezegun)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-freezegun)-prefix)/.pkgunpack: $$($(python-freezegun)-src) $($(python-freezegun)-srcdir)/.markerfile $($(python-freezegun)-prefix)/.markerfile
+$($(python-freezegun)-prefix)/.pkgunpack: $$($(python-freezegun)-src) $($(python-freezegun)-srcdir)/.markerfile $($(python-freezegun)-prefix)/.markerfile $$(foreach dep,$$($(python-freezegun)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-freezegun)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(libxml2)-srcdir)/.markerfile:
 $($(libxml2)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxml2)-prefix)/.pkgunpack: $$($(libxml2)-src) $($(libxml2)-srcdir)/.markerfile $($(libxml2)-prefix)/.markerfile
+$($(libxml2)-prefix)/.pkgunpack: $$($(libxml2)-src) $($(libxml2)-srcdir)/.markerfile $($(libxml2)-prefix)/.markerfile $$(foreach dep,$$($(libxml2)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxml2)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

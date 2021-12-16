@@ -40,7 +40,7 @@ $($(itk)-srcdir)/.markerfile:
 $($(itk)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(itk)-prefix)/.pkgunpack: $$($(itk)-src) $($(itk)-srcdir)/.markerfile $($(itk)-prefix)/.markerfile
+$($(itk)-prefix)/.pkgunpack: $$($(itk)-src) $($(itk)-srcdir)/.markerfile $($(itk)-prefix)/.markerfile $$(foreach dep,$$($(itk)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(itk)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

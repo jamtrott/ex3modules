@@ -40,7 +40,7 @@ $($(libpfm)-srcdir)/.markerfile:
 $($(libpfm)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libpfm)-prefix)/.pkgunpack: $($(libpfm)-src) $($(libpfm)-srcdir)/.markerfile $($(libpfm)-prefix)/.markerfile
+$($(libpfm)-prefix)/.pkgunpack: $($(libpfm)-src) $($(libpfm)-srcdir)/.markerfile $($(libpfm)-prefix)/.markerfile $$(foreach dep,$$($(libpfm)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libpfm)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

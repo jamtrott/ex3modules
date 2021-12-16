@@ -39,7 +39,7 @@ $($(libxau)-srcdir)/.markerfile:
 $($(libxau)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxau)-prefix)/.pkgunpack: $($(libxau)-src) $($(libxau)-srcdir)/.markerfile $($(libxau)-prefix)/.markerfile
+$($(libxau)-prefix)/.pkgunpack: $($(libxau)-src) $($(libxau)-srcdir)/.markerfile $($(libxau)-prefix)/.markerfile $$(foreach dep,$$($(libxau)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxau)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

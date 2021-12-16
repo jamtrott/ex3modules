@@ -39,7 +39,7 @@ $($(libxcursor)-srcdir)/.markerfile:
 $($(libxcursor)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxcursor)-prefix)/.pkgunpack: $($(libxcursor)-src) $($(libxcursor)-srcdir)/.markerfile $($(libxcursor)-prefix)/.markerfile
+$($(libxcursor)-prefix)/.pkgunpack: $($(libxcursor)-src) $($(libxcursor)-srcdir)/.markerfile $($(libxcursor)-prefix)/.markerfile $$(foreach dep,$$($(libxcursor)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxcursor)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

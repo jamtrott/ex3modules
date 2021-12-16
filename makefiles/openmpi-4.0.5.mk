@@ -36,7 +36,7 @@ $($(openmpi)-srcdir)/.markerfile:
 $($(openmpi)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openmpi)-prefix)/.pkgunpack: $$($(openmpi)-src) $($(openmpi)-srcdir)/.markerfile $($(openmpi)-prefix)/.markerfile
+$($(openmpi)-prefix)/.pkgunpack: $$($(openmpi)-src) $($(openmpi)-srcdir)/.markerfile $($(openmpi)-prefix)/.markerfile $$(foreach dep,$$($(openmpi)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(openmpi)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

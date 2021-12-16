@@ -40,7 +40,7 @@ $($(llvm-openmp)-srcdir)/.markerfile:
 $($(llvm-openmp)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(llvm-openmp)-prefix)/.pkgunpack: $($(llvm-openmp)-src) $($(llvm-openmp)-srcdir)/.markerfile $($(llvm-openmp)-prefix)/.markerfile
+$($(llvm-openmp)-prefix)/.pkgunpack: $($(llvm-openmp)-src) $($(llvm-openmp)-srcdir)/.markerfile $($(llvm-openmp)-prefix)/.markerfile $$(foreach dep,$$($(llvm-openmp)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(llvm-openmp)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(protobuf-python)-srcdir)/.markerfile:
 $($(protobuf-python)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(protobuf-python)-prefix)/.pkgunpack: $$($(protobuf-python)-src) $($(protobuf-python)-srcdir)/.markerfile $($(protobuf-python)-prefix)/.markerfile
+$($(protobuf-python)-prefix)/.pkgunpack: $$($(protobuf-python)-src) $($(protobuf-python)-srcdir)/.markerfile $($(protobuf-python)-prefix)/.markerfile $$(foreach dep,$$($(protobuf-python)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(protobuf-python)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

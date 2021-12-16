@@ -40,7 +40,7 @@ $($(gnuplot)-srcdir)/.markerfile:
 $($(gnuplot)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(gnuplot)-prefix)/.pkgunpack: $($(gnuplot)-src) $($(gnuplot)-srcdir)/.markerfile $($(gnuplot)-prefix)/.markerfile
+$($(gnuplot)-prefix)/.pkgunpack: $($(gnuplot)-src) $($(gnuplot)-srcdir)/.markerfile $($(gnuplot)-prefix)/.markerfile $$(foreach dep,$$($(gnuplot)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(gnuplot)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

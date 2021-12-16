@@ -40,7 +40,7 @@ $($(libffi)-srcdir)/.markerfile:
 $($(libffi)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libffi)-prefix)/.pkgunpack: $$($(libffi)-src) $($(libffi)-srcdir)/.markerfile $($(libffi)-prefix)/.markerfile
+$($(libffi)-prefix)/.pkgunpack: $$($(libffi)-src) $($(libffi)-srcdir)/.markerfile $($(libffi)-prefix)/.markerfile $$(foreach dep,$$($(libffi)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libffi)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

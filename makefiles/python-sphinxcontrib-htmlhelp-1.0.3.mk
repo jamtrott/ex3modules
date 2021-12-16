@@ -40,7 +40,7 @@ $($(python-sphinxcontrib-htmlhelp)-srcdir)/.markerfile:
 $($(python-sphinxcontrib-htmlhelp)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-sphinxcontrib-htmlhelp)-prefix)/.pkgunpack: $$($(python-sphinxcontrib-htmlhelp)-src) $($(python-sphinxcontrib-htmlhelp)-srcdir)/.markerfile $($(python-sphinxcontrib-htmlhelp)-prefix)/.markerfile
+$($(python-sphinxcontrib-htmlhelp)-prefix)/.pkgunpack: $$($(python-sphinxcontrib-htmlhelp)-src) $($(python-sphinxcontrib-htmlhelp)-srcdir)/.markerfile $($(python-sphinxcontrib-htmlhelp)-prefix)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-htmlhelp)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-sphinxcontrib-htmlhelp)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -50,7 +50,7 @@ $($(blis-x86_64)-srcdir)/.markerfile:
 $($(blis-x86_64)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(blis-x86_64)-prefix)/.pkgunpack: $$($(blis-x86_64)-src) $($(blis-x86_64)-srcdir)/.markerfile $($(blis-x86_64)-prefix)/.markerfile
+$($(blis-x86_64)-prefix)/.pkgunpack: $$($(blis-x86_64)-src) $($(blis-x86_64)-srcdir)/.markerfile $($(blis-x86_64)-prefix)/.markerfile $$(foreach dep,$$($(blis-x86_64)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(blis-x86_64)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

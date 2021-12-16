@@ -40,7 +40,7 @@ $($(python-pytz)-srcdir)/.markerfile:
 $($(python-pytz)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-pytz)-prefix)/.pkgunpack: $$($(python-pytz)-src) $($(python-pytz)-srcdir)/.markerfile $($(python-pytz)-prefix)/.markerfile
+$($(python-pytz)-prefix)/.pkgunpack: $$($(python-pytz)-src) $($(python-pytz)-srcdir)/.markerfile $($(python-pytz)-prefix)/.markerfile $$(foreach dep,$$($(python-pytz)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-pytz)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

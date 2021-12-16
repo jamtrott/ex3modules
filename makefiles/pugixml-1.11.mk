@@ -40,7 +40,7 @@ $($(pugixml)-srcdir)/.markerfile:
 $($(pugixml)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(pugixml)-prefix)/.pkgunpack: $$($(pugixml)-src) $($(pugixml)-srcdir)/.markerfile $($(pugixml)-prefix)/.markerfile
+$($(pugixml)-prefix)/.pkgunpack: $$($(pugixml)-src) $($(pugixml)-srcdir)/.markerfile $($(pugixml)-prefix)/.markerfile $$(foreach dep,$$($(pugixml)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(pugixml)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

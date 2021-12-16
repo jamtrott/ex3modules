@@ -39,7 +39,7 @@ $($(pcre)-srcdir)/.markerfile:
 $($(pcre)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(pcre)-prefix)/.pkgunpack: $($(pcre)-src) $($(pcre)-srcdir)/.markerfile $($(pcre)-prefix)/.markerfile
+$($(pcre)-prefix)/.pkgunpack: $($(pcre)-src) $($(pcre)-srcdir)/.markerfile $($(pcre)-prefix)/.markerfile $$(foreach dep,$$($(pcre)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(pcre)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

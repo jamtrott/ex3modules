@@ -39,7 +39,7 @@ $($(numactl)-src): $(dir $($(numactl)-src)).markerfile
 $($(numactl)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(numactl)-prefix)/.pkgunpack: $($(numactl)-src) $($(numactl)-srcdir)/.markerfile $($(numactl)-prefix)/.markerfile
+$($(numactl)-prefix)/.pkgunpack: $($(numactl)-src) $($(numactl)-srcdir)/.markerfile $($(numactl)-prefix)/.markerfile $$(foreach dep,$$($(numactl)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(numactl)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

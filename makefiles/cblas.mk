@@ -40,7 +40,7 @@ $($(cblas)-srcdir)/.markerfile:
 $($(cblas)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(cblas)-prefix)/.pkgunpack: $($(cblas)-src) $($(cblas)-srcdir)/.markerfile $($(cblas)-prefix)/.markerfile
+$($(cblas)-prefix)/.pkgunpack: $($(cblas)-src) $($(cblas)-srcdir)/.markerfile $($(cblas)-prefix)/.markerfile $$(foreach dep,$$($(cblas)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(cblas)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

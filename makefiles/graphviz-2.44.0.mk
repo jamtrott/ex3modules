@@ -40,7 +40,7 @@ $($(graphviz)-srcdir)/.markerfile:
 $($(graphviz)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(graphviz)-prefix)/.pkgunpack: $($(graphviz)-src) $($(graphviz)-srcdir)/.markerfile $($(graphviz)-prefix)/.markerfile
+$($(graphviz)-prefix)/.pkgunpack: $($(graphviz)-src) $($(graphviz)-srcdir)/.markerfile $($(graphviz)-prefix)/.markerfile $$(foreach dep,$$($(graphviz)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(graphviz)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

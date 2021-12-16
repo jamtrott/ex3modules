@@ -38,7 +38,7 @@ $($(gcc-10.1.0)-srcdir)/.markerfile:
 $($(gcc-10.1.0)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(gcc-10.1.0)-prefix)/.pkgunpack: $$($(gcc-10.1.0)-src) $($(gcc-10.1.0)-srcdir)/.markerfile $($(gcc-10.1.0)-prefix)/.markerfile
+$($(gcc-10.1.0)-prefix)/.pkgunpack: $$($(gcc-10.1.0)-src) $($(gcc-10.1.0)-srcdir)/.markerfile $($(gcc-10.1.0)-prefix)/.markerfile $$(foreach dep,$$($(gcc-10.1.0)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(gcc-10.1.0)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

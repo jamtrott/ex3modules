@@ -39,7 +39,7 @@ $($(libxxf86vm)-srcdir)/.markerfile:
 $($(libxxf86vm)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxxf86vm)-prefix)/.pkgunpack: $($(libxxf86vm)-src) $($(libxxf86vm)-srcdir)/.markerfile $($(libxxf86vm)-prefix)/.markerfile
+$($(libxxf86vm)-prefix)/.pkgunpack: $($(libxxf86vm)-src) $($(libxxf86vm)-srcdir)/.markerfile $($(libxxf86vm)-prefix)/.markerfile $$(foreach dep,$$($(libxxf86vm)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxxf86vm)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

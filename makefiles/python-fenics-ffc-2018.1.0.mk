@@ -40,7 +40,7 @@ $($(python-fenics-ffc-2018)-srcdir)/.markerfile:
 $($(python-fenics-ffc-2018)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-fenics-ffc-2018)-prefix)/.pkgunpack: $$($(python-fenics-ffc-2018)-src) $($(python-fenics-ffc-2018)-srcdir)/.markerfile $($(python-fenics-ffc-2018)-prefix)/.markerfile
+$($(python-fenics-ffc-2018)-prefix)/.pkgunpack: $$($(python-fenics-ffc-2018)-src) $($(python-fenics-ffc-2018)-srcdir)/.markerfile $($(python-fenics-ffc-2018)-prefix)/.markerfile $$(foreach dep,$$($(python-fenics-ffc-2018)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-fenics-ffc-2018)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

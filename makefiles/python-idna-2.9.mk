@@ -40,7 +40,7 @@ $($(python-idna)-srcdir)/.markerfile:
 $($(python-idna)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-idna)-prefix)/.pkgunpack: $$($(python-idna)-src) $($(python-idna)-srcdir)/.markerfile $($(python-idna)-prefix)/.markerfile
+$($(python-idna)-prefix)/.pkgunpack: $$($(python-idna)-src) $($(python-idna)-srcdir)/.markerfile $($(python-idna)-prefix)/.markerfile $$(foreach dep,$$($(python-idna)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-idna)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

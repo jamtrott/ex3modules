@@ -40,7 +40,7 @@ $($(python-psutil)-srcdir)/.markerfile:
 $($(python-psutil)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-psutil)-prefix)/.pkgunpack: $$($(python-psutil)-src) $($(python-psutil)-srcdir)/.markerfile $($(python-psutil)-prefix)/.markerfile
+$($(python-psutil)-prefix)/.pkgunpack: $$($(python-psutil)-src) $($(python-psutil)-srcdir)/.markerfile $($(python-psutil)-prefix)/.markerfile $$(foreach dep,$$($(python-psutil)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-psutil)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

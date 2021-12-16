@@ -40,7 +40,7 @@ $($(python-certifi)-srcdir)/.markerfile:
 $($(python-certifi)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-certifi)-prefix)/.pkgunpack: $$($(python-certifi)-src) $($(python-certifi)-srcdir)/.markerfile $($(python-certifi)-prefix)/.markerfile
+$($(python-certifi)-prefix)/.pkgunpack: $$($(python-certifi)-src) $($(python-certifi)-srcdir)/.markerfile $($(python-certifi)-prefix)/.markerfile $$(foreach dep,$$($(python-certifi)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-certifi)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

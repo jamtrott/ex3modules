@@ -40,7 +40,7 @@ $($(googletest)-srcdir)/.markerfile:
 $($(googletest)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(googletest)-prefix)/.pkgunpack: $($(googletest)-src) $($(googletest)-srcdir)/.markerfile $($(googletest)-prefix)/.markerfile
+$($(googletest)-prefix)/.pkgunpack: $($(googletest)-src) $($(googletest)-srcdir)/.markerfile $($(googletest)-prefix)/.markerfile $$(foreach dep,$$($(googletest)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(googletest)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

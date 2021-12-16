@@ -40,7 +40,7 @@ $($(libfabric-fabtests)-srcdir)/.markerfile:
 $($(libfabric-fabtests)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libfabric-fabtests)-prefix)/.pkgunpack: $$($(libfabric-fabtests)-src) $($(libfabric-fabtests)-srcdir)/.markerfile $($(libfabric-fabtests)-prefix)/.markerfile
+$($(libfabric-fabtests)-prefix)/.pkgunpack: $$($(libfabric-fabtests)-src) $($(libfabric-fabtests)-srcdir)/.markerfile $($(libfabric-fabtests)-prefix)/.markerfile $$(foreach dep,$$($(libfabric-fabtests)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libfabric-fabtests)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

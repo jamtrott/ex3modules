@@ -40,7 +40,7 @@ $($(python-pycodestyle)-srcdir)/.markerfile:
 $($(python-pycodestyle)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-pycodestyle)-prefix)/.pkgunpack: $$($(python-pycodestyle)-src) $($(python-pycodestyle)-srcdir)/.markerfile $($(python-pycodestyle)-prefix)/.markerfile
+$($(python-pycodestyle)-prefix)/.pkgunpack: $$($(python-pycodestyle)-src) $($(python-pycodestyle)-srcdir)/.markerfile $($(python-pycodestyle)-prefix)/.markerfile $$(foreach dep,$$($(python-pycodestyle)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-pycodestyle)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

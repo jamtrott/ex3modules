@@ -42,7 +42,7 @@ $($(libjpeg-turbo)-srcdir)/build/.markerfile: $($(libjpeg-turbo)-srcdir)/.marker
 $($(libjpeg-turbo)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libjpeg-turbo)-prefix)/.pkgunpack: $($(libjpeg-turbo)-src) $($(libjpeg-turbo)-srcdir)/.markerfile $($(libjpeg-turbo)-prefix)/.markerfile
+$($(libjpeg-turbo)-prefix)/.pkgunpack: $($(libjpeg-turbo)-src) $($(libjpeg-turbo)-srcdir)/.markerfile $($(libjpeg-turbo)-prefix)/.markerfile $$(foreach dep,$$($(libjpeg-turbo)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libjpeg-turbo)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

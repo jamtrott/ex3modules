@@ -39,7 +39,7 @@ $($(libxcb)-srcdir)/.markerfile:
 $($(libxcb)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxcb)-prefix)/.pkgunpack: $($(libxcb)-src) $($(libxcb)-srcdir)/.markerfile $($(libxcb)-prefix)/.markerfile
+$($(libxcb)-prefix)/.pkgunpack: $($(libxcb)-src) $($(libxcb)-srcdir)/.markerfile $($(libxcb)-prefix)/.markerfile $$(foreach dep,$$($(libxcb)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxcb)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

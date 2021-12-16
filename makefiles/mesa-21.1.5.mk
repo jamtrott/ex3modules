@@ -40,7 +40,7 @@ $($(mesa)-srcdir)/.markerfile:
 $($(mesa)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(mesa)-prefix)/.pkgunpack: $$($(mesa)-src) $($(mesa)-srcdir)/.markerfile $($(mesa)-prefix)/.markerfile
+$($(mesa)-prefix)/.pkgunpack: $$($(mesa)-src) $($(mesa)-srcdir)/.markerfile $($(mesa)-prefix)/.markerfile $$(foreach dep,$$($(mesa)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(mesa)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

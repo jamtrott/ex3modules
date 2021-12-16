@@ -39,7 +39,7 @@ $($(libxext)-srcdir)/.markerfile:
 $($(libxext)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxext)-prefix)/.pkgunpack: $($(libxext)-src) $($(libxext)-srcdir)/.markerfile $($(libxext)-prefix)/.markerfile
+$($(libxext)-prefix)/.pkgunpack: $($(libxext)-src) $($(libxext)-srcdir)/.markerfile $($(libxext)-prefix)/.markerfile $$(foreach dep,$$($(libxext)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxext)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

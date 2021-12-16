@@ -40,7 +40,7 @@ $($(python-pygraphviz)-srcdir)/.markerfile:
 $($(python-pygraphviz)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-pygraphviz)-prefix)/.pkgunpack: $$($(python-pygraphviz)-src) $($(python-pygraphviz)-srcdir)/.markerfile $($(python-pygraphviz)-prefix)/.markerfile
+$($(python-pygraphviz)-prefix)/.pkgunpack: $$($(python-pygraphviz)-src) $($(python-pygraphviz)-srcdir)/.markerfile $($(python-pygraphviz)-prefix)/.markerfile $$(foreach dep,$$($(python-pygraphviz)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-pygraphviz)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

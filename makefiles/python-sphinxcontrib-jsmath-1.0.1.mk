@@ -40,7 +40,7 @@ $($(python-sphinxcontrib-jsmath)-srcdir)/.markerfile:
 $($(python-sphinxcontrib-jsmath)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-sphinxcontrib-jsmath)-prefix)/.pkgunpack: $$($(python-sphinxcontrib-jsmath)-src) $($(python-sphinxcontrib-jsmath)-srcdir)/.markerfile $($(python-sphinxcontrib-jsmath)-prefix)/.markerfile
+$($(python-sphinxcontrib-jsmath)-prefix)/.pkgunpack: $$($(python-sphinxcontrib-jsmath)-src) $($(python-sphinxcontrib-jsmath)-srcdir)/.markerfile $($(python-sphinxcontrib-jsmath)-prefix)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-jsmath)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-sphinxcontrib-jsmath)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

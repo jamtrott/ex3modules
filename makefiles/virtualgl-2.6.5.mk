@@ -40,7 +40,7 @@ $($(virtualgl)-srcdir)/.markerfile:
 $($(virtualgl)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(virtualgl)-prefix)/.pkgunpack: $$($(virtualgl)-src) $($(virtualgl)-srcdir)/.markerfile $($(virtualgl)-prefix)/.markerfile
+$($(virtualgl)-prefix)/.pkgunpack: $$($(virtualgl)-src) $($(virtualgl)-srcdir)/.markerfile $($(virtualgl)-prefix)/.markerfile $$(foreach dep,$$($(virtualgl)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(virtualgl)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

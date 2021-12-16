@@ -40,7 +40,7 @@ $($(python-babel)-srcdir)/.markerfile:
 $($(python-babel)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-babel)-prefix)/.pkgunpack: $$($(python-babel)-src) $($(python-babel)-srcdir)/.markerfile $($(python-babel)-prefix)/.markerfile
+$($(python-babel)-prefix)/.pkgunpack: $$($(python-babel)-src) $($(python-babel)-srcdir)/.markerfile $($(python-babel)-prefix)/.markerfile $$(foreach dep,$$($(python-babel)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-babel)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

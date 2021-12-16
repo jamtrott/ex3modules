@@ -40,7 +40,7 @@ $($(bison)-srcdir)/.markerfile:
 $($(bison)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(bison)-prefix)/.pkgunpack: $$($(bison)-src) $($(bison)-srcdir)/.markerfile $($(bison)-prefix)/.markerfile
+$($(bison)-prefix)/.pkgunpack: $$($(bison)-src) $($(bison)-srcdir)/.markerfile $($(bison)-prefix)/.markerfile $$(foreach dep,$$($(bison)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(bison)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

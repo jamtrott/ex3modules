@@ -40,7 +40,7 @@ $($(matio)-srcdir)/.markerfile:
 $($(matio)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(matio)-prefix)/.pkgunpack: $($(matio)-src) $($(matio)-srcdir)/.markerfile $($(matio)-prefix)/.markerfile
+$($(matio)-prefix)/.pkgunpack: $($(matio)-src) $($(matio)-srcdir)/.markerfile $($(matio)-prefix)/.markerfile $$(foreach dep,$$($(matio)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(matio)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(hunspell)-srcdir)/.markerfile:
 $($(hunspell)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(hunspell)-prefix)/.pkgunpack: $$($(hunspell)-src) $($(hunspell)-srcdir)/.markerfile $($(hunspell)-prefix)/.markerfile
+$($(hunspell)-prefix)/.pkgunpack: $$($(hunspell)-src) $($(hunspell)-srcdir)/.markerfile $($(hunspell)-prefix)/.markerfile $$(foreach dep,$$($(hunspell)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(hunspell)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

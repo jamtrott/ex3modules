@@ -37,7 +37,7 @@ $($(libstdcxx)-srcdir)/.markerfile:
 $($(libstdcxx)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libstdcxx)-prefix)/.pkgunpack: $$($(libstdcxx)-src) $($(libstdcxx)-srcdir)/.markerfile $($(libstdcxx)-prefix)/.markerfile
+$($(libstdcxx)-prefix)/.pkgunpack: $$($(libstdcxx)-src) $($(libstdcxx)-srcdir)/.markerfile $($(libstdcxx)-prefix)/.markerfile $$(foreach dep,$$($(libstdcxx)-builddeps),$(modulefilesdir)/$$(dep))
 	@touch $@
 
 $($(libstdcxx)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libstdcxx)-builddeps),$(modulefilesdir)/$$(dep)) $($(libstdcxx)-prefix)/.pkgunpack

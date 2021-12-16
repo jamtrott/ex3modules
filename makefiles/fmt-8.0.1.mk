@@ -40,7 +40,7 @@ $($(fmt)-srcdir)/.markerfile:
 $($(fmt)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(fmt)-prefix)/.pkgunpack: $$($(fmt)-src) $($(fmt)-srcdir)/.markerfile $($(fmt)-prefix)/.markerfile
+$($(fmt)-prefix)/.pkgunpack: $$($(fmt)-src) $($(fmt)-srcdir)/.markerfile $($(fmt)-prefix)/.markerfile $$(foreach dep,$$($(fmt)-builddeps),$(modulefilesdir)/$$(dep))
 	cd $($(fmt)-srcdir) && unzip -o $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(python-pytest-cov)-srcdir)/.markerfile:
 $($(python-pytest-cov)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-pytest-cov)-prefix)/.pkgunpack: $$($(python-pytest-cov)-src) $($(python-pytest-cov)-srcdir)/.markerfile $($(python-pytest-cov)-prefix)/.markerfile
+$($(python-pytest-cov)-prefix)/.pkgunpack: $$($(python-pytest-cov)-src) $($(python-pytest-cov)-srcdir)/.markerfile $($(python-pytest-cov)-prefix)/.markerfile $$(foreach dep,$$($(python-pytest-cov)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-pytest-cov)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

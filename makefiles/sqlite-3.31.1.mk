@@ -39,7 +39,7 @@ $($(sqlite)-srcdir)/.markerfile:
 $($(sqlite)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(sqlite)-prefix)/.pkgunpack: $($(sqlite)-src) $($(sqlite)-srcdir)/.markerfile $($(sqlite)-prefix)/.markerfile
+$($(sqlite)-prefix)/.pkgunpack: $($(sqlite)-src) $($(sqlite)-srcdir)/.markerfile $($(sqlite)-prefix)/.markerfile $$(foreach dep,$$($(sqlite)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(sqlite)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

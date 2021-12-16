@@ -38,7 +38,7 @@ $($(ucx-cuda)-srcdir)/.markerfile:
 $($(ucx-cuda)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(ucx-cuda)-prefix)/.pkgunpack: $$($(ucx-cuda)-src) $($(ucx-cuda)-srcdir)/.markerfile $($(ucx-cuda)-prefix)/.markerfile
+$($(ucx-cuda)-prefix)/.pkgunpack: $$($(ucx-cuda)-src) $($(ucx-cuda)-srcdir)/.markerfile $($(ucx-cuda)-prefix)/.markerfile $$(foreach dep,$$($(ucx-cuda)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(ucx-cuda)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

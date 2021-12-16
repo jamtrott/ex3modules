@@ -40,7 +40,7 @@ $($(mvapich)-srcdir)/.markerfile:
 $($(mvapich)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(mvapich)-prefix)/.pkgunpack: $($(mvapich)-src) $($(mvapich)-srcdir)/.markerfile $($(mvapich)-prefix)/.markerfile
+$($(mvapich)-prefix)/.pkgunpack: $($(mvapich)-src) $($(mvapich)-srcdir)/.markerfile $($(mvapich)-prefix)/.markerfile $$(foreach dep,$$($(mvapich)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(mvapich)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

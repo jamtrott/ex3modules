@@ -40,7 +40,7 @@ $($(iperf)-srcdir)/.markerfile:
 $($(iperf)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(iperf)-prefix)/.pkgunpack: $($(iperf)-src) $($(iperf)-srcdir)/.markerfile $($(iperf)-prefix)/.markerfile
+$($(iperf)-prefix)/.pkgunpack: $($(iperf)-src) $($(iperf)-srcdir)/.markerfile $($(iperf)-prefix)/.markerfile $$(foreach dep,$$($(iperf)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(iperf)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

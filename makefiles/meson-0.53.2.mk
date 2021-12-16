@@ -40,7 +40,7 @@ $($(meson)-srcdir)/.markerfile:
 $($(meson)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(meson)-prefix)/.pkgunpack: $($(meson)-src) $($(meson)-srcdir)/.markerfile $($(meson)-prefix)/.markerfile
+$($(meson)-prefix)/.pkgunpack: $($(meson)-src) $($(meson)-srcdir)/.markerfile $($(meson)-prefix)/.markerfile $$(foreach dep,$$($(meson)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(meson)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

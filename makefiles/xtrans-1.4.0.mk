@@ -39,7 +39,7 @@ $($(xtrans)-srcdir)/.markerfile:
 $($(xtrans)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(xtrans)-prefix)/.pkgunpack: $($(xtrans)-src) $($(xtrans)-srcdir)/.markerfile $($(xtrans)-prefix)/.markerfile
+$($(xtrans)-prefix)/.pkgunpack: $($(xtrans)-src) $($(xtrans)-srcdir)/.markerfile $($(xtrans)-prefix)/.markerfile $$(foreach dep,$$($(xtrans)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(xtrans)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

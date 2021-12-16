@@ -40,7 +40,7 @@ $($(python-execnet)-srcdir)/.markerfile:
 $($(python-execnet)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-execnet)-prefix)/.pkgunpack: $$($(python-execnet)-src) $($(python-execnet)-srcdir)/.markerfile $($(python-execnet)-prefix)/.markerfile
+$($(python-execnet)-prefix)/.pkgunpack: $$($(python-execnet)-src) $($(python-execnet)-srcdir)/.markerfile $($(python-execnet)-prefix)/.markerfile $$(foreach dep,$$($(python-execnet)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-execnet)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

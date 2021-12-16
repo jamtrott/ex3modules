@@ -36,7 +36,7 @@ $($(mumps)-srcdir)/.markerfile:
 $($(mumps)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(mumps)-prefix)/.pkgunpack: $$($(mumps)-src) $($(mumps)-srcdir)/.markerfile $($(mumps)-prefix)/.markerfile
+$($(mumps)-prefix)/.pkgunpack: $$($(mumps)-src) $($(mumps)-srcdir)/.markerfile $($(mumps)-prefix)/.markerfile $$(foreach dep,$$($(mumps)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(mumps)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -39,7 +39,7 @@ $($(libdmx)-srcdir)/.markerfile:
 $($(libdmx)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libdmx)-prefix)/.pkgunpack: $($(libdmx)-src) $($(libdmx)-srcdir)/.markerfile $($(libdmx)-prefix)/.markerfile
+$($(libdmx)-prefix)/.pkgunpack: $($(libdmx)-src) $($(libdmx)-srcdir)/.markerfile $($(libdmx)-prefix)/.markerfile $$(foreach dep,$$($(libdmx)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libdmx)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

@@ -39,7 +39,7 @@ $($(libxshmfence)-srcdir)/.markerfile:
 $($(libxshmfence)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxshmfence)-prefix)/.pkgunpack: $($(libxshmfence)-src) $($(libxshmfence)-srcdir)/.markerfile $($(libxshmfence)-prefix)/.markerfile
+$($(libxshmfence)-prefix)/.pkgunpack: $($(libxshmfence)-src) $($(libxshmfence)-srcdir)/.markerfile $($(libxshmfence)-prefix)/.markerfile $$(foreach dep,$$($(libxshmfence)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxshmfence)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

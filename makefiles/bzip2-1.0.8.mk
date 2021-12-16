@@ -40,7 +40,7 @@ $($(bzip2)-srcdir)/.markerfile:
 $($(bzip2)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(bzip2)-prefix)/.pkgunpack: $($(bzip2)-src) $($(bzip2)-srcdir)/.markerfile $($(bzip2)-prefix)/.markerfile
+$($(bzip2)-prefix)/.pkgunpack: $($(bzip2)-src) $($(bzip2)-srcdir)/.markerfile $($(bzip2)-prefix)/.markerfile $$(foreach dep,$$($(bzip2)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(bzip2)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

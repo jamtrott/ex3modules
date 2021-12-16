@@ -40,7 +40,7 @@ $($(pmix)-srcdir)/.markerfile:
 $($(pmix)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(pmix)-prefix)/.pkgunpack: $($(pmix)-src) $($(pmix)-srcdir)/.markerfile $($(pmix)-prefix)/.markerfile
+$($(pmix)-prefix)/.pkgunpack: $($(pmix)-src) $($(pmix)-srcdir)/.markerfile $($(pmix)-prefix)/.markerfile $$(foreach dep,$$($(pmix)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(pmix)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

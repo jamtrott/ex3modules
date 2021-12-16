@@ -40,7 +40,7 @@ $($(ocaml-opam)-srcdir)/.markerfile:
 $($(ocaml-opam)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(ocaml-opam)-prefix)/.pkgunpack: $($(ocaml-opam)-src) $($(ocaml-opam)-srcdir)/.markerfile $($(ocaml-opam)-prefix)/.markerfile
+$($(ocaml-opam)-prefix)/.pkgunpack: $($(ocaml-opam)-src) $($(ocaml-opam)-srcdir)/.markerfile $($(ocaml-opam)-prefix)/.markerfile $$(foreach dep,$$($(ocaml-opam)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(ocaml-opam)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

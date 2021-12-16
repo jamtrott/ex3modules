@@ -37,7 +37,7 @@ $($(parmetis-cuda)-srcdir)/.markerfile:
 $($(parmetis-cuda)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(parmetis-cuda)-prefix)/.pkgunpack: $$($(parmetis-cuda)-src) $($(parmetis-cuda)-srcdir)/.markerfile $($(parmetis-cuda)-prefix)/.markerfile
+$($(parmetis-cuda)-prefix)/.pkgunpack: $$($(parmetis-cuda)-src) $($(parmetis-cuda)-srcdir)/.markerfile $($(parmetis-cuda)-prefix)/.markerfile $$(foreach dep,$$($(parmetis-cuda)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(parmetis-cuda)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(graphite2)-srcdir)/.markerfile:
 $($(graphite2)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(graphite2)-prefix)/.pkgunpack: $$($(graphite2)-src) $($(graphite2)-srcdir)/.markerfile $($(graphite2)-prefix)/.markerfile
+$($(graphite2)-prefix)/.pkgunpack: $$($(graphite2)-src) $($(graphite2)-srcdir)/.markerfile $($(graphite2)-prefix)/.markerfile $$(foreach dep,$$($(graphite2)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(graphite2)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

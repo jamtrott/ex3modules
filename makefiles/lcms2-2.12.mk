@@ -40,7 +40,7 @@ $($(lcms2)-srcdir)/.markerfile:
 $($(lcms2)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(lcms2)-prefix)/.pkgunpack: $$($(lcms2)-src) $($(lcms2)-srcdir)/.markerfile $($(lcms2)-prefix)/.markerfile
+$($(lcms2)-prefix)/.pkgunpack: $$($(lcms2)-src) $($(lcms2)-srcdir)/.markerfile $($(lcms2)-prefix)/.markerfile $$(foreach dep,$$($(lcms2)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(lcms2)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(pciutils)-srcdir)/.markerfile:
 $($(pciutils)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(pciutils)-prefix)/.pkgunpack: $($(pciutils)-src) $($(pciutils)-srcdir)/.markerfile $($(pciutils)-prefix)/.markerfile
+$($(pciutils)-prefix)/.pkgunpack: $($(pciutils)-src) $($(pciutils)-srcdir)/.markerfile $($(pciutils)-prefix)/.markerfile $$(foreach dep,$$($(pciutils)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(pciutils)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

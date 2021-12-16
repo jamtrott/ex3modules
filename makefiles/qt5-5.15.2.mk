@@ -40,7 +40,7 @@ $($(qt5)-srcdir)/.markerfile:
 $($(qt5)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(qt5)-prefix)/.pkgunpack: $$($(qt5)-src) $($(qt5)-srcdir)/.markerfile $($(qt5)-prefix)/.markerfile
+$($(qt5)-prefix)/.pkgunpack: $$($(qt5)-src) $($(qt5)-srcdir)/.markerfile $($(qt5)-prefix)/.markerfile $$(foreach dep,$$($(qt5)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(qt5)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

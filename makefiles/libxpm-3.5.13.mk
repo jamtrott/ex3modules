@@ -39,7 +39,7 @@ $($(libxpm)-srcdir)/.markerfile:
 $($(libxpm)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxpm)-prefix)/.pkgunpack: $($(libxpm)-src) $($(libxpm)-srcdir)/.markerfile $($(libxpm)-prefix)/.markerfile
+$($(libxpm)-prefix)/.pkgunpack: $($(libxpm)-src) $($(libxpm)-srcdir)/.markerfile $($(libxpm)-prefix)/.markerfile $$(foreach dep,$$($(libxpm)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxpm)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

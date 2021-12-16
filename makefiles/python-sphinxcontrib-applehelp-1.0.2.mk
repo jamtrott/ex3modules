@@ -40,7 +40,7 @@ $($(python-sphinxcontrib-applehelp)-srcdir)/.markerfile:
 $($(python-sphinxcontrib-applehelp)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-sphinxcontrib-applehelp)-prefix)/.pkgunpack: $$($(python-sphinxcontrib-applehelp)-src) $($(python-sphinxcontrib-applehelp)-srcdir)/.markerfile $($(python-sphinxcontrib-applehelp)-prefix)/.markerfile
+$($(python-sphinxcontrib-applehelp)-prefix)/.pkgunpack: $$($(python-sphinxcontrib-applehelp)-src) $($(python-sphinxcontrib-applehelp)-srcdir)/.markerfile $($(python-sphinxcontrib-applehelp)-prefix)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-applehelp)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-sphinxcontrib-applehelp)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

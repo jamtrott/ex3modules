@@ -36,7 +36,7 @@ $($(hypre)-srcdir)/.markerfile:
 $($(hypre)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(hypre)-prefix)/.pkgunpack: $$($(hypre)-src) $($(hypre)-srcdir)/.markerfile $($(hypre)-prefix)/.markerfile
+$($(hypre)-prefix)/.pkgunpack: $$($(hypre)-src) $($(hypre)-srcdir)/.markerfile $($(hypre)-prefix)/.markerfile $$(foreach dep,$$($(hypre)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(hypre)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

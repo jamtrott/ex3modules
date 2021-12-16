@@ -40,7 +40,7 @@ $($(protobuf-cpp)-srcdir)/.markerfile:
 $($(protobuf-cpp)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(protobuf-cpp)-prefix)/.pkgunpack: $$($(protobuf-cpp)-src) $($(protobuf-cpp)-srcdir)/.markerfile $($(protobuf-cpp)-prefix)/.markerfile
+$($(protobuf-cpp)-prefix)/.pkgunpack: $$($(protobuf-cpp)-src) $($(protobuf-cpp)-srcdir)/.markerfile $($(protobuf-cpp)-prefix)/.markerfile $$(foreach dep,$$($(protobuf-cpp)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(protobuf-cpp)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

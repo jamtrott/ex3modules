@@ -40,7 +40,7 @@ $($(python-scipy)-srcdir)/.markerfile:
 $($(python-scipy)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-scipy)-prefix)/.pkgunpack: $$($(python-scipy)-src) $($(python-scipy)-srcdir)/.markerfile $($(python-scipy)-prefix)/.markerfile
+$($(python-scipy)-prefix)/.pkgunpack: $$($(python-scipy)-src) $($(python-scipy)-srcdir)/.markerfile $($(python-scipy)-prefix)/.markerfile $$(foreach dep,$$($(python-scipy)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-scipy)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

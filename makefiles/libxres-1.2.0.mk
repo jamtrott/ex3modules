@@ -39,7 +39,7 @@ $($(libxres)-srcdir)/.markerfile:
 $($(libxres)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxres)-prefix)/.pkgunpack: $($(libxres)-src) $($(libxres)-srcdir)/.markerfile $($(libxres)-prefix)/.markerfile
+$($(libxres)-prefix)/.pkgunpack: $($(libxres)-src) $($(libxres)-srcdir)/.markerfile $($(libxres)-prefix)/.markerfile $$(foreach dep,$$($(libxres)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxres)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

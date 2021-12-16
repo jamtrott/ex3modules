@@ -37,7 +37,7 @@ $($(scalapack)-srcdir)/.markerfile:
 $($(scalapack)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(scalapack)-prefix)/.pkgunpack: $$($(scalapack)-src) $($(scalapack)-srcdir)/.markerfile $($(scalapack)-prefix)/.markerfile
+$($(scalapack)-prefix)/.pkgunpack: $$($(scalapack)-src) $($(scalapack)-srcdir)/.markerfile $($(scalapack)-prefix)/.markerfile $$(foreach dep,$$($(scalapack)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(scalapack)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

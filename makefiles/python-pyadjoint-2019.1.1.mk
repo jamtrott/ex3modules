@@ -40,7 +40,7 @@ $($(python-pyadjoint)-srcdir)/.markerfile:
 $($(python-pyadjoint)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-pyadjoint)-prefix)/.pkgunpack: $$($(python-pyadjoint)-src) $($(python-pyadjoint)-srcdir)/.markerfile $($(python-pyadjoint)-prefix)/.markerfile
+$($(python-pyadjoint)-prefix)/.pkgunpack: $$($(python-pyadjoint)-src) $($(python-pyadjoint)-srcdir)/.markerfile $($(python-pyadjoint)-prefix)/.markerfile $$(foreach dep,$$($(python-pyadjoint)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-pyadjoint)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

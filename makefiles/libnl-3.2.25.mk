@@ -40,7 +40,7 @@ $($(libnl)-srcdir)/.markerfile:
 $($(libnl)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libnl)-prefix)/.pkgunpack: $$($(libnl)-src) $($(libnl)-srcdir)/.markerfile $($(libnl)-prefix)/.markerfile
+$($(libnl)-prefix)/.pkgunpack: $$($(libnl)-src) $($(libnl)-srcdir)/.markerfile $($(libnl)-prefix)/.markerfile $$(foreach dep,$$($(libnl)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libnl)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

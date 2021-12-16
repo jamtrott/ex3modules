@@ -36,7 +36,7 @@ $($(xorg-libraries)-srcdir)/.markerfile:
 $($(xorg-libraries)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(xorg-libraries)-prefix)/.pkgunpack: $($(xorg-libraries)-prefix)/.markerfile
+$($(xorg-libraries)-prefix)/.pkgunpack: $($(xorg-libraries)-prefix)/.markerfile $$(foreach dep,$$($(xorg-libraries)-builddeps),$(modulefilesdir)/$$(dep))
 	@touch $@
 
 $($(xorg-libraries)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(xorg-libraries)-builddeps),$(modulefilesdir)/$$(dep)) $($(xorg-libraries)-prefix)/.pkgunpack

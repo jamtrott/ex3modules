@@ -40,7 +40,7 @@ $($(python-ldrb)-srcdir)/.markerfile:
 $($(python-ldrb)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-ldrb)-prefix)/.pkgunpack: $$($(python-ldrb)-src) $($(python-ldrb)-srcdir)/.markerfile $($(python-ldrb)-prefix)/.markerfile
+$($(python-ldrb)-prefix)/.pkgunpack: $$($(python-ldrb)-src) $($(python-ldrb)-srcdir)/.markerfile $($(python-ldrb)-prefix)/.markerfile $$(foreach dep,$$($(python-ldrb)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-ldrb)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

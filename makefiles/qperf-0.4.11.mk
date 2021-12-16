@@ -40,7 +40,7 @@ $($(qperf)-srcdir)/.markerfile:
 $($(qperf)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(qperf)-prefix)/.pkgunpack: $($(qperf)-src) $($(qperf)-srcdir)/.markerfile $($(qperf)-prefix)/.markerfile
+$($(qperf)-prefix)/.pkgunpack: $($(qperf)-src) $($(qperf)-srcdir)/.markerfile $($(qperf)-prefix)/.markerfile $$(foreach dep,$$($(qperf)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(qperf)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(openjpeg)-srcdir)/.markerfile:
 $($(openjpeg)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openjpeg)-prefix)/.pkgunpack: $$($(openjpeg)-src) $($(openjpeg)-srcdir)/.markerfile $($(openjpeg)-prefix)/.markerfile
+$($(openjpeg)-prefix)/.pkgunpack: $$($(openjpeg)-src) $($(openjpeg)-srcdir)/.markerfile $($(openjpeg)-prefix)/.markerfile $$(foreach dep,$$($(openjpeg)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(openjpeg)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

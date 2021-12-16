@@ -40,7 +40,7 @@ $($(python-meshio)-srcdir)/.markerfile:
 $($(python-meshio)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-meshio)-prefix)/.pkgunpack: $$($(python-meshio)-src) $($(python-meshio)-srcdir)/.markerfile $($(python-meshio)-prefix)/.markerfile
+$($(python-meshio)-prefix)/.pkgunpack: $$($(python-meshio)-src) $($(python-meshio)-srcdir)/.markerfile $($(python-meshio)-prefix)/.markerfile $$(foreach dep,$$($(python-meshio)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-meshio)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

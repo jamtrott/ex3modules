@@ -40,7 +40,7 @@ $($(python-pathlib2)-srcdir)/.markerfile:
 $($(python-pathlib2)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-pathlib2)-prefix)/.pkgunpack: $$($(python-pathlib2)-src) $($(python-pathlib2)-srcdir)/.markerfile $($(python-pathlib2)-prefix)/.markerfile
+$($(python-pathlib2)-prefix)/.pkgunpack: $$($(python-pathlib2)-src) $($(python-pathlib2)-srcdir)/.markerfile $($(python-pathlib2)-prefix)/.markerfile $$(foreach dep,$$($(python-pathlib2)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-pathlib2)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -39,7 +39,7 @@ $($(expat)-srcdir)/.markerfile:
 $($(expat)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(expat)-prefix)/.pkgunpack: $($(expat)-src) $($(expat)-srcdir)/.markerfile $($(expat)-prefix)/.markerfile
+$($(expat)-prefix)/.pkgunpack: $($(expat)-src) $($(expat)-srcdir)/.markerfile $($(expat)-prefix)/.markerfile $$(foreach dep,$$($(expat)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(expat)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

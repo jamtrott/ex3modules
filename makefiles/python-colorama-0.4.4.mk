@@ -40,7 +40,7 @@ $($(python-colorama)-srcdir)/.markerfile:
 $($(python-colorama)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-colorama)-prefix)/.pkgunpack: $$($(python-colorama)-src) $($(python-colorama)-srcdir)/.markerfile $($(python-colorama)-prefix)/.markerfile
+$($(python-colorama)-prefix)/.pkgunpack: $$($(python-colorama)-src) $($(python-colorama)-srcdir)/.markerfile $($(python-colorama)-prefix)/.markerfile $$(foreach dep,$$($(python-colorama)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-colorama)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

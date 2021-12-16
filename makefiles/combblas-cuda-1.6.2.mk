@@ -37,7 +37,7 @@ $($(combblas-cuda)-srcdir)/.markerfile:
 $($(combblas-cuda)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(combblas-cuda)-prefix)/.pkgunpack: $$($(combblas-cuda)-src) $($(combblas-cuda)-srcdir)/.markerfile $($(combblas-cuda)-prefix)/.markerfile
+$($(combblas-cuda)-prefix)/.pkgunpack: $$($(combblas-cuda)-src) $($(combblas-cuda)-srcdir)/.markerfile $($(combblas-cuda)-prefix)/.markerfile $$(foreach dep,$$($(combblas-cuda)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(combblas-cuda)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(python-future)-srcdir)/.markerfile:
 $($(python-future)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-future)-prefix)/.pkgunpack: $$($(python-future)-src) $($(python-future)-srcdir)/.markerfile $($(python-future)-prefix)/.markerfile
+$($(python-future)-prefix)/.pkgunpack: $$($(python-future)-src) $($(python-future)-srcdir)/.markerfile $($(python-future)-prefix)/.markerfile $$(foreach dep,$$($(python-future)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-future)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

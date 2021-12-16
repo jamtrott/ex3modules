@@ -37,7 +37,7 @@ $($(scalapack-cuda)-srcdir)/.markerfile:
 $($(scalapack-cuda)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(scalapack-cuda)-prefix)/.pkgunpack: $$($(scalapack-cuda)-src) $($(scalapack-cuda)-srcdir)/.markerfile $($(scalapack-cuda)-prefix)/.markerfile
+$($(scalapack-cuda)-prefix)/.pkgunpack: $$($(scalapack-cuda)-src) $($(scalapack-cuda)-srcdir)/.markerfile $($(scalapack-cuda)-prefix)/.markerfile $$(foreach dep,$$($(scalapack-cuda)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(scalapack-cuda)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(python-sortedcontainers)-srcdir)/.markerfile:
 $($(python-sortedcontainers)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-sortedcontainers)-prefix)/.pkgunpack: $$($(python-sortedcontainers)-src) $($(python-sortedcontainers)-srcdir)/.markerfile $($(python-sortedcontainers)-prefix)/.markerfile
+$($(python-sortedcontainers)-prefix)/.pkgunpack: $$($(python-sortedcontainers)-src) $($(python-sortedcontainers)-srcdir)/.markerfile $($(python-sortedcontainers)-prefix)/.markerfile $$(foreach dep,$$($(python-sortedcontainers)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-sortedcontainers)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(python-sphinxcontrib-qthelp)-srcdir)/.markerfile:
 $($(python-sphinxcontrib-qthelp)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-sphinxcontrib-qthelp)-prefix)/.pkgunpack: $$($(python-sphinxcontrib-qthelp)-src) $($(python-sphinxcontrib-qthelp)-srcdir)/.markerfile $($(python-sphinxcontrib-qthelp)-prefix)/.markerfile
+$($(python-sphinxcontrib-qthelp)-prefix)/.pkgunpack: $$($(python-sphinxcontrib-qthelp)-src) $($(python-sphinxcontrib-qthelp)-srcdir)/.markerfile $($(python-sphinxcontrib-qthelp)-prefix)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-qthelp)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-sphinxcontrib-qthelp)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -46,7 +46,7 @@ endif
 $($(python-fenics-fiat-20200518)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-fenics-fiat-20200518)-prefix)/.pkgunpack: $$($(python-fenics-fiat-20200518)-src) $($(python-fenics-fiat-20200518)-srcdir)/.markerfile $($(python-fenics-fiat-20200518)-prefix)/.markerfile
+$($(python-fenics-fiat-20200518)-prefix)/.pkgunpack: $$($(python-fenics-fiat-20200518)-src) $($(python-fenics-fiat-20200518)-srcdir)/.markerfile $($(python-fenics-fiat-20200518)-prefix)/.markerfile $$(foreach dep,$$($(python-fenics-fiat-20200518)-builddeps),$(modulefilesdir)/$$(dep))
 	cd $($(python-fenics-fiat-20200518)-srcdir) && unzip -o $<
 	@touch $@
 

@@ -36,7 +36,7 @@ $($(mumps-cuda)-srcdir)/.markerfile:
 $($(mumps-cuda)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(mumps-cuda)-prefix)/.pkgunpack: $$($(mumps-cuda)-src) $($(mumps-cuda)-srcdir)/.markerfile $($(mumps-cuda)-prefix)/.markerfile
+$($(mumps-cuda)-prefix)/.pkgunpack: $$($(mumps-cuda)-src) $($(mumps-cuda)-srcdir)/.markerfile $($(mumps-cuda)-prefix)/.markerfile $$(foreach dep,$$($(mumps-cuda)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(mumps-cuda)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

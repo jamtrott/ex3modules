@@ -40,7 +40,7 @@ $($(python-jinja2)-srcdir)/.markerfile:
 $($(python-jinja2)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-jinja2)-prefix)/.pkgunpack: $$($(python-jinja2)-src) $($(python-jinja2)-srcdir)/.markerfile $($(python-jinja2)-prefix)/.markerfile
+$($(python-jinja2)-prefix)/.pkgunpack: $$($(python-jinja2)-src) $($(python-jinja2)-srcdir)/.markerfile $($(python-jinja2)-prefix)/.markerfile $$(foreach dep,$$($(python-jinja2)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-jinja2)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

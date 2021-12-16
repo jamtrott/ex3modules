@@ -40,7 +40,7 @@ $($(munge-0.5.11)-srcdir)/.markerfile:
 $($(munge-0.5.11)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(munge-0.5.11)-prefix)/.pkgunpack: $($(munge-0.5.11)-src) $($(munge-0.5.11)-srcdir)/.markerfile $($(munge-0.5.11)-prefix)/.markerfile
+$($(munge-0.5.11)-prefix)/.pkgunpack: $($(munge-0.5.11)-src) $($(munge-0.5.11)-srcdir)/.markerfile $($(munge-0.5.11)-prefix)/.markerfile $$(foreach dep,$$($(munge-0.5.11)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(munge-0.5.11)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

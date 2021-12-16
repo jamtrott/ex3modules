@@ -40,7 +40,7 @@ $($(python-ply)-srcdir)/.markerfile:
 $($(python-ply)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-ply)-prefix)/.pkgunpack: $$($(python-ply)-src) $($(python-ply)-srcdir)/.markerfile $($(python-ply)-prefix)/.markerfile
+$($(python-ply)-prefix)/.pkgunpack: $$($(python-ply)-src) $($(python-ply)-srcdir)/.markerfile $($(python-ply)-prefix)/.markerfile $$(foreach dep,$$($(python-ply)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-ply)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

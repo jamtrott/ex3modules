@@ -39,7 +39,7 @@ $($(libxdamage)-srcdir)/.markerfile:
 $($(libxdamage)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxdamage)-prefix)/.pkgunpack: $($(libxdamage)-src) $($(libxdamage)-srcdir)/.markerfile $($(libxdamage)-prefix)/.markerfile
+$($(libxdamage)-prefix)/.pkgunpack: $($(libxdamage)-src) $($(libxdamage)-srcdir)/.markerfile $($(libxdamage)-prefix)/.markerfile $$(foreach dep,$$($(libxdamage)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxdamage)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

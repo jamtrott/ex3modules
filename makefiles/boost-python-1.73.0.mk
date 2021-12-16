@@ -36,7 +36,7 @@ $($(boost-python)-srcdir)/.markerfile:
 $($(boost-python)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(boost-python)-prefix)/.pkgunpack: $$($(boost-python)-src) $($(boost-python)-srcdir)/.markerfile $($(boost-python)-prefix)/.markerfile
+$($(boost-python)-prefix)/.pkgunpack: $$($(boost-python)-src) $($(boost-python)-srcdir)/.markerfile $($(boost-python)-prefix)/.markerfile $$(foreach dep,$$($(boost-python)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(boost-python)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

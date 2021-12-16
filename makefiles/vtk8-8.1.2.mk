@@ -40,7 +40,7 @@ $($(vtk8)-srcdir)/.markerfile:
 $($(vtk8)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(vtk8)-prefix)/.pkgunpack: $$($(vtk8)-src) $($(vtk8)-srcdir)/.markerfile $($(vtk8)-prefix)/.markerfile
+$($(vtk8)-prefix)/.pkgunpack: $$($(vtk8)-src) $($(vtk8)-srcdir)/.markerfile $($(vtk8)-prefix)/.markerfile $$(foreach dep,$$($(vtk8)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(vtk8)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

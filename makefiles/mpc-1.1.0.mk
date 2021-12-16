@@ -39,7 +39,7 @@ $($(mpc)-srcdir)/.markerfile:
 $($(mpc)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(mpc)-prefix)/.pkgunpack: $($(mpc)-src) $($(mpc)-srcdir)/.markerfile $($(mpc)-prefix)/.markerfile
+$($(mpc)-prefix)/.pkgunpack: $($(mpc)-src) $($(mpc)-srcdir)/.markerfile $($(mpc)-prefix)/.markerfile $$(foreach dep,$$($(mpc)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(mpc)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

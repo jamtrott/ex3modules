@@ -40,7 +40,7 @@ $($(python-pyflakes)-srcdir)/.markerfile:
 $($(python-pyflakes)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-pyflakes)-prefix)/.pkgunpack: $$($(python-pyflakes)-src) $($(python-pyflakes)-srcdir)/.markerfile $($(python-pyflakes)-prefix)/.markerfile
+$($(python-pyflakes)-prefix)/.pkgunpack: $$($(python-pyflakes)-src) $($(python-pyflakes)-srcdir)/.markerfile $($(python-pyflakes)-prefix)/.markerfile $$(foreach dep,$$($(python-pyflakes)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-pyflakes)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

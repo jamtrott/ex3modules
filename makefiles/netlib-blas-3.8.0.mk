@@ -40,7 +40,7 @@ $($(netlib-blas)-srcdir)/.markerfile:
 $($(netlib-blas)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(netlib-blas)-prefix)/.pkgunpack: $($(netlib-blas)-src) $($(netlib-blas)-srcdir)/.markerfile $($(netlib-blas)-prefix)/.markerfile
+$($(netlib-blas)-prefix)/.pkgunpack: $($(netlib-blas)-src) $($(netlib-blas)-srcdir)/.markerfile $($(netlib-blas)-prefix)/.markerfile $$(foreach dep,$$($(netlib-blas)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(netlib-blas)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(gcc-8.4.0)-srcdir)/.markerfile:
 $($(gcc-8.4.0)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(gcc-8.4.0)-prefix)/.pkgunpack: $($(gcc-8.4.0)-src) $($(gcc-8.4.0)-srcdir)/.markerfile $($(gcc-8.4.0)-prefix)/.markerfile
+$($(gcc-8.4.0)-prefix)/.pkgunpack: $($(gcc-8.4.0)-src) $($(gcc-8.4.0)-srcdir)/.markerfile $($(gcc-8.4.0)-prefix)/.markerfile $$(foreach dep,$$($(gcc-8.4.0)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(gcc-8.4.0)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

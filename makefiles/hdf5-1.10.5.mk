@@ -37,7 +37,7 @@ $($(hdf5)-srcdir)/.markerfile:
 $($(hdf5)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(hdf5)-prefix)/.pkgunpack: $$($(hdf5)-src) $($(hdf5)-srcdir)/.markerfile $($(hdf5)-prefix)/.markerfile
+$($(hdf5)-prefix)/.pkgunpack: $$($(hdf5)-src) $($(hdf5)-srcdir)/.markerfile $($(hdf5)-prefix)/.markerfile $$(foreach dep,$$($(hdf5)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(hdf5)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

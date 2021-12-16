@@ -39,7 +39,7 @@ $($(libpciaccess)-srcdir)/.markerfile:
 $($(libpciaccess)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libpciaccess)-prefix)/.pkgunpack: $($(libpciaccess)-src) $($(libpciaccess)-srcdir)/.markerfile $($(libpciaccess)-prefix)/.markerfile
+$($(libpciaccess)-prefix)/.pkgunpack: $($(libpciaccess)-src) $($(libpciaccess)-srcdir)/.markerfile $($(libpciaccess)-prefix)/.markerfile $$(foreach dep,$$($(libpciaccess)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libpciaccess)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

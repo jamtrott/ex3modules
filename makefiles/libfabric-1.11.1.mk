@@ -40,7 +40,7 @@ $($(libfabric)-srcdir)/.markerfile:
 $($(libfabric)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libfabric)-prefix)/.pkgunpack: $$($(libfabric)-src) $($(libfabric)-srcdir)/.markerfile $($(libfabric)-prefix)/.markerfile
+$($(libfabric)-prefix)/.pkgunpack: $$($(libfabric)-src) $($(libfabric)-srcdir)/.markerfile $($(libfabric)-prefix)/.markerfile $$(foreach dep,$$($(libfabric)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libfabric)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

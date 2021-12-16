@@ -40,7 +40,7 @@ $($(python-cython)-srcdir)/.markerfile:
 $($(python-cython)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-cython)-prefix)/.pkgunpack: $$($(python-cython)-src) $($(python-cython)-srcdir)/.markerfile $($(python-cython)-prefix)/.markerfile
+$($(python-cython)-prefix)/.pkgunpack: $$($(python-cython)-src) $($(python-cython)-srcdir)/.markerfile $($(python-cython)-prefix)/.markerfile $$(foreach dep,$$($(python-cython)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-cython)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

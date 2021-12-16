@@ -39,7 +39,7 @@ $($(nasm)-srcdir)/.markerfile:
 $($(nasm)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(nasm)-prefix)/.pkgunpack: $($(nasm)-src) $($(nasm)-srcdir)/.markerfile $($(nasm)-prefix)/.markerfile
+$($(nasm)-prefix)/.pkgunpack: $($(nasm)-src) $($(nasm)-srcdir)/.markerfile $($(nasm)-prefix)/.markerfile $$(foreach dep,$$($(nasm)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(nasm)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

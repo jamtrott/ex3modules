@@ -40,7 +40,7 @@ $($(python-xarray)-srcdir)/.markerfile:
 $($(python-xarray)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-xarray)-prefix)/.pkgunpack: $$($(python-xarray)-src) $($(python-xarray)-srcdir)/.markerfile $($(python-xarray)-prefix)/.markerfile
+$($(python-xarray)-prefix)/.pkgunpack: $$($(python-xarray)-src) $($(python-xarray)-srcdir)/.markerfile $($(python-xarray)-prefix)/.markerfile $$(foreach dep,$$($(python-xarray)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-xarray)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

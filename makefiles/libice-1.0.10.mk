@@ -39,7 +39,7 @@ $($(libice)-srcdir)/.markerfile:
 $($(libice)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libice)-prefix)/.pkgunpack: $($(libice)-src) $($(libice)-srcdir)/.markerfile $($(libice)-prefix)/.markerfile
+$($(libice)-prefix)/.pkgunpack: $($(libice)-src) $($(libice)-srcdir)/.markerfile $($(libice)-prefix)/.markerfile $$(foreach dep,$$($(libice)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libice)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

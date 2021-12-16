@@ -40,7 +40,7 @@ $($(python-mpmath)-srcdir)/.markerfile:
 $($(python-mpmath)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-mpmath)-prefix)/.pkgunpack: $$($(python-mpmath)-src) $($(python-mpmath)-srcdir)/.markerfile $($(python-mpmath)-prefix)/.markerfile
+$($(python-mpmath)-prefix)/.pkgunpack: $$($(python-mpmath)-src) $($(python-mpmath)-srcdir)/.markerfile $($(python-mpmath)-prefix)/.markerfile $$(foreach dep,$$($(python-mpmath)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-mpmath)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

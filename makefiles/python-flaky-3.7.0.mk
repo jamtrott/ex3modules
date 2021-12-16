@@ -40,7 +40,7 @@ $($(python-flaky)-srcdir)/.markerfile:
 $($(python-flaky)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-flaky)-prefix)/.pkgunpack: $$($(python-flaky)-src) $($(python-flaky)-srcdir)/.markerfile $($(python-flaky)-prefix)/.markerfile
+$($(python-flaky)-prefix)/.pkgunpack: $$($(python-flaky)-src) $($(python-flaky)-srcdir)/.markerfile $($(python-flaky)-prefix)/.markerfile $$(foreach dep,$$($(python-flaky)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-flaky)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

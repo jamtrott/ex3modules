@@ -40,7 +40,7 @@ $($(fftw)-srcdir)/.markerfile:
 $($(fftw)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(fftw)-prefix)/.pkgunpack: $$($(fftw)-src) $($(fftw)-srcdir)/.markerfile $($(fftw)-prefix)/.markerfile
+$($(fftw)-prefix)/.pkgunpack: $$($(fftw)-src) $($(fftw)-srcdir)/.markerfile $($(fftw)-prefix)/.markerfile $$(foreach dep,$$($(fftw)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(fftw)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(gdb)-srcdir)/.markerfile:
 $($(gdb)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(gdb)-prefix)/.pkgunpack: $($(gdb)-src) $($(gdb)-srcdir)/.markerfile $($(gdb)-prefix)/.markerfile
+$($(gdb)-prefix)/.pkgunpack: $($(gdb)-src) $($(gdb)-srcdir)/.markerfile $($(gdb)-prefix)/.markerfile $$(foreach dep,$$($(gdb)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(gdb)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

@@ -39,7 +39,7 @@ $($(cmake)-srcdir)/.markerfile:
 $($(cmake)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(cmake)-prefix)/.pkgunpack: $($(cmake)-src) $($(cmake)-srcdir)/.markerfile $($(cmake)-prefix)/.markerfile
+$($(cmake)-prefix)/.pkgunpack: $($(cmake)-src) $($(cmake)-srcdir)/.markerfile $($(cmake)-prefix)/.markerfile $$(foreach dep,$$($(cmake)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(cmake)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

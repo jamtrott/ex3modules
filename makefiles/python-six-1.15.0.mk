@@ -40,7 +40,7 @@ $($(python-six)-srcdir)/.markerfile:
 $($(python-six)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-six)-prefix)/.pkgunpack: $$($(python-six)-src) $($(python-six)-srcdir)/.markerfile $($(python-six)-prefix)/.markerfile
+$($(python-six)-prefix)/.pkgunpack: $$($(python-six)-src) $($(python-six)-srcdir)/.markerfile $($(python-six)-prefix)/.markerfile $$(foreach dep,$$($(python-six)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-six)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

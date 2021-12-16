@@ -37,7 +37,7 @@ $($(cpupower)-srcdir)/.markerfile:
 $($(cpupower)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(cpupower)-prefix)/.pkgunpack: $$($(cpupower)-src) $($(cpupower)-srcdir)/.markerfile $($(cpupower)-prefix)/.markerfile
+$($(cpupower)-prefix)/.pkgunpack: $$($(cpupower)-src) $($(cpupower)-srcdir)/.markerfile $($(cpupower)-prefix)/.markerfile $$(foreach dep,$$($(cpupower)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(cpupower)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

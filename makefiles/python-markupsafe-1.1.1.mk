@@ -40,7 +40,7 @@ $($(python-markupsafe)-srcdir)/.markerfile:
 $($(python-markupsafe)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-markupsafe)-prefix)/.pkgunpack: $$($(python-markupsafe)-src) $($(python-markupsafe)-srcdir)/.markerfile $($(python-markupsafe)-prefix)/.markerfile
+$($(python-markupsafe)-prefix)/.pkgunpack: $$($(python-markupsafe)-src) $($(python-markupsafe)-srcdir)/.markerfile $($(python-markupsafe)-prefix)/.markerfile $$(foreach dep,$$($(python-markupsafe)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-markupsafe)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

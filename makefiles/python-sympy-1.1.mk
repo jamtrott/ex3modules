@@ -40,7 +40,7 @@ $($(python-sympy-1.1)-srcdir)/.markerfile:
 $($(python-sympy-1.1)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-sympy-1.1)-prefix)/.pkgunpack: $$($(python-sympy-1.1)-src) $($(python-sympy-1.1)-srcdir)/.markerfile $($(python-sympy-1.1)-prefix)/.markerfile
+$($(python-sympy-1.1)-prefix)/.pkgunpack: $$($(python-sympy-1.1)-src) $($(python-sympy-1.1)-srcdir)/.markerfile $($(python-sympy-1.1)-prefix)/.markerfile $$(foreach dep,$$($(python-sympy-1.1)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-sympy-1.1)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

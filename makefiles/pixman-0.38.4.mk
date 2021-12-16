@@ -39,7 +39,7 @@ $($(pixman)-srcdir)/.markerfile:
 $($(pixman)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(pixman)-prefix)/.pkgunpack: $($(pixman)-src) $($(pixman)-srcdir)/.markerfile $($(pixman)-prefix)/.markerfile
+$($(pixman)-prefix)/.pkgunpack: $($(pixman)-src) $($(pixman)-srcdir)/.markerfile $($(pixman)-prefix)/.markerfile $$(foreach dep,$$($(pixman)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(pixman)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

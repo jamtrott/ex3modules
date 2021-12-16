@@ -39,7 +39,7 @@ $($(libfontenc)-srcdir)/.markerfile:
 $($(libfontenc)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libfontenc)-prefix)/.pkgunpack: $($(libfontenc)-src) $($(libfontenc)-srcdir)/.markerfile $($(libfontenc)-prefix)/.markerfile
+$($(libfontenc)-prefix)/.pkgunpack: $($(libfontenc)-src) $($(libfontenc)-srcdir)/.markerfile $($(libfontenc)-prefix)/.markerfile $$(foreach dep,$$($(libfontenc)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libfontenc)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

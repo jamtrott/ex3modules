@@ -40,7 +40,7 @@ $($(libiconv)-srcdir)/.markerfile:
 $($(libiconv)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libiconv)-prefix)/.pkgunpack: $$($(libiconv)-src) $($(libiconv)-srcdir)/.markerfile $($(libiconv)-prefix)/.markerfile
+$($(libiconv)-prefix)/.pkgunpack: $$($(libiconv)-src) $($(libiconv)-srcdir)/.markerfile $($(libiconv)-prefix)/.markerfile $$(foreach dep,$$($(libiconv)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libiconv)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

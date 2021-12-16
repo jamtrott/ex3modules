@@ -40,7 +40,7 @@ $($(openssl)-srcdir)/.markerfile:
 $($(openssl)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openssl)-prefix)/.pkgunpack: $($(openssl)-src) $($(openssl)-srcdir)/.markerfile $($(openssl)-prefix)/.markerfile
+$($(openssl)-prefix)/.pkgunpack: $($(openssl)-src) $($(openssl)-srcdir)/.markerfile $($(openssl)-prefix)/.markerfile $$(foreach dep,$$($(openssl)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(openssl)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

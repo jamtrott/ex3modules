@@ -39,7 +39,7 @@ $($(libxft)-srcdir)/.markerfile:
 $($(libxft)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxft)-prefix)/.pkgunpack: $($(libxft)-src) $($(libxft)-srcdir)/.markerfile $($(libxft)-prefix)/.markerfile
+$($(libxft)-prefix)/.pkgunpack: $($(libxft)-src) $($(libxft)-srcdir)/.markerfile $($(libxft)-prefix)/.markerfile $$(foreach dep,$$($(libxft)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxft)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

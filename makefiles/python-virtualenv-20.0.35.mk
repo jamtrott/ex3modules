@@ -40,7 +40,7 @@ $($(python-virtualenv)-srcdir)/.markerfile:
 $($(python-virtualenv)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-virtualenv)-prefix)/.pkgunpack: $$($(python-virtualenv)-src) $($(python-virtualenv)-srcdir)/.markerfile $($(python-virtualenv)-prefix)/.markerfile
+$($(python-virtualenv)-prefix)/.pkgunpack: $$($(python-virtualenv)-src) $($(python-virtualenv)-srcdir)/.markerfile $($(python-virtualenv)-prefix)/.markerfile $$(foreach dep,$$($(python-virtualenv)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-virtualenv)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

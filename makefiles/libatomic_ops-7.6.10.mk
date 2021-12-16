@@ -40,7 +40,7 @@ $($(libatomic_ops)-srcdir)/.markerfile:
 $($(libatomic_ops)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libatomic_ops)-prefix)/.pkgunpack: $$($(libatomic_ops)-src) $($(libatomic_ops)-srcdir)/.markerfile $($(libatomic_ops)-prefix)/.markerfile
+$($(libatomic_ops)-prefix)/.pkgunpack: $$($(libatomic_ops)-src) $($(libatomic_ops)-srcdir)/.markerfile $($(libatomic_ops)-prefix)/.markerfile $$(foreach dep,$$($(libatomic_ops)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libatomic_ops)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -38,7 +38,7 @@ $($(ucx)-srcdir)/.markerfile:
 $($(ucx)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(ucx)-prefix)/.pkgunpack: $$($(ucx)-src) $($(ucx)-srcdir)/.markerfile $($(ucx)-prefix)/.markerfile
+$($(ucx)-prefix)/.pkgunpack: $$($(ucx)-src) $($(ucx)-srcdir)/.markerfile $($(ucx)-prefix)/.markerfile $$(foreach dep,$$($(ucx)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(ucx)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

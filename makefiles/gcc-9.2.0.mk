@@ -40,7 +40,7 @@ $($(gcc-9.2.0)-srcdir)/.markerfile:
 $($(gcc-9.2.0)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(gcc-9.2.0)-prefix)/.pkgunpack: $($(gcc-9.2.0)-src) $($(gcc-9.2.0)-srcdir)/.markerfile $($(gcc-9.2.0)-prefix)/.markerfile
+$($(gcc-9.2.0)-prefix)/.pkgunpack: $($(gcc-9.2.0)-src) $($(gcc-9.2.0)-srcdir)/.markerfile $($(gcc-9.2.0)-prefix)/.markerfile $$(foreach dep,$$($(gcc-9.2.0)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(gcc-9.2.0)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(utf8cpp)-srcdir)/.markerfile:
 $($(utf8cpp)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(utf8cpp)-prefix)/.pkgunpack: $$($(utf8cpp)-src) $($(utf8cpp)-srcdir)/.markerfile $($(utf8cpp)-prefix)/.markerfile
+$($(utf8cpp)-prefix)/.pkgunpack: $$($(utf8cpp)-src) $($(utf8cpp)-srcdir)/.markerfile $($(utf8cpp)-prefix)/.markerfile $$(foreach dep,$$($(utf8cpp)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(utf8cpp)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

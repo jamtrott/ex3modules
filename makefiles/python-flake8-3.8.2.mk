@@ -40,7 +40,7 @@ $($(python-flake8)-srcdir)/.markerfile:
 $($(python-flake8)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-flake8)-prefix)/.pkgunpack: $$($(python-flake8)-src) $($(python-flake8)-srcdir)/.markerfile $($(python-flake8)-prefix)/.markerfile
+$($(python-flake8)-prefix)/.pkgunpack: $$($(python-flake8)-src) $($(python-flake8)-srcdir)/.markerfile $($(python-flake8)-prefix)/.markerfile $$(foreach dep,$$($(python-flake8)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-flake8)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -37,7 +37,7 @@ $($(metis-64)-srcdir)/.markerfile:
 $($(metis-64)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(metis-64)-prefix)/.pkgunpack: $$($(metis-64)-src) $($(metis-64)-srcdir)/.markerfile $($(metis-64)-prefix)/.markerfile
+$($(metis-64)-prefix)/.pkgunpack: $$($(metis-64)-src) $($(metis-64)-srcdir)/.markerfile $($(metis-64)-prefix)/.markerfile $$(foreach dep,$$($(metis-64)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(metis-64)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

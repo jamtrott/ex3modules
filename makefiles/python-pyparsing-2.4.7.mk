@@ -40,7 +40,7 @@ $($(python-pyparsing)-srcdir)/.markerfile:
 $($(python-pyparsing)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-pyparsing)-prefix)/.pkgunpack: $$($(python-pyparsing)-src) $($(python-pyparsing)-srcdir)/.markerfile $($(python-pyparsing)-prefix)/.markerfile
+$($(python-pyparsing)-prefix)/.pkgunpack: $$($(python-pyparsing)-src) $($(python-pyparsing)-srcdir)/.markerfile $($(python-pyparsing)-prefix)/.markerfile $$(foreach dep,$$($(python-pyparsing)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-pyparsing)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

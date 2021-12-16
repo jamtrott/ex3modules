@@ -39,7 +39,7 @@ $($(xz)-srcdir)/.markerfile:
 $($(xz)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(xz)-prefix)/.pkgunpack: $($(xz)-src) $($(xz)-srcdir)/.markerfile $($(xz)-prefix)/.markerfile
+$($(xz)-prefix)/.pkgunpack: $($(xz)-src) $($(xz)-srcdir)/.markerfile $($(xz)-prefix)/.markerfile $$(foreach dep,$$($(xz)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(xz)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

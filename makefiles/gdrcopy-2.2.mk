@@ -40,7 +40,7 @@ $($(gdrcopy)-srcdir)/.markerfile:
 $($(gdrcopy)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(gdrcopy)-prefix)/.pkgunpack: $$($(gdrcopy)-src) $($(gdrcopy)-srcdir)/.markerfile $($(gdrcopy)-prefix)/.markerfile
+$($(gdrcopy)-prefix)/.pkgunpack: $$($(gdrcopy)-src) $($(gdrcopy)-srcdir)/.markerfile $($(gdrcopy)-prefix)/.markerfile $$(foreach dep,$$($(gdrcopy)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(gdrcopy)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

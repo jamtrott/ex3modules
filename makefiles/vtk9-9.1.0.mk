@@ -40,7 +40,7 @@ $($(vtk9)-srcdir)/.markerfile:
 $($(vtk9)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(vtk9)-prefix)/.pkgunpack: $$($(vtk9)-src) $($(vtk9)-srcdir)/.markerfile $($(vtk9)-prefix)/.markerfile
+$($(vtk9)-prefix)/.pkgunpack: $$($(vtk9)-src) $($(vtk9)-srcdir)/.markerfile $($(vtk9)-prefix)/.markerfile $$(foreach dep,$$($(vtk9)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(vtk9)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

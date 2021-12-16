@@ -37,7 +37,7 @@ $($(hwloc-cairo)-srcdir)/.markerfile:
 $($(hwloc-cairo)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(hwloc-cairo)-prefix)/.pkgunpack: $$($(hwloc-cairo)-src) $($(hwloc-cairo)-srcdir)/.markerfile $($(hwloc-cairo)-prefix)/.markerfile
+$($(hwloc-cairo)-prefix)/.pkgunpack: $$($(hwloc-cairo)-src) $($(hwloc-cairo)-srcdir)/.markerfile $($(hwloc-cairo)-prefix)/.markerfile $$(foreach dep,$$($(hwloc-cairo)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(hwloc-cairo)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

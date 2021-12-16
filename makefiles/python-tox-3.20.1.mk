@@ -40,7 +40,7 @@ $($(python-tox)-srcdir)/.markerfile:
 $($(python-tox)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-tox)-prefix)/.pkgunpack: $$($(python-tox)-src) $($(python-tox)-srcdir)/.markerfile $($(python-tox)-prefix)/.markerfile
+$($(python-tox)-prefix)/.pkgunpack: $$($(python-tox)-src) $($(python-tox)-srcdir)/.markerfile $($(python-tox)-prefix)/.markerfile $$(foreach dep,$$($(python-tox)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-tox)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

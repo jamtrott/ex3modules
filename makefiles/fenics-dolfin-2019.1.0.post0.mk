@@ -37,7 +37,7 @@ $($(fenics-dolfin-2019)-srcdir)/.markerfile:
 $($(fenics-dolfin-2019)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(fenics-dolfin-2019)-prefix)/.pkgunpack: $$($(fenics-dolfin-2019)-src) $($(fenics-dolfin-2019)-srcdir)/.markerfile $($(fenics-dolfin-2019)-prefix)/.markerfile
+$($(fenics-dolfin-2019)-prefix)/.pkgunpack: $$($(fenics-dolfin-2019)-src) $($(fenics-dolfin-2019)-srcdir)/.markerfile $($(fenics-dolfin-2019)-prefix)/.markerfile $$(foreach dep,$$($(fenics-dolfin-2019)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(fenics-dolfin-2019)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

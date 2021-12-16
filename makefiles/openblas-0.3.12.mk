@@ -39,7 +39,7 @@ $($(openblas)-srcdir)/.markerfile:
 $($(openblas)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openblas)-prefix)/.pkgunpack: $($(openblas)-src) $($(openblas)-srcdir)/.markerfile $($(openblas)-prefix)/.markerfile
+$($(openblas)-prefix)/.pkgunpack: $($(openblas)-src) $($(openblas)-srcdir)/.markerfile $($(openblas)-prefix)/.markerfile $$(foreach dep,$$($(openblas)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(openblas)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

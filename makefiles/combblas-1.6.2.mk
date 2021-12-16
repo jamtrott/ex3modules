@@ -37,7 +37,7 @@ $($(combblas)-srcdir)/.markerfile:
 $($(combblas)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(combblas)-prefix)/.pkgunpack: $$($(combblas)-src) $($(combblas)-srcdir)/.markerfile $($(combblas)-prefix)/.markerfile
+$($(combblas)-prefix)/.pkgunpack: $$($(combblas)-src) $($(combblas)-srcdir)/.markerfile $($(combblas)-prefix)/.markerfile $$(foreach dep,$$($(combblas)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(combblas)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

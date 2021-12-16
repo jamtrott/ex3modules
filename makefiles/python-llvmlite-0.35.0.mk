@@ -40,7 +40,7 @@ $($(python-llvmlite)-srcdir)/.markerfile:
 $($(python-llvmlite)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-llvmlite)-prefix)/.pkgunpack: $$($(python-llvmlite)-src) $($(python-llvmlite)-srcdir)/.markerfile $($(python-llvmlite)-prefix)/.markerfile
+$($(python-llvmlite)-prefix)/.pkgunpack: $$($(python-llvmlite)-src) $($(python-llvmlite)-srcdir)/.markerfile $($(python-llvmlite)-prefix)/.markerfile $$(foreach dep,$$($(python-llvmlite)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-llvmlite)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -36,7 +36,7 @@ $($(osu-micro-benchmarks-mpich)-srcdir)/.markerfile:
 $($(osu-micro-benchmarks-mpich)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(osu-micro-benchmarks-mpich)-prefix)/.pkgunpack: $$($(osu-micro-benchmarks-mpich)-src) $($(osu-micro-benchmarks-mpich)-srcdir)/.markerfile $($(osu-micro-benchmarks-mpich)-prefix)/.markerfile
+$($(osu-micro-benchmarks-mpich)-prefix)/.pkgunpack: $$($(osu-micro-benchmarks-mpich)-src) $($(osu-micro-benchmarks-mpich)-srcdir)/.markerfile $($(osu-micro-benchmarks-mpich)-prefix)/.markerfile $$(foreach dep,$$($(osu-micro-benchmarks-mpich)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(osu-micro-benchmarks-mpich)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

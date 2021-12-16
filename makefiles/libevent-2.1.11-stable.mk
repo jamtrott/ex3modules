@@ -39,7 +39,7 @@ $($(libevent)-srcdir)/.markerfile:
 $($(libevent)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libevent)-prefix)/.pkgunpack: $($(libevent)-src) $($(libevent)-srcdir)/.markerfile $($(libevent)-prefix)/.markerfile
+$($(libevent)-prefix)/.pkgunpack: $($(libevent)-src) $($(libevent)-srcdir)/.markerfile $($(libevent)-prefix)/.markerfile $$(foreach dep,$$($(libevent)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libevent)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

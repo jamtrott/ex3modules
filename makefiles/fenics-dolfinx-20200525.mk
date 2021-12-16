@@ -37,7 +37,7 @@ $($(fenics-dolfinx-20200525)-srcdir)/.markerfile:
 $($(fenics-dolfinx-20200525)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(fenics-dolfinx-20200525)-prefix)/.pkgunpack: $$($(fenics-dolfinx-20200525)-src) $($(fenics-dolfinx-20200525)-srcdir)/.markerfile $($(fenics-dolfinx-20200525)-prefix)/.markerfile
+$($(fenics-dolfinx-20200525)-prefix)/.pkgunpack: $$($(fenics-dolfinx-20200525)-src) $($(fenics-dolfinx-20200525)-srcdir)/.markerfile $($(fenics-dolfinx-20200525)-prefix)/.markerfile $$(foreach dep,$$($(fenics-dolfinx-20200525)-builddeps),$(modulefilesdir)/$$(dep))
 	cd $($(fenics-dolfinx-20200525)-srcdir) && unzip -o $<
 	@touch $@
 

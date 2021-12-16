@@ -40,7 +40,7 @@ $($(ipopt)-srcdir)/.markerfile:
 $($(ipopt)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(ipopt)-prefix)/.pkgunpack: $$($(ipopt)-src) $($(ipopt)-srcdir)/.markerfile $($(ipopt)-prefix)/.markerfile
+$($(ipopt)-prefix)/.pkgunpack: $$($(ipopt)-src) $($(ipopt)-srcdir)/.markerfile $($(ipopt)-prefix)/.markerfile $$(foreach dep,$$($(ipopt)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(ipopt)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

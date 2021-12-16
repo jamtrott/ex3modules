@@ -40,7 +40,7 @@ $($(xcb-util)-srcdir)/.markerfile:
 $($(xcb-util)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(xcb-util)-prefix)/.pkgunpack: $$($(xcb-util)-src) $($(xcb-util)-srcdir)/.markerfile $($(xcb-util)-prefix)/.markerfile
+$($(xcb-util)-prefix)/.pkgunpack: $$($(xcb-util)-src) $($(xcb-util)-srcdir)/.markerfile $($(xcb-util)-prefix)/.markerfile $$(foreach dep,$$($(xcb-util)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(xcb-util)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

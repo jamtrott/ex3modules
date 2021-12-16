@@ -40,7 +40,7 @@ $($(python-coverage)-srcdir)/.markerfile:
 $($(python-coverage)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-coverage)-prefix)/.pkgunpack: $$($(python-coverage)-src) $($(python-coverage)-srcdir)/.markerfile $($(python-coverage)-prefix)/.markerfile
+$($(python-coverage)-prefix)/.pkgunpack: $$($(python-coverage)-src) $($(python-coverage)-srcdir)/.markerfile $($(python-coverage)-prefix)/.markerfile $$(foreach dep,$$($(python-coverage)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-coverage)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -37,7 +37,7 @@ $($(scotch)-srcdir)/.markerfile:
 $($(scotch)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(scotch)-prefix)/.pkgunpack: $$($(scotch)-src) $($(scotch)-srcdir)/.markerfile $($(scotch)-prefix)/.markerfile
+$($(scotch)-prefix)/.pkgunpack: $$($(scotch)-src) $($(scotch)-srcdir)/.markerfile $($(scotch)-prefix)/.markerfile $$(foreach dep,$$($(scotch)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(scotch)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

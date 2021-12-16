@@ -40,7 +40,7 @@ $($(python-mccabe)-srcdir)/.markerfile:
 $($(python-mccabe)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-mccabe)-prefix)/.pkgunpack: $$($(python-mccabe)-src) $($(python-mccabe)-srcdir)/.markerfile $($(python-mccabe)-prefix)/.markerfile
+$($(python-mccabe)-prefix)/.pkgunpack: $$($(python-mccabe)-src) $($(python-mccabe)-srcdir)/.markerfile $($(python-mccabe)-prefix)/.markerfile $$(foreach dep,$$($(python-mccabe)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-mccabe)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

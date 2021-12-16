@@ -40,7 +40,7 @@ $($(mysql-connector-python)-srcdir)/.markerfile:
 $($(mysql-connector-python)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(mysql-connector-python)-prefix)/.pkgunpack: $$($(mysql-connector-python)-src) $($(mysql-connector-python)-srcdir)/.markerfile $($(mysql-connector-python)-prefix)/.markerfile
+$($(mysql-connector-python)-prefix)/.pkgunpack: $$($(mysql-connector-python)-src) $($(mysql-connector-python)-srcdir)/.markerfile $($(mysql-connector-python)-prefix)/.markerfile $$(foreach dep,$$($(mysql-connector-python)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(mysql-connector-python)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

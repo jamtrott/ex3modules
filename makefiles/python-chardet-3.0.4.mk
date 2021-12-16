@@ -40,7 +40,7 @@ $($(python-chardet)-srcdir)/.markerfile:
 $($(python-chardet)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-chardet)-prefix)/.pkgunpack: $$($(python-chardet)-src) $($(python-chardet)-srcdir)/.markerfile $($(python-chardet)-prefix)/.markerfile
+$($(python-chardet)-prefix)/.pkgunpack: $$($(python-chardet)-src) $($(python-chardet)-srcdir)/.markerfile $($(python-chardet)-prefix)/.markerfile $$(foreach dep,$$($(python-chardet)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-chardet)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

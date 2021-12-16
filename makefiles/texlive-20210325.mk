@@ -50,7 +50,7 @@ $($(texlive)-srcdir)/.markerfile:
 $($(texlive)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(texlive)-prefix)/.pkgunpack: $$($(texlive)-src) $$($(texlive)-texmf-src) $$($(texlive)-tlpdb-src) $($(texlive)-srcdir)/.markerfile $($(texlive)-prefix)/.markerfile
+$($(texlive)-prefix)/.pkgunpack: $$($(texlive)-src) $$($(texlive)-texmf-src) $$($(texlive)-tlpdb-src) $($(texlive)-srcdir)/.markerfile $($(texlive)-prefix)/.markerfile $$(foreach dep,$$($(texlive)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(texlive)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

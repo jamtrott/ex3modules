@@ -40,7 +40,7 @@ $($(python-importlib_metadata)-srcdir)/.markerfile:
 $($(python-importlib_metadata)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-importlib_metadata)-prefix)/.pkgunpack: $$($(python-importlib_metadata)-src) $($(python-importlib_metadata)-srcdir)/.markerfile $($(python-importlib_metadata)-prefix)/.markerfile
+$($(python-importlib_metadata)-prefix)/.pkgunpack: $$($(python-importlib_metadata)-src) $($(python-importlib_metadata)-srcdir)/.markerfile $($(python-importlib_metadata)-prefix)/.markerfile $$(foreach dep,$$($(python-importlib_metadata)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-importlib_metadata)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

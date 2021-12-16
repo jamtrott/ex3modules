@@ -36,7 +36,7 @@ $($(osu-micro-benchmarks-openmpi)-srcdir)/.markerfile:
 $($(osu-micro-benchmarks-openmpi)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(osu-micro-benchmarks-openmpi)-prefix)/.pkgunpack: $$($(osu-micro-benchmarks-openmpi)-src) $($(osu-micro-benchmarks-openmpi)-srcdir)/.markerfile $($(osu-micro-benchmarks-openmpi)-prefix)/.markerfile
+$($(osu-micro-benchmarks-openmpi)-prefix)/.pkgunpack: $$($(osu-micro-benchmarks-openmpi)-src) $($(osu-micro-benchmarks-openmpi)-srcdir)/.markerfile $($(osu-micro-benchmarks-openmpi)-prefix)/.markerfile $$(foreach dep,$$($(osu-micro-benchmarks-openmpi)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(osu-micro-benchmarks-openmpi)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

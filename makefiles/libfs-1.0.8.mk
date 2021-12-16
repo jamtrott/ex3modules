@@ -39,7 +39,7 @@ $($(libfs)-srcdir)/.markerfile:
 $($(libfs)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libfs)-prefix)/.pkgunpack: $($(libfs)-src) $($(libfs)-srcdir)/.markerfile $($(libfs)-prefix)/.markerfile
+$($(libfs)-prefix)/.pkgunpack: $($(libfs)-src) $($(libfs)-srcdir)/.markerfile $($(libfs)-prefix)/.markerfile $$(foreach dep,$$($(libfs)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libfs)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

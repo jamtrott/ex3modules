@@ -37,7 +37,7 @@ $($(superlu_dist)-srcdir)/.markerfile:
 $($(superlu_dist)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(superlu_dist)-prefix)/.pkgunpack: $$($(superlu_dist)-src) $($(superlu_dist)-srcdir)/.markerfile $($(superlu_dist)-prefix)/.markerfile
+$($(superlu_dist)-prefix)/.pkgunpack: $$($(superlu_dist)-src) $($(superlu_dist)-srcdir)/.markerfile $($(superlu_dist)-prefix)/.markerfile $$(foreach dep,$$($(superlu_dist)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(superlu_dist)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

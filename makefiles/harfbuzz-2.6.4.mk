@@ -37,7 +37,7 @@ $($(harfbuzz)-srcdir)/.markerfile:
 $($(harfbuzz)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(harfbuzz)-prefix)/.pkgunpack: $$($(harfbuzz)-src) $($(harfbuzz)-srcdir)/.markerfile $($(harfbuzz)-prefix)/.markerfile
+$($(harfbuzz)-prefix)/.pkgunpack: $$($(harfbuzz)-src) $($(harfbuzz)-srcdir)/.markerfile $($(harfbuzz)-prefix)/.markerfile $$(foreach dep,$$($(harfbuzz)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(harfbuzz)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

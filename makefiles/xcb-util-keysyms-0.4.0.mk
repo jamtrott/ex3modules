@@ -40,7 +40,7 @@ $($(xcb-util-keysyms)-srcdir)/.markerfile:
 $($(xcb-util-keysyms)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(xcb-util-keysyms)-prefix)/.pkgunpack: $$($(xcb-util-keysyms)-src) $($(xcb-util-keysyms)-srcdir)/.markerfile $($(xcb-util-keysyms)-prefix)/.markerfile
+$($(xcb-util-keysyms)-prefix)/.pkgunpack: $$($(xcb-util-keysyms)-src) $($(xcb-util-keysyms)-srcdir)/.markerfile $($(xcb-util-keysyms)-prefix)/.markerfile $$(foreach dep,$$($(xcb-util-keysyms)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(xcb-util-keysyms)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

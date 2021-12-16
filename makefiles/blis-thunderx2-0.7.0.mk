@@ -50,7 +50,7 @@ $($(blis-thunderx2)-srcdir)/.markerfile:
 $($(blis-thunderx2)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(blis-thunderx2)-prefix)/.pkgunpack: $$($(blis-thunderx2)-src) $($(blis-thunderx2)-srcdir)/.markerfile $($(blis-thunderx2)-prefix)/.markerfile
+$($(blis-thunderx2)-prefix)/.pkgunpack: $$($(blis-thunderx2)-src) $($(blis-thunderx2)-srcdir)/.markerfile $($(blis-thunderx2)-prefix)/.markerfile $$(foreach dep,$$($(blis-thunderx2)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(blis-thunderx2)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

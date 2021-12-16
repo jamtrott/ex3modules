@@ -39,7 +39,7 @@ $($(libxscrnsaver)-srcdir)/.markerfile:
 $($(libxscrnsaver)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxscrnsaver)-prefix)/.pkgunpack: $($(libxscrnsaver)-src) $($(libxscrnsaver)-srcdir)/.markerfile $($(libxscrnsaver)-prefix)/.markerfile
+$($(libxscrnsaver)-prefix)/.pkgunpack: $($(libxscrnsaver)-src) $($(libxscrnsaver)-srcdir)/.markerfile $($(libxscrnsaver)-prefix)/.markerfile $$(foreach dep,$$($(libxscrnsaver)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxscrnsaver)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

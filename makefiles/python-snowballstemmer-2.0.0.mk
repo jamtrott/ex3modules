@@ -40,7 +40,7 @@ $($(python-snowballstemmer)-srcdir)/.markerfile:
 $($(python-snowballstemmer)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-snowballstemmer)-prefix)/.pkgunpack: $$($(python-snowballstemmer)-src) $($(python-snowballstemmer)-srcdir)/.markerfile $($(python-snowballstemmer)-prefix)/.markerfile
+$($(python-snowballstemmer)-prefix)/.pkgunpack: $$($(python-snowballstemmer)-src) $($(python-snowballstemmer)-srcdir)/.markerfile $($(python-snowballstemmer)-prefix)/.markerfile $$(foreach dep,$$($(python-snowballstemmer)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-snowballstemmer)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

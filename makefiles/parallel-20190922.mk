@@ -40,7 +40,7 @@ $($(parallel)-srcdir)/.markerfile:
 $($(parallel)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(parallel)-prefix)/.pkgunpack: $($(parallel)-src) $($(parallel)-srcdir)/.markerfile $($(parallel)-prefix)/.markerfile
+$($(parallel)-prefix)/.pkgunpack: $($(parallel)-src) $($(parallel)-srcdir)/.markerfile $($(parallel)-prefix)/.markerfile $$(foreach dep,$$($(parallel)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(parallel)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

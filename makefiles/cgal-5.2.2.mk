@@ -40,7 +40,7 @@ $($(cgal)-srcdir)/.markerfile:
 $($(cgal)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(cgal)-prefix)/.pkgunpack: $$($(cgal)-src) $($(cgal)-srcdir)/.markerfile $($(cgal)-prefix)/.markerfile
+$($(cgal)-prefix)/.pkgunpack: $$($(cgal)-src) $($(cgal)-srcdir)/.markerfile $($(cgal)-prefix)/.markerfile $$(foreach dep,$$($(cgal)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(cgal)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

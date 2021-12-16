@@ -36,7 +36,7 @@ $($(hypre-cuda)-srcdir)/.markerfile:
 $($(hypre-cuda)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(hypre-cuda)-prefix)/.pkgunpack: $$($(hypre-cuda)-src) $($(hypre-cuda)-srcdir)/.markerfile $($(hypre-cuda)-prefix)/.markerfile
+$($(hypre-cuda)-prefix)/.pkgunpack: $$($(hypre-cuda)-src) $($(hypre-cuda)-srcdir)/.markerfile $($(hypre-cuda)-prefix)/.markerfile $$(foreach dep,$$($(hypre-cuda)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(hypre-cuda)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

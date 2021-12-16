@@ -40,7 +40,7 @@ $($(python-pydocstyle)-srcdir)/.markerfile:
 $($(python-pydocstyle)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-pydocstyle)-prefix)/.pkgunpack: $$($(python-pydocstyle)-src) $($(python-pydocstyle)-srcdir)/.markerfile $($(python-pydocstyle)-prefix)/.markerfile
+$($(python-pydocstyle)-prefix)/.pkgunpack: $$($(python-pydocstyle)-src) $($(python-pydocstyle)-srcdir)/.markerfile $($(python-pydocstyle)-prefix)/.markerfile $$(foreach dep,$$($(python-pydocstyle)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-pydocstyle)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

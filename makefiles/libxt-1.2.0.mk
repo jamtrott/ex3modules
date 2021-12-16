@@ -39,7 +39,7 @@ $($(libxt)-srcdir)/.markerfile:
 $($(libxt)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxt)-prefix)/.pkgunpack: $($(libxt)-src) $($(libxt)-srcdir)/.markerfile $($(libxt)-prefix)/.markerfile
+$($(libxt)-prefix)/.pkgunpack: $($(libxt)-src) $($(libxt)-srcdir)/.markerfile $($(libxt)-prefix)/.markerfile $$(foreach dep,$$($(libxt)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxt)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

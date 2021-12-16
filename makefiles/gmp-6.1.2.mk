@@ -39,7 +39,7 @@ $($(gmp)-srcdir)/.markerfile:
 $($(gmp)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(gmp)-prefix)/.pkgunpack: $($(gmp)-src) $($(gmp)-srcdir)/.markerfile $($(gmp)-prefix)/.markerfile
+$($(gmp)-prefix)/.pkgunpack: $($(gmp)-src) $($(gmp)-srcdir)/.markerfile $($(gmp)-prefix)/.markerfile $$(foreach dep,$$($(gmp)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(gmp)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

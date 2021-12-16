@@ -36,7 +36,7 @@ $($(petsc-default)-srcdir)/.markerfile:
 $($(petsc-default)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(petsc-default)-prefix)/.pkgunpack: $$($(petsc)-src) $($(petsc-default)-srcdir)/.markerfile $($(petsc-default)-prefix)/.markerfile
+$($(petsc-default)-prefix)/.pkgunpack: $$($(petsc)-src) $($(petsc-default)-srcdir)/.markerfile $($(petsc-default)-prefix)/.markerfile $$(foreach dep,$$($(petsc-default)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(petsc-default)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

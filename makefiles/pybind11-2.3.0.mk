@@ -40,7 +40,7 @@ $($(pybind11)-srcdir)/.markerfile:
 $($(pybind11)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(pybind11)-prefix)/.pkgunpack: $($(pybind11)-src) $($(pybind11)-srcdir)/.markerfile $($(pybind11)-prefix)/.markerfile
+$($(pybind11)-prefix)/.pkgunpack: $($(pybind11)-src) $($(pybind11)-srcdir)/.markerfile $($(pybind11)-prefix)/.markerfile $$(foreach dep,$$($(pybind11)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(pybind11)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(slurm-19.05)-srcdir)/.markerfile:
 $($(slurm-19.05)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(slurm-19.05)-prefix)/.pkgunpack: $($(slurm-19.05)-src) $($(slurm-19.05)-srcdir)/.markerfile $($(slurm-19.05)-prefix)/.markerfile
+$($(slurm-19.05)-prefix)/.pkgunpack: $($(slurm-19.05)-src) $($(slurm-19.05)-srcdir)/.markerfile $($(slurm-19.05)-prefix)/.markerfile $$(foreach dep,$$($(slurm-19.05)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(slurm-19.05)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

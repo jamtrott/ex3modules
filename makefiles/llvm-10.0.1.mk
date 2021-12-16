@@ -40,7 +40,7 @@ $($(llvm-10)-srcdir)/.markerfile:
 $($(llvm-10)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(llvm-10)-prefix)/.pkgunpack: $($(llvm-10)-src) $($(llvm-10)-srcdir)/.markerfile $($(llvm-10)-prefix)/.markerfile
+$($(llvm-10)-prefix)/.pkgunpack: $($(llvm-10)-src) $($(llvm-10)-srcdir)/.markerfile $($(llvm-10)-prefix)/.markerfile $$(foreach dep,$$($(llvm-10)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(llvm-10)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

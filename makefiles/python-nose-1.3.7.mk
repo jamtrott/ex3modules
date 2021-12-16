@@ -40,7 +40,7 @@ $($(python-nose)-srcdir)/.markerfile:
 $($(python-nose)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-nose)-prefix)/.pkgunpack: $$($(python-nose)-src) $($(python-nose)-srcdir)/.markerfile $($(python-nose)-prefix)/.markerfile
+$($(python-nose)-prefix)/.pkgunpack: $$($(python-nose)-src) $($(python-nose)-srcdir)/.markerfile $($(python-nose)-prefix)/.markerfile $$(foreach dep,$$($(python-nose)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-nose)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

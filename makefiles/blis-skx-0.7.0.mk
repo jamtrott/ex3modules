@@ -62,7 +62,7 @@ $($(blis-skx)-srcdir)/.markerfile:
 $($(blis-skx)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(blis-skx)-prefix)/.pkgunpack: $$($(blis-skx)-src) $($(blis-skx)-srcdir)/.markerfile $($(blis-skx)-prefix)/.markerfile
+$($(blis-skx)-prefix)/.pkgunpack: $$($(blis-skx)-src) $($(blis-skx)-srcdir)/.markerfile $($(blis-skx)-prefix)/.markerfile $$(foreach dep,$$($(blis-skx)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(blis-skx)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

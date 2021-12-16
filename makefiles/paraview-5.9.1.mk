@@ -40,7 +40,7 @@ $($(paraview)-srcdir)/.markerfile:
 $($(paraview)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(paraview)-prefix)/.pkgunpack: $$($(paraview)-src) $($(paraview)-srcdir)/.markerfile $($(paraview)-prefix)/.markerfile
+$($(paraview)-prefix)/.pkgunpack: $$($(paraview)-src) $($(paraview)-srcdir)/.markerfile $($(paraview)-prefix)/.markerfile $$(foreach dep,$$($(paraview)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(paraview)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

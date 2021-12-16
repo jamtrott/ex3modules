@@ -40,7 +40,7 @@ $($(binutils)-srcdir)/.markerfile:
 $($(binutils)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(binutils)-prefix)/.pkgunpack: $($(binutils)-src) $($(binutils)-srcdir)/.markerfile $($(binutils)-prefix)/.markerfile
+$($(binutils)-prefix)/.pkgunpack: $($(binutils)-src) $($(binutils)-srcdir)/.markerfile $($(binutils)-prefix)/.markerfile $$(foreach dep,$$($(binutils)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(binutils)-srcdir) --strip-components 1 -x -f $<
 	@touch $@
 

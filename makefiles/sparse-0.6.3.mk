@@ -40,7 +40,7 @@ $($(sparse)-srcdir)/.markerfile:
 $($(sparse)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(sparse)-prefix)/.pkgunpack: $($(sparse)-src) $($(sparse)-srcdir)/.markerfile $($(sparse)-prefix)/.markerfile
+$($(sparse)-prefix)/.pkgunpack: $($(sparse)-src) $($(sparse)-srcdir)/.markerfile $($(sparse)-prefix)/.markerfile $$(foreach dep,$$($(sparse)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(sparse)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

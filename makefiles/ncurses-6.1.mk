@@ -40,7 +40,7 @@ $($(ncurses)-srcdir)/.markerfile:
 $($(ncurses)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(ncurses)-prefix)/.pkgunpack: $$($(ncurses)-src) $($(ncurses)-srcdir)/.markerfile $($(ncurses)-prefix)/.markerfile
+$($(ncurses)-prefix)/.pkgunpack: $$($(ncurses)-src) $($(ncurses)-srcdir)/.markerfile $($(ncurses)-prefix)/.markerfile $$(foreach dep,$$($(ncurses)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(ncurses)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(freeipmi)-srcdir)/.markerfile:
 $($(freeipmi)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(freeipmi)-prefix)/.pkgunpack: $($(freeipmi)-src) $($(freeipmi)-srcdir)/.markerfile $($(freeipmi)-prefix)/.markerfile
+$($(freeipmi)-prefix)/.pkgunpack: $($(freeipmi)-src) $($(freeipmi)-srcdir)/.markerfile $($(freeipmi)-prefix)/.markerfile $$(foreach dep,$$($(freeipmi)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(freeipmi)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

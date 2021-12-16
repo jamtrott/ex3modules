@@ -40,7 +40,7 @@ $($(libufget)-srcdir)/.markerfile:
 $($(libufget)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libufget)-prefix)/.pkgunpack: $($(libufget)-src) $($(libufget)-srcdir)/.markerfile $($(libufget)-prefix)/.markerfile
+$($(libufget)-prefix)/.pkgunpack: $($(libufget)-src) $($(libufget)-srcdir)/.markerfile $($(libufget)-prefix)/.markerfile $$(foreach dep,$$($(libufget)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libufget)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

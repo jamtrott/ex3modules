@@ -39,7 +39,7 @@ $($(freetype)-srcdir)/.markerfile:
 $($(freetype)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(freetype)-prefix)/.pkgunpack: $($(freetype)-src) $($(freetype)-srcdir)/.markerfile $($(freetype)-prefix)/.markerfile
+$($(freetype)-prefix)/.pkgunpack: $($(freetype)-src) $($(freetype)-srcdir)/.markerfile $($(freetype)-prefix)/.markerfile $$(foreach dep,$$($(freetype)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(freetype)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

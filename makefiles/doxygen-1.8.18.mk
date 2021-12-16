@@ -40,7 +40,7 @@ $($(doxygen)-srcdir)/.markerfile:
 $($(doxygen)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(doxygen)-prefix)/.pkgunpack: $($(doxygen)-src) $($(doxygen)-srcdir)/.markerfile $($(doxygen)-prefix)/.markerfile
+$($(doxygen)-prefix)/.pkgunpack: $($(doxygen)-src) $($(doxygen)-srcdir)/.markerfile $($(doxygen)-prefix)/.markerfile $$(foreach dep,$$($(doxygen)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(doxygen)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

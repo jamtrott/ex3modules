@@ -39,7 +39,7 @@ $($(libxtst)-srcdir)/.markerfile:
 $($(libxtst)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxtst)-prefix)/.pkgunpack: $($(libxtst)-src) $($(libxtst)-srcdir)/.markerfile $($(libxtst)-prefix)/.markerfile
+$($(libxtst)-prefix)/.pkgunpack: $($(libxtst)-src) $($(libxtst)-srcdir)/.markerfile $($(libxtst)-prefix)/.markerfile $$(foreach dep,$$($(libxtst)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxtst)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

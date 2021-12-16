@@ -39,7 +39,7 @@ $($(libwebp)-srcdir)/.markerfile:
 $($(libwebp)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libwebp)-prefix)/.pkgunpack: $($(libwebp)-src) $($(libwebp)-srcdir)/.markerfile $($(libwebp)-prefix)/.markerfile
+$($(libwebp)-prefix)/.pkgunpack: $($(libwebp)-src) $($(libwebp)-srcdir)/.markerfile $($(libwebp)-prefix)/.markerfile $$(foreach dep,$$($(libwebp)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libwebp)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

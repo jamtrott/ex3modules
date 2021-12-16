@@ -40,7 +40,7 @@ $($(exprtk)-srcdir)/.markerfile:
 $($(exprtk)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(exprtk)-prefix)/.pkgunpack: $$($(exprtk)-src) $($(exprtk)-srcdir)/.markerfile $($(exprtk)-prefix)/.markerfile
+$($(exprtk)-prefix)/.pkgunpack: $$($(exprtk)-src) $($(exprtk)-srcdir)/.markerfile $($(exprtk)-prefix)/.markerfile $$(foreach dep,$$($(exprtk)-builddeps),$(modulefilesdir)/$$(dep))
 	cd $($(exprtk)-srcdir) && unzip -o $<
 	@touch $@
 

@@ -39,7 +39,7 @@ $($(libxinerama)-srcdir)/.markerfile:
 $($(libxinerama)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(libxinerama)-prefix)/.pkgunpack: $($(libxinerama)-src) $($(libxinerama)-srcdir)/.markerfile $($(libxinerama)-prefix)/.markerfile
+$($(libxinerama)-prefix)/.pkgunpack: $($(libxinerama)-src) $($(libxinerama)-srcdir)/.markerfile $($(libxinerama)-prefix)/.markerfile $$(foreach dep,$$($(libxinerama)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(libxinerama)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

@@ -40,7 +40,7 @@ $($(gsl)-srcdir)/.markerfile:
 $($(gsl)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(gsl)-prefix)/.pkgunpack: $($(gsl)-src) $($(gsl)-srcdir)/.markerfile $($(gsl)-prefix)/.markerfile
+$($(gsl)-prefix)/.pkgunpack: $($(gsl)-src) $($(gsl)-srcdir)/.markerfile $($(gsl)-prefix)/.markerfile $$(foreach dep,$$($(gsl)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(gsl)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

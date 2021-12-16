@@ -40,7 +40,7 @@ $($(elfutils)-srcdir)/.markerfile:
 $($(elfutils)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(elfutils)-prefix)/.pkgunpack: $($(elfutils)-src) $($(elfutils)-srcdir)/.markerfile $($(elfutils)-prefix)/.markerfile
+$($(elfutils)-prefix)/.pkgunpack: $($(elfutils)-src) $($(elfutils)-srcdir)/.markerfile $($(elfutils)-prefix)/.markerfile $$(foreach dep,$$($(elfutils)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(elfutils)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 

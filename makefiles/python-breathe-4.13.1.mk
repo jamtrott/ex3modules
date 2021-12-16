@@ -39,7 +39,7 @@ $($(python-breathe)-srcdir)/.markerfile:
 $($(python-breathe)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-breathe)-prefix)/.pkgunpack: $$($(python-breathe)-src) $($(python-breathe)-srcdir)/.markerfile $($(python-breathe)-prefix)/.markerfile
+$($(python-breathe)-prefix)/.pkgunpack: $$($(python-breathe)-src) $($(python-breathe)-srcdir)/.markerfile $($(python-breathe)-prefix)/.markerfile $$(foreach dep,$$($(python-breathe)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-breathe)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

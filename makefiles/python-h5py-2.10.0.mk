@@ -40,7 +40,7 @@ $($(python-h5py)-srcdir)/.markerfile:
 $($(python-h5py)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(python-h5py)-prefix)/.pkgunpack: $$($(python-h5py)-src) $($(python-h5py)-srcdir)/.markerfile $($(python-h5py)-prefix)/.markerfile
+$($(python-h5py)-prefix)/.pkgunpack: $$($(python-h5py)-src) $($(python-h5py)-srcdir)/.markerfile $($(python-h5py)-prefix)/.markerfile $$(foreach dep,$$($(python-h5py)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(python-h5py)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
