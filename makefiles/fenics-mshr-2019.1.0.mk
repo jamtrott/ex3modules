@@ -23,7 +23,7 @@ fenics-mshr-2019 = fenics-mshr-$(fenics-mshr-2019-version)
 $(fenics-mshr-2019)-description = FEniCS Project: Mesh generation
 $(fenics-mshr-2019)-url = https://fenicsproject.org/
 $(fenics-mshr-2019)-srcurl = $($(fenics-mshr-2019-src)-srcurl)
-$(fenics-mshr-2019)-builddeps = $(cmake) $(boost) $(gmp) $(mpfr) $(eigen) $(python) $(python-fenics-dolfin-2019) $(cgal-4.12)
+$(fenics-mshr-2019)-builddeps = $(cmake) $(boost) $(gmp) $(mpfr) $(eigen) $(python) $(python-fenics-dolfin-2019) $(cgal-4.12) $(patchelf)
 $(fenics-mshr-2019)-prereqs = $(python) $(boost) $(gmp) $(mpfr) $(python-fenics-dolfin-2019) $(cgal-4.12)
 $(fenics-mshr-2019)-src = $($(fenics-mshr-2019-src)-src)
 $(fenics-mshr-2019)-srcdir = $(pkgsrcdir)/$(fenics-mshr-2019)
@@ -41,7 +41,7 @@ $($(fenics-mshr-2019)-prefix)/.pkgunpack: $$($(fenics-mshr-2019)-src) $($(fenics
 	tar -C $($(fenics-mshr-2019)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
-$($(fenics-mshr-2019)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fenics-mshr-2019)-builddeps),$(modulefilesdir)/$$(dep))
+$($(fenics-mshr-2019)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fenics-mshr-2019)-builddeps),$(modulefilesdir)/$$(dep)) $($(fenics-mshr-2019)-prefix)/.pkgunpack
 	@touch $@
 
 $($(fenics-mshr-2019)-builddir)/.markerfile: $($(fenics-mshr-2019)-prefix)/.pkgunpack
@@ -79,7 +79,8 @@ $($(fenics-mshr-2019)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(fenics-mshr-2019)-builddeps) && \
-		$(MAKE) install
+		$(MAKE) install && \
+		patchelf  $($(fenics-mshr-2019)-prefix)/lib/libmshr.so --add-needed $${CGAL_LIBDIR}/libCGAL.so
 	@touch $@
 
 $($(fenics-mshr-2019)-modulefile): $(modulefilesdir)/.markerfile $($(fenics-mshr-2019)-prefix)/.pkginstall
