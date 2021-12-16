@@ -441,6 +441,7 @@ pkgs := $(pkgs) \
 	python-urllib3-1.25.11 \
 	python-virtualenv-20.0.35 \
 	python-wcwidth-0.1.9 \
+	python-wheel-0.37.0 \
 	python-xarray-0.15.1 \
 	python-zipp-3.3.1 \
 	qperf-0.4.11 \
