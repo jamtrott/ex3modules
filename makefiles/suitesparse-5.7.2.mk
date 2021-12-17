@@ -44,6 +44,8 @@ $($(suitesparse)-prefix)/.pkgunpack: $($(suitesparse)-src) $($(suitesparse)-srcd
 	@touch $@
 
 $($(suitesparse)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(suitesparse)-builddeps),$(modulefilesdir)/$$(dep)) $($(suitesparse)-prefix)/.pkgunpack
+	sed -i 's,cd build ; cmake,cd build ; $(CMAKE),' $($(suitesparse)-srcdir)/GraphBLAS/Makefile
+	sed -i 's,cd build ; cmake,cd build ; $(CMAKE),' $($(suitesparse)-srcdir)/Mongoose/Makefile
 	sed -i 's,CUDA = auto,CUDA = no,' $($(suitesparse)-srcdir)/SuiteSparse_config/SuiteSparse_config.mk
 	@touch $@
 
