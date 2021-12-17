@@ -52,28 +52,29 @@ $($(scotch)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($
 	@touch $@
 
 $($(scotch)-srcdir)/src/Makefile.inc: $($(scotch)-prefix)/.pkgunpack
-	printf "" >$@
-	echo "EXE             =" >>$@
-	echo "LIB             = .so" >>$@
-	echo "OBJ             = .o" >>$@
-	echo "MAKE            = make" >>$@
-	echo "AR              = gcc" >>$@
-	echo "ARFLAGS         = -shared -o" >>$@
-	echo "CAT             = cat" >>$@
-	echo "CCS             = gcc" >>$@
-	echo "CCP             = mpicc" >>$@
-	echo "CCD             = gcc" >>$@
-	echo "CFLAGS          = -O3 -DCOMMON_FILE_COMPRESS_GZ -DCOMMON_PTHREAD -DCOMMON_RANDOM_FIXED_SEED -DSCOTCH_RENAME -DSCOTCH_PTHREAD -Drestrict=__restrict -DIDXSIZE64" >>$@
-	echo "CLIBFLAGS       = -shared -fPIC" >>$@
-	echo "LDFLAGS         = -lz -lm -lrt -pthread" >>$@
-	echo "DYNLDFLAGS      = -lz -lm -lrt -pthread" >>$@
-	echo "CP              = cp" >>$@
-	echo "LEX             = flex -Pscotchyy -olex.yy.c" >>$@
-	echo "LN              = ln" >>$@
-	echo "MKDIR           = mkdir -p" >>$@
-	echo "MV              = mv" >>$@
-	echo "RANLIB          = echo" >>$@
-	echo "YACC            = bison -pscotchyy -y -b y" >>$@
+	printf "" >$@.tmp
+	echo "EXE             =" >>$@.tmp
+	echo "LIB             = .so" >>$@.tmp
+	echo "OBJ             = .o" >>$@.tmp
+	echo "MAKE            = make" >>$@.tmp
+	echo "AR              = gcc" >>$@.tmp
+	echo "ARFLAGS         = -shared -o" >>$@.tmp
+	echo "CAT             = cat" >>$@.tmp
+	echo "CCS             = gcc" >>$@.tmp
+	echo "CCP             = mpicc" >>$@.tmp
+	echo "CCD             = gcc" >>$@.tmp
+	echo "CFLAGS          = -O3 -DCOMMON_FILE_COMPRESS_GZ -DCOMMON_PTHREAD -DCOMMON_RANDOM_FIXED_SEED -DSCOTCH_RENAME -DSCOTCH_PTHREAD -Drestrict=__restrict -DIDXSIZE64" >>$@.tmp
+	echo "CLIBFLAGS       = -shared -fPIC" >>$@.tmp
+	echo "LDFLAGS         = -lz -lm -lrt -pthread" >>$@.tmp
+	echo "DYNLDFLAGS      = -lz -lm -lrt -pthread" >>$@.tmp
+	echo "CP              = cp" >>$@.tmp
+	echo "LEX             = flex -Pscotchyy -olex.yy.c" >>$@.tmp
+	echo "LN              = ln" >>$@.tmp
+	echo "MKDIR           = mkdir -p" >>$@.tmp
+	echo "MV              = mv" >>$@.tmp
+	echo "RANLIB          = echo" >>$@.tmp
+	echo "YACC            = bison -pscotchyy -y -b y" >>$@.tmp
+	mv $@.tmp $@
 
 $($(scotch)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(scotch)-builddeps),$(modulefilesdir)/$$(dep)) $($(scotch)-prefix)/.pkgpatch $($(scotch)-srcdir)/src/Makefile.inc
 # Parallel builds are not supported
@@ -81,7 +82,7 @@ $($(scotch)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(scotch)-builddeps) && \
-		$(MAKE) MAKEFLAGS="AR=$${CC} CCS=$${CC} CCP=$${MPICC} CCD=$${CC}" \
+		$(MAKE) MAKEFLAGS="AR=$${CC:-gcc} CCS=$${CC:-gcc} CCP=$${MPICC:-mpicc} CCD=$${CC:-gcc}" \
 			scotch ptscotch esmumps ptesmumps --jobs=1
 	@touch $@
 
