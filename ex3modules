@@ -159,38 +159,9 @@ function parse_program_options()
     set -- "${EXTRA_OPTIONS[@]}"
 }
 
-function diagnostics ()
-{
-    echo "prefix=${prefix}" >&2
-    echo "pkgsrcdir=${pkgsrcdir}" >&2
-    echo "pkgdir=${pkgdir}" >&2
-    echo "modulefilesdir=${modulefilesdir}" >&2
-    echo "EXTRA_OPTIONS=${EXTRA_OPTIONS[@]}" >&2
-    echo "PWD=${PWD}" >&2
-    echo "PATH=${PATH}" >&2
-    echo "TMPDIR=${TMPDIR}" >&2
-    echo "SHELL=${SHELL}" >&2
-    echo "CC=${CC}" >&2
-    echo "CFLAGS=${CFLAGS}" >&2
-    echo "CXX=${CXX}" >&2
-    echo "CXXFLAGS=${CXXFLAGS}" >&2
-    set +o errexit
-    set -x
-    uname -a >&2
-    lscpu >&2
-    numactl -H >&2
-    { set +x; } 2>/dev/null
-    set -o errexit
-}
-
 function main ()
 {
     parse_program_options "$@"
-
-    # Print some extra information
-    if [ ! -z "${verbose}" ]; then
-	diagnostics
-    fi
 
     # Describe packages
     if [ ! -z "${describe_package}" ]; then
@@ -198,7 +169,8 @@ function main ()
 	exit 0
     fi
 
-    # Build ex3modules
+    echo "Installing modules to ${prefix:-.}" >&2
+
     make_options=""
     [ ! -z "${prefix}" ] && make_options+=" prefix=${prefix}"
     [ ! -z "${pkgsrcdir}" ] && make_options+=" pkgsrcdir=${pkgsrcdir}"
