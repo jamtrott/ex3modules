@@ -418,6 +418,8 @@ pkgs := $(pkgs) \
 	nss-3.69 \
 	numactl-2.0.13 \
 	ocaml-4.08.1 \
+	onetbb-2021.4.0 \
+	onetbb-src-2021.4.0 \
 	openblas-0.3.12 \
 	opencascade-7.5.0 \
 	opencl-headers-2020.06.16 \
