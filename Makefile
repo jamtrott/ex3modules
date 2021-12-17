@@ -533,7 +533,7 @@ pkgs := $(pkgs) \
 	python-pyparsing-2.4.7 \
 	python-pyra-pytorch-1.2.0 \
 	python-pytest-6.1.1 \
-	python-pytest-cov-2.9.0 \
+	python-pytest-cov-2.12.1 \
 	python-pytest-forked-1.1.3 \
 	python-pytest-xdist-1.32.0 \
 	python-pytz-2020.1 \

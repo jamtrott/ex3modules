@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-pytest-cov-2.9.0
+# python-pytest-cov-2.12.1
 
-python-pytest-cov-version = 2.9.0
+python-pytest-cov-version = 2.12.1
 python-pytest-cov = python-pytest-cov-$(python-pytest-cov-version)
 $(python-pytest-cov)-description = Pytest plugin for measuring coverage
 $(python-pytest-cov)-url = https://github.com/pytest-dev/pytest-cov/
-$(python-pytest-cov)-srcurl = https://files.pythonhosted.org/packages/33/d6/71af7d17badeec7105759f8f63c29f0e8f3e05971a5e871877f5afeac0ca/pytest-cov-2.9.0.tar.gz
+$(python-pytest-cov)-srcurl = https://files.pythonhosted.org/packages/63/3a/747e953051fd6eb5fb297907a825aad43d94c556d3b9938fc21f3172879f/pytest-cov-2.12.1.tar.gz
 $(python-pytest-cov)-src = $(pkgsrcdir)/$(notdir $($(python-pytest-cov)-srcurl))
 $(python-pytest-cov)-srcdir = $(pkgsrcdir)/$(python-pytest-cov)
 $(python-pytest-cov)-builddeps = $(python) $(python-pytest) $(python-importlib_metadata) $(python-zipp) $(python-attrs) $(python-six) $(python-more-itertools) $(python-wcwidth) $(python-py) $(python-pluggy) $(python-packaging) $(python-atomicwrites) $(python-coverage) $(python-setuptools)
