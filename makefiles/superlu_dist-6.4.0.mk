@@ -60,8 +60,8 @@ $($(superlu_dist)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DCMAKE_BUILD_TYPE=DEBUG \
 			-DBUILD_SHARED_LIBS=TRUE \
-			-Denable_openmp=OFF \
-			-DTPL_ENABLE_BLASLIB=OFF \
+			-Denable_openmp=ON \
+			-DTPL_ENABLE_INTERNAL_BLASLIB=OFF \
 			-DTPL_BLAS_LIBRARIES="$${BLASDIR}/lib$${BLASLIB}.so" \
 			-DTPL_LAPACK_LIBRARIES="$${BLASDIR}/lib$${BLASLIB}.so" \
 			-DTPL_PARMETIS_INCLUDE_DIRS="$${PARMETIS_INCDIR}" \
@@ -70,8 +70,7 @@ $($(superlu_dist)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 			-DTPL_COMBBLAS_INCLUDE_DIRS="$${COMBBLAS_INCDIR}/CombBLAS;$${COMBBLAS_INCDIR}/CombBLAS/BipartiteMatchings" \
 			-DTPL_COMBBLAS_LIBRARIES="$${COMBBLAS_LIBDIR}/libCombBLAS.so" \
 			-DCMAKE_C_COMPILER=$${MPICC} \
-			-DCMAKE_CXX_COMPILER=$${MPICXX} \
-			-DCMAKE_FC_COMPILER=$${MPIFORT} && \
+			-DCMAKE_CXX_COMPILER=$${MPICXX} && \
 		$(MAKE) VERBOSE=1
 	@touch $@
 
