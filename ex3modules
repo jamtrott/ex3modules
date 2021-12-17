@@ -30,8 +30,10 @@ program_name=ex3modules
 program_version=0.5.0
 
 # default options
-with_slurm=internal
 with_mpi=openmpi-4.0.5
+with_openssl=openssl-1.1.1c
+with_python=python-3.7.4
+with_slurm=slurm-20.02.7
 
 function help()
 {
@@ -53,7 +55,7 @@ function help()
     printf "  %-20s\t%s\n" ""               "If a directroy is given, then an external MPI is used, and DIR/include,"
     printf "  %-20s\t%s\n" ""               "DIR/lib and DIR/lib64 are added to search paths for headers and libraries."
     printf "  %-20s\t%s\n" ""               "Otherwise, an internal MPI implementation is built and used. Note that"
-    printf "  %-20s\t%s\n" ""               "'--without-mpi' is not supported. [defaults to 'openmpi-4.0.5']"
+    printf "  %-20s\t%s\n" ""               "[defaults to 'openmpi-4.0.5']"
     printf "  %-20s\t%s\n" "--without-mpi" "disable MPI usage completely. Some modules may not be built."
     printf "  %-20s\t%s\n" "--with-openssl=DIR" "Root directory of OpenSSL installation, or 'openssl-1.1.1c'."
     printf "  %-20s\t%s\n" ""               "If a directroy is given, then an external OpenSSL is used. In this case,"
@@ -65,11 +67,14 @@ function help()
     printf "  %-20s\t%s\n" ""               "If a directroy is given, then an external Python is used. In this case,"
     printf "  %-20s\t%s\n" ""               "DIR/bin, DIR/include, DIR/lib and DIR/lib64 are added to search paths for"
     printf "  %-20s\t%s\n" ""               "binaries, headers and libraries. Otherwise, an internal Python is used."
-    printf "  %-20s\t%s\n" ""               "Note that '--without-python' is not supported. [defaults to 'python-3.7.4']"
+    printf "  %-20s\t%s\n" ""               "[defaults to 'python-3.7.4']"
     printf "  %-20s\t%s\n" "--without-python" "disable Python usage completely. Some modules may not be built."
-    printf "  %-20s\t%s\n" "--with-slurm=DIR" "root directory of SLURM installation, or 'internal'"
-    printf "  %-20s\t%s\n" "" "to use an internal version of SLURM [defaults to 'internal']"
-    printf "  %-20s\t%s\n" "--without-slurm" "disable SLURM usage completely"
+    printf "  %-20s\t%s\n" "--with-slurm=DIR" "Root directory of Slurm installation, or 'slurm-20.02.7'."
+    printf "  %-20s\t%s\n" ""               "If a directroy is given, then an external Slurm is used. In this case,"
+    printf "  %-20s\t%s\n" ""               "DIR/bin, DIR/include, DIR/lib and DIR/lib64 are added to search paths for"
+    printf "  %-20s\t%s\n" ""               "binaries, headers and libraries. Otherwise, an internal Slurm is used."
+    printf "  %-20s\t%s\n" ""               "[defaults to 'slurm-20.02.7']"
+    printf "  %-20s\t%s\n" "--without-slurm" "disable Slurm usage completely."
     printf "\n"
     printf "  %-20s\t%s\n" "-v, --verbose" "be more verbose"
     printf "  %-20s\t%s\n" "-h, --help" "display this help and exit"

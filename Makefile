@@ -141,7 +141,7 @@ ifeq ($(WITH_OPENSSL),openssl-1.1.1c)
 openssl = openssl-1.1.1c
 OPENSSL_VERSION = 1.1.1c
 $(info Using internal OpenSSL ($(openssl)))
-else
+else ifneq($(WITH_OPENSSL),)
 OPENSSL_ROOT = $(WITH_OPENSSL)
 OPENSSL_VERSION = $(shell $(OPENSSL_ROOT)/bin/openssl version | awk '{ print $$2 }')
 $(info Using OpenSSL $(OPENSSL_VERSION) ($(OPENSSL_ROOT)/bin/openssl))
@@ -160,7 +160,7 @@ python = python-3.7.4
 PYTHON_VERSION = 3.7.4
 PYTHON_VERSION_SHORT = 3.7
 $(info Using internal python ($(python)))
-else
+else ifneq($(WITH_PYTHON),)
 PYTHON_ROOT = $(WITH_PYTHON)
 PYTHON_EXECUTABLE = $(PYTHON_ROOT)/bin/python3
 PYTHON_VERSION = $(shell $(PYTHON_EXECUTABLE) --version | awk '{ print $$2 }')
