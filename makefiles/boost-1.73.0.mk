@@ -50,7 +50,7 @@ $($(boost)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 		$(MODULE) load $($(boost)-builddeps) && \
 		./bootstrap.sh --prefix=$($(boost)-prefix) \
 			 --with-toolset=gcc && \
-		./b2 --toolset=gcc$($(gcc)-program-suffix) --without-python --without-mpi
+		./b2 --toolset=gcc --without-python --without-mpi
 	@touch $@
 
 $($(boost)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost)-prefix)/.pkgbuild
@@ -61,7 +61,7 @@ $($(boost)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(boost)-builddeps) && \
-		./b2 --toolset=gcc$($(gcc)-program-suffix) --without-python --without-mpi install
+		./b2 --toolset=gcc --without-python --without-mpi install
 	@touch $@
 
 $($(boost)-modulefile): $(modulefilesdir)/.markerfile $($(boost)-prefix)/.pkginstall

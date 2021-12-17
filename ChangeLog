@@ -1,3 +1,8 @@
+2021-12-17 James D. Trotter <james@simula.no>
+
+	Remove dependencies on internal GCC to let the user decide which
+	compiler to use.
+
 2021-12-16 James D. Trotter <james@simula.no>
 
 	Add an option to use external SLURM installation.

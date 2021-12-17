@@ -23,16 +23,14 @@ gcc-8.4.0-version = 8.4.0
 gcc-8.4.0 = gcc-$(gcc-8.4.0-version)
 $(gcc-8.4.0)-description = GNU Compiler Collection
 $(gcc-8.4.0)-url = https://gcc.gnu.org/
-$(gcc-8.4.0)-srcurl = ftp://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-$(gcc-8.4.0-version)/gcc-$(gcc-8.4.0-version).tar.gz
-$(gcc-8.4.0)-src = $(pkgsrcdir)/$(notdir $($(gcc-8.4.0)-srcurl))
-$(gcc-8.4.0)-srcdir = $(pkgsrcdir)/$(gcc-8.4.0)
+$(gcc-8.4.0)-srcurl =
 $(gcc-8.4.0)-builddeps = $(mpfr) $(gmp) $(mpc)
 $(gcc-8.4.0)-prereqs = $(mpfr) $(gmp) $(mpc)
+$(gcc-8.4.0)-src = $($(gcc-src-8.4.0)-src)
+$(gcc-8.4.0)-srcdir = $(pkgsrcdir)/$(gcc-8.4.0)
+$(gcc-8.4.0)-builddir = $($(gcc-8.4.0)-srcdir)
 $(gcc-8.4.0)-modulefile = $(modulefilesdir)/$(gcc-8.4.0)
 $(gcc-8.4.0)-prefix = $(pkgdir)/$(gcc-8.4.0)
-
-$($(gcc-8.4.0)-src): $(dir $($(gcc-8.4.0)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(gcc-8.4.0)-srcurl)
 
 $($(gcc-8.4.0)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
@@ -40,9 +38,14 @@ $($(gcc-8.4.0)-srcdir)/.markerfile:
 $($(gcc-8.4.0)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(gcc-8.4.0)-prefix)/.pkgunpack: $($(gcc-8.4.0)-src) $($(gcc-8.4.0)-srcdir)/.markerfile $($(gcc-8.4.0)-prefix)/.markerfile $$(foreach dep,$$($(gcc-8.4.0)-builddeps),$(modulefilesdir)/$$(dep))
+$($(gcc-8.4.0)-prefix)/.pkgunpack: $$($(gcc-8.4.0)-src) $($(gcc-8.4.0)-srcdir)/.markerfile $($(gcc-8.4.0)-prefix)/.markerfile $$(foreach dep,$$($(gcc-8.4.0)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(gcc-8.4.0)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
+
+ifneq ($($(gcc-8.4.0)-builddir),$($(gcc-8.4.0)-srcdir))
+$($(gcc-8.4.0)-builddir)/.markerfile: $($(gcc-8.4.0)-prefix)/.pkgunpack
+	$(INSTALL) -d $(dir $@) && touch $@
+endif
 
 $($(gcc-8.4.0)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(gcc-8.4.0)-builddeps),$(modulefilesdir)/$$(dep)) $($(gcc-8.4.0)-prefix)/.pkgunpack
 	@touch $@
@@ -109,7 +112,7 @@ $($(gcc-8.4.0)-modulefile): $(modulefilesdir)/.markerfile $($(gcc-8.4.0)-prefix)
 	echo "prepend-path INFOPATH $($(gcc-8.4.0)-prefix)/share/info" >>$@
 	echo "set MSG \"$(gcc-8.4.0)\"" >>$@
 
-$(gcc-8.4.0)-src: $($(gcc-8.4.0)-src)
+$(gcc-8.4.0)-src: $$($(gcc-8.4.0)-src)
 $(gcc-8.4.0)-unpack: $($(gcc-8.4.0)-prefix)/.pkgunpack
 $(gcc-8.4.0)-patch: $($(gcc-8.4.0)-prefix)/.pkgpatch
 $(gcc-8.4.0)-build: $($(gcc-8.4.0)-prefix)/.pkgbuild

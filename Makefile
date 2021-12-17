@@ -166,6 +166,7 @@ pkgs := $(pkgs) \
 	gcc-11.2.0 \
 	gcc-8.4.0 \
 	gcc-9.2.0 \
+	gcc-src-8.4.0 \
 	gcc-src-10.1.0 \
 	gdb-9.2 \
 	gengetopt-2.23 \
@@ -229,7 +230,6 @@ pkgs := $(pkgs) \
 	libpfm-4.10.1 \
 	libpng-1.6.37 \
 	libsm-1.2.3 \
-	libstdcxx-6.0.28 \
 	libtiff-4.1.0 \
 	libtool-2.4.6 \
 	libufget-1.0.3 \

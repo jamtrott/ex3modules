@@ -1,5 +1,8 @@
 * Noteworthy changes in the upcoming release
 
+Remove dependencies on internal GCC to let the user decide which
+compiler to use.
+
 Add an option to use external SLURM installation.
 
 Rebuild several libraries with CUDA support, including OpenMPI and

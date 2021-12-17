@@ -53,7 +53,7 @@ $($(boost-python)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 			--with-python=$${PYTHON_ROOT}/bin/python3 \
 			--with-python-version=$${PYTHON_VERSION_SHORT} \
 			--with-python-root=$${PYTHON_ROOT} && \
-		./b2 --toolset=gcc$($(gcc)-program-suffix) --with-python
+		./b2 --toolset=gcc --with-python
 	@touch $@
 
 $($(boost-python)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost-python)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost-python)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(boost-python)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(boost-python)-builddeps) && \
-		./b2 --toolset=gcc$($(gcc)-program-suffix) --with-python install
+		./b2 --toolset=gcc --with-python install
 	@touch $@
 
 $($(boost-python)-modulefile): $(modulefilesdir)/.markerfile $($(boost-python)-prefix)/.pkginstall
