@@ -72,7 +72,7 @@ $($(python-3.7.4)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 			--with-ensurepip=install \
 			--with-system-ffi \
 			--with-system-expat \
-			--with-openssl=$${OPENSSL_ROOT} && \
+			$$([[ ! -z "$${OPENSSL_ROOT}" ]] && echo --with-openssl="$${OPENSSL_ROOT}") && \
 		$(MAKE) LDFLAGS="-L$${NCURSES_LIBDIR} -L$${BZIP2_LIBDIR} -L$${READLINE_LIBDIR}" MAKEFLAGS=
 	@touch $@
 
@@ -102,13 +102,13 @@ $($(python-3.7.4)-modulefile): $(modulefilesdir)/.markerfile $($(python-3.7.4)-p
 	echo "setenv PYTHON_INCLUDEDIR $($(python-3.7.4)-prefix)/include" >>$@
 	echo "setenv PYTHON_LIBDIR $($(python-3.7.4)-prefix)/lib" >>$@
 	echo "setenv PYTHON_LIBRARYDIR $($(python-3.7.4)-prefix)/lib" >>$@
-	echo "setenv PYTHON_VERSION $(python-version)" >>$@
-	echo "setenv PYTHON_VERSION_SHORT $(PYTHON_VERSION_SHORT)" >>$@
-	echo "setenv PYTHON_VERSION_MAJOR $(python-version-major)" >>$@
-	echo "setenv PYTHON_VERSION_MINOR $(python-version-minor)" >>$@
+	echo "setenv PYTHON_VERSION $(python-3.7.4-version)" >>$@
+	echo "setenv PYTHON_VERSION_SHORT $(python-3.7.4-version-short)" >>$@
+	echo "setenv PYTHON_VERSION_MAJOR $(python-3.7.4-version-major)" >>$@
+	echo "setenv PYTHON_VERSION_MINOR $(python-3.7.4-version-minor)" >>$@
 	echo "prepend-path PATH $($(python-3.7.4)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(python-3.7.4)-prefix)/include/python$(python-version-major).$(python-version-minor)m" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(python-3.7.4)-prefix)/include/python$(python-version-major).$(python-version-minor)m" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(python-3.7.4)-prefix)/include/python$(python-3.7.4-version-major).$(python-3.7.4-version-minor)m" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(python-3.7.4)-prefix)/include/python$(python-3.7.4-version-major).$(python-3.7.4-version-minor)m" >>$@
 	echo "prepend-path LIBRARY_PATH $($(python-3.7.4)-prefix)/lib" >>$@
 	echo "prepend-path LD_LIBRARY_PATH $($(python-3.7.4)-prefix)/lib" >>$@
 	echo "prepend-path PKG_CONFIG_PATH $($(python-3.7.4)-prefix)/lib/pkgconfig" >>$@

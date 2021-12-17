@@ -167,6 +167,7 @@ endif
 #
 ifeq ($(WITH_OPENSSL),openssl-1.1.1c)
 openssl = openssl-1.1.1c
+OPENSSL = $(pkgdir)/$(openssl)/bin/openssl
 $(info Using internal OpenSSL ($(openssl)))
 else ifeq ($(WITH_OPENSSL),no)
 $(warning Warning: OpenSSL is disabled - some modules may not build.)
