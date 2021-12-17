@@ -33,8 +33,10 @@ MAKEOVERRIDES:=$(filter-out prefix=% PREFIX=%,$(MAKEOVERRIDES))
 ARCH ?= $(shell uname -m)
 AVX512F := $(shell [ "$$(grep avx512f /proc/cpuinfo)" ] && echo true)
 
-# Options
+# Default options
 ENABLE_CUDA :=
+MPI_HOME :=
+OPENSSL_ROOT :=
 PYTHON_ROOT :=
 SLURM_ROOT :=
 
@@ -64,12 +66,6 @@ blas = openblas-0.3.12
 # PETSc implementations: petsc-default, petsc-cuda
 petsc = petsc-default-3.13.2
 
-# Select default package versions
-pkgs = \
-	$(blas) \
-	$(mpi) \
-	$(petsc)
-
 # CUDA-related packages - note CUDA toolkit 10.1.243 is only supported
 # on x86_64.
 ifneq ($(ENABLE_CUDA),)
@@ -94,11 +90,10 @@ endif
 #
 ifeq ($(WITH_SLURM),internal)
 slurm = slurm-20.02.7
+$(info Using internal SLURM ($(slurm)))
 else ifneq ($(WITH_SLURM),)
 SLURM_ROOT = $(WITH_SLURM)
-endif
-
-ifneq ($(SLURM_ROOT),)
+$(info Using SLURM from $(SLURM_ROOT))
 export PATH := $(SLURM_ROOT)/bin$(if $(PATH),:$(PATH),)
 export C_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
 export CPLUS_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
@@ -121,7 +116,7 @@ $(info Using internal MPI ($(mpi)))
 else ifeq ($(WITH_MPI),mvapich-2.3.4)
 mpi = mpich-2.3.4
 $(info Using internal MPI ($(mpi)))
-else
+else ifneq ($(WITH_MPI),)
 export MPI_HOME = $(WITH_MPI)
 export MPICC = $(MPI_HOME)/bin/mpicc
 export MPICXX = $(MPI_HOME)/bin/mpicxx
@@ -137,6 +132,24 @@ export C_INCLUDE_PATH := $(MPI_HOME)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_
 export CPLUS_INCLUDE_PATH := $(MPI_HOME)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
 export LIBRARY_PATH := $(MPI_HOME)/lib:$(MPI_HOME)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
 export LD_LIBRARY_PATH := $(MPI_HOME)/lib:$(MPI_HOME)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
+endif
+
+#
+# OpenSSL
+#
+ifeq ($(WITH_OPENSSL),openssl-1.1.1c)
+openssl = openssl-1.1.1c
+OPENSSL_VERSION = 1.1.1c
+$(info Using internal OpenSSL ($(openssl)))
+else
+OPENSSL_ROOT = $(WITH_OPENSSL)
+OPENSSL_VERSION = $(shell $(OPENSSL_ROOT)/bin/openssl version | awk '{ print $$2 }')
+$(info Using OpenSSL $(OPENSSL_VERSION) ($(OPENSSL_ROOT/bin/openssl)))
+export PATH := $(OPENSSL_ROOT)/bin$(if $(PATH),:$(PATH),)
+export C_INCLUDE_PATH := $(OPENSSL_ROOT)/include$(OPENSSL_VERSION_SHORT)$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
+export CPLUS_INCLUDE_PATH := $(OPENSSL_ROOT)/include$(OPENSSL_VERSION_SHORT)$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
+export LIBRARY_PATH := $(OPENSSL_ROOT)/lib:$(OPENSSL_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
+export LD_LIBRARY_PATH := $(OPENSSL_ROOT)/lib:$(OPENSSL_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
 endif
 
 #

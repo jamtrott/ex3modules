@@ -54,11 +54,19 @@ function help()
     printf "  %-20s\t%s\n" ""               "DIR/lib and DIR/lib64 are added to search paths for headers and libraries."
     printf "  %-20s\t%s\n" ""               "Otherwise, an internal MPI implementation is built and used. Note that"
     printf "  %-20s\t%s\n" ""               "'--without-mpi' is not supported. [defaults to 'openmpi-4.0.5']"
+    printf "  %-20s\t%s\n" "--without-mpi" "disable MPI usage completely. Some modules may not be built."
+    printf "  %-20s\t%s\n" "--with-openssl=DIR" "Root directory of OpenSSL installation, or 'openssl-1.1.1c'."
+    printf "  %-20s\t%s\n" ""               "If a directroy is given, then an external OpenSSL is used. In this case,"
+    printf "  %-20s\t%s\n" ""               "DIR/bin, DIR/include, DIR/lib and DIR/lib64 are added to search paths for"
+    printf "  %-20s\t%s\n" ""               "binaries, headers and libraries. Otherwise, an internal OpenSSL is used."
+    printf "  %-20s\t%s\n" ""               "[defaults to 'openssl-1.1.1c']"
+    printf "  %-20s\t%s\n" "--without-openssl" "disable OpenSSL usage completely"
     printf "  %-20s\t%s\n" "--with-python=DIR" "Root directory of Python installation, or 'python-3.7.4'."
     printf "  %-20s\t%s\n" ""               "If a directroy is given, then an external Python is used. In this case,"
     printf "  %-20s\t%s\n" ""               "DIR/bin, DIR/include, DIR/lib and DIR/lib64 are added to search paths for"
     printf "  %-20s\t%s\n" ""               "binaries, headers and libraries. Otherwise, an internal Python is used."
     printf "  %-20s\t%s\n" ""               "Note that '--without-python' is not supported. [defaults to 'python-3.7.4']"
+    printf "  %-20s\t%s\n" "--without-python" "disable Python usage completely. Some modules may not be built."
     printf "  %-20s\t%s\n" "--with-slurm=DIR" "root directory of SLURM installation, or 'internal'"
     printf "  %-20s\t%s\n" "" "to use an internal version of SLURM [defaults to 'internal']"
     printf "  %-20s\t%s\n" "--without-slurm" "disable SLURM usage completely"
@@ -117,8 +125,13 @@ function parse_program_options()
 	    --enable-cuda) enable_cuda=1; shift 1;;
 	    --with-mpi) with_mpi="${2}"; shift 2;;
 	    --with-mpi=*) with_mpi="${1#*=}"; shift 1;;
+	    --without-mpi) with_mpi= ; shift 2;;
+	    --with-openssl) with_openssl="${2}"; shift 2;;
+	    --with-openssl=*) with_openssl="${1#*=}"; shift 1;;
+	    --without-openssl) with_openssl= ; shift 2;;
 	    --with-python) with_python="${2}"; shift 2;;
 	    --with-python=*) with_python="${1#*=}"; shift 1;;
+	    --without-python) with_python= ; shift 2;;
 	    --with-slurm) with_slurm="${2}"; shift 2;;
 	    --with-slurm=*) with_slurm="${1#*=}"; shift 1;;
 	    --without-slurm) with_slurm= ; shift 2;;
@@ -179,6 +192,7 @@ function main ()
     [ ! -z "${modulefilesdir}" ] && make_options+=" modulefilesdir=${modulefilesdir}"
     [ ! -z "${enable_cuda}" ] && make_options+=" ENABLE_CUDA=1"
     [ ! -z "${with_mpi}" ] && make_options+=" WITH_MPI=${with_mpi}"
+    [ ! -z "${with_openssl}" ] && make_options+=" WITH_OPENSSL=${with_openssl}"
     [ ! -z "${with_python}" ] && make_options+=" WITH_PYTHON=${with_python}"
     [ ! -z "${with_slurm}" ] && make_options+=" WITH_SLURM=${with_slurm}"
     make ${make_options} ${EXTRA_OPTIONS[@]}

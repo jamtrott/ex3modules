@@ -3,7 +3,8 @@
 Remove dependencies on internal GCC to let the user decide which
 compiler to use.
 
-Add options to use external SLURM, MPI and Python installations.
+Add options to use external SLURM, MPI, Python and OpenSSL
+installations.
 
 Rebuild several libraries with CUDA support, including OpenMPI and
 PETSc.
