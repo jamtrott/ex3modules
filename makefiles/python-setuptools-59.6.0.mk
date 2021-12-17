@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-setuptools-47.1.1
+# python-setuptools-59.6.0
 
-python-setuptools-version = 47.1.1
+python-setuptools-version = 59.6.0
 python-setuptools = python-setuptools-$(python-setuptools-version)
 $(python-setuptools)-description = Easily download, build, install, upgrade, and uninstall Python packages
 $(python-setuptools)-url = https://github.com/pypa/setuptools/
-$(python-setuptools)-srcurl = https://github.com/pypa/setuptools/archive/v$(python-setuptools-version).tar.gz
+$(python-setuptools)-srcurl = https://files.pythonhosted.org/packages/6a/fa/5ec0fa9095c9b72cb1c31a8175c4c6745bf5927d1045d7a70df35d54944f/setuptools-59.6.0.tar.gz
 $(python-setuptools)-src = $(pkgsrcdir)/python-setuptools-$(notdir $($(python-setuptools)-srcurl))
 $(python-setuptools)-srcdir = $(pkgsrcdir)/$(python-setuptools)
 $(python-setuptools)-builddeps = $(python)
@@ -56,7 +56,6 @@ $($(python-setuptools)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-setuptools)-builddeps) && \
-		$(PYTHON) bootstrap.py && \
 		$(PYTHON) setup.py build
 	@touch $@
 

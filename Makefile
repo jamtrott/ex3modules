@@ -543,7 +543,7 @@ pkgs := $(pkgs) \
 	python-numpy-quaternion-2021.11.4.15.26.3 \
 	python-requests-2.23.0 \
 	python-scipy-1.5.4 \
-	python-setuptools-47.1.1 \
+	python-setuptools-59.6.0 \
 	python-setuptools_scm-4.1.1 \
 	python-six-1.15.0 \
 	python-snowballstemmer-2.0.0 \
