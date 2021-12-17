@@ -154,7 +154,7 @@ export MPIF90 = $(MPI_HOME)/bin/mpif90
 export MPIFORT = $(MPI_HOME)/bin/mpifort
 export MPIRUN = $(MPI_HOME)/bin/mpirun
 export MPI_RUN = $(MPI_HOME)/bin/mpirun
-$(info Using $(MPIRUN) ($(MPIRUN) --version | head -n 1))
+$(info Using $(MPIRUN) ($(shell $(MPIRUN) --version | head -n 1)))
 export PATH := $(MPI_HOME)/bin$(if $(PATH),:$(PATH),)
 export C_INCLUDE_PATH := $(MPI_HOME)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
 export CPLUS_INCLUDE_PATH := $(MPI_HOME)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
