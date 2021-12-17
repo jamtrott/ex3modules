@@ -94,12 +94,19 @@ ifeq ($(WITH_CMAKE),cmake-3.17.2)
 $(CMAKE) = cmake-3.17.2
 CMAKE = $(pkgdir)/$(cmake)/bin/cmake
 $(info Using internal CMake ($(cmake)))
+else ifeq ($(WITH_CMAKE),no)
+$(warning Warning: CMake is disabled - some modules may not build.)
 else ifneq ($(WITH_CMAKE),)
 CMAKE_ROOT = $(WITH_CMAKE)
 CMAKE = $(CMAKE_ROOT)/bin/cmake
 $(info Using $(CMAKE) ($(shell $(CMAKE) --version | head -n 1)))
 export PATH := $(CMAKE_ROOT)/bin$(if $(PATH),:$(PATH),)
 export ACLOCAL_PATH := $(CMAKE_ROOT)/share/aclocal$(if $(ACLOCAL_PATH),:$(ACLOCAL_PATH),)
+else ifneq ($(shell which cmake),)
+CMAKE = $(shell which cmake)
+$(info Using $(CMAKE) ($(shell $(CMAKE) --version | head -n 1)))
+else
+$(warning Warning: cmake not found - some modules may not build.)
 endif
 
 #
@@ -133,6 +140,8 @@ $(info Using internal MPI ($(mpi)))
 else ifeq ($(WITH_MPI),mvapich-2.3.4)
 mpi = mpich-2.3.4
 $(info Using internal MPI ($(mpi)))
+else ifeq ($(WITH_MPI),no)
+$(warning Warning: MPI is disabled - some modules may not build.)
 else ifneq ($(WITH_MPI),)
 export MPI_HOME = $(WITH_MPI)
 export MPICC = $(MPI_HOME)/bin/mpicc
@@ -156,17 +165,23 @@ endif
 #
 ifeq ($(WITH_OPENSSL),openssl-1.1.1c)
 openssl = openssl-1.1.1c
-OPENSSL_VERSION = 1.1.1c
 $(info Using internal OpenSSL ($(openssl)))
+else ifeq ($(WITH_OPENSSL),no)
+$(warning Warning: OpenSSL is disabled - some modules may not build.)
 else ifneq ($(WITH_OPENSSL),)
 OPENSSL_ROOT = $(WITH_OPENSSL)
-OPENSSL_VERSION = $(shell $(OPENSSL_ROOT)/bin/openssl version | awk '{ print $$2 }')
-$(info Using $(OPENSSL_ROOT)/bin/openssl ($(shell $(OPENSSL_ROOT)/bin/openssl version | head -n 1)))
+OPENSSL = $(OPENSSL_ROOT)/bin/openssl
+$(info Using $(OPENSSL) ($(shell $(OPENSSL) version | head -n 1)))
 export PATH := $(OPENSSL_ROOT)/bin$(if $(PATH),:$(PATH),)
-export C_INCLUDE_PATH := $(OPENSSL_ROOT)/include$(OPENSSL_VERSION_SHORT)$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
-export CPLUS_INCLUDE_PATH := $(OPENSSL_ROOT)/include$(OPENSSL_VERSION_SHORT)$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
+export C_INCLUDE_PATH := $(OPENSSL_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
+export CPLUS_INCLUDE_PATH := $(OPENSSL_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
 export LIBRARY_PATH := $(OPENSSL_ROOT)/lib:$(OPENSSL_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
 export LD_LIBRARY_PATH := $(OPENSSL_ROOT)/lib:$(OPENSSL_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
+else ifneq ($(shell which openssl),)
+OPENSSL = $(shell which openssl)
+$(info Using $(OPENSSL) ($(shell $(OPENSSL) version | head -n 1)))
+else
+$(warning Warning: OpenSSL not found - some modules may not build.)
 endif
 
 #
@@ -178,6 +193,9 @@ PYTHON = $(pkgdir)/$(python)/bin/python3
 PYTHON_VERSION = 3.7.4
 PYTHON_VERSION_SHORT = 3.7
 $(info Using internal python ($(python)))
+else ifeq ($(WITH_PYTHON),no)
+PYTHON = false
+$(warning Warning: Python is disabled - some modules may not build.)
 else ifneq ($(WITH_PYTHON),)
 PYTHON_ROOT = $(WITH_PYTHON)
 PYTHON = $(PYTHON_ROOT)/bin/python3
@@ -189,6 +207,11 @@ export C_INCLUDE_PATH := $(PYTHON_ROOT)/include/python$(PYTHON_VERSION_SHORT)$(i
 export CPLUS_INCLUDE_PATH := $(PYTHON_ROOT)/include/python$(PYTHON_VERSION_SHORT)$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
 export LIBRARY_PATH := $(PYTHON_ROOT)/lib:$(PYTHON_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
 export LD_LIBRARY_PATH := $(PYTHON_ROOT)/lib:$(PYTHON_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
+else ifneq ($(shell which python3),)
+PYTHON = $(shell which python3)
+$(info Using $(PYTHON) ($(shell $(PYTHON) --version | head -n 1)))
+else
+$(warning Warning: Python not found - some modules may not build.)
 endif
 
 #
@@ -197,6 +220,8 @@ endif
 ifeq ($(WITH_SLURM),slurm-20.02.7)
 slurm = slurm-20.02.7
 $(info Using internal SLURM ($(slurm)))
+else ifeq ($(WITH_SLURM),no)
+$(warning Warning: Slurm is disabled - some modules may not build.)
 else ifneq ($(WITH_SLURM),)
 SLURM_ROOT = $(WITH_SLURM)
 $(info Using $(SLURM_ROOT)/bin/srun ($(shell $(SLURM_ROOT)/bin/srun --version | head -n 1)))
@@ -205,6 +230,8 @@ export C_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUD
 export CPLUS_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
 export LIBRARY_PATH := $(SLURM_ROOT)/lib:$(SLURM_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
 export LD_LIBRARY_PATH := $(SLURM_ROOT)/lib:$(SLURM_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
+else
+$(warning Warning: Slurm not found - some modules may not build.)
 endif
 
 #

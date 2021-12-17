@@ -30,11 +30,11 @@ program_name=ex3modules
 program_version=0.5.0
 
 # default options
-with_cmake=cmake-3.17.2
-with_mpi=openmpi-4.0.5
-with_openssl=openssl-1.1.1c
-with_python=python-3.7.4
-with_slurm=slurm-20.02.7
+with_cmake=
+with_mpi=
+with_openssl=
+with_python=
+with_slurm=
 
 function help()
 {
@@ -55,32 +55,27 @@ function help()
     printf "  %-20s\t%s\n" "--with-cmake=DIR" "Root directory of CMake installation, or 'cmake-3.17.2'."
     printf "  %-20s\t%s\n" ""               "If a directory is given, then an external CMake is used. In this case,"
     printf "  %-20s\t%s\n" ""               "DIR/bin is added to PATH. Otherwise, an internal CMake is used."
-    printf "  %-20s\t%s\n" ""               "[defaults to 'cmake-3.17.2']"
     printf "  %-20s\t%s\n" "--without-cmake" "disable CMake usage completely. Some modules may not be built."
     printf "  %-20s\t%s\n" "--with-mpi=DIR" "Root directory of MPI installation, or one of the following values:"
     printf "  %-20s\t%s\n" ""               "'openmpi-4.0.5', 'openmpi-cuda-4.0.5', 'mpich-3.3.2' or 'mvapich-2.3.4'."
     printf "  %-20s\t%s\n" ""               "If a directory is given, then an external MPI is used, and DIR/include,"
     printf "  %-20s\t%s\n" ""               "DIR/lib and DIR/lib64 are added to search paths for headers and libraries."
     printf "  %-20s\t%s\n" ""               "Otherwise, an internal MPI implementation is built and used. Note that"
-    printf "  %-20s\t%s\n" ""               "[defaults to 'openmpi-4.0.5']"
     printf "  %-20s\t%s\n" "--without-mpi" "disable MPI usage completely. Some modules may not be built."
     printf "  %-20s\t%s\n" "--with-openssl=DIR" "Root directory of OpenSSL installation, or 'openssl-1.1.1c'."
     printf "  %-20s\t%s\n" ""               "If a directory is given, then an external OpenSSL is used. In this case,"
     printf "  %-20s\t%s\n" ""               "DIR/bin, DIR/include, DIR/lib and DIR/lib64 are added to search paths for"
     printf "  %-20s\t%s\n" ""               "binaries, headers and libraries. Otherwise, an internal OpenSSL is used."
-    printf "  %-20s\t%s\n" ""               "[defaults to 'openssl-1.1.1c']"
     printf "  %-20s\t%s\n" "--without-openssl" "disable OpenSSL usage completely"
     printf "  %-20s\t%s\n" "--with-python=DIR" "Root directory of Python installation, or 'python-3.7.4'."
     printf "  %-20s\t%s\n" ""               "If a directory is given, then an external Python is used. In this case,"
     printf "  %-20s\t%s\n" ""               "DIR/bin, DIR/include, DIR/lib and DIR/lib64 are added to search paths for"
     printf "  %-20s\t%s\n" ""               "binaries, headers and libraries. Otherwise, an internal Python is used."
-    printf "  %-20s\t%s\n" ""               "[defaults to 'python-3.7.4']"
     printf "  %-20s\t%s\n" "--without-python" "disable Python usage completely. Some modules may not be built."
     printf "  %-20s\t%s\n" "--with-slurm=DIR" "Root directory of Slurm installation, or 'slurm-20.02.7'."
     printf "  %-20s\t%s\n" ""               "If a directory is given, then an external Slurm is used. In this case,"
     printf "  %-20s\t%s\n" ""               "DIR/bin, DIR/include, DIR/lib and DIR/lib64 are added to search paths for"
     printf "  %-20s\t%s\n" ""               "binaries, headers and libraries. Otherwise, an internal Slurm is used."
-    printf "  %-20s\t%s\n" ""               "[defaults to 'slurm-20.02.7']"
     printf "  %-20s\t%s\n" "--without-slurm" "disable Slurm usage completely."
     printf "\n"
     printf "  %-20s\t%s\n" "-v, --verbose" "be more verbose"
@@ -138,19 +133,19 @@ function parse_program_options()
 	    --enable-gfortran) enable_gfortran=1; shift 1;;
 	    --with-cmake) with_cmake="${2}"; shift 2;;
 	    --with-cmake=*) with_cmake="${1#*=}"; shift 1;;
-	    --without-cmake) with_cmake= ; shift 1;;
+	    --without-cmake) with_cmake=no; shift 1;;
 	    --with-mpi) with_mpi="${2}"; shift 2;;
 	    --with-mpi=*) with_mpi="${1#*=}"; shift 1;;
-	    --without-mpi) with_mpi= ; shift 1;;
+	    --without-mpi) with_mpi=no; shift 1;;
 	    --with-openssl) with_openssl="${2}"; shift 2;;
 	    --with-openssl=*) with_openssl="${1#*=}"; shift 1;;
-	    --without-openssl) with_openssl= ; shift 1;;
+	    --without-openssl) with_openssl=no; shift 1;;
 	    --with-python) with_python="${2}"; shift 2;;
 	    --with-python=*) with_python="${1#*=}"; shift 1;;
-	    --without-python) with_python= ; shift 1;;
+	    --without-python) with_python=no; shift 1;;
 	    --with-slurm) with_slurm="${2}"; shift 2;;
 	    --with-slurm=*) with_slurm="${1#*=}"; shift 1;;
-	    --without-slurm) with_slurm= ; shift 1;;
+	    --without-slurm) with_slurm=no; shift 1;;
 	    -v | --verbose) verbose=1; shift 1;;
 	    --) shift; break;;
 	    *) EXTRA_OPTIONS+=("${1}"); shift 1;;
