@@ -57,7 +57,7 @@ $($(doxygen)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(doxygen)-builddeps) && \
-		cmake -G "Unix Makefiles" \
+		$(CMAKE) -G "Unix Makefiles" \
 			-DCMAKE_INSTALL_PREFIX=$($(doxygen)-prefix) \
 			-DPYTHON_EXECUTABLE=$${PYTHON_ROOT}/bin/python3 \
 			.. && \

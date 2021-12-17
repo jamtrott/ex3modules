@@ -52,7 +52,7 @@ $($(fenics-mshr-2019)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(fenics-mshr-2019)-builddeps) && \
-		cmake .. \
+		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(fenics-mshr-2019)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON \

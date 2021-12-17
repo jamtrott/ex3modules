@@ -91,11 +91,13 @@ endif
 # CMake
 #
 ifeq ($(WITH_CMAKE),cmake-3.17.2)
-cmake = cmake-3.17.2
+$(CMAKE) = cmake-3.17.2
+CMAKE = $(pkgdir)/$(cmake)/bin/cmake
 $(info Using internal CMake ($(cmake)))
 else ifneq ($(WITH_CMAKE),)
 CMAKE_ROOT = $(WITH_CMAKE)
-$(info Using $(CMAKE_ROOT)/bin/cmake ($(shell $(CMAKE_ROOT)/bin/cmake --version | head -n 1)))
+CMAKE = $(CMAKE_ROOT)/bin/cmake
+$(info Using $(CMAKE) ($(shell $(CMAKE) --version | head -n 1)))
 export PATH := $(CMAKE_ROOT)/bin$(if $(PATH),:$(PATH),)
 export ACLOCAL_PATH := $(CMAKE_ROOT)/share/aclocal$(if $(ACLOCAL_PATH),:$(ACLOCAL_PATH),)
 endif

@@ -57,7 +57,7 @@ $($(openjpeg)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(openjpeg)-builddeps) && \
-		cmake .. \
+		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(openjpeg)-prefix) \
 			-DCMAKE_BUILD_TYPE=release \
 			-DBUILD_STATIC_LIBS=OFF && \

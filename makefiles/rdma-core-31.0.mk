@@ -55,7 +55,7 @@ $($(rdma-core)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(rdma-core)-builddeps) && \
-		cmake .. -GNinja \
+		$(CMAKE) .. -GNinja \
 			-DCMAKE_INSTALL_PREFIX=$($(rdma-core)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib && \
 	ninja

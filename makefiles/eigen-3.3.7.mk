@@ -57,7 +57,7 @@ $($(eigen)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(eigen)-builddeps) && \
-		cmake .. -DCMAKE_INSTALL_PREFIX=$($(eigen)-prefix) -Wno-dev \
+		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(eigen)-prefix) -Wno-dev \
 			-DINCLUDE_INSTALL_DIR:string="include" \
 			-DMPFR_INCLUDES="$${MPFRDIR}/include" \
 			-DMPFR_LIBRARIES="$${MPFRLIB}/libmpfr.so" \

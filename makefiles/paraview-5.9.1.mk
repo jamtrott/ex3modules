@@ -57,7 +57,7 @@ $($(paraview)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(paraview)-builddeps) && \
-		cmake -DCMAKE_INSTALL_PREFIX=$($(paraview)-prefix) \
+		$(CMAKE) -DCMAKE_INSTALL_PREFIX=$($(paraview)-prefix) \
 		.. && \
 		$(MAKE)
 	@touch $@

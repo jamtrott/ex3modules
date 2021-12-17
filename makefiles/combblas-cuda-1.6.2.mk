@@ -54,7 +54,7 @@ $($(combblas-cuda)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(combblas-cuda)-builddeps) && \
-		cmake .. \
+		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(combblas-cuda)-prefix) \
 			-DBUILD_SHARED_LIBS=TRUE && \
 		$(MAKE)

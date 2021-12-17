@@ -57,7 +57,7 @@ $($(vmtk)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(v
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(vmtk)-builddeps) && \
-		cmake .. -G Ninja \
+		$(CMAKE) .. -G Ninja \
 			-DCMAKE_INSTALL_PREFIX="$($(vmtk)-prefix)" \
 			-DVMTK_INSTALL_LIB_DIR=lib \
 			-DVMTK_MODULE_INSTALL_LIB_DIR="lib/python$${PYTHON_VERSION_SHORT}/site-packages/vmtk" \

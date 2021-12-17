@@ -57,7 +57,7 @@ $($(pugixml)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(pugixml)-builddeps) && \
-		cmake .. \
+		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(pugixml)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DBUILD_SHARED_LIBS=TRUE && \

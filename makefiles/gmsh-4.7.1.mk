@@ -57,7 +57,7 @@ $($(gmsh)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(g
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(gmsh)-builddeps) && \
-		cmake .. -DCMAKE_INSTALL_PREFIX=$($(gmsh)-prefix) \
+		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(gmsh)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DENABLE_BUILD_SHARED=ON \
 			-DENABLE_GRAPHICS=ON \

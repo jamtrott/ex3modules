@@ -57,7 +57,7 @@ $($(clang)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(clang)-builddeps) && \
-		cmake .. -DCMAKE_INSTALL_PREFIX=$($(clang)-prefix) \
+		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(clang)-prefix) \
 			-DCMAKE_BUILD_TYPE=Release \
 			-DLLVM_LINK_LLVM_DYLIB=ON \
 			-DLLVM_ENABLE_RTTI=ON \

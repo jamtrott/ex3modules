@@ -57,7 +57,7 @@ $($(cgal-4.12)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(cgal-4.12)-builddeps) && \
-		cmake -DCMAKE_INSTALL_PREFIX=$($(cgal-4.12)-prefix) \
+		$(CMAKE) -DCMAKE_INSTALL_PREFIX=$($(cgal-4.12)-prefix) \
 		-DCMAKE_POLICY_DEFAULT_CMP0074=NEW \
 		-DMPFR_LIBRARIES="$$(pkg-config --libs mpfr)" \
 		-DMPFR_INCLUDE_DIR="$${MPFR_INCDIR}" \

@@ -57,7 +57,7 @@ $($(llvm-10)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(llvm-10)-builddeps) && \
-		cmake .. \
+		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(llvm-10)-prefix) \
 			-DLLVM_ENABLE_FFI=ON \
 			-DFFI_INCLUDE_DIR="$${LIBFFI_INCLUDEDIR}" \

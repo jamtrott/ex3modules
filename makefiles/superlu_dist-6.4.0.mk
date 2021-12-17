@@ -55,7 +55,7 @@ $($(superlu_dist)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(superlu_dist)-builddeps) && \
-		cmake .. \
+		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(superlu_dist)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DCMAKE_BUILD_TYPE=DEBUG \

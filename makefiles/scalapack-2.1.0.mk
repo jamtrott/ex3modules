@@ -54,7 +54,7 @@ $($(scalapack)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(scalapack)-builddeps) && \
-		cmake .. \
+		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(scalapack)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DBUILD_SHARED_LIBS=ON \

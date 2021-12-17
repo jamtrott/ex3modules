@@ -54,7 +54,7 @@ $($(scalapack-cuda)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(scalapack-cuda)-builddeps) && \
-		cmake .. \
+		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(scalapack-cuda)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DBUILD_SHARED_LIBS=ON \

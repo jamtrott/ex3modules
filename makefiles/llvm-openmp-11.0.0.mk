@@ -57,7 +57,7 @@ $($(llvm-openmp)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(llvm-openmp)-builddeps) && \
-		cmake .. \
+		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(llvm-openmp)-prefix) \
 			-DLLVM_ENABLE_FFI=ON \
 			-DFFI_INCLUDE_DIR="$${LIBFFI_INCLUDEDIR}" \

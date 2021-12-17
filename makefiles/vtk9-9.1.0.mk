@@ -57,7 +57,7 @@ $($(vtk9)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(v
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(vtk9)-builddeps) && \
-		cmake .. -G Ninja \
+		$(CMAKE) .. -G Ninja \
 			-DCMAKE_INSTALL_PREFIX=$($(vtk9)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DBUILD_SHARED_LIBS=ON \

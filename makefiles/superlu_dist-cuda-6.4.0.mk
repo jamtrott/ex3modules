@@ -55,7 +55,7 @@ $($(superlu_dist-cuda)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(superlu_dist-cuda)-builddeps) && \
-		cmake .. \
+		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(superlu_dist-cuda)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DCMAKE_BUILD_TYPE=DEBUG \

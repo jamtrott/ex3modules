@@ -250,7 +250,7 @@ $($(fenics-dolfin-2019)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(fenics-dolfin-2019)-builddeps) && \
-		cmake .. \
+		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(fenics-dolfin-2019)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON \

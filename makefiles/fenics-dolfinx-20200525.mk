@@ -52,7 +52,7 @@ $($(fenics-dolfinx-20200525)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(fenics-dolfinx-20200525)-builddeps) && \
-		cmake .. \
+		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(fenics-dolfinx-20200525)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DCMAKE_POLICY_DEFAULT_CMP0074=NEW \

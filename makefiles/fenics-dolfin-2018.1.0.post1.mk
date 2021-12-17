@@ -224,7 +224,7 @@ $($(fenics-dolfin-2018)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(fenics-dolfin-2018)-builddeps) && \
-		cmake .. \
+		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(fenics-dolfin-2018)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DCMAKE_POLICY_DEFAULT_CMP0074=NEW \

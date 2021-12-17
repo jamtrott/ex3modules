@@ -54,7 +54,7 @@ $($(superlu)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(superlu)-builddeps) && \
-		cmake .. \
+		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(superlu)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DBUILD_SHARED_LIBS=TRUE \

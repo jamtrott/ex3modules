@@ -59,7 +59,7 @@ $($(graphite2)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(graphite2)-builddeps) && \
-		cmake .. -DCMAKE_INSTALL_PREFIX=$($(graphite2)-prefix) && \
+		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(graphite2)-prefix) && \
 		$(MAKE)
 	@touch $@
 

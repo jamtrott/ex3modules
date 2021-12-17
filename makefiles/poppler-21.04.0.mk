@@ -57,7 +57,7 @@ $($(poppler)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(poppler)-builddeps) && \
-		cmake .. \
+		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(poppler)-prefix) \
 			-DCMAKE_BUILD_TYPE=Release \
 			-DENABLE_UNSTABLE_API_ABI_HEADERS=ON \

@@ -57,7 +57,7 @@ $($(googletest)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(googletest)-builddeps) && \
-		cmake .. -DCMAKE_INSTALL_PREFIX=$($(googletest)-prefix) \
+		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(googletest)-prefix) \
 			-DBUILD_SHARED_LIBS=TRUE && \
 		$(MAKE)
 	@touch $@

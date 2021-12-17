@@ -57,7 +57,7 @@ $($(itk)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(it
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(itk)-builddeps) && \
-		cmake .. -G Ninja \
+		$(CMAKE) .. -G Ninja \
 			-DCMAKE_INSTALL_PREFIX=$($(itk)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DBUILD_SHARED_LIBS=ON \

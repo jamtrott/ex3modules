@@ -54,7 +54,7 @@ $($(combblas)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(combblas)-builddeps) && \
-		cmake .. \
+		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(combblas)-prefix) \
 			-DBUILD_SHARED_LIBS=TRUE && \
 		$(MAKE)

@@ -57,7 +57,7 @@ $($(opencascade)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(opencascade)-builddeps) && \
-		cmake .. -DCMAKE_INSTALL_PREFIX=$($(opencascade)-prefix) \
+		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(opencascade)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DBUILD_MODULE_Draw:BOOL=FALSE && \
 		$(MAKE)

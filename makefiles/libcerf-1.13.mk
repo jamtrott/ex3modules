@@ -57,7 +57,7 @@ $($(libcerf)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(libcerf)-builddeps) && \
-		cmake .. -DCMAKE_INSTALL_PREFIX=$($(libcerf)-prefix) && \
+		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(libcerf)-prefix) && \
 		$(MAKE)
 	@touch $@
 
