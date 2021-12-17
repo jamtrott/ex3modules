@@ -466,7 +466,7 @@ pkgs := $(pkgs) \
 	python-cffi-1.14.0 \
 	python-chardet-3.0.4 \
 	python-colorama-0.4.4 \
-	python-coverage-5.1 \
+	python-coverage-5.5 \
 	python-cycler-0.10.0 \
 	python-cython-0.29.21 \
 	python-dateutil-2.0 \

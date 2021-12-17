@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-coverage-5.1
+# python-coverage-5.5
 
-python-coverage-version = 5.1
+python-coverage-version = 5.5
 python-coverage = python-coverage-$(python-coverage-version)
 $(python-coverage)-description = Code coverage measurement for Python
 $(python-coverage)-url = https://github.com/nedbat/coveragepy
-$(python-coverage)-srcurl = https://files.pythonhosted.org/packages/fe/4d/3d892bdd21acba6c9e9bec6dc93fbe619883a0967c62f976122f2c6366f3/coverage-5.1.tar.gz
+$(python-coverage)-srcurl = https://files.pythonhosted.org/packages/38/df/d5e67851e83948def768d7fb1a0fd373665b20f56ff63ed220c6cd16cb11/coverage-5.5.tar.gz
 $(python-coverage)-src = $(pkgsrcdir)/$(notdir $($(python-coverage)-srcurl))
 $(python-coverage)-srcdir = $(pkgsrcdir)/$(python-coverage)
 $(python-coverage)-builddeps = $(python) $(python-setuptools)
