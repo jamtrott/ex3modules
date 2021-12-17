@@ -94,7 +94,7 @@ CMAKE_VERSION = 3.17.2
 $(info Using internal CMake ($(cmake)))
 else ifneq ($(WITH_CMAKE),)
 CMAKE_ROOT = $(WITH_CMAKE)
-CMAKE_VERSION = $(shell $(CMAKE_ROOT)/bin/cmake version | awk '{ print $$3 }')
+CMAKE_VERSION = $(shell $(CMAKE_ROOT)/bin/cmake --version | awk '{ print $$3 }')
 $(info Using CMake $(CMAKE_VERSION) ($(CMAKE_ROOT)/bin/cmake))
 export PATH := $(CMAKE_ROOT)/bin$(if $(PATH),:$(PATH),)
 export ACLOCAL_PATH := $(CMAKE_ROOT)/share/aclocal$(if $(ACLOCAL_PATH),:$(ACLOCAL_PATH),)
