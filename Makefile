@@ -144,7 +144,7 @@ $(info Using internal OpenSSL ($(openssl)))
 else
 OPENSSL_ROOT = $(WITH_OPENSSL)
 OPENSSL_VERSION = $(shell $(OPENSSL_ROOT)/bin/openssl version | awk '{ print $$2 }')
-$(info Using OpenSSL $(OPENSSL_VERSION) ($(OPENSSL_ROOT/bin/openssl)))
+$(info Using OpenSSL $(OPENSSL_VERSION) ($(OPENSSL_ROOT)/bin/openssl)))
 export PATH := $(OPENSSL_ROOT)/bin$(if $(PATH),:$(PATH),)
 export C_INCLUDE_PATH := $(OPENSSL_ROOT)/include$(OPENSSL_VERSION_SHORT)$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
 export CPLUS_INCLUDE_PATH := $(OPENSSL_ROOT)/include$(OPENSSL_VERSION_SHORT)$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
