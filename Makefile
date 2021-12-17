@@ -92,7 +92,7 @@ endif
 # CMake
 #
 ifeq ($(WITH_CMAKE),cmake-3.17.2)
-$(CMAKE) = cmake-3.17.2
+cmake = cmake-3.17.2
 CMAKE = $(pkgdir)/$(cmake)/bin/cmake
 $(info Using internal CMake ($(cmake)))
 else ifeq ($(WITH_CMAKE),no)
