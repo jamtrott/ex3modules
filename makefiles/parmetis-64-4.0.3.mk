@@ -253,8 +253,8 @@ $($(parmetis-64)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(parmetis-64)-builddeps) && \
 		cmake .. -DCMAKE_INSTALL_PREFIX=$($(parmetis-64)-prefix) \
-			-DCMAKE_C_COMPILER=mpicc \
-			-DCMAKE_CXX_COMPILER=mpicxx \
+			-DCMAKE_C_COMPILER="$${MPICC}" \
+			-DCMAKE_CXX_COMPILER="$${MPICXX}" \
 			-DSHARED=1 \
 			-DMETIS_PATH=$${METIS_ROOT} \
 			-DGKLIB_PATH=$${GKLIB_ROOT} && \

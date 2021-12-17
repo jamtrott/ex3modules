@@ -55,8 +55,8 @@ $($(parmetis-cuda)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(parmetis-cuda)-builddeps) && \
 		cmake .. -DCMAKE_INSTALL_PREFIX=$($(parmetis-cuda)-prefix) \
-			-DCMAKE_C_COMPILER=mpicc \
-			-DCMAKE_CXX_COMPILER=mpicxx \
+			-DCMAKE_C_COMPILER="$${MPICC}" \
+			-DCMAKE_CXX_COMPILER="$${MPICXX}" \
 			-DSHARED=1 \
 			-DMETIS_PATH=$($(parmetis-cuda)-srcdir)/metis \
 			-DGKLIB_PATH=$($(parmetis-cuda)-srcdir)/metis/GKlib && \
