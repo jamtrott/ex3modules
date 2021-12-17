@@ -65,12 +65,13 @@ MODULE := module
 # blis-x86_64, blis-zen, blis-zen2 and gsl.
 blas = openblas-0.3.12
 
-# PETSc implementations: petsc-default, petsc-cuda
-petsc = petsc-default-3.13.2
+# PETSc implementations: petsc-3.13.2, petsc-cuda-3.13.2
+petsc = petsc-3.13.2
 
 # CUDA-related packages - note CUDA toolkit 10.1.243 is only supported
 # on x86_64.
 ifneq ($(ENABLE_CUDA),)
+petsc = petsc-cuda-3.13.2
 pkgs := $(pkgs) \
 	combblas-cuda-1.6.2 \
 	cuda-toolkit-10.1.243 \
@@ -440,7 +441,7 @@ pkgs := $(pkgs) \
 	perf-4.19.75 \
 	perl-5.30.2 \
 	petsc-3.16.2 \
-	petsc-default-3.13.2 \
+	petsc-3.13.2 \
 	petsc-src-3.13.2 \
 	petsc-src-3.16.2 \
 	pixman-0.38.4 \
