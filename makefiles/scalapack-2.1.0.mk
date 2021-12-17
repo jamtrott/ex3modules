@@ -41,7 +41,9 @@ $($(scalapack)-prefix)/.pkgunpack: $$($(scalapack)-src) $($(scalapack)-srcdir)/.
 	tar -C $($(scalapack)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
-$($(scalapack)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(scalapack)-builddeps),$(modulefilesdir)/$$(dep)) $($(scalapack)-prefix)/.pkgunpack
+$($(scalapack)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(scalapack)-builddeps),$(modulefilesdir)/$$(dep)) $($(scalapack)-prefix)/.pkgunpack patches/scalapack-2.1.0-0001-fix_argument_mismatches_in_the_SRC.patch patches/scalapack-2.1.0-0002-use_std_legacy_for_tests_with_GCC_10.patch
+	patch -d $($(scalapack)-srcdir) -f -p1 <patches/scalapack-2.1.0-0001-fix_argument_mismatches_in_the_SRC.patch
+	patch -d $($(scalapack)-srcdir) -f -p1 <patches/scalapack-2.1.0-0002-use_std_legacy_for_tests_with_GCC_10.patch
 	@touch $@
 
 ifneq ($($(scalapack)-builddir),$($(scalapack)-srcdir))

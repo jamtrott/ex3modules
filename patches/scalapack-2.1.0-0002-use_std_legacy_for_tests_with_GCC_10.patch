@@ -1,0 +1,99 @@
+From 189c84001bcd564296a475c5c757afc9f337e828 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Tiziano=20M=C3=BCller?= <tiziano.mueller@chem.uzh.ch>
+Date: Thu, 25 Jun 2020 18:37:34 +0200
+Subject: [PATCH] use -std=legacy for tests with GCC-10+
+
+---
+ BLACS/TESTING/CMakeLists.txt | 10 +++++++---
+ PBLAS/TESTING/CMakeLists.txt |  7 ++++---
+ PBLAS/TIMING/CMakeLists.txt  |  5 +++--
+ TESTING/EIG/CMakeLists.txt   |  3 +++
+ TESTING/LIN/CMakeLists.txt   |  4 ++++
+ 5 files changed, 21 insertions(+), 8 deletions(-)
+
+diff --git a/BLACS/TESTING/CMakeLists.txt b/BLACS/TESTING/CMakeLists.txt
+index d8846b5..4e91ac2 100644
+--- a/BLACS/TESTING/CMakeLists.txt
++++ b/BLACS/TESTING/CMakeLists.txt
+@@ -1,10 +1,14 @@
+-set(FTestObj  
++set(FTestObj
+    blacstest.f btprim.f tools.f)
+ 
++if ("${CMAKE_Fortran_COMPILER_ID}" STREQUAL "GNU" AND CMAKE_Fortran_COMPILER_VERSION VERSION_GREATER_EQUAL 10)
++    set_source_files_properties(blacstest.f PROPERTIES COMPILE_FLAGS "-std=legacy")
++endif()
++
+ add_executable(xFbtest ${FTestObj})
+ target_link_libraries(xFbtest scalapack)
+ 
+-set(CTestObj  
++set(CTestObj
+    Cbt.c)
+ 
+ set_property(
+@@ -46,4 +50,4 @@ add_test(xFbtest
+     -DRUNTIMEDIR=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+     -DSOURCEDIR=${CMAKE_CURRENT_SOURCE_DIR}
+     -P ${CMAKE_CURRENT_SOURCE_DIR}/runtest.cmake
+-    )
+\ No newline at end of file
++    )
+diff --git a/PBLAS/TESTING/CMakeLists.txt b/PBLAS/TESTING/CMakeLists.txt
+index e60f5e4..ee77091 100644
+--- a/PBLAS/TESTING/CMakeLists.txt
++++ b/PBLAS/TESTING/CMakeLists.txt
+@@ -10,7 +10,7 @@ set (zpbtcom pzblastst.f dlamch.f ${pbtcom})
+ 
+ set_property(
+    SOURCE ${PblasErrorHandler}
+-   APPEND PROPERTY COMPILE_DEFINITIONS TestingPblas 
++   APPEND PROPERTY COMPILE_DEFINITIONS TestingPblas
+    )
+ 
+ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${SCALAPACK_BINARY_DIR}/PBLAS/TESTING)
+@@ -74,5 +74,6 @@ add_test(dpb3tst ${MPIEXEC} ${MPIEXEC_NUMPROC_FLAG} 4 ./dpb3tst)
+ add_test(cpb3tst ${MPIEXEC} ${MPIEXEC_NUMPROC_FLAG} 4 ./cpb3tst)
+ add_test(zpb3tst ${MPIEXEC} ${MPIEXEC_NUMPROC_FLAG} 4 ./zpb3tst)
+ 
+-
+-
++if ("${CMAKE_Fortran_COMPILER_ID}" STREQUAL "GNU" AND CMAKE_Fortran_COMPILER_VERSION VERSION_GREATER_EQUAL 10)
++    set( CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -std=legacy" )  # local to this directory
++endif()
+diff --git a/PBLAS/TIMING/CMakeLists.txt b/PBLAS/TIMING/CMakeLists.txt
+index 763330f..208bbc3 100644
+--- a/PBLAS/TIMING/CMakeLists.txt
++++ b/PBLAS/TIMING/CMakeLists.txt
+@@ -74,5 +74,6 @@ add_test(dpb3tim ${MPIEXEC} ${MPIEXEC_NUMPROC_FLAG} 4 ./dpb3tim)
+ add_test(cpb3tim ${MPIEXEC} ${MPIEXEC_NUMPROC_FLAG} 4 ./cpb3tim)
+ add_test(zpb3tim ${MPIEXEC} ${MPIEXEC_NUMPROC_FLAG} 4 ./zpb3tim)
+ 
+-
+-
++if ("${CMAKE_Fortran_COMPILER_ID}" STREQUAL "GNU" AND CMAKE_Fortran_COMPILER_VERSION VERSION_GREATER_EQUAL 10)
++    set( CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -std=legacy" )  # local to this directory
++endif()
+diff --git a/TESTING/EIG/CMakeLists.txt b/TESTING/EIG/CMakeLists.txt
+index 97c7036..19a1f34 100644
+--- a/TESTING/EIG/CMakeLists.txt
++++ b/TESTING/EIG/CMakeLists.txt
+@@ -97,3 +97,6 @@ target_link_libraries(xzheevr scalapack ${LAPACK_LIBRARIES} ${BLAS_LIBRARIES})
+ target_link_libraries(xshseqr scalapack ${LAPACK_LIBRARIES} ${BLAS_LIBRARIES})
+ target_link_libraries(xdhseqr scalapack ${LAPACK_LIBRARIES} ${BLAS_LIBRARIES})
+ 
++if ("${CMAKE_Fortran_COMPILER_ID}" STREQUAL "GNU" AND CMAKE_Fortran_COMPILER_VERSION VERSION_GREATER_EQUAL 10)
++    set( CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -std=legacy" )  # local to this directory
++endif()
+diff --git a/TESTING/LIN/CMakeLists.txt b/TESTING/LIN/CMakeLists.txt
+index 55a53e9..65f169b 100644
+--- a/TESTING/LIN/CMakeLists.txt
++++ b/TESTING/LIN/CMakeLists.txt
+@@ -110,3 +110,7 @@ target_link_libraries(xsls scalapack ${LAPACK_LIBRARIES} ${BLAS_LIBRARIES})
+ target_link_libraries(xdls scalapack ${LAPACK_LIBRARIES} ${BLAS_LIBRARIES})
+ target_link_libraries(xcls scalapack ${LAPACK_LIBRARIES} ${BLAS_LIBRARIES})
+ target_link_libraries(xzls scalapack ${LAPACK_LIBRARIES} ${BLAS_LIBRARIES})
++
++if ("${CMAKE_Fortran_COMPILER_ID}" STREQUAL "GNU" AND CMAKE_Fortran_COMPILER_VERSION VERSION_GREATER_EQUAL 10)
++    set( CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -std=legacy" )  # local to this directory
++endif()
