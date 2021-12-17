@@ -18,104 +18,104 @@
 #
 # openssl-1.1.1c
 
-openssl-version = 1.1.1c
-openssl = openssl-$(openssl-version)
-$(openssl)-description = TLS/SSL and crypto library
-$(openssl)-url = https://www.openssl.org/
-$(openssl)-srcurl = https://github.com/openssl/openssl/archive/OpenSSL_1_1_1c.tar.gz
-$(openssl)-builddeps = $(perl)
-$(openssl)-prereqs =
-$(openssl)-src = $(pkgsrcdir)/$(notdir $($(openssl)-srcurl))
-$(openssl)-srcdir = $(pkgsrcdir)/$(openssl)
-$(openssl)-builddir = $($(openssl)-srcdir)
-$(openssl)-modulefile = $(modulefilesdir)/$(openssl)
-$(openssl)-prefix = $(pkgdir)/$(openssl)
+openssl-1.1.1c-version = 1.1.1c
+openssl-1.1.1c = openssl-$(openssl-1.1.1c-version)
+$(openssl-1.1.1c)-description = TLS/SSL and crypto library
+$(openssl-1.1.1c)-url = https://www.openssl.org/
+$(openssl-1.1.1c)-srcurl = https://github.com/openssl/openssl/archive/OpenSSL_1_1_1c.tar.gz
+$(openssl-1.1.1c)-builddeps = $(perl)
+$(openssl-1.1.1c)-prereqs =
+$(openssl-1.1.1c)-src = $(pkgsrcdir)/$(notdir $($(openssl-1.1.1c)-srcurl))
+$(openssl-1.1.1c)-srcdir = $(pkgsrcdir)/$(openssl-1.1.1c)
+$(openssl-1.1.1c)-builddir = $($(openssl-1.1.1c)-srcdir)
+$(openssl-1.1.1c)-modulefile = $(modulefilesdir)/$(openssl-1.1.1c)
+$(openssl-1.1.1c)-prefix = $(pkgdir)/$(openssl-1.1.1c)
 
-$($(openssl)-src): $(dir $($(openssl)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(openssl)-srcurl)
+$($(openssl-1.1.1c)-src): $(dir $($(openssl-1.1.1c)-src)).markerfile
+	$(CURL) $(curl_options) --output $@ $($(openssl-1.1.1c)-srcurl)
 
-$($(openssl)-srcdir)/.markerfile:
+$($(openssl-1.1.1c)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openssl)-prefix)/.markerfile:
+$($(openssl-1.1.1c)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openssl)-prefix)/.pkgunpack: $($(openssl)-src) $($(openssl)-srcdir)/.markerfile $($(openssl)-prefix)/.markerfile $$(foreach dep,$$($(openssl)-builddeps),$(modulefilesdir)/$$(dep))
-	tar -C $($(openssl)-srcdir) --strip-components 1 -xz -f $<
+$($(openssl-1.1.1c)-prefix)/.pkgunpack: $$($(openssl-1.1.1c)-src) $($(openssl-1.1.1c)-srcdir)/.markerfile $($(openssl-1.1.1c)-prefix)/.markerfile $$(foreach dep,$$($(openssl-1.1.1c)-builddeps),$(modulefilesdir)/$$(dep))
+	tar -C $($(openssl-1.1.1c)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
-$($(openssl)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openssl)-builddeps),$(modulefilesdir)/$$(dep)) $($(openssl)-prefix)/.pkgunpack
+$($(openssl-1.1.1c)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openssl-1.1.1c)-builddeps),$(modulefilesdir)/$$(dep)) $($(openssl-1.1.1c)-prefix)/.pkgunpack
 	@touch $@
 
-ifneq ($($(openssl)-builddir),$($(openssl)-srcdir))
-$($(openssl)-builddir)/.markerfile: $($(openssl)-prefix)/.pkgunpack
+ifneq ($($(openssl-1.1.1c)-builddir),$($(openssl-1.1.1c)-srcdir))
+$($(openssl-1.1.1c)-builddir)/.markerfile: $($(openssl-1.1.1c)-prefix)/.pkgunpack
 	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
-$($(openssl)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openssl)-builddeps),$(modulefilesdir)/$$(dep)) $($(openssl)-builddir)/.markerfile $($(openssl)-prefix)/.pkgpatch
-	cd $($(openssl)-builddir) && \
+$($(openssl-1.1.1c)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openssl-1.1.1c)-builddeps),$(modulefilesdir)/$$(dep)) $($(openssl-1.1.1c)-builddir)/.markerfile $($(openssl-1.1.1c)-prefix)/.pkgpatch
+	cd $($(openssl-1.1.1c)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(openssl)-builddeps) && \
-		./config --prefix=$($(openssl)-prefix) && \
+		$(MODULE) load $($(openssl-1.1.1c)-builddeps) && \
+		./config --prefix=$($(openssl-1.1.1c)-prefix) && \
 		$(MAKE)
 	@touch $@
 
-$($(openssl)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openssl)-builddeps),$(modulefilesdir)/$$(dep)) $($(openssl)-builddir)/.markerfile $($(openssl)-prefix)/.pkgbuild
+$($(openssl-1.1.1c)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openssl-1.1.1c)-builddeps),$(modulefilesdir)/$$(dep)) $($(openssl-1.1.1c)-builddir)/.markerfile $($(openssl-1.1.1c)-prefix)/.pkgbuild
 # Note: test_afalg fails on aarch64 (see https://github.com/openssl/openssl/issues/12242)
-	cd $($(openssl)-builddir) && \
+	cd $($(openssl-1.1.1c)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(openssl)-builddeps) && \
+		$(MODULE) load $($(openssl-1.1.1c)-builddeps) && \
 		$(MAKE) TESTS=-test_afalg test
 	@touch $@
 
-$($(openssl)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openssl)-builddeps),$(modulefilesdir)/$$(dep)) $($(openssl)-builddir)/.markerfile $($(openssl)-prefix)/.pkgcheck
-	cd $($(openssl)-builddir) && \
+$($(openssl-1.1.1c)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openssl-1.1.1c)-builddeps),$(modulefilesdir)/$$(dep)) $($(openssl-1.1.1c)-builddir)/.markerfile $($(openssl-1.1.1c)-prefix)/.pkgcheck
+	cd $($(openssl-1.1.1c)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(openssl)-builddeps) && \
+		$(MODULE) load $($(openssl-1.1.1c)-builddeps) && \
 		$(MAKE) install
 	@touch $@
 
-$($(openssl)-modulefile): $(modulefilesdir)/.markerfile $($(openssl)-prefix)/.pkginstall
+$($(openssl-1.1.1c)-modulefile): $(modulefilesdir)/.markerfile $($(openssl-1.1.1c)-prefix)/.pkginstall
 	printf "" >$@
 	echo "#%Module" >>$@
-	echo "# $(openssl)" >>$@
+	echo "# $(openssl-1.1.1c)" >>$@
 	echo "" >>$@
 	echo "proc ModulesHelp { } {" >>$@
-	echo "     puts stderr \"\tSets up the environment for $(openssl)\\n\"" >>$@
+	echo "     puts stderr \"\tSets up the environment for $(openssl-1.1.1c)\\n\"" >>$@
 	echo "}" >>$@
 	echo "" >>$@
-	echo "module-whatis \"$($(openssl)-description)\"" >>$@
-	echo "module-whatis \"$($(openssl)-url)\"" >>$@
-	printf "$(foreach prereq,$($(openssl)-prereqs),\n$(MODULE) load $(prereq))" >>$@
+	echo "module-whatis \"$($(openssl-1.1.1c)-description)\"" >>$@
+	echo "module-whatis \"$($(openssl-1.1.1c)-url)\"" >>$@
+	printf "$(foreach prereq,$($(openssl-1.1.1c)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv OPENSSL_ROOT $($(openssl)-prefix)" >>$@
-	echo "setenv OPENSSL_INCDIR $($(openssl)-prefix)/include" >>$@
-	echo "setenv OPENSSL_INCLUDEDIR $($(openssl)-prefix)/include" >>$@
-	echo "setenv OPENSSL_LIBDIR $($(openssl)-prefix)/lib" >>$@
-	echo "setenv OPENSSL_LIBRARYDIR $($(openssl)-prefix)/lib" >>$@
-	echo "prepend-path PATH $($(openssl)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(openssl)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(openssl)-prefix)/include" >>$@
-	echo "prepend-path LIBRARY_PATH $($(openssl)-prefix)/lib" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(openssl)-prefix)/lib" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(openssl)-prefix)/lib/pkgconfig" >>$@
-	echo "prepend-path MANPATH $($(openssl)-prefix)/share/man" >>$@
-	echo "set MSG \"$(openssl)\"" >>$@
+	echo "setenv OPENSSL_ROOT $($(openssl-1.1.1c)-prefix)" >>$@
+	echo "setenv OPENSSL_INCDIR $($(openssl-1.1.1c)-prefix)/include" >>$@
+	echo "setenv OPENSSL_INCLUDEDIR $($(openssl-1.1.1c)-prefix)/include" >>$@
+	echo "setenv OPENSSL_LIBDIR $($(openssl-1.1.1c)-prefix)/lib" >>$@
+	echo "setenv OPENSSL_LIBRARYDIR $($(openssl-1.1.1c)-prefix)/lib" >>$@
+	echo "prepend-path PATH $($(openssl-1.1.1c)-prefix)/bin" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(openssl-1.1.1c)-prefix)/include" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(openssl-1.1.1c)-prefix)/include" >>$@
+	echo "prepend-path LIBRARY_PATH $($(openssl-1.1.1c)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(openssl-1.1.1c)-prefix)/lib" >>$@
+	echo "prepend-path PKG_CONFIG_PATH $($(openssl-1.1.1c)-prefix)/lib/pkgconfig" >>$@
+	echo "prepend-path MANPATH $($(openssl-1.1.1c)-prefix)/share/man" >>$@
+	echo "set MSG \"$(openssl-1.1.1c)\"" >>$@
 
-$(openssl)-src: $($(openssl)-src)
-$(openssl)-unpack: $($(openssl)-prefix)/.pkgunpack
-$(openssl)-patch: $($(openssl)-prefix)/.pkgpatch
-$(openssl)-build: $($(openssl)-prefix)/.pkgbuild
-$(openssl)-check: $($(openssl)-prefix)/.pkgcheck
-$(openssl)-install: $($(openssl)-prefix)/.pkginstall
-$(openssl)-modulefile: $($(openssl)-modulefile)
-$(openssl)-clean:
-	rm -rf $($(openssl)-modulefile)
-	rm -rf $($(openssl)-prefix)
-	rm -rf $($(openssl)-srcdir)
-	rm -rf $($(openssl)-src)
-$(openssl): $(openssl)-src $(openssl)-unpack $(openssl)-patch $(openssl)-build $(openssl)-check $(openssl)-install $(openssl)-modulefile
+$(openssl-1.1.1c)-src: $$($(openssl-1.1.1c)-src)
+$(openssl-1.1.1c)-unpack: $($(openssl-1.1.1c)-prefix)/.pkgunpack
+$(openssl-1.1.1c)-patch: $($(openssl-1.1.1c)-prefix)/.pkgpatch
+$(openssl-1.1.1c)-build: $($(openssl-1.1.1c)-prefix)/.pkgbuild
+$(openssl-1.1.1c)-check: $($(openssl-1.1.1c)-prefix)/.pkgcheck
+$(openssl-1.1.1c)-install: $($(openssl-1.1.1c)-prefix)/.pkginstall
+$(openssl-1.1.1c)-modulefile: $($(openssl-1.1.1c)-modulefile)
+$(openssl-1.1.1c)-clean:
+	rm -rf $($(openssl-1.1.1c)-modulefile)
+	rm -rf $($(openssl-1.1.1c)-prefix)
+	rm -rf $($(openssl-1.1.1c)-srcdir)
+	rm -rf $($(openssl-1.1.1c)-src)
+$(openssl-1.1.1c): $(openssl-1.1.1c)-src $(openssl-1.1.1c)-unpack $(openssl-1.1.1c)-patch $(openssl-1.1.1c)-build $(openssl-1.1.1c)-check $(openssl-1.1.1c)-install $(openssl-1.1.1c)-modulefile
