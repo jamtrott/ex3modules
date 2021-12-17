@@ -56,7 +56,7 @@ $($(python-filelock)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-filelock)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-filelock)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-filelock)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-filelock)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-filelock)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-filelock)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-filelock)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-filelock)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-filelock)-prefix)/.pkgcheck $($(python-filelock)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-filelock)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-filelock)-builddeps) && \
 		PYTHONPATH=$($(python-filelock)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-filelock)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-filelock)-prefix)
 	@touch $@
 
 $($(python-filelock)-modulefile): $(modulefilesdir)/.markerfile $($(python-filelock)-prefix)/.pkginstall

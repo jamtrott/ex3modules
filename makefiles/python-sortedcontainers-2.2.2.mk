@@ -56,14 +56,14 @@ $($(python-sortedcontainers)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sortedcontainers)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-sortedcontainers)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sortedcontainers)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sortedcontainers)-prefix)/.pkgbuild
 	# cd $($(python-sortedcontainers)-srcdir) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-sortedcontainers)-builddeps) && \
-	# 	python3 setup.py test
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-sortedcontainers)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sortedcontainers)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sortedcontainers)-prefix)/.pkgcheck $($(python-sortedcontainers)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-sortedcontainers)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sortedcontainers)-builddeps) && \
 		PYTHONPATH=$($(python-sortedcontainers)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-sortedcontainers)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-sortedcontainers)-prefix)
 	@touch $@
 
 $($(python-sortedcontainers)-modulefile): $(modulefilesdir)/.markerfile $($(python-sortedcontainers)-prefix)/.pkginstall

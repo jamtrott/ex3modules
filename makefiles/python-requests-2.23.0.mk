@@ -56,14 +56,14 @@ $($(python-requests)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-requests)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-requests)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-requests)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-requests)-prefix)/.pkgbuild
 	# cd $($(python-requests)-srcdir) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-requests)-builddeps) && \
-	# 	python3 setup.py test
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-requests)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-requests)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-requests)-prefix)/.pkgcheck $($(python-requests)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-requests)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-requests)-builddeps) && \
 		PYTHONPATH=$($(python-requests)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-requests)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-requests)-prefix)
 	@touch $@
 
 $($(python-requests)-modulefile): $(modulefilesdir)/.markerfile $($(python-requests)-prefix)/.pkginstall

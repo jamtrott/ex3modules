@@ -68,7 +68,7 @@ $($(python-scipy)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-scipy)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-scipy)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-scipy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-scipy)-prefix)/.pkgbuild
@@ -84,7 +84,7 @@ $($(python-scipy)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-scipy)-builddeps) && \
 		PYTHONPATH=$($(python-scipy)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-scipy)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-scipy)-prefix)
 	@touch $@
 
 $($(python-scipy)-modulefile): $(modulefilesdir)/.markerfile $($(python-scipy)-prefix)/.pkginstall

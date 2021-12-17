@@ -56,14 +56,14 @@ $($(python-sphinxcontrib-serializinghtml)-prefix)/.pkgbuild: $(modulefilesdir)/.
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinxcontrib-serializinghtml)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-sphinxcontrib-serializinghtml)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-serializinghtml)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinxcontrib-serializinghtml)-prefix)/.pkgbuild
 	# cd $($(python-sphinxcontrib-serializinghtml)-srcdir) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-sphinxcontrib-serializinghtml)-builddeps) && \
-	# 	python3 setup.py test
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-sphinxcontrib-serializinghtml)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-serializinghtml)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinxcontrib-serializinghtml)-prefix)/.pkgcheck $($(python-sphinxcontrib-serializinghtml)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-sphinxcontrib-serializinghtml)-prefix)/.pkginstall: $(modulefilesdir)
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinxcontrib-serializinghtml)-builddeps) && \
 		PYTHONPATH=$($(python-sphinxcontrib-serializinghtml)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-sphinxcontrib-serializinghtml)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-sphinxcontrib-serializinghtml)-prefix)
 	@touch $@
 
 $($(python-sphinxcontrib-serializinghtml)-modulefile): $(modulefilesdir)/.markerfile $($(python-sphinxcontrib-serializinghtml)-prefix)/.pkginstall

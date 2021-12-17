@@ -56,7 +56,7 @@ $($(python-idna)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-idna)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-idna)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-idna)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-idna)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-idna)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-idna)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-idna)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-idna)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-idna)-prefix)/.pkgcheck $($(python-idna)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-idna)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-idna)-builddeps) && \
 		PYTHONPATH=$($(python-idna)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-idna)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-idna)-prefix)
 	@touch $@
 
 $($(python-idna)-modulefile): $(modulefilesdir)/.markerfile $($(python-idna)-prefix)/.pkginstall

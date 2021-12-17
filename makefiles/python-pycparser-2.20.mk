@@ -56,14 +56,14 @@ $($(python-pycparser)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pycparser)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pycparser)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pycparser)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pycparser)-prefix)/.pkgbuild
 	# cd $($(python-pycparser)-srcdir) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-pycparser)-builddeps) && \
-	# 	python3 setup.py test
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-pycparser)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pycparser)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pycparser)-prefix)/.pkgcheck $($(python-pycparser)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-pycparser)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pycparser)-builddeps) && \
 		PYTHONPATH=$($(python-pycparser)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-pycparser)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-pycparser)-prefix)
 	@touch $@
 
 $($(python-pycparser)-modulefile): $(modulefilesdir)/.markerfile $($(python-pycparser)-prefix)/.pkginstall

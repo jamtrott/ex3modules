@@ -56,7 +56,7 @@ $($(python-setuptools_scm)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(f
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-setuptools_scm)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-setuptools_scm)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-setuptools_scm)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-setuptools_scm)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-setuptools_scm)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(f
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-setuptools_scm)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-setuptools_scm)-prefix)/.pkginstall: $($(python-setuptools_scm)-prefix)/.pkgcheck $($(python-setuptools_scm)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-setuptools_scm)-prefix)/.pkginstall: $($(python-setuptools_scm)-prefi
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-setuptools_scm)-builddeps) && \
 		PYTHONPATH=$($(python-setuptools_scm)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-setuptools_scm)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-setuptools_scm)-prefix)
 	@touch $@
 
 $($(python-setuptools_scm)-modulefile): $(modulefilesdir)/.markerfile $($(python-setuptools_scm)-prefix)/.pkginstall

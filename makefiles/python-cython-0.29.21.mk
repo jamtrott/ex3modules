@@ -56,7 +56,7 @@ $($(python-cython)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-cython)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-cython)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-cython)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-cython)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-cython)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-cython)-builddeps) && \
 		PYTHONPATH=$($(python-cython)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-cython)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-cython)-prefix)
 	@touch $@
 
 $($(python-cython)-modulefile): $(modulefilesdir)/.markerfile $($(python-cython)-prefix)/.pkginstall

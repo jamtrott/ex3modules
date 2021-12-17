@@ -56,7 +56,7 @@ $($(python-future)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-future)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-future)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-future)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-future)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-future)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-future)-builddeps) && \
 		PYTHONPATH=$($(python-future)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-future)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-future)-prefix)
 	@touch $@
 
 $($(python-future)-modulefile): $(modulefilesdir)/.markerfile $($(python-future)-prefix)/.pkginstall

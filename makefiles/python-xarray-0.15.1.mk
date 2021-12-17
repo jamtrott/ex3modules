@@ -56,7 +56,7 @@ $($(python-xarray)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-xarray)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-xarray)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-xarray)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-xarray)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-xarray)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-xarray)-builddeps) && \
 		PYTHONPATH=$($(python-xarray)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-xarray)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-xarray)-prefix)
 	@touch $@
 
 $($(python-xarray)-modulefile): $(modulefilesdir)/.markerfile $($(python-xarray)-prefix)/.pkginstall

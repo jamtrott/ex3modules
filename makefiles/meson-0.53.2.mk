@@ -52,7 +52,7 @@ $($(meson)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(meson)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(meson)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(meson)-builddeps),$(modulefilesdir)/$$(dep)) $($(meson)-prefix)/.pkgbuild
@@ -60,7 +60,7 @@ $($(meson)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(meson)-builddeps) && \
-		python3 setup.py check
+		$(PYTHON) setup.py check
 	@touch $@
 
 $($(meson)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(meson)-builddeps),$(modulefilesdir)/$$(dep)) $($(meson)-prefix)/.pkgcheck
@@ -70,7 +70,7 @@ $($(meson)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(meson)-builddeps) && \
 		PYTHONPATH=$($(meson)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(meson)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(meson)-prefix)
 	@touch $@
 
 $($(meson)-modulefile): $(modulefilesdir)/.markerfile $($(meson)-prefix)/.pkginstall

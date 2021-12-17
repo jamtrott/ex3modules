@@ -56,14 +56,14 @@ $($(python-sympy-1.1)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sympy-1.1)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-sympy-1.1)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sympy-1.1)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sympy-1.1)-prefix)/.pkgbuild
 # 	cd $($(python-sympy-1.1)-srcdir) && \
 # 		$(MODULE) use $(modulefilesdir) && \
 # 		$(MODULE) load $($(python-sympy-1.1)-builddeps) && \
-# 		python3 setup.py test
+# 		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-sympy-1.1)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sympy-1.1)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sympy-1.1)-prefix)/.pkgcheck $($(python-sympy-1.1)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-sympy-1.1)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sympy-1.1)-builddeps) && \
 		PYTHONPATH=$($(python-sympy-1.1)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-sympy-1.1)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-sympy-1.1)-prefix)
 	@touch $@
 
 $($(python-sympy-1.1)-modulefile): $(modulefilesdir)/.markerfile $($(python-sympy-1.1)-prefix)/.pkginstall

@@ -56,7 +56,7 @@ $($(python-pkgconfig)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pkgconfig)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pkgconfig)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pkgconfig)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pkgconfig)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-pkgconfig)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pkgconfig)-builddeps) && \
 		PYTHONPATH=$($(python-pkgconfig)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-pkgconfig)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-pkgconfig)-prefix)
 	@touch $@
 
 $($(python-pkgconfig)-modulefile): $(modulefilesdir)/.markerfile $($(python-pkgconfig)-prefix)/.pkginstall

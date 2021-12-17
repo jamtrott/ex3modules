@@ -57,7 +57,7 @@ $($(python-setuptools)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-setuptools)-builddeps) && \
 		python3 bootstrap.py && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-setuptools)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-setuptools)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-setuptools)-prefix)/.pkgbuild
@@ -65,7 +65,7 @@ $($(python-setuptools)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(forea
 	# cd $($(python-setuptools)-srcdir) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-setuptools)-builddeps) && \
-	# 	python3 setup.py test
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-setuptools)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-setuptools)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-setuptools)-prefix)/.pkgcheck $($(python-setuptools)-site-packages)/.markerfile
@@ -74,7 +74,7 @@ $($(python-setuptools)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-setuptools)-builddeps) && \
 		PYTHONPATH=$($(python-setuptools)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-setuptools)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-setuptools)-prefix)
 	@touch $@
 
 $($(python-setuptools)-modulefile): $(modulefilesdir)/.markerfile $($(python-setuptools)-prefix)/.pkginstall

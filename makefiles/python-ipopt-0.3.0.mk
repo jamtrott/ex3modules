@@ -56,7 +56,7 @@ $($(python-ipopt)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-ipopt)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-ipopt)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-ipopt)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-ipopt)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-ipopt)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-ipopt)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-ipopt)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-ipopt)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-ipopt)-prefix)/.pkgcheck $($(python-ipopt)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-ipopt)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-ipopt)-builddeps) && \
 		PYTHONPATH=$($(python-ipopt)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-ipopt)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-ipopt)-prefix)
 	@touch $@
 
 $($(python-ipopt)-modulefile): $(modulefilesdir)/.markerfile $($(python-ipopt)-prefix)/.pkginstall

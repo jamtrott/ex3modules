@@ -56,7 +56,7 @@ $($(python-tox)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-tox)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-tox)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-tox)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-tox)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-tox)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-tox)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-tox)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-tox)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-tox)-prefix)/.pkgcheck $($(python-tox)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-tox)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-tox)-builddeps) && \
 		PYTHONPATH=$($(python-tox)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-tox)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-tox)-prefix)
 	@touch $@
 
 $($(python-tox)-modulefile): $(modulefilesdir)/.markerfile $($(python-tox)-prefix)/.pkginstall

@@ -56,7 +56,7 @@ $($(python-sphinx)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinx)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-sphinx)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinx)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinx)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-sphinx)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinx)-builddeps) && \
 		PYTHONPATH=$($(python-sphinx)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-sphinx)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-sphinx)-prefix)
 	@touch $@
 
 $($(python-sphinx)-modulefile): $(modulefilesdir)/.markerfile $($(python-sphinx)-prefix)/.pkginstall

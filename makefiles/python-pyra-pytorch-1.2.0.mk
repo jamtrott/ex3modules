@@ -56,7 +56,7 @@ $($(python-pyra-pytorch)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(for
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pyra-pytorch)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pyra-pytorch)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pyra-pytorch)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pyra-pytorch)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-pyra-pytorch)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(for
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pyra-pytorch)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-pyra-pytorch)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pyra-pytorch)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pyra-pytorch)-prefix)/.pkgcheck $($(python-pyra-pytorch)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-pyra-pytorch)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(f
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pyra-pytorch)-builddeps) && \
 		PYTHONPATH=$($(python-pyra-pytorch)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-pyra-pytorch)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-pyra-pytorch)-prefix)
 	@touch $@
 
 $($(python-pyra-pytorch)-modulefile): $(modulefilesdir)/.markerfile $($(python-pyra-pytorch)-prefix)/.pkginstall

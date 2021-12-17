@@ -56,7 +56,7 @@ $($(python-wcwidth)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-wcwidth)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-wcwidth)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-wcwidth)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-wcwidth)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-wcwidth)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-wcwidth)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-wcwidth)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-wcwidth)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-wcwidth)-prefix)/.pkgcheck $($(python-wcwidth)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-wcwidth)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-wcwidth)-builddeps) && \
 		PYTHONPATH=$($(python-wcwidth)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-wcwidth)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-wcwidth)-prefix)
 	@touch $@
 
 $($(python-wcwidth)-modulefile): $(modulefilesdir)/.markerfile $($(python-wcwidth)-prefix)/.pkginstall

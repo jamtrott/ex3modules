@@ -56,7 +56,7 @@ $($(python-kiwisolver)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-kiwisolver)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-kiwisolver)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-kiwisolver)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-kiwisolver)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-kiwisolver)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-kiwisolver)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-kiwisolver)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-kiwisolver)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-kiwisolver)-prefix)/.pkgcheck $($(python-kiwisolver)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-kiwisolver)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-kiwisolver)-builddeps) && \
 		PYTHONPATH=$($(python-kiwisolver)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-kiwisolver)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-kiwisolver)-prefix)
 	@touch $@
 
 $($(python-kiwisolver)-modulefile): $(modulefilesdir)/.markerfile $($(python-kiwisolver)-prefix)/.pkginstall

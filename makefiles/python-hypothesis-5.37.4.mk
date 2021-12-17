@@ -56,7 +56,7 @@ $($(python-hypothesis)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-hypothesis)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-hypothesis)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-hypothesis)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-hypothesis)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-hypothesis)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-hypothesis)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-hypothesis)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-hypothesis)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-hypothesis)-prefix)/.pkgcheck $($(python-hypothesis)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-hypothesis)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-hypothesis)-builddeps) && \
 		PYTHONPATH=$($(python-hypothesis)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-hypothesis)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-hypothesis)-prefix)
 	@touch $@
 
 $($(python-hypothesis)-modulefile): $(modulefilesdir)/.markerfile $($(python-hypothesis)-prefix)/.pkginstall

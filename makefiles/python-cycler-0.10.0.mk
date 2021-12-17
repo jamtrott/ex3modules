@@ -56,7 +56,7 @@ $($(python-cycler)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-cycler)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-cycler)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-cycler)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-cycler)-prefix)/.pkgbuild
@@ -73,7 +73,7 @@ $($(python-cycler)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-cycler)-builddeps) && \
 		PYTHONPATH=$($(python-cycler)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-cycler)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-cycler)-prefix)
 	@touch $@
 
 $($(python-cycler)-modulefile): $(modulefilesdir)/.markerfile $($(python-cycler)-prefix)/.pkginstall

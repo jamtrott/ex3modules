@@ -56,7 +56,7 @@ $($(python-six)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-six)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-six)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-six)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-six)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-six)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-six)-builddeps) && \
 		PYTHONPATH=$($(python-six)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-six)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-six)-prefix)
 	@touch $@
 
 $($(python-six)-modulefile): $(modulefilesdir)/.markerfile $($(python-six)-prefix)/.pkginstall

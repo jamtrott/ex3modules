@@ -56,7 +56,7 @@ $($(python-more-itertools)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(f
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-more-itertools)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-more-itertools)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-more-itertools)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-more-itertools)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-more-itertools)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(f
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-more-itertools)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-more-itertools)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-more-itertools)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-more-itertools)-prefix)/.pkgcheck $($(python-more-itertools)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-more-itertools)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-more-itertools)-builddeps) && \
 		PYTHONPATH=$($(python-more-itertools)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-more-itertools)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-more-itertools)-prefix)
 	@touch $@
 
 $($(python-more-itertools)-modulefile): $(modulefilesdir)/.markerfile $($(python-more-itertools)-prefix)/.pkginstall

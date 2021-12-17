@@ -56,7 +56,7 @@ $($(python-sympy-1.4)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sympy-1.4)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-sympy-1.4)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sympy-1.4)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sympy-1.4)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-sympy-1.4)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreac
 # 		$(MODULESINIT) && \
 # 		$(MODULE) use $(modulefilesdir) && \
 # 		$(MODULE) load $($(python-sympy-1.4)-builddeps) && \
-# 		python3 setup.py test
+# 		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-sympy-1.4)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sympy-1.4)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sympy-1.4)-prefix)/.pkgcheck $($(python-sympy-1.4)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-sympy-1.4)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sympy-1.4)-builddeps) && \
 		PYTHONPATH=$($(python-sympy-1.4)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-sympy-1.4)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-sympy-1.4)-prefix)
 	@touch $@
 
 $($(python-sympy-1.4)-modulefile): $(modulefilesdir)/.markerfile $($(python-sympy-1.4)-prefix)/.pkginstall

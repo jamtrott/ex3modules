@@ -56,7 +56,7 @@ $($(python-toml)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-toml)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-toml)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-toml)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-toml)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-toml)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-toml)-builddeps) && \
 		PYTHONPATH=$($(python-toml)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-toml)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-toml)-prefix)
 	@touch $@
 
 $($(python-toml)-modulefile): $(modulefilesdir)/.markerfile $($(python-toml)-prefix)/.pkginstall

@@ -56,7 +56,7 @@ $($(python-wheel)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-wheel)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-wheel)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-wheel)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-wheel)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-wheel)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-wheel)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-wheel)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-wheel)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-wheel)-prefix)/.pkgcheck $($(python-wheel)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-wheel)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-wheel)-builddeps) && \
 		PYTHONPATH=$($(python-wheel)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-wheel)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-wheel)-prefix)
 	@touch $@
 
 $($(python-wheel)-modulefile): $(modulefilesdir)/.markerfile $($(python-wheel)-prefix)/.pkginstall

@@ -56,7 +56,7 @@ $($(python-fenics-dijitso-2018)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-fenics-dijitso-2018)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-fenics-dijitso-2018)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-fenics-dijitso-2018)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-fenics-dijitso-2018)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-fenics-dijitso-2018)-prefix)/.pkginstall: $(modulefilesdir)/.markerfi
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-fenics-dijitso-2018)-builddeps) && \
 		PYTHONPATH=$($(python-fenics-dijitso-2018)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-fenics-dijitso-2018)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-fenics-dijitso-2018)-prefix)
 	@touch $@
 
 $($(python-fenics-dijitso-2018)-modulefile): $(modulefilesdir)/.markerfile $($(python-fenics-dijitso-2018)-prefix)/.pkginstall

@@ -56,7 +56,7 @@ $($(python-pydocstyle)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pydocstyle)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pydocstyle)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pydocstyle)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pydocstyle)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-pydocstyle)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pydocstyle)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-pydocstyle)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pydocstyle)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pydocstyle)-prefix)/.pkgcheck $($(python-pydocstyle)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-pydocstyle)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pydocstyle)-builddeps) && \
 		PYTHONPATH=$($(python-pydocstyle)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-pydocstyle)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-pydocstyle)-prefix)
 	@touch $@
 
 $($(python-pydocstyle)-modulefile): $(modulefilesdir)/.markerfile $($(python-pydocstyle)-prefix)/.pkginstall

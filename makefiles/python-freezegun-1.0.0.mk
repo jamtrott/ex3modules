@@ -56,7 +56,7 @@ $($(python-freezegun)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-freezegun)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-freezegun)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-freezegun)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-freezegun)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-freezegun)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-freezegun)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-freezegun)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-freezegun)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-freezegun)-prefix)/.pkgcheck $($(python-freezegun)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-freezegun)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-freezegun)-builddeps) && \
 		PYTHONPATH=$($(python-freezegun)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-freezegun)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-freezegun)-prefix)
 	@touch $@
 
 $($(python-freezegun)-modulefile): $(modulefilesdir)/.markerfile $($(python-freezegun)-prefix)/.pkginstall

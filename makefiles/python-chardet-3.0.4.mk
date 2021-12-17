@@ -56,14 +56,14 @@ $($(python-chardet)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-chardet)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-chardet)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-chardet)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-chardet)-prefix)/.pkgbuild
 	# cd $($(python-chardet)-srcdir) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-chardet)-builddeps) && \
-	# 	python3 setup.py test
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-chardet)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-chardet)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-chardet)-prefix)/.pkgcheck $($(python-chardet)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-chardet)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-chardet)-builddeps) && \
 		PYTHONPATH=$($(python-chardet)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-chardet)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-chardet)-prefix)
 	@touch $@
 
 $($(python-chardet)-modulefile): $(modulefilesdir)/.markerfile $($(python-chardet)-prefix)/.pkginstall

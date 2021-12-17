@@ -56,7 +56,7 @@ $($(python-iniconfig)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-iniconfig)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-iniconfig)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-iniconfig)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-iniconfig)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-iniconfig)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-iniconfig)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-iniconfig)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-iniconfig)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-iniconfig)-prefix)/.pkgcheck $($(python-iniconfig)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-iniconfig)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-iniconfig)-builddeps) && \
 		PYTHONPATH=$($(python-iniconfig)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-iniconfig)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-iniconfig)-prefix)
 	@touch $@
 
 $($(python-iniconfig)-modulefile): $(modulefilesdir)/.markerfile $($(python-iniconfig)-prefix)/.pkginstall

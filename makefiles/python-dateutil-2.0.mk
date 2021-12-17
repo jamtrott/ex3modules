@@ -56,14 +56,14 @@ $($(python-dateutil)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-dateutil)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-dateutil)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-dateutil)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-dateutil)-prefix)/.pkgbuild
 	# cd $($(python-dateutil)-srcdir) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-dateutil)-builddeps) && \
-	# 	python3 setup.py test
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-dateutil)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-dateutil)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-dateutil)-prefix)/.pkgcheck $($(python-dateutil)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-dateutil)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-dateutil)-builddeps) && \
 		PYTHONPATH=$($(python-dateutil)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-dateutil)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-dateutil)-prefix)
 	@touch $@
 
 $($(python-dateutil)-modulefile): $(modulefilesdir)/.markerfile $($(python-dateutil)-prefix)/.pkginstall

@@ -56,14 +56,14 @@ $($(python-sphinxcontrib-htmlhelp)-prefix)/.pkgbuild: $(modulefilesdir)/.markerf
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinxcontrib-htmlhelp)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-sphinxcontrib-htmlhelp)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-htmlhelp)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinxcontrib-htmlhelp)-prefix)/.pkgbuild
 	# cd $($(python-sphinxcontrib-htmlhelp)-srcdir) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-sphinxcontrib-htmlhelp)-builddeps) && \
-	# 	python3 setup.py test
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-sphinxcontrib-htmlhelp)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-htmlhelp)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinxcontrib-htmlhelp)-prefix)/.pkgcheck $($(python-sphinxcontrib-htmlhelp)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-sphinxcontrib-htmlhelp)-prefix)/.pkginstall: $(modulefilesdir)/.marke
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinxcontrib-htmlhelp)-builddeps) && \
 		PYTHONPATH=$($(python-sphinxcontrib-htmlhelp)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-sphinxcontrib-htmlhelp)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-sphinxcontrib-htmlhelp)-prefix)
 	@touch $@
 
 $($(python-sphinxcontrib-htmlhelp)-modulefile): $(modulefilesdir)/.markerfile $($(python-sphinxcontrib-htmlhelp)-prefix)/.pkginstall

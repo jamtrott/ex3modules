@@ -56,7 +56,7 @@ $($(python-flake8)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-flake8)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-flake8)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-flake8)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-flake8)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-flake8)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-flake8)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-flake8)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-flake8)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-flake8)-prefix)/.pkgcheck $($(python-flake8)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-flake8)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-flake8)-builddeps) && \
 		PYTHONPATH=$($(python-flake8)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-flake8)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-flake8)-prefix)
 	@touch $@
 
 $($(python-flake8)-modulefile): $(modulefilesdir)/.markerfile $($(python-flake8)-prefix)/.pkginstall

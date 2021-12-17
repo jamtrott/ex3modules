@@ -56,7 +56,7 @@ $($(python-pytest-xdist)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(for
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pytest-xdist)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pytest-xdist)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pytest-xdist)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pytest-xdist)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-pytest-xdist)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(for
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pytest-xdist)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-pytest-xdist)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pytest-xdist)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pytest-xdist)-prefix)/.pkgcheck $($(python-pytest-xdist)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-pytest-xdist)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(f
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pytest-xdist)-builddeps) && \
 		PYTHONPATH=$($(python-pytest-xdist)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-pytest-xdist)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-pytest-xdist)-prefix)
 	@touch $@
 
 $($(python-pytest-xdist)-modulefile): $(modulefilesdir)/.markerfile $($(python-pytest-xdist)-prefix)/.pkginstall

@@ -56,7 +56,7 @@ $($(python-ldrb)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-ldrb)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-ldrb)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-ldrb)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-ldrb)-prefix)/.pkgbuild
@@ -73,7 +73,7 @@ $($(python-ldrb)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-ldrb)-builddeps) && \
 		PYTHONPATH=$($(python-ldrb)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-ldrb)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-ldrb)-prefix)
 	@touch $@
 
 $($(python-ldrb)-modulefile): $(modulefilesdir)/.markerfile $($(python-ldrb)-prefix)/.pkginstall

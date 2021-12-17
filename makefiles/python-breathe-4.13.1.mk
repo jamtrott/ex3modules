@@ -55,7 +55,7 @@ $($(python-breathe)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-breathe)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-breathe)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-breathe)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-breathe)-prefix)/.pkgbuild
@@ -67,7 +67,7 @@ $($(python-breathe)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-breathe)-builddeps) && \
 		PYTHONPATH=$($(python-breathe)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-breathe)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-breathe)-prefix)
 	@touch $@
 
 $($(python-breathe)-modulefile): $(modulefilesdir)/.markerfile $($(python-breathe)-prefix)/.pkginstall

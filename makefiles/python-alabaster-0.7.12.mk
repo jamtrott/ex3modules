@@ -56,7 +56,7 @@ $($(python-alabaster)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-alabaster)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-alabaster)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-alabaster)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-alabaster)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-alabaster)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-alabaster)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-alabaster)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-alabaster)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-alabaster)-prefix)/.pkgcheck $($(python-alabaster)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-alabaster)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-alabaster)-builddeps) && \
 		PYTHONPATH=$($(python-alabaster)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-alabaster)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-alabaster)-prefix)
 	@touch $@
 
 $($(python-alabaster)-modulefile): $(modulefilesdir)/.markerfile $($(python-alabaster)-prefix)/.pkginstall

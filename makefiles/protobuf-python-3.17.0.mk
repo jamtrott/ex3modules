@@ -56,7 +56,7 @@ $($(protobuf-python)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(protobuf-python)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(protobuf-python)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(protobuf-python)-builddeps),$(modulefilesdir)/$$(dep)) $($(protobuf-python)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(protobuf-python)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(protobuf-python)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(protobuf-python)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(protobuf-python)-builddeps),$(modulefilesdir)/$$(dep)) $($(protobuf-python)-prefix)/.pkgcheck $($(protobuf-python)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(protobuf-python)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(protobuf-python)-builddeps) && \
 		PYTHONPATH=$($(protobuf-python)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(protobuf-python)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(protobuf-python)-prefix)
 	@touch $@
 
 $($(protobuf-python)-modulefile): $(modulefilesdir)/.markerfile $($(protobuf-python)-prefix)/.pkginstall

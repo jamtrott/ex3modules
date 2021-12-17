@@ -56,7 +56,7 @@ $($(python-mako)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-mako)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-mako)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-mako)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-mako)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-mako)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-mako)-builddeps) && \
 		PYTHONPATH=$($(python-mako)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-mako)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-mako)-prefix)
 	@touch $@
 
 $($(python-mako)-modulefile): $(modulefilesdir)/.markerfile $($(python-mako)-prefix)/.pkginstall

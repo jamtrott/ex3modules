@@ -56,7 +56,7 @@ $($(python-pillow)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pillow)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pillow)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pillow)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pillow)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-pillow)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pillow)-builddeps) && \
 		PYTHONPATH=$($(python-pillow)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-pillow)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-pillow)-prefix)
 	@touch $@
 
 $($(python-pillow)-modulefile): $(modulefilesdir)/.markerfile $($(python-pillow)-prefix)/.pkginstall

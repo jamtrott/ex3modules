@@ -56,7 +56,7 @@ $($(python-pyadjoint)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pyadjoint)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pyadjoint)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pyadjoint)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pyadjoint)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-pyadjoint)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreac
 #	 	$(MODULESINIT) && \
 #	 	$(MODULE) use $(modulefilesdir) && \
 #	 	$(MODULE) load $($(python-pyadjoint)-builddeps) && \
-#	 	python3 setup.py test
+#	 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-pyadjoint)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pyadjoint)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pyadjoint)-prefix)/.pkgcheck $($(python-pyadjoint)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-pyadjoint)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pyadjoint)-builddeps) && \
 		PYTHONPATH=$($(python-pyadjoint)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-pyadjoint)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-pyadjoint)-prefix)
 	@touch $@
 
 $($(python-pyadjoint)-modulefile): $(modulefilesdir)/.markerfile $($(python-pyadjoint)-prefix)/.pkginstall

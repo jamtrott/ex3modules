@@ -56,7 +56,7 @@ $($(python-atomicwrites)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(for
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-atomicwrites)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-atomicwrites)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-atomicwrites)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-atomicwrites)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-atomicwrites)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(for
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-atomicwrites)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-atomicwrites)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-atomicwrites)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-atomicwrites)-prefix)/.pkgcheck $($(python-atomicwrites)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-atomicwrites)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(f
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-atomicwrites)-builddeps) && \
 		PYTHONPATH=$($(python-atomicwrites)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-atomicwrites)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-atomicwrites)-prefix)
 	@touch $@
 
 $($(python-atomicwrites)-modulefile): $(modulefilesdir)/.markerfile $($(python-atomicwrites)-prefix)/.pkginstall

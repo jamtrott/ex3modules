@@ -58,7 +58,7 @@ $($(python-fenics-dolfin-2019)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile 
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-fenics-dolfin-2019)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-fenics-dolfin-2019)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-fenics-dolfin-2019)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-fenics-dolfin-2019)-prefix)/.pkgbuild $($(python-fenics-dolfin-2019)-builddir)/.markerfile
@@ -70,7 +70,7 @@ $($(python-fenics-dolfin-2019)-prefix)/.pkginstall: $(modulefilesdir)/.markerfil
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-fenics-dolfin-2019)-builddeps) && \
 		PYTHONPATH=$($(python-fenics-dolfin-2019)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-fenics-dolfin-2019)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-fenics-dolfin-2019)-prefix)
 	@touch $@
 
 $($(python-fenics-dolfin-2019)-modulefile): $(modulefilesdir)/.markerfile $($(python-fenics-dolfin-2019)-prefix)/.pkginstall

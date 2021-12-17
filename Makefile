@@ -172,15 +172,16 @@ endif
 #
 ifeq ($(WITH_PYTHON),python-3.7.4)
 python = python-3.7.4
+PYTHON = $(pkgdir)/$(python)/bin/python3
 PYTHON_VERSION = 3.7.4
 PYTHON_VERSION_SHORT = 3.7
 $(info Using internal python ($(python)))
 else ifneq ($(WITH_PYTHON),)
 PYTHON_ROOT = $(WITH_PYTHON)
-PYTHON_EXECUTABLE = $(PYTHON_ROOT)/bin/python3
-PYTHON_VERSION = $(shell $(PYTHON_EXECUTABLE) --version | awk '{ print $$2 }')
-PYTHON_VERSION_SHORT = $(shell $(PYTHON_EXECUTABLE) --version | awk '{ print $$2 }' | cut -d. -f 1-2)
-$(info Using $(PYTHON_EXECUTABLE) ($(shell $(PYTHON_EXECUTABLE) --version | head -n 1)))
+PYTHON = $(PYTHON_ROOT)/bin/python3
+PYTHON_VERSION = $(shell $(PYTHON) --version | awk '{ print $$2 }')
+PYTHON_VERSION_SHORT = $(shell $(PYTHON) --version | awk '{ print $$2 }' | cut -d. -f 1-2)
+$(info Using $(PYTHON) ($(shell $(PYTHON) --version | head -n 1)))
 export PATH := $(PYTHON_ROOT)/bin$(if $(PATH),:$(PATH),)
 export C_INCLUDE_PATH := $(PYTHON_ROOT)/include/python$(PYTHON_VERSION_SHORT)$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
 export CPLUS_INCLUDE_PATH := $(PYTHON_ROOT)/include/python$(PYTHON_VERSION_SHORT)$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)

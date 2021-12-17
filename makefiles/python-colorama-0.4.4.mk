@@ -56,7 +56,7 @@ $($(python-colorama)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-colorama)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-colorama)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-colorama)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-colorama)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-colorama)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-colorama)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-colorama)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-colorama)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-colorama)-prefix)/.pkgcheck $($(python-colorama)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-colorama)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-colorama)-builddeps) && \
 		PYTHONPATH=$($(python-colorama)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-colorama)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-colorama)-prefix)
 	@touch $@
 
 $($(python-colorama)-modulefile): $(modulefilesdir)/.markerfile $($(python-colorama)-prefix)/.pkginstall

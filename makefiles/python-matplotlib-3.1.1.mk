@@ -56,7 +56,7 @@ $($(python-matplotlib)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-matplotlib)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-matplotlib)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-matplotlib)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-matplotlib)-prefix)/.pkgbuild
@@ -72,7 +72,7 @@ $($(python-matplotlib)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-matplotlib)-builddeps) && \
 		PYTHONPATH=$($(python-matplotlib)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-matplotlib)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-matplotlib)-prefix)
 	@touch $@
 
 $($(python-matplotlib)-modulefile): $(modulefilesdir)/.markerfile $($(python-matplotlib)-prefix)/.pkgcheck $($(python-matplotlib)-prefix)/.pkginstall

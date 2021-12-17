@@ -56,7 +56,7 @@ $($(python-ipython)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-ipython)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-ipython)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-ipython)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-ipython)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-ipython)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-ipython)-builddeps) && \
 		PYTHONPATH=$($(python-ipython)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-ipython)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-ipython)-prefix)
 	@touch $@
 
 $($(python-ipython)-modulefile): $(modulefilesdir)/.markerfile $($(python-ipython)-prefix)/.pkginstall

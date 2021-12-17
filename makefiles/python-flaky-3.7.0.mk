@@ -56,7 +56,7 @@ $($(python-flaky)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-flaky)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-flaky)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-flaky)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-flaky)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-flaky)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-flaky)-builddeps) && \
 		PYTHONPATH=$($(python-flaky)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-flaky)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-flaky)-prefix)
 	@touch $@
 
 $($(python-flaky)-modulefile): $(modulefilesdir)/.markerfile $($(python-flaky)-prefix)/.pkginstall

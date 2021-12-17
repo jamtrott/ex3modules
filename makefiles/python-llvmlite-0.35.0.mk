@@ -57,7 +57,7 @@ $($(python-llvmlite)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-llvmlite)-builddeps) && \
 		LLVM_CONFIG=$${LLVM_ROOT}/bin/llvm-config \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-llvmlite)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-llvmlite)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-llvmlite)-prefix)/.pkgbuild
@@ -65,7 +65,7 @@ $($(python-llvmlite)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-llvmlite)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-llvmlite)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-llvmlite)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-llvmlite)-prefix)/.pkgcheck $($(python-llvmlite)-site-packages)/.markerfile
@@ -74,7 +74,7 @@ $($(python-llvmlite)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-llvmlite)-builddeps) && \
 		PYTHONPATH=$($(python-llvmlite)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-llvmlite)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-llvmlite)-prefix)
 	@touch $@
 
 $($(python-llvmlite)-modulefile): $(modulefilesdir)/.markerfile $($(python-llvmlite)-prefix)/.pkginstall

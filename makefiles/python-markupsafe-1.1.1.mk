@@ -56,7 +56,7 @@ $($(python-markupsafe)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-markupsafe)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-markupsafe)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-markupsafe)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-markupsafe)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-markupsafe)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-markupsafe)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-markupsafe)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-markupsafe)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-markupsafe)-prefix)/.pkgcheck $($(python-markupsafe)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-markupsafe)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-markupsafe)-builddeps) && \
 		PYTHONPATH=$($(python-markupsafe)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-markupsafe)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-markupsafe)-prefix)
 	@touch $@
 
 $($(python-markupsafe)-modulefile): $(modulefilesdir)/.markerfile $($(python-markupsafe)-prefix)/.pkginstall

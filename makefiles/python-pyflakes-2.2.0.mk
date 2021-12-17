@@ -56,7 +56,7 @@ $($(python-pyflakes)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pyflakes)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pyflakes)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pyflakes)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pyflakes)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-pyflakes)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pyflakes)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-pyflakes)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pyflakes)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pyflakes)-prefix)/.pkgcheck $($(python-pyflakes)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-pyflakes)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pyflakes)-builddeps) && \
 		PYTHONPATH=$($(python-pyflakes)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-pyflakes)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-pyflakes)-prefix)
 	@touch $@
 
 $($(python-pyflakes)-modulefile): $(modulefilesdir)/.markerfile $($(python-pyflakes)-prefix)/.pkginstall

@@ -56,7 +56,7 @@ $($(python-mpmath)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-mpmath)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-mpmath)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-mpmath)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-mpmath)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-mpmath)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-mpmath)-builddeps) && \
 		PYTHONPATH=$($(python-mpmath)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-mpmath)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-mpmath)-prefix)
 	@touch $@
 
 $($(python-mpmath)-modulefile): $(modulefilesdir)/.markerfile $($(python-mpmath)-prefix)/.pkginstall

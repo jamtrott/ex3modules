@@ -56,7 +56,7 @@ $($(python-coverage)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-coverage)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-coverage)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-coverage)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-coverage)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-coverage)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-coverage)-builddeps) && \
 		PYTHONPATH=$($(python-coverage)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-coverage)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-coverage)-prefix)
 	@touch $@
 
 $($(python-coverage)-modulefile): $(modulefilesdir)/.markerfile $($(python-coverage)-prefix)/.pkginstall

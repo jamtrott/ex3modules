@@ -56,7 +56,7 @@ $($(python-pathlib2)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pathlib2)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pathlib2)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pathlib2)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pathlib2)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-pathlib2)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pathlib2)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-pathlib2)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pathlib2)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pathlib2)-prefix)/.pkgcheck $($(python-pathlib2)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-pathlib2)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pathlib2)-builddeps) && \
 		PYTHONPATH=$($(python-pathlib2)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-pathlib2)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-pathlib2)-prefix)
 	@touch $@
 
 $($(python-pathlib2)-modulefile): $(modulefilesdir)/.markerfile $($(python-pathlib2)-prefix)/.pkginstall

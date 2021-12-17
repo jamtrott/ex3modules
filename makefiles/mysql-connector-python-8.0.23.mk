@@ -57,7 +57,7 @@ $($(mysql-connector-python)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(mysql-connector-python)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(mysql-connector-python)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mysql-connector-python)-builddeps),$(modulefilesdir)/$$(dep)) $($(mysql-connector-python)-builddir)/.markerfile $($(mysql-connector-python)-prefix)/.pkgbuild
@@ -69,7 +69,7 @@ $($(mysql-connector-python)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(mysql-connector-python)-builddeps) && \
 		PYTHONPATH=$($(mysql-connector-python)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(mysql-connector-python)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(mysql-connector-python)-prefix)
 	@touch $@
 
 $($(mysql-connector-python)-modulefile): $(modulefilesdir)/.markerfile $($(mysql-connector-python)-prefix)/.pkginstall

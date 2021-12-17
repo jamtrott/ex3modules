@@ -56,14 +56,14 @@ $($(python-zipp)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-zipp)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-zipp)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-zipp)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-zipp)-prefix)/.pkgbuild
 # 	cd $($(python-zipp)-srcdir) && \
 # 		$(MODULE) use $(modulefilesdir) && \
 # 		$(MODULE) load $($(python-zipp)-builddeps) && \
-# 		python3 setup.py test
+# 		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-zipp)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-zipp)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-zipp)-prefix)/.pkgcheck $($(python-zipp)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-zipp)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-zipp)-builddeps) && \
 		PYTHONPATH=$($(python-zipp)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-zipp)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-zipp)-prefix)
 	@touch $@
 
 $($(python-zipp)-modulefile): $(modulefilesdir)/.markerfile $($(python-zipp)-prefix)/.pkginstall

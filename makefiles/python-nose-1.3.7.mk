@@ -56,14 +56,14 @@ $($(python-nose)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-nose)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-nose)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-nose)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-nose)-prefix)/.pkgbuild
 	# cd $($(python-nose)-srcdir) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-nose)-builddeps) && \
-	# 	python3 setup.py test
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-nose)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-nose)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-nose)-prefix)/.pkgcheck $($(python-nose)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-nose)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-nose)-builddeps) && \
 		PYTHONPATH=$($(python-nose)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-nose)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-nose)-prefix)
 	@touch $@
 
 $($(python-nose)-modulefile): $(modulefilesdir)/.markerfile $($(python-nose)-prefix)/.pkginstall

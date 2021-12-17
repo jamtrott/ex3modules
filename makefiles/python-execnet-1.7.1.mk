@@ -56,14 +56,14 @@ $($(python-execnet)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-execnet)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-execnet)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-execnet)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-execnet)-prefix)/.pkgbuild
 #	 cd $($(python-execnet)-srcdir) && \
 #	 	$(MODULE) use $(modulefilesdir) && \
 #	 	$(MODULE) load $($(python-execnet)-builddeps) && \
-#	 	python3 setup.py test
+#	 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-execnet)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-execnet)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-execnet)-prefix)/.pkgcheck $($(python-execnet)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-execnet)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-execnet)-builddeps) && \
 		PYTHONPATH=$($(python-execnet)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-execnet)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-execnet)-prefix)
 	@touch $@
 
 $($(python-execnet)-modulefile): $(modulefilesdir)/.markerfile $($(python-execnet)-prefix)/.pkginstall

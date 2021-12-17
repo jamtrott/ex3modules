@@ -56,7 +56,7 @@ $($(python-snowballstemmer)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-snowballstemmer)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-snowballstemmer)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-snowballstemmer)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-snowballstemmer)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-snowballstemmer)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-snowballstemmer)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-snowballstemmer)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-snowballstemmer)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-snowballstemmer)-prefix)/.pkgcheck $($(python-snowballstemmer)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-snowballstemmer)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-snowballstemmer)-builddeps) && \
 		PYTHONPATH=$($(python-snowballstemmer)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-snowballstemmer)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-snowballstemmer)-prefix)
 	@touch $@
 
 $($(python-snowballstemmer)-modulefile): $(modulefilesdir)/.markerfile $($(python-snowballstemmer)-prefix)/.pkginstall

@@ -56,14 +56,14 @@ $($(python-sphinxcontrib-jsmath)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfil
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinxcontrib-jsmath)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-sphinxcontrib-jsmath)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-jsmath)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinxcontrib-jsmath)-prefix)/.pkgbuild
 	# cd $($(python-sphinxcontrib-jsmath)-srcdir) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-sphinxcontrib-jsmath)-builddeps) && \
-	# 	python3 setup.py test
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-sphinxcontrib-jsmath)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-jsmath)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinxcontrib-jsmath)-prefix)/.pkgcheck $($(python-sphinxcontrib-jsmath)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-sphinxcontrib-jsmath)-prefix)/.pkginstall: $(modulefilesdir)/.markerf
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinxcontrib-jsmath)-builddeps) && \
 		PYTHONPATH=$($(python-sphinxcontrib-jsmath)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-sphinxcontrib-jsmath)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-sphinxcontrib-jsmath)-prefix)
 	@touch $@
 
 $($(python-sphinxcontrib-jsmath)-modulefile): $(modulefilesdir)/.markerfile $($(python-sphinxcontrib-jsmath)-prefix)/.pkginstall

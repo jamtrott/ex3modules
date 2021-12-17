@@ -56,14 +56,14 @@ $($(python-sphinxcontrib-applehelp)-prefix)/.pkgbuild: $(modulefilesdir)/.marker
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinxcontrib-applehelp)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-sphinxcontrib-applehelp)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-applehelp)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinxcontrib-applehelp)-prefix)/.pkgbuild
 	# cd $($(python-sphinxcontrib-applehelp)-srcdir) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-sphinxcontrib-applehelp)-builddeps) && \
-	# 	python3 setup.py test
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-sphinxcontrib-applehelp)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-applehelp)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinxcontrib-applehelp)-prefix)/.pkgcheck $($(python-sphinxcontrib-applehelp)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-sphinxcontrib-applehelp)-prefix)/.pkginstall: $(modulefilesdir)/.mark
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinxcontrib-applehelp)-builddeps) && \
 		PYTHONPATH=$($(python-sphinxcontrib-applehelp)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-sphinxcontrib-applehelp)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-sphinxcontrib-applehelp)-prefix)
 	@touch $@
 
 $($(python-sphinxcontrib-applehelp)-modulefile): $(modulefilesdir)/.markerfile $($(python-sphinxcontrib-applehelp)-prefix)/.pkginstall

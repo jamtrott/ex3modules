@@ -56,14 +56,14 @@ $($(python-distlib)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-distlib)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-distlib)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-distlib)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-distlib)-prefix)/.pkgbuild
 	# cd $($(python-distlib)-srcdir)/distlib-$(python-distlib-version) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-distlib)-builddeps) && \
-	# 	python3 setup.py test
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-distlib)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-distlib)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-distlib)-prefix)/.pkgcheck $($(python-distlib)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-distlib)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-distlib)-builddeps) && \
 		PYTHONPATH=$($(python-distlib)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-distlib)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-distlib)-prefix)
 	@touch $@
 
 $($(python-distlib)-modulefile): $(modulefilesdir)/.markerfile $($(python-distlib)-prefix)/.pkginstall

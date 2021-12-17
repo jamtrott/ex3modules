@@ -56,7 +56,7 @@ $($(python-imagesize)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-imagesize)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-imagesize)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-imagesize)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-imagesize)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-imagesize)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-imagesize)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-imagesize)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-imagesize)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-imagesize)-prefix)/.pkgcheck $($(python-imagesize)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-imagesize)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-imagesize)-builddeps) && \
 		PYTHONPATH=$($(python-imagesize)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-imagesize)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-imagesize)-prefix)
 	@touch $@
 
 $($(python-imagesize)-modulefile): $(modulefilesdir)/.markerfile $($(python-imagesize)-prefix)/.pkginstall

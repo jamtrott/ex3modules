@@ -56,7 +56,7 @@ $($(python-numpy-quaternion)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-numpy-quaternion)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-numpy-quaternion)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-numpy-quaternion)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-numpy-quaternion)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-numpy-quaternion)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-numpy-quaternion)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-numpy-quaternion)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-numpy-quaternion)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-numpy-quaternion)-prefix)/.pkgcheck $($(python-numpy-quaternion)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-numpy-quaternion)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-numpy-quaternion)-builddeps) && \
 		PYTHONPATH=$($(python-numpy-quaternion)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-numpy-quaternion)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-numpy-quaternion)-prefix)
 	@touch $@
 
 $($(python-numpy-quaternion)-modulefile): $(modulefilesdir)/.markerfile $($(python-numpy-quaternion)-prefix)/.pkginstall

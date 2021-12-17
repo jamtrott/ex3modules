@@ -56,7 +56,7 @@ $($(python-sphinx_rtd_theme)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinx_rtd_theme)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-sphinx_rtd_theme)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinx_rtd_theme)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinx_rtd_theme)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-sphinx_rtd_theme)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinx_rtd_theme)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-sphinx_rtd_theme)-prefix)/.pkginstall: $($(python-sphinx_rtd_theme)-prefix)/.pkgcheck $($(python-sphinx_rtd_theme)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-sphinx_rtd_theme)-prefix)/.pkginstall: $($(python-sphinx_rtd_theme)-p
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinx_rtd_theme)-builddeps) && \
 		PYTHONPATH=$($(python-sphinx_rtd_theme)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-sphinx_rtd_theme)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-sphinx_rtd_theme)-prefix)
 	@touch $@
 
 $($(python-sphinx_rtd_theme)-modulefile): $(modulefilesdir)/.markerfile $($(python-sphinx_rtd_theme)-prefix)/.pkginstall

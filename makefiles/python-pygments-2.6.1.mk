@@ -56,7 +56,7 @@ $($(python-pygments)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pygments)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pygments)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pygments)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pygments)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-pygments)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pygments)-builddeps) && \
 		PYTHONPATH=$($(python-pygments)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-pygments)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-pygments)-prefix)
 	@touch $@
 
 $($(python-pygments)-modulefile): $(modulefilesdir)/.markerfile $($(python-pygments)-prefix)/.pkginstall

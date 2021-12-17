@@ -56,7 +56,7 @@ $($(python-cffi)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-cffi)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-cffi)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-cffi)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-cffi)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-cffi)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-cffi)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-cffi)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-cffi)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-cffi)-prefix)/.pkgcheck $($(python-cffi)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-cffi)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-cffi)-builddeps) && \
 		PYTHONPATH=$($(python-cffi)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-cffi)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-cffi)-prefix)
 	@touch $@
 
 $($(python-cffi)-modulefile): $(modulefilesdir)/.markerfile $($(python-cffi)-prefix)/.pkginstall

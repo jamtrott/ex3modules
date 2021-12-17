@@ -56,7 +56,7 @@ $($(python-pyparsing)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pyparsing)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pyparsing)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pyparsing)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pyparsing)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-pyparsing)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pyparsing)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-pyparsing)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pyparsing)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pyparsing)-prefix)/.pkgcheck $($(python-pyparsing)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-pyparsing)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pyparsing)-builddeps) && \
 		PYTHONPATH=$($(python-pyparsing)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-pyparsing)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-pyparsing)-prefix)
 	@touch $@
 
 $($(python-pyparsing)-modulefile): $(modulefilesdir)/.markerfile $($(python-pyparsing)-prefix)/.pkginstall

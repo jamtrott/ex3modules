@@ -56,7 +56,7 @@ $($(python-pygraphviz)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pygraphviz)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pygraphviz)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pygraphviz)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pygraphviz)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-pygraphviz)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(forea
 	# cd $($(python-pygraphviz)-srcdir) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-pygraphviz)-builddeps) && \
-	# 	python3 setup.py test
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-pygraphviz)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pygraphviz)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pygraphviz)-prefix)/.pkgcheck $($(python-pygraphviz)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-pygraphviz)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pygraphviz)-builddeps) && \
 		PYTHONPATH=$($(python-pygraphviz)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-pygraphviz)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-pygraphviz)-prefix)
 	@touch $@
 
 $($(python-pygraphviz)-modulefile): $(modulefilesdir)/.markerfile $($(python-pygraphviz)-prefix)/.pkginstall

@@ -56,7 +56,7 @@ $($(python-docutils)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-docutils)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-docutils)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-docutils)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-docutils)-prefix)/.pkgbuild
@@ -73,7 +73,7 @@ $($(python-docutils)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-docutils)-builddeps) && \
 		PYTHONPATH=$($(python-docutils)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-docutils)-prefix) && \
+		$(PYTHON) setup.py install --prefix=$($(python-docutils)-prefix) && \
 	ln -sf $($(python-docutils)-prefix)/bin/prepstyles.py $($(python-docutils)-prefix)/bin/prepstyles
 	ln -sf $($(python-docutils)-prefix)/bin/rst2html.py $($(python-docutils)-prefix)/bin/rst2html
 	ln -sf $($(python-docutils)-prefix)/bin/rst2html4.py $($(python-docutils)-prefix)/bin/rst2html4

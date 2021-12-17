@@ -56,7 +56,7 @@ $($(python-mpi4py)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-mpi4py)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-mpi4py)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-mpi4py)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-mpi4py)-prefix)/.pkgbuild
@@ -65,7 +65,7 @@ $($(python-mpi4py)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach d
 # 		$(MODULESINIT) && \
 # 		$(MODULE) use $(modulefilesdir) && \
 # 		$(MODULE) load $($(python-mpi4py)-builddeps) && \
-# 		python3 setup.py test
+# 		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-mpi4py)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-mpi4py)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-mpi4py)-prefix)/.pkgcheck $($(python-mpi4py)-site-packages)/.markerfile
@@ -74,7 +74,7 @@ $($(python-mpi4py)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-mpi4py)-builddeps) && \
 		PYTHONPATH=$($(python-mpi4py)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-mpi4py)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-mpi4py)-prefix)
 	@touch $@
 
 $($(python-mpi4py)-modulefile): $(modulefilesdir)/.markerfile $($(python-mpi4py)-prefix)/.pkginstall

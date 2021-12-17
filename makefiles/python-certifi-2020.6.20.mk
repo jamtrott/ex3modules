@@ -56,7 +56,7 @@ $($(python-certifi)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-certifi)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-certifi)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-certifi)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-certifi)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-certifi)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-certifi)-builddeps) && \
 		PYTHONPATH=$($(python-certifi)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-certifi)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-certifi)-prefix)
 	@touch $@
 
 $($(python-certifi)-modulefile): $(modulefilesdir)/.markerfile $($(python-certifi)-prefix)/.pkginstall

@@ -56,7 +56,7 @@ $($(python-mccabe)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-mccabe)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-mccabe)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-mccabe)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-mccabe)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-mccabe)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-mccabe)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-mccabe)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-mccabe)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-mccabe)-prefix)/.pkgcheck $($(python-mccabe)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-mccabe)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-mccabe)-builddeps) && \
 		PYTHONPATH=$($(python-mccabe)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-mccabe)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-mccabe)-prefix)
 	@touch $@
 
 $($(python-mccabe)-modulefile): $(modulefilesdir)/.markerfile $($(python-mccabe)-prefix)/.pkginstall

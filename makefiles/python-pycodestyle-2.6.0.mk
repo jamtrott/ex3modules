@@ -56,7 +56,7 @@ $($(python-pycodestyle)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pycodestyle)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pycodestyle)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pycodestyle)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pycodestyle)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-pycodestyle)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fo
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pycodestyle)-builddeps) && \
 		PYTHONPATH=$($(python-pycodestyle)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-pycodestyle)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-pycodestyle)-prefix)
 	@touch $@
 
 $($(python-pycodestyle)-modulefile): $(modulefilesdir)/.markerfile $($(python-pycodestyle)-prefix)/.pkginstall

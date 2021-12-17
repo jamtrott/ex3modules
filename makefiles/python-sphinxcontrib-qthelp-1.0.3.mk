@@ -56,14 +56,14 @@ $($(python-sphinxcontrib-qthelp)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfil
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinxcontrib-qthelp)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-sphinxcontrib-qthelp)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-qthelp)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinxcontrib-qthelp)-prefix)/.pkgbuild
 	# cd $($(python-sphinxcontrib-qthelp)-srcdir) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-sphinxcontrib-qthelp)-builddeps) && \
-	# 	python3 setup.py test
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-sphinxcontrib-qthelp)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sphinxcontrib-qthelp)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sphinxcontrib-qthelp)-prefix)/.pkgcheck $($(python-sphinxcontrib-qthelp)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-sphinxcontrib-qthelp)-prefix)/.pkginstall: $(modulefilesdir)/.markerf
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinxcontrib-qthelp)-builddeps) && \
 		PYTHONPATH=$($(python-sphinxcontrib-qthelp)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-sphinxcontrib-qthelp)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-sphinxcontrib-qthelp)-prefix)
 	@touch $@
 
 $($(python-sphinxcontrib-qthelp)-modulefile): $(modulefilesdir)/.markerfile $($(python-sphinxcontrib-qthelp)-prefix)/.pkginstall

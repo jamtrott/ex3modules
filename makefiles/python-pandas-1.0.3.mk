@@ -56,14 +56,14 @@ $($(python-pandas)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pandas)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pandas)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pandas)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pandas)-prefix)/.pkgbuild
 	# cd $($(python-pandas)-srcdir) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-pandas)-builddeps) && \
-	# 	python3 setup.py test
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-pandas)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pandas)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pandas)-prefix)/.pkgcheck $($(python-pandas)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-pandas)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pandas)-builddeps) && \
 		PYTHONPATH=$($(python-pandas)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-pandas)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-pandas)-prefix)
 	@touch $@
 
 $($(python-pandas)-modulefile): $(modulefilesdir)/.markerfile $($(python-pandas)-prefix)/.pkginstall

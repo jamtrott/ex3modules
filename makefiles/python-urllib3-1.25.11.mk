@@ -56,14 +56,14 @@ $($(python-urllib3)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-urllib3)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-urllib3)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-urllib3)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-urllib3)-prefix)/.pkgbuild
 	# cd $($(python-urllib3)-srcdir) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-urllib3)-builddeps) && \
-	# 	python3 setup.py test
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-urllib3)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-urllib3)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-urllib3)-prefix)/.pkgcheck $($(python-urllib3)-site-packages)/.markerfile
@@ -72,7 +72,7 @@ $($(python-urllib3)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-urllib3)-builddeps) && \
 		PYTHONPATH=$($(python-urllib3)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-urllib3)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-urllib3)-prefix)
 	@touch $@
 
 $($(python-urllib3)-modulefile): $(modulefilesdir)/.markerfile $($(python-urllib3)-prefix)/.pkginstall

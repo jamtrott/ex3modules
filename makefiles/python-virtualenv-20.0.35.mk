@@ -56,7 +56,7 @@ $($(python-virtualenv)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-virtualenv)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-virtualenv)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-virtualenv)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-virtualenv)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-virtualenv)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-virtualenv)-builddeps) && \
-		python3 setup.py test
+		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-virtualenv)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-virtualenv)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-virtualenv)-prefix)/.pkgcheck $($(python-virtualenv)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-virtualenv)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-virtualenv)-builddeps) && \
 		PYTHONPATH=$($(python-virtualenv)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-virtualenv)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-virtualenv)-prefix)
 	@touch $@
 
 $($(python-virtualenv)-modulefile): $(modulefilesdir)/.markerfile $($(python-virtualenv)-prefix)/.pkginstall

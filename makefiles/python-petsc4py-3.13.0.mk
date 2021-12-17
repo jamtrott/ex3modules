@@ -56,7 +56,7 @@ $($(python-petsc4py)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-petsc4py)-builddeps) && \
-		python3 setup.py build
+		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-petsc4py)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-petsc4py)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-petsc4py)-prefix)/.pkgbuild
@@ -64,7 +64,7 @@ $($(python-petsc4py)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach
 # 		$(MODULESINIT) && \
 # 		$(MODULE) use $(modulefilesdir) && \
 # 		$(MODULE) load $($(python-petsc4py)-builddeps) && \
-# 		python3 setup.py test
+# 		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-petsc4py)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-petsc4py)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-petsc4py)-prefix)/.pkgcheck $($(python-petsc4py)-site-packages)/.markerfile
@@ -73,7 +73,7 @@ $($(python-petsc4py)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-petsc4py)-builddeps) && \
 		PYTHONPATH=$($(python-petsc4py)-site-packages):$${PYTHONPATH} \
-		python3 setup.py install --prefix=$($(python-petsc4py)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-petsc4py)-prefix)
 	@touch $@
 
 $($(python-petsc4py)-modulefile): $(modulefilesdir)/.markerfile $($(python-petsc4py)-prefix)/.pkginstall
