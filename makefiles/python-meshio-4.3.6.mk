@@ -56,7 +56,7 @@ $($(python-meshio)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-meshio)-builddeps) && \
-		python3 -c 'from setuptools import setup; setup()' build
+		$(PYTHON) -c 'from setuptools import setup; setup()' build
 	@touch $@
 
 $($(python-meshio)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-meshio)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-meshio)-prefix)/.pkgbuild
@@ -68,7 +68,7 @@ $($(python-meshio)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-meshio)-builddeps) && \
 		PYTHONPATH=$($(python-meshio)-site-packages):$${PYTHONPATH} \
-		python3 -c 'from setuptools import setup; setup()' install --prefix=$($(python-meshio)-prefix)
+		$(PYTHON) -c 'from setuptools import setup; setup()' install --prefix=$($(python-meshio)-prefix)
 	@touch $@
 
 $($(python-meshio)-modulefile): $(modulefilesdir)/.markerfile $($(python-meshio)-prefix)/.pkginstall

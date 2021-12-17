@@ -59,7 +59,7 @@ $($(gdb)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(gd
 		$(MODULE) load $($(gdb)-builddeps) && \
 		../configure --prefix=$($(gdb)-prefix) \
 			--with-system-readline \
-			--with-python="$${PYTHON_ROOT}/bin/python3" && \
+			--with-python="$(PYTHON)" && \
 		$(MAKE) LDFLAGS="$$(pkg-config --libs readline) $$(pkg-config --libs ncursesw)"
 	@touch $@
 

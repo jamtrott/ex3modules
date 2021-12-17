@@ -59,7 +59,7 @@ $($(doxygen)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 		$(MODULE) load $($(doxygen)-builddeps) && \
 		$(CMAKE) -G "Unix Makefiles" \
 			-DCMAKE_INSTALL_PREFIX=$($(doxygen)-prefix) \
-			-DPYTHON_EXECUTABLE=$${PYTHON_ROOT}/bin/python3 \
+			-DPYTHON_EXECUTABLE=$(PYTHON) \
 			.. && \
 		$(MAKE)
 	@touch $@

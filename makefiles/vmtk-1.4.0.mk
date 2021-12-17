@@ -66,7 +66,7 @@ $($(vmtk)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(v
 			-DVTK_DIR="$${VTK_ROOT}" \
 			-DUSE_SYSTEM_ITK=ON \
 			-DITK_DIR="$${ITK_ROOT}" \
-			-DPYTHON_EXECUTABLE="$${PYTHON_ROOT}/bin/python3" \
+			-DPYTHON_EXECUTABLE="$(PYTHON)" \
 			-DPYTHON_INCLUDE_DIR="$${PYTHON_ROOT}/include/python$${PYTHON_VERSION_SHORT}m" \
 			-DPYTHON_SHEBANG="$${PYTHON_ROOT}/bin/python$${PYTHON_VERSION_SHORT}" \
 			-DVMTK_PYTHON_VERSION="$${PYTHON_VERSION_SHORT}" \

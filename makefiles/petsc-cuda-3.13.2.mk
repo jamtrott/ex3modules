@@ -84,7 +84,7 @@ $($(petsc-cuda)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(petsc-cuda)-builddeps) && \
-		python3 ./configure MAKEFLAGS="$(MAKEFLAGS)" \
+		$(PYTHON) ./configure MAKEFLAGS="$(MAKEFLAGS)" \
 			--prefix=$($(petsc-cuda)-prefix) \
 			--with-openmp=1 \
 			--with-blaslapack-lib="$${BLASDIR}/lib$${BLASLIB}.so" \

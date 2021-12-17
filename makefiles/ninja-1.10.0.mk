@@ -51,7 +51,7 @@ $($(ninja)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(ninja)-builddeps) && \
-		python3 configure.py --bootstrap
+		$(PYTHON) configure.py --bootstrap
 	@touch $@
 
 $($(ninja)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(ninja)-builddeps),$(modulefilesdir)/$$(dep)) $($(ninja)-prefix)/.pkgbuild

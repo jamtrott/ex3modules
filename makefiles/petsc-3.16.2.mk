@@ -48,7 +48,7 @@ $($(petsc-3.16.2)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(petsc-3.16.2)-builddeps) && \
-		python3 ./configure MAKEFLAGS="$(MAKEFLAGS)" \
+		$(PYTHON) ./configure MAKEFLAGS="$(MAKEFLAGS)" \
 			--prefix=$($(petsc-3.16.2)-prefix) \
 			--with-openmp=1 \
 			--with-blaslapack-lib="$${BLASDIR}/lib$${BLASLIB}.so" \

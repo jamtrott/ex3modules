@@ -120,7 +120,7 @@ $($(python-numpy)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach de
 #	 cd $($(python-numpy)-srcdir) && \
 #	 	$(MODULE) use $(modulefilesdir) && \
 #	 	$(MODULE) load $($(python-numpy)-builddeps) && \
-#	 	python3 runtests.py -v -m full
+#	 	$(PYTHON) runtests.py -v -m full
 	@touch $@
 
 $($(python-numpy)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-numpy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-numpy)-prefix)/.pkgcheck $($(python-numpy)-site-packages)/.markerfile

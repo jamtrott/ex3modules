@@ -69,7 +69,7 @@ $($(python-fenics-ffcx-20200522)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfil
 #	cd $($(python-fenics-ffcx-20200522)-builddir) && \
 #		$(MODULE) use $(modulefilesdir) && \
 #		$(MODULE) load $($(python-fenics-ffcx-20200522)-builddeps) && \
-#		python3 test/test.py
+#		$(PYTHON) test/test.py
 	@touch $@
 
 $($(python-fenics-ffcx-20200522)-prefix)/include/.markerfile: $($(python-fenics-ffcx-20200522)-prefix)/.pkgcheck

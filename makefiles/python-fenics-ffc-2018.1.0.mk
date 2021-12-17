@@ -63,7 +63,7 @@ $($(python-fenics-ffc-2018)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(
 #	cd $($(python-fenics-ffc-2018)-srcdir) && \
 #		$(MODULE) use $(modulefilesdir) && \
 #		$(MODULE) load $($(python-fenics-ffc-2018)-builddeps) && \
-#		python3 test/test.py
+#		$(PYTHON) test/test.py
 	@touch $@
 
 $($(python-fenics-ffc-2018)-prefix)/include/.markerfile: $($(python-fenics-ffc-2018)-prefix)/.pkgcheck

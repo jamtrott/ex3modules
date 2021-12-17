@@ -75,7 +75,7 @@ $($(python-scipy)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach de
 	# cd $($(python-scipy)-srcdir) && \
 	# 	$(MODULE) use $(modulefilesdir) && \
 	# 	$(MODULE) load $($(python-scipy)-builddeps) && \
-	# 	python3 runtests.py
+	# 	$(PYTHON) runtests.py
 	@touch $@
 
 $($(python-scipy)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-scipy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-scipy)-prefix)/.pkgcheck $($(python-scipy)-site-packages)/.markerfile

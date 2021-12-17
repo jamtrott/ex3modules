@@ -56,7 +56,7 @@ $($(python-setuptools)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-setuptools)-builddeps) && \
-		python3 bootstrap.py && \
+		$(PYTHON) bootstrap.py && \
 		$(PYTHON) setup.py build
 	@touch $@
 

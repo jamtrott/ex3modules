@@ -50,8 +50,8 @@ $($(boost-python)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MODULE) load $($(boost-python)-builddeps) && \
 		./bootstrap.sh --prefix=$($(boost-python)-prefix) \
 			--with-toolset=gcc \
-			--with-python=$${PYTHON_ROOT}/bin/python3 \
-			--with-python-version=$${PYTHON_VERSION_SHORT} \
+			--with-python=$(PYTHON) \
+			--with-python-version=$(PYTHON_VERSION_SHORT) \
 			--with-python-root=$${PYTHON_ROOT} && \
 		./b2 --toolset=gcc --with-python
 	@touch $@

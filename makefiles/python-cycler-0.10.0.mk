@@ -64,7 +64,7 @@ $($(python-cycler)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-cycler)-builddeps) && \
-		python3 run_tests.py
+		$(PYTHON) run_tests.py
 	@touch $@
 
 $($(python-cycler)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-cycler)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-cycler)-prefix)/.pkgcheck $($(python-cycler)-site-packages)/.markerfile
