@@ -45,6 +45,7 @@ $($(llvm-10)-prefix)/.pkgunpack: $($(llvm-10)-src) $($(llvm-10)-srcdir)/.markerf
 	@touch $@
 
 $($(llvm-10)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(llvm-10)-builddeps),$(modulefilesdir)/$$(dep)) $($(llvm-10)-prefix)/.pkgunpack
+	sed -i '4i #include <limits>' $($(llvm-10)-srcdir)/utils/benchmark/src/benchmark_register.h
 	@touch $@
 
 ifneq ($($(llvm-10)-builddir),$($(llvm-10)-srcdir))
