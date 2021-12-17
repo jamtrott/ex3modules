@@ -38,6 +38,7 @@ $($(libgfortran)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
 $($(libgfortran)-prefix)/.pkgunpack: $$($(libgfortran)-src) $($(libgfortran)-srcdir)/.markerfile $($(libgfortran)-prefix)/.markerfile $$(foreach dep,$$($(libgfortran)-builddeps),$(modulefilesdir)/$$(dep))
+	tar -C $($(libgfortran)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
 $($(libgfortran)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libgfortran)-builddeps),$(modulefilesdir)/$$(dep)) $($(libgfortran)-prefix)/.pkgunpack
