@@ -35,6 +35,8 @@ AVX512F := $(shell [ "$$(grep avx512f /proc/cpuinfo)" ] && echo true)
 
 # Default options
 ENABLE_CUDA :=
+CMAKE_ROOT :=
+FORTRAN_ROOT :=
 MPI_HOME :=
 OPENSSL_ROOT :=
 PYTHON_ROOT :=
@@ -90,14 +92,28 @@ endif
 #
 ifeq ($(WITH_CMAKE),cmake-3.17.2)
 cmake = cmake-3.17.2
-CMAKE_VERSION = 3.17.2
 $(info Using internal CMake ($(cmake)))
 else ifneq ($(WITH_CMAKE),)
 CMAKE_ROOT = $(WITH_CMAKE)
-CMAKE_VERSION = $(shell $(CMAKE_ROOT)/bin/cmake --version | awk '{ print $$3 }')
-$(info Using CMake $(CMAKE_VERSION) ($(CMAKE_ROOT)/bin/cmake))
+$(info Using $(CMAKE_ROOT)/bin/cmake ($(shell $(CMAKE_ROOT)/bin/cmake --version | head -n 1)))
 export PATH := $(CMAKE_ROOT)/bin$(if $(PATH),:$(PATH),)
 export ACLOCAL_PATH := $(CMAKE_ROOT)/share/aclocal$(if $(ACLOCAL_PATH),:$(ACLOCAL_PATH),)
+endif
+
+#
+# Fortran
+#
+ifneq ($(ENABLE_GFORTRAN),)
+gfortran = gfortran-8.4.0
+$(info Using internal Fortran ($(gfortran)))
+else ifneq ($(FC),)
+$(info Using $(FC) ($(shell $(FC) --version | head -n 1)))
+else ifneq ($(shell which f95),)
+$(info Using $(shell which f95) ($(shell f95 --version | head -n 1)))
+else ifneq ($(shell which f77),)
+$(info Using $(shell which f77) ($(shell f77 --version | head -n 1)))
+else
+$(warning Warning: No Fortran compiler found - some modules may not build.)
 endif
 
 #
@@ -125,7 +141,7 @@ export MPIF90 = $(MPI_HOME)/bin/mpif90
 export MPIFORT = $(MPI_HOME)/bin/mpifort
 export MPIRUN = $(MPI_HOME)/bin/mpirun
 export MPI_RUN = $(MPI_HOME)/bin/mpirun
-$(info Using MPI from $(MPI_HOME))
+$(info Using $(MPIRUN) ($(MPIRUN) --version | head -n 1))
 export PATH := $(MPI_HOME)/bin$(if $(PATH),:$(PATH),)
 export C_INCLUDE_PATH := $(MPI_HOME)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
 export CPLUS_INCLUDE_PATH := $(MPI_HOME)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
@@ -143,7 +159,7 @@ $(info Using internal OpenSSL ($(openssl)))
 else ifneq ($(WITH_OPENSSL),)
 OPENSSL_ROOT = $(WITH_OPENSSL)
 OPENSSL_VERSION = $(shell $(OPENSSL_ROOT)/bin/openssl version | awk '{ print $$2 }')
-$(info Using OpenSSL $(OPENSSL_VERSION) ($(OPENSSL_ROOT)/bin/openssl))
+$(info Using $(OPENSSL_ROOT)/bin/openssl ($(shell $(OPENSSL_ROOT)/bin/openssl version | head -n 1)))
 export PATH := $(OPENSSL_ROOT)/bin$(if $(PATH),:$(PATH),)
 export C_INCLUDE_PATH := $(OPENSSL_ROOT)/include$(OPENSSL_VERSION_SHORT)$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
 export CPLUS_INCLUDE_PATH := $(OPENSSL_ROOT)/include$(OPENSSL_VERSION_SHORT)$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
@@ -164,7 +180,7 @@ PYTHON_ROOT = $(WITH_PYTHON)
 PYTHON_EXECUTABLE = $(PYTHON_ROOT)/bin/python3
 PYTHON_VERSION = $(shell $(PYTHON_EXECUTABLE) --version | awk '{ print $$2 }')
 PYTHON_VERSION_SHORT = $(shell $(PYTHON_EXECUTABLE) --version | awk '{ print $$2 }' | cut -d. -f 1-2)
-$(info Using python $(PYTHON_VERSION) ($(PYTHON_EXECUTABLE)))
+$(info Using $(PYTHON_EXECUTABLE) ($(shell $(PYTHON_EXECUTABLE) --version | head -n 1)))
 export PATH := $(PYTHON_ROOT)/bin$(if $(PATH),:$(PATH),)
 export C_INCLUDE_PATH := $(PYTHON_ROOT)/include/python$(PYTHON_VERSION_SHORT)$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
 export CPLUS_INCLUDE_PATH := $(PYTHON_ROOT)/include/python$(PYTHON_VERSION_SHORT)$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
@@ -180,7 +196,7 @@ slurm = slurm-20.02.7
 $(info Using internal SLURM ($(slurm)))
 else ifneq ($(WITH_SLURM),)
 SLURM_ROOT = $(WITH_SLURM)
-$(info Using SLURM from $(SLURM_ROOT))
+$(info Using $(SLURM_ROOT)/bin/srun ($(shell $(SLURM_ROOT)/bin/srun --version | head -n 1)))
 export PATH := $(SLURM_ROOT)/bin$(if $(PATH),:$(PATH),)
 export C_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
 export CPLUS_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
@@ -249,6 +265,7 @@ pkgs := $(pkgs) \
 	gdb-9.2 \
 	gengetopt-2.23 \
 	gettext-0.21 \
+	gfortran-8.4.0 \
 	ghostscript-9.54.0 \
 	giflib-5.2.1 \
 	gklib-5.1.0 \
@@ -297,7 +314,6 @@ pkgs := $(pkgs) \
 	libgccjit-10.1.0 \
 	libgcrypt-1.8.7 \
 	libgd-2.2.5 \
-	libgfortran-5.0.0 \
 	libgpg-error-1.39 \
 	libice-1.0.10 \
 	libiconv-1.16 \

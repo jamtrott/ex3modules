@@ -25,8 +25,8 @@ $(mumps-cuda)-url = http://mumps.enseeiht.fr/
 $(mumps-cuda)-srcurl = http://mumps.enseeiht.fr/MUMPS_$(mumps-cuda-version).tar.gz
 $(mumps-cuda)-src = $($(mumps-src)-src)
 $(mumps-cuda)-srcdir = $(pkgsrcdir)/$(mumps-cuda)
-$(mumps-cuda)-builddeps = $(blas) $(openmpi-cuda) $(metis) $(parmetis-cuda) $(scotch-cuda) $(scalapack-cuda) $(libgfortran) $(patchelf)
-$(mumps-cuda)-prereqs = $(blas) $(openmpi-cuda) $(metis) $(parmetis-cuda) $(scotch-cuda) $(scalapack-cuda) $(libgfortran)
+$(mumps-cuda)-builddeps = $(blas) $(openmpi-cuda) $(metis) $(parmetis-cuda) $(scotch-cuda) $(scalapack-cuda) $(gfortran) $(patchelf)
+$(mumps-cuda)-prereqs = $(blas) $(openmpi-cuda) $(metis) $(parmetis-cuda) $(scotch-cuda) $(scalapack-cuda)
 $(mumps-cuda)-modulefile = $(modulefilesdir)/$(mumps-cuda)
 $(mumps-cuda)-prefix = $(pkgdir)/$(mumps-cuda)
 

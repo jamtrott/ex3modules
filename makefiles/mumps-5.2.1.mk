@@ -25,8 +25,8 @@ $(mumps)-url = http://mumps.enseeiht.fr/
 $(mumps)-srcurl = http://mumps.enseeiht.fr/MUMPS_$(mumps-version).tar.gz
 $(mumps)-src = $($(mumps-src)-src)
 $(mumps)-srcdir = $(pkgsrcdir)/$(mumps)
-$(mumps)-builddeps = $(blas) $(mpi) $(metis) $(parmetis) $(scotch) $(scalapack) $(libgfortran) $(patchelf)
-$(mumps)-prereqs = $(blas) $(mpi) $(metis) $(parmetis) $(scotch) $(scalapack) $(libgfortran)
+$(mumps)-builddeps = $(blas) $(mpi) $(metis) $(parmetis) $(scotch) $(scalapack) $(gfortran) $(patchelf)
+$(mumps)-prereqs = $(blas) $(mpi) $(metis) $(parmetis) $(scotch) $(scalapack)
 $(mumps)-modulefile = $(modulefilesdir)/$(mumps)
 $(mumps)-prefix = $(pkgdir)/$(mumps)
 

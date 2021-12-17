@@ -25,8 +25,8 @@ $(openblas)-url = http://www.openblas.net/
 $(openblas)-srcurl = https://github.com/xianyi/OpenBLAS/archive/v$(openblas-version).tar.gz
 $(openblas)-src = $(pkgsrcdir)/openblas-$(notdir $($(openblas)-srcurl))
 $(openblas)-srcdir = $(pkgsrcdir)/$(openblas)
-$(openblas)-builddeps = $(cmake) $(libgfortran)
-$(openblas)-prereqs = $(libgfortran)
+$(openblas)-builddeps = $(cmake) $(gfortran)
+$(openblas)-prereqs =
 $(openblas)-modulefile = $(modulefilesdir)/$(openblas)
 $(openblas)-prefix = $(pkgdir)/$(openblas)
 
