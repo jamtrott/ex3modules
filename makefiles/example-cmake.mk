@@ -23,7 +23,7 @@ example = example-$(example-version)
 $(example)-description =
 $(example)-url =
 $(example)-srcurl =
-$(example)-builddeps =
+$(example)-builddeps = $(cmake)
 $(example)-prereqs =
 $(example)-src = $(pkgsrcdir)/$(notdir $($(example)-srcurl))
 $(example)-srcdir = $(pkgsrcdir)/$(example)
@@ -57,7 +57,10 @@ $($(example)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(example)-builddeps) && \
-		../configure --prefix=$($(example)-prefix) && \
+		$(CMAKE) .. \
+			-DCMAKE_INSTALL_PREFIX=$($(example)-prefix) \
+			-DCMAKE_INSTALL_LIBDIR=lib \
+			-DCMAKE_BUILD_TYPE=Release && \
 		$(MAKE)
 	@touch $@
 
