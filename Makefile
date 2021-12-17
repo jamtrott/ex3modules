@@ -86,19 +86,18 @@ pkgs := $(pkgs) \
 endif
 
 #
-# SLURM
+# CMake
 #
-ifeq ($(WITH_SLURM),internal)
-slurm = slurm-20.02.7
-$(info Using internal SLURM ($(slurm)))
-else ifneq ($(WITH_SLURM),)
-SLURM_ROOT = $(WITH_SLURM)
-$(info Using SLURM from $(SLURM_ROOT))
-export PATH := $(SLURM_ROOT)/bin$(if $(PATH),:$(PATH),)
-export C_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
-export CPLUS_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
-export LIBRARY_PATH := $(SLURM_ROOT)/lib:$(SLURM_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
-export LD_LIBRARY_PATH := $(SLURM_ROOT)/lib:$(SLURM_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
+ifeq ($(WITH_CMAKE),cmake-3.17.2)
+cmake = cmake-3.17.2
+CMAKE_VERSION = 3.17.2
+$(info Using internal CMake ($(cmake)))
+else ifneq ($(WITH_CMAKE),)
+CMAKE_ROOT = $(WITH_CMAKE)
+CMAKE_VERSION = $(shell $(CMAKE_ROOT)/bin/cmake version | awk '{ print $$3 }')
+$(info Using CMake $(CMAKE_VERSION) ($(CMAKE_ROOT)/bin/cmake))
+export PATH := $(CMAKE_ROOT)/bin$(if $(PATH),:$(PATH),)
+export ACLOCAL_PATH := $(CMAKE_ROOT)/share/aclocal$(if $(ACLOCAL_PATH),:$(ACLOCAL_PATH),)
 endif
 
 #
@@ -141,7 +140,7 @@ ifeq ($(WITH_OPENSSL),openssl-1.1.1c)
 openssl = openssl-1.1.1c
 OPENSSL_VERSION = 1.1.1c
 $(info Using internal OpenSSL ($(openssl)))
-else ifneq($(WITH_OPENSSL),)
+else ifneq ($(WITH_OPENSSL),)
 OPENSSL_ROOT = $(WITH_OPENSSL)
 OPENSSL_VERSION = $(shell $(OPENSSL_ROOT)/bin/openssl version | awk '{ print $$2 }')
 $(info Using OpenSSL $(OPENSSL_VERSION) ($(OPENSSL_ROOT)/bin/openssl))
@@ -160,7 +159,7 @@ python = python-3.7.4
 PYTHON_VERSION = 3.7.4
 PYTHON_VERSION_SHORT = 3.7
 $(info Using internal python ($(python)))
-else ifneq($(WITH_PYTHON),)
+else ifneq ($(WITH_PYTHON),)
 PYTHON_ROOT = $(WITH_PYTHON)
 PYTHON_EXECUTABLE = $(PYTHON_ROOT)/bin/python3
 PYTHON_VERSION = $(shell $(PYTHON_EXECUTABLE) --version | awk '{ print $$2 }')
@@ -171,6 +170,22 @@ export C_INCLUDE_PATH := $(PYTHON_ROOT)/include/python$(PYTHON_VERSION_SHORT)$(i
 export CPLUS_INCLUDE_PATH := $(PYTHON_ROOT)/include/python$(PYTHON_VERSION_SHORT)$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
 export LIBRARY_PATH := $(PYTHON_ROOT)/lib:$(PYTHON_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
 export LD_LIBRARY_PATH := $(PYTHON_ROOT)/lib:$(PYTHON_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
+endif
+
+#
+# SLURM
+#
+ifeq ($(WITH_SLURM),slurm-20.02.7)
+slurm = slurm-20.02.7
+$(info Using internal SLURM ($(slurm)))
+else ifneq ($(WITH_SLURM),)
+SLURM_ROOT = $(WITH_SLURM)
+$(info Using SLURM from $(SLURM_ROOT))
+export PATH := $(SLURM_ROOT)/bin$(if $(PATH),:$(PATH),)
+export C_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
+export CPLUS_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
+export LIBRARY_PATH := $(SLURM_ROOT)/lib:$(SLURM_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
+export LD_LIBRARY_PATH := $(SLURM_ROOT)/lib:$(SLURM_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
 endif
 
 #
