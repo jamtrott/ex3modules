@@ -98,17 +98,14 @@ endif
 #
 ifeq ($(WITH_SLURM),internal)
 slurm = slurm-20.02.7
-else
-ifneq ($(WITH_SLURM),)
+else ifneq ($(WITH_SLURM),)
 SLURM_ROOT = $(WITH_SLURM)
-endif
 endif
 
 ifneq ($(SLURM_ROOT),)
-export PATH := $(SLURM_ROOT)/include$(if $(PATH),:$(PATH),)
+export PATH := $(SLURM_ROOT)/bin$(if $(PATH),:$(PATH),)
 export C_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
 export CPLUS_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
-export LIBRARY_PATH := $(SLURM_ROOT)/lib$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
 export LIBRARY_PATH := $(SLURM_ROOT)/lib:$(SLURM_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
 export LD_LIBRARY_PATH := $(SLURM_ROOT)/lib:$(SLURM_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
 endif
