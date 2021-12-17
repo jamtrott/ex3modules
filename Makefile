@@ -60,9 +60,6 @@ MODULE := module
 # blis-x86_64, blis-zen, blis-zen2 and gsl.
 blas = openblas-0.3.12
 
-# GCC versions: 8.4.0, 9.2.0, 10.1.0, 11.2.0
-gcc = gcc-8.4.0
-
 # MPI implementations: openmpi, openmpi-cuda, mpich and mvapich.
 mpi = openmpi-4.0.5
 
@@ -74,7 +71,6 @@ python-version-short = 3.7
 # Select default package versions
 pkgs = \
 	$(blas) \
-	$(gcc) \
 	$(mpi) \
 	$(petsc)
 

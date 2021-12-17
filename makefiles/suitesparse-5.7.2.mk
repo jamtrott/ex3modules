@@ -25,8 +25,8 @@ $(suitesparse)-url = http://faculty.cse.tamu.edu/davis/suitesparse.html
 $(suitesparse)-srcurl = https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/v$(suitesparse-version).tar.gz
 $(suitesparse)-src = $(pkgsrcdir)/suitesparse-$(notdir $($(suitesparse)-srcurl))
 $(suitesparse)-srcdir = $(pkgsrcdir)/$(suitesparse)
-$(suitesparse)-builddeps = $(cmake) $(gcc) $(blas) $(metis)
-$(suitesparse)-prereqs = $(libstdcxx) $(blas) $(metis)
+$(suitesparse)-builddeps = $(cmake) $(blas) $(metis)
+$(suitesparse)-prereqs = $(blas) $(metis)
 $(suitesparse)-modulefile = $(modulefilesdir)/$(suitesparse)
 $(suitesparse)-prefix = $(pkgdir)/$(suitesparse)
 
