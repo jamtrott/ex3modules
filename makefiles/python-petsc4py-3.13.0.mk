@@ -29,7 +29,7 @@ $(python-petsc4py)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python
 $(python-petsc4py)-prereqs = $(python) $(python-numpy) $(python-mpi4py) $(petsc)
 $(python-petsc4py)-modulefile = $(modulefilesdir)/$(python-petsc4py)
 $(python-petsc4py)-prefix = $(pkgdir)/$(python-petsc4py)
-$(python-petsc4py)-site-packages = $($(python-petsc4py)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-petsc4py)-site-packages = $($(python-petsc4py)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-petsc4py)-src): $(dir $($(python-petsc4py)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-petsc4py)-srcurl)

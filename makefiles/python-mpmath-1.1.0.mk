@@ -29,7 +29,7 @@ $(python-mpmath)-builddeps = $(python)
 $(python-mpmath)-prereqs = $(python)
 $(python-mpmath)-modulefile = $(modulefilesdir)/$(python-mpmath)
 $(python-mpmath)-prefix = $(pkgdir)/$(python-mpmath)
-$(python-mpmath)-site-packages = $($(python-mpmath)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-mpmath)-site-packages = $($(python-mpmath)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-mpmath)-src): $(dir $($(python-mpmath)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-mpmath)-srcurl)

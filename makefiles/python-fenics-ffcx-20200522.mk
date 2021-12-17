@@ -30,7 +30,7 @@ $(python-fenics-ffcx-20200522)-builddeps = $(python) $(blas) $(mpi) $(python-num
 $(python-fenics-ffcx-20200522)-prereqs = $(python) $(python-numpy) $(python-mpmath) $(python-sympy-1.4) $(python-fenics-dijitso-2019) $(python-fenics-fiat-20200518) $(python-fenics-ufl-20200512)
 $(python-fenics-ffcx-20200522)-modulefile = $(modulefilesdir)/$(python-fenics-ffcx-20200522)
 $(python-fenics-ffcx-20200522)-prefix = $(pkgdir)/$(python-fenics-ffcx-20200522)
-$(python-fenics-ffcx-20200522)-site-packages = $($(python-fenics-ffcx-20200522)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-fenics-ffcx-20200522)-site-packages = $($(python-fenics-ffcx-20200522)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-fenics-ffcx-20200522)-src): $(dir $($(python-fenics-ffcx-20200522)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-fenics-ffcx-20200522)-srcurl)

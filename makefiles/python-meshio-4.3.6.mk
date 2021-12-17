@@ -29,7 +29,7 @@ $(python-meshio)-builddeps = $(python) $(python-importlib_metadata) $(python-zip
 $(python-meshio)-prereqs = $(python)
 $(python-meshio)-modulefile = $(modulefilesdir)/$(python-meshio)
 $(python-meshio)-prefix = $(pkgdir)/$(python-meshio)
-$(python-meshio)-site-packages = $($(python-meshio)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-meshio)-site-packages = $($(python-meshio)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-meshio)-src): $(dir $($(python-meshio)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-meshio)-srcurl)

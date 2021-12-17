@@ -29,7 +29,7 @@ $(python-attrs)-builddeps = $(python)
 $(python-attrs)-prereqs = $(python)
 $(python-attrs)-modulefile = $(modulefilesdir)/$(python-attrs)
 $(python-attrs)-prefix = $(pkgdir)/$(python-attrs)
-$(python-attrs)-site-packages = $($(python-attrs)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-attrs)-site-packages = $($(python-attrs)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-attrs)-src): $(dir $($(python-attrs)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-attrs)-srcurl)

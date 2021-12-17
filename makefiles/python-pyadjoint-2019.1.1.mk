@@ -29,7 +29,7 @@ $(python-pyadjoint)-builddeps = $(python) $(python-ipopt) $(ipopt) $(python-feni
 $(python-pyadjoint)-prereqs = $(python) $(python-ipopt) $(ipopt) $(python-fenics-dolfin-2019)
 $(python-pyadjoint)-modulefile = $(modulefilesdir)/$(python-pyadjoint)
 $(python-pyadjoint)-prefix = $(pkgdir)/$(python-pyadjoint)
-$(python-pyadjoint)-site-packages = $($(python-pyadjoint)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pyadjoint)-site-packages = $($(python-pyadjoint)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pyadjoint)-src): $(dir $($(python-pyadjoint)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pyadjoint)-srcurl)

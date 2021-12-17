@@ -29,7 +29,7 @@ $(python-fenics-ffc-2018)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $
 $(python-fenics-ffc-2018)-prereqs = $(python) $(python-numpy) $(python-mpmath) $(python-sympy-1.1) $(python-fenics-dijitso-2018) $(python-fenics-fiat-2018) $(python-fenics-ufl-2018)
 $(python-fenics-ffc-2018)-modulefile = $(modulefilesdir)/$(python-fenics-ffc-2018)
 $(python-fenics-ffc-2018)-prefix = $(pkgdir)/$(python-fenics-ffc-2018)
-$(python-fenics-ffc-2018)-site-packages = $($(python-fenics-ffc-2018)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-fenics-ffc-2018)-site-packages = $($(python-fenics-ffc-2018)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-fenics-ffc-2018)-src): $(dir $($(python-fenics-ffc-2018)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-fenics-ffc-2018)-srcurl)

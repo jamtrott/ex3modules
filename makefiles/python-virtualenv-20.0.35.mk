@@ -29,7 +29,7 @@ $(python-virtualenv)-builddeps = $(python) $(python-setuptools) $(python-setupto
 $(python-virtualenv)-prereqs = $(python) $(python-importlib_metadata) $(python-six) $(python-filelock) $(python-distlib) $(python-appdirs) $(python-zipp)
 $(python-virtualenv)-modulefile = $(modulefilesdir)/$(python-virtualenv)
 $(python-virtualenv)-prefix = $(pkgdir)/$(python-virtualenv)
-$(python-virtualenv)-site-packages = $($(python-virtualenv)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-virtualenv)-site-packages = $($(python-virtualenv)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-virtualenv)-src): $(dir $($(python-virtualenv)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-virtualenv)-srcurl)

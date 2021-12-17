@@ -29,7 +29,7 @@ $(python-freezegun)-builddeps = $(python) $(python-pytest)
 $(python-freezegun)-prereqs = $(python)
 $(python-freezegun)-modulefile = $(modulefilesdir)/$(python-freezegun)
 $(python-freezegun)-prefix = $(pkgdir)/$(python-freezegun)
-$(python-freezegun)-site-packages = $($(python-freezegun)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-freezegun)-site-packages = $($(python-freezegun)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-freezegun)-src): $(dir $($(python-freezegun)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-freezegun)-srcurl)

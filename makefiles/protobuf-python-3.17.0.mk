@@ -29,7 +29,7 @@ $(protobuf-python)-builddeps = $(python) $(protobuf-cpp) $(python-six)
 $(protobuf-python)-prereqs = $(python) $(protobuf-cpp) $(python-six)
 $(protobuf-python)-modulefile = $(modulefilesdir)/$(protobuf-python)
 $(protobuf-python)-prefix = $(pkgdir)/$(protobuf-python)
-$(protobuf-python)-site-packages = $($(protobuf-python)-prefix)/lib/python$(python-version-short)/site-packages
+$(protobuf-python)-site-packages = $($(protobuf-python)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(protobuf-python)-src): $(dir $($(protobuf-python)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(protobuf-python)-srcurl)

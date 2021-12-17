@@ -29,7 +29,7 @@ $(python-apipkg)-builddeps = $(python) $(python-py) $(python-pytest)
 $(python-apipkg)-prereqs = $(python)
 $(python-apipkg)-modulefile = $(modulefilesdir)/$(python-apipkg)
 $(python-apipkg)-prefix = $(pkgdir)/$(python-apipkg)
-$(python-apipkg)-site-packages = $($(python-apipkg)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-apipkg)-site-packages = $($(python-apipkg)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-apipkg)-src): $(dir $($(python-apipkg)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-apipkg)-srcurl)

@@ -29,7 +29,7 @@ $(python-ldrb)-builddeps = $(python) $(python-fenics-dolfin-2019) $(python-fenic
 $(python-ldrb)-prereqs = $(python) $(python-fenics-dolfin-2019) $(python-fenics-mshr-2019) $(python-numpy) $(python-numpy-quaternion) $(python-scipy) $(python-numba) $(python-h5py)
 $(python-ldrb)-modulefile = $(modulefilesdir)/$(python-ldrb)
 $(python-ldrb)-prefix = $(pkgdir)/$(python-ldrb)
-$(python-ldrb)-site-packages = $($(python-ldrb)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-ldrb)-site-packages = $($(python-ldrb)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-ldrb)-src): $(dir $($(python-ldrb)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-ldrb)-srcurl)

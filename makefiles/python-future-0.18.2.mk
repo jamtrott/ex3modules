@@ -29,7 +29,7 @@ $(python-future)-builddeps = $(python)
 $(python-future)-prereqs = $(python)
 $(python-future)-modulefile = $(modulefilesdir)/$(python-future)
 $(python-future)-prefix = $(pkgdir)/$(python-future)
-$(python-future)-site-packages = $($(python-future)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-future)-site-packages = $($(python-future)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-future)-src): $(dir $($(python-future)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-future)-srcurl)

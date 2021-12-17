@@ -29,7 +29,7 @@ $(python-dateutil)-builddeps = $(python)
 $(python-dateutil)-prereqs = $(python)
 $(python-dateutil)-modulefile = $(modulefilesdir)/$(python-dateutil)
 $(python-dateutil)-prefix = $(pkgdir)/$(python-dateutil)
-$(python-dateutil)-site-packages = $($(python-dateutil)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-dateutil)-site-packages = $($(python-dateutil)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-dateutil)-src): $(dir $($(python-dateutil)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-dateutil)-srcurl)

@@ -30,7 +30,7 @@ $(python-fenics-ufl-20200512)-builddeps = $(python) $(blas) $(mpi) $(python-nump
 $(python-fenics-ufl-20200512)-prereqs = $(python) $(python-numpy)
 $(python-fenics-ufl-20200512)-modulefile = $(modulefilesdir)/$(python-fenics-ufl-20200512)
 $(python-fenics-ufl-20200512)-prefix = $(pkgdir)/$(python-fenics-ufl-20200512)
-$(python-fenics-ufl-20200512)-site-packages = $($(python-fenics-ufl-20200512)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-fenics-ufl-20200512)-site-packages = $($(python-fenics-ufl-20200512)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-fenics-ufl-20200512)-src): $(dir $($(python-fenics-ufl-20200512)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-fenics-ufl-20200512)-srcurl)

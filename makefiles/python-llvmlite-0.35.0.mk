@@ -29,7 +29,7 @@ $(python-llvmlite)-builddeps = $(cmake) $(python) $(llvm-10)
 $(python-llvmlite)-prereqs = $(python)
 $(python-llvmlite)-modulefile = $(modulefilesdir)/$(python-llvmlite)
 $(python-llvmlite)-prefix = $(pkgdir)/$(python-llvmlite)
-$(python-llvmlite)-site-packages = $($(python-llvmlite)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-llvmlite)-site-packages = $($(python-llvmlite)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-llvmlite)-src): $(dir $($(python-llvmlite)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-llvmlite)-srcurl)

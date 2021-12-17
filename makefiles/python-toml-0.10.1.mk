@@ -29,7 +29,7 @@ $(python-toml)-builddeps = $(python)
 $(python-toml)-prereqs = $(python)
 $(python-toml)-modulefile = $(modulefilesdir)/$(python-toml)
 $(python-toml)-prefix = $(pkgdir)/$(python-toml)
-$(python-toml)-site-packages = $($(python-toml)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-toml)-site-packages = $($(python-toml)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-toml)-src): $(dir $($(python-toml)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-toml)-srcurl)

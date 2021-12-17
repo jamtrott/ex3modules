@@ -29,7 +29,7 @@ $(python-pyra-pytorch)-builddeps = $(python) $(python-numpy) $(python-pillow)
 $(python-pyra-pytorch)-prereqs = $(python) $(python-numpy) $(python-pillow)
 $(python-pyra-pytorch)-modulefile = $(modulefilesdir)/$(python-pyra-pytorch)
 $(python-pyra-pytorch)-prefix = $(pkgdir)/$(python-pyra-pytorch)
-$(python-pyra-pytorch)-site-packages = $($(python-pyra-pytorch)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pyra-pytorch)-site-packages = $($(python-pyra-pytorch)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pyra-pytorch)-src): $(dir $($(python-pyra-pytorch)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pyra-pytorch)-srcurl)

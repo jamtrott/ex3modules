@@ -66,9 +66,8 @@ $($(vmtk)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(v
 			-DVTK_DIR="$${VTK_ROOT}" \
 			-DUSE_SYSTEM_ITK=ON \
 			-DITK_DIR="$${ITK_ROOT}" \
-			-DPYTHON_EXECUTABLE="$${PYTHON_ROOT}/bin/python$${PYTHON_VERSION_SHORT}" \
-			-DPYTHON_INCLUDE_DIR="$${PYTHON_INCDIR}/python$${PYTHON_VERSION_SHORT}m" \
-			-DPYTHON_LIBRARY="$${PYTHON_LIBDIR}/libpython3.so" \
+			-DPYTHON_EXECUTABLE="$${PYTHON_ROOT}/bin/python3" \
+			-DPYTHON_INCLUDE_DIR="$${PYTHON_ROOT}/include/python$${PYTHON_VERSION_SHORT}m" \
 			-DPYTHON_SHEBANG="$${PYTHON_ROOT}/bin/python$${PYTHON_VERSION_SHORT}" \
 			-DVMTK_PYTHON_VERSION="$${PYTHON_VERSION_SHORT}" \
 			-DVTK_VMTK_WRAP_PYTHON:BOOL=ON \
@@ -114,7 +113,7 @@ $($(vmtk)-modulefile): $(modulefilesdir)/.markerfile $($(vmtk)-prefix)/.pkginsta
 	echo "prepend-path LIBRARY_PATH $($(vmtk)-prefix)/lib" >>$@
 	echo "prepend-path LD_LIBRARY_PATH $($(vmtk)-prefix)/lib" >>$@
 	echo "prepend-path PKG_CONFIG_PATH $($(vmtk)-prefix)/lib/pkgconfig" >>$@
-	echo "prepend-path PYTHONPATH $($(vmtk)-prefix)/lib/python$(python-version-short)/site-packages" >>$@
+	echo "prepend-path PYTHONPATH $($(vmtk)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages" >>$@
 	echo "prepend-path MANPATH $($(vmtk)-prefix)/share/man" >>$@
 	echo "prepend-path INFOPATH $($(vmtk)-prefix)/share/info" >>$@
 	echo "set MSG \"$(vmtk)\"" >>$@

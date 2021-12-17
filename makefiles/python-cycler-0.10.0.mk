@@ -29,7 +29,7 @@ $(python-cycler)-builddeps = $(python) $(python-pytest) $(python-nose) $(python-
 $(python-cycler)-prereqs = $(python) $(python-six)
 $(python-cycler)-modulefile = $(modulefilesdir)/$(python-cycler)
 $(python-cycler)-prefix = $(pkgdir)/$(python-cycler)
-$(python-cycler)-site-packages = $($(python-cycler)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-cycler)-site-packages = $($(python-cycler)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-cycler)-src): $(dir $($(python-cycler)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-cycler)-srcurl)

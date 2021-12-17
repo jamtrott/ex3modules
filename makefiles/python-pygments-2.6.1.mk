@@ -29,7 +29,7 @@ $(python-pygments)-builddeps = $(python)
 $(python-pygments)-prereqs = $(python)
 $(python-pygments)-modulefile = $(modulefilesdir)/$(python-pygments)
 $(python-pygments)-prefix = $(pkgdir)/$(python-pygments)
-$(python-pygments)-site-packages = $($(python-pygments)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pygments)-site-packages = $($(python-pygments)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pygments)-src): $(dir $($(python-pygments)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pygments)-srcurl)

@@ -29,7 +29,7 @@ $(python-imagesize)-builddeps = $(python)
 $(python-imagesize)-prereqs = $(python)
 $(python-imagesize)-modulefile = $(modulefilesdir)/$(python-imagesize)
 $(python-imagesize)-prefix = $(pkgdir)/$(python-imagesize)
-$(python-imagesize)-site-packages = $($(python-imagesize)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-imagesize)-site-packages = $($(python-imagesize)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-imagesize)-src): $(dir $($(python-imagesize)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-imagesize)-srcurl)

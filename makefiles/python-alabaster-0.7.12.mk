@@ -29,7 +29,7 @@ $(python-alabaster)-builddeps = $(python) $(python-pygments)
 $(python-alabaster)-prereqs = $(python)
 $(python-alabaster)-modulefile = $(modulefilesdir)/$(python-alabaster)
 $(python-alabaster)-prefix = $(pkgdir)/$(python-alabaster)
-$(python-alabaster)-site-packages = $($(python-alabaster)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-alabaster)-site-packages = $($(python-alabaster)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-alabaster)-src): $(dir $($(python-alabaster)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-alabaster)-srcurl)

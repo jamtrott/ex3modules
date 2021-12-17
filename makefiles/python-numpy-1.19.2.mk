@@ -35,7 +35,7 @@ $(python-numpy)-prereqs += $(lapack)
 endif
 $(python-numpy)-modulefile = $(modulefilesdir)/$(python-numpy)
 $(python-numpy)-prefix = $(pkgdir)/$(python-numpy)
-$(python-numpy)-site-packages = $($(python-numpy)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-numpy)-site-packages = $($(python-numpy)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-numpy)-src): $(dir $($(python-numpy)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-numpy)-srcurl)

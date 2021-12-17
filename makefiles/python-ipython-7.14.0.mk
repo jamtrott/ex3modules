@@ -29,7 +29,7 @@ $(python-ipython)-builddeps = $(python)
 $(python-ipython)-prereqs = $(python)
 $(python-ipython)-modulefile = $(modulefilesdir)/$(python-ipython)
 $(python-ipython)-prefix = $(pkgdir)/$(python-ipython)
-$(python-ipython)-site-packages = $($(python-ipython)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-ipython)-site-packages = $($(python-ipython)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-ipython)-src): $(dir $($(python-ipython)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-ipython)-srcurl)

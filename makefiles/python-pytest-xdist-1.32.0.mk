@@ -29,7 +29,7 @@ $(python-pytest-xdist)-builddeps = $(python) $(python-six) $(python-pytest-forke
 $(python-pytest-xdist)-prereqs = $(python) $(python-six) $(python-pytest-forked) $(python-pytest) $(python-execnet) $(python-wcwidth) $(python-py) $(python-pluggy) $(python-packaging) $(python-more-itertools) $(python-importlib_metadata) $(python-attrs) $(python-apipkg) $(python-pyparsing) $(python-zipp)
 $(python-pytest-xdist)-modulefile = $(modulefilesdir)/$(python-pytest-xdist)
 $(python-pytest-xdist)-prefix = $(pkgdir)/$(python-pytest-xdist)
-$(python-pytest-xdist)-site-packages = $($(python-pytest-xdist)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pytest-xdist)-site-packages = $($(python-pytest-xdist)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pytest-xdist)-src): $(dir $($(python-pytest-xdist)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pytest-xdist)-srcurl)

@@ -29,7 +29,7 @@ $(python-pathlib2)-builddeps = $(python) $(python-six)
 $(python-pathlib2)-prereqs = $(python) $(python-six)
 $(python-pathlib2)-modulefile = $(modulefilesdir)/$(python-pathlib2)
 $(python-pathlib2)-prefix = $(pkgdir)/$(python-pathlib2)
-$(python-pathlib2)-site-packages = $($(python-pathlib2)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pathlib2)-site-packages = $($(python-pathlib2)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pathlib2)-src): $(dir $($(python-pathlib2)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pathlib2)-srcurl)

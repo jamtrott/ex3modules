@@ -29,7 +29,7 @@ $(python-pycparser)-builddeps = $(python)
 $(python-pycparser)-prereqs = $(python)
 $(python-pycparser)-modulefile = $(modulefilesdir)/$(python-pycparser)
 $(python-pycparser)-prefix = $(pkgdir)/$(python-pycparser)
-$(python-pycparser)-site-packages = $($(python-pycparser)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pycparser)-site-packages = $($(python-pycparser)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pycparser)-src): $(dir $($(python-pycparser)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pycparser)-srcurl)

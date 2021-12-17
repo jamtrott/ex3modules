@@ -29,7 +29,7 @@ $(python-pyparsing)-builddeps = $(python)
 $(python-pyparsing)-prereqs = $(python)
 $(python-pyparsing)-modulefile = $(modulefilesdir)/$(python-pyparsing)
 $(python-pyparsing)-prefix = $(pkgdir)/$(python-pyparsing)
-$(python-pyparsing)-site-packages = $($(python-pyparsing)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pyparsing)-site-packages = $($(python-pyparsing)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pyparsing)-src): $(dir $($(python-pyparsing)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pyparsing)-srcurl)

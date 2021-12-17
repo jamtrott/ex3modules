@@ -29,7 +29,7 @@ $(python-matplotlib)-builddeps = $(python) $(freetype) $(libpng) $(blas) $(mpi) 
 $(python-matplotlib)-prereqs = $(python) $(freetype) $(libpng) $(python-numpy) $(python-kiwisolver) $(python-dateutil) $(python-pyparsing)
 $(python-matplotlib)-modulefile = $(modulefilesdir)/$(python-matplotlib)
 $(python-matplotlib)-prefix = $(pkgdir)/$(python-matplotlib)
-$(python-matplotlib)-site-packages = $($(python-matplotlib)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-matplotlib)-site-packages = $($(python-matplotlib)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-matplotlib)-src): $(dir $($(python-matplotlib)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-matplotlib)-srcurl)

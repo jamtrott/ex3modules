@@ -25,11 +25,11 @@ $(python-iniconfig)-url = http://github.com/RonnyPfannschmidt/iniconfig/
 $(python-iniconfig)-srcurl = https://files.pythonhosted.org/packages/23/a2/97899f6bd0e873fed3a7e67ae8d3a08b21799430fb4da15cfedf10d6e2c2/iniconfig-1.1.1.tar.gz
 $(python-iniconfig)-src = $(pkgsrcdir)/$(notdir $($(python-iniconfig)-srcurl))
 $(python-iniconfig)-srcdir = $(pkgsrcdir)/$(python-iniconfig)
-$(python-iniconfig)-builddeps = $(python)
+$(python-iniconfig)-builddeps = $(python) $(python-setuptools)
 $(python-iniconfig)-prereqs = $(python)
 $(python-iniconfig)-modulefile = $(modulefilesdir)/$(python-iniconfig)
 $(python-iniconfig)-prefix = $(pkgdir)/$(python-iniconfig)
-$(python-iniconfig)-site-packages = $($(python-iniconfig)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-iniconfig)-site-packages = $($(python-iniconfig)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-iniconfig)-src): $(dir $($(python-iniconfig)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-iniconfig)-srcurl)

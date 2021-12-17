@@ -29,7 +29,7 @@ $(python-nose)-builddeps = $(python)
 $(python-nose)-prereqs = $(python)
 $(python-nose)-modulefile = $(modulefilesdir)/$(python-nose)
 $(python-nose)-prefix = $(pkgdir)/$(python-nose)
-$(python-nose)-site-packages = $($(python-nose)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-nose)-site-packages = $($(python-nose)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-nose)-src): $(dir $($(python-nose)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-nose)-srcurl)

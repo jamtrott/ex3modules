@@ -29,7 +29,7 @@ $(python-mako)-builddeps = $(python) $(python-tox)
 $(python-mako)-prereqs = $(python)
 $(python-mako)-modulefile = $(modulefilesdir)/$(python-mako)
 $(python-mako)-prefix = $(pkgdir)/$(python-mako)
-$(python-mako)-site-packages = $($(python-mako)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-mako)-site-packages = $($(python-mako)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-mako)-src): $(dir $($(python-mako)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-mako)-srcurl)

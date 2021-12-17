@@ -29,7 +29,7 @@ $(python-requests)-builddeps = $(python) $(python-chardet) $(python-idna) $(pyth
 $(python-requests)-prereqs = $(python) $(python-chardet) $(python-idna) $(python-urllib3) $(python-certifi)
 $(python-requests)-modulefile = $(modulefilesdir)/$(python-requests)
 $(python-requests)-prefix = $(pkgdir)/$(python-requests)
-$(python-requests)-site-packages = $($(python-requests)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-requests)-site-packages = $($(python-requests)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-requests)-src): $(dir $($(python-requests)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-requests)-srcurl)

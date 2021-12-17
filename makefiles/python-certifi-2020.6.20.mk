@@ -29,7 +29,7 @@ $(python-certifi)-builddeps = $(python)
 $(python-certifi)-prereqs = $(python)
 $(python-certifi)-modulefile = $(modulefilesdir)/$(python-certifi)
 $(python-certifi)-prefix = $(pkgdir)/$(python-certifi)
-$(python-certifi)-site-packages = $($(python-certifi)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-certifi)-site-packages = $($(python-certifi)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-certifi)-src): $(dir $($(python-certifi)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-certifi)-srcurl)

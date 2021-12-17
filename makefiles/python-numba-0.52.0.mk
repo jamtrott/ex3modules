@@ -29,7 +29,7 @@ $(python-numba)-builddeps = $(python) $(python-numpy) $(python-llvmlite)
 $(python-numba)-prereqs = $(python) $(python-numpy) $(python-llvmlite)
 $(python-numba)-modulefile = $(modulefilesdir)/$(python-numba)
 $(python-numba)-prefix = $(pkgdir)/$(python-numba)
-$(python-numba)-site-packages = $($(python-numba)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-numba)-site-packages = $($(python-numba)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-numba)-src): $(dir $($(python-numba)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-numba)-srcurl)

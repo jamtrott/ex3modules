@@ -29,7 +29,7 @@ $(python-scipy)-builddeps = $(python) $(python-cython) $(blas) $(mpi) $(python-n
 $(python-scipy)-prereqs = $(python) $(python-cython) $(python-numpy) $(openblas)
 $(python-scipy)-modulefile = $(modulefilesdir)/$(python-scipy)
 $(python-scipy)-prefix = $(pkgdir)/$(python-scipy)
-$(python-scipy)-site-packages = $($(python-scipy)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-scipy)-site-packages = $($(python-scipy)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-scipy)-src): $(dir $($(python-scipy)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-scipy)-srcurl)

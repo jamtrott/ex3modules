@@ -29,7 +29,7 @@ $(python-flake8)-builddeps = $(python) $(python-importlib_metadata) $(python-pyf
 $(python-flake8)-prereqs = $(python) $(python-importlib_metadata) $(python-pyflakes) $(python-pycodestyle) $(python-mccabe)
 $(python-flake8)-modulefile = $(modulefilesdir)/$(python-flake8)
 $(python-flake8)-prefix = $(pkgdir)/$(python-flake8)
-$(python-flake8)-site-packages = $($(python-flake8)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-flake8)-site-packages = $($(python-flake8)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-flake8)-src): $(dir $($(python-flake8)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-flake8)-srcurl)

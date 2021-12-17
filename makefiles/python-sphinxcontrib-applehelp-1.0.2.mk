@@ -29,7 +29,7 @@ $(python-sphinxcontrib-applehelp)-builddeps = $(python)
 $(python-sphinxcontrib-applehelp)-prereqs = $(python)
 $(python-sphinxcontrib-applehelp)-modulefile = $(modulefilesdir)/$(python-sphinxcontrib-applehelp)
 $(python-sphinxcontrib-applehelp)-prefix = $(pkgdir)/$(python-sphinxcontrib-applehelp)
-$(python-sphinxcontrib-applehelp)-site-packages = $($(python-sphinxcontrib-applehelp)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-sphinxcontrib-applehelp)-site-packages = $($(python-sphinxcontrib-applehelp)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-sphinxcontrib-applehelp)-src): $(dir $($(python-sphinxcontrib-applehelp)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-sphinxcontrib-applehelp)-srcurl)

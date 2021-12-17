@@ -29,7 +29,7 @@ $(python-sortedcontainers)-builddeps = $(python) $(python-zipp) $(python-pyparsi
 $(python-sortedcontainers)-prereqs = $(python) $(python-zipp) $(python-pyparsing) $(python-appdirs) $(python-distlib) $(python-filelock) $(python-importlib_metadata) $(python-packaging) $(python-pluggy) $(python-py) $(python-six) $(python-toml) $(python-virtualenv) $(python-tox)
 $(python-sortedcontainers)-modulefile = $(modulefilesdir)/$(python-sortedcontainers)
 $(python-sortedcontainers)-prefix = $(pkgdir)/$(python-sortedcontainers)
-$(python-sortedcontainers)-site-packages = $($(python-sortedcontainers)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-sortedcontainers)-site-packages = $($(python-sortedcontainers)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-sortedcontainers)-src): $(dir $($(python-sortedcontainers)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-sortedcontainers)-srcurl)

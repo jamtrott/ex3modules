@@ -29,7 +29,7 @@ $(python-pytest-cov)-builddeps = $(python) $(python-pytest) $(python-importlib_m
 $(python-pytest-cov)-prereqs = $(python) $(python-pytest) $(python-importlib_metadata) $(python-zipp) $(python-attrs) $(python-six) $(python-more-itertools) $(python-wcwidth) $(python-py) $(python-pluggy) $(python-packaging) $(python-atomicwrites) $(python-coverage)
 $(python-pytest-cov)-modulefile = $(modulefilesdir)/$(python-pytest-cov)
 $(python-pytest-cov)-prefix = $(pkgdir)/$(python-pytest-cov)
-$(python-pytest-cov)-site-packages = $($(python-pytest-cov)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pytest-cov)-site-packages = $($(python-pytest-cov)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pytest-cov)-src): $(dir $($(python-pytest-cov)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pytest-cov)-srcurl)

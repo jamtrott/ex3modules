@@ -29,7 +29,7 @@ $(python-babel)-builddeps = $(python) $(python-pytest) $(python-freezegun)
 $(python-babel)-prereqs = $(python)
 $(python-babel)-modulefile = $(modulefilesdir)/$(python-babel)
 $(python-babel)-prefix = $(pkgdir)/$(python-babel)
-$(python-babel)-site-packages = $($(python-babel)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-babel)-site-packages = $($(python-babel)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-babel)-src): $(dir $($(python-babel)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-babel)-srcurl)

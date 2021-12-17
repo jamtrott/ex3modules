@@ -29,7 +29,7 @@ $(python-pydocstyle)-builddeps = $(python) $(python-snowballstemmer)
 $(python-pydocstyle)-prereqs = $(python) $(python-snowballstemmer)
 $(python-pydocstyle)-modulefile = $(modulefilesdir)/$(python-pydocstyle)
 $(python-pydocstyle)-prefix = $(pkgdir)/$(python-pydocstyle)
-$(python-pydocstyle)-site-packages = $($(python-pydocstyle)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pydocstyle)-site-packages = $($(python-pydocstyle)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pydocstyle)-src): $(dir $($(python-pydocstyle)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pydocstyle)-srcurl)

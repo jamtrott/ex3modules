@@ -29,7 +29,7 @@ $(python-atomicwrites)-builddeps = $(python)
 $(python-atomicwrites)-prereqs = $(python)
 $(python-atomicwrites)-modulefile = $(modulefilesdir)/$(python-atomicwrites)
 $(python-atomicwrites)-prefix = $(pkgdir)/$(python-atomicwrites)
-$(python-atomicwrites)-site-packages = $($(python-atomicwrites)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-atomicwrites)-site-packages = $($(python-atomicwrites)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-atomicwrites)-src): $(dir $($(python-atomicwrites)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-atomicwrites)-srcurl)

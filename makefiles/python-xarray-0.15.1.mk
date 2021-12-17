@@ -29,7 +29,7 @@ $(python-xarray)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-p
 $(python-xarray)-prereqs = $(python) $(python-numpy) $(python-pandas) $(python-scipy) $(python-matplotlib)
 $(python-xarray)-modulefile = $(modulefilesdir)/$(python-xarray)
 $(python-xarray)-prefix = $(pkgdir)/$(python-xarray)
-$(python-xarray)-site-packages = $($(python-xarray)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-xarray)-site-packages = $($(python-xarray)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-xarray)-src): $(dir $($(python-xarray)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-xarray)-srcurl)

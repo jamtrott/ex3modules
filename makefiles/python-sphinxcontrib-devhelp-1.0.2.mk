@@ -29,7 +29,7 @@ $(python-sphinxcontrib-devhelp)-builddeps = $(python)
 $(python-sphinxcontrib-devhelp)-prereqs = $(python)
 $(python-sphinxcontrib-devhelp)-modulefile = $(modulefilesdir)/$(python-sphinxcontrib-devhelp)
 $(python-sphinxcontrib-devhelp)-prefix = $(pkgdir)/$(python-sphinxcontrib-devhelp)
-$(python-sphinxcontrib-devhelp)-site-packages = $($(python-sphinxcontrib-devhelp)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-sphinxcontrib-devhelp)-site-packages = $($(python-sphinxcontrib-devhelp)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-sphinxcontrib-devhelp)-src): $(dir $($(python-sphinxcontrib-devhelp)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-sphinxcontrib-devhelp)-srcurl)

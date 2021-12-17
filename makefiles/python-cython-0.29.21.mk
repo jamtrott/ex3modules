@@ -29,7 +29,7 @@ $(python-cython)-builddeps = $(python)
 $(python-cython)-prereqs = $(python)
 $(python-cython)-modulefile = $(modulefilesdir)/$(python-cython)
 $(python-cython)-prefix = $(pkgdir)/$(python-cython)
-$(python-cython)-site-packages = $($(python-cython)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-cython)-site-packages = $($(python-cython)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-cython)-src): $(dir $($(python-cython)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-cython)-srcurl)

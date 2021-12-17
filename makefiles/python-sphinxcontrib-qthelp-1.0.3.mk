@@ -29,7 +29,7 @@ $(python-sphinxcontrib-qthelp)-builddeps = $(python)
 $(python-sphinxcontrib-qthelp)-prereqs = $(python)
 $(python-sphinxcontrib-qthelp)-modulefile = $(modulefilesdir)/$(python-sphinxcontrib-qthelp)
 $(python-sphinxcontrib-qthelp)-prefix = $(pkgdir)/$(python-sphinxcontrib-qthelp)
-$(python-sphinxcontrib-qthelp)-site-packages = $($(python-sphinxcontrib-qthelp)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-sphinxcontrib-qthelp)-site-packages = $($(python-sphinxcontrib-qthelp)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-sphinxcontrib-qthelp)-src): $(dir $($(python-sphinxcontrib-qthelp)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-sphinxcontrib-qthelp)-srcurl)

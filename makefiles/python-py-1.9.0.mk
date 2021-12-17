@@ -29,7 +29,7 @@ $(python-py)-builddeps = $(python) $(python-setuptools_scm)
 $(python-py)-prereqs = $(python)
 $(python-py)-modulefile = $(modulefilesdir)/$(python-py)
 $(python-py)-prefix = $(pkgdir)/$(python-py)
-$(python-py)-site-packages = $($(python-py)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-py)-site-packages = $($(python-py)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-py)-src): $(dir $($(python-py)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-py)-srcurl)

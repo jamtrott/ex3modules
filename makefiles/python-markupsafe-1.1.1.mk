@@ -29,7 +29,7 @@ $(python-markupsafe)-builddeps = $(python)
 $(python-markupsafe)-prereqs = $(python)
 $(python-markupsafe)-modulefile = $(modulefilesdir)/$(python-markupsafe)
 $(python-markupsafe)-prefix = $(pkgdir)/$(python-markupsafe)
-$(python-markupsafe)-site-packages = $($(python-markupsafe)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-markupsafe)-site-packages = $($(python-markupsafe)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-markupsafe)-src): $(dir $($(python-markupsafe)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-markupsafe)-srcurl)

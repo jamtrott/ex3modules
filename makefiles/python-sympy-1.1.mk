@@ -29,7 +29,7 @@ $(python-sympy-1.1)-builddeps = $(python) $(python-mpmath)
 $(python-sympy-1.1)-prereqs = $(python) $(python-mpmath)
 $(python-sympy-1.1)-modulefile = $(modulefilesdir)/$(python-sympy-1.1)
 $(python-sympy-1.1)-prefix = $(pkgdir)/$(python-sympy-1.1)
-$(python-sympy-1.1)-site-packages = $($(python-sympy-1.1)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-sympy-1.1)-site-packages = $($(python-sympy-1.1)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-sympy-1.1)-src): $(dir $($(python-sympy-1.1)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-sympy-1.1)-srcurl)

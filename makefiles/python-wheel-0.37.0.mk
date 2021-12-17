@@ -29,7 +29,7 @@ $(python-wheel)-builddeps = $(python) $(python-setuptools)
 $(python-wheel)-prereqs = $(python)
 $(python-wheel)-modulefile = $(modulefilesdir)/$(python-wheel)
 $(python-wheel)-prefix = $(pkgdir)/$(python-wheel)
-$(python-wheel)-site-packages = $($(python-wheel)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-wheel)-site-packages = $($(python-wheel)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-wheel)-src): $(dir $($(python-wheel)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-wheel)-srcurl)

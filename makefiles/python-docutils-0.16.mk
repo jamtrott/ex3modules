@@ -29,7 +29,7 @@ $(python-docutils)-builddeps = $(python)
 $(python-docutils)-prereqs = $(python)
 $(python-docutils)-modulefile = $(modulefilesdir)/$(python-docutils)
 $(python-docutils)-prefix = $(pkgdir)/$(python-docutils)
-$(python-docutils)-site-packages = $($(python-docutils)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-docutils)-site-packages = $($(python-docutils)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-docutils)-src): $(dir $($(python-docutils)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-docutils)-srcurl)

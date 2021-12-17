@@ -29,7 +29,7 @@ $(python-pygraphviz)-builddeps = $(python) $(graphviz) $(python-mock) $(python-n
 $(python-pygraphviz)-prereqs = $(python) $(graphviz)
 $(python-pygraphviz)-modulefile = $(modulefilesdir)/$(python-pygraphviz)
 $(python-pygraphviz)-prefix = $(pkgdir)/$(python-pygraphviz)
-$(python-pygraphviz)-site-packages = $($(python-pygraphviz)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pygraphviz)-site-packages = $($(python-pygraphviz)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pygraphviz)-src): $(dir $($(python-pygraphviz)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pygraphviz)-srcurl)

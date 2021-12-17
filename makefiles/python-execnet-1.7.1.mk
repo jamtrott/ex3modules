@@ -29,7 +29,7 @@ $(python-execnet)-builddeps = $(python) $(python-apipkg) $(python-setuptools_scm
 $(python-execnet)-prereqs = $(python) $(python-apipkg)
 $(python-execnet)-modulefile = $(modulefilesdir)/$(python-execnet)
 $(python-execnet)-prefix = $(pkgdir)/$(python-execnet)
-$(python-execnet)-site-packages = $($(python-execnet)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-execnet)-site-packages = $($(python-execnet)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-execnet)-src): $(dir $($(python-execnet)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-execnet)-srcurl)

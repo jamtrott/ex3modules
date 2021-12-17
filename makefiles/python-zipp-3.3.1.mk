@@ -29,7 +29,7 @@ $(python-zipp)-builddeps = $(python) $(python-setuptools) $(python-setuptools_sc
 $(python-zipp)-prereqs = $(python)
 $(python-zipp)-modulefile = $(modulefilesdir)/$(python-zipp)
 $(python-zipp)-prefix = $(pkgdir)/$(python-zipp)
-$(python-zipp)-site-packages = $($(python-zipp)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-zipp)-site-packages = $($(python-zipp)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-zipp)-src): $(dir $($(python-zipp)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-zipp)-srcurl)

@@ -29,7 +29,7 @@ $(python-pluggy)-builddeps = $(python) $(python-importlib_metadata) $(python-zip
 $(python-pluggy)-prereqs = $(python)
 $(python-pluggy)-modulefile = $(modulefilesdir)/$(python-pluggy)
 $(python-pluggy)-prefix = $(pkgdir)/$(python-pluggy)
-$(python-pluggy)-site-packages = $($(python-pluggy)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pluggy)-site-packages = $($(python-pluggy)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pluggy)-src): $(dir $($(python-pluggy)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pluggy)-srcurl)

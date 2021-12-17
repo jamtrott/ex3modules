@@ -29,7 +29,7 @@ $(python-colorama)-builddeps = $(python)
 $(python-colorama)-prereqs = $(python)
 $(python-colorama)-modulefile = $(modulefilesdir)/$(python-colorama)
 $(python-colorama)-prefix = $(pkgdir)/$(python-colorama)
-$(python-colorama)-site-packages = $($(python-colorama)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-colorama)-site-packages = $($(python-colorama)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-colorama)-src): $(dir $($(python-colorama)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-colorama)-srcurl)

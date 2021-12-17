@@ -29,7 +29,7 @@ $(python-h5py)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-cyt
 $(python-h5py)-prereqs = $(python) $(python-numpy) $(python-cython) $(python-mpi4py) $(python-six) $(hdf5-parallel)
 $(python-h5py)-modulefile = $(modulefilesdir)/$(python-h5py)
 $(python-h5py)-prefix = $(pkgdir)/$(python-h5py)
-$(python-h5py)-site-packages = $($(python-h5py)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-h5py)-site-packages = $($(python-h5py)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-h5py)-src): $(dir $($(python-h5py)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-h5py)-srcurl)

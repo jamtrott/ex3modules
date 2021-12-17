@@ -29,7 +29,7 @@ $(python-urllib3)-builddeps = $(python) $(python-pytest)
 $(python-urllib3)-prereqs = $(python)
 $(python-urllib3)-modulefile = $(modulefilesdir)/$(python-urllib3)
 $(python-urllib3)-prefix = $(pkgdir)/$(python-urllib3)
-$(python-urllib3)-site-packages = $($(python-urllib3)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-urllib3)-site-packages = $($(python-urllib3)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-urllib3)-src): $(dir $($(python-urllib3)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-urllib3)-srcurl)

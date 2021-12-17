@@ -29,7 +29,7 @@ $(python-mccabe)-builddeps = $(python)
 $(python-mccabe)-prereqs = $(python)
 $(python-mccabe)-modulefile = $(modulefilesdir)/$(python-mccabe)
 $(python-mccabe)-prefix = $(pkgdir)/$(python-mccabe)
-$(python-mccabe)-site-packages = $($(python-mccabe)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-mccabe)-site-packages = $($(python-mccabe)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-mccabe)-src): $(dir $($(python-mccabe)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-mccabe)-srcurl)

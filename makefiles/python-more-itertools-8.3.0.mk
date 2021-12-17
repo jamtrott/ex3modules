@@ -29,7 +29,7 @@ $(python-more-itertools)-builddeps = $(python)
 $(python-more-itertools)-prereqs = $(python)
 $(python-more-itertools)-modulefile = $(modulefilesdir)/$(python-more-itertools)
 $(python-more-itertools)-prefix = $(pkgdir)/$(python-more-itertools)
-$(python-more-itertools)-site-packages = $($(python-more-itertools)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-more-itertools)-site-packages = $($(python-more-itertools)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-more-itertools)-src): $(dir $($(python-more-itertools)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-more-itertools)-srcurl)

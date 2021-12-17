@@ -29,7 +29,7 @@ $(python-filelock)-builddeps = $(python)
 $(python-filelock)-prereqs = $(python)
 $(python-filelock)-modulefile = $(modulefilesdir)/$(python-filelock)
 $(python-filelock)-prefix = $(pkgdir)/$(python-filelock)
-$(python-filelock)-site-packages = $($(python-filelock)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-filelock)-site-packages = $($(python-filelock)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-filelock)-src): $(dir $($(python-filelock)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-filelock)-srcurl)

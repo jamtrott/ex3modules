@@ -29,7 +29,7 @@ $(python-sphinxcontrib-jsmath)-builddeps = $(python)
 $(python-sphinxcontrib-jsmath)-prereqs = $(python)
 $(python-sphinxcontrib-jsmath)-modulefile = $(modulefilesdir)/$(python-sphinxcontrib-jsmath)
 $(python-sphinxcontrib-jsmath)-prefix = $(pkgdir)/$(python-sphinxcontrib-jsmath)
-$(python-sphinxcontrib-jsmath)-site-packages = $($(python-sphinxcontrib-jsmath)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-sphinxcontrib-jsmath)-site-packages = $($(python-sphinxcontrib-jsmath)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-sphinxcontrib-jsmath)-src): $(dir $($(python-sphinxcontrib-jsmath)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-sphinxcontrib-jsmath)-srcurl)

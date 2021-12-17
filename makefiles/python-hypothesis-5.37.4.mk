@@ -29,7 +29,7 @@ $(python-hypothesis)-builddeps = $(python) $(python-attrs) $(python-sortedcontai
 $(python-hypothesis)-prereqs = $(python) $(python-attrs) $(python-sortedcontainers)
 $(python-hypothesis)-modulefile = $(modulefilesdir)/$(python-hypothesis)
 $(python-hypothesis)-prefix = $(pkgdir)/$(python-hypothesis)
-$(python-hypothesis)-site-packages = $($(python-hypothesis)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-hypothesis)-site-packages = $($(python-hypothesis)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-hypothesis)-src): $(dir $($(python-hypothesis)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-hypothesis)-srcurl)

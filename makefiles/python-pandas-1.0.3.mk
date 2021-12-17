@@ -29,7 +29,7 @@ $(python-pandas)-builddeps = $(python) $(python-cython) $(blas) $(mpi) $(python-
 $(python-pandas)-prereqs = $(python)  $(python-cython) $(python-numpy) $(pyhon-pytz) $(python-dateutil) $(python-six)
 $(python-pandas)-modulefile = $(modulefilesdir)/$(python-pandas)
 $(python-pandas)-prefix = $(pkgdir)/$(python-pandas)
-$(python-pandas)-site-packages = $($(python-pandas)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pandas)-site-packages = $($(python-pandas)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pandas)-src): $(dir $($(python-pandas)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pandas)-srcurl)

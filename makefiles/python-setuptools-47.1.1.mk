@@ -29,7 +29,7 @@ $(python-setuptools)-builddeps = $(python)
 $(python-setuptools)-prereqs = $(python)
 $(python-setuptools)-modulefile = $(modulefilesdir)/$(python-setuptools)
 $(python-setuptools)-prefix = $(pkgdir)/$(python-setuptools)
-$(python-setuptools)-site-packages = $($(python-setuptools)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-setuptools)-site-packages = $($(python-setuptools)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-setuptools)-src): $(dir $($(python-setuptools)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-setuptools)-srcurl)

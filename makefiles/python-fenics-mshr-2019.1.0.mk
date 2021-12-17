@@ -30,7 +30,7 @@ $(python-fenics-mshr-2019)-builddeps = $(cmake) $(boost) $(gmp) $(mpfr) $(eigen)
 $(python-fenics-mshr-2019)-prereqs = $(boost) $(gmp) $(mpfr) $(eigen) $(python) $(python-fenics-dolfin-2019) $(fenics-mshr-2019) $(cgal-4.12)
 $(python-fenics-mshr-2019)-modulefile = $(modulefilesdir)/$(python-fenics-mshr-2019)
 $(python-fenics-mshr-2019)-prefix = $(pkgdir)/$(python-fenics-mshr-2019)
-$(python-fenics-mshr-2019)-site-packages = $($(python-fenics-mshr-2019)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-fenics-mshr-2019)-site-packages = $($(python-fenics-mshr-2019)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-fenics-mshr-2019)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@

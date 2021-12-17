@@ -29,7 +29,7 @@ $(python-coverage)-builddeps = $(python)
 $(python-coverage)-prereqs = $(python)
 $(python-coverage)-modulefile = $(modulefilesdir)/$(python-coverage)
 $(python-coverage)-prefix = $(pkgdir)/$(python-coverage)
-$(python-coverage)-site-packages = $($(python-coverage)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-coverage)-site-packages = $($(python-coverage)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-coverage)-src): $(dir $($(python-coverage)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-coverage)-srcurl)

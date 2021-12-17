@@ -29,7 +29,7 @@ $(python-pycodestyle)-builddeps = $(python)
 $(python-pycodestyle)-prereqs = $(python)
 $(python-pycodestyle)-modulefile = $(modulefilesdir)/$(python-pycodestyle)
 $(python-pycodestyle)-prefix = $(pkgdir)/$(python-pycodestyle)
-$(python-pycodestyle)-site-packages = $($(python-pycodestyle)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pycodestyle)-site-packages = $($(python-pycodestyle)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pycodestyle)-src): $(dir $($(python-pycodestyle)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pycodestyle)-srcurl)

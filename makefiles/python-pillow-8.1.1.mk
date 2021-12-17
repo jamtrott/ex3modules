@@ -29,7 +29,7 @@ $(python-pillow)-builddeps = $(python) $(libjpeg-turbo) $(libtiff) $(freetype) $
 $(python-pillow)-prereqs = $(python) $(libjpeg-turbo) $(libtiff) $(freetype) $(libwebp)
 $(python-pillow)-modulefile = $(modulefilesdir)/$(python-pillow)
 $(python-pillow)-prefix = $(pkgdir)/$(python-pillow)
-$(python-pillow)-site-packages = $($(python-pillow)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pillow)-site-packages = $($(python-pillow)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pillow)-src): $(dir $($(python-pillow)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pillow)-srcurl)

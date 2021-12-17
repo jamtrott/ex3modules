@@ -29,7 +29,7 @@ $(python-flaky)-builddeps = $(python)
 $(python-flaky)-prereqs = $(python)
 $(python-flaky)-modulefile = $(modulefilesdir)/$(python-flaky)
 $(python-flaky)-prefix = $(pkgdir)/$(python-flaky)
-$(python-flaky)-site-packages = $($(python-flaky)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-flaky)-site-packages = $($(python-flaky)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-flaky)-src): $(dir $($(python-flaky)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-flaky)-srcurl)

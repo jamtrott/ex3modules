@@ -29,7 +29,7 @@ $(python-pyflakes)-builddeps = $(python)
 $(python-pyflakes)-prereqs = $(python)
 $(python-pyflakes)-modulefile = $(modulefilesdir)/$(python-pyflakes)
 $(python-pyflakes)-prefix = $(pkgdir)/$(python-pyflakes)
-$(python-pyflakes)-site-packages = $($(python-pyflakes)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pyflakes)-site-packages = $($(python-pyflakes)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pyflakes)-src): $(dir $($(python-pyflakes)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pyflakes)-srcurl)

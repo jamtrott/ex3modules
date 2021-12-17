@@ -29,7 +29,7 @@ $(python-mpi4py)-builddeps = $(python) $(mpi)
 $(python-mpi4py)-prereqs = $(python) $(mpi)
 $(python-mpi4py)-modulefile = $(modulefilesdir)/$(python-mpi4py)
 $(python-mpi4py)-prefix = $(pkgdir)/$(python-mpi4py)
-$(python-mpi4py)-site-packages = $($(python-mpi4py)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-mpi4py)-site-packages = $($(python-mpi4py)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-mpi4py)-src): $(dir $($(python-mpi4py)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-mpi4py)-srcurl)

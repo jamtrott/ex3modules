@@ -29,7 +29,7 @@ $(python-jinja2)-builddeps = $(python)
 $(python-jinja2)-prereqs = $(python)
 $(python-jinja2)-modulefile = $(modulefilesdir)/$(python-jinja2)
 $(python-jinja2)-prefix = $(pkgdir)/$(python-jinja2)
-$(python-jinja2)-site-packages = $($(python-jinja2)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-jinja2)-site-packages = $($(python-jinja2)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-jinja2)-src): $(dir $($(python-jinja2)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-jinja2)-srcurl)

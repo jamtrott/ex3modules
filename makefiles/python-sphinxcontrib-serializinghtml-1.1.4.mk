@@ -29,7 +29,7 @@ $(python-sphinxcontrib-serializinghtml)-builddeps = $(python)
 $(python-sphinxcontrib-serializinghtml)-prereqs = $(python)
 $(python-sphinxcontrib-serializinghtml)-modulefile = $(modulefilesdir)/$(python-sphinxcontrib-serializinghtml)
 $(python-sphinxcontrib-serializinghtml)-prefix = $(pkgdir)/$(python-sphinxcontrib-serializinghtml)
-$(python-sphinxcontrib-serializinghtml)-site-packages = $($(python-sphinxcontrib-serializinghtml)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-sphinxcontrib-serializinghtml)-site-packages = $($(python-sphinxcontrib-serializinghtml)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-sphinxcontrib-serializinghtml)-src): $(dir $($(python-sphinxcontrib-serializinghtml)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-sphinxcontrib-serializinghtml)-srcurl)

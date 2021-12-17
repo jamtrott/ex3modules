@@ -30,7 +30,7 @@ $(python-fenics-dolfin-2018)-builddeps = $(python) $(cmake) $(blas) $(mpi) $(pyt
 $(python-fenics-dolfin-2018)-prereqs = $(python) $(python-numpy) $(python-pkgconfig) $(python-fenics-dijitso-2018) $(python-fenics-fiat-2018) $(python-fenics-ufl-2018) $(python-fenics-ffc-2018) $(pybind11) $(python-ply) $(python-mpi4py) $(python-petsc4py) $(fenics-dolfin-2018)
 $(python-fenics-dolfin-2018)-modulefile = $(modulefilesdir)/$(python-fenics-dolfin-2018)
 $(python-fenics-dolfin-2018)-prefix = $(pkgdir)/$(python-fenics-dolfin-2018)
-$(python-fenics-dolfin-2018)-site-packages = $($(python-fenics-dolfin-2018)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-fenics-dolfin-2018)-site-packages = $($(python-fenics-dolfin-2018)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-fenics-dolfin-2018)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@

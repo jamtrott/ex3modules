@@ -29,7 +29,7 @@ $(python-sphinx)-builddeps = $(python) $(python-sphinxcontrib-applehelp) $(pytho
 $(python-sphinx)-prereqs = $(python) $(python-sphinxcontrib-applehelp) $(python-sphinxcontrib-devhelp) $(python-sphinxcontrib-jsmath) $(python-sphinxcontrib-htmlhelp) $(python-sphinxcontrib-serializinghtml) $(python-sphinxcontrib-qthelp) $(python-jinja2) $(python-pygments) $(python-docutils) $(python-snowballstemmer) $(python-babel) $(python-alabaster) $(python-imagesize) $(python-requests) $(python-setuptools) $(python-packaging)
 $(python-sphinx)-modulefile = $(modulefilesdir)/$(python-sphinx)
 $(python-sphinx)-prefix = $(pkgdir)/$(python-sphinx)
-$(python-sphinx)-site-packages = $($(python-sphinx)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-sphinx)-site-packages = $($(python-sphinx)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-sphinx)-src): $(dir $($(python-sphinx)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-sphinx)-srcurl)

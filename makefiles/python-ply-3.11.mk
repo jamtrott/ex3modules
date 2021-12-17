@@ -29,7 +29,7 @@ $(python-ply)-builddeps = $(python)
 $(python-ply)-prereqs = $(python)
 $(python-ply)-modulefile = $(modulefilesdir)/$(python-ply)
 $(python-ply)-prefix = $(pkgdir)/$(python-ply)
-$(python-ply)-site-packages = $($(python-ply)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-ply)-site-packages = $($(python-ply)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-ply)-src): $(dir $($(python-ply)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-ply)-srcurl)

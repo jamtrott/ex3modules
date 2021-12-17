@@ -29,7 +29,7 @@ $(python-pytz)-builddeps = $(python)
 $(python-pytz)-prereqs = $(python)
 $(python-pytz)-modulefile = $(modulefilesdir)/$(python-pytz)
 $(python-pytz)-prefix = $(pkgdir)/$(python-pytz)
-$(python-pytz)-site-packages = $($(python-pytz)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pytz)-site-packages = $($(python-pytz)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pytz)-src): $(dir $($(python-pytz)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pytz)-srcurl)

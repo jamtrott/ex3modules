@@ -29,7 +29,7 @@ $(python-cffi)-builddeps = $(python) $(libffi) $(python-pycparser) $(python-py) 
 $(python-cffi)-prereqs = $(python) $(libffi) $(python-pycparser)
 $(python-cffi)-modulefile = $(modulefilesdir)/$(python-cffi)
 $(python-cffi)-prefix = $(pkgdir)/$(python-cffi)
-$(python-cffi)-site-packages = $($(python-cffi)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-cffi)-site-packages = $($(python-cffi)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-cffi)-src): $(dir $($(python-cffi)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-cffi)-srcurl)

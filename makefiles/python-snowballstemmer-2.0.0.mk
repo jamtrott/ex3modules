@@ -29,7 +29,7 @@ $(python-snowballstemmer)-builddeps = $(python)
 $(python-snowballstemmer)-prereqs = $(python)
 $(python-snowballstemmer)-modulefile = $(modulefilesdir)/$(python-snowballstemmer)
 $(python-snowballstemmer)-prefix = $(pkgdir)/$(python-snowballstemmer)
-$(python-snowballstemmer)-site-packages = $($(python-snowballstemmer)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-snowballstemmer)-site-packages = $($(python-snowballstemmer)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-snowballstemmer)-src): $(dir $($(python-snowballstemmer)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-snowballstemmer)-srcurl)

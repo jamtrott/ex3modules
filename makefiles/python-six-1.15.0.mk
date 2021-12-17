@@ -29,7 +29,7 @@ $(python-six)-builddeps = $(python)
 $(python-six)-prereqs = $(python)
 $(python-six)-modulefile = $(modulefilesdir)/$(python-six)
 $(python-six)-prefix = $(pkgdir)/$(python-six)
-$(python-six)-site-packages = $($(python-six)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-six)-site-packages = $($(python-six)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-six)-src): $(dir $($(python-six)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-six)-srcurl)

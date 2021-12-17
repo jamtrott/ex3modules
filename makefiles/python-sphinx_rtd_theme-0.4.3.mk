@@ -29,7 +29,7 @@ $(python-sphinx_rtd_theme)-builddeps = $(python) $(python-sphinx)
 $(python-sphinx_rtd_theme)-prereqs = $(python) $(python-sphinx)
 $(python-sphinx_rtd_theme)-modulefile = $(modulefilesdir)/$(python-sphinx_rtd_theme)
 $(python-sphinx_rtd_theme)-prefix = $(pkgdir)/$(python-sphinx_rtd_theme)
-$(python-sphinx_rtd_theme)-site-packages = $($(python-sphinx_rtd_theme)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-sphinx_rtd_theme)-site-packages = $($(python-sphinx_rtd_theme)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-sphinx_rtd_theme)-src): $(dir $($(python-sphinx_rtd_theme)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-sphinx_rtd_theme)-srcurl)

@@ -29,7 +29,7 @@ $(python-ipopt)-builddeps = $(python) $(python-cython) $(python-numpy) $(python-
 $(python-ipopt)-prereqs = $(python) $(python-cython) $(python-numpy) $(python-scipy) $(python-six) $(python-future) $(ipopt)
 $(python-ipopt)-modulefile = $(modulefilesdir)/$(python-ipopt) $(python-six)
 $(python-ipopt)-prefix = $(pkgdir)/$(python-ipopt)
-$(python-ipopt)-site-packages = $($(python-ipopt)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-ipopt)-site-packages = $($(python-ipopt)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-ipopt)-src): $(dir $($(python-ipopt)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-ipopt)-srcurl)

@@ -29,7 +29,7 @@ $(python-wcwidth)-builddeps = $(python)
 $(python-wcwidth)-prereqs = $(python)
 $(python-wcwidth)-modulefile = $(modulefilesdir)/$(python-wcwidth)
 $(python-wcwidth)-prefix = $(pkgdir)/$(python-wcwidth)
-$(python-wcwidth)-site-packages = $($(python-wcwidth)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-wcwidth)-site-packages = $($(python-wcwidth)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-wcwidth)-src): $(dir $($(python-wcwidth)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-wcwidth)-srcurl)

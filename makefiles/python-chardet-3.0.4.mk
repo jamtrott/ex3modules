@@ -29,7 +29,7 @@ $(python-chardet)-builddeps = $(python) $(python-hypothesis) $(python-pytest) $(
 $(python-chardet)-prereqs = $(python) $(python-hypothesis) $(python-pytest) $(python-sortedcontainers) $(python-attrs) $(python-toml) $(python-py) $(python-pluggy) $(python-packaging) $(python-iniconfig) $(python-importlib_metadata) $(python-six) $(python-pyparsing) $(python-zipp)
 $(python-chardet)-modulefile = $(modulefilesdir)/$(python-chardet)
 $(python-chardet)-prefix = $(pkgdir)/$(python-chardet)
-$(python-chardet)-site-packages = $($(python-chardet)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-chardet)-site-packages = $($(python-chardet)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-chardet)-src): $(dir $($(python-chardet)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-chardet)-srcurl)

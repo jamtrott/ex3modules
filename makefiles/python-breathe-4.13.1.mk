@@ -29,7 +29,7 @@ $(python-breathe)-builddeps = $(python) $(python-six) $(python-docutils) $(pytho
 $(python-breathe)-prereqs = $(python) $(python-six) $(python-docutils) $(python-sphinx) $(python-sphinxcontrib-serializinghtml) $(python-sphinxcontrib-qthelp) $(python-sphinxcontrib-jsmath) $(python-sphinxcontrib-htmlhelp) $(python-sphinxcontrib-devhelp) $(python-sphinxcontrib-applehelp) $(python-snowballstemmer) $(python-requests) $(python-packaging) $(python-imagesize) $(python-babel) $(python-alabaster) $(python-pygments) $(python-jinja2) $(python-urllib3) $(python-idna) $(python-chardet) $(python-certifi) $(python-pyparsing) $(python-pytz) $(python-markupsafe)
 $(python-breathe)-modulefile = $(modulefilesdir)/$(python-breathe)
 $(python-breathe)-prefix = $(pkgdir)/$(python-breathe)
-$(python-breathe)-site-packages = $($(python-breathe)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-breathe)-site-packages = $($(python-breathe)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 $($(python-breathe)-src): $(dir $($(python-breathe)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-breathe)-srcurl)
 

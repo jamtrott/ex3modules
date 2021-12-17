@@ -1,7 +1,7 @@
 2021-12-17 James D. Trotter <james@simula.no>
 
 	Remove dependencies on internal GCC to let the user decide which
-	compiler to use.
+	compiler to use. Also, add options to use external MPI and Python.
 
 2021-12-16 James D. Trotter <james@simula.no>
 

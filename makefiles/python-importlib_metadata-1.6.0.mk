@@ -29,7 +29,7 @@ $(python-importlib_metadata)-builddeps = $(python) $(python-zipp)
 $(python-importlib_metadata)-prereqs = $(python) $(python-zipp)
 $(python-importlib_metadata)-modulefile = $(modulefilesdir)/$(python-importlib_metadata)
 $(python-importlib_metadata)-prefix = $(pkgdir)/$(python-importlib_metadata)
-$(python-importlib_metadata)-site-packages = $($(python-importlib_metadata)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-importlib_metadata)-site-packages = $($(python-importlib_metadata)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-importlib_metadata)-src): $(dir $($(python-importlib_metadata)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-importlib_metadata)-srcurl)

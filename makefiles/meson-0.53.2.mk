@@ -29,7 +29,7 @@ $(meson)-builddeps = $(python)
 $(meson)-prereqs = $(python)
 $(meson)-modulefile = $(modulefilesdir)/$(meson)
 $(meson)-prefix = $(pkgdir)/$(meson)
-$(meson)-site-packages = $($(meson)-prefix)/lib/python$(python-version-short)/site-packages
+$(meson)-site-packages = $($(meson)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(meson)-src): $(dir $($(meson)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(meson)-srcurl)

@@ -35,6 +35,7 @@ AVX512F := $(shell [ "$$(grep avx512f /proc/cpuinfo)" ] && echo true)
 
 # Options
 ENABLE_CUDA :=
+PYTHON_ROOT :=
 SLURM_ROOT :=
 
 # Programs used by makefiles
@@ -62,8 +63,6 @@ blas = openblas-0.3.12
 
 # PETSc implementations: petsc-default, petsc-cuda
 petsc = petsc-default-3.13.2
-
-python-version-short = 3.7
 
 # Select default package versions
 pkgs = \
@@ -138,6 +137,27 @@ export C_INCLUDE_PATH := $(MPI_HOME)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_
 export CPLUS_INCLUDE_PATH := $(MPI_HOME)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
 export LIBRARY_PATH := $(MPI_HOME)/lib:$(MPI_HOME)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
 export LD_LIBRARY_PATH := $(MPI_HOME)/lib:$(MPI_HOME)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
+endif
+
+#
+# Python
+#
+ifeq ($(WITH_PYTHON),python-3.7.4)
+python = python-3.7.4
+PYTHON_VERSION = 3.7.4
+PYTHON_VERSION_SHORT = 3.7
+$(info Using internal python ($(python)))
+else
+PYTHON_ROOT = $(WITH_PYTHON)
+PYTHON_EXECUTABLE = $(PYTHON_ROOT)/bin/python3
+PYTHON_VERSION = $(shell $(PYTHON_EXECUTABLE) --version | awk '{ print $$2 }')
+PYTHON_VERSION_SHORT = $(shell $(PYTHON_EXECUTABLE) --version | awk '{ print $$2 }' | cut -d. -f 1-2)
+$(info Using python $(PYTHON_VERSION) ($(PYTHON_EXECUTABLE)))
+export PATH := $(PYTHON_ROOT)/bin$(if $(PATH),:$(PATH),)
+export C_INCLUDE_PATH := $(PYTHON_ROOT)/include/python$(PYTHON_VERSION_SHORT)$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
+export CPLUS_INCLUDE_PATH := $(PYTHON_ROOT)/include/python$(PYTHON_VERSION_SHORT)$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
+export LIBRARY_PATH := $(PYTHON_ROOT)/lib:$(PYTHON_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
+export LD_LIBRARY_PATH := $(PYTHON_ROOT)/lib:$(PYTHON_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
 endif
 
 #

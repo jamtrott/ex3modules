@@ -109,8 +109,8 @@ $($(vtk8)-modulefile): $(modulefilesdir)/.markerfile $($(vtk8)-prefix)/.pkginsta
 	echo "prepend-path LIBRARY_PATH $($(vtk8)-prefix)/lib" >>$@
 	echo "prepend-path LD_LIBRARY_PATH $($(vtk8)-prefix)/lib" >>$@
 	echo "prepend-path PKG_CONFIG_PATH $($(vtk8)-prefix)/lib/pkgconfig" >>$@
-	echo "prepend-path PYTHONPATH $($(vtk8)-prefix)/lib/python$(python-version-short)/site-packages" >>$@
-	echo "prepend-path PYTHONPATH $($(vtk8)-prefix)/lib/python$(python-version-short)/site-packages/vtk" >>$@
+	echo "prepend-path PYTHONPATH $($(vtk8)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages" >>$@
+	echo "prepend-path PYTHONPATH $($(vtk8)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages/vtk" >>$@
 	echo "prepend-path MANPATH $($(vtk8)-prefix)/share/man" >>$@
 	echo "prepend-path INFOPATH $($(vtk8)-prefix)/share/info" >>$@
 	echo "set MSG \"$(vtk8)\"" >>$@

@@ -29,7 +29,7 @@ $(python-distlib)-builddeps = $(python)
 $(python-distlib)-prereqs = $(python)
 $(python-distlib)-modulefile = $(modulefilesdir)/$(python-distlib)
 $(python-distlib)-prefix = $(pkgdir)/$(python-distlib)
-$(python-distlib)-site-packages = $($(python-distlib)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-distlib)-site-packages = $($(python-distlib)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-distlib)-src): $(dir $($(python-distlib)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-distlib)-srcurl)

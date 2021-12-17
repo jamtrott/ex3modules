@@ -29,7 +29,7 @@ $(python-idna)-builddeps = $(python)
 $(python-idna)-prereqs = $(python)
 $(python-idna)-modulefile = $(modulefilesdir)/$(python-idna)
 $(python-idna)-prefix = $(pkgdir)/$(python-idna)
-$(python-idna)-site-packages = $($(python-idna)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-idna)-site-packages = $($(python-idna)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-idna)-src): $(dir $($(python-idna)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-idna)-srcurl)

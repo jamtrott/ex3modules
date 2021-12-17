@@ -29,7 +29,7 @@ $(python-appdirs)-builddeps = $(python)
 $(python-appdirs)-prereqs = $(python)
 $(python-appdirs)-modulefile = $(modulefilesdir)/$(python-appdirs)
 $(python-appdirs)-prefix = $(pkgdir)/$(python-appdirs)
-$(python-appdirs)-site-packages = $($(python-appdirs)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-appdirs)-site-packages = $($(python-appdirs)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-appdirs)-src): $(dir $($(python-appdirs)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-appdirs)-srcurl)

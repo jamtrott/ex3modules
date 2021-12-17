@@ -29,7 +29,7 @@ $(python-fenics-ufl-2018)-builddeps = $(python) $(blas) $(mpi) $(python-numpy)
 $(python-fenics-ufl-2018)-prereqs = $(python) $(python-numpy)
 $(python-fenics-ufl-2018)-modulefile = $(modulefilesdir)/$(python-fenics-ufl-2018)
 $(python-fenics-ufl-2018)-prefix = $(pkgdir)/$(python-fenics-ufl-2018)
-$(python-fenics-ufl-2018)-site-packages = $($(python-fenics-ufl-2018)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-fenics-ufl-2018)-site-packages = $($(python-fenics-ufl-2018)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-fenics-ufl-2018)-src): $(dir $($(python-fenics-ufl-2018)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-fenics-ufl-2018)-srcurl)

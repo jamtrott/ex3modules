@@ -29,7 +29,7 @@ $(python-numpy-quaternion)-builddeps = $(python) $(python-numpy)
 $(python-numpy-quaternion)-prereqs = $(python) $(python-numpy)
 $(python-numpy-quaternion)-modulefile = $(modulefilesdir)/$(python-numpy-quaternion)
 $(python-numpy-quaternion)-prefix = $(pkgdir)/$(python-numpy-quaternion)
-$(python-numpy-quaternion)-site-packages = $($(python-numpy-quaternion)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-numpy-quaternion)-site-packages = $($(python-numpy-quaternion)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-numpy-quaternion)-src): $(dir $($(python-numpy-quaternion)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-numpy-quaternion)-srcurl)

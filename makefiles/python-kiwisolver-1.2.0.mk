@@ -29,7 +29,7 @@ $(python-kiwisolver)-builddeps = $(python)
 $(python-kiwisolver)-prereqs = $(python)
 $(python-kiwisolver)-modulefile = $(modulefilesdir)/$(python-kiwisolver)
 $(python-kiwisolver)-prefix = $(pkgdir)/$(python-kiwisolver)
-$(python-kiwisolver)-site-packages = $($(python-kiwisolver)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-kiwisolver)-site-packages = $($(python-kiwisolver)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-kiwisolver)-src): $(dir $($(python-kiwisolver)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-kiwisolver)-srcurl)

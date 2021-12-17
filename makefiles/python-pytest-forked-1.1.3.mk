@@ -29,7 +29,7 @@ $(python-pytest-forked)-builddeps = $(python) $(python-pytest) $(python-atomicwr
 $(python-pytest-forked)-prereqs = $(python) $(python-pytest) $(python-atomicwrites) $(python-pluggy) $(python-wcwidth) $(python-importlib_metadata) $(python-packaging) $(python-py) $(python-more-itertools) $(python-attrs) $(python-zipp) $(python-pyparsing) $(python-six)
 $(python-pytest-forked)-modulefile = $(modulefilesdir)/$(python-pytest-forked)
 $(python-pytest-forked)-prefix = $(pkgdir)/$(python-pytest-forked)
-$(python-pytest-forked)-site-packages = $($(python-pytest-forked)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-pytest-forked)-site-packages = $($(python-pytest-forked)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pytest-forked)-src): $(dir $($(python-pytest-forked)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pytest-forked)-srcurl)

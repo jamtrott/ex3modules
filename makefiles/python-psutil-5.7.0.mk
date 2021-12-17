@@ -29,7 +29,7 @@ $(python-psutil)-builddeps = $(python)
 $(python-psutil)-prereqs = $(python)
 $(python-psutil)-modulefile = $(modulefilesdir)/$(python-psutil)
 $(python-psutil)-prefix = $(pkgdir)/$(python-psutil)
-$(python-psutil)-site-packages = $($(python-psutil)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-psutil)-site-packages = $($(python-psutil)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-psutil)-src): $(dir $($(python-psutil)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-psutil)-srcurl)

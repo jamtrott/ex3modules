@@ -29,7 +29,7 @@ $(python-tox)-builddeps = $(python) $(python-filelock) $(python-packaging) $(pyt
 $(python-tox)-prereqs = $(python) $(python-filelock) $(python-packaging) $(python-pluggy) $(python-py) $(python-six) $(python-toml) $(python-virtualenv) $(python-colorama) $(python-importlib-metadata)
 $(python-tox)-modulefile = $(modulefilesdir)/$(python-tox)
 $(python-tox)-prefix = $(pkgdir)/$(python-tox)
-$(python-tox)-site-packages = $($(python-tox)-prefix)/lib/python$(python-version-short)/site-packages
+$(python-tox)-site-packages = $($(python-tox)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-tox)-src): $(dir $($(python-tox)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-tox)-srcurl)
