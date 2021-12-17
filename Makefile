@@ -35,8 +35,8 @@ AVX512F := $(shell [ "$$(grep avx512f /proc/cpuinfo)" ] && echo true)
 
 # Default options
 ENABLE_CUDA :=
+ENABLE_GFORTRAN :=
 CMAKE_ROOT :=
-FORTRAN_ROOT :=
 MPI_HOME :=
 OPENSSL_ROOT :=
 PYTHON_ROOT :=
