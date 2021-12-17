@@ -95,6 +95,7 @@ $(CMAKE) = cmake-3.17.2
 CMAKE = $(pkgdir)/$(cmake)/bin/cmake
 $(info Using internal CMake ($(cmake)))
 else ifeq ($(WITH_CMAKE),no)
+CMAKE = false
 $(warning Warning: CMake is disabled - some modules may not build.)
 else ifneq ($(WITH_CMAKE),)
 CMAKE_ROOT = $(WITH_CMAKE)
@@ -209,6 +210,8 @@ export LIBRARY_PATH := $(PYTHON_ROOT)/lib:$(PYTHON_ROOT)/lib64$(if $(LIBRARY_PAT
 export LD_LIBRARY_PATH := $(PYTHON_ROOT)/lib:$(PYTHON_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
 else ifneq ($(shell which python3),)
 PYTHON = $(shell which python3)
+PYTHON_VERSION = $(shell $(PYTHON) --version | awk '{ print $$2 }')
+PYTHON_VERSION_SHORT = $(shell $(PYTHON) --version | awk '{ print $$2 }' | cut -d. -f 1-2)
 $(info Using $(PYTHON) ($(shell $(PYTHON) --version | head -n 1)))
 else
 $(warning Warning: Python not found - some modules may not build.)
