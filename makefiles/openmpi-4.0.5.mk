@@ -115,6 +115,7 @@ $($(openmpi)-modulefile): $(modulefilesdir)/.markerfile $($(openmpi)-prefix)/.pk
 	echo "setenv MPIF90 $($(openmpi)-prefix)/bin/mpif90" >>$@
 	echo "setenv MPIFORT $($(openmpi)-prefix)/bin/mpifort" >>$@
 	echo "setenv MPIRUN $($(openmpi)-prefix)/bin/mpirun" >>$@
+	echo "setenv OPAL_PREFIX $($(openmpi)-prefix)" >>$@
 	echo "prepend-path PATH $($(openmpi)-prefix)/bin" >>$@
 	echo "prepend-path C_INCLUDE_PATH $($(openmpi)-prefix)/include" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(openmpi)-prefix)/include" >>$@

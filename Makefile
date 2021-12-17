@@ -60,9 +60,6 @@ MODULE := module
 # blis-x86_64, blis-zen, blis-zen2 and gsl.
 blas = openblas-0.3.12
 
-# MPI implementations: openmpi, openmpi-cuda, mpich and mvapich.
-mpi = openmpi-4.0.5
-
 # PETSc implementations: petsc-default, petsc-cuda
 petsc = petsc-default-3.13.2
 
@@ -108,6 +105,39 @@ export C_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUD
 export CPLUS_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
 export LIBRARY_PATH := $(SLURM_ROOT)/lib:$(SLURM_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
 export LD_LIBRARY_PATH := $(SLURM_ROOT)/lib:$(SLURM_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
+endif
+
+#
+# MPI
+#
+ifeq ($(WITH_MPI),openmpi-4.0.5)
+mpi = openmpi-4.0.5
+$(info Using internal MPI ($(mpi)))
+else ifeq ($(WITH_MPI),openmpi-cuda-4.0.5)
+mpi = openmpi-cuda-4.0.5
+$(info Using internal MPI ($(mpi)))
+else ifeq ($(WITH_MPI),mpich-3.3.2)
+mpi = mpich-3.3.2
+$(info Using internal MPI ($(mpi)))
+else ifeq ($(WITH_MPI),mvapich-2.3.4)
+mpi = mpich-2.3.4
+$(info Using internal MPI ($(mpi)))
+else
+export MPI_HOME = $(WITH_MPI)
+export MPICC = $(MPI_HOME)/bin/mpicc
+export MPICXX = $(MPI_HOME)/bin/mpicxx
+export MPIEXEC = $(MPI_HOME)/bin/mpiexec
+export MPIF77 = $(MPI_HOME)/bin/mpif77
+export MPIF90 = $(MPI_HOME)/bin/mpif90
+export MPIFORT = $(MPI_HOME)/bin/mpifort
+export MPIRUN = $(MPI_HOME)/bin/mpirun
+export MPI_RUN = $(MPI_HOME)/bin/mpirun
+$(info Using MPI from $(MPI_HOME))
+export PATH := $(MPI_HOME)/bin$(if $(PATH),:$(PATH),)
+export C_INCLUDE_PATH := $(MPI_HOME)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
+export CPLUS_INCLUDE_PATH := $(MPI_HOME)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
+export LIBRARY_PATH := $(MPI_HOME)/lib:$(MPI_HOME)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
+export LD_LIBRARY_PATH := $(MPI_HOME)/lib:$(MPI_HOME)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
 endif
 
 #

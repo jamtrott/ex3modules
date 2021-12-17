@@ -116,6 +116,7 @@ $($(openmpi-cuda)-modulefile): $(modulefilesdir)/.markerfile $($(openmpi-cuda)-p
 	echo "setenv MPIF90 $($(openmpi-cuda)-prefix)/bin/mpif90" >>$@
 	echo "setenv MPIFORT $($(openmpi-cuda)-prefix)/bin/mpifort" >>$@
 	echo "setenv MPIRUN $($(openmpi-cuda)-prefix)/bin/mpirun" >>$@
+	echo "setenv OPAL_PREFIX $($(openmpi-cuda)-prefix)" >>$@
 	echo "prepend-path PATH $($(openmpi-cuda)-prefix)/bin" >>$@
 	echo "prepend-path C_INCLUDE_PATH $($(openmpi-cuda)-prefix)/include" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(openmpi-cuda)-prefix)/include" >>$@
