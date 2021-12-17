@@ -76,7 +76,6 @@ pkgs = \
 	$(blas) \
 	$(gcc) \
 	$(mpi) \
-	$(munge) \
 	$(petsc)
 
 # CUDA-related packages - note CUDA toolkit 10.1.243 is only supported
@@ -102,10 +101,7 @@ endif
 # SLURM
 #
 ifeq ($(WITH_SLURM),internal)
-SLURM_ROOT = $(pkgdir)/slurm-20.02.7
-pkgs := $(pkgs) \
-	munge-0.5.13 \
-	slurm-20.02.7
+slurm = slurm-20.02.7
 else
 ifneq ($(WITH_SLURM),)
 SLURM_ROOT = $(WITH_SLURM)
@@ -290,6 +286,7 @@ pkgs := $(pkgs) \
 	mpich-3.3.2 \
 	mumps-5.2.1 \
 	mumps-src-5.2.1 \
+	munge-0.5.13 \
 	mvapich-2.3.4 \
 	mysql-connector-python-8.0.23 \
 	nasm-2.14.02 \
@@ -452,6 +449,7 @@ pkgs := $(pkgs) \
 	scalapack-src-2.1.0 \
 	scotch-6.0.7 \
 	scotch-src-6.0.7 \
+	slurm-20.02.7 \
 	sparse-0.6.3 \
 	sqlite-3.31.1 \
 	suitesparse-5.7.2 \

@@ -137,7 +137,7 @@ $($(mvapich)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 			--with-ibverbs=$${RDMA_CORE_ROOT} \
 			--with-device=ch3:mrail --with-rdma=gen2 \
 			--with-pmi=pmi2 \
-			$$([ ! -z "$(SLURM_ROOT)" ] && echo --enable-slurm=yes --with-pm=slurm --with-slurm="$(SLURM_ROOT)") \
+			$$([ ! -z "$${SLURM_ROOT}" ] && echo --enable-slurm=yes --with-pm=slurm --with-slurm="$${SLURM_ROOT}") \
 			--enable-fortran=all \
 			--enable-fast=O3,ndebug --without-timing --without-mpit-pvars && \
 		$(MAKE)

@@ -55,8 +55,7 @@ $($(openmpi-cuda)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 			--with-ucx="$${UCX_ROOT}" \
 			--with-ofi="$${LIBFABRIC_ROOT}" \
 			--with-verbs="$${RDMA_CORE_ROOT}" \
-			--with-slurm \
-			--with-pmi="$${SLURM_ROOT}" \
+			$$([ ! -z "$${SLURM_ROOT}" ] && echo --with-slurm --with-pmi="$${SLURM_ROOT}") \
 			--with-pmix="$${PMIX_ROOT}" \
 			--without-verbs \
 			--with-cuda="$${CUDA_TOOLKIT_ROOT}" \

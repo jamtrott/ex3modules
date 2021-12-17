@@ -62,7 +62,7 @@ $($(mpich)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 			--with-knem=$${KNEM_ROOT} \
 			--with-device=ch4:ofi:verbs \
 			--with-pm=none \
-			$$([ ! -z "$(SLURM_ROOT)" ] && echo --with-pmi=slurm --with-slurm="$(SLURM_ROOT)" --with-slurm-include="$(SLURM_ROOT)/include/slurm") \
+			$$([ ! -z "$${SLURM_ROOT}" ] && echo --with-pmi=slurm --with-slurm="$${SLURM_ROOT}" --with-slurm-include="$${SLURM_ROOT}/include/slurm") \
 			--enable-g=all \
 			--enable-fortran=all \
 			--enable-fast=O3,ndebug --without-timing --without-mpit-pvars && \
