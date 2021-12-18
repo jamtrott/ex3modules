@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# mumps-src-5.2.1
+# mumps-src-5.4.1
 
-mumps-src-version = 5.2.1
+mumps-src-version = 5.4.1
 mumps-src = mumps-src-$(mumps-src-version)
 $(mumps-src)-description = MUltifrontal Massively Parallel sparse direct Solver
 $(mumps-src)-url = http://mumps.enseeiht.fr/

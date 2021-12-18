@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# mumps-cuda-5.2.1
+# mumps-cuda-5.4.1
 
-mumps-cuda-version = 5.2.1
+mumps-cuda-version = 5.4.1
 mumps-cuda = mumps-cuda-$(mumps-cuda-version)
 $(mumps-cuda)-description = MUltifrontal Massively Parallel sparse direct Solver
 $(mumps-cuda)-url = http://mumps.enseeiht.fr/
@@ -47,70 +47,71 @@ $($(mumps-cuda)-srcdir)/Makefile.inc: $(modulefilesdir)/.markerfile $$(foreach d
 	$(MODULESINIT) && \
 	$(MODULE) use $(modulefilesdir) && \
 	$(MODULE) load $($(mumps-cuda)-builddeps) && \
-	printf '' >$@ && \
-	echo '# Begin orderings' >>$@ && \
-	echo "ISCOTCH=-I$${SCOTCH_INCDIR}" >>$@ && \
-	echo "LSCOTCH=-L$${SCOTCH_LIBDIR} -lptesmumps -lptscotch -lscotch -lptscotcherr" >>$@ && \
-	echo '' >>$@ && \
-	echo 'LPORDDIR=$$(topdir)/PORD/lib/' >>$@ && \
-	echo 'IPORD=-I$$(topdir)/PORD/include/ -isystem$$(topdir)/PORD/include' >>$@ && \
-	echo 'LPORD=-L$$(LPORDDIR) -lpord' >>$@ && \
-	echo '' >>$@ && \
-	echo "IMETIS=-I$${PARMETIS_INCDIR} -I$${METIS_INCDIR}" >>$@ && \
-	echo "LMETIS=-L$${PARMETIS_LIBDIR} -lparmetis -L$${METIS_LIBDIR} -lmetis" >>$@ && \
-	echo '' >>$@ && \
-	echo '# Corresponding variables reused later' >>$@ && \
-	echo 'ORDERINGSF=-Dmetis -Dpord -Dparmetis -Dscotch -Dptscotch' >>$@ && \
-	echo 'ORDERINGSC=$$(ORDERINGSF)' >>$@ && \
-	echo '' >>$@ && \
-	echo 'LORDERINGS=$$(LMETIS) $$(LPORD) $$(LSCOTCH)' >>$@ && \
-	echo 'IORDERINGSF=$$(ISCOTCH)' >>$@ && \
-	echo 'IORDERINGSC=$$(IMETIS) $$(IPORD) $$(ISCOTCH)' >>$@ && \
-	echo '# End orderings' >>$@ && \
-	echo '################################################################################' >>$@ && \
-	echo '' >>$@ && \
-	echo 'PLAT    =' >>$@ && \
-	echo 'LIBEXT  = .so' >>$@ && \
-	echo 'OUTC    = -o' >>$@ && \
-	echo 'OUTF    = -o' >>$@ && \
-	echo 'RM = /bin/rm -f' >>$@ && \
-	echo 'CC = $${MPICC}' >>$@ && \
-	echo 'FC = $${MPIFORT}' >>$@ && \
-	echo 'FL = $${MPIFORT}' >>$@ && \
-	echo 'AR = $$(CC) -shared -o ' >>$@ && \
-	echo 'RANLIB = echo' >>$@ && \
-	echo 'LAPACK = -L$${BLASDIR} -l$${BLASLIB}' >>$@ && \
-	echo 'SCALAP  = -lscalapack' >>$@ && \
-	echo '' >>$@ && \
-	echo 'INCPAR = # not needed with mpif90/mpicc:  -I/usr/include/openmpi' >>$@ && \
-	echo '' >>$@ && \
-	echo 'LIBPAR = $$(SCALAP) $$(LAPACK) -L$${LIBGFORTRAN_LIBDIR} -lgfortran -lmpi_mpifh -lmpi # not needed with mpif90/mpicc: -lmpi_mpifh -lmpi' >>$@ && \
-	echo '' >>$@ && \
-	echo 'INCSEQ = -I$$(topdir)/libseq' >>$@ && \
-	echo 'LIBSEQ  = $$(LAPACK) -L$$(topdir)/libseq -lmpiseq -L$${LIBGFORTRAN_LIBDIR} -lgfortran' >>$@ && \
-	echo '' >>$@ && \
-	echo 'LIBBLAS = -L$${BLASDIR} -l$${BLASLIB}' >>$@ && \
-	echo 'LIBOTHERS = -lpthread' >>$@ && \
-	echo '' >>$@ && \
-	echo '#Preprocessor defs for calling Fortran from C (-DAdd_ or -DAdd__ or -DUPPER)' >>$@ && \
-	echo 'CDEFS   = -DAdd_' >>$@ && \
-	echo '' >>$@ && \
-	echo '#Begin Optimized options' >>$@ && \
-	echo 'OPTF    = -fPIC -O3' >>$@ && \
-	echo 'OPTL    = -fPIC -O3' >>$@ && \
-	echo 'OPTC    = -fPIC -O3' >>$@ && \
-	echo '#End Optimized options' >>$@ && \
-	echo '' >>$@ && \
-	echo 'INCS = $$(INCPAR)' >>$@ && \
-	echo 'LIBS = $$(LIBPAR)' >>$@ && \
-	echo 'LIBSEQNEEDED =' >>$@
+	printf '' >$@.tmp && \
+	echo '# Begin orderings' >>$@.tmp && \
+	echo "ISCOTCH=-I$${SCOTCH_INCDIR}" >>$@.tmp && \
+	echo "LSCOTCH=-L$${SCOTCH_LIBDIR} -lptesmumps -lptscotch -lscotch -lptscotcherr" >>$@.tmp && \
+	echo '' >>$@.tmp && \
+	echo 'LPORDDIR=$$(topdir)/PORD/lib/' >>$@.tmp && \
+	echo 'IPORD=-I$$(topdir)/PORD/include/ -isystem$$(topdir)/PORD/include' >>$@.tmp && \
+	echo 'LPORD=-L$$(LPORDDIR) -lpord' >>$@.tmp && \
+	echo '' >>$@.tmp && \
+	echo "IMETIS=-I$${PARMETIS_INCDIR} -I$${METIS_INCDIR}" >>$@.tmp && \
+	echo "LMETIS=-L$${PARMETIS_LIBDIR} -lparmetis -L$${METIS_LIBDIR} -lmetis" >>$@.tmp && \
+	echo '' >>$@.tmp && \
+	echo '# Corresponding variables reused later' >>$@.tmp && \
+	echo 'ORDERINGSF=-Dmetis -Dpord -Dparmetis -Dscotch -Dptscotch' >>$@.tmp && \
+	echo 'ORDERINGSC=$$(ORDERINGSF)' >>$@.tmp && \
+	echo '' >>$@.tmp && \
+	echo 'LORDERINGS=$$(LMETIS) $$(LPORD) $$(LSCOTCH)' >>$@.tmp && \
+	echo 'IORDERINGSF=$$(ISCOTCH)' >>$@.tmp && \
+	echo 'IORDERINGSC=$$(IMETIS) $$(IPORD) $$(ISCOTCH)' >>$@.tmp && \
+	echo '# End orderings' >>$@.tmp && \
+	echo '################################################################################' >>$@.tmp && \
+	echo '' >>$@.tmp && \
+	echo 'PLAT    =' >>$@.tmp && \
+	echo 'LIBEXT  = .so' >>$@.tmp && \
+	echo 'OUTC    = -o' >>$@.tmp && \
+	echo 'OUTF    = -o' >>$@.tmp && \
+	echo 'RM = /bin/rm -f' >>$@.tmp && \
+	echo 'CC = $${MPICC}' >>$@.tmp && \
+	echo 'FC = $${MPIFORT}' >>$@.tmp && \
+	echo 'FL = $${MPIFORT}' >>$@.tmp && \
+	echo 'AR = $$(CC) -shared -o ' >>$@.tmp && \
+	echo 'RANLIB = echo' >>$@.tmp && \
+	echo 'LAPACK = -L$${BLASDIR} -l$${BLASLIB}' >>$@.tmp && \
+	echo 'SCALAP  = -lscalapack' >>$@.tmp && \
+	echo '' >>$@.tmp && \
+	echo 'INCPAR = # not needed with mpif90/mpicc:  -I/usr/include/openmpi' >>$@.tmp && \
+	echo '' >>$@.tmp && \
+	echo 'LIBPAR = $$(SCALAP) $$(LAPACK) -L$${LIBGFORTRAN_LIBDIR} -lgfortran -lmpi_mpifh -lmpi # not needed with mpif90/mpicc: -lmpi_mpifh -lmpi' >>$@.tmp && \
+	echo '' >>$@.tmp && \
+	echo 'INCSEQ = -I$$(topdir)/libseq' >>$@.tmp && \
+	echo 'LIBSEQ  = $$(LAPACK) -L$$(topdir)/libseq -lmpiseq -L$${LIBGFORTRAN_LIBDIR} -lgfortran' >>$@.tmp && \
+	echo '' >>$@.tmp && \
+	echo 'LIBBLAS = -L$${BLASDIR} -l$${BLASLIB}' >>$@.tmp && \
+	echo 'LIBOTHERS = -lpthread' >>$@.tmp && \
+	echo '' >>$@.tmp && \
+	echo '#Preprocessor defs for calling Fortran from C (-DAdd_ or -DAdd__ or -DUPPER)' >>$@.tmp && \
+	echo 'CDEFS   = -DAdd_' >>$@.tmp && \
+	echo '' >>$@.tmp && \
+	echo '#Begin Optimized options' >>$@.tmp && \
+	echo 'OPTF    = -fPIC -O3 -fallow-argument-mismatch' >>$@.tmp && \
+	echo 'OPTL    = -fPIC -O3' >>$@.tmp && \
+	echo 'OPTC    = -fPIC -O3' >>$@.tmp && \
+	echo '#End Optimized options' >>$@.tmp && \
+	echo '' >>$@.tmp && \
+	echo 'INCS = $$(INCPAR)' >>$@.tmp && \
+	echo 'LIBS = $$(LIBPAR)' >>$@.tmp && \
+	echo 'LIBSEQNEEDED =' >>$@.tmp
+	mv $@.tmp $@
 
 $($(mumps-cuda)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mumps-cuda)-builddeps),$(modulefilesdir)/$$(dep)) $($(mumps-cuda)-prefix)/.pkgpatch $($(mumps-cuda)-srcdir)/Makefile.inc
 	cd $($(mumps-cuda)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(mumps-cuda)-builddeps) && \
-		$(MAKE) MAKEFLAGS='' alllib --jobs=1 # Parallel builds not supported
+		$(MAKE) MAKEFLAGS='' all
 	@touch $@
 
 $($(mumps-cuda)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mumps-cuda)-builddeps),$(modulefilesdir)/$$(dep)) $($(mumps-cuda)-prefix)/.pkgbuild

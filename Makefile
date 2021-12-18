@@ -77,7 +77,7 @@ pkgs := $(pkgs) \
 	cuda-toolkit-10.1.243 \
 	gdrcopy-2.2 \
 	hypre-cuda-2.17.0 \
-	mumps-cuda-5.2.1 \
+	mumps-cuda-5.4.1 \
 	openmpi-cuda-4.0.5 \
 	parmetis-cuda-4.0.3 \
 	petsc-cuda-3.13.2 \
@@ -406,8 +406,8 @@ pkgs := $(pkgs) \
 	mpc-1.1.0 \
 	mpfr-4.0.2 \
 	mpich-3.3.2 \
-	mumps-5.2.1 \
-	mumps-src-5.2.1 \
+	mumps-5.4.1 \
+	mumps-src-5.4.1 \
 	munge-0.5.13 \
 	mvapich-2.3.4 \
 	mysql-connector-python-8.0.23 \
