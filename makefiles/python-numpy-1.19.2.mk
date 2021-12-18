@@ -124,7 +124,7 @@ $($(python-numpy)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-numpy)-builddeps) && \
 		PYTHONPATH=$($(python-numpy)-site-packages):$${PYTHONPATH} \
-		NPY_NUM_BUILD_JOBS=$(JOBS) NPY_BLAS_ORDER=openblas,blas NPY_LAPACK_ORDER=openblas,lapack $(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-numpy)-prefix)
+		NPY_BLAS_ORDER=openblas,blas NPY_LAPACK_ORDER=openblas,lapack $(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-numpy)-prefix)
 	@touch $@
 
 $($(python-numpy)-modulefile): $(modulefilesdir)/.markerfile $($(python-numpy)-prefix)/.pkginstall
