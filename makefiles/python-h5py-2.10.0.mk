@@ -73,7 +73,7 @@ $($(python-h5py)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-h5py)-builddeps) && \
 		PYTHONPATH=$($(python-h5py)-site-packages):$${PYTHONPATH} \
-		HDF5_DIR="$${HDF5_ROOT}" HDF5_MPI="ON" CC="$${MPICC}" $(PYTHON) -m pip install . --prefix=$($(python-h5py)-prefix)
+		HDF5_DIR="$${HDF5_ROOT}" HDF5_MPI="ON" CC="$${MPICC}" $(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-h5py)-prefix)
 	@touch $@
 
 $($(python-h5py)-modulefile): $(modulefilesdir)/.markerfile $($(python-h5py)-prefix)/.pkginstall

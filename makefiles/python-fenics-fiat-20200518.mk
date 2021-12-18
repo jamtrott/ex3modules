@@ -74,7 +74,7 @@ $($(python-fenics-fiat-20200518)-prefix)/.pkginstall: $(modulefilesdir)/.markerf
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-fenics-fiat-20200518)-builddeps) && \
 		PYTHONPATH=$($(python-fenics-fiat-20200518)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-fenics-fiat-20200518)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-fenics-fiat-20200518)-prefix)
 	@touch $@
 
 $($(python-fenics-fiat-20200518)-modulefile): $(modulefilesdir)/.markerfile $($(python-fenics-fiat-20200518)-prefix)/.pkginstall

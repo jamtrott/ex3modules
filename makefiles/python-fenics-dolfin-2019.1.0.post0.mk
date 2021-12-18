@@ -70,7 +70,7 @@ $($(python-fenics-dolfin-2019)-prefix)/.pkginstall: $(modulefilesdir)/.markerfil
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-fenics-dolfin-2019)-builddeps) && \
 		PYTHONPATH=$($(python-fenics-dolfin-2019)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-fenics-dolfin-2019)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-fenics-dolfin-2019)-prefix)
 	@touch $@
 
 $($(python-fenics-dolfin-2019)-modulefile): $(modulefilesdir)/.markerfile $($(python-fenics-dolfin-2019)-prefix)/.pkginstall

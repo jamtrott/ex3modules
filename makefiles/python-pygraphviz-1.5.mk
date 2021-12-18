@@ -73,7 +73,7 @@ $($(python-pygraphviz)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pygraphviz)-builddeps) && \
 		PYTHONPATH=$($(python-pygraphviz)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-pygraphviz)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-pygraphviz)-prefix)
 	@touch $@
 
 $($(python-pygraphviz)-modulefile): $(modulefilesdir)/.markerfile $($(python-pygraphviz)-prefix)/.pkginstall

@@ -68,7 +68,7 @@ $($(python-coverage)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-coverage)-builddeps) && \
 		PYTHONPATH=$($(python-coverage)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-coverage)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-coverage)-prefix)
 	@touch $@
 
 $($(python-coverage)-modulefile): $(modulefilesdir)/.markerfile $($(python-coverage)-prefix)/.pkginstall

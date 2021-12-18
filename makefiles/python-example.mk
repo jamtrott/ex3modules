@@ -73,7 +73,7 @@ $($(python-example)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-example)-builddeps) && \
 		PYTHONPATH=$($(python-example)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-example)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-example)-prefix)
 	@touch $@
 
 $($(python-example)-modulefile): $(modulefilesdir)/.markerfile $($(python-example)-prefix)/.pkginstall

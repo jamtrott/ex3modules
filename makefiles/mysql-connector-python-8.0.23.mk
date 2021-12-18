@@ -69,7 +69,7 @@ $($(mysql-connector-python)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(mysql-connector-python)-builddeps) && \
 		PYTHONPATH=$($(mysql-connector-python)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(mysql-connector-python)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(mysql-connector-python)-prefix)
 	@touch $@
 
 $($(mysql-connector-python)-modulefile): $(modulefilesdir)/.markerfile $($(mysql-connector-python)-prefix)/.pkginstall

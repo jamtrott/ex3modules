@@ -73,7 +73,7 @@ $($(python-freezegun)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-freezegun)-builddeps) && \
 		PYTHONPATH=$($(python-freezegun)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-freezegun)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-freezegun)-prefix)
 	@touch $@
 
 $($(python-freezegun)-modulefile): $(modulefilesdir)/.markerfile $($(python-freezegun)-prefix)/.pkginstall

@@ -70,7 +70,7 @@ $($(python-fenics-mshr-2019)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-fenics-mshr-2019)-builddeps) && \
 		PYTHONPATH=$($(python-fenics-mshr-2019)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-fenics-mshr-2019)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-fenics-mshr-2019)-prefix)
 	@touch $@
 
 $($(python-fenics-mshr-2019)-modulefile): $(modulefilesdir)/.markerfile $($(python-fenics-mshr-2019)-prefix)/.pkginstall

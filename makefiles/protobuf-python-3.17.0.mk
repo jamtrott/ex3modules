@@ -73,7 +73,7 @@ $($(protobuf-python)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(protobuf-python)-builddeps) && \
 		PYTHONPATH=$($(protobuf-python)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(protobuf-python)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(protobuf-python)-prefix)
 	@touch $@
 
 $($(protobuf-python)-modulefile): $(modulefilesdir)/.markerfile $($(protobuf-python)-prefix)/.pkginstall

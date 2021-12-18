@@ -68,7 +68,7 @@ $($(python-mako)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-mako)-builddeps) && \
 		PYTHONPATH=$($(python-mako)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-mako)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-mako)-prefix)
 	@touch $@
 
 $($(python-mako)-modulefile): $(modulefilesdir)/.markerfile $($(python-mako)-prefix)/.pkginstall

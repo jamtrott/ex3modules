@@ -72,7 +72,7 @@ $($(python-pandas)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pandas)-builddeps) && \
 		PYTHONPATH=$($(python-pandas)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-pandas)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-pandas)-prefix)
 	@touch $@
 
 $($(python-pandas)-modulefile): $(modulefilesdir)/.markerfile $($(python-pandas)-prefix)/.pkginstall

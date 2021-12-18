@@ -73,7 +73,7 @@ $($(python-pyparsing)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pyparsing)-builddeps) && \
 		PYTHONPATH=$($(python-pyparsing)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-pyparsing)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-pyparsing)-prefix)
 	@touch $@
 
 $($(python-pyparsing)-modulefile): $(modulefilesdir)/.markerfile $($(python-pyparsing)-prefix)/.pkginstall

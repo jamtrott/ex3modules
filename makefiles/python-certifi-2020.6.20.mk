@@ -68,7 +68,7 @@ $($(python-certifi)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-certifi)-builddeps) && \
 		PYTHONPATH=$($(python-certifi)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-certifi)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-certifi)-prefix)
 	@touch $@
 
 $($(python-certifi)-modulefile): $(modulefilesdir)/.markerfile $($(python-certifi)-prefix)/.pkginstall

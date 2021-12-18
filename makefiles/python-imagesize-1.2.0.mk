@@ -73,7 +73,7 @@ $($(python-imagesize)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-imagesize)-builddeps) && \
 		PYTHONPATH=$($(python-imagesize)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-imagesize)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-imagesize)-prefix)
 	@touch $@
 
 $($(python-imagesize)-modulefile): $(modulefilesdir)/.markerfile $($(python-imagesize)-prefix)/.pkginstall

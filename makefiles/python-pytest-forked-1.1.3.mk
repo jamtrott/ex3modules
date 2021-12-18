@@ -73,7 +73,7 @@ $($(python-pytest-forked)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pytest-forked)-builddeps) && \
 		PYTHONPATH=$($(python-pytest-forked)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-pytest-forked)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-pytest-forked)-prefix)
 	@touch $@
 
 $($(python-pytest-forked)-modulefile): $(modulefilesdir)/.markerfile $($(python-pytest-forked)-prefix)/.pkginstall

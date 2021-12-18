@@ -73,7 +73,7 @@ $($(python-snowballstemmer)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-snowballstemmer)-builddeps) && \
 		PYTHONPATH=$($(python-snowballstemmer)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-snowballstemmer)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-snowballstemmer)-prefix)
 	@touch $@
 
 $($(python-snowballstemmer)-modulefile): $(modulefilesdir)/.markerfile $($(python-snowballstemmer)-prefix)/.pkginstall

@@ -68,7 +68,7 @@ $($(python-future)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-future)-builddeps) && \
 		PYTHONPATH=$($(python-future)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-future)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-future)-prefix)
 	@touch $@
 
 $($(python-future)-modulefile): $(modulefilesdir)/.markerfile $($(python-future)-prefix)/.pkginstall

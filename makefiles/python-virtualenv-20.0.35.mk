@@ -73,7 +73,7 @@ $($(python-virtualenv)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-virtualenv)-builddeps) && \
 		PYTHONPATH=$($(python-virtualenv)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-virtualenv)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-virtualenv)-prefix)
 	@touch $@
 
 $($(python-virtualenv)-modulefile): $(modulefilesdir)/.markerfile $($(python-virtualenv)-prefix)/.pkginstall

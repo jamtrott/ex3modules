@@ -72,7 +72,7 @@ $($(python-chardet)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-chardet)-builddeps) && \
 		PYTHONPATH=$($(python-chardet)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-chardet)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-chardet)-prefix)
 	@touch $@
 
 $($(python-chardet)-modulefile): $(modulefilesdir)/.markerfile $($(python-chardet)-prefix)/.pkginstall

@@ -73,7 +73,7 @@ $($(python-atomicwrites)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(f
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-atomicwrites)-builddeps) && \
 		PYTHONPATH=$($(python-atomicwrites)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-atomicwrites)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-atomicwrites)-prefix)
 	@touch $@
 
 $($(python-atomicwrites)-modulefile): $(modulefilesdir)/.markerfile $($(python-atomicwrites)-prefix)/.pkginstall

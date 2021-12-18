@@ -73,7 +73,7 @@ $($(python-numpy-quaternion)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-numpy-quaternion)-builddeps) && \
 		PYTHONPATH=$($(python-numpy-quaternion)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-numpy-quaternion)-prefix)
+		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-numpy-quaternion)-prefix)
 	@touch $@
 
 $($(python-numpy-quaternion)-modulefile): $(modulefilesdir)/.markerfile $($(python-numpy-quaternion)-prefix)/.pkginstall
