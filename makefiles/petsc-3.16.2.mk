@@ -64,7 +64,7 @@ $($(petsc-3.16.2)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 			--with-suitesparse --with-suitesparse-dir="$${SUITESPARSE_ROOT}" \
 			--with-superlu --with-superlu-dir="$${SUPERLU_ROOT}" \
 			--with-superlu_dist --with-superlu_dist-dir="$${SUPERLU_DIST_ROOT}" \
-			--with-x=0 \
+			--with-cuda=0 --with-hip=0 --with-x=0 \
 			--with-debugging=0 \
 			COPTFLAGS="-O3 -g" CXXOPTFLAGS="-O3 -g" FOPTFLAGS="-O3" && \
 		$(MAKE)
