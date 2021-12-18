@@ -25,7 +25,7 @@ $(python-numpy)-url = https://www.numpy.org/
 $(python-numpy)-srcurl = https://github.com/numpy/numpy/releases/download/v$(python-numpy-version)/numpy-$(python-numpy-version).tar.gz
 $(python-numpy)-src = $(pkgsrcdir)/$(notdir $($(python-numpy)-srcurl))
 $(python-numpy)-srcdir = $(pkgsrcdir)/$(python-numpy)
-$(python-numpy)-builddeps = $(python) $(python-cython) $(blas) $(fftw) $(suitesparse) $(python-setuptools)
+$(python-numpy)-builddeps = $(python) $(python-cython) $(blas) $(fftw) $(suitesparse) $(python-pip)
 $(python-numpy)-prereqs = $(python) $(blas) $(fftw) $(suitesparse)
 ifneq ($(blas),$(openblas))
 # OpenBLAS already contains LAPACK routines, so there is no need to
@@ -129,7 +129,7 @@ $($(python-numpy)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-numpy)-builddeps) && \
 		PYTHONPATH=$($(python-numpy)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-numpy)-prefix)
+		NPY_BLAS_ORDER=openblas,blas NPY_LAPACK_ORDER=openblas,lapack $(PYTHON) -m pip install . --prefix=$($(python-numpy)-prefix)
 	@touch $@
 
 $($(python-numpy)-modulefile): $(modulefilesdir)/.markerfile $($(python-numpy)-prefix)/.pkginstall
