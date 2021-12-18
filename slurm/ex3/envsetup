@@ -1,0 +1,28 @@
+# This file is part of ex3modules
+#
+# Copyright (C) 2021 James D. Trotter
+#
+# ex3modules is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# ex3modules is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with ex3modules.  If not, see <https://www.gnu.org/licenses/>.
+#
+# Authors: James D. Trotter <james@simula.no>
+# Last modified: 2021-12-17
+#
+# Source this file to set up the environment before building
+# ex3modules.
+#
+#   $ . envsetup
+
+module load cmake/gcc/3.22.0
+module load openmpi/gcc/64/4.0.5
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/gcc/x86_64-linux-gnu/7/
