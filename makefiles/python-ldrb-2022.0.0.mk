@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-ldrb-2021.0.2
+# python-ldrb-2022.0.0
 
-python-ldrb-version = 2021.0.2
+python-ldrb-version = 2022.0.0
 python-ldrb = python-ldrb-$(python-ldrb-version)
 $(python-ldrb)-description = Laplace-Dirichlet Rule-Based (LDRB) algorithm for assigning myocardial fiber orientations
 $(python-ldrb)-url = https://github.com/finsberg/ldrb/
