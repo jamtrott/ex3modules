@@ -16,7 +16,7 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# petsc-3.13.2-3.13.2
+# petsc-3.13.2
 
 petsc-3.13.2-version = 3.13.2
 petsc-3.13.2 = petsc-$(petsc-3.13.2-version)
