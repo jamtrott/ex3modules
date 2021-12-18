@@ -73,7 +73,7 @@ $($(python-setuptools)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-setuptools)-builddeps) && \
 		PYTHONPATH=$($(python-setuptools)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --prefix=$($(python-setuptools)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-setuptools)-prefix)
 	@touch $@
 
 $($(python-setuptools)-modulefile): $(modulefilesdir)/.markerfile $($(python-setuptools)-prefix)/.pkginstall
