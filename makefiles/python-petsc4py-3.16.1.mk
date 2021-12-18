@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-petsc4py-3.13.0
+# python-petsc4py-3.16.1
 
-python-petsc4py-version = 3.13.0
+python-petsc4py-version = 3.16.1
 python-petsc4py = python-petsc4py-$(python-petsc4py-version)
 $(python-petsc4py)-description = Python bindings for PETSc
 $(python-petsc4py)-url = https://bitbucket.org/petsc/petsc4py/
-$(python-petsc4py)-srcurl = https://files.pythonhosted.org/packages/7c/e7/5b089013c5188ee5f619ad64749fc3e6355943950dfcf421c327d66ee2ac/petsc4py-3.13.0.tar.gz
+$(python-petsc4py)-srcurl = https://files.pythonhosted.org/packages/11/07/555668abf04f88b595c2838a18db567ed02f5f8b2eda65cd62b05c5ace87/petsc4py-3.16.1.tar.gz
 $(python-petsc4py)-src = $(pkgsrcdir)/$(notdir $($(python-petsc4py)-srcurl))
 $(python-petsc4py)-srcdir = $(pkgsrcdir)/$(python-petsc4py)
 $(python-petsc4py)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-mpi4py) $(petsc)
