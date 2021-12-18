@@ -25,7 +25,7 @@ $(python-numpy)-url = https://www.numpy.org/
 $(python-numpy)-srcurl = https://github.com/numpy/numpy/releases/download/v$(python-numpy-version)/numpy-$(python-numpy-version).tar.gz
 $(python-numpy)-src = $(pkgsrcdir)/$(notdir $($(python-numpy)-srcurl))
 $(python-numpy)-srcdir = $(pkgsrcdir)/$(python-numpy)
-$(python-numpy)-builddeps = $(python) $(python-cython) $(blas) $(fftw) $(suitesparse) $(python-pip)
+$(python-numpy)-builddeps = $(python) $(python-cython) $(blas) $(fftw) $(suitesparse)
 $(python-numpy)-prereqs = $(python) $(blas) $(fftw) $(suitesparse)
 ifneq ($(blas),$(openblas))
 # OpenBLAS already contains LAPACK routines, so there is no need to

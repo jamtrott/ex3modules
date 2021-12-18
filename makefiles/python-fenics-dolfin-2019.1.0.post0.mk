@@ -26,7 +26,7 @@ $(python-fenics-dolfin-2019)-srcurl = $($(fenics-dolfin-2019-src)-srcurl)
 $(python-fenics-dolfin-2019)-src = $($(fenics-dolfin-2019-src)-src)
 $(python-fenics-dolfin-2019)-srcdir = $(pkgsrcdir)/$(python-fenics-dolfin-2019)
 $(python-fenics-dolfin-2019)-builddir = $(pkgsrcdir)/$(python-fenics-dolfin-2019)/python
-$(python-fenics-dolfin-2019)-builddeps = $(python) $(cmake) $(blas) $(mpi) $(python-cffi) $(python-numpy) $(python-pkgconfig) $(python-fenics-dijitso-2019) $(python-fenics-fiat-2019) $(python-fenics-ufl-2019) $(python-fenics-ffc-2019) $(pybind11) $(python-ply) $(python-mpi4py) $(python-petsc4py) $(fenics-dolfin-2019) $(python-setuptools)
+$(python-fenics-dolfin-2019)-builddeps = $(python) $(cmake) $(blas) $(mpi) $(python-cffi) $(python-numpy) $(python-pkgconfig) $(python-fenics-dijitso-2019) $(python-fenics-fiat-2019) $(python-fenics-ufl-2019) $(python-fenics-ffc-2019) $(pybind11) $(python-ply) $(python-mpi4py) $(python-petsc4py) $(fenics-dolfin-2019) $(python-wheel)
 $(python-fenics-dolfin-2019)-prereqs = $(python) $(python-cffi) $(python-numpy) $(python-pkgconfig) $(python-fenics-dijitso-2019) $(python-fenics-fiat-2019) $(python-fenics-ufl-2019) $(python-fenics-ffc-2019) $(pybind11) $(python-ply) $(python-mpi4py) $(python-petsc4py) $(fenics-dolfin-2019)
 $(python-fenics-dolfin-2019)-modulefile = $(modulefilesdir)/$(python-fenics-dolfin-2019)
 $(python-fenics-dolfin-2019)-prefix = $(pkgdir)/$(python-fenics-dolfin-2019)
@@ -54,11 +54,6 @@ $($(python-fenics-dolfin-2019)-builddir)/.markerfile:
 	@touch $@
 
 $($(python-fenics-dolfin-2019)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-fenics-dolfin-2019)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-fenics-dolfin-2019)-prefix)/.pkgpatch $($(python-fenics-dolfin-2019)-builddir)/.markerfile
-	cd $($(python-fenics-dolfin-2019)-builddir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-fenics-dolfin-2019)-builddeps) && \
-		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-fenics-dolfin-2019)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-fenics-dolfin-2019)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-fenics-dolfin-2019)-prefix)/.pkgbuild $($(python-fenics-dolfin-2019)-builddir)/.markerfile
@@ -70,7 +65,7 @@ $($(python-fenics-dolfin-2019)-prefix)/.pkginstall: $(modulefilesdir)/.markerfil
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-fenics-dolfin-2019)-builddeps) && \
 		PYTHONPATH=$($(python-fenics-dolfin-2019)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --no-index --ignore-installed --prefix=$($(python-fenics-dolfin-2019)-prefix)
+		$(PYTHON) -m pip install . --no-deps --no-cache-dir --no-index --ignore-installed --prefix=$($(python-fenics-dolfin-2019)-prefix)
 	@touch $@
 
 $($(python-fenics-dolfin-2019)-modulefile): $(modulefilesdir)/.markerfile $($(python-fenics-dolfin-2019)-prefix)/.pkginstall
