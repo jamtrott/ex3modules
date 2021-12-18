@@ -128,6 +128,30 @@ $(warning Warning: No Fortran compiler found - some modules may not build.)
 endif
 
 #
+# hwloc
+#
+ifeq ($(WITH_HWLOC),hwloc-2.4.1)
+hwloc = hwloc-2.4.1
+$(info Using internal hwloc ($(hwloc)))
+else ifeq ($(WITH_HWLOC),no)
+$(warning Warning: hwloc is disabled - some modules may not build.)
+else ifneq ($(WITH_HWLOC),)
+HWLOC_ROOT = $(WITH_HWLOC)
+HWLOC_INFO = $(HWLOC_ROOT)/bin/hwloc-info
+$(info Using $(HWLOC_INFO) ($(shell $(HWLOC_INFO) --version | head -n 1)))
+export PATH := $(HWLOC_ROOT)/bin$(if $(PATH),:$(PATH),)
+export C_INCLUDE_PATH := $(HWLOC_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
+export CPLUS_INCLUDE_PATH := $(HWLOC_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
+export LIBRARY_PATH := $(HWLOC_ROOT)/lib:$(HWLOC_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
+export LD_LIBRARY_PATH := $(HWLOC_ROOT)/lib:$(HWLOC_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
+else ifneq ($(shell which hwloc-info),)
+HWLOC_INFO = $(shell which hwloc-info)
+$(info Using $(HWLOC_INFO) ($(shell $(HWLOC_INFO) --version | head -n 1)))
+else
+$(warning Warning: hwloc not found - some modules may not build.)
+endif
+
+#
 # MPI
 #
 ifeq ($(WITH_MPI),openmpi-4.0.5)

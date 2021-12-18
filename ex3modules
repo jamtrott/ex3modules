@@ -31,6 +31,7 @@ program_version=0.5.0
 
 # default options
 with_cmake=
+with_hwloc=
 with_mpi=
 with_openssl=
 with_python=
@@ -56,6 +57,11 @@ function help()
     printf "  %-20s\t%s\n" ""               "If a directory is given, then an external CMake is used. In this case,"
     printf "  %-20s\t%s\n" ""               "DIR/bin is added to PATH. Otherwise, an internal CMake is used."
     printf "  %-20s\t%s\n" "--without-cmake" "disable CMake usage completely. Some modules may not be built."
+    printf "  %-20s\t%s\n" "--with-hwloc=DIR" "Root directory of hwloc installation, or 'hwloc-2.4.1'."
+    printf "  %-20s\t%s\n" ""               "If a directory is given, then an external hwloc is used. In this case,"
+    printf "  %-20s\t%s\n" ""               "DIR/bin, DIR/include, DIR/lib and DIR/lib64 are added to search paths for"
+    printf "  %-20s\t%s\n" ""               "binaries, headers and libraries. Otherwise, an internal hwloc is used."
+    printf "  %-20s\t%s\n" "--without-hwloc" "disable hwloc usage completely"
     printf "  %-20s\t%s\n" "--with-mpi=DIR" "Root directory of MPI installation, or one of the following values:"
     printf "  %-20s\t%s\n" ""               "'openmpi-4.0.5', 'openmpi-cuda-4.0.5', 'mpich-3.3.2' or 'mvapich-2.3.4'."
     printf "  %-20s\t%s\n" ""               "If a directory is given, then an external MPI is used, and DIR/include,"
@@ -134,6 +140,9 @@ function parse_program_options()
 	    --with-cmake) with_cmake="${2}"; shift 2;;
 	    --with-cmake=*) with_cmake="${1#*=}"; shift 1;;
 	    --without-cmake) with_cmake=no; shift 1;;
+	    --with-hwloc) with_hwloc="${2}"; shift 2;;
+	    --with-hwloc=*) with_hwloc="${1#*=}"; shift 1;;
+	    --without-hwloc) with_hwloc=no; shift 1;;
 	    --with-mpi) with_mpi="${2}"; shift 2;;
 	    --with-mpi=*) with_mpi="${1#*=}"; shift 1;;
 	    --without-mpi) with_mpi=no; shift 1;;
@@ -176,6 +185,7 @@ function main ()
     [ ! -z "${enable_cuda}" ] && make_options+=" ENABLE_CUDA=1"
     [ ! -z "${enable_gfortran}" ] && make_options+=" ENABLE_GFORTRAN=1"
     [ ! -z "${with_cmake}" ] && make_options+=" WITH_CMAKE=${with_cmake}"
+    [ ! -z "${with_hwloc}" ] && make_options+=" WITH_HWLOC=${with_hwloc}"
     [ ! -z "${with_mpi}" ] && make_options+=" WITH_MPI=${with_mpi}"
     [ ! -z "${with_openssl}" ] && make_options+=" WITH_OPENSSL=${with_openssl}"
     [ ! -z "${with_python}" ] && make_options+=" WITH_PYTHON=${with_python}"
