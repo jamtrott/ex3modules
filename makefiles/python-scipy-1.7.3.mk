@@ -16,16 +16,16 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-scipy-1.5.4
+# python-scipy-1.7.3
 
-python-scipy-version = 1.5.4
+python-scipy-version = 1.7.3
 python-scipy = python-scipy-$(python-scipy-version)
 $(python-scipy)-description = Fundamental package for scientific computing with Python
 $(python-scipy)-url = https://www.scipy.org/
-$(python-scipy)-srcurl = https://github.com/scipy/scipy/archive/v$(python-scipy-version).tar.gz
+$(python-scipy)-srcurl = https://files.pythonhosted.org/packages/61/67/1a654b96309c991762ee9bc39c363fc618076b155fe52d295211cf2536c7/scipy-1.7.3.tar.gz
 $(python-scipy)-src = $(pkgsrcdir)/python-scipy-$(notdir $($(python-scipy)-srcurl))
 $(python-scipy)-srcdir = $(pkgsrcdir)/$(python-scipy)
-$(python-scipy)-builddeps = $(python) $(python-cython) $(blas) $(mpi) $(python-numpy) $(python-wheel)
+$(python-scipy)-builddeps = $(python) $(python-cython) $(blas) $(mpi) $(python-numpy) $(python-wheel) $(pybind11)
 $(python-scipy)-prereqs = $(python) $(python-cython) $(python-numpy) $(openblas)
 $(python-scipy)-modulefile = $(modulefilesdir)/$(python-scipy)
 $(python-scipy)-prefix = $(pkgdir)/$(python-scipy)
@@ -65,11 +65,6 @@ $($(python-scipy)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-scipy)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-scipy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-scipy)-prefix)/.pkgpatch
-	cd $($(python-scipy)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-scipy)-builddeps) && \
-		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-scipy)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-scipy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-scipy)-prefix)/.pkgbuild
