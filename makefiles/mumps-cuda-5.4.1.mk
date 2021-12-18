@@ -96,7 +96,7 @@ $($(mumps-cuda)-srcdir)/Makefile.inc: $(modulefilesdir)/.markerfile $$(foreach d
 	echo 'CDEFS   = -DAdd_' >>$@.tmp && \
 	echo '' >>$@.tmp && \
 	echo '#Begin Optimized options' >>$@.tmp && \
-	echo 'OPTF    = -fPIC -O3 -fallow-argument-mismatch' >>$@.tmp && \
+	(if [[ $$($${MPIFORT} --version | head -n 1 | awk '{ print $4 }' | cut -d. -f1) -gt 9 ]]; then echo 'OPTF    = -fPIC -O3 -fallow-argument-mismatch' >>$@.tmp; else echo 'OPTF    = -fPIC -O3' >>$@.tmp; fi) && \
 	echo 'OPTL    = -fPIC -O3' >>$@.tmp && \
 	echo 'OPTC    = -fPIC -O3' >>$@.tmp && \
 	echo '#End Optimized options' >>$@.tmp && \
