@@ -52,7 +52,7 @@ ifeq ($(ARCH),x86_64)
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(openblas)-builddeps) && \
-		$(MAKE) DYNAMIC_ARCH=1 TARGET=HASWELL USE_THREAD=0 USE_LOCKING=1 USE_OPENMP=0 NUM_THREADS=256 NO_AFFINITY=1
+		$(MAKE) FC=gfortran DYNAMIC_ARCH=1 TARGET=HASWELL USE_THREAD=0 USE_LOCKING=1 USE_OPENMP=0 NUM_THREADS=256 NO_AFFINITY=1
 else ifeq ($(ARCH),aarch64)
 	cd $($(openblas)-srcdir) && \
 		$(MODULESINIT) && \
