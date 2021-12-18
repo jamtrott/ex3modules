@@ -73,7 +73,7 @@ $($(python-colorama)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-colorama)-builddeps) && \
 		PYTHONPATH=$($(python-colorama)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-colorama)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-colorama)-prefix)
 	@touch $@
 
 $($(python-colorama)-modulefile): $(modulefilesdir)/.markerfile $($(python-colorama)-prefix)/.pkginstall

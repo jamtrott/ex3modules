@@ -68,7 +68,7 @@ $($(python-pycodestyle)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fo
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pycodestyle)-builddeps) && \
 		PYTHONPATH=$($(python-pycodestyle)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-pycodestyle)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-pycodestyle)-prefix)
 	@touch $@
 
 $($(python-pycodestyle)-modulefile): $(modulefilesdir)/.markerfile $($(python-pycodestyle)-prefix)/.pkginstall

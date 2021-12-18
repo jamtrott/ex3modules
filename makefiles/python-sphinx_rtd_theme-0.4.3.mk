@@ -73,7 +73,7 @@ $($(python-sphinx_rtd_theme)-prefix)/.pkginstall: $($(python-sphinx_rtd_theme)-p
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinx_rtd_theme)-builddeps) && \
 		PYTHONPATH=$($(python-sphinx_rtd_theme)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-sphinx_rtd_theme)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-sphinx_rtd_theme)-prefix)
 	@touch $@
 
 $($(python-sphinx_rtd_theme)-modulefile): $(modulefilesdir)/.markerfile $($(python-sphinx_rtd_theme)-prefix)/.pkginstall

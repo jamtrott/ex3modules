@@ -73,7 +73,7 @@ $($(python-pytest-cov)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pytest-cov)-builddeps) && \
 		PYTHONPATH=$($(python-pytest-cov)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-pytest-cov)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-pytest-cov)-prefix)
 	@touch $@
 
 $($(python-pytest-cov)-modulefile): $(modulefilesdir)/.markerfile $($(python-pytest-cov)-prefix)/.pkginstall

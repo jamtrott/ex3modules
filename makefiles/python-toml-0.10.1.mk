@@ -68,7 +68,7 @@ $($(python-toml)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-toml)-builddeps) && \
 		PYTHONPATH=$($(python-toml)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-toml)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-toml)-prefix)
 	@touch $@
 
 $($(python-toml)-modulefile): $(modulefilesdir)/.markerfile $($(python-toml)-prefix)/.pkginstall

@@ -72,7 +72,7 @@ $($(python-urllib3)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-urllib3)-builddeps) && \
 		PYTHONPATH=$($(python-urllib3)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-urllib3)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-urllib3)-prefix)
 	@touch $@
 
 $($(python-urllib3)-modulefile): $(modulefilesdir)/.markerfile $($(python-urllib3)-prefix)/.pkginstall

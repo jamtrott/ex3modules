@@ -73,7 +73,7 @@ $($(python-filelock)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-filelock)-builddeps) && \
 		PYTHONPATH=$($(python-filelock)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-filelock)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-filelock)-prefix)
 	@touch $@
 
 $($(python-filelock)-modulefile): $(modulefilesdir)/.markerfile $($(python-filelock)-prefix)/.pkginstall

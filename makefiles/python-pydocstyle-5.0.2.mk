@@ -73,7 +73,7 @@ $($(python-pydocstyle)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pydocstyle)-builddeps) && \
 		PYTHONPATH=$($(python-pydocstyle)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-pydocstyle)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-pydocstyle)-prefix)
 	@touch $@
 
 $($(python-pydocstyle)-modulefile): $(modulefilesdir)/.markerfile $($(python-pydocstyle)-prefix)/.pkginstall

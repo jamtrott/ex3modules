@@ -73,7 +73,7 @@ $($(python-setuptools_scm)-prefix)/.pkginstall: $($(python-setuptools_scm)-prefi
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-setuptools_scm)-builddeps) && \
 		PYTHONPATH=$($(python-setuptools_scm)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-setuptools_scm)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-setuptools_scm)-prefix)
 	@touch $@
 
 $($(python-setuptools_scm)-modulefile): $(modulefilesdir)/.markerfile $($(python-setuptools_scm)-prefix)/.pkginstall

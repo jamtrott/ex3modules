@@ -25,7 +25,7 @@ $(python-scipy)-url = https://www.scipy.org/
 $(python-scipy)-srcurl = https://github.com/scipy/scipy/archive/v$(python-scipy-version).tar.gz
 $(python-scipy)-src = $(pkgsrcdir)/python-scipy-$(notdir $($(python-scipy)-srcurl))
 $(python-scipy)-srcdir = $(pkgsrcdir)/$(python-scipy)
-$(python-scipy)-builddeps = $(python) $(python-cython) $(blas) $(mpi) $(python-numpy) $(python-setuptools)
+$(python-scipy)-builddeps = $(python) $(python-cython) $(blas) $(mpi) $(python-numpy) $(python-wheel)
 $(python-scipy)-prereqs = $(python) $(python-cython) $(python-numpy) $(openblas)
 $(python-scipy)-modulefile = $(modulefilesdir)/$(python-scipy)
 $(python-scipy)-prefix = $(pkgdir)/$(python-scipy)
@@ -49,12 +49,13 @@ $($(python-scipy)-srcdir)/site.cfg: $$(foreach dep,$$($(python-scipy)-builddeps)
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-scipy)-builddeps) && \
-		printf '' >$@ && \
-		echo "[openblas]" >>$@ && \
-		echo "libraries = $${BLASLIB}" >>$@ && \
-		echo "library_dirs = $${OPENBLAS_LIBDIR}" >>$@ && \
-		echo "include_dirs = $${OPENBLAS_INCDIR}" >>$@ && \
-		echo "runtime_library_dirs = $${OPENBLAS_LIBDIR}" >>$@
+		printf '' >$@.tmp && \
+		echo "[openblas]" >>$@.tmp && \
+		echo "libraries = $${BLASLIB}" >>$@.tmp && \
+		echo "library_dirs = $${OPENBLAS_LIBDIR}" >>$@.tmp && \
+		echo "include_dirs = $${OPENBLAS_INCDIR}" >>$@.tmp && \
+		echo "runtime_library_dirs = $${OPENBLAS_LIBDIR}" >>$@.tmp
+	mv $@.tmp $@
 
 $($(python-scipy)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-scipy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-scipy)-prefix)/.pkgunpack $($(python-scipy)-srcdir)/site.cfg
 	@touch $@
@@ -84,7 +85,7 @@ $($(python-scipy)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-scipy)-builddeps) && \
 		PYTHONPATH=$($(python-scipy)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-scipy)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-scipy)-prefix)
 	@touch $@
 
 $($(python-scipy)-modulefile): $(modulefilesdir)/.markerfile $($(python-scipy)-prefix)/.pkginstall

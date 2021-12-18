@@ -68,7 +68,7 @@ $($(python-pillow)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pillow)-builddeps) && \
 		PYTHONPATH=$($(python-pillow)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-pillow)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-pillow)-prefix)
 	@touch $@
 
 $($(python-pillow)-modulefile): $(modulefilesdir)/.markerfile $($(python-pillow)-prefix)/.pkginstall

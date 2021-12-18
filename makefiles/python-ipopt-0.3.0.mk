@@ -73,7 +73,7 @@ $($(python-ipopt)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-ipopt)-builddeps) && \
 		PYTHONPATH=$($(python-ipopt)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-ipopt)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-ipopt)-prefix)
 	@touch $@
 
 $($(python-ipopt)-modulefile): $(modulefilesdir)/.markerfile $($(python-ipopt)-prefix)/.pkginstall

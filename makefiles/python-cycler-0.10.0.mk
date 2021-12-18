@@ -73,7 +73,7 @@ $($(python-cycler)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-cycler)-builddeps) && \
 		PYTHONPATH=$($(python-cycler)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-cycler)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-cycler)-prefix)
 	@touch $@
 
 $($(python-cycler)-modulefile): $(modulefilesdir)/.markerfile $($(python-cycler)-prefix)/.pkginstall

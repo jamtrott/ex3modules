@@ -73,7 +73,7 @@ $($(python-petsc4py)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-petsc4py)-builddeps) && \
 		PYTHONPATH=$($(python-petsc4py)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-petsc4py)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-petsc4py)-prefix)
 	@touch $@
 
 $($(python-petsc4py)-modulefile): $(modulefilesdir)/.markerfile $($(python-petsc4py)-prefix)/.pkginstall

@@ -73,7 +73,7 @@ $($(python-appdirs)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-appdirs)-builddeps) && \
 		PYTHONPATH=$($(python-appdirs)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-appdirs)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-appdirs)-prefix)
 	@touch $@
 
 $($(python-appdirs)-modulefile): $(modulefilesdir)/.markerfile $($(python-appdirs)-prefix)/.pkginstall

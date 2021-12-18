@@ -73,7 +73,7 @@ $($(python-cffi)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-cffi)-builddeps) && \
 		PYTHONPATH=$($(python-cffi)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-cffi)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-cffi)-prefix)
 	@touch $@
 
 $($(python-cffi)-modulefile): $(modulefilesdir)/.markerfile $($(python-cffi)-prefix)/.pkginstall

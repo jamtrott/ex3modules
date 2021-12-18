@@ -73,7 +73,7 @@ $($(python-ldrb)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-ldrb)-builddeps) && \
 		PYTHONPATH=$($(python-ldrb)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-ldrb)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-ldrb)-prefix)
 	@touch $@
 
 $($(python-ldrb)-modulefile): $(modulefilesdir)/.markerfile $($(python-ldrb)-prefix)/.pkginstall

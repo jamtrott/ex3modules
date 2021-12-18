@@ -73,7 +73,7 @@ $($(python-more-itertools)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-more-itertools)-builddeps) && \
 		PYTHONPATH=$($(python-more-itertools)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-more-itertools)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-more-itertools)-prefix)
 	@touch $@
 
 $($(python-more-itertools)-modulefile): $(modulefilesdir)/.markerfile $($(python-more-itertools)-prefix)/.pkginstall

@@ -73,7 +73,7 @@ $($(python-wheel)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-wheel)-builddeps) && \
 		PYTHONPATH=$($(python-wheel)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-wheel)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-wheel)-prefix)
 	@touch $@
 
 $($(python-wheel)-modulefile): $(modulefilesdir)/.markerfile $($(python-wheel)-prefix)/.pkginstall

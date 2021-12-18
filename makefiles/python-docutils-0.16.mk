@@ -73,7 +73,7 @@ $($(python-docutils)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-docutils)-builddeps) && \
 		PYTHONPATH=$($(python-docutils)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-docutils)-prefix) && \
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-docutils)-prefix) && \
 	ln -sf $($(python-docutils)-prefix)/bin/prepstyles.py $($(python-docutils)-prefix)/bin/prepstyles
 	ln -sf $($(python-docutils)-prefix)/bin/rst2html.py $($(python-docutils)-prefix)/bin/rst2html
 	ln -sf $($(python-docutils)-prefix)/bin/rst2html4.py $($(python-docutils)-prefix)/bin/rst2html4

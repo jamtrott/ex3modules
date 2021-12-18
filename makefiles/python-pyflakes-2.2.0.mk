@@ -73,7 +73,7 @@ $($(python-pyflakes)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pyflakes)-builddeps) && \
 		PYTHONPATH=$($(python-pyflakes)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-pyflakes)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-pyflakes)-prefix)
 	@touch $@
 
 $($(python-pyflakes)-modulefile): $(modulefilesdir)/.markerfile $($(python-pyflakes)-prefix)/.pkginstall

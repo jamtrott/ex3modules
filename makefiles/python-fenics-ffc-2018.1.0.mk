@@ -82,7 +82,7 @@ $($(python-fenics-ffc-2018)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-fenics-ffc-2018)-builddeps) && \
 		PYTHONPATH=$($(python-fenics-ffc-2018)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-fenics-ffc-2018)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-fenics-ffc-2018)-prefix)
 	@touch $@
 
 $($(python-fenics-ffc-2018)-modulefile): $(modulefilesdir)/.markerfile $($(python-fenics-ffc-2018)-prefix)/.pkginstall

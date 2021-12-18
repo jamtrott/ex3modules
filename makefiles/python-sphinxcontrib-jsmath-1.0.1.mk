@@ -72,7 +72,7 @@ $($(python-sphinxcontrib-jsmath)-prefix)/.pkginstall: $(modulefilesdir)/.markerf
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinxcontrib-jsmath)-builddeps) && \
 		PYTHONPATH=$($(python-sphinxcontrib-jsmath)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-sphinxcontrib-jsmath)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-sphinxcontrib-jsmath)-prefix)
 	@touch $@
 
 $($(python-sphinxcontrib-jsmath)-modulefile): $(modulefilesdir)/.markerfile $($(python-sphinxcontrib-jsmath)-prefix)/.pkginstall

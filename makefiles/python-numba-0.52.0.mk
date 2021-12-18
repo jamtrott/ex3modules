@@ -68,7 +68,7 @@ $($(python-numba)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-numba)-builddeps) && \
 		PYTHONPATH=$($(python-numba)-site-packages):$${PYTHONPATH} \
-		NUMBA_DISABLE_TBB=1 $(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-numba)-prefix)
+		NUMBA_DISABLE_TBB=1 $(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-numba)-prefix)
 	@touch $@
 
 $($(python-numba)-modulefile): $(modulefilesdir)/.markerfile $($(python-numba)-prefix)/.pkginstall

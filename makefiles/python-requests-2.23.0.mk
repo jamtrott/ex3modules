@@ -72,7 +72,7 @@ $($(python-requests)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-requests)-builddeps) && \
 		PYTHONPATH=$($(python-requests)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-requests)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-requests)-prefix)
 	@touch $@
 
 $($(python-requests)-modulefile): $(modulefilesdir)/.markerfile $($(python-requests)-prefix)/.pkginstall
