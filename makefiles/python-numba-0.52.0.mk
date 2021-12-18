@@ -25,7 +25,7 @@ $(python-numba)-url = https://numba.pydata.org/
 $(python-numba)-srcurl = https://github.com/numba/numba/archive/$(python-numba-version).tar.gz
 $(python-numba)-src = $(pkgsrcdir)/python-numba-$(notdir $($(python-numba)-srcurl))
 $(python-numba)-srcdir = $(pkgsrcdir)/$(python-numba)
-$(python-numba)-builddeps = $(python) $(python-numpy) $(python-llvmlite) $(python-setuptools)
+$(python-numba)-builddeps = $(python) $(python-numpy) $(python-llvmlite) $(python-wheel)
 $(python-numba)-prereqs = $(python) $(python-numpy) $(python-llvmlite)
 $(python-numba)-modulefile = $(modulefilesdir)/$(python-numba)
 $(python-numba)-prefix = $(pkgdir)/$(python-numba)
@@ -52,11 +52,6 @@ $($(python-numba)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-numba)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-numba)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-numba)-prefix)/.pkgpatch
-	cd $($(python-numba)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-numba)-builddeps) && \
-		NUMBA_DISABLE_TBB=1 $(PYTHON) setup.py build
 	@touch $@
 
 $($(python-numba)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-numba)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-numba)-prefix)/.pkgbuild
