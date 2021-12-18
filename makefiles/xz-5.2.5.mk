@@ -43,7 +43,8 @@ $($(xz)-prefix)/.pkgunpack: $($(xz)-src) $($(xz)-srcdir)/.markerfile $($(xz)-pre
 	tar -C $($(xz)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
-$($(xz)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(xz)-builddeps),$(modulefilesdir)/$$(dep)) $($(xz)-prefix)/.pkgunpack
+$($(xz)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(xz)-builddeps),$(modulefilesdir)/$$(dep)) $($(xz)-prefix)/.pkgunpack patches/xz-0001-fix_missing_version_symbols.patch
+	patch -d $($(xz)-srcdir) -f -p0 <patches/xz-0001-fix_missing_version_symbols.patch
 	@touch $@
 
 $($(xz)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(xz)-builddeps),$(modulefilesdir)/$$(dep)) $($(xz)-prefix)/.pkgpatch

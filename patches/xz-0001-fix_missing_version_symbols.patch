@@ -1,0 +1,23 @@
+--- src/liblzma/liblzma.map.orig    2015-09-29 12:57:36.000000000 +0200
++++ src/liblzma/liblzma.map 2017-02-22 11:10:33.432868185 +0100
+@@ -95,7 +95,13 @@
+    lzma_vli_size;
+ };
+ 
+-XZ_5.2 {
++XZ_5.1.2alpha {
++global:
++   lzma_stream_encoder_mt;
++   lzma_stream_encoder_mt_memusage;
++} XZ_5.0;
++
++XZ_5.2.2 {
+ global:
+    lzma_block_uncomp_encode;
+    lzma_cputhreads;
+@@ -105,4 +111,4 @@
+ 
+ local:
+ 	*;
+-} XZ_5.0;
++} XZ_5.1.2alpha;
