@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# pybind11-2.3.0
+# pybind11-2.8.1
 
-pybind11-version = 2.3.0
+pybind11-version = 2.8.1
 pybind11 = pybind11-$(pybind11-version)
 $(pybind11)-description = Seamless operability between C++11 and Python
 $(pybind11)-url = https://github.com/pybind/pybind11
@@ -56,7 +56,8 @@ $($(pybind11)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(pybind11)-builddeps) && \
 		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(pybind11)-prefix) \
-			-DBUILD_SHARED_LIBS=TRUE && \
+			-DBUILD_SHARED_LIBS=TRUE \
+			-DPYTHON_EXECUTABLE=$(PYTHON) && \
 		$(MAKE)
 	@touch $@
 

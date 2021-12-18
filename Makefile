@@ -453,7 +453,7 @@ pkgs := $(pkgs) \
 	protobuf-cpp-3.17.0 \
 	protobuf-python-3.17.0 \
 	pugixml-1.11 \
-	pybind11-2.3.0 \
+	pybind11-2.8.1 \
 	python-3.7.4 \
 	python-alabaster-0.7.12 \
 	python-apipkg-1.5 \
