@@ -72,7 +72,7 @@ $($(python-sphinxcontrib-htmlhelp)-prefix)/.pkginstall: $(modulefilesdir)/.marke
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinxcontrib-htmlhelp)-builddeps) && \
 		PYTHONPATH=$($(python-sphinxcontrib-htmlhelp)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-sphinxcontrib-htmlhelp)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-sphinxcontrib-htmlhelp)-prefix)
 	@touch $@
 
 $($(python-sphinxcontrib-htmlhelp)-modulefile): $(modulefilesdir)/.markerfile $($(python-sphinxcontrib-htmlhelp)-prefix)/.pkginstall

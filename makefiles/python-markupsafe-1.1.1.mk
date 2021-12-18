@@ -73,7 +73,7 @@ $($(python-markupsafe)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-markupsafe)-builddeps) && \
 		PYTHONPATH=$($(python-markupsafe)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-markupsafe)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-markupsafe)-prefix)
 	@touch $@
 
 $($(python-markupsafe)-modulefile): $(modulefilesdir)/.markerfile $($(python-markupsafe)-prefix)/.pkginstall

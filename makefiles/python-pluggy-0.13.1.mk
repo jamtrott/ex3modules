@@ -73,7 +73,7 @@ $($(python-pluggy)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pluggy)-builddeps) && \
 		PYTHONPATH=$($(python-pluggy)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-pluggy)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-pluggy)-prefix)
 	@touch $@
 
 $($(python-pluggy)-modulefile): $(modulefilesdir)/.markerfile $($(python-pluggy)-prefix)/.pkginstall

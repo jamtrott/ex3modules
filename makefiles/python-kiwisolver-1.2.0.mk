@@ -73,7 +73,7 @@ $($(python-kiwisolver)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-kiwisolver)-builddeps) && \
 		PYTHONPATH=$($(python-kiwisolver)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-kiwisolver)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-kiwisolver)-prefix)
 	@touch $@
 
 $($(python-kiwisolver)-modulefile): $(modulefilesdir)/.markerfile $($(python-kiwisolver)-prefix)/.pkginstall

@@ -68,7 +68,7 @@ $($(python-xarray)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-xarray)-builddeps) && \
 		PYTHONPATH=$($(python-xarray)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-xarray)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-xarray)-prefix)
 	@touch $@
 
 $($(python-xarray)-modulefile): $(modulefilesdir)/.markerfile $($(python-xarray)-prefix)/.pkginstall

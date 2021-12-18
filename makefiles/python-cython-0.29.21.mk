@@ -68,7 +68,7 @@ $($(python-cython)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-cython)-builddeps) && \
 		PYTHONPATH=$($(python-cython)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-cython)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-cython)-prefix)
 	@touch $@
 
 $($(python-cython)-modulefile): $(modulefilesdir)/.markerfile $($(python-cython)-prefix)/.pkginstall

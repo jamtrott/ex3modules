@@ -73,7 +73,7 @@ $($(python-ply)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-ply)-builddeps) && \
 		PYTHONPATH=$($(python-ply)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-ply)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-ply)-prefix)
 	@touch $@
 
 $($(python-ply)-modulefile): $(modulefilesdir)/.markerfile $($(python-ply)-prefix)/.pkginstall

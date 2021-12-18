@@ -73,7 +73,7 @@ $($(python-pyadjoint)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pyadjoint)-builddeps) && \
 		PYTHONPATH=$($(python-pyadjoint)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-pyadjoint)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-pyadjoint)-prefix)
 	@touch $@
 
 $($(python-pyadjoint)-modulefile): $(modulefilesdir)/.markerfile $($(python-pyadjoint)-prefix)/.pkginstall

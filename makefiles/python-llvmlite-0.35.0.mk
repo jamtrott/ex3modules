@@ -74,7 +74,7 @@ $($(python-llvmlite)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-llvmlite)-builddeps) && \
 		PYTHONPATH=$($(python-llvmlite)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-llvmlite)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-llvmlite)-prefix)
 	@touch $@
 
 $($(python-llvmlite)-modulefile): $(modulefilesdir)/.markerfile $($(python-llvmlite)-prefix)/.pkginstall

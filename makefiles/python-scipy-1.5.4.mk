@@ -84,7 +84,7 @@ $($(python-scipy)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-scipy)-builddeps) && \
 		PYTHONPATH=$($(python-scipy)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-scipy)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-scipy)-prefix)
 	@touch $@
 
 $($(python-scipy)-modulefile): $(modulefilesdir)/.markerfile $($(python-scipy)-prefix)/.pkginstall

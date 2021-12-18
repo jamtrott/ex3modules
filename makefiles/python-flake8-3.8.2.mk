@@ -73,7 +73,7 @@ $($(python-flake8)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-flake8)-builddeps) && \
 		PYTHONPATH=$($(python-flake8)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-flake8)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-flake8)-prefix)
 	@touch $@
 
 $($(python-flake8)-modulefile): $(modulefilesdir)/.markerfile $($(python-flake8)-prefix)/.pkginstall

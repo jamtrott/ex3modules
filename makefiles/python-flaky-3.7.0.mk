@@ -68,7 +68,7 @@ $($(python-flaky)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-flaky)-builddeps) && \
 		PYTHONPATH=$($(python-flaky)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-flaky)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-flaky)-prefix)
 	@touch $@
 
 $($(python-flaky)-modulefile): $(modulefilesdir)/.markerfile $($(python-flaky)-prefix)/.pkginstall

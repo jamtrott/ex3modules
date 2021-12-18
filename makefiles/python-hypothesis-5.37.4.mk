@@ -73,7 +73,7 @@ $($(python-hypothesis)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-hypothesis)-builddeps) && \
 		PYTHONPATH=$($(python-hypothesis)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-hypothesis)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-hypothesis)-prefix)
 	@touch $@
 
 $($(python-hypothesis)-modulefile): $(modulefilesdir)/.markerfile $($(python-hypothesis)-prefix)/.pkginstall

@@ -72,7 +72,7 @@ $($(python-sortedcontainers)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sortedcontainers)-builddeps) && \
 		PYTHONPATH=$($(python-sortedcontainers)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-sortedcontainers)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-sortedcontainers)-prefix)
 	@touch $@
 
 $($(python-sortedcontainers)-modulefile): $(modulefilesdir)/.markerfile $($(python-sortedcontainers)-prefix)/.pkginstall

@@ -73,7 +73,7 @@ $($(python-pytest)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pytest)-builddeps) && \
 		PYTHONPATH=$($(python-pytest)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-pytest)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-pytest)-prefix)
 	@touch $@
 
 $($(python-pytest)-modulefile): $(modulefilesdir)/.markerfile $($(python-pytest)-prefix)/.pkginstall

@@ -73,7 +73,7 @@ $($(python-mccabe)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-mccabe)-builddeps) && \
 		PYTHONPATH=$($(python-mccabe)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-mccabe)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-mccabe)-prefix)
 	@touch $@
 
 $($(python-mccabe)-modulefile): $(modulefilesdir)/.markerfile $($(python-mccabe)-prefix)/.pkginstall

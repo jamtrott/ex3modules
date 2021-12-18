@@ -73,7 +73,7 @@ $($(python-alabaster)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-alabaster)-builddeps) && \
 		PYTHONPATH=$($(python-alabaster)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-alabaster)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-alabaster)-prefix)
 	@touch $@
 
 $($(python-alabaster)-modulefile): $(modulefilesdir)/.markerfile $($(python-alabaster)-prefix)/.pkginstall

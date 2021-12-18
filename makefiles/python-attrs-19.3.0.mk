@@ -72,7 +72,7 @@ $($(python-attrs)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-attrs)-builddeps) && \
 		PYTHONPATH=$($(python-attrs)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-attrs)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-attrs)-prefix)
 	@touch $@
 
 $($(python-attrs)-modulefile): $(modulefilesdir)/.markerfile $($(python-attrs)-prefix)/.pkginstall

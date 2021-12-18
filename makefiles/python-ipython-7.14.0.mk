@@ -68,7 +68,7 @@ $($(python-ipython)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-ipython)-builddeps) && \
 		PYTHONPATH=$($(python-ipython)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-ipython)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-ipython)-prefix)
 	@touch $@
 
 $($(python-ipython)-modulefile): $(modulefilesdir)/.markerfile $($(python-ipython)-prefix)/.pkginstall

@@ -68,7 +68,7 @@ $($(python-sphinx)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinx)-builddeps) && \
 		PYTHONPATH=$($(python-sphinx)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-sphinx)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-sphinx)-prefix)
 	@touch $@
 
 $($(python-sphinx)-modulefile): $(modulefilesdir)/.markerfile $($(python-sphinx)-prefix)/.pkginstall

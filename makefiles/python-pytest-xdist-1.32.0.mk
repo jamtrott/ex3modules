@@ -73,7 +73,7 @@ $($(python-pytest-xdist)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(f
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pytest-xdist)-builddeps) && \
 		PYTHONPATH=$($(python-pytest-xdist)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-pytest-xdist)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-pytest-xdist)-prefix)
 	@touch $@
 
 $($(python-pytest-xdist)-modulefile): $(modulefilesdir)/.markerfile $($(python-pytest-xdist)-prefix)/.pkginstall

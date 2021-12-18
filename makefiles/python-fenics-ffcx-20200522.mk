@@ -88,7 +88,7 @@ $($(python-fenics-ffcx-20200522)-prefix)/.pkginstall: $(modulefilesdir)/.markerf
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-fenics-ffcx-20200522)-builddeps) && \
 		PYTHONPATH=$($(python-fenics-ffcx-20200522)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-fenics-ffcx-20200522)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-fenics-ffcx-20200522)-prefix)
 	@touch $@
 
 $($(python-fenics-ffcx-20200522)-modulefile): $(modulefilesdir)/.markerfile $($(python-fenics-ffcx-20200522)-prefix)/.pkginstall

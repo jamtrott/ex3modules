@@ -72,7 +72,7 @@ $($(python-distlib)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-distlib)-builddeps) && \
 		PYTHONPATH=$($(python-distlib)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-distlib)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-distlib)-prefix)
 	@touch $@
 
 $($(python-distlib)-modulefile): $(modulefilesdir)/.markerfile $($(python-distlib)-prefix)/.pkginstall

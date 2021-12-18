@@ -72,7 +72,7 @@ $($(python-execnet)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-execnet)-builddeps) && \
 		PYTHONPATH=$($(python-execnet)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-execnet)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-execnet)-prefix)
 	@touch $@
 
 $($(python-execnet)-modulefile): $(modulefilesdir)/.markerfile $($(python-execnet)-prefix)/.pkginstall

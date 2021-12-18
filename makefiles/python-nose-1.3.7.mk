@@ -72,7 +72,7 @@ $($(python-nose)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-nose)-builddeps) && \
 		PYTHONPATH=$($(python-nose)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-nose)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-nose)-prefix)
 	@touch $@
 
 $($(python-nose)-modulefile): $(modulefilesdir)/.markerfile $($(python-nose)-prefix)/.pkginstall

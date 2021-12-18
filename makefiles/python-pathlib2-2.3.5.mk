@@ -73,7 +73,7 @@ $($(python-pathlib2)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pathlib2)-builddeps) && \
 		PYTHONPATH=$($(python-pathlib2)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-pathlib2)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-pathlib2)-prefix)
 	@touch $@
 
 $($(python-pathlib2)-modulefile): $(modulefilesdir)/.markerfile $($(python-pathlib2)-prefix)/.pkginstall

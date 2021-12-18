@@ -82,7 +82,7 @@ $($(python-fenics-ffc-2019)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-fenics-ffc-2019)-builddeps) && \
 		PYTHONPATH=$($(python-fenics-ffc-2019)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-fenics-ffc-2019)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-fenics-ffc-2019)-prefix)
 	@touch $@
 
 $($(python-fenics-ffc-2019)-modulefile): $(modulefilesdir)/.markerfile $($(python-fenics-ffc-2019)-prefix)/.pkginstall

@@ -72,7 +72,7 @@ $($(python-matplotlib)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-matplotlib)-builddeps) && \
 		PYTHONPATH=$($(python-matplotlib)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-matplotlib)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-matplotlib)-prefix)
 	@touch $@
 
 $($(python-matplotlib)-modulefile): $(modulefilesdir)/.markerfile $($(python-matplotlib)-prefix)/.pkgcheck $($(python-matplotlib)-prefix)/.pkginstall

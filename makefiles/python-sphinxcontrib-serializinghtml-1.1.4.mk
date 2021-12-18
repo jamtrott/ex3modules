@@ -72,7 +72,7 @@ $($(python-sphinxcontrib-serializinghtml)-prefix)/.pkginstall: $(modulefilesdir)
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinxcontrib-serializinghtml)-builddeps) && \
 		PYTHONPATH=$($(python-sphinxcontrib-serializinghtml)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-sphinxcontrib-serializinghtml)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-sphinxcontrib-serializinghtml)-prefix)
 	@touch $@
 
 $($(python-sphinxcontrib-serializinghtml)-modulefile): $(modulefilesdir)/.markerfile $($(python-sphinxcontrib-serializinghtml)-prefix)/.pkginstall

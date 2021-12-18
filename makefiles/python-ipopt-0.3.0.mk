@@ -73,7 +73,7 @@ $($(python-ipopt)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-ipopt)-builddeps) && \
 		PYTHONPATH=$($(python-ipopt)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-ipopt)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-ipopt)-prefix)
 	@touch $@
 
 $($(python-ipopt)-modulefile): $(modulefilesdir)/.markerfile $($(python-ipopt)-prefix)/.pkginstall

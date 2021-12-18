@@ -73,7 +73,7 @@ $($(python-tox)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-tox)-builddeps) && \
 		PYTHONPATH=$($(python-tox)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(python-tox)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(python-tox)-prefix)
 	@touch $@
 
 $($(python-tox)-modulefile): $(modulefilesdir)/.markerfile $($(python-tox)-prefix)/.pkginstall

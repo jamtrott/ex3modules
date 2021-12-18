@@ -70,7 +70,7 @@ $($(meson)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(meson)-builddeps) && \
 		PYTHONPATH=$($(meson)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) setup.py install --prefix=$($(meson)-prefix)
+		$(PYTHON) -m pip install . --prefix=$($(meson)-prefix)
 	@touch $@
 
 $($(meson)-modulefile): $(modulefilesdir)/.markerfile $($(meson)-prefix)/.pkginstall
