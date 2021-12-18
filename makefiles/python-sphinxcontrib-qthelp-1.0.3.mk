@@ -72,7 +72,7 @@ $($(python-sphinxcontrib-qthelp)-prefix)/.pkginstall: $(modulefilesdir)/.markerf
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinxcontrib-qthelp)-builddeps) && \
 		PYTHONPATH=$($(python-sphinxcontrib-qthelp)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-sphinxcontrib-qthelp)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-sphinxcontrib-qthelp)-prefix)
 	@touch $@
 
 $($(python-sphinxcontrib-qthelp)-modulefile): $(modulefilesdir)/.markerfile $($(python-sphinxcontrib-qthelp)-prefix)/.pkginstall

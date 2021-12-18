@@ -72,7 +72,7 @@ $($(python-dateutil)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-dateutil)-builddeps) && \
 		PYTHONPATH=$($(python-dateutil)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-dateutil)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-dateutil)-prefix)
 	@touch $@
 
 $($(python-dateutil)-modulefile): $(modulefilesdir)/.markerfile $($(python-dateutil)-prefix)/.pkginstall

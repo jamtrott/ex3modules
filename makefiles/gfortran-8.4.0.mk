@@ -86,10 +86,16 @@ $($(gfortran-8.4.0)-modulefile): $(modulefilesdir)/.markerfile $($(gfortran-8.4.
 	printf "$(foreach prereq,$($(gfortran-8.4.0)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv GFORTRAN-8.4.0_ROOT $($(gfortran-8.4.0)-prefix)" >>$@
-	echo "setenv GFORTRAN-8.4.0_LIBDIR $($(gfortran-8.4.0)-prefix)/lib64" >>$@
-	echo "setenv GFORTRAN-8.4.0_LIBRARYDIR $($(gfortran-8.4.0)-prefix)/lib64" >>$@
+	echo "setenv GFORTRAN_ROOT $($(gfortran-8.4.0)-prefix)" >>$@
+	echo "setenv GFORTRAN_LIBDIR $($(gfortran-8.4.0)-prefix)/lib64" >>$@
+	echo "setenv GFORTRAN_LIBRARYDIR $($(gfortran-8.4.0)-prefix)/lib64" >>$@
+	echo "setenv FC $($(gfortran-8.4.0)-prefix)/bin/gfortran$(gfortran-8.4.0-program-suffix)" >>$@
+	echo "setenv F77 $($(gfortran-8.4.0)-prefix)/bin/gfortran$(gfortran-8.4.0-program-suffix)" >>$@
+	echo "setenv F90 $($(gfortran-8.4.0)-prefix)/bin/gfortran$(gfortran-8.4.0-program-suffix)" >>$@
+	echo "setenv F95 $($(gfortran-8.4.0)-prefix)/bin/gfortran$(gfortran-8.4.0-program-suffix)" >>$@
+	echo "prepend-path LIBRARY_PATH $($(gfortran-8.4.0)-prefix)/lib" >>$@
 	echo "prepend-path LIBRARY_PATH $($(gfortran-8.4.0)-prefix)/lib64" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(gfortran-8.4.0)-prefix)/lib" >>$@
 	echo "prepend-path LD_LIBRARY_PATH $($(gfortran-8.4.0)-prefix)/lib64" >>$@
 	echo "set MSG \"$(gfortran-8.4.0)\"" >>$@
 

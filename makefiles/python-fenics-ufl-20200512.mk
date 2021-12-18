@@ -74,7 +74,7 @@ $($(python-fenics-ufl-20200512)-prefix)/.pkginstall: $(modulefilesdir)/.markerfi
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-fenics-ufl-20200512)-builddeps) && \
 		PYTHONPATH=$($(python-fenics-ufl-20200512)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-fenics-ufl-20200512)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-fenics-ufl-20200512)-prefix)
 	@touch $@
 
 $($(python-fenics-ufl-20200512)-modulefile): $(modulefilesdir)/.markerfile $($(python-fenics-ufl-20200512)-prefix)/.pkginstall

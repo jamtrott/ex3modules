@@ -73,7 +73,7 @@ $($(python-pyra-pytorch)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(f
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pyra-pytorch)-builddeps) && \
 		PYTHONPATH=$($(python-pyra-pytorch)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-pyra-pytorch)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-pyra-pytorch)-prefix)
 	@touch $@
 
 $($(python-pyra-pytorch)-modulefile): $(modulefilesdir)/.markerfile $($(python-pyra-pytorch)-prefix)/.pkginstall

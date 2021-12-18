@@ -67,7 +67,7 @@ $($(python-breathe)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-breathe)-builddeps) && \
 		PYTHONPATH=$($(python-breathe)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-breathe)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-breathe)-prefix)
 	@touch $@
 
 $($(python-breathe)-modulefile): $(modulefilesdir)/.markerfile $($(python-breathe)-prefix)/.pkginstall

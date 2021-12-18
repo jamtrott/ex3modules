@@ -72,7 +72,7 @@ $($(python-sphinxcontrib-applehelp)-prefix)/.pkginstall: $(modulefilesdir)/.mark
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sphinxcontrib-applehelp)-builddeps) && \
 		PYTHONPATH=$($(python-sphinxcontrib-applehelp)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-sphinxcontrib-applehelp)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-sphinxcontrib-applehelp)-prefix)
 	@touch $@
 
 $($(python-sphinxcontrib-applehelp)-modulefile): $(modulefilesdir)/.markerfile $($(python-sphinxcontrib-applehelp)-prefix)/.pkginstall

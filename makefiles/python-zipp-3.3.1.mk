@@ -72,7 +72,7 @@ $($(python-zipp)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-zipp)-builddeps) && \
 		PYTHONPATH=$($(python-zipp)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-zipp)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-zipp)-prefix)
 	@touch $@
 
 $($(python-zipp)-modulefile): $(modulefilesdir)/.markerfile $($(python-zipp)-prefix)/.pkginstall

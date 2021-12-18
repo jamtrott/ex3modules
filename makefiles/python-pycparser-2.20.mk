@@ -72,7 +72,7 @@ $($(python-pycparser)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pycparser)-builddeps) && \
 		PYTHONPATH=$($(python-pycparser)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-pycparser)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-pycparser)-prefix)
 	@touch $@
 
 $($(python-pycparser)-modulefile): $(modulefilesdir)/.markerfile $($(python-pycparser)-prefix)/.pkginstall

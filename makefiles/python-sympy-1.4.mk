@@ -73,7 +73,7 @@ $($(python-sympy-1.4)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-sympy-1.4)-builddeps) && \
 		PYTHONPATH=$($(python-sympy-1.4)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-sympy-1.4)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-sympy-1.4)-prefix)
 	@touch $@
 
 $($(python-sympy-1.4)-modulefile): $(modulefilesdir)/.markerfile $($(python-sympy-1.4)-prefix)/.pkginstall

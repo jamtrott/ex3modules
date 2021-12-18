@@ -68,7 +68,7 @@ $($(python-pkgconfig)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(fore
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pkgconfig)-builddeps) && \
 		PYTHONPATH=$($(python-pkgconfig)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-pkgconfig)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-pkgconfig)-prefix)
 	@touch $@
 
 $($(python-pkgconfig)-modulefile): $(modulefilesdir)/.markerfile $($(python-pkgconfig)-prefix)/.pkginstall

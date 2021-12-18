@@ -68,7 +68,7 @@ $($(python-mpmath)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-mpmath)-builddeps) && \
 		PYTHONPATH=$($(python-mpmath)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-mpmath)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-mpmath)-prefix)
 	@touch $@
 
 $($(python-mpmath)-modulefile): $(modulefilesdir)/.markerfile $($(python-mpmath)-prefix)/.pkginstall

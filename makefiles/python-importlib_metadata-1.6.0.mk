@@ -68,7 +68,7 @@ $($(python-importlib_metadata)-prefix)/.pkginstall: $($(python-importlib_metadat
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-importlib_metadata)-builddeps) && \
 		PYTHONPATH=$($(python-importlib_metadata)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-importlib_metadata)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-importlib_metadata)-prefix)
 	@touch $@
 
 $($(python-importlib_metadata)-modulefile): $(modulefilesdir)/.markerfile $($(python-importlib_metadata)-prefix)/.pkginstall

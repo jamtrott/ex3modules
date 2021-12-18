@@ -68,7 +68,7 @@ $($(python-pygments)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pygments)-builddeps) && \
 		PYTHONPATH=$($(python-pygments)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-pygments)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-pygments)-prefix)
 	@touch $@
 
 $($(python-pygments)-modulefile): $(modulefilesdir)/.markerfile $($(python-pygments)-prefix)/.pkginstall

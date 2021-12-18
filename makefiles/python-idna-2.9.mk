@@ -73,7 +73,7 @@ $($(python-idna)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-idna)-builddeps) && \
 		PYTHONPATH=$($(python-idna)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-idna)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-idna)-prefix)
 	@touch $@
 
 $($(python-idna)-modulefile): $(modulefilesdir)/.markerfile $($(python-idna)-prefix)/.pkginstall

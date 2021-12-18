@@ -73,7 +73,7 @@ $($(python-jinja2)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-jinja2)-builddeps) && \
 		PYTHONPATH=$($(python-jinja2)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-jinja2)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-jinja2)-prefix)
 	@touch $@
 
 $($(python-jinja2)-modulefile): $(modulefilesdir)/.markerfile $($(python-jinja2)-prefix)/.pkginstall

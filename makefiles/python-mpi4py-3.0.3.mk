@@ -74,7 +74,7 @@ $($(python-mpi4py)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-mpi4py)-builddeps) && \
 		PYTHONPATH=$($(python-mpi4py)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-mpi4py)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-mpi4py)-prefix)
 	@touch $@
 
 $($(python-mpi4py)-modulefile): $(modulefilesdir)/.markerfile $($(python-mpi4py)-prefix)/.pkginstall

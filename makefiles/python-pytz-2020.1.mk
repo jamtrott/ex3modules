@@ -73,7 +73,7 @@ $($(python-pytz)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pytz)-builddeps) && \
 		PYTHONPATH=$($(python-pytz)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-pytz)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-pytz)-prefix)
 	@touch $@
 
 $($(python-pytz)-modulefile): $(modulefilesdir)/.markerfile $($(python-pytz)-prefix)/.pkginstall

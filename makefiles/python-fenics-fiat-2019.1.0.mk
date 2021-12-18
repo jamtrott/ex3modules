@@ -68,7 +68,7 @@ $($(python-fenics-fiat-2019)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-fenics-fiat-2019)-builddeps) && \
 		PYTHONPATH=$($(python-fenics-fiat-2019)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-fenics-fiat-2019)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-fenics-fiat-2019)-prefix)
 	@touch $@
 
 $($(python-fenics-fiat-2019)-modulefile): $(modulefilesdir)/.markerfile $($(python-fenics-fiat-2019)-prefix)/.pkginstall

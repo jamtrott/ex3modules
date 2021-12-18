@@ -73,7 +73,7 @@ $($(python-wcwidth)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-wcwidth)-builddeps) && \
 		PYTHONPATH=$($(python-wcwidth)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --ignore-installed --prefix=$($(python-wcwidth)-prefix)
+		$(PYTHON) -m pip install . --no-index --ignore-installed --prefix=$($(python-wcwidth)-prefix)
 	@touch $@
 
 $($(python-wcwidth)-modulefile): $(modulefilesdir)/.markerfile $($(python-wcwidth)-prefix)/.pkginstall
