@@ -109,4 +109,4 @@ $(gfortran-8.4.0)-modulefile: $($(gfortran-8.4.0)-modulefile)
 $(gfortran-8.4.0)-clean:
 	rm -rf $($(gfortran-8.4.0)-modulefile)
 	rm -rf $($(gfortran-8.4.0)-srcdir)
-$(gfortran-8.4.0):$(gfortran)-src $(gfortran-8.4.0)-unpack $(gfortran-8.4.0)-patch $(gfortran-8.4.0)-build $(gfortran-8.4.0)-check $(gfortran-8.4.0)-install $(gfortran-8.4.0)-modulefile
+$(gfortran-8.4.0): $(gfortran-8.4.0)-src $(gfortran-8.4.0)-unpack $(gfortran-8.4.0)-patch $(gfortran-8.4.0)-build $(gfortran-8.4.0)-check $(gfortran-8.4.0)-install $(gfortran-8.4.0)-modulefile

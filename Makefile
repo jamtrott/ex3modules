@@ -65,8 +65,12 @@ MODULE := module
 # blis-x86_64, blis-zen, blis-zen2 and gsl.
 blas = openblas-0.3.12
 
-# PETSc implementations: petsc-3.13.2, petsc-3.16.2
-petsc = petsc-3.16.2
+# Use 64-bit versions of various packages
+hypre = hypre-64-2.17.0
+metis = metis-64-5.1.0
+parmetis = parmetis-64-4.0.3
+petsc = petsc-64-3.16.2
+superlu_dist = superlu_dist-64-6.4.0
 
 # CUDA-related packages - note CUDA toolkit 10.1.243 is only supported
 # on x86_64.
@@ -349,7 +353,8 @@ pkgs := $(pkgs) \
 	hwloc-2.4.1 \
 	hwloc-cairo-2.4.1 \
 	hwloc-src-2.4.1 \
-	hypre-2.17.0 \
+	hypre-32-2.17.0 \
+	hypre-64-2.17.0 \
 	hypre-src-2.17.0 \
 	icu-69.1 \
 	iperf-2.0.13 \
@@ -424,7 +429,7 @@ pkgs := $(pkgs) \
 	matio-1.5.17 \
 	mesa-21.1.5 \
 	meson-0.53.2 \
-	metis-5.1.0 \
+	metis-32-5.1.0 \
 	metis-64-5.1.0 \
 	metis-src-5.1.0 \
 	mpc-1.1.0 \
@@ -459,7 +464,7 @@ pkgs := $(pkgs) \
 	pango-1.44.7 \
 	parallel-20190922 \
 	paraview-5.9.1 \
-	parmetis-4.0.3 \
+	parmetis-32-4.0.3 \
 	parmetis-64-4.0.3 \
 	parmetis-src-4.0.3 \
 	patchelf-0.10 \
@@ -467,8 +472,9 @@ pkgs := $(pkgs) \
 	pcre-8.44 \
 	perf-4.19.75 \
 	perl-5.30.2 \
-	petsc-3.16.2 \
 	petsc-3.13.2 \
+	petsc-32-3.16.2 \
+	petsc-64-3.16.2 \
 	petsc-src-3.13.2 \
 	petsc-src-3.16.2 \
 	pixman-0.38.4 \
@@ -603,7 +609,8 @@ pkgs := $(pkgs) \
 	sqlite-3.31.1 \
 	suitesparse-5.7.2 \
 	superlu-5.2.1 \
-	superlu_dist-6.4.0 \
+	superlu_dist-32-6.4.0 \
+	superlu_dist-64-6.4.0 \
 	superlu_dist-src-6.4.0 \
 	texinfo-6.7 \
 	texlive-20210325 \
