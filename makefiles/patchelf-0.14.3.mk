@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# patchelf-0.10
+# patchelf-0.14.3
 
-patchelf-version = 0.10
+patchelf-version = 0.14.3
 patchelf = patchelf-$(patchelf-version)
 $(patchelf)-description = A small utility to modify the dynamic linker and RPATH of ELF executables
 $(patchelf)-url = https://github.com/NixOS/patchelf
