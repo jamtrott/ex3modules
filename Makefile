@@ -65,12 +65,12 @@ MODULE := module
 # blis-x86_64, blis-zen, blis-zen2 and gsl.
 blas = openblas-0.3.12
 
-# Use 64-bit versions of various packages
-hypre = hypre-64-2.17.0
-metis = metis-64-5.1.0
-parmetis = parmetis-64-4.0.3
-petsc = petsc-64-3.16.2
-superlu_dist = superlu_dist-64-6.4.0
+# Default to using 32-bit versions of various linear algebra packages
+hypre = hypre-32-2.17.0
+metis = metis-32-5.1.0
+parmetis = parmetis-32-4.0.3
+petsc = petsc-32-3.16.2
+superlu_dist = superlu_dist-32-6.4.0
 
 # CUDA-related packages - note CUDA toolkit 10.1.243 is only supported
 # on x86_64.
