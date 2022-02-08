@@ -23,8 +23,8 @@ petsc-64-3.16.2 = petsc-64-$(petsc-64-3.16.2-version)
 $(petsc-64-3.16.2)-description = Portable, Extensible Toolkit for Scientific Computation
 $(petsc-64-3.16.2)-url = https://www.mcs.anl.gov/petsc/
 $(petsc-64-3.16.2)-srcurl =
-$(petsc-64-3.16.2)-builddeps = $(boost) $(blas) $(mpi) $(hwloc) $(hypre-64) $(metis-64) $(mumps) $(parmetis-64) $(python) $(scalapack) $(scotch) $(suitesparse) $(superlu_dist-64)
-$(petsc-64-3.16.2)-prereqs = $(boost) $(blas) $(mpi) $(hwloc) $(hypre-64) $(metis-64) $(mumps) $(parmetis-64) $(scalapack) $(scotch) $(suitesparse) $(superlu_dist-64)
+$(petsc-64-3.16.2)-builddeps = $(boost) $(blas) $(mpi) $(hwloc) $(hypre-64) $(metis-64) $(mumps-64) $(parmetis-64) $(python) $(scalapack) $(scotch) $(suitesparse-64) $(superlu_dist-64)
+$(petsc-64-3.16.2)-prereqs = $(boost) $(blas) $(mpi) $(hwloc) $(hypre-64) $(metis-64) $(mumps-64) $(parmetis-64) $(scalapack) $(scotch) $(suitesparse-64) $(superlu_dist-64)
 $(petsc-64-3.16.2)-src = $($(petsc-src-3.16.2)-src)
 $(petsc-64-3.16.2)-srcdir = $(pkgsrcdir)/$(petsc-64-3.16.2)
 $(petsc-64-3.16.2)-modulefile = $(modulefilesdir)/$(petsc-64-3.16.2)
@@ -36,7 +36,7 @@ $($(petsc-64-3.16.2)-srcdir)/.markerfile:
 $($(petsc-64-3.16.2)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(petsc-64-3.16.2)-prefix)/.pkgunpack: $$($(petsc)-src) $($(petsc-64-3.16.2)-srcdir)/.markerfile $($(petsc-64-3.16.2)-prefix)/.markerfile $$(foreach dep,$$($(petsc-64-3.16.2)-builddeps),$(modulefilesdir)/$$(dep))
+$($(petsc-64-3.16.2)-prefix)/.pkgunpack: $$($(petsc-64-3.16.2)-src) $($(petsc-64-3.16.2)-srcdir)/.markerfile $($(petsc-64-3.16.2)-prefix)/.markerfile $$(foreach dep,$$($(petsc-64-3.16.2)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(petsc-64-3.16.2)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
@@ -113,7 +113,7 @@ $($(petsc-64-3.16.2)-modulefile): $(modulefilesdir)/.markerfile $($(petsc-64-3.1
 	echo "prepend-path PKG_CONFIG_PATH $($(petsc-64-3.16.2)-prefix)/lib/pkgconfig" >>$@
 	echo "set MSG \"$(petsc-64-3.16.2)\"" >>$@
 
-$(petsc-64-3.16.2)-src: $$($(petsc)-src)
+$(petsc-64-3.16.2)-src: $$($(petsc-64-3.16.2)-src)
 $(petsc-64-3.16.2)-unpack: $($(petsc-64-3.16.2)-prefix)/.pkgunpack
 $(petsc-64-3.16.2)-patch: $($(petsc-64-3.16.2)-prefix)/.pkgpatch
 $(petsc-64-3.16.2)-build: $($(petsc-64-3.16.2)-prefix)/.pkgbuild

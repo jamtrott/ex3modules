@@ -68,8 +68,10 @@ blas = openblas-0.3.12
 # Default to using 32-bit versions of various linear algebra packages
 hypre = hypre-32-2.17.0
 metis = metis-32-5.1.0
+mumps = mumps-32-5.4.1
 parmetis = parmetis-32-4.0.3
 petsc = petsc-32-3.16.2
+suitesparse = suitesparse-32-5.7.2
 superlu_dist = superlu_dist-32-6.4.0
 
 # CUDA-related packages - note CUDA toolkit 10.1.243 is only supported
@@ -454,7 +456,8 @@ pkgs := $(pkgs) \
 	mpc-1.1.0 \
 	mpfr-4.0.2 \
 	mpich-3.3.2 \
-	mumps-5.4.1 \
+	mumps-32-5.4.1 \
+	mumps-64-5.4.1 \
 	mumps-src-5.4.1 \
 	munge-0.5.13 \
 	mvapich-2.3.4 \
@@ -626,7 +629,9 @@ pkgs := $(pkgs) \
 	slurm-20.02.7 \
 	sparse-0.6.3 \
 	sqlite-3.31.1 \
-	suitesparse-5.7.2 \
+	suitesparse-32-5.7.2 \
+	suitesparse-64-5.7.2 \
+	suitesparse-src-5.7.2 \
 	superlu-5.2.1 \
 	superlu_dist-32-6.4.0 \
 	superlu_dist-64-6.4.0 \
