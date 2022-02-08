@@ -57,7 +57,7 @@ $($(netlib-blas)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(netlib-blas)-builddeps) && \
-		$${FC} -shared -O3 -fPIC *.f -o libblas.so
+		$(FC) -shared -O3 -fPIC *.f -o libblas.so
 	@touch $@
 
 $($(netlib-blas)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(netlib-blas)-builddeps),$(modulefilesdir)/$$(dep)) $($(netlib-blas)-builddir)/.markerfile $($(netlib-blas)-prefix)/.pkgbuild

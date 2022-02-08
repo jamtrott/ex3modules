@@ -110,9 +110,9 @@ $($(cblas)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(cblas)-builddeps) && \
-		$${FC} -c -O3 -fPIC *.f && \
-		$${CC} -c -O3 -DADD_ -fPIC -I../include *.c && \
-		$${CC} -shared -o libcblas.so *.o
+		$(FC) -c -O3 -fPIC *.f && \
+		$(CC) -c -O3 -DADD_ -fPIC -I../include *.c && \
+		$(CC) -shared -o libcblas.so *.o
 	@touch $@
 
 $($(cblas)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cblas)-builddeps),$(modulefilesdir)/$$(dep)) $($(cblas)-builddir)/.markerfile $($(cblas)-prefix)/.pkgbuild
@@ -120,20 +120,20 @@ $($(cblas)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(cblas)-builddeps) && \
-		$${FC} -c -O3 *.f && \
-		$${CC} -c -O3 -DADD_ -I../include *.c && \
-		$${CC} -o xscblat1 c_sblat1.o c_sblas1.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
-		$${CC} -o xdcblat1 c_dblat1.o c_dblas1.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
-		$${CC} -o xccblat1 c_cblat1.o c_cblas1.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
-		$${CC} -o xzcblat1 c_zblat1.o c_zblas1.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
-		$${CC} -o xscblat2 c_sblat2.o c_sblas2.o c_s2chke.o auxiliary.o c_xerbla.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
-		$${CC} -o xdcblat2 c_dblat2.o c_dblas2.o c_d2chke.o auxiliary.o c_xerbla.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
-		$${CC} -o xccblat2 c_cblat2.o c_cblas2.o c_c2chke.o auxiliary.o c_xerbla.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran -lm && \
-		$${CC} -o xzcblat2 c_zblat2.o c_zblas2.o c_z2chke.o auxiliary.o c_xerbla.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran -lm && \
-		$${CC} -o xscblat3 c_sblat3.o c_sblas3.o c_s3chke.o auxiliary.o c_xerbla.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
-		$${CC} -o xdcblat3 c_dblat3.o c_dblas3.o c_d3chke.o auxiliary.o c_xerbla.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
-		$${CC} -o xccblat3 c_cblat3.o c_cblas3.o c_c3chke.o auxiliary.o c_xerbla.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
-		$${CC} -o xzcblat3 c_zblat3.o c_zblas3.o c_z3chke.o auxiliary.o c_xerbla.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
+		$(FC) -c -O3 *.f && \
+		$(CC) -c -O3 -DADD_ -I../include *.c && \
+		$(CC) -o xscblat1 c_sblat1.o c_sblas1.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
+		$(CC) -o xdcblat1 c_dblat1.o c_dblas1.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
+		$(CC) -o xccblat1 c_cblat1.o c_cblas1.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
+		$(CC) -o xzcblat1 c_zblat1.o c_zblas1.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
+		$(CC) -o xscblat2 c_sblat2.o c_sblas2.o c_s2chke.o auxiliary.o c_xerbla.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
+		$(CC) -o xdcblat2 c_dblat2.o c_dblas2.o c_d2chke.o auxiliary.o c_xerbla.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
+		$(CC) -o xccblat2 c_cblat2.o c_cblas2.o c_c2chke.o auxiliary.o c_xerbla.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran -lm && \
+		$(CC) -o xzcblat2 c_zblat2.o c_zblas2.o c_z2chke.o auxiliary.o c_xerbla.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran -lm && \
+		$(CC) -o xscblat3 c_sblat3.o c_sblas3.o c_s3chke.o auxiliary.o c_xerbla.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
+		$(CC) -o xdcblat3 c_dblat3.o c_dblas3.o c_d3chke.o auxiliary.o c_xerbla.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
+		$(CC) -o xccblat3 c_cblat3.o c_cblas3.o c_c3chke.o auxiliary.o c_xerbla.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
+		$(CC) -o xzcblat3 c_zblat3.o c_zblas3.o c_z3chke.o auxiliary.o c_xerbla.o -Wl,-rpath=$($(cblas)-builddir) -L$($(cblas)-builddir) -lcblas -l$${BLASLIB} -lgfortran && \
 	cd $($(cblas)-srcdir)/testing && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
