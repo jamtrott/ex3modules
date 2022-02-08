@@ -62,11 +62,11 @@ $($(automake)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 	@touch $@
 
 $($(automake)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(automake)-builddeps),$(modulefilesdir)/$$(dep)) $($(automake)-builddir)/.markerfile $($(automake)-prefix)/.pkgbuild
-	cd $($(automake)-builddir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(automake)-builddeps) && \
-		$(MAKE) check
+#	cd $($(automake)-builddir) && \
+#		$(MODULESINIT) && \
+#		$(MODULE) use $(modulefilesdir) && \
+#		$(MODULE) load $($(automake)-builddeps) && \
+#		$(MAKE) check
 	@touch $@
 
 $($(automake)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(automake)-builddeps),$(modulefilesdir)/$$(dep)) $($(automake)-builddir)/.markerfile $($(automake)-prefix)/.pkgcheck
