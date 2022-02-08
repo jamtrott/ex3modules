@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-filelock)-url = https://github.com/benediktschmitt/py-filelock
 $(python-filelock)-srcurl = https://files.pythonhosted.org/packages/14/ec/6ee2168387ce0154632f856d5cc5592328e9cf93127c5c9aeca92c8c16cb/filelock-3.0.12.tar.gz
 $(python-filelock)-src = $(pkgsrcdir)/$(notdir $($(python-filelock)-srcurl))
 $(python-filelock)-srcdir = $(pkgsrcdir)/$(python-filelock)
-$(python-filelock)-builddeps = $(python)
+$(python-filelock)-builddeps = $(python) $(python-pip)
 $(python-filelock)-prereqs = $(python)
 $(python-filelock)-modulefile = $(modulefilesdir)/$(python-filelock)
 $(python-filelock)-prefix = $(pkgdir)/$(python-filelock)

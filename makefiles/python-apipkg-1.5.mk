@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-apipkg)-url = https://github.com/pytest-dev/apipkg
 $(python-apipkg)-srcurl = https://files.pythonhosted.org/packages/a8/af/07a13b1560ebcc9bf4dd439aeb63243cbd8d374f4f328691470d6a9b9804/apipkg-1.5.tar.gz
 $(python-apipkg)-src = $(pkgsrcdir)/$(notdir $($(python-apipkg)-srcurl))
 $(python-apipkg)-srcdir = $(pkgsrcdir)/$(python-apipkg)
-$(python-apipkg)-builddeps = $(python) $(python-py) $(python-pytest)
+$(python-apipkg)-builddeps = $(python) $(python-py) $(python-pytest) $(python-pip)
 $(python-apipkg)-prereqs = $(python)
 $(python-apipkg)-modulefile = $(modulefilesdir)/$(python-apipkg)
 $(python-apipkg)-prefix = $(pkgdir)/$(python-apipkg)

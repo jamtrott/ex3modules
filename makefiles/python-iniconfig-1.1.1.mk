@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-iniconfig)-url = http://github.com/RonnyPfannschmidt/iniconfig/
 $(python-iniconfig)-srcurl = https://files.pythonhosted.org/packages/23/a2/97899f6bd0e873fed3a7e67ae8d3a08b21799430fb4da15cfedf10d6e2c2/iniconfig-1.1.1.tar.gz
 $(python-iniconfig)-src = $(pkgsrcdir)/$(notdir $($(python-iniconfig)-srcurl))
 $(python-iniconfig)-srcdir = $(pkgsrcdir)/$(python-iniconfig)
-$(python-iniconfig)-builddeps = $(python) $(python-wheel)
+$(python-iniconfig)-builddeps = $(python) $(python-wheel) $(python-pip)
 $(python-iniconfig)-prereqs = $(python)
 $(python-iniconfig)-modulefile = $(modulefilesdir)/$(python-iniconfig)
 $(python-iniconfig)-prefix = $(pkgdir)/$(python-iniconfig)

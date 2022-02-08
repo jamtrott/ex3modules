@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-setuptools_scm)-url = https://github.com/pypa/setuptools_scm
 $(python-setuptools_scm)-srcurl = https://files.pythonhosted.org/packages/e2/22/3c318bc7123014e032cd4c2ae90e030a5c9f864cd733aca0c991da2c978b/setuptools_scm-4.1.1.tar.gz
 $(python-setuptools_scm)-src = $(pkgsrcdir)/$(notdir $($(python-setuptools_scm)-srcurl))
 $(python-setuptools_scm)-srcdir = $(pkgsrcdir)/$(python-setuptools_scm)
-$(python-setuptools_scm)-builddeps = $(python) $(python-setuptools)
+$(python-setuptools_scm)-builddeps = $(python) $(python-setuptools) $(python-pip)
 $(python-setuptools_scm)-prereqs = $(python)  $(python-setuptools)
 $(python-setuptools_scm)-modulefile = $(modulefilesdir)/$(python-setuptools_scm)
 $(python-setuptools_scm)-prefix = $(pkgdir)/$(python-setuptools_scm)

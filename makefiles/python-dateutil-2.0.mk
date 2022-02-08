@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-dateutil)-url = https://launchpad.net/dateutil/
 $(python-dateutil)-srcurl = https://labix.org/download/python-dateutil/python-dateutil-$(python-dateutil-version).tar.gz
 $(python-dateutil)-src = $(pkgsrcdir)/$(notdir $($(python-dateutil)-srcurl))
 $(python-dateutil)-srcdir = $(pkgsrcdir)/$(python-dateutil)
-$(python-dateutil)-builddeps = $(python)
+$(python-dateutil)-builddeps = $(python) $(python-pip)
 $(python-dateutil)-prereqs = $(python)
 $(python-dateutil)-modulefile = $(modulefilesdir)/$(python-dateutil)
 $(python-dateutil)-prefix = $(pkgdir)/$(python-dateutil)

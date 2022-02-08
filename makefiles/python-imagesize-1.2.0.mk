@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-imagesize)-url = https://github.com/shibukawa/imagesize_py
 $(python-imagesize)-srcurl = https://files.pythonhosted.org/packages/e4/9f/0452b459c8ba97e07c3cd2bd243783936a992006cf4cd1353c314a927028/imagesize-1.2.0.tar.gz
 $(python-imagesize)-src = $(pkgsrcdir)/$(notdir $($(python-imagesize)-srcurl))
 $(python-imagesize)-srcdir = $(pkgsrcdir)/$(python-imagesize)
-$(python-imagesize)-builddeps = $(python)
+$(python-imagesize)-builddeps = $(python) $(python-pip)
 $(python-imagesize)-prereqs = $(python)
 $(python-imagesize)-modulefile = $(modulefilesdir)/$(python-imagesize)
 $(python-imagesize)-prefix = $(pkgdir)/$(python-imagesize)

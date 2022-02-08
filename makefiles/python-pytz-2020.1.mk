@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pytz)-url = https://launchpad.net/pytz
 $(python-pytz)-srcurl = https://files.pythonhosted.org/packages/f4/f6/94fee50f4d54f58637d4b9987a1b862aeb6cd969e73623e02c5c00755577/pytz-2020.1.tar.gz
 $(python-pytz)-src = $(pkgsrcdir)/$(notdir $($(python-pytz)-srcurl))
 $(python-pytz)-srcdir = $(pkgsrcdir)/$(python-pytz)
-$(python-pytz)-builddeps = $(python)
+$(python-pytz)-builddeps = $(python) $(python-pip)
 $(python-pytz)-prereqs = $(python)
 $(python-pytz)-modulefile = $(modulefilesdir)/$(python-pytz)
 $(python-pytz)-prefix = $(pkgdir)/$(python-pytz)

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-idna)-url = https://github.com/kjd/idna/
 $(python-idna)-srcurl = https://files.pythonhosted.org/packages/ea/b7/e0e3c1c467636186c39925827be42f16fee389dc404ac29e930e9136be70/idna-2.10.tar.gz
 $(python-idna)-src = $(pkgsrcdir)/$(notdir $($(python-idna)-srcurl))
 $(python-idna)-srcdir = $(pkgsrcdir)/$(python-idna)
-$(python-idna)-builddeps = $(python)
+$(python-idna)-builddeps = $(python) $(python-pip)
 $(python-idna)-prereqs = $(python)
 $(python-idna)-modulefile = $(modulefilesdir)/$(python-idna)
 $(python-idna)-prefix = $(pkgdir)/$(python-idna)

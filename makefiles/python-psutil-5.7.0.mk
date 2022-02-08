@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-psutil)-url = https://github.com/giampaolo/psutil/
 $(python-psutil)-srcurl = https://files.pythonhosted.org/packages/c4/b8/3512f0e93e0db23a71d82485ba256071ebef99b227351f0f5540f744af41/psutil-5.7.0.tar.gz
 $(python-psutil)-src = $(pkgsrcdir)/$(notdir $($(python-psutil)-srcurl))
 $(python-psutil)-srcdir = $(pkgsrcdir)/$(python-psutil)
-$(python-psutil)-builddeps = $(python)
+$(python-psutil)-builddeps = $(python) $(python-pip)
 $(python-psutil)-prereqs = $(python)
 $(python-psutil)-modulefile = $(modulefilesdir)/$(python-psutil)
 $(python-psutil)-prefix = $(pkgdir)/$(python-psutil)

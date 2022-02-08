@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-mako)-url = https://www.makotemplates.org/
 $(python-mako)-srcurl = https://files.pythonhosted.org/packages/5c/db/2d2d88b924aa4674a080aae83b59ea19d593250bfe5ed789947c21736785/Mako-1.1.4.tar.gz
 $(python-mako)-src = $(pkgsrcdir)/$(notdir $($(python-mako)-srcurl))
 $(python-mako)-srcdir = $(pkgsrcdir)/$(python-mako)
-$(python-mako)-builddeps = $(python) $(python-tox)
+$(python-mako)-builddeps = $(python) $(python-tox) $(python-pip)
 $(python-mako)-prereqs = $(python)
 $(python-mako)-modulefile = $(modulefilesdir)/$(python-mako)
 $(python-mako)-prefix = $(pkgdir)/$(python-mako)

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-matplotlib)-url = https://matplotlib.org/
 $(python-matplotlib)-srcurl = https://files.pythonhosted.org/packages/12/d1/7b12cd79c791348cb0c78ce6e7d16bd72992f13c9f1e8e43d2725a6d8adf/matplotlib-3.1.1.tar.gz
 $(python-matplotlib)-src = $(pkgsrcdir)/$(notdir $($(python-matplotlib)-srcurl))
 $(python-matplotlib)-srcdir = $(pkgsrcdir)/$(python-matplotlib)
-$(python-matplotlib)-builddeps = $(python) $(freetype) $(libpng) $(blas) $(mpi) $(python-numpy) $(python-kiwisolver) $(python-dateutil) $(python-pytest) $(python-cycler) $(python-pyparsing)
+$(python-matplotlib)-builddeps = $(python) $(freetype) $(libpng) $(blas) $(mpi) $(python-numpy) $(python-kiwisolver) $(python-dateutil) $(python-pytest) $(python-cycler) $(python-pyparsing) $(python-pip)
 $(python-matplotlib)-prereqs = $(python) $(freetype) $(libpng) $(python-numpy) $(python-kiwisolver) $(python-dateutil) $(python-pyparsing)
 $(python-matplotlib)-modulefile = $(modulefilesdir)/$(python-matplotlib)
 $(python-matplotlib)-prefix = $(pkgdir)/$(python-matplotlib)

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pygraphviz)-url = http://pygraphviz.github.io/
 $(python-pygraphviz)-srcurl = https://github.com/pygraphviz/pygraphviz/archive/pygraphviz-1.5.tar.gz
 $(python-pygraphviz)-src = $(pkgsrcdir)/$(notdir $($(python-pygraphviz)-srcurl))
 $(python-pygraphviz)-srcdir = $(pkgsrcdir)/$(python-pygraphviz)
-$(python-pygraphviz)-builddeps = $(python) $(graphviz) $(python-mock) $(python-nose)
+$(python-pygraphviz)-builddeps = $(python) $(graphviz) $(python-mock) $(python-nose) $(python-pip)
 $(python-pygraphviz)-prereqs = $(python) $(graphviz)
 $(python-pygraphviz)-modulefile = $(modulefilesdir)/$(python-pygraphviz)
 $(python-pygraphviz)-prefix = $(pkgdir)/$(python-pygraphviz)

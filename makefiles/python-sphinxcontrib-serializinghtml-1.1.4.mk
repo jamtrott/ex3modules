@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-sphinxcontrib-serializinghtml)-url = http://sphinx-doc.org/
 $(python-sphinxcontrib-serializinghtml)-srcurl = https://files.pythonhosted.org/packages/ac/86/021876a9dd4eac9dae0b1d454d848acbd56d5574d350d0f835043b5ac2cd/sphinxcontrib-serializinghtml-1.1.4.tar.gz
 $(python-sphinxcontrib-serializinghtml)-src = $(pkgsrcdir)/$(notdir $($(python-sphinxcontrib-serializinghtml)-srcurl))
 $(python-sphinxcontrib-serializinghtml)-srcdir = $(pkgsrcdir)/$(python-sphinxcontrib-serializinghtml)
-$(python-sphinxcontrib-serializinghtml)-builddeps = $(python)
+$(python-sphinxcontrib-serializinghtml)-builddeps = $(python) $(python-pip)
 $(python-sphinxcontrib-serializinghtml)-prereqs = $(python)
 $(python-sphinxcontrib-serializinghtml)-modulefile = $(modulefilesdir)/$(python-sphinxcontrib-serializinghtml)
 $(python-sphinxcontrib-serializinghtml)-prefix = $(pkgdir)/$(python-sphinxcontrib-serializinghtml)

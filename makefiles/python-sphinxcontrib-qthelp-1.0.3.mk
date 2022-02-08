@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-sphinxcontrib-qthelp)-url = http://sphinx-doc.org/
 $(python-sphinxcontrib-qthelp)-srcurl = https://files.pythonhosted.org/packages/b1/8e/c4846e59f38a5f2b4a0e3b27af38f2fcf904d4bfd82095bf92de0b114ebd/sphinxcontrib-qthelp-1.0.3.tar.gz
 $(python-sphinxcontrib-qthelp)-src = $(pkgsrcdir)/$(notdir $($(python-sphinxcontrib-qthelp)-srcurl))
 $(python-sphinxcontrib-qthelp)-srcdir = $(pkgsrcdir)/$(python-sphinxcontrib-qthelp)
-$(python-sphinxcontrib-qthelp)-builddeps = $(python)
+$(python-sphinxcontrib-qthelp)-builddeps = $(python) $(python-pip)
 $(python-sphinxcontrib-qthelp)-prereqs = $(python)
 $(python-sphinxcontrib-qthelp)-modulefile = $(modulefilesdir)/$(python-sphinxcontrib-qthelp)
 $(python-sphinxcontrib-qthelp)-prefix = $(pkgdir)/$(python-sphinxcontrib-qthelp)

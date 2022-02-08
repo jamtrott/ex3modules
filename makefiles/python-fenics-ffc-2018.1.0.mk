@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-fenics-ffc-2018)-url = https://bitbucket.org/fenics-project/ffc/
 $(python-fenics-ffc-2018)-srcurl = https://bitbucket.org/fenics-project/ffc/downloads/ffc-$(python-fenics-ffc-2018-version).tar.gz
 $(python-fenics-ffc-2018)-src = $(pkgsrcdir)/$(notdir $($(python-fenics-ffc-2018)-srcurl))
 $(python-fenics-ffc-2018)-srcdir = $(pkgsrcdir)/$(python-fenics-ffc-2018)
-$(python-fenics-ffc-2018)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-mpmath) $(python-sympy-1.1) $(python-fenics-dijitso-2018) $(python-fenics-fiat-2018) $(python-fenics-ufl-2018)
+$(python-fenics-ffc-2018)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-mpmath) $(python-sympy-1.1) $(python-fenics-dijitso-2018) $(python-fenics-fiat-2018) $(python-fenics-ufl-2018) $(python-pip)
 $(python-fenics-ffc-2018)-prereqs = $(python) $(python-numpy) $(python-mpmath) $(python-sympy-1.1) $(python-fenics-dijitso-2018) $(python-fenics-fiat-2018) $(python-fenics-ufl-2018)
 $(python-fenics-ffc-2018)-modulefile = $(modulefilesdir)/$(python-fenics-ffc-2018)
 $(python-fenics-ffc-2018)-prefix = $(pkgdir)/$(python-fenics-ffc-2018)

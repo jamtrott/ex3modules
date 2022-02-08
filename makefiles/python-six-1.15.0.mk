@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-six)-url = https://github.com/benjaminp/six
 $(python-six)-srcurl = https://github.com/benjaminp/six/archive/$(python-six-version).tar.gz
 $(python-six)-src = $(pkgsrcdir)/python-six-$(notdir $($(python-six)-srcurl))
 $(python-six)-srcdir = $(pkgsrcdir)/$(python-six)
-$(python-six)-builddeps = $(python) $(python-wheel)
+$(python-six)-builddeps = $(python) $(python-wheel) $(python-pip)
 $(python-six)-prereqs = $(python)
 $(python-six)-modulefile = $(modulefilesdir)/$(python-six)
 $(python-six)-prefix = $(pkgdir)/$(python-six)

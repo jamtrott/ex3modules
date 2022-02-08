@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-h5py)-url = https://www.h5py.org/
 $(python-h5py)-srcurl = https://github.com/h5py/h5py/archive/$(python-h5py-version).tar.gz
 $(python-h5py)-src = $(pkgsrcdir)/python-h5py-$(notdir $($(python-h5py)-srcurl))
 $(python-h5py)-srcdir = $(pkgsrcdir)/$(python-h5py)
-$(python-h5py)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-cython) $(python-mpi4py) $(python-six) $(hdf5-parallel) $(python-pytest) $(python-pkgconfig)
+$(python-h5py)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-cython) $(python-mpi4py) $(python-six) $(hdf5-parallel) $(python-pytest) $(python-pkgconfig) $(python-pip)
 $(python-h5py)-prereqs = $(python) $(python-numpy) $(python-cython) $(python-mpi4py) $(python-six) $(hdf5-parallel)
 $(python-h5py)-modulefile = $(modulefilesdir)/$(python-h5py)
 $(python-h5py)-prefix = $(pkgdir)/$(python-h5py)

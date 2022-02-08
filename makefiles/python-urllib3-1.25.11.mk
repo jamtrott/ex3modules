@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-urllib3)-url = https://urllib3.readthedocs.io/
 $(python-urllib3)-srcurl = https://files.pythonhosted.org/packages/76/d9/bbbafc76b18da706451fa91bc2ebe21c0daf8868ef3c30b869ac7cb7f01d/urllib3-1.25.11.tar.gz
 $(python-urllib3)-src = $(pkgsrcdir)/$(notdir $($(python-urllib3)-srcurl))
 $(python-urllib3)-srcdir = $(pkgsrcdir)/$(python-urllib3)
-$(python-urllib3)-builddeps = $(python) $(python-pytest)
+$(python-urllib3)-builddeps = $(python) $(python-pytest) $(python-pip)
 $(python-urllib3)-prereqs = $(python)
 $(python-urllib3)-modulefile = $(modulefilesdir)/$(python-urllib3)
 $(python-urllib3)-prefix = $(pkgdir)/$(python-urllib3)

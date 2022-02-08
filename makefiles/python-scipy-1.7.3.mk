@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-scipy)-url = https://www.scipy.org/
 $(python-scipy)-srcurl = https://files.pythonhosted.org/packages/61/67/1a654b96309c991762ee9bc39c363fc618076b155fe52d295211cf2536c7/scipy-1.7.3.tar.gz
 $(python-scipy)-src = $(pkgsrcdir)/python-scipy-$(notdir $($(python-scipy)-srcurl))
 $(python-scipy)-srcdir = $(pkgsrcdir)/$(python-scipy)
-$(python-scipy)-builddeps = $(python) $(python-cython) $(blas) $(mpi) $(python-numpy) $(python-wheel) $(pybind11)
+$(python-scipy)-builddeps = $(python) $(python-cython) $(blas) $(mpi) $(python-numpy) $(python-wheel) $(pybind11) $(python-pip)
 $(python-scipy)-prereqs = $(python) $(python-cython) $(python-numpy) $(openblas)
 $(python-scipy)-modulefile = $(modulefilesdir)/$(python-scipy)
 $(python-scipy)-prefix = $(pkgdir)/$(python-scipy)

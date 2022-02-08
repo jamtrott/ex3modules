@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-more-itertools)-url = https://github.com/more-itertools/more-itertools/
 $(python-more-itertools)-srcurl = https://files.pythonhosted.org/packages/16/e8/b371710ad458e56b6c74b82352fdf1625e75c03511c66a75314f1084f057/more-itertools-8.3.0.tar.gz
 $(python-more-itertools)-src = $(pkgsrcdir)/$(notdir $($(python-more-itertools)-srcurl))
 $(python-more-itertools)-srcdir = $(pkgsrcdir)/$(python-more-itertools)
-$(python-more-itertools)-builddeps = $(python) $(python-wheel)
+$(python-more-itertools)-builddeps = $(python) $(python-wheel) $(python-pip)
 $(python-more-itertools)-prereqs = $(python)
 $(python-more-itertools)-modulefile = $(modulefilesdir)/$(python-more-itertools)
 $(python-more-itertools)-prefix = $(pkgdir)/$(python-more-itertools)

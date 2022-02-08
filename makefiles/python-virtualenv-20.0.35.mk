@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-virtualenv)-url = https://virtualenv.pypa.io/
 $(python-virtualenv)-srcurl = https://files.pythonhosted.org/packages/28/a8/96e411bfe45092f8aeebc5c154b2f0892bd9ea462d6934b534c1ce7b7402/virtualenv-20.0.35.tar.gz
 $(python-virtualenv)-src = $(pkgsrcdir)/$(notdir $($(python-virtualenv)-srcurl))
 $(python-virtualenv)-srcdir = $(pkgsrcdir)/$(python-virtualenv)
-$(python-virtualenv)-builddeps = $(python) $(python-setuptools) $(python-setuptools_scm) $(python-importlib_metadata) $(python-six) $(python-filelock) $(python-distlib) $(python-appdirs) $(python-zipp) $(python-wheel)
+$(python-virtualenv)-builddeps = $(python) $(python-setuptools) $(python-setuptools_scm) $(python-importlib_metadata) $(python-six) $(python-filelock) $(python-distlib) $(python-appdirs) $(python-zipp) $(python-wheel) $(python-pip)
 $(python-virtualenv)-prereqs = $(python) $(python-importlib_metadata) $(python-six) $(python-filelock) $(python-distlib) $(python-appdirs) $(python-zipp)
 $(python-virtualenv)-modulefile = $(modulefilesdir)/$(python-virtualenv)
 $(python-virtualenv)-prefix = $(pkgdir)/$(python-virtualenv)

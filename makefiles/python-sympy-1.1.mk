@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-sympy-1.1)-url = https://www.sympy.org/
 $(python-sympy-1.1)-srcurl = https://files.pythonhosted.org/packages/d5/40/153799104ca0d644f539ef8212f83fe67f67f57324d4ef51a16f85141915/sympy-1.1.tar.gz
 $(python-sympy-1.1)-src = $(pkgsrcdir)/$(notdir $($(python-sympy-1.1)-srcurl))
 $(python-sympy-1.1)-srcdir = $(pkgsrcdir)/$(python-sympy-1.1)
-$(python-sympy-1.1)-builddeps = $(python) $(python-mpmath)
+$(python-sympy-1.1)-builddeps = $(python) $(python-mpmath) $(python-pip)
 $(python-sympy-1.1)-prereqs = $(python) $(python-mpmath)
 $(python-sympy-1.1)-modulefile = $(modulefilesdir)/$(python-sympy-1.1)
 $(python-sympy-1.1)-prefix = $(pkgdir)/$(python-sympy-1.1)

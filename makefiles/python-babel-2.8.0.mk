@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-babel)-url = http://babel.pocoo.org/
 $(python-babel)-srcurl = https://files.pythonhosted.org/packages/34/18/8706cfa5b2c73f5a549fdc0ef2e24db71812a2685959cff31cbdfc010136/Babel-2.8.0.tar.gz
 $(python-babel)-src = $(pkgsrcdir)/$(notdir $($(python-babel)-srcurl))
 $(python-babel)-srcdir = $(pkgsrcdir)/$(python-babel)
-$(python-babel)-builddeps = $(python) $(python-pytest) $(python-freezegun)
+$(python-babel)-builddeps = $(python) $(python-pytest) $(python-freezegun) $(python-pip)
 $(python-babel)-prereqs = $(python)
 $(python-babel)-modulefile = $(modulefilesdir)/$(python-babel)
 $(python-babel)-prefix = $(pkgdir)/$(python-babel)

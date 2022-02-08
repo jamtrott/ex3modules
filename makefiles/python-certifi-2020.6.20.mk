@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-certifi)-url = https://certifiio.readthedocs.io/en/latest/
 $(python-certifi)-srcurl = https://files.pythonhosted.org/packages/40/a7/ded59fa294b85ca206082306bba75469a38ea1c7d44ea7e1d64f5443d67a/certifi-2020.6.20.tar.gz
 $(python-certifi)-src = $(pkgsrcdir)/$(notdir $($(python-certifi)-srcurl))
 $(python-certifi)-srcdir = $(pkgsrcdir)/$(python-certifi)
-$(python-certifi)-builddeps = $(python)
+$(python-certifi)-builddeps = $(python) $(python-pip)
 $(python-certifi)-prereqs = $(python)
 $(python-certifi)-modulefile = $(modulefilesdir)/$(python-certifi)
 $(python-certifi)-prefix = $(pkgdir)/$(python-certifi)

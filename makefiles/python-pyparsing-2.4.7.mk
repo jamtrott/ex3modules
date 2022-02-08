@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pyparsing)-url = https://github.com/pyparsing/pyparsing/
 $(python-pyparsing)-srcurl = https://files.pythonhosted.org/packages/c1/47/dfc9c342c9842bbe0036c7f763d2d6686bcf5eb1808ba3e170afdb282210/pyparsing-2.4.7.tar.gz
 $(python-pyparsing)-src = $(pkgsrcdir)/$(notdir $($(python-pyparsing)-srcurl))
 $(python-pyparsing)-srcdir = $(pkgsrcdir)/$(python-pyparsing)
-$(python-pyparsing)-builddeps = $(python) $(python-wheel)
+$(python-pyparsing)-builddeps = $(python) $(python-wheel) $(python-pip)
 $(python-pyparsing)-prereqs = $(python)
 $(python-pyparsing)-modulefile = $(modulefilesdir)/$(python-pyparsing)
 $(python-pyparsing)-prefix = $(pkgdir)/$(python-pyparsing)

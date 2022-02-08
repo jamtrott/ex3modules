@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-fenics-dijitso-2018)-url = https://bitbucket.org/fenics-project/dijitso
 $(python-fenics-dijitso-2018)-srcurl = https://files.pythonhosted.org/packages/c4/a2/44d9062b392c1f42533e3afc32a74cd6c1fc48a14ee793a74a4231ff55dd/fenics-dijitso-2018.1.0.tar.gz
 $(python-fenics-dijitso-2018)-src = $(pkgsrcdir)/$(notdir $($(python-fenics-dijitso-2018)-srcurl))
 $(python-fenics-dijitso-2018)-srcdir = $(pkgsrcdir)/$(python-fenics-dijitso-2018)
-$(python-fenics-dijitso-2018)-builddeps = $(python) $(blas) $(mpi) $(python-numpy)
+$(python-fenics-dijitso-2018)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-pip)
 $(python-fenics-dijitso-2018)-prereqs = $(python) $(python-numpy)
 $(python-fenics-dijitso-2018)-modulefile = $(modulefilesdir)/$(python-fenics-dijitso-2018)
 $(python-fenics-dijitso-2018)-prefix = $(pkgdir)/$(python-fenics-dijitso-2018)

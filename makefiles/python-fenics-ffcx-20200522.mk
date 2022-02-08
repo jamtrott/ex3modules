@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ $(python-fenics-ffcx-20200522)-srcurl = https://github.com/FEniCS/ffcx/archive/9
 $(python-fenics-ffcx-20200522)-src = $(pkgsrcdir)/python-fenics-ffcx-$(notdir $($(python-fenics-ffcx-20200522)-srcurl))
 $(python-fenics-ffcx-20200522)-srcdir = $(pkgsrcdir)/$(python-fenics-ffcx-20200522)
 $(python-fenics-ffcx-20200522)-builddir = $($(python-fenics-ffcx-20200522)-srcdir)/ffcx-91671fecc0e4e356f355eb9ce7a8b6a1d1734dd5
-$(python-fenics-ffcx-20200522)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-mpmath) $(python-sympy-1.4) $(python-fenics-dijitso-2019) $(python-fenics-fiat-20200518) $(python-fenics-ufl-20200512)
+$(python-fenics-ffcx-20200522)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-mpmath) $(python-sympy-1.4) $(python-fenics-dijitso-2019) $(python-fenics-fiat-20200518) $(python-fenics-ufl-20200512) $(python-pip)
 $(python-fenics-ffcx-20200522)-prereqs = $(python) $(python-numpy) $(python-mpmath) $(python-sympy-1.4) $(python-fenics-dijitso-2019) $(python-fenics-fiat-20200518) $(python-fenics-ufl-20200512)
 $(python-fenics-ffcx-20200522)-modulefile = $(modulefilesdir)/$(python-fenics-ffcx-20200522)
 $(python-fenics-ffcx-20200522)-prefix = $(pkgdir)/$(python-fenics-ffcx-20200522)

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-packaging)-url = https://github.com/pypa/packaging/
 $(python-packaging)-srcurl = https://files.pythonhosted.org/packages/55/fd/fc1aca9cf51ed2f2c11748fa797370027babd82f87829c7a8e6dbe720145/packaging-20.4.tar.gz
 $(python-packaging)-src = $(pkgsrcdir)/$(notdir $($(python-packaging)-srcurl))
 $(python-packaging)-srcdir = $(pkgsrcdir)/$(python-packaging)
-$(python-packaging)-builddeps = $(python) $(python-six) $(python-pyparsing)
+$(python-packaging)-builddeps = $(python) $(python-six) $(python-pyparsing) $(python-pip)
 $(python-packaging)-prereqs = $(python) $(python-six) $(python-pyparsing)
 $(python-packaging)-modulefile = $(modulefilesdir)/$(python-packaging)
 $(python-packaging)-prefix = $(pkgdir)/$(python-packaging)

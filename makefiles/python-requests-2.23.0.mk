@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-requests)-url = https://requests.readthedocs.io/
 $(python-requests)-srcurl = https://files.pythonhosted.org/packages/f5/4f/280162d4bd4d8aad241a21aecff7a6e46891b905a4341e7ab549ebaf7915/requests-2.23.0.tar.gz
 $(python-requests)-src = $(pkgsrcdir)/$(notdir $($(python-requests)-srcurl))
 $(python-requests)-srcdir = $(pkgsrcdir)/$(python-requests)
-$(python-requests)-builddeps = $(python) $(python-chardet) $(python-idna) $(python-urllib3) $(python-certifi)
+$(python-requests)-builddeps = $(python) $(python-chardet) $(python-idna) $(python-urllib3) $(python-certifi) $(python-pip)
 $(python-requests)-prereqs = $(python) $(python-chardet) $(python-idna) $(python-urllib3) $(python-certifi)
 $(python-requests)-modulefile = $(modulefilesdir)/$(python-requests)
 $(python-requests)-prefix = $(pkgdir)/$(python-requests)

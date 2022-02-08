@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-mpi4py)-url = https://mpi4py.readthedocs.io/
 $(python-mpi4py)-srcurl = https://files.pythonhosted.org/packages/ec/8f/bbd8de5ba566dd77e408d8136e2bab7fdf2b97ce06cab830ba8b50a2f588/mpi4py-3.0.3.tar.gz
 $(python-mpi4py)-src = $(pkgsrcdir)/$(notdir $($(python-mpi4py)-srcurl))
 $(python-mpi4py)-srcdir = $(pkgsrcdir)/$(python-mpi4py)
-$(python-mpi4py)-builddeps = $(python) $(mpi)
+$(python-mpi4py)-builddeps = $(python) $(mpi) $(python-pip)
 $(python-mpi4py)-prereqs = $(python) $(mpi)
 $(python-mpi4py)-modulefile = $(modulefilesdir)/$(python-mpi4py)
 $(python-mpi4py)-prefix = $(pkgdir)/$(python-mpi4py)

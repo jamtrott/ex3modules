@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-ldrb)-url = https://github.com/finsberg/ldrb/
 $(python-ldrb)-srcurl = https://github.com/finsberg/ldrb/archive/refs/tags/v$(python-ldrb-version).tar.gz
 $(python-ldrb)-src = $(pkgsrcdir)/python-ldrb-$(notdir $($(python-ldrb)-srcurl))
 $(python-ldrb)-srcdir = $(pkgsrcdir)/$(python-ldrb)
-$(python-ldrb)-builddeps = $(python) $(python-fenics-dolfin-2019) $(python-fenics-mshr-2019) $(python-numpy) $(python-numpy-quaternion) $(python-scipy) $(python-numba) $(python-h5py) $(python-pytest) $(python-pytest-cov)
+$(python-ldrb)-builddeps = $(python) $(python-fenics-dolfin-2019) $(python-fenics-mshr-2019) $(python-numpy) $(python-numpy-quaternion) $(python-scipy) $(python-numba) $(python-h5py) $(python-pytest) $(python-pytest-cov) $(python-pip)
 $(python-ldrb)-prereqs = $(python) $(python-fenics-dolfin-2019) $(python-fenics-mshr-2019) $(python-numpy) $(python-numpy-quaternion) $(python-scipy) $(python-numba) $(python-h5py)
 $(python-ldrb)-modulefile = $(modulefilesdir)/$(python-ldrb)
 $(python-ldrb)-prefix = $(pkgdir)/$(python-ldrb)

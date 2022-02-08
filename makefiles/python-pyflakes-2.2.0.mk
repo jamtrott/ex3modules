@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pyflakes)-url = https://github.com/PyCQA/pyflakes
 $(python-pyflakes)-srcurl = https://files.pythonhosted.org/packages/f1/e2/e02fc89959619590eec0c35f366902535ade2728479fc3082c8af8840013/pyflakes-2.2.0.tar.gz
 $(python-pyflakes)-src = $(pkgsrcdir)/$(notdir $($(python-pyflakes)-srcurl))
 $(python-pyflakes)-srcdir = $(pkgsrcdir)/$(python-pyflakes)
-$(python-pyflakes)-builddeps = $(python)
+$(python-pyflakes)-builddeps = $(python) $(python-pip)
 $(python-pyflakes)-prereqs = $(python)
 $(python-pyflakes)-modulefile = $(modulefilesdir)/$(python-pyflakes)
 $(python-pyflakes)-prefix = $(pkgdir)/$(python-pyflakes)

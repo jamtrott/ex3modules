@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pytest-cov)-url = https://github.com/pytest-dev/pytest-cov/
 $(python-pytest-cov)-srcurl = https://files.pythonhosted.org/packages/63/3a/747e953051fd6eb5fb297907a825aad43d94c556d3b9938fc21f3172879f/pytest-cov-2.12.1.tar.gz
 $(python-pytest-cov)-src = $(pkgsrcdir)/$(notdir $($(python-pytest-cov)-srcurl))
 $(python-pytest-cov)-srcdir = $(pkgsrcdir)/$(python-pytest-cov)
-$(python-pytest-cov)-builddeps = $(python) $(python-pytest) $(python-importlib_metadata) $(python-zipp) $(python-attrs) $(python-six) $(python-more-itertools) $(python-wcwidth) $(python-py) $(python-pluggy) $(python-packaging) $(python-atomicwrites) $(python-coverage) $(python-wheel)
+$(python-pytest-cov)-builddeps = $(python) $(python-pytest) $(python-importlib_metadata) $(python-zipp) $(python-attrs) $(python-six) $(python-more-itertools) $(python-wcwidth) $(python-py) $(python-pluggy) $(python-packaging) $(python-atomicwrites) $(python-coverage) $(python-wheel) $(python-pip)
 $(python-pytest-cov)-prereqs = $(python) $(python-pytest) $(python-importlib_metadata) $(python-zipp) $(python-attrs) $(python-six) $(python-more-itertools) $(python-wcwidth) $(python-py) $(python-pluggy) $(python-packaging) $(python-atomicwrites) $(python-coverage)
 $(python-pytest-cov)-modulefile = $(modulefilesdir)/$(python-pytest-cov)
 $(python-pytest-cov)-prefix = $(pkgdir)/$(python-pytest-cov)

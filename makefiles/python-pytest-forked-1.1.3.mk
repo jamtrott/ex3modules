@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pytest-forked)-url = https://github.com/pytest-dev/pytest-forked
 $(python-pytest-forked)-srcurl = https://files.pythonhosted.org/packages/43/b4/d0efa1748880e24aaaf8343825138ed5460b8e260e84ac73ef4415e1d1d4/pytest-forked-1.1.3.tar.gz
 $(python-pytest-forked)-src = $(pkgsrcdir)/$(notdir $($(python-pytest-forked)-srcurl))
 $(python-pytest-forked)-srcdir = $(pkgsrcdir)/$(python-pytest-forked)
-$(python-pytest-forked)-builddeps = $(python) $(python-pytest) $(python-atomicwrites) $(python-pluggy) $(python-wcwidth) $(python-importlib_metadata) $(python-packaging) $(python-py) $(python-more-itertools) $(python-attrs) $(python-zipp) $(python-pyparsing) $(python-six)
+$(python-pytest-forked)-builddeps = $(python) $(python-pytest) $(python-atomicwrites) $(python-pluggy) $(python-wcwidth) $(python-importlib_metadata) $(python-packaging) $(python-py) $(python-more-itertools) $(python-attrs) $(python-zipp) $(python-pyparsing) $(python-six) $(python-pip)
 $(python-pytest-forked)-prereqs = $(python) $(python-pytest) $(python-atomicwrites) $(python-pluggy) $(python-wcwidth) $(python-importlib_metadata) $(python-packaging) $(python-py) $(python-more-itertools) $(python-attrs) $(python-zipp) $(python-pyparsing) $(python-six)
 $(python-pytest-forked)-modulefile = $(modulefilesdir)/$(python-pytest-forked)
 $(python-pytest-forked)-prefix = $(pkgdir)/$(python-pytest-forked)

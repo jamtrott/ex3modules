@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-distlib)-url = https://bitbucket.org/pypa/distlib/
 $(python-distlib)-srcurl = https://files.pythonhosted.org/packages/2f/83/1eba07997b8ba58d92b3e51445d5bf36f9fba9cb8166bcae99b9c3464841/distlib-0.3.1.zip
 $(python-distlib)-src = $(pkgsrcdir)/$(notdir $($(python-distlib)-srcurl))
 $(python-distlib)-srcdir = $(pkgsrcdir)/$(python-distlib)
-$(python-distlib)-builddeps = $(python)
+$(python-distlib)-builddeps = $(python) $(python-pip)
 $(python-distlib)-prereqs = $(python)
 $(python-distlib)-modulefile = $(modulefilesdir)/$(python-distlib)
 $(python-distlib)-prefix = $(pkgdir)/$(python-distlib)

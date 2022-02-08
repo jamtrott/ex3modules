@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pycodestyle)-url = https://pycodestyle.readthedocs.io/
 $(python-pycodestyle)-srcurl = https://files.pythonhosted.org/packages/bb/82/0df047a5347d607be504ad5faa255caa7919562962b934f9372b157e8a70/pycodestyle-2.6.0.tar.gz
 $(python-pycodestyle)-src = $(pkgsrcdir)/$(notdir $($(python-pycodestyle)-srcurl))
 $(python-pycodestyle)-srcdir = $(pkgsrcdir)/$(python-pycodestyle)
-$(python-pycodestyle)-builddeps = $(python)
+$(python-pycodestyle)-builddeps = $(python) $(python-pip)
 $(python-pycodestyle)-prereqs = $(python)
 $(python-pycodestyle)-modulefile = $(modulefilesdir)/$(python-pycodestyle)
 $(python-pycodestyle)-prefix = $(pkgdir)/$(python-pycodestyle)

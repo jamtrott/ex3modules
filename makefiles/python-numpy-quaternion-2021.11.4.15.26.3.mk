@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-numpy-quaternion)-url = https://github.com/moble/quaternion
 $(python-numpy-quaternion)-srcurl = https://github.com/moble/quaternion/archive/refs/tags/v$(python-numpy-quaternion-version).tar.gz
 $(python-numpy-quaternion)-src = $(pkgsrcdir)/python-numpy-quaternion-$(notdir $($(python-numpy-quaternion)-srcurl))
 $(python-numpy-quaternion)-srcdir = $(pkgsrcdir)/$(python-numpy-quaternion)
-$(python-numpy-quaternion)-builddeps = $(python) $(python-numpy) $(python-wheel)
+$(python-numpy-quaternion)-builddeps = $(python) $(python-numpy) $(python-wheel) $(python-pip)
 $(python-numpy-quaternion)-prereqs = $(python) $(python-numpy)
 $(python-numpy-quaternion)-modulefile = $(modulefilesdir)/$(python-numpy-quaternion)
 $(python-numpy-quaternion)-prefix = $(pkgdir)/$(python-numpy-quaternion)

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pyra-pytorch)-url = https://vlbthambawita.github.io/PYRA/
 $(python-pyra-pytorch)-srcurl = https://files.pythonhosted.org/packages/61/d1/31e2c735b115a613a6b45ec3d19538d0fde65bac730db725001797ea4ba3/pyra-pytorch-1.2.0.tar.gz
 $(python-pyra-pytorch)-src = $(pkgsrcdir)/$(notdir $($(python-pyra-pytorch)-srcurl))
 $(python-pyra-pytorch)-srcdir = $(pkgsrcdir)/$(python-pyra-pytorch)
-$(python-pyra-pytorch)-builddeps = $(python) $(python-numpy) $(python-pillow)
+$(python-pyra-pytorch)-builddeps = $(python) $(python-numpy) $(python-pillow) $(python-pip)
 $(python-pyra-pytorch)-prereqs = $(python) $(python-numpy) $(python-pillow)
 $(python-pyra-pytorch)-modulefile = $(modulefilesdir)/$(python-pyra-pytorch)
 $(python-pyra-pytorch)-prefix = $(pkgdir)/$(python-pyra-pytorch)

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pygments)-url = https://pygments.org/
 $(python-pygments)-srcurl = https://files.pythonhosted.org/packages/6e/4d/4d2fe93a35dfba417311a4ff627489a947b01dc0cc377a3673c00cf7e4b2/Pygments-2.6.1.tar.gz
 $(python-pygments)-src = $(pkgsrcdir)/$(notdir $($(python-pygments)-srcurl))
 $(python-pygments)-srcdir = $(pkgsrcdir)/$(python-pygments)
-$(python-pygments)-builddeps = $(python)
+$(python-pygments)-builddeps = $(python) $(python-pip)
 $(python-pygments)-prereqs = $(python)
 $(python-pygments)-modulefile = $(modulefilesdir)/$(python-pygments)
 $(python-pygments)-prefix = $(pkgdir)/$(python-pygments)

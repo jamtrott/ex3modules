@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-nose)-url = http://readthedocs.org/docs/nose/
 $(python-nose)-srcurl = https://files.pythonhosted.org/packages/58/a5/0dc93c3ec33f4e281849523a5a913fa1eea9a3068acfa754d44d88107a44/nose-1.3.7.tar.gz
 $(python-nose)-src = $(pkgsrcdir)/$(notdir $($(python-nose)-srcurl))
 $(python-nose)-srcdir = $(pkgsrcdir)/$(python-nose)
-$(python-nose)-builddeps = $(python)
+$(python-nose)-builddeps = $(python) $(python-pip)
 $(python-nose)-prereqs = $(python)
 $(python-nose)-modulefile = $(modulefilesdir)/$(python-nose)
 $(python-nose)-prefix = $(pkgdir)/$(python-nose)

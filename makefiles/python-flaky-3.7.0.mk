@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-flaky)-url = https://github.com/box/flaky/
 $(python-flaky)-srcurl = https://files.pythonhosted.org/packages/d5/dd/422c7c5c8c9f4982f3045c73d0571ed4a4faa5754699cc6a6384035fbd80/flaky-3.7.0.tar.gz
 $(python-flaky)-src = $(pkgsrcdir)/$(notdir $($(python-flaky)-srcurl))
 $(python-flaky)-srcdir = $(pkgsrcdir)/$(python-flaky)
-$(python-flaky)-builddeps = $(python)
+$(python-flaky)-builddeps = $(python) $(python-pip)
 $(python-flaky)-prereqs = $(python)
 $(python-flaky)-modulefile = $(modulefilesdir)/$(python-flaky)
 $(python-flaky)-prefix = $(pkgdir)/$(python-flaky)

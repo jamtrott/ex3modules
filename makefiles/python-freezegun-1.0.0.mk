@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-freezegun)-url = https://github.com/spulec/freezegun
 $(python-freezegun)-srcurl = https://files.pythonhosted.org/packages/38/65/0ad5d6f2d4357ba8aa1ab797bb3663dac8e94aa80bde17646decdb8c63ad/freezegun-1.0.0.tar.gz
 $(python-freezegun)-src = $(pkgsrcdir)/$(notdir $($(python-freezegun)-srcurl))
 $(python-freezegun)-srcdir = $(pkgsrcdir)/$(python-freezegun)
-$(python-freezegun)-builddeps = $(python) $(python-pytest)
+$(python-freezegun)-builddeps = $(python) $(python-pytest) $(python-pip)
 $(python-freezegun)-prereqs = $(python)
 $(python-freezegun)-modulefile = $(modulefilesdir)/$(python-freezegun)
 $(python-freezegun)-prefix = $(pkgdir)/$(python-freezegun)

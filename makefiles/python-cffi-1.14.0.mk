@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-cffi)-url = https://cffi.readthedocs.io/en/latest/
 $(python-cffi)-srcurl = https://files.pythonhosted.org/packages/05/54/3324b0c46340c31b909fcec598696aaec7ddc8c18a63f2db352562d3354c/cffi-1.14.0.tar.gz
 $(python-cffi)-src = $(pkgsrcdir)/$(notdir $($(python-cffi)-srcurl))
 $(python-cffi)-srcdir = $(pkgsrcdir)/$(python-cffi)
-$(python-cffi)-builddeps = $(python) $(libffi) $(python-pycparser) $(python-py) $(python-pytest)
+$(python-cffi)-builddeps = $(python) $(libffi) $(python-pycparser) $(python-py) $(python-pytest) $(python-pip)
 $(python-cffi)-prereqs = $(python) $(libffi) $(python-pycparser)
 $(python-cffi)-modulefile = $(modulefilesdir)/$(python-cffi)
 $(python-cffi)-prefix = $(pkgdir)/$(python-cffi)

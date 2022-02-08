@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-sphinxcontrib-jsmath)-url = http://sphinx-doc.org/
 $(python-sphinxcontrib-jsmath)-srcurl = https://files.pythonhosted.org/packages/b2/e8/9ed3830aeed71f17c026a07a5097edcf44b692850ef215b161b8ad875729/sphinxcontrib-jsmath-1.0.1.tar.gz
 $(python-sphinxcontrib-jsmath)-src = $(pkgsrcdir)/$(notdir $($(python-sphinxcontrib-jsmath)-srcurl))
 $(python-sphinxcontrib-jsmath)-srcdir = $(pkgsrcdir)/$(python-sphinxcontrib-jsmath)
-$(python-sphinxcontrib-jsmath)-builddeps = $(python)
+$(python-sphinxcontrib-jsmath)-builddeps = $(python) $(python-pip)
 $(python-sphinxcontrib-jsmath)-prereqs = $(python)
 $(python-sphinxcontrib-jsmath)-modulefile = $(modulefilesdir)/$(python-sphinxcontrib-jsmath)
 $(python-sphinxcontrib-jsmath)-prefix = $(pkgdir)/$(python-sphinxcontrib-jsmath)

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-sphinx)-url = https://www.sphinx-doc.org/
 $(python-sphinx)-srcurl = https://files.pythonhosted.org/packages/74/20/2909215d83e4bf925afd875fd995b71e4b34cee6ad1c7eba5d1ce74bd14c/Sphinx-3.0.4.tar.gz
 $(python-sphinx)-src = $(pkgsrcdir)/$(notdir $($(python-sphinx)-srcurl))
 $(python-sphinx)-srcdir = $(pkgsrcdir)/$(python-sphinx)
-$(python-sphinx)-builddeps = $(python) $(python-sphinxcontrib-applehelp) $(python-sphinxcontrib-devhelp) $(python-sphinxcontrib-jsmath) $(python-sphinxcontrib-htmlhelp) $(python-sphinxcontrib-serializinghtml) $(python-sphinxcontrib-qthelp) $(python-jinja2) $(python-pygments) $(python-docutils) $(python-snowballstemmer) $(python-babel) $(python-alabaster) $(python-imagesize) $(python-requests) $(python-wheel) $(python-packaging)
+$(python-sphinx)-builddeps = $(python) $(python-sphinxcontrib-applehelp) $(python-sphinxcontrib-devhelp) $(python-sphinxcontrib-jsmath) $(python-sphinxcontrib-htmlhelp) $(python-sphinxcontrib-serializinghtml) $(python-sphinxcontrib-qthelp) $(python-jinja2) $(python-pygments) $(python-docutils) $(python-snowballstemmer) $(python-babel) $(python-alabaster) $(python-imagesize) $(python-requests) $(python-wheel) $(python-packaging) $(python-pip)
 $(python-sphinx)-prereqs = $(python) $(python-sphinxcontrib-applehelp) $(python-sphinxcontrib-devhelp) $(python-sphinxcontrib-jsmath) $(python-sphinxcontrib-htmlhelp) $(python-sphinxcontrib-serializinghtml) $(python-sphinxcontrib-qthelp) $(python-jinja2) $(python-pygments) $(python-docutils) $(python-snowballstemmer) $(python-babel) $(python-alabaster) $(python-imagesize) $(python-requests) $(python-packaging)
 $(python-sphinx)-modulefile = $(modulefilesdir)/$(python-sphinx)
 $(python-sphinx)-prefix = $(pkgdir)/$(python-sphinx)

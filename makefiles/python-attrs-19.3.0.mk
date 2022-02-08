@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-attrs)-url = https://www.attrs.org/
 $(python-attrs)-srcurl = https://files.pythonhosted.org/packages/98/c3/2c227e66b5e896e15ccdae2e00bbc69aa46e9a8ce8869cc5fa96310bf612/attrs-19.3.0.tar.gz
 $(python-attrs)-src = $(pkgsrcdir)/$(notdir $($(python-attrs)-srcurl))
 $(python-attrs)-srcdir = $(pkgsrcdir)/$(python-attrs)
-$(python-attrs)-builddeps = $(python) $(python-wheel)
+$(python-attrs)-builddeps = $(python) $(python-wheel) $(python-pip)
 $(python-attrs)-prereqs = $(python)
 $(python-attrs)-modulefile = $(modulefilesdir)/$(python-attrs)
 $(python-attrs)-prefix = $(pkgdir)/$(python-attrs)

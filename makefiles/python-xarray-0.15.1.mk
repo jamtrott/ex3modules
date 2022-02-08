@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-xarray)-url = http://xarray.pydata.org/
 $(python-xarray)-srcurl = https://files.pythonhosted.org/packages/f9/5b/04b117f3f8aca131635e30b6b2c8af10a67db660bc3e879ea75f5dc74a66/xarray-0.15.1.tar.gz
 $(python-xarray)-src = $(pkgsrcdir)/$(notdir $($(python-xarray)-srcurl))
 $(python-xarray)-srcdir = $(pkgsrcdir)/$(python-xarray)
-$(python-xarray)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-pandas) $(python-scipy) $(python-matplotlib) $(python-pytest)
+$(python-xarray)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-pandas) $(python-scipy) $(python-matplotlib) $(python-pytest) $(python-pip)
 $(python-xarray)-prereqs = $(python) $(python-numpy) $(python-pandas) $(python-scipy) $(python-matplotlib)
 $(python-xarray)-modulefile = $(modulefilesdir)/$(python-xarray)
 $(python-xarray)-prefix = $(pkgdir)/$(python-xarray)

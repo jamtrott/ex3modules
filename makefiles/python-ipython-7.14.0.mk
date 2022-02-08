@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-ipython)-url = https://www.ipython.org/
 $(python-ipython)-srcurl = https://github.com/ipython/ipython/archive/$(python-ipython-version).tar.gz
 $(python-ipython)-src = $(pkgsrcdir)/python-ipython-$(notdir $($(python-ipython)-srcurl))
 $(python-ipython)-srcdir = $(pkgsrcdir)/$(python-ipython)
-$(python-ipython)-builddeps = $(python)
+$(python-ipython)-builddeps = $(python) $(python-pip)
 $(python-ipython)-prereqs = $(python)
 $(python-ipython)-modulefile = $(modulefilesdir)/$(python-ipython)
 $(python-ipython)-prefix = $(pkgdir)/$(python-ipython)

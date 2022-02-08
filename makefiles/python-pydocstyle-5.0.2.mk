@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pydocstyle)-url = https://github.com/PyCQA/pydocstyle/
 $(python-pydocstyle)-srcurl = https://files.pythonhosted.org/packages/39/f4/3f670e71f11c4c65f0d5f4153f5191fb38786483513c90de66f08ef6e810/pydocstyle-5.0.2.tar.gz
 $(python-pydocstyle)-src = $(pkgsrcdir)/$(notdir $($(python-pydocstyle)-srcurl))
 $(python-pydocstyle)-srcdir = $(pkgsrcdir)/$(python-pydocstyle)
-$(python-pydocstyle)-builddeps = $(python) $(python-snowballstemmer)
+$(python-pydocstyle)-builddeps = $(python) $(python-snowballstemmer) $(python-pip)
 $(python-pydocstyle)-prereqs = $(python) $(python-snowballstemmer)
 $(python-pydocstyle)-modulefile = $(modulefilesdir)/$(python-pydocstyle)
 $(python-pydocstyle)-prefix = $(pkgdir)/$(python-pydocstyle)

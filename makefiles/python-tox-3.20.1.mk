@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-tox)-url = http://tox.readthedocs.org/
 $(python-tox)-srcurl = https://files.pythonhosted.org/packages/fe/66/7206a6c69a5f717fb80cd3a532c0639bc183ad2aa1f23a943ca93b0814bd/tox-3.20.1.tar.gz
 $(python-tox)-src = $(pkgsrcdir)/$(notdir $($(python-tox)-srcurl))
 $(python-tox)-srcdir = $(pkgsrcdir)/$(python-tox)
-$(python-tox)-builddeps = $(python) $(python-filelock) $(python-packaging) $(python-pluggy) $(python-py) $(python-six) $(python-toml) $(python-virtualenv) $(python-colorama) $(python-importlib-metadata) $(python-pathlib2) $(python-pytest) $(python-flaky)
+$(python-tox)-builddeps = $(python) $(python-filelock) $(python-packaging) $(python-pluggy) $(python-py) $(python-six) $(python-toml) $(python-virtualenv) $(python-colorama) $(python-importlib-metadata) $(python-pathlib2) $(python-pytest) $(python-flaky) $(python-pip)
 $(python-tox)-prereqs = $(python) $(python-filelock) $(python-packaging) $(python-pluggy) $(python-py) $(python-six) $(python-toml) $(python-virtualenv) $(python-colorama) $(python-importlib-metadata)
 $(python-tox)-modulefile = $(modulefilesdir)/$(python-tox)
 $(python-tox)-prefix = $(pkgdir)/$(python-tox)

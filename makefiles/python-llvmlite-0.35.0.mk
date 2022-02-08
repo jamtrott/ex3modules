@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-llvmlite)-url = https://github.com/numba/llvmlite
 $(python-llvmlite)-srcurl = https://github.com/numba/llvmlite/archive/v$(python-llvmlite-version).tar.gz
 $(python-llvmlite)-src = $(pkgsrcdir)/python-llvmlite-$(notdir $($(python-llvmlite)-srcurl))
 $(python-llvmlite)-srcdir = $(pkgsrcdir)/$(python-llvmlite)
-$(python-llvmlite)-builddeps = $(cmake) $(python) $(llvm-10) $(python-wheel)
+$(python-llvmlite)-builddeps = $(cmake) $(python) $(llvm-10) $(python-wheel) $(python-pip)
 $(python-llvmlite)-prereqs = $(python) $(llvm-10)
 $(python-llvmlite)-modulefile = $(modulefilesdir)/$(python-llvmlite)
 $(python-llvmlite)-prefix = $(pkgdir)/$(python-llvmlite)

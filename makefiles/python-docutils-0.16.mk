@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-docutils)-url = http://docutils.sourceforge.net/
 $(python-docutils)-srcurl = https://files.pythonhosted.org/packages/2f/e0/3d435b34abd2d62e8206171892f174b180cd37b09d57b924ca5c2ef2219d/docutils-0.16.tar.gz
 $(python-docutils)-src = $(pkgsrcdir)/$(notdir $($(python-docutils)-srcurl))
 $(python-docutils)-srcdir = $(pkgsrcdir)/$(python-docutils)
-$(python-docutils)-builddeps = $(python)
+$(python-docutils)-builddeps = $(python) $(python-pip)
 $(python-docutils)-prereqs = $(python)
 $(python-docutils)-modulefile = $(modulefilesdir)/$(python-docutils)
 $(python-docutils)-prefix = $(pkgdir)/$(python-docutils)

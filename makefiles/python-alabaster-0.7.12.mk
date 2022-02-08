@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-alabaster)-url = https://alabaster.readthedocs.io/
 $(python-alabaster)-srcurl = https://files.pythonhosted.org/packages/cc/b4/ed8dcb0d67d5cfb7f83c4d5463a7614cb1d078ad7ae890c9143edebbf072/alabaster-0.7.12.tar.gz
 $(python-alabaster)-src = $(pkgsrcdir)/$(notdir $($(python-alabaster)-srcurl))
 $(python-alabaster)-srcdir = $(pkgsrcdir)/$(python-alabaster)
-$(python-alabaster)-builddeps = $(python) $(python-pygments)
+$(python-alabaster)-builddeps = $(python) $(python-pygments) $(python-pip)
 $(python-alabaster)-prereqs = $(python)
 $(python-alabaster)-modulefile = $(modulefilesdir)/$(python-alabaster)
 $(python-alabaster)-prefix = $(pkgdir)/$(python-alabaster)

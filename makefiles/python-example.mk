@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ $(python-example)-description =
 $(python-example)-url =
 $(python-example)-srcurl =
 $(python-example)-src = $(pkgsrcdir)/$(notdir $($(python-example)-srcurl))
-$(python-example)-builddeps = $(python)
+$(python-example)-builddeps = $(python) $(python-pip)
 $(python-example)-prereqs = $(python)
 $(python-example)-srcdir = $(pkgsrcdir)/$(python-example)
 $(python-example)-modulefile = $(modulefilesdir)/$(python-example)

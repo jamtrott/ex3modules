@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-mpmath)-url = https://www.mpmath.org/
 $(python-mpmath)-srcurl = https://files.pythonhosted.org/packages/ca/63/3384ebb3b51af9610086b23ea976e6d27d6d97bf140a76a365bd77a3eb32/mpmath-1.1.0.tar.gz
 $(python-mpmath)-src = $(pkgsrcdir)/$(notdir $($(python-mpmath)-srcurl))
 $(python-mpmath)-srcdir = $(pkgsrcdir)/$(python-mpmath)
-$(python-mpmath)-builddeps = $(python)
+$(python-mpmath)-builddeps = $(python) $(python-pip)
 $(python-mpmath)-prereqs = $(python)
 $(python-mpmath)-modulefile = $(modulefilesdir)/$(python-mpmath)
 $(python-mpmath)-prefix = $(pkgdir)/$(python-mpmath)

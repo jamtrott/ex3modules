@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-markupsafe)-url = https://palletsprojects.com/p/markupsafe/
 $(python-markupsafe)-srcurl = https://files.pythonhosted.org/packages/b9/2e/64db92e53b86efccfaea71321f597fa2e1b2bd3853d8ce658568f7a13094/MarkupSafe-1.1.1.tar.gz
 $(python-markupsafe)-src = $(pkgsrcdir)/$(notdir $($(python-markupsafe)-srcurl))
 $(python-markupsafe)-srcdir = $(pkgsrcdir)/$(python-markupsafe)
-$(python-markupsafe)-builddeps = $(python)
+$(python-markupsafe)-builddeps = $(python) $(python-pip)
 $(python-markupsafe)-prereqs = $(python)
 $(python-markupsafe)-modulefile = $(modulefilesdir)/$(python-markupsafe)
 $(python-markupsafe)-prefix = $(pkgdir)/$(python-markupsafe)

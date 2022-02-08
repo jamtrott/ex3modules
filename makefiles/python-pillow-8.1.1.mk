@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pillow)-url = https://python-pillow.org/
 $(python-pillow)-srcurl = https://files.pythonhosted.org/packages/a6/24/1346f8c70dae5daf58e22435a1f1f4696682b4f85321eb4d18ca1d81c0c2/Pillow-8.1.1.tar.gz
 $(python-pillow)-src = $(pkgsrcdir)/$(notdir $($(python-pillow)-srcurl))
 $(python-pillow)-srcdir = $(pkgsrcdir)/$(python-pillow)
-$(python-pillow)-builddeps = $(python) $(libjpeg-turbo) $(libtiff) $(freetype) $(libwebp)
+$(python-pillow)-builddeps = $(python) $(libjpeg-turbo) $(libtiff) $(freetype) $(libwebp) $(python-pip)
 $(python-pillow)-prereqs = $(python) $(libjpeg-turbo) $(libtiff) $(freetype) $(libwebp)
 $(python-pillow)-modulefile = $(modulefilesdir)/$(python-pillow)
 $(python-pillow)-prefix = $(pkgdir)/$(python-pillow)

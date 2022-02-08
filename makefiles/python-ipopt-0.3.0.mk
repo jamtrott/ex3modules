@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-ipopt)-url = https://pypi.org/project/ipopt/
 $(python-ipopt)-srcurl = https://files.pythonhosted.org/packages/13/29/6a8f36efc3e2bd030c7b46ee635550494b93d66fca190636c53394fc1e4c/ipopt-0.3.0.tar.gz
 $(python-ipopt)-src = $(pkgsrcdir)/$(notdir $($(python-ipopt)-srcurl))
 $(python-ipopt)-srcdir = $(pkgsrcdir)/$(python-ipopt)
-$(python-ipopt)-builddeps = $(python) $(python-cython) $(python-numpy) $(python-scipy) $(python-six) $(python-future) $(python-wheel) $(ipopt)
+$(python-ipopt)-builddeps = $(python) $(python-cython) $(python-numpy) $(python-scipy) $(python-six) $(python-future) $(python-wheel) $(ipopt) $(python-pip)
 $(python-ipopt)-prereqs = $(python) $(python-cython) $(python-numpy) $(python-scipy) $(python-six) $(python-future) $(ipopt)
 $(python-ipopt)-modulefile = $(modulefilesdir)/$(python-ipopt) $(python-six)
 $(python-ipopt)-prefix = $(pkgdir)/$(python-ipopt)

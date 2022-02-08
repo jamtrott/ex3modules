@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-py)-url = http://py.readthedocs.io/
 $(python-py)-srcurl = https://files.pythonhosted.org/packages/97/a6/ab9183fe08f69a53d06ac0ee8432bc0ffbb3989c575cc69b73a0229a9a99/py-1.9.0.tar.gz
 $(python-py)-src = $(pkgsrcdir)/$(notdir $($(python-py)-srcurl))
 $(python-py)-srcdir = $(pkgsrcdir)/$(python-py)
-$(python-py)-builddeps = $(python) $(python-setuptools_scm)
+$(python-py)-builddeps = $(python) $(python-setuptools_scm) $(python-pip)
 $(python-py)-prereqs = $(python)
 $(python-py)-modulefile = $(modulefilesdir)/$(python-py)
 $(python-py)-prefix = $(pkgdir)/$(python-py)

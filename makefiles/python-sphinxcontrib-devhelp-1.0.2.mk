@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-sphinxcontrib-devhelp)-url = http://sphinx-doc.org/
 $(python-sphinxcontrib-devhelp)-srcurl = https://files.pythonhosted.org/packages/98/33/dc28393f16385f722c893cb55539c641c9aaec8d1bc1c15b69ce0ac2dbb3/sphinxcontrib-devhelp-1.0.2.tar.gz
 $(python-sphinxcontrib-devhelp)-src = $(pkgsrcdir)/$(notdir $($(python-sphinxcontrib-devhelp)-srcurl))
 $(python-sphinxcontrib-devhelp)-srcdir = $(pkgsrcdir)/$(python-sphinxcontrib-devhelp)
-$(python-sphinxcontrib-devhelp)-builddeps = $(python)
+$(python-sphinxcontrib-devhelp)-builddeps = $(python) $(python-pip)
 $(python-sphinxcontrib-devhelp)-prereqs = $(python)
 $(python-sphinxcontrib-devhelp)-modulefile = $(modulefilesdir)/$(python-sphinxcontrib-devhelp)
 $(python-sphinxcontrib-devhelp)-prefix = $(pkgdir)/$(python-sphinxcontrib-devhelp)

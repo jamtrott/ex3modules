@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -56,6 +56,7 @@ $($(python-setuptools)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-setuptools)-builddeps) && \
+		$(PYTHON) bootstrap.py && \
 		$(PYTHON) setup.py build
 	@touch $@
 
@@ -72,7 +73,6 @@ $($(python-setuptools)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(for
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-setuptools)-builddeps) && \
-		PYTHONPATH=$($(python-setuptools)-site-packages):$${PYTHONPATH} \
 		$(PYTHON) setup.py install --prefix=$($(python-setuptools)-prefix)
 	@touch $@
 
@@ -92,7 +92,7 @@ $($(python-setuptools)-modulefile): $(modulefilesdir)/.markerfile $($(python-set
 	echo "" >>$@
 	echo "setenv PYTHON_SETUPTOOLS_ROOT $($(python-setuptools)-prefix)" >>$@
 	echo "prepend-path PATH $($(python-setuptools)-prefix)/bin" >>$@
-	echo "prepend-path PYTHONPATH $($(python-setuptools)-site-packages)" >>$@
+	echo "prepend-path PYTHONPATH $($(python-setuptools)-site-packages)/setuptools-$(python-setuptools-version)-py$(PYTHON_VERSION_SHORT).egg" >>$@
 	echo "set MSG \"$(python-setuptools)\"" >>$@
 
 $(python-setuptools)-src: $($(python-setuptools)-src)

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-cycler)-url = http://github.com/matplotlib/cycler/
 $(python-cycler)-srcurl = https://files.pythonhosted.org/packages/c2/4b/137dea450d6e1e3d474e1d873cd1d4f7d3beed7e0dc973b06e8e10d32488/cycler-0.10.0.tar.gz
 $(python-cycler)-src = $(pkgsrcdir)/$(notdir $($(python-cycler)-srcurl))
 $(python-cycler)-srcdir = $(pkgsrcdir)/$(python-cycler)
-$(python-cycler)-builddeps = $(python) $(python-pytest) $(python-nose) $(python-six)
+$(python-cycler)-builddeps = $(python) $(python-pytest) $(python-nose) $(python-six) $(python-pip)
 $(python-cycler)-prereqs = $(python) $(python-six)
 $(python-cycler)-modulefile = $(modulefilesdir)/$(python-cycler)
 $(python-cycler)-prefix = $(pkgdir)/$(python-cycler)

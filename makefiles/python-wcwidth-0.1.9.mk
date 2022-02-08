@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-wcwidth)-url = https://github.com/jquast/wcwidth/
 $(python-wcwidth)-srcurl = https://files.pythonhosted.org/packages/25/9d/0acbed6e4a4be4fc99148f275488580968f44ddb5e69b8ceb53fc9df55a0/wcwidth-0.1.9.tar.gz
 $(python-wcwidth)-src = $(pkgsrcdir)/$(notdir $($(python-wcwidth)-srcurl))
 $(python-wcwidth)-srcdir = $(pkgsrcdir)/$(python-wcwidth)
-$(python-wcwidth)-builddeps = $(python) $(python-wheel)
+$(python-wcwidth)-builddeps = $(python) $(python-wheel) $(python-pip)
 $(python-wcwidth)-prereqs = $(python)
 $(python-wcwidth)-modulefile = $(modulefilesdir)/$(python-wcwidth)
 $(python-wcwidth)-prefix = $(pkgdir)/$(python-wcwidth)

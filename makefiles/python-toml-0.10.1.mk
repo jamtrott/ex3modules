@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-toml)-url = https://pypi.org/project/toml/
 $(python-toml)-srcurl = https://files.pythonhosted.org/packages/da/24/84d5c108e818ca294efe7c1ce237b42118643ce58a14d2462b3b2e3800d5/toml-0.10.1.tar.gz
 $(python-toml)-src = $(pkgsrcdir)/$(notdir $($(python-toml)-srcurl))
 $(python-toml)-srcdir = $(pkgsrcdir)/$(python-toml)
-$(python-toml)-builddeps = $(python)
+$(python-toml)-builddeps = $(python) $(python-pip)
 $(python-toml)-prereqs = $(python)
 $(python-toml)-modulefile = $(modulefilesdir)/$(python-toml)
 $(python-toml)-prefix = $(pkgdir)/$(python-toml)

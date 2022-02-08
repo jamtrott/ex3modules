@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-zipp)-url = https://github.com/jaraco/zipp/
 $(python-zipp)-srcurl = https://files.pythonhosted.org/packages/49/4d/374ccacda17692db1d93b00a637b8255ec97608b0c51f3b66bc9c57fe3e1/zipp-3.3.1.tar.gz
 $(python-zipp)-src = $(pkgsrcdir)/$(notdir $($(python-zipp)-srcurl))
 $(python-zipp)-srcdir = $(pkgsrcdir)/$(python-zipp)
-$(python-zipp)-builddeps = $(python) $(python-setuptools) $(python-setuptools_scm) $(python-wheel)
+$(python-zipp)-builddeps = $(python) $(python-setuptools) $(python-setuptools_scm) $(python-wheel) $(python-pip)
 $(python-zipp)-prereqs = $(python)
 $(python-zipp)-modulefile = $(modulefilesdir)/$(python-zipp)
 $(python-zipp)-prefix = $(pkgdir)/$(python-zipp)

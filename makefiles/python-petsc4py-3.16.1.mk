@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-petsc4py)-url = https://bitbucket.org/petsc/petsc4py/
 $(python-petsc4py)-srcurl = https://files.pythonhosted.org/packages/11/07/555668abf04f88b595c2838a18db567ed02f5f8b2eda65cd62b05c5ace87/petsc4py-3.16.1.tar.gz
 $(python-petsc4py)-src = $(pkgsrcdir)/$(notdir $($(python-petsc4py)-srcurl))
 $(python-petsc4py)-srcdir = $(pkgsrcdir)/$(python-petsc4py)
-$(python-petsc4py)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-mpi4py) $(petsc)
+$(python-petsc4py)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-mpi4py) $(petsc) $(python-pip)
 $(python-petsc4py)-prereqs = $(python) $(python-numpy) $(python-mpi4py) $(petsc)
 $(python-petsc4py)-modulefile = $(modulefilesdir)/$(python-petsc4py)
 $(python-petsc4py)-prefix = $(pkgdir)/$(python-petsc4py)

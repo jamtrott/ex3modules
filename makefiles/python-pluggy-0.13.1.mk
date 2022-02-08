@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pluggy)-url = https://github.com/pytest-dev/pluggy/
 $(python-pluggy)-srcurl = https://files.pythonhosted.org/packages/f8/04/7a8542bed4b16a65c2714bf76cf5a0b026157da7f75e87cc88774aa10b14/pluggy-0.13.1.tar.gz
 $(python-pluggy)-src = $(pkgsrcdir)/$(notdir $($(python-pluggy)-srcurl))
 $(python-pluggy)-srcdir = $(pkgsrcdir)/$(python-pluggy)
-$(python-pluggy)-builddeps = $(python) $(python-importlib_metadata) $(python-zipp) $(python-setuptools_scm)
+$(python-pluggy)-builddeps = $(python) $(python-importlib_metadata) $(python-zipp) $(python-setuptools_scm) $(python-pip)
 $(python-pluggy)-prereqs = $(python)
 $(python-pluggy)-modulefile = $(modulefilesdir)/$(python-pluggy)
 $(python-pluggy)-prefix = $(pkgdir)/$(python-pluggy)

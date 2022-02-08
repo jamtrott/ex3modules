@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ $(python-fenics-fiat-20200518)-srcurl = https://github.com/FEniCS/fiat/archive/a
 $(python-fenics-fiat-20200518)-src = $(pkgsrcdir)/python-fenics-fiat-$(notdir $($(python-fenics-fiat-20200518)-srcurl))
 $(python-fenics-fiat-20200518)-srcdir = $(pkgsrcdir)/$(python-fenics-fiat-20200518)
 $(python-fenics-fiat-20200518)-builddir = $($(python-fenics-fiat-20200518)-srcdir)/fiat-a8c4d489da0d783921e2e9e261e43717b8a28882
-$(python-fenics-fiat-20200518)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-mpmath) $(python-sympy-1.4)
+$(python-fenics-fiat-20200518)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-mpmath) $(python-sympy-1.4) $(python-pip)
 $(python-fenics-fiat-20200518)-prereqs = $(python) $(python-numpy) $(python-mpmath) $(python-sympy-1.4)
 $(python-fenics-fiat-20200518)-modulefile = $(modulefilesdir)/$(python-fenics-fiat-20200518)
 $(python-fenics-fiat-20200518)-prefix = $(pkgdir)/$(python-fenics-fiat-20200518)

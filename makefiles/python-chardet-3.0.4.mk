@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-chardet)-url = https://github.com/chardet/chardet/
 $(python-chardet)-srcurl = https://files.pythonhosted.org/packages/fc/bb/a5768c230f9ddb03acc9ef3f0d4a3cf93462473795d18e9535498c8f929d/chardet-3.0.4.tar.gz
 $(python-chardet)-src = $(pkgsrcdir)/$(notdir $($(python-chardet)-srcurl))
 $(python-chardet)-srcdir = $(pkgsrcdir)/$(python-chardet)
-$(python-chardet)-builddeps = $(python) $(python-hypothesis) $(python-pytest) $(python-sortedcontainers) $(python-attrs) $(python-toml) $(python-py) $(python-pluggy) $(python-packaging) $(python-iniconfig) $(python-importlib_metadata) $(python-six) $(python-pyparsing) $(python-zipp)
+$(python-chardet)-builddeps = $(python) $(python-hypothesis) $(python-pytest) $(python-sortedcontainers) $(python-attrs) $(python-toml) $(python-py) $(python-pluggy) $(python-packaging) $(python-iniconfig) $(python-importlib_metadata) $(python-six) $(python-pyparsing) $(python-zipp) $(python-pip)
 $(python-chardet)-prereqs = $(python) $(python-hypothesis) $(python-pytest) $(python-sortedcontainers) $(python-attrs) $(python-toml) $(python-py) $(python-pluggy) $(python-packaging) $(python-iniconfig) $(python-importlib_metadata) $(python-six) $(python-pyparsing) $(python-zipp)
 $(python-chardet)-modulefile = $(modulefilesdir)/$(python-chardet)
 $(python-chardet)-prefix = $(pkgdir)/$(python-chardet)

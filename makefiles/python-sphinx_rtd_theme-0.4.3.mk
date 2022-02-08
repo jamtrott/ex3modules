@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-sphinx_rtd_theme)-url = https://github.com/rtfd/sphinx_rtd_theme/
 $(python-sphinx_rtd_theme)-srcurl = https://files.pythonhosted.org/packages/ed/73/7e550d6e4cf9f78a0e0b60b9d93dba295389c3d271c034bf2ea3463a79f9/sphinx_rtd_theme-0.4.3.tar.gz
 $(python-sphinx_rtd_theme)-src = $(pkgsrcdir)/$(notdir $($(python-sphinx_rtd_theme)-srcurl))
 $(python-sphinx_rtd_theme)-srcdir = $(pkgsrcdir)/$(python-sphinx_rtd_theme)
-$(python-sphinx_rtd_theme)-builddeps = $(python) $(python-sphinx)
+$(python-sphinx_rtd_theme)-builddeps = $(python) $(python-sphinx) $(python-pip)
 $(python-sphinx_rtd_theme)-prereqs = $(python) $(python-sphinx)
 $(python-sphinx_rtd_theme)-modulefile = $(modulefilesdir)/$(python-sphinx_rtd_theme)
 $(python-sphinx_rtd_theme)-prefix = $(pkgdir)/$(python-sphinx_rtd_theme)

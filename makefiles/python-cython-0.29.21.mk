@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-cython)-url = https://www.cython.org/
 $(python-cython)-srcurl = https://files.pythonhosted.org/packages/6c/9f/f501ba9d178aeb1f5bf7da1ad5619b207c90ac235d9859961c11829d0160/Cython-0.29.21.tar.gz
 $(python-cython)-src = $(pkgsrcdir)/$(notdir $($(python-cython)-srcurl))
 $(python-cython)-srcdir = $(pkgsrcdir)/$(python-cython)
-$(python-cython)-builddeps = $(python)
+$(python-cython)-builddeps = $(python) $(python-pip)
 $(python-cython)-prereqs = $(python)
 $(python-cython)-modulefile = $(modulefilesdir)/$(python-cython)
 $(python-cython)-prefix = $(pkgdir)/$(python-cython)

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-sortedcontainers)-url = http://www.grantjenks.com/docs/sortedcontainers
 $(python-sortedcontainers)-srcurl = https://github.com/grantjenks/python-sortedcontainers/archive/v$(python-sortedcontainers-version).tar.gz
 $(python-sortedcontainers)-src = $(pkgsrcdir)/python-sortedcontainers-$(notdir $($(python-sortedcontainers)-srcurl))
 $(python-sortedcontainers)-srcdir = $(pkgsrcdir)/$(python-sortedcontainers)
-$(python-sortedcontainers)-builddeps = $(python) $(python-zipp) $(python-pyparsing) $(python-appdirs) $(python-distlib) $(python-filelock) $(python-importlib_metadata) $(python-packaging) $(python-pluggy) $(python-py) $(python-six) $(python-toml) $(python-virtualenv) $(python-tox)
+$(python-sortedcontainers)-builddeps = $(python) $(python-zipp) $(python-pyparsing) $(python-appdirs) $(python-distlib) $(python-filelock) $(python-importlib_metadata) $(python-packaging) $(python-pluggy) $(python-py) $(python-six) $(python-toml) $(python-virtualenv) $(python-tox) $(python-pip)
 $(python-sortedcontainers)-prereqs = $(python) $(python-zipp) $(python-pyparsing) $(python-appdirs) $(python-distlib) $(python-filelock) $(python-importlib_metadata) $(python-packaging) $(python-pluggy) $(python-py) $(python-six) $(python-toml) $(python-virtualenv) $(python-tox)
 $(python-sortedcontainers)-modulefile = $(modulefilesdir)/$(python-sortedcontainers)
 $(python-sortedcontainers)-prefix = $(pkgdir)/$(python-sortedcontainers)

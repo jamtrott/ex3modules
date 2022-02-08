@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pkgconfig)-url = https://github.com/matze/pkgconfig/
 $(python-pkgconfig)-srcurl = https://files.pythonhosted.org/packages/6e/a9/ff67ef67217dfdf2aca847685fe789f82b931a6957a3deac861297585db6/pkgconfig-1.5.1.tar.gz
 $(python-pkgconfig)-src = $(pkgsrcdir)/$(notdir $($(python-pkgconfig)-srcurl))
 $(python-pkgconfig)-srcdir = $(pkgsrcdir)/$(python-pkgconfig)
-$(python-pkgconfig)-builddeps = $(python)
+$(python-pkgconfig)-builddeps = $(python) $(python-pip)
 $(python-pkgconfig)-prereqs = $(python)
 $(python-pkgconfig)-modulefile = $(modulefilesdir)/$(python-pkgconfig)
 $(python-pkgconfig)-prefix = $(pkgdir)/$(python-pkgconfig)

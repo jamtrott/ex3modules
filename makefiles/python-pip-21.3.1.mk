@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,8 +25,8 @@ $(python-pip)-url = https://pip.pypa.io/
 $(python-pip)-srcurl = https://files.pythonhosted.org/packages/da/f6/c83229dcc3635cdeb51874184241a9508ada15d8baa337a41093fab58011/pip-21.3.1.tar.gz
 $(python-pip)-src = $(pkgsrcdir)/$(notdir $($(python-pip)-srcurl))
 $(python-pip)-srcdir = $(pkgsrcdir)/$(python-pip)
-$(python-pip)-builddeps = $(python) $(python-wheel)
-$(python-pip)-prereqs = $(python)
+$(python-pip)-builddeps = $(python) $(python-setuptools) $(python-wheel) $(python-pip)
+$(python-pip)-prereqs = $(python) $(python-setuptools) $(python-wheel)
 $(python-pip)-modulefile = $(modulefilesdir)/$(python-pip)
 $(python-pip)-prefix = $(pkgdir)/$(python-pip)
 $(python-pip)-site-packages = $($(python-pip)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
@@ -72,8 +72,7 @@ $($(python-pip)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pip)-builddeps) && \
-		PYTHONPATH=$($(python-pip)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-pip)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-pip)-prefix)
 	@touch $@
 
 $($(python-pip)-modulefile): $(modulefilesdir)/.markerfile $($(python-pip)-prefix)/.pkginstall
@@ -92,7 +91,7 @@ $($(python-pip)-modulefile): $(modulefilesdir)/.markerfile $($(python-pip)-prefi
 	echo "" >>$@
 	echo "setenv PYTHON_PIP_ROOT $($(python-pip)-prefix)" >>$@
 	echo "prepend-path PATH $($(python-pip)-prefix)/bin" >>$@
-	echo "prepend-path PYTHONPATH $($(python-pip)-site-packages)" >>$@
+	echo "prepend-path PYTHONPATH $($(python-pip)-site-packages)/pip-$(python-pip-version)-py$(PYTHON_VERSION_SHORT).egg" >>$@
 	echo "set MSG \"$(python-pip)\"" >>$@
 
 $(python-pip)-src: $($(python-pip)-src)

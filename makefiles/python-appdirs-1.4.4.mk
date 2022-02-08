@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-appdirs)-url = http://github.com/ActiveState/appdirs/
 $(python-appdirs)-srcurl = https://files.pythonhosted.org/packages/d7/d8/05696357e0311f5b5c316d7b95f46c669dd9c15aaeecbb48c7d0aeb88c40/appdirs-1.4.4.tar.gz
 $(python-appdirs)-src = $(pkgsrcdir)/$(notdir $($(python-appdirs)-srcurl))
 $(python-appdirs)-srcdir = $(pkgsrcdir)/$(python-appdirs)
-$(python-appdirs)-builddeps = $(python)
+$(python-appdirs)-builddeps = $(python) $(python-pip)
 $(python-appdirs)-prereqs = $(python)
 $(python-appdirs)-modulefile = $(modulefilesdir)/$(python-appdirs)
 $(python-appdirs)-prefix = $(pkgdir)/$(python-appdirs)

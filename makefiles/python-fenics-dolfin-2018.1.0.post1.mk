@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ $(python-fenics-dolfin-2018)-srcurl = $($(fenics-dolfin-2018-src)-srcurl)
 $(python-fenics-dolfin-2018)-src = $($(fenics-dolfin-2018-src)-src)
 $(python-fenics-dolfin-2018)-srcdir = $(pkgsrcdir)/$(python-fenics-dolfin-2018)
 $(python-fenics-dolfin-2018)-builddir = $(pkgsrcdir)/$(python-fenics-dolfin-2018)/python
-$(python-fenics-dolfin-2018)-builddeps = $(python) $(cmake) $(blas) $(mpi) $(python-numpy) $(python-pkgconfig) $(python-fenics-dijitso-2018) $(python-fenics-fiat-2018) $(python-fenics-ufl-2018) $(python-fenics-ffc-2018) $(pybind11) $(python-ply) $(python-mpi4py) $(python-petsc4py) $(fenics-dolfin-2018)
+$(python-fenics-dolfin-2018)-builddeps = $(python) $(cmake) $(blas) $(mpi) $(python-numpy) $(python-pkgconfig) $(python-fenics-dijitso-2018) $(python-fenics-fiat-2018) $(python-fenics-ufl-2018) $(python-fenics-ffc-2018) $(pybind11) $(python-ply) $(python-mpi4py) $(python-petsc4py) $(fenics-dolfin-2018) $(python-pip)
 $(python-fenics-dolfin-2018)-prereqs = $(python) $(python-numpy) $(python-pkgconfig) $(python-fenics-dijitso-2018) $(python-fenics-fiat-2018) $(python-fenics-ufl-2018) $(python-fenics-ffc-2018) $(pybind11) $(python-ply) $(python-mpi4py) $(python-petsc4py) $(fenics-dolfin-2018)
 $(python-fenics-dolfin-2018)-modulefile = $(modulefilesdir)/$(python-fenics-dolfin-2018)
 $(python-fenics-dolfin-2018)-prefix = $(pkgdir)/$(python-fenics-dolfin-2018)

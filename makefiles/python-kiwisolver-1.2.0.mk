@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-kiwisolver)-url = https://github.com/nucleic/kiwi/
 $(python-kiwisolver)-srcurl = https://files.pythonhosted.org/packages/62/b8/db619d97819afb52a3ff5ff6ad3f7de408cc83a8ec2dfb31a1731c0a97c2/kiwisolver-1.2.0.tar.gz
 $(python-kiwisolver)-src = $(pkgsrcdir)/$(notdir $($(python-kiwisolver)-srcurl))
 $(python-kiwisolver)-srcdir = $(pkgsrcdir)/$(python-kiwisolver)
-$(python-kiwisolver)-builddeps = $(python)
+$(python-kiwisolver)-builddeps = $(python) $(python-pip)
 $(python-kiwisolver)-prereqs = $(python)
 $(python-kiwisolver)-modulefile = $(modulefilesdir)/$(python-kiwisolver)
 $(python-kiwisolver)-prefix = $(pkgdir)/$(python-kiwisolver)

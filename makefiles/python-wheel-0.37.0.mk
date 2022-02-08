@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ $(python-wheel)-srcurl = https://files.pythonhosted.org/packages/4e/be/8139f127b
 $(python-wheel)-src = $(pkgsrcdir)/$(notdir $($(python-wheel)-srcurl))
 $(python-wheel)-srcdir = $(pkgsrcdir)/$(python-wheel)
 $(python-wheel)-builddeps = $(python) $(python-setuptools)
-$(python-wheel)-prereqs = $(python)
+$(python-wheel)-prereqs = $(python) $(python-setuptools)
 $(python-wheel)-modulefile = $(modulefilesdir)/$(python-wheel)
 $(python-wheel)-prefix = $(pkgdir)/$(python-wheel)
 $(python-wheel)-site-packages = $($(python-wheel)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
@@ -72,8 +72,7 @@ $($(python-wheel)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-wheel)-builddeps) && \
-		PYTHONPATH=$($(python-wheel)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-wheel)-prefix)
+		$(PYTHON) setup.py install --prefix=$($(python-wheel)-prefix)
 	@touch $@
 
 $($(python-wheel)-modulefile): $(modulefilesdir)/.markerfile $($(python-wheel)-prefix)/.pkginstall
@@ -92,7 +91,7 @@ $($(python-wheel)-modulefile): $(modulefilesdir)/.markerfile $($(python-wheel)-p
 	echo "" >>$@
 	echo "setenv PYTHON_WHEEL_ROOT $($(python-wheel)-prefix)" >>$@
 	echo "prepend-path PATH $($(python-wheel)-prefix)/bin" >>$@
-	echo "prepend-path PYTHONPATH $($(python-wheel)-site-packages)" >>$@
+	echo "prepend-path PYTHONPATH $($(python-wheel)-site-packages)/wheel-$(python-wheel-version)-py$(PYTHON_VERSION_SHORT).egg" >>$@
 	echo "set MSG \"$(python-wheel)\"" >>$@
 
 $(python-wheel)-src: $($(python-wheel)-src)

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pytest-xdist)-url = https://github.com/pytest-dev/pytest-xdist/
 $(python-pytest-xdist)-srcurl = https://files.pythonhosted.org/packages/2f/4c/906cd21f4ca1afed6636de0a40d1ffdd64e8b6990223f0c2dd094cf8396a/pytest-xdist-1.32.0.tar.gz
 $(python-pytest-xdist)-src = $(pkgsrcdir)/$(notdir $($(python-pytest-xdist)-srcurl))
 $(python-pytest-xdist)-srcdir = $(pkgsrcdir)/$(python-pytest-xdist)
-$(python-pytest-xdist)-builddeps = $(python) $(python-six) $(python-pytest-forked) $(python-pytest) $(python-execnet) $(python-wcwidth) $(python-py) $(python-pluggy) $(python-packaging) $(python-more-itertools) $(python-importlib_metadata) $(python-attrs) $(python-apipkg) $(python-pyparsing) $(python-zipp)
+$(python-pytest-xdist)-builddeps = $(python) $(python-six) $(python-pytest-forked) $(python-pytest) $(python-execnet) $(python-wcwidth) $(python-py) $(python-pluggy) $(python-packaging) $(python-more-itertools) $(python-importlib_metadata) $(python-attrs) $(python-apipkg) $(python-pyparsing) $(python-zipp) $(python-pip)
 $(python-pytest-xdist)-prereqs = $(python) $(python-six) $(python-pytest-forked) $(python-pytest) $(python-execnet) $(python-wcwidth) $(python-py) $(python-pluggy) $(python-packaging) $(python-more-itertools) $(python-importlib_metadata) $(python-attrs) $(python-apipkg) $(python-pyparsing) $(python-zipp)
 $(python-pytest-xdist)-modulefile = $(modulefilesdir)/$(python-pytest-xdist)
 $(python-pytest-xdist)-prefix = $(pkgdir)/$(python-pytest-xdist)

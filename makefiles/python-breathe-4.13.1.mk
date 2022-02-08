@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-breathe)-url = https://breathe.readthedocs.io/
 $(python-breathe)-srcurl = https://files.pythonhosted.org/packages/b5/ad/d68d2ae28ae555a89bc98f87638d7e1c26e3826fe9fb8909077ee74aacca/breathe-4.13.1.tar.gz
 $(python-breathe)-src = $(pkgsrcdir)/$(notdir $($(python-breathe)-srcurl))
 $(python-breathe)-srcdir = $(pkgsrcdir)/$(python-breathe)
-$(python-breathe)-builddeps = $(python) $(python-six) $(python-docutils) $(python-sphinx) $(python-sphinxcontrib-serializinghtml) $(python-sphinxcontrib-qthelp) $(python-sphinxcontrib-jsmath) $(python-sphinxcontrib-htmlhelp) $(python-sphinxcontrib-devhelp) $(python-sphinxcontrib-applehelp) $(python-snowballstemmer) $(python-requests) $(python-packaging) $(python-imagesize) $(python-babel) $(python-alabaster) $(python-pygments) $(python-jinja2) $(python-urllib3) $(python-idna) $(python-chardet) $(python-certifi) $(python-pyparsing) $(python-pytz) $(python-markupsafe) $(python-tox)
+$(python-breathe)-builddeps = $(python) $(python-six) $(python-docutils) $(python-sphinx) $(python-sphinxcontrib-serializinghtml) $(python-sphinxcontrib-qthelp) $(python-sphinxcontrib-jsmath) $(python-sphinxcontrib-htmlhelp) $(python-sphinxcontrib-devhelp) $(python-sphinxcontrib-applehelp) $(python-snowballstemmer) $(python-requests) $(python-packaging) $(python-imagesize) $(python-babel) $(python-alabaster) $(python-pygments) $(python-jinja2) $(python-urllib3) $(python-idna) $(python-chardet) $(python-certifi) $(python-pyparsing) $(python-pytz) $(python-markupsafe) $(python-tox) $(python-pip)
 $(python-breathe)-prereqs = $(python) $(python-six) $(python-docutils) $(python-sphinx) $(python-sphinxcontrib-serializinghtml) $(python-sphinxcontrib-qthelp) $(python-sphinxcontrib-jsmath) $(python-sphinxcontrib-htmlhelp) $(python-sphinxcontrib-devhelp) $(python-sphinxcontrib-applehelp) $(python-snowballstemmer) $(python-requests) $(python-packaging) $(python-imagesize) $(python-babel) $(python-alabaster) $(python-pygments) $(python-jinja2) $(python-urllib3) $(python-idna) $(python-chardet) $(python-certifi) $(python-pyparsing) $(python-pytz) $(python-markupsafe)
 $(python-breathe)-modulefile = $(modulefilesdir)/$(python-breathe)
 $(python-breathe)-prefix = $(pkgdir)/$(python-breathe)

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pyadjoint)-url = http://www.dolfin-adjoint.org/
 $(python-pyadjoint)-srcurl = https://github.com/dolfin-adjoint/pyadjoint/archive/refs/tags/$(python-pyadjoint-version).tar.gz
 $(python-pyadjoint)-src = $(pkgsrcdir)/$(notdir $($(python-pyadjoint)-srcurl))
 $(python-pyadjoint)-srcdir = $(pkgsrcdir)/$(python-pyadjoint)
-$(python-pyadjoint)-builddeps = $(python) $(python-ipopt) $(ipopt) $(python-fenics-dolfin-2019)
+$(python-pyadjoint)-builddeps = $(python) $(python-ipopt) $(ipopt) $(python-fenics-dolfin-2019) $(python-pip)
 $(python-pyadjoint)-prereqs = $(python) $(python-ipopt) $(ipopt) $(python-fenics-dolfin-2019)
 $(python-pyadjoint)-modulefile = $(modulefilesdir)/$(python-pyadjoint)
 $(python-pyadjoint)-prefix = $(pkgdir)/$(python-pyadjoint)

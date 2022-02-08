@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pathlib2)-url = https://github.com/mcmtroffaes/pathlib2/
 $(python-pathlib2)-srcurl = https://files.pythonhosted.org/packages/94/d8/65c86584e7e97ef824a1845c72bbe95d79f5b306364fa778a3c3e401b309/pathlib2-2.3.5.tar.gz
 $(python-pathlib2)-src = $(pkgsrcdir)/$(notdir $($(python-pathlib2)-srcurl))
 $(python-pathlib2)-srcdir = $(pkgsrcdir)/$(python-pathlib2)
-$(python-pathlib2)-builddeps = $(python) $(python-six)
+$(python-pathlib2)-builddeps = $(python) $(python-six) $(python-pip)
 $(python-pathlib2)-prereqs = $(python) $(python-six)
 $(python-pathlib2)-modulefile = $(modulefilesdir)/$(python-pathlib2)
 $(python-pathlib2)-prefix = $(pkgdir)/$(python-pathlib2)

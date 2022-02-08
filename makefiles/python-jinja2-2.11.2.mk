@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-jinja2)-url = https://palletsprojects.com/p/jinja/
 $(python-jinja2)-srcurl = https://files.pythonhosted.org/packages/64/a7/45e11eebf2f15bf987c3bc11d37dcc838d9dc81250e67e4c5968f6008b6c/Jinja2-2.11.2.tar.gz
 $(python-jinja2)-src = $(pkgsrcdir)/$(notdir $($(python-jinja2)-srcurl))
 $(python-jinja2)-srcdir = $(pkgsrcdir)/$(python-jinja2)
-$(python-jinja2)-builddeps = $(python)
+$(python-jinja2)-builddeps = $(python) $(python-pip)
 $(python-jinja2)-prereqs = $(python)
 $(python-jinja2)-modulefile = $(modulefilesdir)/$(python-jinja2)
 $(python-jinja2)-prefix = $(pkgdir)/$(python-jinja2)

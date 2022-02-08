@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-meshio)-url = https://github.com/nschloe/meshio
 $(python-meshio)-srcurl = https://github.com/nschloe/meshio/archive/v$(python-meshio-version).tar.gz
 $(python-meshio)-src = $(pkgsrcdir)/python-meshio-$(notdir $($(python-meshio)-srcurl))
 $(python-meshio)-srcdir = $(pkgsrcdir)/$(python-meshio)
-$(python-meshio)-builddeps = $(python) $(python-importlib_metadata) $(python-zipp) $(python-numpy)
+$(python-meshio)-builddeps = $(python) $(python-importlib_metadata) $(python-zipp) $(python-numpy) $(python-pip)
 $(python-meshio)-prereqs = $(python)
 $(python-meshio)-modulefile = $(modulefilesdir)/$(python-meshio)
 $(python-meshio)-prefix = $(pkgdir)/$(python-meshio)

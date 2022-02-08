@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pycparser)-url = https://github.com/eliben/pycparser
 $(python-pycparser)-srcurl = https://github.com/eliben/pycparser/archive/release_v$(python-pycparser-version).tar.gz
 $(python-pycparser)-src = $(pkgsrcdir)/$(notdir $($(python-pycparser)-srcurl))
 $(python-pycparser)-srcdir = $(pkgsrcdir)/$(python-pycparser)
-$(python-pycparser)-builddeps = $(python)
+$(python-pycparser)-builddeps = $(python) $(python-pip)
 $(python-pycparser)-prereqs = $(python)
 $(python-pycparser)-modulefile = $(modulefilesdir)/$(python-pycparser)
 $(python-pycparser)-prefix = $(pkgdir)/$(python-pycparser)

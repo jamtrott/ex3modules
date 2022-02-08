@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-mccabe)-url = https://github.com/pycqa/mccabe
 $(python-mccabe)-srcurl = https://files.pythonhosted.org/packages/06/18/fa675aa501e11d6d6ca0ae73a101b2f3571a565e0f7d38e062eec18a91ee/mccabe-0.6.1.tar.gz
 $(python-mccabe)-src = $(pkgsrcdir)/$(notdir $($(python-mccabe)-srcurl))
 $(python-mccabe)-srcdir = $(pkgsrcdir)/$(python-mccabe)
-$(python-mccabe)-builddeps = $(python)
+$(python-mccabe)-builddeps = $(python) $(python-setuptools) $(python-pip)
 $(python-mccabe)-prereqs = $(python)
 $(python-mccabe)-modulefile = $(modulefilesdir)/$(python-mccabe)
 $(python-mccabe)-prefix = $(pkgdir)/$(python-mccabe)

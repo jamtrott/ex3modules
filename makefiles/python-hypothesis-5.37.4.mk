@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-hypothesis)-url = https://github.com/HypothesisWorks/hypothesis/tree/ma
 $(python-hypothesis)-srcurl = https://files.pythonhosted.org/packages/3b/e3/27952aaeb1c889ef7d04c86d411899b11d37cfae2be22e8c3db14745d1e8/hypothesis-5.37.4.tar.gz
 $(python-hypothesis)-src = $(pkgsrcdir)/$(notdir $($(python-hypothesis)-srcurl))
 $(python-hypothesis)-srcdir = $(pkgsrcdir)/$(python-hypothesis)
-$(python-hypothesis)-builddeps = $(python) $(python-attrs) $(python-sortedcontainers)
+$(python-hypothesis)-builddeps = $(python) $(python-attrs) $(python-sortedcontainers) $(python-pip)
 $(python-hypothesis)-prereqs = $(python) $(python-attrs) $(python-sortedcontainers)
 $(python-hypothesis)-modulefile = $(modulefilesdir)/$(python-hypothesis)
 $(python-hypothesis)-prefix = $(pkgdir)/$(python-hypothesis)

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-pandas)-url = https://pandas.pydata.org/
 $(python-pandas)-srcurl = https://github.com/pandas-dev/pandas/releases/download/v$(python-pandas-version)/pandas-$(python-pandas-version).tar.gz
 $(python-pandas)-src = $(pkgsrcdir)/$(notdir $($(python-pandas)-srcurl))
 $(python-pandas)-srcdir = $(pkgsrcdir)/$(python-pandas)
-$(python-pandas)-builddeps = $(python) $(python-cython) $(blas) $(mpi) $(python-numpy) $(pyhon-pytz) $(python-dateutil) $(python-six) $(python-pytest)
+$(python-pandas)-builddeps = $(python) $(python-cython) $(blas) $(mpi) $(python-numpy) $(pyhon-pytz) $(python-dateutil) $(python-six) $(python-pytest) $(python-pip)
 $(python-pandas)-prereqs = $(python)  $(python-cython) $(python-numpy) $(pyhon-pytz) $(python-dateutil) $(python-six)
 $(python-pandas)-modulefile = $(modulefilesdir)/$(python-pandas)
 $(python-pandas)-prefix = $(pkgdir)/$(python-pandas)

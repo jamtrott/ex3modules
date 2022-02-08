@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-flake8)-url = https://gitlab.com/pycqa/flake8
 $(python-flake8)-srcurl = https://files.pythonhosted.org/packages/10/b1/ef9620afac4a8794e631e54bbcd2f70257dee04693ea8fd959d57b89714e/flake8-$(python-flake8-version).tar.gz
 $(python-flake8)-src = $(pkgsrcdir)/$(notdir $($(python-flake8)-srcurl))
 $(python-flake8)-srcdir = $(pkgsrcdir)/$(python-flake8)
-$(python-flake8)-builddeps = $(python) $(python-importlib_metadata) $(python-pyflakes) $(python-pycodestyle) $(python-mccabe)
+$(python-flake8)-builddeps = $(python) $(python-importlib_metadata) $(python-pyflakes) $(python-pycodestyle) $(python-mccabe) $(python-pip)
 $(python-flake8)-prereqs = $(python) $(python-importlib_metadata) $(python-pyflakes) $(python-pycodestyle) $(python-mccabe)
 $(python-flake8)-modulefile = $(modulefilesdir)/$(python-flake8)
 $(python-flake8)-prefix = $(pkgdir)/$(python-flake8)

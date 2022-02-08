@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-numba)-url = https://numba.pydata.org/
 $(python-numba)-srcurl = https://github.com/numba/numba/archive/$(python-numba-version).tar.gz
 $(python-numba)-src = $(pkgsrcdir)/python-numba-$(notdir $($(python-numba)-srcurl))
 $(python-numba)-srcdir = $(pkgsrcdir)/$(python-numba)
-$(python-numba)-builddeps = $(python) $(python-numpy) $(python-llvmlite) $(python-wheel)
+$(python-numba)-builddeps = $(python) $(python-numpy) $(python-llvmlite) $(python-wheel) $(python-pip)
 $(python-numba)-prereqs = $(python) $(python-numpy) $(python-llvmlite)
 $(python-numba)-modulefile = $(modulefilesdir)/$(python-numba)
 $(python-numba)-prefix = $(pkgdir)/$(python-numba)

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-future)-url = https://python-future.org/
 $(python-future)-srcurl = https://files.pythonhosted.org/packages/45/0b/38b06fd9b92dc2b68d58b75f900e97884c45bedd2ff83203d933cf5851c9/future-0.18.2.tar.gz
 $(python-future)-src = $(pkgsrcdir)/$(notdir $($(python-future)-srcurl))
 $(python-future)-srcdir = $(pkgsrcdir)/$(python-future)
-$(python-future)-builddeps = $(python)
+$(python-future)-builddeps = $(python) $(python-pip)
 $(python-future)-prereqs = $(python)
 $(python-future)-modulefile = $(modulefilesdir)/$(python-future)
 $(python-future)-prefix = $(pkgdir)/$(python-future)

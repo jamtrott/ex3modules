@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-importlib_metadata)-url = http://importlib_metadata.readthedocs.io/
 $(python-importlib_metadata)-srcurl = https://files.pythonhosted.org/packages/b4/1b/baab42e3cd64c9d5caac25a9d6c054f8324cdc38975a44d600569f1f7158/importlib_metadata-1.6.0.tar.gz
 $(python-importlib_metadata)-src = $(pkgsrcdir)/$(notdir $($(python-importlib_metadata)-srcurl))
 $(python-importlib_metadata)-srcdir = $(pkgsrcdir)/$(python-importlib_metadata)
-$(python-importlib_metadata)-builddeps = $(python) $(python-zipp) $(python-pip) $(python-setuptools) $(python-wheel)
+$(python-importlib_metadata)-builddeps = $(python) $(python-zipp) $(python-pip) $(python-setuptools) $(python-wheel) $(python-pip)
 $(python-importlib_metadata)-prereqs = $(python) $(python-zipp)
 $(python-importlib_metadata)-modulefile = $(modulefilesdir)/$(python-importlib_metadata)
 $(python-importlib_metadata)-prefix = $(pkgdir)/$(python-importlib_metadata)

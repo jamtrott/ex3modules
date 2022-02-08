@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-snowballstemmer)-url = https://github.com/snowballstem/snowball
 $(python-snowballstemmer)-srcurl = https://files.pythonhosted.org/packages/21/1b/6b8bbee253195c61aeaa61181bb41d646363bdaa691d0b94b304d4901193/snowballstemmer-2.0.0.tar.gz
 $(python-snowballstemmer)-src = $(pkgsrcdir)/$(notdir $($(python-snowballstemmer)-srcurl))
 $(python-snowballstemmer)-srcdir = $(pkgsrcdir)/$(python-snowballstemmer)
-$(python-snowballstemmer)-builddeps = $(python)
+$(python-snowballstemmer)-builddeps = $(python) $(python-pip)
 $(python-snowballstemmer)-prereqs = $(python)
 $(python-snowballstemmer)-modulefile = $(modulefilesdir)/$(python-snowballstemmer)
 $(python-snowballstemmer)-prefix = $(pkgdir)/$(python-snowballstemmer)

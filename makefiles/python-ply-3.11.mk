@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-ply)-url = https://www.dabeaz.com/ply/
 $(python-ply)-srcurl = https://files.pythonhosted.org/packages/e5/69/882ee5c9d017149285cab114ebeab373308ef0f874fcdac9beb90e0ac4da/ply-3.11.tar.gz
 $(python-ply)-src = $(pkgsrcdir)/$(notdir $($(python-ply)-srcurl))
 $(python-ply)-srcdir = $(pkgsrcdir)/$(python-ply)
-$(python-ply)-builddeps = $(python) $(python-wheel)
+$(python-ply)-builddeps = $(python) $(python-wheel) $(python-pip)
 $(python-ply)-prereqs = $(python)
 $(python-ply)-modulefile = $(modulefilesdir)/$(python-ply)
 $(python-ply)-prefix = $(pkgdir)/$(python-ply)

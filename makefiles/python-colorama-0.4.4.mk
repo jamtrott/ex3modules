@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-colorama)-url = https://github.com/tartley/colorama/
 $(python-colorama)-srcurl = https://files.pythonhosted.org/packages/1f/bb/5d3246097ab77fa083a61bd8d3d527b7ae063c7d8e8671b1cf8c4ec10cbe/colorama-0.4.4.tar.gz
 $(python-colorama)-src = $(pkgsrcdir)/$(notdir $($(python-colorama)-srcurl))
 $(python-colorama)-srcdir = $(pkgsrcdir)/$(python-colorama)
-$(python-colorama)-builddeps = $(python)
+$(python-colorama)-builddeps = $(python) $(python-pip)
 $(python-colorama)-prereqs = $(python)
 $(python-colorama)-modulefile = $(modulefilesdir)/$(python-colorama)
 $(python-colorama)-prefix = $(pkgdir)/$(python-colorama)

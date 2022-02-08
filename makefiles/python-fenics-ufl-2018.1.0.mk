@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-fenics-ufl-2018)-url = https://bitbucket.org/fenics-project/ufl/
 $(python-fenics-ufl-2018)-srcurl = https://files.pythonhosted.org/packages/ec/ff/4de14f0e30f570b6d46439ae35907f36384c73498e2d56691d33a18672ae/fenics-ufl-2018.1.0.tar.gz
 $(python-fenics-ufl-2018)-src = $(pkgsrcdir)/$(notdir $($(python-fenics-ufl-2018)-srcurl))
 $(python-fenics-ufl-2018)-srcdir = $(pkgsrcdir)/$(python-fenics-ufl-2018)
-$(python-fenics-ufl-2018)-builddeps = $(python) $(blas) $(mpi) $(python-numpy)
+$(python-fenics-ufl-2018)-builddeps = $(python) $(blas) $(mpi) $(python-numpy) $(python-pip)
 $(python-fenics-ufl-2018)-prereqs = $(python) $(python-numpy)
 $(python-fenics-ufl-2018)-modulefile = $(modulefilesdir)/$(python-fenics-ufl-2018)
 $(python-fenics-ufl-2018)-prefix = $(pkgdir)/$(python-fenics-ufl-2018)

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-coverage)-url = https://github.com/nedbat/coveragepy
 $(python-coverage)-srcurl = https://files.pythonhosted.org/packages/38/df/d5e67851e83948def768d7fb1a0fd373665b20f56ff63ed220c6cd16cb11/coverage-5.5.tar.gz
 $(python-coverage)-src = $(pkgsrcdir)/$(notdir $($(python-coverage)-srcurl))
 $(python-coverage)-srcdir = $(pkgsrcdir)/$(python-coverage)
-$(python-coverage)-builddeps = $(python) $(python-wheel)
+$(python-coverage)-builddeps = $(python) $(python-wheel) $(python-pip)
 $(python-coverage)-prereqs = $(python)
 $(python-coverage)-modulefile = $(modulefilesdir)/$(python-coverage)
 $(python-coverage)-prefix = $(pkgdir)/$(python-coverage)

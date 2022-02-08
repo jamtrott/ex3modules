@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ $(python-execnet)-url = https://execnet.readthedocs.io/en/latest/
 $(python-execnet)-srcurl = https://files.pythonhosted.org/packages/5a/61/1b50e0891d9b934154637fdaac88c68a82fd8dc5648dfb04e65937fc6234/execnet-1.7.1.tar.gz
 $(python-execnet)-src = $(pkgsrcdir)/$(notdir $($(python-execnet)-srcurl))
 $(python-execnet)-srcdir = $(pkgsrcdir)/$(python-execnet)
-$(python-execnet)-builddeps = $(python) $(python-apipkg) $(python-setuptools_scm)
+$(python-execnet)-builddeps = $(python) $(python-apipkg) $(python-setuptools_scm) $(python-pip)
 $(python-execnet)-prereqs = $(python) $(python-apipkg)
 $(python-execnet)-modulefile = $(modulefilesdir)/$(python-execnet)
 $(python-execnet)-prefix = $(pkgdir)/$(python-execnet)
