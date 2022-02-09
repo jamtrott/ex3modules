@@ -23,7 +23,7 @@ slurm-20.02.7 = slurm-$(slurm-20.02.7-version)
 $(slurm-20.02.7)-description = Highly configurable open-source workload manager
 $(slurm-20.02.7)-url = https://www.schedmd.com/
 $(slurm-20.02.7)-srcurl = https://download.schedmd.com/slurm/slurm-$(slurm-20.02.7-version).tar.bz2
-$(slurm-20.02.7)-builddeps = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(curl) $(readline) $(pmix) $(hdf5)
+$(slurm-20.02.7)-builddeps = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(curl) $(readline) $(pmix) $(hdf5) $(nss)
 $(slurm-20.02.7)-prereqs = $(ucx) $(numactl) $(hwloc) $(freeipmi) $(munge) $(curl) $(readline) $(pmix) $(hdf5)
 $(slurm-20.02.7)-src = $(pkgsrcdir)/$(notdir $($(slurm-20.02.7)-srcurl))
 $(slurm-20.02.7)-srcdir = $(pkgsrcdir)/$(slurm-20.02.7)
@@ -83,6 +83,7 @@ $($(slurm-20.02.7)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(slurm-20.02.7)-builddeps) && \
 		$(MAKE) install && \
+		$(MAKE) -C contribs/nss_slurm install && \
 		$(MAKE) -C contribs/pmi install && \
 		$(MAKE) -C contribs/pmi2 install
 	@touch $@
