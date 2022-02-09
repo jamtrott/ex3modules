@@ -64,7 +64,7 @@ $($(python-docutils)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-docutils)-builddeps) && \
-		./alltests.py
+		$(PYTHON) alltests.py
 	@touch $@
 
 $($(python-docutils)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-docutils)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-docutils)-prefix)/.pkgcheck $($(python-docutils)-site-packages)/.markerfile
