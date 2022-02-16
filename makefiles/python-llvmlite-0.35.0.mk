@@ -93,6 +93,7 @@ $($(python-llvmlite)-modulefile): $(modulefilesdir)/.markerfile $($(python-llvml
 	echo "" >>$@
 	echo "setenv PYTHON_LLVMLITE_ROOT $($(python-llvmlite)-prefix)" >>$@
 	echo "prepend-path PATH $($(python-llvmlite)-prefix)/bin" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(python-llvmlite)-site-packages)/llvmlite/binding/" >>$@
 	echo "prepend-path PYTHONPATH $($(python-llvmlite)-site-packages)" >>$@
 	echo "set MSG \"$(python-llvmlite)\"" >>$@
 
