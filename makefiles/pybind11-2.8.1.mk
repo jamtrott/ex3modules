@@ -56,6 +56,7 @@ $($(pybind11)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(pybind11)-builddeps) && \
 		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(pybind11)-prefix) \
+			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DBUILD_SHARED_LIBS=TRUE \
 			-DPYTHON_EXECUTABLE=$(PYTHON) && \
 		$(MAKE)

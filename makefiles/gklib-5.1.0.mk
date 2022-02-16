@@ -54,7 +54,8 @@ $($(gklib)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(gklib)-builddeps) && \
-		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(gklib)-prefix) && \
+		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(gklib)-prefix) \
+			-DCMAKE_INSTALL_LIBDIR=lib && \
 		$(MAKE)
 	@touch $@
 

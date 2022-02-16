@@ -55,6 +55,7 @@ $($(parmetis-32)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(parmetis-32)-builddeps) && \
 		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(parmetis-32)-prefix) \
+			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DCMAKE_C_COMPILER="$${MPICC}" \
 			-DCMAKE_CXX_COMPILER="$${MPICXX}" \
 			-DSHARED=1 \

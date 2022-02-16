@@ -58,6 +58,7 @@ $($(virtualgl)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(virtualgl)-builddeps) && \
 		$(CMAKE) -DCMAKE_INSTALL_PREFIX=$($(virtualgl)-prefix) \
+		-DCMAKE_INSTALL_LIBDIR=lib \
 		-DVGL_FAKEOPENCL=0 \
 		-DVGL_USESSL=1 \
 		-DVGL_USEXV=1 \

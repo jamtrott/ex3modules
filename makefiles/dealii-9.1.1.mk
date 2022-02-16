@@ -88,6 +88,7 @@ $($(dealii)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(dealii)-builddeps) && \
 		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(dealii)-prefix) \
+			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DDEAL_II_WITH_THREADS=OFF \
 			-DDEAL_II_WITH_MPI=ON \
 			-DGSL_LIBRARY="$${GSL_LIBDIR}/libgsl.so" \

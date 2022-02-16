@@ -59,6 +59,7 @@ $($(llvm)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(l
 		$(MODULE) load $($(llvm)-builddeps) && \
 		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(llvm)-prefix) \
+			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DLLVM_ENABLE_FFI=ON \
 			-DFFI_INCLUDE_DIR="$${LIBFFI_INCLUDEDIR}" \
 			-DFFI_LIBRARY_DIR="$${LIBFFI_LIBDIR}" \

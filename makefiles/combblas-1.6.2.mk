@@ -56,6 +56,7 @@ $($(combblas)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MODULE) load $($(combblas)-builddeps) && \
 		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(combblas)-prefix) \
+			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DBUILD_SHARED_LIBS=TRUE && \
 		$(MAKE)
 	@touch $@

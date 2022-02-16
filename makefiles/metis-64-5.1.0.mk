@@ -84,6 +84,7 @@ $($(metis-64)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(metis-64)-builddeps) && \
 		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(metis-64)-prefix) \
+			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DSHARED=1 \
 			-DGKLIB_PATH=$($(metis-64)-srcdir)/GKlib && \
 		$(MAKE)

@@ -58,6 +58,7 @@ $($(libufget)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(libufget)-builddeps) && \
 		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(libufget)-prefix) \
+			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DMATIO_INCLUDE_DIR="$${MATIO_INCLUDEDIR}" \
 			-DSQLITE3_INCLUDE_DIR="$${SQLITE_INCLUDEDIR}" \
 			-DBLAS_LIBRARIES="$${BLASLIB}" \

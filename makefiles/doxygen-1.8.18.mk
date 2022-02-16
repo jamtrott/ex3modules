@@ -59,6 +59,7 @@ $($(doxygen)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 		$(MODULE) load $($(doxygen)-builddeps) && \
 		$(CMAKE) -G "Unix Makefiles" \
 			-DCMAKE_INSTALL_PREFIX=$($(doxygen)-prefix) \
+			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DPYTHON_EXECUTABLE=$(PYTHON) \
 			.. && \
 		$(MAKE)
