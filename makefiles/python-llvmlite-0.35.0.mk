@@ -26,7 +26,7 @@ $(python-llvmlite)-srcurl = https://github.com/numba/llvmlite/archive/v$(python-
 $(python-llvmlite)-src = $(pkgsrcdir)/python-llvmlite-$(notdir $($(python-llvmlite)-srcurl))
 $(python-llvmlite)-srcdir = $(pkgsrcdir)/$(python-llvmlite)
 $(python-llvmlite)-builddeps = $(cmake) $(python) $(llvm-10) $(python-wheel) $(python-pip)
-$(python-llvmlite)-prereqs = $(python) $(llvm-10)
+$(python-llvmlite)-prereqs = $(python)
 $(python-llvmlite)-modulefile = $(modulefilesdir)/$(python-llvmlite)
 $(python-llvmlite)-prefix = $(pkgdir)/$(python-llvmlite)
 $(python-llvmlite)-site-packages = $($(python-llvmlite)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
@@ -52,20 +52,9 @@ $($(python-llvmlite)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-llvmlite)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-llvmlite)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-llvmlite)-prefix)/.pkgpatch
-	cd $($(python-llvmlite)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-llvmlite)-builddeps) && \
-		LLVM_CONFIG=$${LLVM_ROOT}/bin/llvm-config \
-		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-llvmlite)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-llvmlite)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-llvmlite)-prefix)/.pkgbuild
-	cd $($(python-llvmlite)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-llvmlite)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-llvmlite)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-llvmlite)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-llvmlite)-prefix)/.pkgcheck $($(python-llvmlite)-site-packages)/.markerfile
@@ -74,6 +63,7 @@ $($(python-llvmlite)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-llvmlite)-builddeps) && \
 		PYTHONPATH=$($(python-llvmlite)-site-packages):$${PYTHONPATH} \
+		LLVM_CONFIG=$${LLVM_ROOT}/bin/llvm-config \
 		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-llvmlite)-prefix)
 	@touch $@
 
