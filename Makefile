@@ -268,6 +268,25 @@ $(warning Warning: Slurm not found - some modules may not build.)
 endif
 
 #
+# zlib
+#
+ifeq ($(WITH_ZLIB),zlib-1.2.11)
+zlib = zlib-1.2.11
+$(info Using internal zlib ($(zlib)))
+else ifeq ($(WITH_ZLIB),no)
+$(warning Warning: zlib is disabled - some modules may not build.)
+else ifneq ($(WITH_ZLIB),)
+ZLIB_ROOT = $(WITH_ZLIB)
+$(info Using zlib from $(ZLIB_ROOT))
+export C_INCLUDE_PATH := $(ZLIB_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
+export CPLUS_INCLUDE_PATH := $(ZLIB_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
+export LIBRARY_PATH := $(ZLIB_ROOT)/lib:$(ZLIB_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
+export LD_LIBRARY_PATH := $(ZLIB_ROOT)/lib:$(ZLIB_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
+else
+$(warning Warning: using default path for zlib - some modules may not build if zlib is not found.)
+endif
+
+#
 # Default packages
 #
 pkgs := $(pkgs) \
@@ -634,7 +653,8 @@ pkgs := $(pkgs) \
 	xorg-util-macros-1.19.2 \
 	xorgproto-2019.2 \
 	xtrans-1.4.0 \
-	xz-5.2.5
+	xz-5.2.5 \
+	zlib-1.2.11
 
 # Sort package list and remove duplicates
 uniq = $(if $1,$(firstword $1) $(call uniq,$(filter-out $(firstword $1),$1)))
