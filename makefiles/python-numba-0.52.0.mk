@@ -52,6 +52,11 @@ $($(python-numba)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-numba)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-numba)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-numba)-prefix)/.pkgpatch
+	cd $($(python-numba)-srcdir) && \
+		$(MODULESINIT) && \
+		$(MODULE) use $(modulefilesdir) && \
+		$(MODULE) load $($(python-numba)-builddeps) && \
+		NUMBA_DISABLE_TBB=1 $(PYTHON) setup.py build
 	@touch $@
 
 $($(python-numba)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-numba)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-numba)-prefix)/.pkgbuild
