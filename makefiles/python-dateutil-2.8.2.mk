@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-dateutil-2.0
+# python-dateutil-2.8.2
 
-python-dateutil-version = 2.0
+python-dateutil-version = 2.8.2
 python-dateutil = python-dateutil-$(python-dateutil-version)
 $(python-dateutil)-description = Extensions to the standard datetime module
 $(python-dateutil)-url = https://launchpad.net/dateutil/
-$(python-dateutil)-srcurl = https://labix.org/download/python-dateutil/python-dateutil-$(python-dateutil-version).tar.gz
+$(python-dateutil)-srcurl = https://files.pythonhosted.org/packages/4c/c4/13b4776ea2d76c115c1d1b84579f3764ee6d57204f6be27119f13a61d0a9/python-dateutil-2.8.2.tar.gz
 $(python-dateutil)-src = $(pkgsrcdir)/$(notdir $($(python-dateutil)-srcurl))
 $(python-dateutil)-srcdir = $(pkgsrcdir)/$(python-dateutil)
 $(python-dateutil)-builddeps = $(python) $(python-pip)

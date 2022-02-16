@@ -499,7 +499,7 @@ pkgs := $(pkgs) \
 	python-coverage-5.5 \
 	python-cycler-0.10.0 \
 	python-cython-0.29.21 \
-	python-dateutil-2.0 \
+	python-dateutil-2.8.2 \
 	python-distlib-0.3.1 \
 	python-docutils-0.16 \
 	python-execnet-1.7.1 \
