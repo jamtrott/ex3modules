@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as puhwloched by
@@ -18,25 +18,25 @@
 #
 # hwloc-src-2.4.1
 
-hwloc-src-version = 2.4.1
-hwloc-src = hwloc-src-$(hwloc-src-version)
-$(hwloc-src)-description = Portable abstraction of hierarchical topology of modern architectures (source)
-$(hwloc-src)-url = https://www.open-mpi.org/projects/hwloc/
-$(hwloc-src)-srcurl = https://download.open-mpi.org/release/hwloc/v2.4/hwloc-$(hwloc-version).tar.gz
-$(hwloc-src)-builddeps =
-$(hwloc-src)-prereqs =
-$(hwloc-src)-src = $(pkgsrcdir)/$(notdir $($(hwloc-src)-srcurl))
+hwloc-src-2.4.1-version = 2.4.1
+hwloc-src-2.4.1 = hwloc-src-$(hwloc-src-2.4.1-version)
+$(hwloc-src-2.4.1)-description = Portable abstraction of hierarchical topology of modern architectures (source)
+$(hwloc-src-2.4.1)-url = https://www.open-mpi.org/projects/hwloc/
+$(hwloc-src-2.4.1)-srcurl = https://download.open-mpi.org/release/hwloc/v2.4/hwloc-$(hwloc-src-2.4.1-version).tar.gz
+$(hwloc-src-2.4.1)-builddeps =
+$(hwloc-src-2.4.1)-prereqs =
+$(hwloc-src-2.4.1)-src = $(pkgsrcdir)/$(notdir $($(hwloc-src-2.4.1)-srcurl))
 
-$($(hwloc-src)-src): $(dir $($(hwloc-src)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(hwloc-src)-srcurl)
+$($(hwloc-src-2.4.1)-src): $(dir $($(hwloc-src-2.4.1)-src)).markerfile
+	$(CURL) $(curl_options) --output $@ $($(hwloc-src-2.4.1)-srcurl)
 
-$(hwloc-src)-src: $($(hwloc-src)-src)
-$(hwloc-src)-unpack:
-$(hwloc-src)-patch:
-$(hwloc-src)-build:
-$(hwloc-src)-check:
-$(hwloc-src)-install:
-$(hwloc-src)-modulefile:
-$(hwloc-src)-clean:
-	rm -rf $($(hwloc-src)-src)
-$(hwloc-src): $(hwloc-src)-src $(hwloc-src)-unpack $(hwloc-src)-patch $(hwloc-src)-build $(hwloc-src)-check $(hwloc-src)-install $(hwloc-src)-modulefile
+$(hwloc-src-2.4.1)-src: $($(hwloc-src-2.4.1)-src)
+$(hwloc-src-2.4.1)-unpack:
+$(hwloc-src-2.4.1)-patch:
+$(hwloc-src-2.4.1)-build:
+$(hwloc-src-2.4.1)-check:
+$(hwloc-src-2.4.1)-install:
+$(hwloc-src-2.4.1)-modulefile:
+$(hwloc-src-2.4.1)-clean:
+	rm -rf $($(hwloc-src-2.4.1)-src)
+$(hwloc-src-2.4.1): $(hwloc-src-2.4.1)-src $(hwloc-src-2.4.1)-unpack $(hwloc-src-2.4.1)-patch $(hwloc-src-2.4.1)-build $(hwloc-src-2.4.1)-check $(hwloc-src-2.4.1)-install $(hwloc-src-2.4.1)-modulefile

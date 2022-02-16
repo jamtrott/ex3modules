@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,99 +18,99 @@
 #
 # hwloc-2.4.1
 
-hwloc-version = 2.4.1
-hwloc = hwloc-$(hwloc-version)
-$(hwloc)-description = Portable abstraction of hierarchical topology of modern architectures
-$(hwloc)-url = https://www.open-mpi.org/projects/hwloc/
-$(hwloc)-srcurl =
-$(hwloc)-builddeps =
-$(hwloc)-prereqs =
-$(hwloc)-src = $($(hwloc-src)-src)
-$(hwloc)-srcdir = $(pkgsrcdir)/$(hwloc)
-$(hwloc)-builddir = $($(hwloc)-srcdir)
-$(hwloc)-modulefile = $(modulefilesdir)/$(hwloc)
-$(hwloc)-prefix = $(pkgdir)/$(hwloc)
+hwloc-2.4.1-version = 2.4.1
+hwloc-2.4.1 = hwloc-$(hwloc-2.4.1-version)
+$(hwloc-2.4.1)-description = Portable abstraction of hierarchical topology of modern architectures
+$(hwloc-2.4.1)-url = https://www.open-mpi.org/projects/hwloc/
+$(hwloc-2.4.1)-srcurl =
+$(hwloc-2.4.1)-builddeps =
+$(hwloc-2.4.1)-prereqs =
+$(hwloc-2.4.1)-src = $($(hwloc-src-2.4.1)-src)
+$(hwloc-2.4.1)-srcdir = $(pkgsrcdir)/$(hwloc-2.4.1)
+$(hwloc-2.4.1)-builddir = $($(hwloc-2.4.1)-srcdir)
+$(hwloc-2.4.1)-modulefile = $(modulefilesdir)/$(hwloc-2.4.1)
+$(hwloc-2.4.1)-prefix = $(pkgdir)/$(hwloc-2.4.1)
 
-$($(hwloc)-srcdir)/.markerfile:
+$($(hwloc-2.4.1)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(hwloc)-prefix)/.markerfile:
+$($(hwloc-2.4.1)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(hwloc)-prefix)/.pkgunpack: $$($(hwloc)-src) $($(hwloc)-srcdir)/.markerfile $($(hwloc)-prefix)/.markerfile $$(foreach dep,$$($(hwloc)-builddeps),$(modulefilesdir)/$$(dep))
-	tar -C $($(hwloc)-srcdir) --strip-components 1 -xz -f $<
+$($(hwloc-2.4.1)-prefix)/.pkgunpack: $$($(hwloc-2.4.1)-src) $($(hwloc-2.4.1)-srcdir)/.markerfile $($(hwloc-2.4.1)-prefix)/.markerfile $$(foreach dep,$$($(hwloc-2.4.1)-builddeps),$(modulefilesdir)/$$(dep))
+	tar -C $($(hwloc-2.4.1)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
-$($(hwloc)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(hwloc)-builddeps),$(modulefilesdir)/$$(dep)) $($(hwloc)-prefix)/.pkgunpack
+$($(hwloc-2.4.1)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(hwloc-2.4.1)-builddeps),$(modulefilesdir)/$$(dep)) $($(hwloc-2.4.1)-prefix)/.pkgunpack
 	@touch $@
 
-ifneq ($($(hwloc)-builddir),$($(hwloc)-srcdir))
-$($(hwloc)-builddir)/.markerfile: $($(hwloc)-prefix)/.pkgunpack
+ifneq ($($(hwloc-2.4.1)-builddir),$($(hwloc-2.4.1)-srcdir))
+$($(hwloc-2.4.1)-builddir)/.markerfile: $($(hwloc-2.4.1)-prefix)/.pkgunpack
 	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
-$($(hwloc)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(hwloc)-builddeps),$(modulefilesdir)/$$(dep)) $($(hwloc)-prefix)/.pkgpatch
-	cd $($(hwloc)-builddir) && \
+$($(hwloc-2.4.1)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(hwloc-2.4.1)-builddeps),$(modulefilesdir)/$$(dep)) $($(hwloc-2.4.1)-prefix)/.pkgpatch
+	cd $($(hwloc-2.4.1)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(hwloc)-builddeps) && \
-		./configure --prefix=$($(hwloc)-prefix) && \
+		$(MODULE) load $($(hwloc-2.4.1)-builddeps) && \
+		./configure --prefix=$($(hwloc-2.4.1)-prefix) && \
 		$(MAKE)
 	@touch $@
 
-$($(hwloc)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(hwloc)-builddeps),$(modulefilesdir)/$$(dep)) $($(hwloc)-prefix)/.pkgbuild
-# 	cd $($(hwloc)-builddir) && \
+$($(hwloc-2.4.1)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(hwloc-2.4.1)-builddeps),$(modulefilesdir)/$$(dep)) $($(hwloc-2.4.1)-prefix)/.pkgbuild
+# 	cd $($(hwloc-2.4.1)-builddir) && \
 # 		$(MODULESINIT) && \
 # 		$(MODULE) use $(modulefilesdir) && \
-# 		$(MODULE) load $($(hwloc)-builddeps) && \
+# 		$(MODULE) load $($(hwloc-2.4.1)-builddeps) && \
 # 		$(MAKE) check
 	@touch $@
 
-$($(hwloc)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(hwloc)-builddeps),$(modulefilesdir)/$$(dep)) $($(hwloc)-prefix)/.pkgcheck
-	cd $($(hwloc)-builddir) && \
+$($(hwloc-2.4.1)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(hwloc-2.4.1)-builddeps),$(modulefilesdir)/$$(dep)) $($(hwloc-2.4.1)-prefix)/.pkgcheck
+	cd $($(hwloc-2.4.1)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(hwloc)-builddeps) && \
+		$(MODULE) load $($(hwloc-2.4.1)-builddeps) && \
 		$(MAKE) install
 	@touch $@
 
-$($(hwloc)-modulefile): $(modulefilesdir)/.markerfile $($(hwloc)-prefix)/.pkginstall
+$($(hwloc-2.4.1)-modulefile): $(modulefilesdir)/.markerfile $($(hwloc-2.4.1)-prefix)/.pkginstall
 	printf "" >$@
 	echo "#%Module" >>$@
-	echo "# $(hwloc)" >>$@
+	echo "# $(hwloc-2.4.1)" >>$@
 	echo "" >>$@
 	echo "proc ModulesHelp { } {" >>$@
-	echo "     puts stderr \"\tSets up the environment for $(hwloc)\\n\"" >>$@
+	echo "     puts stderr \"\tSets up the environment for $(hwloc-2.4.1)\\n\"" >>$@
 	echo "}" >>$@
 	echo "" >>$@
-	echo "module-whatis \"$($(hwloc)-description)\"" >>$@
-	echo "module-whatis \"$($(hwloc)-url)\"" >>$@
-	printf "$(foreach prereq,$($(hwloc)-prereqs),\n$(MODULE) load $(prereq))" >>$@
+	echo "module-whatis \"$($(hwloc-2.4.1)-description)\"" >>$@
+	echo "module-whatis \"$($(hwloc-2.4.1)-url)\"" >>$@
+	printf "$(foreach prereq,$($(hwloc-2.4.1)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv HWLOC_ROOT $($(hwloc)-prefix)" >>$@
-	echo "setenv HWLOC_INCDIR $($(hwloc)-prefix)/include" >>$@
-	echo "setenv HWLOC_INCLUDEDIR $($(hwloc)-prefix)/include" >>$@
-	echo "setenv HWLOC_LIBDIR $($(hwloc)-prefix)/lib" >>$@
-	echo "setenv HWLOC_LIBRARYDIR $($(hwloc)-prefix)/lib" >>$@
-	echo "prepend-path PATH $($(hwloc)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(hwloc)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(hwloc)-prefix)/include" >>$@
-	echo "prepend-path LIBRARY_PATH $($(hwloc)-prefix)/lib" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(hwloc)-prefix)/lib" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(hwloc)-prefix)/lib/pkgconfig" >>$@
-	echo "prepend-path MANPATH $($(hwloc)-prefix)/share/man" >>$@
-	echo "set MSG \"$(hwloc)\"" >>$@
+	echo "setenv HWLOC_ROOT $($(hwloc-2.4.1)-prefix)" >>$@
+	echo "setenv HWLOC_INCDIR $($(hwloc-2.4.1)-prefix)/include" >>$@
+	echo "setenv HWLOC_INCLUDEDIR $($(hwloc-2.4.1)-prefix)/include" >>$@
+	echo "setenv HWLOC_LIBDIR $($(hwloc-2.4.1)-prefix)/lib" >>$@
+	echo "setenv HWLOC_LIBRARYDIR $($(hwloc-2.4.1)-prefix)/lib" >>$@
+	echo "prepend-path PATH $($(hwloc-2.4.1)-prefix)/bin" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(hwloc-2.4.1)-prefix)/include" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(hwloc-2.4.1)-prefix)/include" >>$@
+	echo "prepend-path LIBRARY_PATH $($(hwloc-2.4.1)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(hwloc-2.4.1)-prefix)/lib" >>$@
+	echo "prepend-path PKG_CONFIG_PATH $($(hwloc-2.4.1)-prefix)/lib/pkgconfig" >>$@
+	echo "prepend-path MANPATH $($(hwloc-2.4.1)-prefix)/share/man" >>$@
+	echo "set MSG \"$(hwloc-2.4.1)\"" >>$@
 
-$(hwloc)-src: $$($(hwloc)-src)
-$(hwloc)-unpack: $($(hwloc)-prefix)/.pkgunpack
-$(hwloc)-patch: $($(hwloc)-prefix)/.pkgpatch
-$(hwloc)-build: $($(hwloc)-prefix)/.pkgbuild
-$(hwloc)-check: $($(hwloc)-prefix)/.pkgcheck
-$(hwloc)-install: $($(hwloc)-prefix)/.pkginstall
-$(hwloc)-modulefile: $($(hwloc)-modulefile)
-$(hwloc)-clean:
-	rm -rf $($(hwloc)-modulefile)
-	rm -rf $($(hwloc)-prefix)
-	rm -rf $($(hwloc)-srcdir)
-$(hwloc): $(hwloc)-src $(hwloc)-unpack $(hwloc)-patch $(hwloc)-build $(hwloc)-check $(hwloc)-install $(hwloc)-modulefile
+$(hwloc-2.4.1)-src: $$($(hwloc-2.4.1)-src)
+$(hwloc-2.4.1)-unpack: $($(hwloc-2.4.1)-prefix)/.pkgunpack
+$(hwloc-2.4.1)-patch: $($(hwloc-2.4.1)-prefix)/.pkgpatch
+$(hwloc-2.4.1)-build: $($(hwloc-2.4.1)-prefix)/.pkgbuild
+$(hwloc-2.4.1)-check: $($(hwloc-2.4.1)-prefix)/.pkgcheck
+$(hwloc-2.4.1)-install: $($(hwloc-2.4.1)-prefix)/.pkginstall
+$(hwloc-2.4.1)-modulefile: $($(hwloc-2.4.1)-modulefile)
+$(hwloc-2.4.1)-clean:
+	rm -rf $($(hwloc-2.4.1)-modulefile)
+	rm -rf $($(hwloc-2.4.1)-prefix)
+	rm -rf $($(hwloc-2.4.1)-srcdir)
+$(hwloc-2.4.1): $(hwloc-2.4.1)-src $(hwloc-2.4.1)-unpack $(hwloc-2.4.1)-patch $(hwloc-2.4.1)-build $(hwloc-2.4.1)-check $(hwloc-2.4.1)-install $(hwloc-2.4.1)-modulefile
