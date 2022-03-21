@@ -45,7 +45,7 @@ $($(gdrcopy)-prefix)/.pkgunpack: $$($(gdrcopy)-src) $($(gdrcopy)-srcdir)/.marker
 	@touch $@
 
 $($(gdrcopy)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(gdrcopy)-builddeps),$(modulefilesdir)/$$(dep)) $($(gdrcopy)-prefix)/.pkgunpack
-	sed -i 's,gcc -I $$PWD -I $$PWD/src $$src -o $$exe,$${CC} -I $$PWD -I $$PWD/src $$src -o $$exe,' $($(gdrcopy)-srcdir)/config_arch
+#	sed -i 's,gcc -I $$PWD -I $$PWD/src $$src -o $$exe,$${CC} -I $$PWD -I $$PWD/src $$src -o $$exe,' $($(gdrcopy)-srcdir)/config_arch
 	@touch $@
 
 ifneq ($($(gdrcopy)-builddir),$($(gdrcopy)-srcdir))

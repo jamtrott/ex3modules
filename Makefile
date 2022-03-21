@@ -138,6 +138,18 @@ $(warning Warning: No Fortran compiler found - some modules may not build.)
 endif
 
 #
+# C compiler
+#
+ifneq ($(CC),)
+$(info Using $(CC) ($(shell $(CC) --version | head -n 1)))
+else ifneq ($(shell which gcc),)
+$(info Using $(shell which gcc) ($(shell gcc --version | head -n 1)))
+export CC := gcc
+else
+$(warning Warning: No C compiler found - some modules may not build.)
+endif
+
+#
 # hwloc
 #
 ifeq ($(WITH_HWLOC),hwloc-2.4.1)
@@ -384,6 +396,7 @@ pkgs := $(pkgs) \
 	hypre-32-2.24.0 \
 	hypre-32-cuda-2.23.0 \
 	hypre-32-cuda-2.24.0 \
+	hypre-32-cuda-dbg-2.23.0 \
 	hypre-64-2.17.0 \
 	hypre-64-2.23.0 \
 	hypre-src-2.17.0 \
