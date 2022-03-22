@@ -1,5 +1,7 @@
 * Noteworthy changes in the upcoming release
 
+Add SuperLU_dist 7.2.0.
+
 Remove dependencies on internal GCC to let the user decide which
 compiler to use.
 

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -72,7 +72,7 @@ mumps = mumps-32-5.4.1
 parmetis = parmetis-32-4.0.3
 petsc = petsc-32-3.16.2
 suitesparse = suitesparse-32-5.7.2
-superlu_dist = superlu_dist-32-6.4.0
+superlu_dist = superlu_dist-32-7.2.0
 
 # CUDA-related packages - note CUDA toolkit 10.1.243 is only supported
 # on x86_64.
@@ -99,6 +99,10 @@ endif
 #
 ifeq ($(WITH_CMAKE),cmake-3.17.2)
 cmake = cmake-3.17.2
+CMAKE = $(pkgdir)/$(cmake)/bin/cmake
+$(info Using internal CMake ($(cmake)))
+else ifeq ($(WITH_CMAKE),cmake-3.22.3)
+cmake = cmake-3.22.3
 CMAKE = $(pkgdir)/$(cmake)/bin/cmake
 $(info Using internal CMake ($(cmake)))
 else ifeq ($(WITH_CMAKE),no)
@@ -314,6 +318,7 @@ pkgs := $(pkgs) \
 	cgal-5.2.2 \
 	clang-11.0.0 \
 	cmake-3.17.2 \
+	cmake-3.22.3 \
 	combblas-1.6.2 \
 	combblas-src-1.6.2 \
 	cpupower-4.19.75 \
@@ -328,10 +333,10 @@ pkgs := $(pkgs) \
 	fenics-dolfin-2018.1.0.post1 \
 	fenics-dolfin-2019-src-2019.1.0.post0 \
 	fenics-dolfin-2019.1.0.post0 \
-	fenics-mshr-2019-src-2019.1.0 \
-	fenics-mshr-2019.1.0 \
 	fenics-dolfinx-20200525 \
 	fenics-dolfinx-src-20200525 \
+	fenics-mshr-2019-src-2019.1.0 \
+	fenics-mshr-2019.1.0 \
 	fftw-3.3.8 \
 	flex-2.6.4 \
 	fmt-8.0.1 \
@@ -344,8 +349,8 @@ pkgs := $(pkgs) \
 	gcc-11.2.0 \
 	gcc-8.4.0 \
 	gcc-9.2.0 \
-	gcc-src-8.4.0 \
 	gcc-src-10.1.0 \
+	gcc-src-8.4.0 \
 	gdb-9.2 \
 	gengetopt-2.23 \
 	gettext-0.21 \
@@ -571,6 +576,7 @@ pkgs := $(pkgs) \
 	python-nose-1.3.7 \
 	python-numba-0.52.0 \
 	python-numpy-1.19.2 \
+	python-numpy-quaternion-2021.11.4.15.26.3 \
 	python-packaging-20.4 \
 	python-pandas-1.0.3 \
 	python-pathlib2-2.3.5 \
@@ -596,7 +602,6 @@ pkgs := $(pkgs) \
 	python-pytest-forked-1.1.3 \
 	python-pytest-xdist-1.32.0 \
 	python-pytz-2020.1 \
-	python-numpy-quaternion-2021.11.4.15.26.3 \
 	python-requests-2.23.0 \
 	python-scipy-1.7.3 \
 	python-setuptools-59.6.0 \
@@ -638,8 +643,11 @@ pkgs := $(pkgs) \
 	suitesparse-src-5.7.2 \
 	superlu-5.2.1 \
 	superlu_dist-32-6.4.0 \
+	superlu_dist-32-7.2.0 \
 	superlu_dist-64-6.4.0 \
+	superlu_dist-64-7.2.0 \
 	superlu_dist-src-6.4.0 \
+	superlu_dist-src-7.2.0 \
 	texinfo-6.7 \
 	texlive-20210325 \
 	ucx-1.9.0 \
