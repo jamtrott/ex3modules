@@ -70,7 +70,7 @@ hypre = hypre-32-2.17.0
 metis = metis-32-5.1.0
 mumps = mumps-32-5.4.1
 parmetis = parmetis-32-4.0.3
-petsc = petsc-32-3.16.2
+petsc = petsc-32-3.16.5
 suitesparse = suitesparse-32-5.7.2
 superlu_dist = superlu_dist-32-7.2.0
 
@@ -87,7 +87,7 @@ pkgs := $(pkgs) \
 	openmpi-cuda-4.0.5 \
 	parmetis-cuda-4.0.3 \
 	petsc-cuda-3.13.2 \
-	petsc-cuda-3.16.2 \
+	petsc-cuda-3.16.5 \
 	scalapack-cuda-2.1.0 \
 	scotch-cuda-6.0.7 \
 	superlu_dist-cuda-6.4.0 \
@@ -504,10 +504,10 @@ pkgs := $(pkgs) \
 	perf-4.19.75 \
 	perl-5.30.2 \
 	petsc-3.13.2 \
-	petsc-32-3.16.2 \
-	petsc-64-3.16.2 \
+	petsc-32-3.16.5 \
+	petsc-64-3.16.5 \
 	petsc-src-3.13.2 \
-	petsc-src-3.16.2 \
+	petsc-src-3.16.5 \
 	pixman-0.38.4 \
 	pmix-3.1.5 \
 	poppler-21.04.0 \
