@@ -70,7 +70,8 @@ $($(superlu_dist-32)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 			-DTPL_COMBBLAS_INCLUDE_DIRS="$${COMBBLAS_INCDIR}/CombBLAS;$${COMBBLAS_INCDIR}/CombBLAS/BipartiteMatchings" \
 			-DTPL_COMBBLAS_LIBRARIES="$${COMBBLAS_LIBDIR}/libCombBLAS.so" \
 			-DCMAKE_C_COMPILER=$${MPICC} \
-			-DCMAKE_CXX_COMPILER=$${MPICXX} && \
+			-DCMAKE_CXX_COMPILER=$${MPICXX} \
+			-DCMAKE_C_FLAGS="-std=c11 -DPRNTlevel=1" && \
 		$(MAKE) VERBOSE=1
 	@touch $@
 
