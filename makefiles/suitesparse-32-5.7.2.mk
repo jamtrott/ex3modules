@@ -43,7 +43,7 @@ $($(suitesparse-32)-prefix)/.pkgunpack: $$($(suitesparse-32)-src) $($(suitespars
 $($(suitesparse-32)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(suitesparse-32)-builddeps),$(modulefilesdir)/$$(dep)) $($(suitesparse-32)-prefix)/.pkgunpack
 	sed -i 's,cd build ; cmake,cd build ; $(CMAKE),' $($(suitesparse-32)-srcdir)/GraphBLAS/Makefile
 	sed -i 's,cd build ; cmake,cd build ; $(CMAKE),' $($(suitesparse-32)-srcdir)/Mongoose/Makefile
-	sed -i 's,CUDA = auto,CUDA = no,' $($(suitesparse-32)-srcdir)/SuiteSparse_config/SuiteSparse_config.mk
+	sed -i '/-gencode=arch=compute_30,code=sm_30/d' $($(suitesparse-32)-srcdir)/SuiteSparse_config/SuiteSparse_config.mk
 	@touch $@
 
 $($(suitesparse-32)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(suitesparse-32)-builddeps),$(modulefilesdir)/$$(dep)) $($(suitesparse-32)-prefix)/.pkgpatch
@@ -56,6 +56,7 @@ $($(suitesparse-32)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 			LAPACK="" \
 			MY_METIS_LIB="$${METIS_LIBDIR}/libmetis.so" \
 			MY_METIS_INC="$${METIS_INCDIR}" \
+			CUDA=no CUDA_PATH= \
 			CMAKE_OPTIONS="-DCMAKE_INSTALL_PREFIX=$($(suitesparse-32)-prefix) -DCMAKE_INSTALL_LIBDIR=lib"
 	@touch $@
 
