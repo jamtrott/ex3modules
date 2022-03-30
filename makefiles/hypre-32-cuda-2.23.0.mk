@@ -56,6 +56,7 @@ $($(hypre-32-cuda-2.23)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(fore
 			--with-MPI-include="$${MPI_HOME}/include" \
 			--with-MPI-lib-dirs="$${MPI_HOME}/lib" \
 			--with-MPI-libs=mpi \
+			--enable-device-memory-pool \
 			--with-cuda && \
 		$(MAKE)
 	@touch $@

@@ -381,11 +381,14 @@ pkgs := $(pkgs) \
 	hwloc-src-2.4.1 \
 	hypre-32-2.17.0 \
 	hypre-32-2.23.0 \
+	hypre-32-2.24.0 \
 	hypre-32-cuda-2.23.0 \
+	hypre-32-cuda-2.24.0 \
 	hypre-64-2.17.0 \
 	hypre-64-2.23.0 \
 	hypre-src-2.17.0 \
 	hypre-src-2.23.0 \
+	hypre-src-2.24.0 \
 	icu-69.1 \
 	iperf-2.0.13 \
 	ipopt-3.13.3 \
