@@ -129,10 +129,13 @@ gfortran = gfortran-8.4.0
 $(info Using internal Fortran ($(gfortran)))
 else ifneq ($(FC),)
 $(info Using $(FC) ($(shell $(FC) --version | head -n 1)))
+export FC
 else ifneq ($(shell which f95),)
 $(info Using $(shell which f95) ($(shell f95 --version | head -n 1)))
+export FC := f95
 else ifneq ($(shell which f77),)
 $(info Using $(shell which f77) ($(shell f77 --version | head -n 1)))
+export FC := f77
 else
 $(warning Warning: No Fortran compiler found - some modules may not build.)
 endif
@@ -142,6 +145,7 @@ endif
 #
 ifneq ($(CC),)
 $(info Using $(CC) ($(shell $(CC) --version | head -n 1)))
+export CC
 else ifneq ($(shell which gcc),)
 $(info Using $(shell which gcc) ($(shell gcc --version | head -n 1)))
 export CC := gcc
@@ -218,7 +222,7 @@ $(info Using internal OpenSSL ($(openssl)))
 else ifeq ($(WITH_OPENSSL),no)
 $(warning Warning: OpenSSL is disabled - some modules may not build.)
 else ifneq ($(WITH_OPENSSL),)
-OPENSSL_ROOT = $(WITH_OPENSSL)
+export OPENSSL_ROOT = $(WITH_OPENSSL)
 OPENSSL = $(OPENSSL_ROOT)/bin/openssl
 $(info Using $(OPENSSL) ($(shell $(OPENSSL) version | head -n 1)))
 export PATH := $(OPENSSL_ROOT)/bin$(if $(PATH),:$(PATH),)
@@ -246,10 +250,10 @@ else ifeq ($(WITH_PYTHON),no)
 PYTHON = false
 $(warning Warning: Python is disabled - some modules may not build.)
 else ifneq ($(WITH_PYTHON),)
-PYTHON_ROOT = $(WITH_PYTHON)
-PYTHON = $(PYTHON_ROOT)/bin/python3
-PYTHON_VERSION = $(shell $(PYTHON) --version | awk '{ print $$2 }')
-PYTHON_VERSION_SHORT = $(shell $(PYTHON) --version | awk '{ print $$2 }' | cut -d. -f 1-2)
+export PYTHON_ROOT = $(WITH_PYTHON)
+export PYTHON = $(PYTHON_ROOT)/bin/python3
+export PYTHON_VERSION = $(shell $(PYTHON) --version | awk '{ print $$2 }')
+export PYTHON_VERSION_SHORT = $(shell $(PYTHON) --version | awk '{ print $$2 }' | cut -d. -f 1-2)
 $(info Using $(PYTHON) ($(shell $(PYTHON) --version | head -n 1)))
 export PATH := $(PYTHON_ROOT)/bin$(if $(PATH),:$(PATH),)
 export C_INCLUDE_PATH := $(PYTHON_ROOT)/include/python$(PYTHON_VERSION_SHORT)$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
@@ -274,7 +278,7 @@ $(info Using internal SLURM ($(slurm)))
 else ifeq ($(WITH_SLURM),no)
 $(warning Warning: Slurm is disabled - some modules may not build.)
 else ifneq ($(WITH_SLURM),)
-SLURM_ROOT = $(WITH_SLURM)
+export SLURM_ROOT := $(WITH_SLURM)
 $(info Using $(SLURM_ROOT)/bin/srun ($(shell $(SLURM_ROOT)/bin/srun --version | head -n 1)))
 export PATH := $(SLURM_ROOT)/bin$(if $(PATH),:$(PATH),)
 export C_INCLUDE_PATH := $(SLURM_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
