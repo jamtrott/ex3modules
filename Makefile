@@ -70,7 +70,7 @@ hypre = hypre-32-2.17.0
 metis = metis-32-5.1.0
 mumps = mumps-32-5.4.1
 parmetis = parmetis-32-4.0.3
-petsc = petsc-32-3.16.5
+petsc = petsc-32-3.17.1
 suitesparse = suitesparse-32-5.7.2
 superlu_dist = superlu_dist-32-7.2.0
 
