@@ -525,9 +525,11 @@ pkgs := $(pkgs) \
 	perl-5.30.2 \
 	petsc-3.13.2 \
 	petsc-32-3.16.5 \
+	petsc-32-3.17.1 \
 	petsc-64-3.16.5 \
 	petsc-src-3.13.2 \
 	petsc-src-3.16.5 \
+	petsc-src-3.17.1 \
 	pixman-0.38.4 \
 	pmix-3.1.5 \
 	poppler-21.04.0 \
