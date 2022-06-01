@@ -26,7 +26,7 @@ $(mumps-64)-srcurl = http://mumps.enseeiht.fr/MUMPS_$(mumps-64-version).tar.gz
 $(mumps-64)-src = $($(mumps-src)-src)
 $(mumps-64)-srcdir = $(pkgsrcdir)/$(mumps-64)
 $(mumps-64)-builddeps = $(blas) $(mpi) $(metis-64) $(parmetis-64) $(scotch) $(scalapack) $(gfortran) $(patchelf)
-$(mumps-64)-prereqs = $(blas) $(mpi) $(metis-64) $(parmetis-64) $(scotch) $(scalapack)
+$(mumps-64)-prereqs = $(blas) $(mpi) $(metis-64) $(parmetis-64) $(scotch) $(scalapack) $(gfortran)
 $(mumps-64)-modulefile = $(modulefilesdir)/$(mumps-64)
 $(mumps-64)-prefix = $(pkgdir)/$(mumps-64)
 
@@ -84,10 +84,10 @@ $($(mumps-64)-srcdir)/Makefile.inc: $(modulefilesdir)/.markerfile $$(foreach dep
 	echo '' >>$@.tmp && \
 	echo 'INCPAR = # not needed with mpif90/mpicc:  -I/usr/include/openmpi' >>$@.tmp && \
 	echo '' >>$@.tmp && \
-	echo 'LIBPAR = $$(SCALAP) $$(LAPACK) -L$${LIBGFORTRAN_LIBDIR} -lgfortran -lmpi_mpifh -lmpi # not needed with mpif90/mpicc: -lmpi_mpifh -lmpi' >>$@.tmp && \
+	echo 'LIBPAR = $$(SCALAP) $$(LAPACK) -L$${GFORTRAN_LIBDIR} -lgfortran -lmpi_mpifh -lmpi # not needed with mpif90/mpicc: -lmpi_mpifh -lmpi' >>$@.tmp && \
 	echo '' >>$@.tmp && \
 	echo 'INCSEQ = -I$$(topdir)/libseq' >>$@.tmp && \
-	echo 'LIBSEQ  = $$(LAPACK) -L$$(topdir)/libseq -lmpiseq -L$${LIBGFORTRAN_LIBDIR} -lgfortran' >>$@.tmp && \
+	echo 'LIBSEQ  = $$(LAPACK) -L$$(topdir)/libseq -lmpiseq -L$${GFORTRAN_LIBDIR} -lgfortran' >>$@.tmp && \
 	echo '' >>$@.tmp && \
 	echo 'LIBBLAS = -L$${BLASDIR} -l$${BLASLIB}' >>$@.tmp && \
 	echo 'LIBOTHERS = -lpthread' >>$@.tmp && \

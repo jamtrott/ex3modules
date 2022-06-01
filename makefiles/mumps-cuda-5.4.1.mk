@@ -26,7 +26,7 @@ $(mumps-cuda)-srcurl = http://mumps.enseeiht.fr/MUMPS_$(mumps-cuda-version).tar.
 $(mumps-cuda)-src = $($(mumps-src)-src)
 $(mumps-cuda)-srcdir = $(pkgsrcdir)/$(mumps-cuda)
 $(mumps-cuda)-builddeps = $(blas) $(openmpi-cuda) $(metis) $(parmetis-cuda) $(scotch-cuda) $(scalapack-cuda) $(gfortran) $(patchelf)
-$(mumps-cuda)-prereqs = $(blas) $(openmpi-cuda) $(metis) $(parmetis-cuda) $(scotch-cuda) $(scalapack-cuda)
+$(mumps-cuda)-prereqs = $(blas) $(openmpi-cuda) $(metis) $(parmetis-cuda) $(scotch-cuda) $(scalapack-cuda) $(gfortran)
 $(mumps-cuda)-modulefile = $(modulefilesdir)/$(mumps-cuda)
 $(mumps-cuda)-prefix = $(pkgdir)/$(mumps-cuda)
 
@@ -84,10 +84,10 @@ $($(mumps-cuda)-srcdir)/Makefile.inc: $(modulefilesdir)/.markerfile $$(foreach d
 	echo '' >>$@.tmp && \
 	echo 'INCPAR = # not needed with mpif90/mpicc:  -I/usr/include/openmpi' >>$@.tmp && \
 	echo '' >>$@.tmp && \
-	echo 'LIBPAR = $$(SCALAP) $$(LAPACK) -L$${LIBGFORTRAN_LIBDIR} -lgfortran -lmpi_mpifh -lmpi # not needed with mpif90/mpicc: -lmpi_mpifh -lmpi' >>$@.tmp && \
+	echo 'LIBPAR = $$(SCALAP) $$(LAPACK) -L$${GFORTRAN_LIBDIR} -lgfortran -lmpi_mpifh -lmpi # not needed with mpif90/mpicc: -lmpi_mpifh -lmpi' >>$@.tmp && \
 	echo '' >>$@.tmp && \
 	echo 'INCSEQ = -I$$(topdir)/libseq' >>$@.tmp && \
-	echo 'LIBSEQ  = $$(LAPACK) -L$$(topdir)/libseq -lmpiseq -L$${LIBGFORTRAN_LIBDIR} -lgfortran' >>$@.tmp && \
+	echo 'LIBSEQ  = $$(LAPACK) -L$$(topdir)/libseq -lmpiseq -L$${GFORTRAN_LIBDIR} -lgfortran' >>$@.tmp && \
 	echo '' >>$@.tmp && \
 	echo 'LIBBLAS = -L$${BLASDIR} -l$${BLASLIB}' >>$@.tmp && \
 	echo 'LIBOTHERS = -lpthread' >>$@.tmp && \

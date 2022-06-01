@@ -26,7 +26,7 @@ $(mumps-32)-srcurl = $($(mumps-src)-srcurl)
 $(mumps-32)-src = $($(mumps-src)-src)
 $(mumps-32)-srcdir = $(pkgsrcdir)/$(mumps-32)
 $(mumps-32)-builddeps = $(blas) $(mpi) $(metis-32) $(parmetis-32) $(scotch) $(scalapack) $(gfortran) $(patchelf)
-$(mumps-32)-prereqs = $(blas) $(mpi) $(metis-32) $(parmetis-32) $(scotch) $(scalapack)
+$(mumps-32)-prereqs = $(blas) $(mpi) $(metis-32) $(parmetis-32) $(scotch) $(scalapack) $(gfortran)
 $(mumps-32)-modulefile = $(modulefilesdir)/$(mumps-32)
 $(mumps-32)-prefix = $(pkgdir)/$(mumps-32)
 
@@ -84,10 +84,10 @@ $($(mumps-32)-srcdir)/Makefile.inc: $(modulefilesdir)/.markerfile $$(foreach dep
 	echo '' >>$@.tmp && \
 	echo 'INCPAR = # not needed with mpif90/mpicc:  -I/usr/include/openmpi' >>$@.tmp && \
 	echo '' >>$@.tmp && \
-	echo 'LIBPAR = $$(SCALAP) $$(LAPACK) -L$${LIBGFORTRAN_LIBDIR} -lgfortran -lmpi_mpifh -lmpi # not needed with mpif90/mpicc: -lmpi_mpifh -lmpi' >>$@.tmp && \
+	echo 'LIBPAR = $$(SCALAP) $$(LAPACK) -L$${GFORTRAN_LIBDIR} -lgfortran -lmpi_mpifh -lmpi # not needed with mpif90/mpicc: -lmpi_mpifh -lmpi' >>$@.tmp && \
 	echo '' >>$@.tmp && \
 	echo 'INCSEQ = -I$$(topdir)/libseq' >>$@.tmp && \
-	echo 'LIBSEQ  = $$(LAPACK) -L$$(topdir)/libseq -lmpiseq -L$${LIBGFORTRAN_LIBDIR} -lgfortran' >>$@.tmp && \
+	echo 'LIBSEQ  = $$(LAPACK) -L$$(topdir)/libseq -lmpiseq -L$${GFORTRAN_LIBDIR} -lgfortran' >>$@.tmp && \
 	echo '' >>$@.tmp && \
 	echo 'LIBBLAS = -L$${BLASDIR} -l$${BLASLIB}' >>$@.tmp && \
 	echo 'LIBOTHERS = -lpthread' >>$@.tmp && \
