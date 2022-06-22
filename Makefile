@@ -100,7 +100,7 @@ pkgs := $(pkgs) \
 	hypre-32-cuda-2.24.0 \
 	petsc-32-cuda-3.17.2 \
 	superlu_dist-32-cuda-7.2.0 \
-	ucx-cuda-1.9.0
+	ucx-cuda-1.12.1
 endif
 
 #
@@ -681,8 +681,8 @@ pkgs := $(pkgs) \
 	superlu_dist-src-7.2.0 \
 	texinfo-6.7 \
 	texlive-20210325 \
-	ucx-1.9.0 \
-	ucx-src-1.9.0 \
+	ucx-1.12.1 \
+	ucx-src-1.12.1 \
 	utf8cpp-3.2.1 \
 	util-linux-2.34 \
 	valgrind-3.16.1 \

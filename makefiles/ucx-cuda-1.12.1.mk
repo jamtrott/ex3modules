@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# ucx-cuda-1.9.0
+# ucx-cuda-1.12.1
 
-ucx-cuda-version = 1.9.0
+ucx-cuda-version = 1.12.1
 ucx-cuda = ucx-cuda-$(ucx-cuda-version)
 $(ucx-cuda)-description = Optimized communication layer for MPI, PGAS/OpenSHMEM and RPC/data-centric applications
 $(ucx-cuda)-url = http://www.openucx.org/
