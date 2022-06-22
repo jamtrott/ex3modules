@@ -66,31 +66,40 @@ MODULE := module
 blas = openblas-0.3.12
 
 # Default to using 32-bit versions of various linear algebra packages
-hypre = hypre-32-2.17.0
+hypre = hypre-32-2.24.0
+hypre-32 = hypre-32-2.24.0
+hypre-64 = hypre-64-2.23.0
 metis = metis-32-5.1.0
+metis-32 = metis-32-5.1.0
+metis-64 = metis-64-5.1.0
 mumps = mumps-32-5.4.1
+mumps-32 = mumps-32-5.4.1
+mumps-64 = mumps-64-5.4.1
 parmetis = parmetis-32-4.0.3
-petsc = petsc-32-3.17.1
-suitesparse = suitesparse-32-5.7.2
+parmetis-32 = parmetis-32-4.0.3
+parmetis-64 = parmetis-64-4.0.3
 superlu_dist = superlu_dist-32-7.2.0
+superlu_dist-32 = superlu_dist-32-7.2.0
+superlu_dist-64 = superlu_dist-64-7.2.0
+petsc = petsc-32-3.17.2
 
 # CUDA-related packages - note CUDA toolkit 10.1.243 is only supported
 # on x86_64.
 ifneq ($(ENABLE_CUDA),)
-petsc = petsc-cuda-3.13.2
+hypre = hypre-32-cuda-2.24.0
+hypre-32 = hypre-32-cuda-2.24.0
+hypre-64 = hypre-64-cuda-2.24.0
+superlu_dist = superlu_dist-32-cuda-7.2.0
+superlu_dist-32 = superlu_dist-32-cuda-7.2.0
+superlu_dist-64 = superlu_dist-64-cuda-7.2.0
+petsc = petsc-32-cuda-3.17.2
 pkgs := $(pkgs) \
-	combblas-cuda-1.6.2 \
 	cuda-toolkit-10.1.243 \
 	gdrcopy-2.2 \
-	hypre-cuda-2.17.0 \
-	mumps-cuda-5.4.1 \
 	openmpi-cuda-4.0.5 \
-	parmetis-cuda-4.0.3 \
-	petsc-cuda-3.13.2 \
-	petsc-cuda-3.16.5 \
-	scalapack-cuda-2.1.0 \
-	scotch-cuda-6.0.7 \
-	superlu_dist-cuda-6.4.0 \
+	hypre-32-cuda-2.24.0 \
+	petsc-32-cuda-3.17.2 \
+	superlu_dist-32-cuda-7.2.0 \
 	ucx-cuda-1.9.0
 endif
 
@@ -525,11 +534,11 @@ pkgs := $(pkgs) \
 	perl-5.30.2 \
 	petsc-3.13.2 \
 	petsc-32-3.16.5 \
-	petsc-32-3.17.1 \
+	petsc-32-3.17.2 \
 	petsc-64-3.16.5 \
 	petsc-src-3.13.2 \
 	petsc-src-3.16.5 \
-	petsc-src-3.17.1 \
+	petsc-src-3.17.2 \
 	pixman-0.38.4 \
 	pmix-3.1.5 \
 	poppler-21.04.0 \

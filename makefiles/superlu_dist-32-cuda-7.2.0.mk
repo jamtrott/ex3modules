@@ -19,7 +19,7 @@
 # superlu_dist-32-cuda-7.2.0
 
 superlu_dist-32-cuda-7.2.0-version = 7.2.0
-superlu_dist-32-cuda-7.2.0 = superlu_dist-32-$(superlu_dist-32-cuda-7.2.0-version)
+superlu_dist-32-cuda-7.2.0 = superlu_dist-cuda-32-$(superlu_dist-32-cuda-7.2.0-version)
 $(superlu_dist-32-cuda-7.2.0)-description = MPI-based direct solver for large, sparse non-symmetric systems of equations in distributed memory
 $(superlu_dist-32-cuda-7.2.0)-url = https://github.com/xiaoyeli/superlu_dist/
 $(superlu_dist-32-cuda-7.2.0)-srcurl = https://github.com/xiaoyeli/superlu_dist/archive/v$(superlu_dist-32-cuda-7.2.0-version).tar.gz
