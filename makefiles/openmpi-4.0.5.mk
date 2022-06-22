@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,37 +18,37 @@
 #
 # openmpi-4.0.5
 
-openmpi-version = 4.0.5
-openmpi = openmpi-$(openmpi-version)
-$(openmpi)-description = A High Performance Message Passing Library
-$(openmpi)-url = https://www.open-mpi.org/
-$(openmpi)-srcurl =
-$(openmpi)-builddeps = $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(pmix) $(slurm)
-$(openmpi)-prereqs = $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(pmix) $(slurm)
-$(openmpi)-src = $($(openmpi-src)-src)
-$(openmpi)-srcdir = $(pkgsrcdir)/$(openmpi)
-$(openmpi)-modulefile = $(modulefilesdir)/$(openmpi)
-$(openmpi)-prefix = $(pkgdir)/$(openmpi)
+openmpi-4.0.5-version = 4.0.5
+openmpi-4.0.5 = openmpi-$(openmpi-4.0.5-version)
+$(openmpi-4.0.5)-description = A High Performance Message Passing Library
+$(openmpi-4.0.5)-url = https://www.open-mpi.org/
+$(openmpi-4.0.5)-srcurl =
+$(openmpi-4.0.5)-builddeps = $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(pmix) $(slurm)
+$(openmpi-4.0.5)-prereqs = $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(pmix) $(slurm)
+$(openmpi-4.0.5)-src = $($(openmpi-src-4.0.5)-src)
+$(openmpi-4.0.5)-srcdir = $(pkgsrcdir)/$(openmpi-4.0.5)
+$(openmpi-4.0.5)-modulefile = $(modulefilesdir)/$(openmpi-4.0.5)
+$(openmpi-4.0.5)-prefix = $(pkgdir)/$(openmpi-4.0.5)
 
-$($(openmpi)-srcdir)/.markerfile:
+$($(openmpi-4.0.5)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openmpi)-prefix)/.markerfile:
+$($(openmpi-4.0.5)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openmpi)-prefix)/.pkgunpack: $$($(openmpi)-src) $($(openmpi)-srcdir)/.markerfile $($(openmpi)-prefix)/.markerfile $$(foreach dep,$$($(openmpi)-builddeps),$(modulefilesdir)/$$(dep))
-	tar -C $($(openmpi)-srcdir) --strip-components 1 -xj -f $<
+$($(openmpi-4.0.5)-prefix)/.pkgunpack: $$($(openmpi-4.0.5)-src) $($(openmpi-4.0.5)-srcdir)/.markerfile $($(openmpi-4.0.5)-prefix)/.markerfile $$(foreach dep,$$($(openmpi-4.0.5)-builddeps),$(modulefilesdir)/$$(dep))
+	tar -C $($(openmpi-4.0.5)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 
-$($(openmpi)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openmpi)-builddeps),$(modulefilesdir)/$$(dep)) $($(openmpi)-prefix)/.pkgunpack
+$($(openmpi-4.0.5)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openmpi-4.0.5)-builddeps),$(modulefilesdir)/$$(dep)) $($(openmpi-4.0.5)-prefix)/.pkgunpack
 	@touch $@
 
-$($(openmpi)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openmpi)-builddeps),$(modulefilesdir)/$$(dep)) $($(openmpi)-prefix)/.pkgpatch
-	cd $($(openmpi)-srcdir) && \
+$($(openmpi-4.0.5)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openmpi-4.0.5)-builddeps),$(modulefilesdir)/$$(dep)) $($(openmpi-4.0.5)-prefix)/.pkgpatch
+	cd $($(openmpi-4.0.5)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(openmpi)-builddeps) && \
-		./configure --prefix=$($(openmpi)-prefix) \
+		$(MODULE) load $($(openmpi-4.0.5)-builddeps) && \
+		./configure --prefix=$($(openmpi-4.0.5)-prefix) \
 			--with-hwloc="$${HWLOC_ROOT}" \
 			--with-knem="$${KNEM_ROOT}" \
 			--with-libevent="$${LIBEVENT_ROOT}" \
@@ -66,75 +66,75 @@ $($(openmpi)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 		$(MAKE)
 	@touch $@
 
-$($(openmpi)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openmpi)-builddeps),$(modulefilesdir)/$$(dep)) $($(openmpi)-prefix)/.pkgbuild
+$($(openmpi-4.0.5)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openmpi-4.0.5)-builddeps),$(modulefilesdir)/$$(dep)) $($(openmpi-4.0.5)-prefix)/.pkgbuild
 # Tests currently fail on aarch64
 ifneq ($(ARCH),aarch64)
-	cd $($(openmpi)-srcdir) && \
+	cd $($(openmpi-4.0.5)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(openmpi)-builddeps) && \
+		$(MODULE) load $($(openmpi-4.0.5)-builddeps) && \
 		$(MAKE) check
 endif
 	@touch $@
 
-$($(openmpi)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openmpi)-builddeps),$(modulefilesdir)/$$(dep)) $($(openmpi)-prefix)/.pkgcheck
-	cd $($(openmpi)-srcdir) && \
+$($(openmpi-4.0.5)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openmpi-4.0.5)-builddeps),$(modulefilesdir)/$$(dep)) $($(openmpi-4.0.5)-prefix)/.pkgcheck
+	cd $($(openmpi-4.0.5)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(openmpi)-builddeps) && \
+		$(MODULE) load $($(openmpi-4.0.5)-builddeps) && \
 	$(MAKE) install
-	echo "" >>$($(openmpi)-prefix)/etc/openmpi-mca-params.conf
-	echo "mca_btl_tcp_if_include = ib" >>$($(openmpi)-prefix)/etc/openmpi-mca-params.conf
+	echo "" >>$($(openmpi-4.0.5)-prefix)/etc/openmpi-mca-params.conf
+	echo "mca_btl_tcp_if_include = ib" >>$($(openmpi-4.0.5)-prefix)/etc/openmpi-mca-params.conf
 	@touch $@
 
-$($(openmpi)-modulefile): $(modulefilesdir)/.markerfile $($(openmpi)-prefix)/.pkginstall
+$($(openmpi-4.0.5)-modulefile): $(modulefilesdir)/.markerfile $($(openmpi-4.0.5)-prefix)/.pkginstall
 	printf "" >$@
 	echo "#%Module" >>$@
-	echo "# $(openmpi)" >>$@
+	echo "# $(openmpi-4.0.5)" >>$@
 	echo "" >>$@
 	echo "proc ModulesHelp { } {" >>$@
-	echo "     puts stderr \"\tSets up the environment for $(openmpi)\\n\"" >>$@
+	echo "     puts stderr \"\tSets up the environment for $(openmpi-4.0.5)\\n\"" >>$@
 	echo "}" >>$@
 	echo "" >>$@
-	echo "module-whatis \"$($(openmpi)-description)\"" >>$@
-	echo "module-whatis \"$($(openmpi)-url)\"" >>$@
-	printf "$(foreach prereq,$($(openmpi)-prereqs),\n$(MODULE) load $(prereq))" >>$@
+	echo "module-whatis \"$($(openmpi-4.0.5)-description)\"" >>$@
+	echo "module-whatis \"$($(openmpi-4.0.5)-url)\"" >>$@
+	printf "$(foreach prereq,$($(openmpi-4.0.5)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv OPENMPI_ROOT $($(openmpi)-prefix)" >>$@
-	echo "setenv OPENMPI_INCDIR $($(openmpi)-prefix)/include" >>$@
-	echo "setenv OPENMPI_INCLUDEDIR $($(openmpi)-prefix)/include" >>$@
-	echo "setenv OPENMPI_LIBDIR $($(openmpi)-prefix)/lib" >>$@
-	echo "setenv OPENMPI_LIBRARYDIR $($(openmpi)-prefix)/lib" >>$@
-	echo "setenv MPI_HOME $($(openmpi)-prefix)" >>$@
-	echo "setenv MPI_RUN $($(openmpi)-prefix)/bin/mpirun" >>$@
-	echo "setenv MPICC $($(openmpi)-prefix)/bin/mpicc" >>$@
-	echo "setenv MPICXX $($(openmpi)-prefix)/bin/mpicxx" >>$@
-	echo "setenv MPIEXEC $($(openmpi)-prefix)/bin/mpiexec" >>$@
-	echo "setenv MPIF77 $($(openmpi)-prefix)/bin/mpif77" >>$@
-	echo "setenv MPIF90 $($(openmpi)-prefix)/bin/mpif90" >>$@
-	echo "setenv MPIFORT $($(openmpi)-prefix)/bin/mpifort" >>$@
-	echo "setenv MPIRUN $($(openmpi)-prefix)/bin/mpirun" >>$@
-	echo "setenv OPAL_PREFIX $($(openmpi)-prefix)" >>$@
-	echo "prepend-path PATH $($(openmpi)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(openmpi)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(openmpi)-prefix)/include" >>$@
-	echo "prepend-path LIBRARY_PATH $($(openmpi)-prefix)/lib" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(openmpi)-prefix)/lib" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(openmpi)-prefix)/lib/pkgconfig" >>$@
-	echo "prepend-path MANPATH $($(openmpi)-prefix)/share/man" >>$@
-	echo "prepend-path INFOPATH $($(openmpi)-prefix)/share/info" >>$@
-	echo "set MSG \"$(openmpi)\"" >>$@
+	echo "setenv OPENMPI_ROOT $($(openmpi-4.0.5)-prefix)" >>$@
+	echo "setenv OPENMPI_INCDIR $($(openmpi-4.0.5)-prefix)/include" >>$@
+	echo "setenv OPENMPI_INCLUDEDIR $($(openmpi-4.0.5)-prefix)/include" >>$@
+	echo "setenv OPENMPI_LIBDIR $($(openmpi-4.0.5)-prefix)/lib" >>$@
+	echo "setenv OPENMPI_LIBRARYDIR $($(openmpi-4.0.5)-prefix)/lib" >>$@
+	echo "setenv MPI_HOME $($(openmpi-4.0.5)-prefix)" >>$@
+	echo "setenv MPI_RUN $($(openmpi-4.0.5)-prefix)/bin/mpirun" >>$@
+	echo "setenv MPICC $($(openmpi-4.0.5)-prefix)/bin/mpicc" >>$@
+	echo "setenv MPICXX $($(openmpi-4.0.5)-prefix)/bin/mpicxx" >>$@
+	echo "setenv MPIEXEC $($(openmpi-4.0.5)-prefix)/bin/mpiexec" >>$@
+	echo "setenv MPIF77 $($(openmpi-4.0.5)-prefix)/bin/mpif77" >>$@
+	echo "setenv MPIF90 $($(openmpi-4.0.5)-prefix)/bin/mpif90" >>$@
+	echo "setenv MPIFORT $($(openmpi-4.0.5)-prefix)/bin/mpifort" >>$@
+	echo "setenv MPIRUN $($(openmpi-4.0.5)-prefix)/bin/mpirun" >>$@
+	echo "setenv OPAL_PREFIX $($(openmpi-4.0.5)-prefix)" >>$@
+	echo "prepend-path PATH $($(openmpi-4.0.5)-prefix)/bin" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(openmpi-4.0.5)-prefix)/include" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(openmpi-4.0.5)-prefix)/include" >>$@
+	echo "prepend-path LIBRARY_PATH $($(openmpi-4.0.5)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(openmpi-4.0.5)-prefix)/lib" >>$@
+	echo "prepend-path PKG_CONFIG_PATH $($(openmpi-4.0.5)-prefix)/lib/pkgconfig" >>$@
+	echo "prepend-path MANPATH $($(openmpi-4.0.5)-prefix)/share/man" >>$@
+	echo "prepend-path INFOPATH $($(openmpi-4.0.5)-prefix)/share/info" >>$@
+	echo "set MSG \"$(openmpi-4.0.5)\"" >>$@
 
-$(openmpi)-src: $$($(openmpi)-src)
-$(openmpi)-unpack: $($(openmpi)-prefix)/.pkgunpack
-$(openmpi)-patch: $($(openmpi)-prefix)/.pkgpatch
-$(openmpi)-build: $($(openmpi)-prefix)/.pkgbuild
-$(openmpi)-check: $($(openmpi)-prefix)/.pkgcheck
-$(openmpi)-install: $($(openmpi)-prefix)/.pkginstall
-$(openmpi)-modulefile: $($(openmpi)-modulefile)
-$(openmpi)-clean:
-	rm -rf $($(openmpi)-modulefile)
-	rm -rf $($(openmpi)-prefix)
-	rm -rf $($(openmpi)-srcdir)
-$(openmpi): $(openmpi)-src $(openmpi)-unpack $(openmpi)-patch $(openmpi)-build $(openmpi)-check $(openmpi)-install $(openmpi)-modulefile
+$(openmpi-4.0.5)-src: $$($(openmpi-4.0.5)-src)
+$(openmpi-4.0.5)-unpack: $($(openmpi-4.0.5)-prefix)/.pkgunpack
+$(openmpi-4.0.5)-patch: $($(openmpi-4.0.5)-prefix)/.pkgpatch
+$(openmpi-4.0.5)-build: $($(openmpi-4.0.5)-prefix)/.pkgbuild
+$(openmpi-4.0.5)-check: $($(openmpi-4.0.5)-prefix)/.pkgcheck
+$(openmpi-4.0.5)-install: $($(openmpi-4.0.5)-prefix)/.pkginstall
+$(openmpi-4.0.5)-modulefile: $($(openmpi-4.0.5)-modulefile)
+$(openmpi-4.0.5)-clean:
+	rm -rf $($(openmpi-4.0.5)-modulefile)
+	rm -rf $($(openmpi-4.0.5)-prefix)
+	rm -rf $($(openmpi-4.0.5)-srcdir)
+$(openmpi-4.0.5): $(openmpi-4.0.5)-src $(openmpi-4.0.5)-unpack $(openmpi-4.0.5)-patch $(openmpi-4.0.5)-build $(openmpi-4.0.5)-check $(openmpi-4.0.5)-install $(openmpi-4.0.5)-modulefile

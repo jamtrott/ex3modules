@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,37 +18,37 @@
 #
 # openmpi-cuda-4.0.5
 
-openmpi-cuda-version = 4.0.5
-openmpi-cuda = openmpi-cuda-$(openmpi-cuda-version)
-$(openmpi-cuda)-description = A High Performance Message Passing Library
-$(openmpi-cuda)-url = https://www.open-mpi.org/
-$(openmpi-cuda)-srcurl =
-$(openmpi-cuda)-builddeps = $(knem) $(hwloc) $(libevent) $(numactl) $(ucx-cuda) $(libfabric) $(slurm) $(pmix) $(cuda-toolkit)
-$(openmpi-cuda)-prereqs = $(knem) $(hwloc) $(libevent) $(numactl) $(ucx-cuda) $(libfabric) $(slurm) $(pmix) $(cuda-toolkit)
-$(openmpi-cuda)-src = $($(openmpi-src)-src)
-$(openmpi-cuda)-srcdir = $(pkgsrcdir)/$(openmpi-cuda)
-$(openmpi-cuda)-modulefile = $(modulefilesdir)/$(openmpi-cuda)
-$(openmpi-cuda)-prefix = $(pkgdir)/$(openmpi-cuda)
+openmpi-cuda-4.0.5-version = 4.0.5
+openmpi-cuda-4.0.5 = openmpi-cuda-$(openmpi-cuda-4.0.5-version)
+$(openmpi-cuda-4.0.5)-description = A High Performance Message Passing Library
+$(openmpi-cuda-4.0.5)-url = https://www.open-mpi.org/
+$(openmpi-cuda-4.0.5)-srcurl =
+$(openmpi-cuda-4.0.5)-builddeps = $(knem) $(hwloc) $(libevent) $(numactl) $(ucx-cuda) $(libfabric) $(slurm) $(pmix) $(cuda-toolkit)
+$(openmpi-cuda-4.0.5)-prereqs = $(knem) $(hwloc) $(libevent) $(numactl) $(ucx-cuda) $(libfabric) $(slurm) $(pmix) $(cuda-toolkit)
+$(openmpi-cuda-4.0.5)-src = $($(openmpi-src-4.0.5)-src)
+$(openmpi-cuda-4.0.5)-srcdir = $(pkgsrcdir)/$(openmpi-cuda-4.0.5)
+$(openmpi-cuda-4.0.5)-modulefile = $(modulefilesdir)/$(openmpi-cuda-4.0.5)
+$(openmpi-cuda-4.0.5)-prefix = $(pkgdir)/$(openmpi-cuda-4.0.5)
 
-$($(openmpi-cuda)-srcdir)/.markerfile:
+$($(openmpi-cuda-4.0.5)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openmpi-cuda)-prefix)/.markerfile:
+$($(openmpi-cuda-4.0.5)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openmpi-cuda)-prefix)/.pkgunpack: $$($(openmpi-cuda)-src) $($(openmpi-cuda)-srcdir)/.markerfile $($(openmpi-cuda)-prefix)/.markerfile $$(foreach dep,$$($(openmpi-cuda)-builddeps),$(modulefilesdir)/$$(dep))
-	tar -C $($(openmpi-cuda)-srcdir) --strip-components 1 -xj -f $<
+$($(openmpi-cuda-4.0.5)-prefix)/.pkgunpack: $$($(openmpi-cuda-4.0.5)-src) $($(openmpi-cuda-4.0.5)-srcdir)/.markerfile $($(openmpi-cuda-4.0.5)-prefix)/.markerfile $$(foreach dep,$$($(openmpi-cuda-4.0.5)-builddeps),$(modulefilesdir)/$$(dep))
+	tar -C $($(openmpi-cuda-4.0.5)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 
-$($(openmpi-cuda)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openmpi-cuda)-builddeps),$(modulefilesdir)/$$(dep)) $($(openmpi-cuda)-prefix)/.pkgunpack
+$($(openmpi-cuda-4.0.5)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openmpi-cuda-4.0.5)-builddeps),$(modulefilesdir)/$$(dep)) $($(openmpi-cuda-4.0.5)-prefix)/.pkgunpack
 	@touch $@
 
-$($(openmpi-cuda)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openmpi-cuda)-builddeps),$(modulefilesdir)/$$(dep)) $($(openmpi-cuda)-prefix)/.pkgpatch
-	cd $($(openmpi-cuda)-srcdir) && \
+$($(openmpi-cuda-4.0.5)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openmpi-cuda-4.0.5)-builddeps),$(modulefilesdir)/$$(dep)) $($(openmpi-cuda-4.0.5)-prefix)/.pkgpatch
+	cd $($(openmpi-cuda-4.0.5)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(openmpi-cuda)-builddeps) && \
-		./configure --prefix=$($(openmpi-cuda)-prefix) \
+		$(MODULE) load $($(openmpi-cuda-4.0.5)-builddeps) && \
+		./configure --prefix=$($(openmpi-cuda-4.0.5)-prefix) \
 			--with-hwloc="$${HWLOC_ROOT}" \
 			--with-knem="$${KNEM_ROOT}" \
 			--with-libevent="$${LIBEVENT_ROOT}" \
@@ -67,75 +67,75 @@ $($(openmpi-cuda)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MAKE)
 	@touch $@
 
-$($(openmpi-cuda)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openmpi-cuda)-builddeps),$(modulefilesdir)/$$(dep)) $($(openmpi-cuda)-prefix)/.pkgbuild
+$($(openmpi-cuda-4.0.5)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openmpi-cuda-4.0.5)-builddeps),$(modulefilesdir)/$$(dep)) $($(openmpi-cuda-4.0.5)-prefix)/.pkgbuild
 # Tests currently fail on aarch64
 ifneq ($(ARCH),aarch64)
-	cd $($(openmpi-cuda)-srcdir) && \
+	cd $($(openmpi-cuda-4.0.5)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(openmpi-cuda)-builddeps) && \
+		$(MODULE) load $($(openmpi-cuda-4.0.5)-builddeps) && \
 		$(MAKE) check
 endif
 	@touch $@
 
-$($(openmpi-cuda)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openmpi-cuda)-builddeps),$(modulefilesdir)/$$(dep)) $($(openmpi-cuda)-prefix)/.pkgcheck
-	cd $($(openmpi-cuda)-srcdir) && \
+$($(openmpi-cuda-4.0.5)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openmpi-cuda-4.0.5)-builddeps),$(modulefilesdir)/$$(dep)) $($(openmpi-cuda-4.0.5)-prefix)/.pkgcheck
+	cd $($(openmpi-cuda-4.0.5)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(openmpi-cuda)-builddeps) && \
+		$(MODULE) load $($(openmpi-cuda-4.0.5)-builddeps) && \
 	$(MAKE) install
-	echo "" >>$($(openmpi-cuda)-prefix)/etc/openmpi-cuda-mca-params.conf
-	echo "mca_btl_tcp_if_include = ib" >>$($(openmpi-cuda)-prefix)/etc/openmpi-cuda-mca-params.conf
+	echo "" >>$($(openmpi-cuda-4.0.5)-prefix)/etc/openmpi-mca-params.conf
+	echo "mca_btl_tcp_if_include = ib" >>$($(openmpi-cuda-4.0.5)-prefix)/etc/openmpi-mca-params.conf
 	@touch $@
 
-$($(openmpi-cuda)-modulefile): $(modulefilesdir)/.markerfile $($(openmpi-cuda)-prefix)/.pkginstall
+$($(openmpi-cuda-4.0.5)-modulefile): $(modulefilesdir)/.markerfile $($(openmpi-cuda-4.0.5)-prefix)/.pkginstall
 	printf "" >$@
 	echo "#%Module" >>$@
-	echo "# $(openmpi-cuda)" >>$@
+	echo "# $(openmpi-cuda-4.0.5)" >>$@
 	echo "" >>$@
 	echo "proc ModulesHelp { } {" >>$@
-	echo "     puts stderr \"\tSets up the environment for $(openmpi-cuda)\\n\"" >>$@
+	echo "     puts stderr \"\tSets up the environment for $(openmpi-cuda-4.0.5)\\n\"" >>$@
 	echo "}" >>$@
 	echo "" >>$@
-	echo "module-whatis \"$($(openmpi-cuda)-description)\"" >>$@
-	echo "module-whatis \"$($(openmpi-cuda)-url)\"" >>$@
-	printf "$(foreach prereq,$($(openmpi-cuda)-prereqs),\n$(MODULE) load $(prereq))" >>$@
+	echo "module-whatis \"$($(openmpi-cuda-4.0.5)-description)\"" >>$@
+	echo "module-whatis \"$($(openmpi-cuda-4.0.5)-url)\"" >>$@
+	printf "$(foreach prereq,$($(openmpi-cuda-4.0.5)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv OPENMPI_ROOT $($(openmpi-cuda)-prefix)" >>$@
-	echo "setenv OPENMPI_INCDIR $($(openmpi-cuda)-prefix)/include" >>$@
-	echo "setenv OPENMPI_INCLUDEDIR $($(openmpi-cuda)-prefix)/include" >>$@
-	echo "setenv OPENMPI_LIBDIR $($(openmpi-cuda)-prefix)/lib" >>$@
-	echo "setenv OPENMPI_LIBRARYDIR $($(openmpi-cuda)-prefix)/lib" >>$@
-	echo "setenv MPI_HOME $($(openmpi-cuda)-prefix)" >>$@
-	echo "setenv MPI_RUN $($(openmpi-cuda)-prefix)/bin/mpirun" >>$@
-	echo "setenv MPICC $($(openmpi-cuda)-prefix)/bin/mpicc" >>$@
-	echo "setenv MPICXX $($(openmpi-cuda)-prefix)/bin/mpicxx" >>$@
-	echo "setenv MPIEXEC $($(openmpi-cuda)-prefix)/bin/mpiexec" >>$@
-	echo "setenv MPIF77 $($(openmpi-cuda)-prefix)/bin/mpif77" >>$@
-	echo "setenv MPIF90 $($(openmpi-cuda)-prefix)/bin/mpif90" >>$@
-	echo "setenv MPIFORT $($(openmpi-cuda)-prefix)/bin/mpifort" >>$@
-	echo "setenv MPIRUN $($(openmpi-cuda)-prefix)/bin/mpirun" >>$@
-	echo "setenv OPAL_PREFIX $($(openmpi-cuda)-prefix)" >>$@
-	echo "prepend-path PATH $($(openmpi-cuda)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(openmpi-cuda)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(openmpi-cuda)-prefix)/include" >>$@
-	echo "prepend-path LIBRARY_PATH $($(openmpi-cuda)-prefix)/lib" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(openmpi-cuda)-prefix)/lib" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(openmpi-cuda)-prefix)/lib/pkgconfig" >>$@
-	echo "prepend-path MANPATH $($(openmpi-cuda)-prefix)/share/man" >>$@
-	echo "prepend-path INFOPATH $($(openmpi-cuda)-prefix)/share/info" >>$@
-	echo "set MSG \"$(openmpi-cuda)\"" >>$@
+	echo "setenv OPENMPI_ROOT $($(openmpi-cuda-4.0.5)-prefix)" >>$@
+	echo "setenv OPENMPI_INCDIR $($(openmpi-cuda-4.0.5)-prefix)/include" >>$@
+	echo "setenv OPENMPI_INCLUDEDIR $($(openmpi-cuda-4.0.5)-prefix)/include" >>$@
+	echo "setenv OPENMPI_LIBDIR $($(openmpi-cuda-4.0.5)-prefix)/lib" >>$@
+	echo "setenv OPENMPI_LIBRARYDIR $($(openmpi-cuda-4.0.5)-prefix)/lib" >>$@
+	echo "setenv MPI_HOME $($(openmpi-cuda-4.0.5)-prefix)" >>$@
+	echo "setenv MPI_RUN $($(openmpi-cuda-4.0.5)-prefix)/bin/mpirun" >>$@
+	echo "setenv MPICC $($(openmpi-cuda-4.0.5)-prefix)/bin/mpicc" >>$@
+	echo "setenv MPICXX $($(openmpi-cuda-4.0.5)-prefix)/bin/mpicxx" >>$@
+	echo "setenv MPIEXEC $($(openmpi-cuda-4.0.5)-prefix)/bin/mpiexec" >>$@
+	echo "setenv MPIF77 $($(openmpi-cuda-4.0.5)-prefix)/bin/mpif77" >>$@
+	echo "setenv MPIF90 $($(openmpi-cuda-4.0.5)-prefix)/bin/mpif90" >>$@
+	echo "setenv MPIFORT $($(openmpi-cuda-4.0.5)-prefix)/bin/mpifort" >>$@
+	echo "setenv MPIRUN $($(openmpi-cuda-4.0.5)-prefix)/bin/mpirun" >>$@
+	echo "setenv OPAL_PREFIX $($(openmpi-cuda-4.0.5)-prefix)" >>$@
+	echo "prepend-path PATH $($(openmpi-cuda-4.0.5)-prefix)/bin" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(openmpi-cuda-4.0.5)-prefix)/include" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(openmpi-cuda-4.0.5)-prefix)/include" >>$@
+	echo "prepend-path LIBRARY_PATH $($(openmpi-cuda-4.0.5)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(openmpi-cuda-4.0.5)-prefix)/lib" >>$@
+	echo "prepend-path PKG_CONFIG_PATH $($(openmpi-cuda-4.0.5)-prefix)/lib/pkgconfig" >>$@
+	echo "prepend-path MANPATH $($(openmpi-cuda-4.0.5)-prefix)/share/man" >>$@
+	echo "prepend-path INFOPATH $($(openmpi-cuda-4.0.5)-prefix)/share/info" >>$@
+	echo "set MSG \"$(openmpi-cuda-4.0.5)\"" >>$@
 
-$(openmpi-cuda)-src: $$($(openmpi-cuda)-src)
-$(openmpi-cuda)-unpack: $($(openmpi-cuda)-prefix)/.pkgunpack
-$(openmpi-cuda)-patch: $($(openmpi-cuda)-prefix)/.pkgpatch
-$(openmpi-cuda)-build: $($(openmpi-cuda)-prefix)/.pkgbuild
-$(openmpi-cuda)-check: $($(openmpi-cuda)-prefix)/.pkgcheck
-$(openmpi-cuda)-install: $($(openmpi-cuda)-prefix)/.pkginstall
-$(openmpi-cuda)-modulefile: $($(openmpi-cuda)-modulefile)
-$(openmpi-cuda)-clean:
-	rm -rf $($(openmpi-cuda)-modulefile)
-	rm -rf $($(openmpi-cuda)-prefix)
-	rm -rf $($(openmpi-cuda)-srcdir)
-$(openmpi-cuda): $(openmpi-cuda)-src $(openmpi-cuda)-unpack $(openmpi-cuda)-patch $(openmpi-cuda)-build $(openmpi-cuda)-check $(openmpi-cuda)-install $(openmpi-cuda)-modulefile
+$(openmpi-cuda-4.0.5)-src: $$($(openmpi-cuda-4.0.5)-src)
+$(openmpi-cuda-4.0.5)-unpack: $($(openmpi-cuda-4.0.5)-prefix)/.pkgunpack
+$(openmpi-cuda-4.0.5)-patch: $($(openmpi-cuda-4.0.5)-prefix)/.pkgpatch
+$(openmpi-cuda-4.0.5)-build: $($(openmpi-cuda-4.0.5)-prefix)/.pkgbuild
+$(openmpi-cuda-4.0.5)-check: $($(openmpi-cuda-4.0.5)-prefix)/.pkgcheck
+$(openmpi-cuda-4.0.5)-install: $($(openmpi-cuda-4.0.5)-prefix)/.pkginstall
+$(openmpi-cuda-4.0.5)-modulefile: $($(openmpi-cuda-4.0.5)-modulefile)
+$(openmpi-cuda-4.0.5)-clean:
+	rm -rf $($(openmpi-cuda-4.0.5)-modulefile)
+	rm -rf $($(openmpi-cuda-4.0.5)-prefix)
+	rm -rf $($(openmpi-cuda-4.0.5)-srcdir)
+$(openmpi-cuda-4.0.5): $(openmpi-cuda-4.0.5)-src $(openmpi-cuda-4.0.5)-unpack $(openmpi-cuda-4.0.5)-patch $(openmpi-cuda-4.0.5)-build $(openmpi-cuda-4.0.5)-check $(openmpi-cuda-4.0.5)-install $(openmpi-cuda-4.0.5)-modulefile

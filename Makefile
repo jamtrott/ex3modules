@@ -97,6 +97,7 @@ pkgs := $(pkgs) \
 	cuda-toolkit-10.1.243 \
 	gdrcopy-2.2 \
 	openmpi-cuda-4.0.5 \
+	openmpi-cuda-4.1.4 \
 	hypre-32-cuda-2.24.0 \
 	petsc-32-cuda-3.17.2 \
 	superlu_dist-32-cuda-7.2.0 \
@@ -192,8 +193,14 @@ endif
 ifeq ($(WITH_MPI),openmpi-4.0.5)
 mpi = openmpi-4.0.5
 $(info Using internal MPI ($(mpi)))
+else ifeq ($(WITH_MPI),openmpi-4.1.4)
+mpi = openmpi-4.1.4
+$(info Using internal MPI ($(mpi)))
 else ifeq ($(WITH_MPI),openmpi-cuda-4.0.5)
 mpi = openmpi-cuda-4.0.5
+$(info Using internal MPI ($(mpi)))
+else ifeq ($(WITH_MPI),openmpi-cuda-4.1.4)
+mpi = openmpi-cuda-4.1.4
 $(info Using internal MPI ($(mpi)))
 else ifeq ($(WITH_MPI),mpich-3.3.2)
 mpi = mpich-3.3.2
@@ -515,7 +522,9 @@ pkgs := $(pkgs) \
 	opencl-headers-2020.06.16 \
 	openjpeg-2.4.0 \
 	openmpi-4.0.5 \
+	openmpi-4.1.4 \
 	openmpi-src-4.0.5 \
+	openmpi-src-4.1.4 \
 	openssl-1.1.1c \
 	osu-micro-benchmarks-mpich-5.6.3 \
 	osu-micro-benchmarks-mvapich-5.6.3 \
