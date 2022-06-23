@@ -11,6 +11,9 @@ installations.
 Rebuild several libraries with CUDA support, including OpenMPI and
 PETSc.
 
+Add ROCm/HIP support for some libraries, such as UCX, Hypre and PETSc.
+
+
 * Noteworthy changes in release 0.6.2 (2021-09-01)
 
 This release adds ParaView 5.9.1, as well as dependent packages, such
