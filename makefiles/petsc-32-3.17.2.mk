@@ -23,8 +23,8 @@ petsc-32-3.17.2 = petsc-32-$(petsc-32-3.17.2-version)
 $(petsc-32-3.17.2)-description = Portable, Extensible Toolkit for Scientific Computation
 $(petsc-32-3.17.2)-url = https://www.mcs.anl.gov/petsc/
 $(petsc-32-3.17.2)-srcurl =
-$(petsc-32-3.17.2)-builddeps = $(boost) $(blas) $(mpi) $(hwloc) $(hypre-32) $(metis-32) $(mumps-32) $(parmetis-32) $(python) $(scalapack) $(scotch) $(suitesparse-32) $(superlu) $(superlu_dist-32)
-$(petsc-32-3.17.2)-prereqs = $(boost) $(blas) $(mpi) $(hwloc) $(hypre-32) $(metis-32) $(mumps-32) $(parmetis-32) $(scalapack) $(scotch) $(suitesparse-32) $(superlu) $(superlu_dist-32)
+$(petsc-32-3.17.2)-builddeps = $(boost) $(blas) $(mpi) $(hwloc) $(hypre-32) $(metis-32) $(mumps-32) $(parmetis-32) $(python) $(scalapack) $(scotch) $(suitesparse-32) $(superlu) $(superlu_dist-32) $(cuda-toolkit)
+$(petsc-32-3.17.2)-prereqs = $(boost) $(blas) $(mpi) $(hwloc) $(hypre-32) $(metis-32) $(mumps-32) $(parmetis-32) $(scalapack) $(scotch) $(suitesparse-32) $(superlu) $(superlu_dist-32) $(cuda-toolkit)
 $(petsc-32-3.17.2)-src = $($(petsc-src-3.17.2)-src)
 $(petsc-32-3.17.2)-srcdir = $(pkgsrcdir)/$(petsc-32-3.17.2)
 $(petsc-32-3.17.2)-modulefile = $(modulefilesdir)/$(petsc-32-3.17.2)
@@ -64,7 +64,8 @@ $($(petsc-32-3.17.2)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 			--with-suitesparse --with-suitesparse-dir="$${SUITESPARSE_ROOT}" \
 			--with-superlu --with-superlu-dir="$${SUPERLU_ROOT}" \
 			--with-superlu_dist --with-superlu_dist-dir="$${SUPERLU_DIST_ROOT}" \
-			--with-cuda=0 --with-hip=0 --with-x=0 \
+			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo --with-cuda=1 with-cuda-arch=sm_70 --with-cuda-dir="$${CUDA_TOOLKIT_ROOT}" CUDAFLAGS="--compiler-bindir=$${CC}" || echo --with-cuda=0) \
+			--with-hip=0 --with-x=0 \
 			--with-debugging=0 \
 			COPTFLAGS="-O3 -g" CXXOPTFLAGS="-O3 -g" FOPTFLAGS="-O3" && \
 		$(MAKE)

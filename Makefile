@@ -34,7 +34,7 @@ ARCH ?= $(shell uname -m)
 AVX512F := $(shell [ "$$(grep avx512f /proc/cpuinfo)" ] && echo true)
 
 # Default options
-ENABLE_CUDA :=
+HAVE_CUDA :=
 ENABLE_GFORTRAN :=
 CMAKE_ROOT :=
 MPI_HOME :=
@@ -85,27 +85,6 @@ superlu_dist = superlu_dist-32-7.2.0
 superlu_dist-32 = superlu_dist-32-7.2.0
 superlu_dist-64 = superlu_dist-64-7.2.0
 petsc = petsc-32-3.17.2
-
-# CUDA-related packages - note CUDA toolkit 10.1.243 is only supported
-# on x86_64.
-ifneq ($(ENABLE_CUDA),)
-hypre = hypre-32-cuda-2.24.0
-hypre-32 = hypre-32-cuda-2.24.0
-hypre-64 = hypre-64-cuda-2.24.0
-superlu_dist = superlu_dist-32-cuda-7.2.0
-superlu_dist-32 = superlu_dist-32-cuda-7.2.0
-superlu_dist-64 = superlu_dist-64-cuda-7.2.0
-petsc = petsc-32-cuda-3.17.2
-pkgs := $(pkgs) \
-	cuda-toolkit-10.1.243 \
-	gdrcopy-2.2 \
-	openmpi-cuda-4.0.5 \
-	openmpi-cuda-4.1.4 \
-	hypre-32-cuda-2.24.0 \
-	petsc-32-cuda-3.17.2 \
-	superlu_dist-32-cuda-7.2.0 \
-	ucx-cuda-1.12.1
-endif
 
 #
 # CMake
@@ -167,6 +146,44 @@ $(warning Warning: No C compiler found - some modules may not build.)
 endif
 
 #
+# CUDA
+#
+ifeq ($(WITH_CUDA),auto)
+HAVE_CUDA=1
+cuda-toolkit = cuda-toolkit-10.1.243
+pkgs := $(pkgs) cuda-toolkit-10.1.243
+$(info Using internal CUDA Toolkit ($(cuda-toolkit)))
+else ifeq ($(WITH_CUDA),no)
+$(warning Warning: CUDA is disabled - some modules may not build.)
+else ifneq ($(WITH_CUDA),)
+HAVE_CUDA=1
+CUDA_TOOLKIT_ROOT = $(WITH_CUDA)
+NVCC = $(CUDA_TOOLKIT_ROOT)/bin/nvcc
+$(info Using $(NVCC) ($(shell $(NVCC) --version | head -n 1)))
+export PATH := $(CUDA_TOOLKIT_ROOT)/bin$(if $(PATH),:$(PATH),)
+export C_INCLUDE_PATH := $(CUDA_TOOLKIT_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
+export CPLUS_INCLUDE_PATH := $(CUDA_TOOLKIT_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
+export LIBRARY_PATH := $(CUDA_TOOLKIT_ROOT)/lib:$(CUDA_TOOLKIT_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
+export LD_LIBRARY_PATH := $(CUDA_TOOLKIT_ROOT)/lib:$(CUDA_TOOLKIT_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
+else ifneq ($(shell which nvcc),)
+NVCC = $(shell which nvcc)
+HAVE_CUDA=1
+$(info Using $(NVCC) ($(shell $(NVCC) --version | head -n 1)))
+else
+$(warning Warning: CUDA Toolkit not found - some modules may not build.)
+endif
+
+# CUDA-related packages - note CUDA toolkit 10.1.243 is only supported
+# on x86_64.
+ifneq ($(HAVE_CUDA),)
+hypre = hypre-32-cuda-2.24.0
+hypre-32 = hypre-32-cuda-2.24.0
+pkgs := $(pkgs) \
+	gdrcopy-2.2 \
+	hypre-32-cuda-2.24.0
+endif
+
+#
 # hwloc
 #
 ifeq ($(WITH_HWLOC),hwloc-2.4.1)
@@ -198,12 +215,6 @@ mpi = openmpi-4.0.5
 $(info Using internal MPI ($(mpi)))
 else ifeq ($(WITH_MPI),openmpi-4.1.4)
 mpi = openmpi-4.1.4
-$(info Using internal MPI ($(mpi)))
-else ifeq ($(WITH_MPI),openmpi-cuda-4.0.5)
-mpi = openmpi-cuda-4.0.5
-$(info Using internal MPI ($(mpi)))
-else ifeq ($(WITH_MPI),openmpi-cuda-4.1.4)
-mpi = openmpi-cuda-4.1.4
 $(info Using internal MPI ($(mpi)))
 else ifeq ($(WITH_MPI),mpich-3.3.2)
 mpi = mpich-3.3.2
@@ -417,9 +428,6 @@ pkgs := $(pkgs) \
 	hypre-32-2.17.0 \
 	hypre-32-2.23.0 \
 	hypre-32-2.24.0 \
-	hypre-32-cuda-2.23.0 \
-	hypre-32-cuda-2.24.0 \
-	hypre-32-cuda-dbg-2.23.0 \
 	hypre-64-2.17.0 \
 	hypre-64-2.23.0 \
 	hypre-src-2.17.0 \

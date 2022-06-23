@@ -23,8 +23,8 @@ superlu_dist-64-7.2.0 = superlu_dist-64-$(superlu_dist-64-7.2.0-version)
 $(superlu_dist-64-7.2.0)-description = MPI-based direct solver for large, sparse non-symmetric systems of equations in distributed memory
 $(superlu_dist-64-7.2.0)-url = https://github.com/xiaoyeli/superlu_dist/
 $(superlu_dist-64-7.2.0)-srcurl = https://github.com/xiaoyeli/superlu_dist/archive/v$(superlu_dist-64-7.2.0-version).tar.gz
-$(superlu_dist-64-7.2.0)-builddeps = $(cmake) $(blas) $(mpi) $(parmetis-64) $(combblas)
-$(superlu_dist-64-7.2.0)-prereqs = $(blas) $(mpi) $(parmetis-64) $(combblas)
+$(superlu_dist-64-7.2.0)-builddeps = $(cmake) $(blas) $(mpi) $(parmetis-64) $(combblas) $(cuda-toolkit)
+$(superlu_dist-64-7.2.0)-prereqs = $(blas) $(mpi) $(parmetis-64) $(combblas) $(cuda-toolkit)
 $(superlu_dist-64-7.2.0)-src = $($(superlu_dist-src-7.2.0)-src)
 $(superlu_dist-64-7.2.0)-srcdir = $(pkgsrcdir)/$(superlu_dist-64-7.2.0)
 $(superlu_dist-64-7.2.0)-builddir = $($(superlu_dist-64-7.2.0)-srcdir)/build
@@ -70,6 +70,7 @@ $($(superlu_dist-64-7.2.0)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(f
 			-DTPL_ENABLE_COMBBLASLIB=ON \
 			-DTPL_COMBBLAS_INCLUDE_DIRS="$${COMBBLAS_INCDIR}/CombBLAS;$${COMBBLAS_INCDIR}/CombBLAS/BipartiteMatchings" \
 			-DTPL_COMBBLAS_LIBRARIES="$${COMBBLAS_LIBDIR}/libCombBLAS.so" \
+			$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo -DTPL_ENABLE_CUDALIB=ON -DCUDAToolkit_LIBRARY_ROOT="$${CUDA_TOOLKIT_LIBDIR}") \
 			-DCMAKE_C_COMPILER=$${MPICC} \
 			-DCMAKE_CXX_COMPILER=$${MPICXX} && \
 		$(MAKE) VERBOSE=1

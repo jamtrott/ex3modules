@@ -23,8 +23,8 @@ ucx = ucx-$(ucx-version)
 $(ucx)-description = Optimized communication layer for MPI, PGAS/OpenSHMEM and RPC/data-centric applications
 $(ucx)-url = http://www.openucx.org/
 $(ucx)-srcurl =
-$(ucx)-builddeps = $(autoconf) $(automake) $(libtool) $(knem) $(numactl) $(rdma-core)
-$(ucx)-prereqs = $(knem) $(numactl) $(rdma-core)
+$(ucx)-builddeps = $(autoconf) $(automake) $(libtool) $(knem) $(numactl) $(rdma-core) $(cuda-toolkit) $(gdrcopy)
+$(ucx)-prereqs = $(knem) $(numactl) $(rdma-core) $(cuda-toolkit) $(gdrcopy)
 $(ucx)-src = $($(ucx-src)-src)
 $(ucx)-srcdir = $(pkgsrcdir)/$(ucx)
 $(ucx)-modulefile = $(modulefilesdir)/$(ucx)
@@ -58,9 +58,9 @@ $($(ucx)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(uc
 			--with-rdmacm=$${RDMA_CORE_ROOT} \
 			--with-verbs=$${RDMA_CORE_ROOT} \
 			--with-mlx5-dv=$${RDMA_CORE_ROOT} \
-			--without-cuda \
+			$$([ ! -z "$${CUDA_TOOKIT_ROOT}" ] && echo --with-cuda="$${CUDA_TOOLKIT_ROOT}") \
+			$$([ ! -z "$${GDRCOPY_ROOT}" ] && echo --with-gdrcopy="$${GDRCOPY_ROOT}") \
 			--without-rocm \
-			--without-gdrcopy \
 			--without-java \
 			--enable-mt \
 			--enable-optimizations \

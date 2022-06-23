@@ -18,111 +18,111 @@
 #
 # cuda-toolkit-10.1.243
 
-cuda-toolkit-version = 10.1.243
-cuda-toolkit = cuda-toolkit-$(cuda-toolkit-version)
-$(cuda-toolkit)-description = Development environment for high performance GPU-accelerated applications
-$(cuda-toolkit)-url = https://developer.nvidia.com/cuda-toolkit/
-$(cuda-toolkit)-srcurl = http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda_10.1.243_418.87.00_linux.run
-$(cuda-toolkit)-builddeps =
-$(cuda-toolkit)-prereqs =
-$(cuda-toolkit)-src = $(pkgsrcdir)/$(notdir $($(cuda-toolkit)-srcurl))
-$(cuda-toolkit)-srcdir = $(pkgsrcdir)/$(cuda-toolkit)
-$(cuda-toolkit)-builddir = $($(cuda-toolkit)-srcdir)
-$(cuda-toolkit)-modulefile = $(modulefilesdir)/$(cuda-toolkit)
-$(cuda-toolkit)-prefix = $(pkgdir)/$(cuda-toolkit)
+cuda-toolkit-10.1-version = 10.1.243
+cuda-toolkit-10.1 = cuda-toolkit-$(cuda-toolkit-10.1-version)
+$(cuda-toolkit-10.1)-description = Development environment for high performance GPU-accelerated applications
+$(cuda-toolkit-10.1)-url = https://developer.nvidia.com/cuda-toolkit/
+$(cuda-toolkit-10.1)-srcurl = http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda_10.1.243_418.87.00_linux.run
+$(cuda-toolkit-10.1)-builddeps =
+$(cuda-toolkit-10.1)-prereqs =
+$(cuda-toolkit-10.1)-src = $(pkgsrcdir)/$(notdir $($(cuda-toolkit-10.1)-srcurl))
+$(cuda-toolkit-10.1)-srcdir = $(pkgsrcdir)/$(cuda-toolkit-10.1)
+$(cuda-toolkit-10.1)-builddir = $($(cuda-toolkit-10.1)-srcdir)
+$(cuda-toolkit-10.1)-modulefile = $(modulefilesdir)/$(cuda-toolkit-10.1)
+$(cuda-toolkit-10.1)-prefix = $(pkgdir)/$(cuda-toolkit-10.1)
 
 ifneq ($(ARCH),x86_64)
-$(info Skipping $(cuda-toolkit) - requires x86_64)
-$(cuda-toolkit)-src:
-$(cuda-toolkit)-unpack:
-$(cuda-toolkit)-patch:
-$(cuda-toolkit)-build:
-$(cuda-toolkit)-check:
-$(cuda-toolkit)-install:
-$(cuda-toolkit)-modulefile:
-$(cuda-toolkit)-clean:
-$(cuda-toolkit): $(cuda-toolkit)-src $(cuda-toolkit)-unpack $(cuda-toolkit)-patch $(cuda-toolkit)-build $(cuda-toolkit)-check $(cuda-toolkit)-install $(cuda-toolkit)-modulefile
+$(info Skipping $(cuda-toolkit-10.1) - requires x86_64)
+$(cuda-toolkit-10.1)-src:
+$(cuda-toolkit-10.1)-unpack:
+$(cuda-toolkit-10.1)-patch:
+$(cuda-toolkit-10.1)-build:
+$(cuda-toolkit-10.1)-check:
+$(cuda-toolkit-10.1)-install:
+$(cuda-toolkit-10.1)-modulefile:
+$(cuda-toolkit-10.1)-clean:
+$(cuda-toolkit-10.1): $(cuda-toolkit-10.1)-src $(cuda-toolkit-10.1)-unpack $(cuda-toolkit-10.1)-patch $(cuda-toolkit-10.1)-build $(cuda-toolkit-10.1)-check $(cuda-toolkit-10.1)-install $(cuda-toolkit-10.1)-modulefile
 
 else
-$($(cuda-toolkit)-src): $(dir $($(cuda-toolkit)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(cuda-toolkit)-srcurl)
+$($(cuda-toolkit-10.1)-src): $(dir $($(cuda-toolkit-10.1)-src)).markerfile
+	$(CURL) $(curl_options) --output $@ $($(cuda-toolkit-10.1)-srcurl)
 
-$($(cuda-toolkit)-srcdir)/.markerfile:
+$($(cuda-toolkit-10.1)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(cuda-toolkit)-prefix)/.markerfile:
+$($(cuda-toolkit-10.1)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(cuda-toolkit)-prefix)/.pkgunpack: $($(cuda-toolkit)-src) $($(cuda-toolkit)-srcdir)/.markerfile $($(cuda-toolkit)-prefix)/.markerfile $$(foreach dep,$$($(cuda-toolkit)-builddeps),$(modulefilesdir)/$$(dep))
+$($(cuda-toolkit-10.1)-prefix)/.pkgunpack: $($(cuda-toolkit-10.1)-src) $($(cuda-toolkit-10.1)-srcdir)/.markerfile $($(cuda-toolkit-10.1)-prefix)/.markerfile $$(foreach dep,$$($(cuda-toolkit-10.1)-builddeps),$(modulefilesdir)/$$(dep))
 	@touch $@
 
-$($(cuda-toolkit)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cuda-toolkit)-builddeps),$(modulefilesdir)/$$(dep)) $($(cuda-toolkit)-prefix)/.pkgunpack
+$($(cuda-toolkit-10.1)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cuda-toolkit-10.1)-builddeps),$(modulefilesdir)/$$(dep)) $($(cuda-toolkit-10.1)-prefix)/.pkgunpack
 	@touch $@
 
-ifneq ($($(cuda-toolkit)-builddir),$($(cuda-toolkit)-srcdir))
-$($(cuda-toolkit)-builddir)/.markerfile: $($(cuda-toolkit)-prefix)/.pkgunpack
+ifneq ($($(cuda-toolkit-10.1)-builddir),$($(cuda-toolkit-10.1)-srcdir))
+$($(cuda-toolkit-10.1)-builddir)/.markerfile: $($(cuda-toolkit-10.1)-prefix)/.pkgunpack
 	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
-$($(cuda-toolkit)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cuda-toolkit)-builddeps),$(modulefilesdir)/$$(dep)) $($(cuda-toolkit)-builddir)/.markerfile $($(cuda-toolkit)-prefix)/.pkgpatch
+$($(cuda-toolkit-10.1)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cuda-toolkit-10.1)-builddeps),$(modulefilesdir)/$$(dep)) $($(cuda-toolkit-10.1)-builddir)/.markerfile $($(cuda-toolkit-10.1)-prefix)/.pkgpatch
 	@touch $@
 
-$($(cuda-toolkit)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cuda-toolkit)-builddeps),$(modulefilesdir)/$$(dep)) $($(cuda-toolkit)-builddir)/.markerfile $($(cuda-toolkit)-prefix)/.pkgbuild
+$($(cuda-toolkit-10.1)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cuda-toolkit-10.1)-builddeps),$(modulefilesdir)/$$(dep)) $($(cuda-toolkit-10.1)-builddir)/.markerfile $($(cuda-toolkit-10.1)-prefix)/.pkgbuild
 	@touch $@
 
-$($(cuda-toolkit)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cuda-toolkit)-builddeps),$(modulefilesdir)/$$(dep)) $($(cuda-toolkit)-builddir)/.markerfile $($(cuda-toolkit)-prefix)/.pkgcheck
-	chmod u+x $($(cuda-toolkit)-src)
-	cd $($(cuda-toolkit)-builddir) && \
+$($(cuda-toolkit-10.1)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cuda-toolkit-10.1)-builddeps),$(modulefilesdir)/$$(dep)) $($(cuda-toolkit-10.1)-builddir)/.markerfile $($(cuda-toolkit-10.1)-prefix)/.pkgcheck
+	chmod u+x $($(cuda-toolkit-10.1)-src)
+	cd $($(cuda-toolkit-10.1)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(cuda-toolkit)-builddeps) && \
-		$($(cuda-toolkit)-src) --silent --toolkit \
-			--toolkitpath=$($(cuda-toolkit)-prefix) \
-			--defaultroot=$($(cuda-toolkit)-prefix)
+		$(MODULE) load $($(cuda-toolkit-10.1)-builddeps) && \
+		$($(cuda-toolkit-10.1)-src) --silent --toolkit \
+			--toolkitpath=$($(cuda-toolkit-10.1)-prefix) \
+			--defaultroot=$($(cuda-toolkit-10.1)-prefix)
 	@touch $@
 
-$($(cuda-toolkit)-modulefile): $(modulefilesdir)/.markerfile $($(cuda-toolkit)-prefix)/.pkginstall
+$($(cuda-toolkit-10.1)-modulefile): $(modulefilesdir)/.markerfile $($(cuda-toolkit-10.1)-prefix)/.pkginstall
 	printf "" >$@
 	echo "#%Module" >>$@
-	echo "# $(cuda-toolkit)" >>$@
+	echo "# $(cuda-toolkit-10.1)" >>$@
 	echo "" >>$@
 	echo "proc ModulesHelp { } {" >>$@
-	echo "     puts stderr \"\tSets up the environment for $(cuda-toolkit)\\n\"" >>$@
+	echo "     puts stderr \"\tSets up the environment for $(cuda-toolkit-10.1)\\n\"" >>$@
 	echo "}" >>$@
 	echo "" >>$@
-	echo "module-whatis \"$($(cuda-toolkit)-description)\"" >>$@
-	echo "module-whatis \"$($(cuda-toolkit)-url)\"" >>$@
-	printf "$(foreach prereq,$($(cuda-toolkit)-prereqs),\n$(MODULE) load $(prereq))" >>$@
+	echo "module-whatis \"$($(cuda-toolkit-10.1)-description)\"" >>$@
+	echo "module-whatis \"$($(cuda-toolkit-10.1)-url)\"" >>$@
+	printf "$(foreach prereq,$($(cuda-toolkit-10.1)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv CUDA_TOOLKIT_ROOT $($(cuda-toolkit)-prefix)" >>$@
-	echo "setenv CUDA_TOOLKIT_INCDIR $($(cuda-toolkit)-prefix)/include" >>$@
-	echo "setenv CUDA_TOOLKIT_INCLUDEDIR $($(cuda-toolkit)-prefix)/include" >>$@
-	echo "setenv CUDA_TOOLKIT_LIBDIR $($(cuda-toolkit)-prefix)/lib64" >>$@
-	echo "setenv CUDA_TOOLKIT_LIBRARYDIR $($(cuda-toolkit)-prefix)/lib64" >>$@
-	echo "prepend-path PATH $($(cuda-toolkit)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(cuda-toolkit)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(cuda-toolkit)-prefix)/include" >>$@
-	echo "prepend-path LIBRARY_PATH $($(cuda-toolkit)-prefix)/lib" >>$@
-	echo "prepend-path LIBRARY_PATH $($(cuda-toolkit)-prefix)/lib64" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(cuda-toolkit)-prefix)/lib" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(cuda-toolkit)-prefix)/lib64" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(cuda-toolkit)-prefix)/lib/pkgconfig" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(cuda-toolkit)-prefix)/lib64/pkgconfig" >>$@
-	echo "prepend-path MANPATH $($(cuda-toolkit)-prefix)/share/man" >>$@
-	echo "set MSG \"$(cuda-toolkit)\"" >>$@
+	echo "setenv CUDA_TOOLKIT_ROOT $($(cuda-toolkit-10.1)-prefix)" >>$@
+	echo "setenv CUDA_TOOLKIT_INCDIR $($(cuda-toolkit-10.1)-prefix)/include" >>$@
+	echo "setenv CUDA_TOOLKIT_INCLUDEDIR $($(cuda-toolkit-10.1)-prefix)/include" >>$@
+	echo "setenv CUDA_TOOLKIT_LIBDIR $($(cuda-toolkit-10.1)-prefix)/lib64" >>$@
+	echo "setenv CUDA_TOOLKIT_LIBRARYDIR $($(cuda-toolkit-10.1)-prefix)/lib64" >>$@
+	echo "prepend-path PATH $($(cuda-toolkit-10.1)-prefix)/bin" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(cuda-toolkit-10.1)-prefix)/include" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(cuda-toolkit-10.1)-prefix)/include" >>$@
+	echo "prepend-path LIBRARY_PATH $($(cuda-toolkit-10.1)-prefix)/lib" >>$@
+	echo "prepend-path LIBRARY_PATH $($(cuda-toolkit-10.1)-prefix)/lib64" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(cuda-toolkit-10.1)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(cuda-toolkit-10.1)-prefix)/lib64" >>$@
+	echo "prepend-path PKG_CONFIG_PATH $($(cuda-toolkit-10.1)-prefix)/lib/pkgconfig" >>$@
+	echo "prepend-path PKG_CONFIG_PATH $($(cuda-toolkit-10.1)-prefix)/lib64/pkgconfig" >>$@
+	echo "prepend-path MANPATH $($(cuda-toolkit-10.1)-prefix)/share/man" >>$@
+	echo "set MSG \"$(cuda-toolkit-10.1)\"" >>$@
 
-$(cuda-toolkit)-src: $($(cuda-toolkit)-src)
-$(cuda-toolkit)-unpack: $($(cuda-toolkit)-prefix)/.pkgunpack
-$(cuda-toolkit)-patch: $($(cuda-toolkit)-prefix)/.pkgpatch
-$(cuda-toolkit)-build: $($(cuda-toolkit)-prefix)/.pkgbuild
-$(cuda-toolkit)-check: $($(cuda-toolkit)-prefix)/.pkgcheck
-$(cuda-toolkit)-install: $($(cuda-toolkit)-prefix)/.pkginstall
-$(cuda-toolkit)-modulefile: $($(cuda-toolkit)-modulefile)
-$(cuda-toolkit)-clean:
-	rm -rf $($(cuda-toolkit)-modulefile)
-	rm -rf $($(cuda-toolkit)-prefix)
-	rm -rf $($(cuda-toolkit)-srcdir)
-	rm -rf $($(cuda-toolkit)-src)
-$(cuda-toolkit): $(cuda-toolkit)-src $(cuda-toolkit)-unpack $(cuda-toolkit)-patch $(cuda-toolkit)-build $(cuda-toolkit)-check $(cuda-toolkit)-install $(cuda-toolkit)-modulefile
+$(cuda-toolkit-10.1)-src: $($(cuda-toolkit-10.1)-src)
+$(cuda-toolkit-10.1)-unpack: $($(cuda-toolkit-10.1)-prefix)/.pkgunpack
+$(cuda-toolkit-10.1)-patch: $($(cuda-toolkit-10.1)-prefix)/.pkgpatch
+$(cuda-toolkit-10.1)-build: $($(cuda-toolkit-10.1)-prefix)/.pkgbuild
+$(cuda-toolkit-10.1)-check: $($(cuda-toolkit-10.1)-prefix)/.pkgcheck
+$(cuda-toolkit-10.1)-install: $($(cuda-toolkit-10.1)-prefix)/.pkginstall
+$(cuda-toolkit-10.1)-modulefile: $($(cuda-toolkit-10.1)-modulefile)
+$(cuda-toolkit-10.1)-clean:
+	rm -rf $($(cuda-toolkit-10.1)-modulefile)
+	rm -rf $($(cuda-toolkit-10.1)-prefix)
+	rm -rf $($(cuda-toolkit-10.1)-srcdir)
+	rm -rf $($(cuda-toolkit-10.1)-src)
+$(cuda-toolkit-10.1): $(cuda-toolkit-10.1)-src $(cuda-toolkit-10.1)-unpack $(cuda-toolkit-10.1)-patch $(cuda-toolkit-10.1)-build $(cuda-toolkit-10.1)-check $(cuda-toolkit-10.1)-install $(cuda-toolkit-10.1)-modulefile
 endif

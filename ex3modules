@@ -52,12 +52,16 @@ function help()
     printf "  %-20s\t%s\n" "--list-packages" "list available packages"
     printf "  %-20s\t%s\n" "--describe-package" "describe packages"
     printf "\n"
-    printf "  %-20s\t%s\n" "--enable-cuda" "build with CUDA support"
     printf "  %-20s\t%s\n" "--enable-gfortran" "build and use internal Fortran compiler"
     printf "  %-20s\t%s\n" "--with-cmake=DIR" "Root directory of CMake installation, or 'cmake-3.17.2'."
     printf "  %-20s\t%s\n" ""               "If a directory is given, then an external CMake is used. In this case,"
     printf "  %-20s\t%s\n" ""               "DIR/bin is added to PATH. Otherwise, an internal CMake is used."
     printf "  %-20s\t%s\n" "--without-cmake" "disable CMake usage completely. Some modules may not be built."
+    printf "  %-20s\t%s\n" "--with-cuda=DIR" "Root directory of CUDA Toolkit installation, or 'cuda-toolkit-10.1.243'."
+    printf "  %-20s\t%s\n" ""               "If a directory is given, then an external CUDA Toolkit is used. In this case,"
+    printf "  %-20s\t%s\n" ""               "DIR/bin is added to PATH, and DIR/include, DIR/lib and DIR/lib64 are added "
+    printf "  %-20s\t%s\n" ""               "to search paths for headers and libraries. Otherwise, an internal CUDA Toolkit is used."
+    printf "  %-20s\t%s\n" "--without-cuda" "disable CUDA usage completely. Some modules may not be built."
     printf "  %-20s\t%s\n" "--with-hwloc=DIR" "Root directory of hwloc installation, or 'hwloc-2.4.1'."
     printf "  %-20s\t%s\n" ""               "If a directory is given, then an external hwloc is used. In this case,"
     printf "  %-20s\t%s\n" ""               "DIR/bin, DIR/include, DIR/lib and DIR/lib64 are added to search paths for"
@@ -141,11 +145,13 @@ function parse_program_options()
 	    --pkgdir=*) pkgdir="${1#*=}"; shift 1;;
 	    --modulefilesdir) modulefilesdir="${2}"; shift 2;;
 	    --modulefilesdir=*) modulefilesdir="${1#*=}"; shift 1;;
-	    --enable-cuda) enable_cuda=1; shift 1;;
 	    --enable-gfortran) enable_gfortran=1; shift 1;;
 	    --with-cmake) with_cmake="${2}"; shift 2;;
 	    --with-cmake=*) with_cmake="${1#*=}"; shift 1;;
 	    --without-cmake) with_cmake=no; shift 1;;
+	    --with-cuda) with_cuda="${2}"; shift 2;;
+	    --with-cuda=*) with_cuda="${1#*=}"; shift 1;;
+	    --without-cuda) with_cuda=no; shift 1;;
 	    --with-hwloc) with_hwloc="${2}"; shift 2;;
 	    --with-hwloc=*) with_hwloc="${1#*=}"; shift 1;;
 	    --without-hwloc) with_hwloc=no; shift 1;;
@@ -191,9 +197,9 @@ function main ()
     [ ! -z "${pkgsrcdir}" ] && make_options+=" pkgsrcdir=${pkgsrcdir}"
     [ ! -z "${pkgdir}" ] && make_options+=" pkgdir=${pkgdir}"
     [ ! -z "${modulefilesdir}" ] && make_options+=" modulefilesdir=${modulefilesdir}"
-    [ ! -z "${enable_cuda}" ] && make_options+=" ENABLE_CUDA=1"
     [ ! -z "${enable_gfortran}" ] && make_options+=" ENABLE_GFORTRAN=1"
     [ ! -z "${with_cmake}" ] && make_options+=" WITH_CMAKE=${with_cmake}"
+    [ ! -z "${with_cuda}" ] && make_options+=" WITH_CUDA=${with_cuda}"
     [ ! -z "${with_hwloc}" ] && make_options+=" WITH_HWLOC=${with_hwloc}"
     [ ! -z "${with_mpi}" ] && make_options+=" WITH_MPI=${with_mpi}"
     [ ! -z "${with_openssl}" ] && make_options+=" WITH_OPENSSL=${with_openssl}"

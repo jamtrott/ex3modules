@@ -23,8 +23,8 @@ hypre-32-cuda-2.24 = hypre-32-cuda-$(hypre-32-cuda-2.24-version)
 $(hypre-32-cuda-2.24)-description = Scalable Linear Solvers and Multigrid Methods
 $(hypre-32-cuda-2.24)-url = https://github.com/hypre-space/hypre/
 $(hypre-32-cuda-2.24)-srcurl = https://github.com/hypre-space/hypre/archive/v$(hypre-32-cuda-2.24-version).tar.gz
-$(hypre-32-cuda-2.24)-builddeps = $(blas) $(openmpi-cuda) $(cuda-toolkit)
-$(hypre-32-cuda-2.24)-prereqs = $(blas) $(openmpi-cuda) $(cuda-toolkit)
+$(hypre-32-cuda-2.24)-builddeps = $(blas) $(mpi) $(cuda-toolkit)
+$(hypre-32-cuda-2.24)-prereqs = $(blas) $(mpi) $(cuda-toolkit)
 $(hypre-32-cuda-2.24)-src = $($(hypre-src-2.24)-src)
 $(hypre-32-cuda-2.24)-srcdir = $(pkgsrcdir)/$(hypre-32-cuda-2.24)
 $(hypre-32-cuda-2.24)-modulefile = $(modulefilesdir)/$(hypre-32-cuda-2.24)
@@ -58,7 +58,7 @@ $($(hypre-32-cuda-2.24)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(fore
 			--with-MPI-libs=mpi \
 			--enable-device-memory-pool \
 			--with-cuda \
-			CUDA_HOME=$${CUDA_TOOLKIT_ROOT} && \
+			CUDA_HOME="$${CUDA_TOOLKIT_ROOT}" && \
 		$(MAKE)
 	@touch $@
 
