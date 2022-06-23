@@ -31,10 +31,12 @@ program_version=0.5.0
 
 # default options
 with_cmake=
+with_cuda=
 with_hwloc=
 with_mpi=
 with_openssl=
 with_python=
+with_rocm=
 with_slurm=
 with_zlib=
 
@@ -57,7 +59,7 @@ function help()
     printf "  %-20s\t%s\n" ""               "If a directory is given, then an external CMake is used. In this case,"
     printf "  %-20s\t%s\n" ""               "DIR/bin is added to PATH. Otherwise, an internal CMake is used."
     printf "  %-20s\t%s\n" "--without-cmake" "disable CMake usage completely. Some modules may not be built."
-    printf "  %-20s\t%s\n" "--with-cuda=DIR" "Root directory of CUDA Toolkit installation, or 'cuda-toolkit-10.1.243'."
+    printf "  %-20s\t%s\n" "--with-cuda=DIR" "Root directory of CUDA Toolkit installation or 'auto'."
     printf "  %-20s\t%s\n" ""               "If a directory is given, then an external CUDA Toolkit is used. In this case,"
     printf "  %-20s\t%s\n" ""               "DIR/bin is added to PATH, and DIR/include, DIR/lib and DIR/lib64 are added "
     printf "  %-20s\t%s\n" ""               "to search paths for headers and libraries. Otherwise, an internal CUDA Toolkit is used."
@@ -83,6 +85,11 @@ function help()
     printf "  %-20s\t%s\n" ""               "DIR/bin, DIR/include, DIR/lib and DIR/lib64 are added to search paths for"
     printf "  %-20s\t%s\n" ""               "binaries, headers and libraries. Otherwise, an internal Python is used."
     printf "  %-20s\t%s\n" "--without-python" "disable Python usage completely. Some modules may not be built."
+    printf "  %-20s\t%s\n" "--with-rocm=DIR" "Root directory of ROCm Toolkit installation or 'auto'."
+    printf "  %-20s\t%s\n" ""               "If a directory is given, then an external ROCm Toolkit is used. In this case,"
+    printf "  %-20s\t%s\n" ""               "DIR/bin is added to PATH, and DIR/include, DIR/lib and DIR/lib64 are added "
+    printf "  %-20s\t%s\n" ""               "to search paths for headers and libraries. Otherwise, an internal ROCm Toolkit is used."
+    printf "  %-20s\t%s\n" "--without-rocm" "disable ROCm usage completely. Some modules may not be built."
     printf "  %-20s\t%s\n" "--with-slurm=DIR" "Root directory of Slurm installation, or 'slurm-20.02.7'."
     printf "  %-20s\t%s\n" ""               "If a directory is given, then an external Slurm is used. In this case,"
     printf "  %-20s\t%s\n" ""               "DIR/bin, DIR/include, DIR/lib and DIR/lib64 are added to search paths for"
@@ -164,6 +171,9 @@ function parse_program_options()
 	    --with-python) with_python="${2}"; shift 2;;
 	    --with-python=*) with_python="${1#*=}"; shift 1;;
 	    --without-python) with_python=no; shift 1;;
+	    --with-rocm) with_rocm="${2}"; shift 2;;
+	    --with-rocm=*) with_rocm="${1#*=}"; shift 1;;
+	    --without-rocm) with_rocm=no; shift 1;;
 	    --with-slurm) with_slurm="${2}"; shift 2;;
 	    --with-slurm=*) with_slurm="${1#*=}"; shift 1;;
 	    --without-slurm) with_slurm=no; shift 1;;
@@ -204,6 +214,7 @@ function main ()
     [ ! -z "${with_mpi}" ] && make_options+=" WITH_MPI=${with_mpi}"
     [ ! -z "${with_openssl}" ] && make_options+=" WITH_OPENSSL=${with_openssl}"
     [ ! -z "${with_python}" ] && make_options+=" WITH_PYTHON=${with_python}"
+    [ ! -z "${with_rocm}" ] && make_options+=" WITH_ROCM=${with_rocm}"
     [ ! -z "${with_slurm}" ] && make_options+=" WITH_SLURM=${with_slurm}"
     [ ! -z "${with_zlib}" ] && make_options+=" WITH_ZLIB=${with_zlib}"
     make ${make_options} ${EXTRA_OPTIONS[@]}

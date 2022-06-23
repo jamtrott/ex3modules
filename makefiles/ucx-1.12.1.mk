@@ -60,7 +60,7 @@ $($(ucx)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(uc
 			--with-mlx5-dv=$${RDMA_CORE_ROOT} \
 			$$([ ! -z "$${CUDA_TOOKIT_ROOT}" ] && echo --with-cuda="$${CUDA_TOOLKIT_ROOT}") \
 			$$([ ! -z "$${GDRCOPY_ROOT}" ] && echo --with-gdrcopy="$${GDRCOPY_ROOT}") \
-			--without-rocm \
+			$$([ ! -z "$${ROCM_ROOT}" ] && echo --with-rocm="$${ROCM_ROOT}") \
 			--without-java \
 			--enable-mt \
 			--enable-optimizations \

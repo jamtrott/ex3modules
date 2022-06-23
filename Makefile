@@ -35,6 +35,7 @@ AVX512F := $(shell [ "$$(grep avx512f /proc/cpuinfo)" ] && echo true)
 
 # Default options
 HAVE_CUDA :=
+HAVE_ROCM :=
 ENABLE_GFORTRAN :=
 CMAKE_ROOT :=
 MPI_HOME :=
@@ -157,7 +158,7 @@ else ifeq ($(WITH_CUDA),no)
 $(warning Warning: CUDA is disabled - some modules may not build.)
 else ifneq ($(WITH_CUDA),)
 HAVE_CUDA=1
-CUDA_TOOLKIT_ROOT = $(WITH_CUDA)
+export CUDA_TOOLKIT_ROOT = $(WITH_CUDA)
 NVCC = $(CUDA_TOOLKIT_ROOT)/bin/nvcc
 $(info Using $(NVCC) ($(shell $(NVCC) --version | head -n 1)))
 export PATH := $(CUDA_TOOLKIT_ROOT)/bin$(if $(PATH),:$(PATH),)
@@ -165,22 +166,33 @@ export C_INCLUDE_PATH := $(CUDA_TOOLKIT_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C
 export CPLUS_INCLUDE_PATH := $(CUDA_TOOLKIT_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
 export LIBRARY_PATH := $(CUDA_TOOLKIT_ROOT)/lib:$(CUDA_TOOLKIT_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
 export LD_LIBRARY_PATH := $(CUDA_TOOLKIT_ROOT)/lib:$(CUDA_TOOLKIT_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
-else ifneq ($(shell which nvcc),)
-NVCC = $(shell which nvcc)
-HAVE_CUDA=1
-$(info Using $(NVCC) ($(shell $(NVCC) --version | head -n 1)))
 else
 $(warning Warning: CUDA Toolkit not found - some modules may not build.)
 endif
 
-# CUDA-related packages - note CUDA toolkit 10.1.243 is only supported
-# on x86_64.
+# CUDA-related packages
 ifneq ($(HAVE_CUDA),)
-hypre = hypre-32-cuda-2.24.0
-hypre-32 = hypre-32-cuda-2.24.0
 pkgs := $(pkgs) \
-	gdrcopy-2.2 \
-	hypre-32-cuda-2.24.0
+	gdrcopy-2.2
+endif
+
+#
+# ROCm
+#
+ifeq ($(WITH_ROCM),no)
+$(warning Warning: ROCm is disabled - some modules may not build.)
+else ifneq ($(WITH_ROCM),)
+HAVE_ROCM=1
+export ROCM_ROOT = $(WITH_ROCM)
+export HIPCC = $(ROCM_ROOT)/bin/hipcc
+$(info Using $(HIPCC) ($(shell $(HIPCC) --version | head -n 1)))
+export PATH := $(ROCM_ROOT)/bin$(if $(PATH),:$(PATH),)
+export C_INCLUDE_PATH := $(ROCM_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
+export CPLUS_INCLUDE_PATH := $(ROCM_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
+export LIBRARY_PATH := $(ROCM_ROOT)/lib:$(ROCM_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
+export LD_LIBRARY_PATH := $(ROCM_ROOT)/lib:$(ROCM_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
+else
+$(warning Warning: ROCm not found - some modules may not build.)
 endif
 
 #
@@ -192,7 +204,7 @@ $(info Using internal hwloc ($(hwloc)))
 else ifeq ($(WITH_HWLOC),no)
 $(warning Warning: hwloc is disabled - some modules may not build.)
 else ifneq ($(WITH_HWLOC),)
-HWLOC_ROOT = $(WITH_HWLOC)
+export HWLOC_ROOT = $(WITH_HWLOC)
 HWLOC_INFO = $(HWLOC_ROOT)/bin/hwloc-info
 $(info Using $(HWLOC_INFO) ($(shell $(HWLOC_INFO) --version | head -n 1)))
 export PATH := $(HWLOC_ROOT)/bin$(if $(PATH),:$(PATH),)
@@ -425,12 +437,9 @@ pkgs := $(pkgs) \
 	hwloc-2.4.1 \
 	hwloc-cairo-2.4.1 \
 	hwloc-src-2.4.1 \
-	hypre-32-2.17.0 \
 	hypre-32-2.23.0 \
 	hypre-32-2.24.0 \
-	hypre-64-2.17.0 \
 	hypre-64-2.23.0 \
-	hypre-src-2.17.0 \
 	hypre-src-2.23.0 \
 	hypre-src-2.24.0 \
 	icu-69.1 \
