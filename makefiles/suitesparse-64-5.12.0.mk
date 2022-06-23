@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# suitesparse-64-5.7.2
+# suitesparse-64-5.12.0
 
-suitesparse-64-version = 5.7.2
+suitesparse-64-version = 5.12.0
 suitesparse-64 = suitesparse-64-$(suitesparse-64-version)
 $(suitesparse-64)-description = A suite of sparse matrix software
 $(suitesparse-64)-url = http://faculty.cse.tamu.edu/davis/suitesparse.html
@@ -56,7 +56,7 @@ $($(suitesparse-64)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 			LAPACK="" \
 			MY_METIS_LIB="$${METIS_LIBDIR}/libmetis.so" \
 			MY_METIS_INC="$${METIS_INCDIR}" \
-			CMAKE_OPTIONS="-DCMAKE_INSTALL_PREFIX=$($(suitesparse-64)-prefix) -DCMAKE_INSTALL_LIBDIR=lib"
+			CMAKE_OPTIONS="-DCMAKE_INSTALL_PREFIX=$($(suitesparse-64)-prefix) -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_C_FLAGS=\"-DLP64 -DLONGBLAS='long int' -DLONG='long int'\""
 	@touch $@
 
 $($(suitesparse-64)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(suitesparse-64)-builddeps),$(modulefilesdir)/$$(dep)) $($(suitesparse-64)-prefix)/.pkgbuild

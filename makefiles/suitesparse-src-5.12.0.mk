@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# suitesparse-src-5.7.2
+# suitesparse-src-5.12.0
 
-suitesparse-src-version = 5.7.2
+suitesparse-src-version = 5.12.0
 suitesparse-src = suitesparse-src-$(suitesparse-src-version)
 $(suitesparse-src)-description = A suite of sparse matrix software
 $(suitesparse-src)-url = http://faculty.cse.tamu.edu/davis/suitesparse.html

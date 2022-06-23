@@ -16,17 +16,17 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# suitesparse-32-5.7.2
+# suitesparse-32-5.12.0
 
-suitesparse-32-version = 5.7.2
+suitesparse-32-version = 5.12.0
 suitesparse-32 = suitesparse-32-$(suitesparse-32-version)
 $(suitesparse-32)-description = A suite of sparse matrix software
 $(suitesparse-32)-url = http://faculty.cse.tamu.edu/davis/suitesparse.html
 $(suitesparse-32)-srcurl =
 $(suitesparse-32)-src = $($(suitesparse-src)-src)
 $(suitesparse-32)-srcdir = $(pkgsrcdir)/$(suitesparse-32)
-$(suitesparse-32)-builddeps = $(cmake) $(blas) $(metis-32)
-$(suitesparse-32)-prereqs = $(blas) $(metis-32)
+$(suitesparse-32)-builddeps = $(cmake) $(blas) $(metis) $(gmp) $(mpfr)
+$(suitesparse-32)-prereqs = $(blas) $(metis) $(gmp) $(mpfr)
 $(suitesparse-32)-modulefile = $(modulefilesdir)/$(suitesparse-32)
 $(suitesparse-32)-prefix = $(pkgdir)/$(suitesparse-32)
 
@@ -44,6 +44,7 @@ $($(suitesparse-32)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach 
 	sed -i 's,cd build ; cmake,cd build ; $(CMAKE),' $($(suitesparse-32)-srcdir)/GraphBLAS/Makefile
 	sed -i 's,cd build ; cmake,cd build ; $(CMAKE),' $($(suitesparse-32)-srcdir)/Mongoose/Makefile
 	sed -i '/-gencode=arch=compute_30,code=sm_30/d' $($(suitesparse-32)-srcdir)/SuiteSparse_config/SuiteSparse_config.mk
+	sed -i 's,CUDA = auto,CUDA = no,' $($(suitesparse-32)-srcdir)/SuiteSparse_config/SuiteSparse_config.mk
 	@touch $@
 
 $($(suitesparse-32)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(suitesparse-32)-builddeps),$(modulefilesdir)/$$(dep)) $($(suitesparse-32)-prefix)/.pkgpatch

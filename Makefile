@@ -78,6 +78,9 @@ mumps-64 = mumps-64-5.4.1
 parmetis = parmetis-32-4.0.3
 parmetis-32 = parmetis-32-4.0.3
 parmetis-64 = parmetis-64-4.0.3
+suitesparse = suitesparse-32-5.12.0
+suitesparse-32 = suitesparse-32-5.12.0
+suitesparse-64 = suitesparse-64-5.12.0
 superlu_dist = superlu_dist-32-7.2.0
 superlu_dist-32 = superlu_dist-32-7.2.0
 superlu_dist-64 = superlu_dist-64-7.2.0
@@ -678,9 +681,9 @@ pkgs := $(pkgs) \
 	slurm-20.02.7 \
 	sparse-0.6.3 \
 	sqlite-3.31.1 \
-	suitesparse-32-5.7.2 \
-	suitesparse-64-5.7.2 \
-	suitesparse-src-5.7.2 \
+	suitesparse-32-5.12.0 \
+	suitesparse-64-5.12.0 \
+	suitesparse-src-5.12.0 \
 	superlu-5.2.1 \
 	superlu_dist-32-6.4.0 \
 	superlu_dist-32-7.2.0 \
