@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# scotch-6.0.7
+# scotch-6.1.3
 
-scotch-version = 6.0.7
+scotch-version = 6.1.3
 scotch = scotch-$(scotch-version)
 $(scotch)-description = Static Mapping, Graph, Mesh and Hypergraph Partitioning, and Parallel and Sequential Sparse Matrix Ordering Package
 $(scotch)-url = https://www.labri.fr/perso/pelegrin/scotch/
-$(scotch)-srcurl = https://gforge.inria.fr/frs/download.php/file/38040/scotch_$(scotch-version).tar.gz
+$(scotch)-srcurl = https://gitlab.inria.fr/scotch/scotch/-/archive/v$(scotch-version)/scotch-v$(scotch-version).tar.gz
 $(scotch)-src = $($(scotch-src)-src)
 $(scotch)-srcdir = $(pkgsrcdir)/$(scotch)
 $(scotch)-builddeps = $(mpi) $(patchelf)

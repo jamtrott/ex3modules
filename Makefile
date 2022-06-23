@@ -673,8 +673,8 @@ pkgs := $(pkgs) \
 	readline-8.0 \
 	scalapack-2.1.0 \
 	scalapack-src-2.1.0 \
-	scotch-6.0.7 \
-	scotch-src-6.0.7 \
+	scotch-6.1.3 \
+	scotch-src-6.1.3 \
 	slurm-20.02.7 \
 	sparse-0.6.3 \
 	sqlite-3.31.1 \
