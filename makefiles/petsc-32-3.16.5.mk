@@ -53,7 +53,7 @@ $($(petsc-32-3.16.5)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 			--with-openmp=1 \
 			--with-blaslapack-lib="$${BLASDIR}/lib$${BLASLIB}.so" \
 			--with-boost --with-boost-dir="$${BOOST_ROOT}" \
-			$$([[ ! -z "$${HWLOC_ROOT}" ]] && echo --with-hwloc --with-hwloc-dir="$${HWLOC_ROOT}") \
+			$$([ ! -z "$${HWLOC_ROOT}" ] && echo --with-hwloc --with-hwloc-dir="$${HWLOC_ROOT}") \
 			--with-hypre --with-hypre-dir="$${HYPRE_ROOT}" \
 			--with-metis --with-metis-dir="$${METIS_ROOT}" \
 			--with-mpi --with-mpi-dir="$${MPI_HOME}" \
