@@ -160,7 +160,7 @@ else ifneq ($(WITH_CUDA),)
 HAVE_CUDA=1
 export CUDA_TOOLKIT_ROOT = $(WITH_CUDA)
 NVCC = $(CUDA_TOOLKIT_ROOT)/bin/nvcc
-$(info Using $(NVCC) ($(shell $(NVCC) --version | head -n 1)))
+$(info Using $(NVCC) ($(shell $(NVCC) --version | tail -n 1)))
 export PATH := $(CUDA_TOOLKIT_ROOT)/bin$(if $(PATH),:$(PATH),)
 export C_INCLUDE_PATH := $(CUDA_TOOLKIT_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
 export CPLUS_INCLUDE_PATH := $(CUDA_TOOLKIT_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
