@@ -635,12 +635,12 @@ pkgs := $(pkgs) \
 	python-mpmath-1.1.0 \
 	python-nose-1.3.7 \
 	python-numba-0.52.0 \
-	python-numpy-1.19.2 \
+	python-numpy-1.21.5 \
 	python-numpy-quaternion-2021.11.4.15.26.3 \
 	python-packaging-20.4 \
 	python-pandas-1.0.3 \
 	python-pathlib2-2.3.5 \
-	python-petsc4py-3.16.1 \
+	python-petsc4py-3.17.2 \
 	python-pillow-8.1.1 \
 	python-pip-21.3.1 \
 	python-pkgconfig-1.5.1 \
