@@ -56,7 +56,7 @@ $($(python-h5py)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-h5py)-builddeps) && \
-		HDF5_DIR="$${HDF5_ROOT}" HDF5_MPI="ON" CC="$${MPICC}" $(PYTHON) setup.py build
+		HDF5_DIR="$${HDF5_ROOT}" HDF5_VERSION="$${HDF5_VERSION}" HDF5_MPI="ON" CC="$${MPICC}" $(PYTHON) setup.py build
 	@touch $@
 
 $($(python-h5py)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-h5py)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-h5py)-prefix)/.pkgbuild

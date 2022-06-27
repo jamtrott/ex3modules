@@ -92,6 +92,7 @@ $($(hdf5-parallel)-modulefile): $(modulefilesdir)/.markerfile $($(hdf5-parallel)
 	echo "" >>$@
 	echo "" >>$@
 	echo "setenv HDF5_ROOT $($(hdf5-parallel)-prefix)" >>$@
+	echo "setenv HDF5_VERSION $(hdf5-parallel-version)" >>$@
 	echo "setenv HDF5_INCDIR $($(hdf5-parallel)-prefix)/include" >>$@
 	echo "setenv HDF5_INCLUDEDIR $($(hdf5-parallel)-prefix)/include" >>$@
 	echo "setenv HDF5_LIBDIR $($(hdf5-parallel)-prefix)/lib" >>$@

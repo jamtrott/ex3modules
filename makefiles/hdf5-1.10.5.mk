@@ -94,6 +94,7 @@ $($(hdf5)-modulefile): $(modulefilesdir)/.markerfile $($(hdf5)-prefix)/.pkginsta
 	echo "" >>$@
 	echo "" >>$@
 	echo "setenv HDF5_ROOT $($(hdf5)-prefix)" >>$@
+	echo "setenv HDF5_VERSION $(hdf5-version)" >>$@
 	echo "setenv HDF5_INCDIR $($(hdf5)-prefix)/include" >>$@
 	echo "setenv HDF5_INCLUDEDIR $($(hdf5)-prefix)/include" >>$@
 	echo "setenv HDF5_LIBDIR $($(hdf5)-prefix)/lib" >>$@
