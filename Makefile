@@ -537,6 +537,7 @@ pkgs := $(pkgs) \
 	nspr-4.32 \
 	nss-3.69 \
 	numactl-2.0.13 \
+	nvtop-2.0.1 \
 	ocaml-4.08.1 \
 	onetbb-2021.4.0 \
 	onetbb-src-2021.4.0 \
