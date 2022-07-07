@@ -1,6 +1,8 @@
 * Noteworthy changes in the upcoming release
 
-Add SuperLU_dist 7.2.0.
+New modules: kokkos 3.6.01, kokkos-kernels 3.6.1
+
+Updated modules: SuperLU_dist 7.2.0.
 
 Remove dependencies on internal GCC to let the user decide which
 compiler to use.

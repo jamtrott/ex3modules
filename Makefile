@@ -450,6 +450,8 @@ pkgs := $(pkgs) \
 	ipopt-3.13.3 \
 	itk-4.13.3 \
 	knem-1.1.4 \
+	kokkos-3.6.01 \
+	kokkos-kernels-3.6.1 \
 	lapack-3.9.0 \
 	lcms2-2.12 \
 	libarchive-3.4.2 \
