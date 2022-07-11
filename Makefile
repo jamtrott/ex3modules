@@ -570,6 +570,7 @@ pkgs := $(pkgs) \
 	petsc-3.13.2 \
 	petsc-32-3.16.5 \
 	petsc-32-3.17.2 \
+	petsc-32-kokkos-3.17.2 \
 	petsc-64-3.16.5 \
 	petsc-src-3.13.2 \
 	petsc-src-3.16.5 \
