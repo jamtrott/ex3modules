@@ -104,6 +104,7 @@ $($(kokkos)-modulefile): $(modulefilesdir)/.markerfile $($(kokkos)-prefix)/.pkgi
 	echo "prepend-path C_INCLUDE_PATH $($(kokkos)-prefix)/include" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(kokkos)-prefix)/include" >>$@
 	echo "prepend-path LIBRARY_PATH $($(kokkos)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(kokkos)-prefix)/lib" >>$@
 	echo "prepend-path CMAKE_MODULE_PATH $($(kokkos)-prefix)/lib/cmake/Kokkos" >>$@
 	echo "set MSG \"$(kokkos)\"" >>$@
 

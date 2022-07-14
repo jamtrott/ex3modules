@@ -98,6 +98,7 @@ $($(kokkos-kernels)-modulefile): $(modulefilesdir)/.markerfile $($(kokkos-kernel
 	echo "prepend-path C_INCLUDE_PATH $($(kokkos-kernels)-prefix)/include" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(kokkos-kernels)-prefix)/include" >>$@
 	echo "prepend-path LIBRARY_PATH $($(kokkos-kernels)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(kokkos-kernels)-prefix)/lib" >>$@
 	echo "prepend-path CMAKE_MODULE_PATH $($(kokkos-kernels)-prefix)/lib/cmake/KokkosKernels" >>$@
 	echo "set MSG \"$(kokkos-kernels)\"" >>$@
 
