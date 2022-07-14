@@ -60,7 +60,8 @@ $($(kokkos-kernels)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(kokkos-kernels)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
-			-DCMAKE_BUILD_TYPE=Release && \
+			-DCMAKE_BUILD_TYPE=Release \
+			-DBUILD_SHARED_LIBS=ON && \
 		$(MAKE) VERBOSE=1
 	@touch $@
 
