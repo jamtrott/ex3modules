@@ -1,5 +1,9 @@
 2022-07-07  James D. Trotter  <james@simula.no>
 
+	add xtl 0.7.4 and xtensor 0.24.2
+
+2022-07-07  James D. Trotter  <james@simula.no>
+
 	add kokkos 3.6.01 and kokkos-kernels 3.6.1
 
 2022-03-22 James D. Trotter <james@simula.no>

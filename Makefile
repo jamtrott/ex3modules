@@ -736,6 +736,8 @@ pkgs := $(pkgs) \
 	xorg-libraries-2020-03-15 \
 	xorg-util-macros-1.19.2 \
 	xorgproto-2019.2 \
+	xtensor-0.24.2 \
+	xtl-0.7.4 \
 	xtrans-1.4.0 \
 	xz-5.2.5 \
 	zlib-1.2.11
