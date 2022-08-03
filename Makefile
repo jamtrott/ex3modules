@@ -85,7 +85,7 @@ suitesparse-64 = suitesparse-64-5.12.0
 superlu_dist = superlu_dist-32-7.2.0
 superlu_dist-32 = superlu_dist-32-7.2.0
 superlu_dist-64 = superlu_dist-64-7.2.0
-petsc = petsc-32-3.17.2
+petsc = petsc-32-3.17.3
 
 #
 # CMake
@@ -569,12 +569,12 @@ pkgs := $(pkgs) \
 	perl-5.30.2 \
 	petsc-3.13.2 \
 	petsc-32-3.16.5 \
-	petsc-32-3.17.2 \
-	petsc-32-kokkos-3.17.2 \
+	petsc-32-3.17.3 \
+	petsc-32-kokkos-3.17.3 \
 	petsc-64-3.16.5 \
 	petsc-src-3.13.2 \
 	petsc-src-3.16.5 \
-	petsc-src-3.17.2 \
+	petsc-src-3.17.3 \
 	pixman-0.38.4 \
 	pmix-3.1.5 \
 	poppler-21.04.0 \
