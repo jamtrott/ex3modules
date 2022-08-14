@@ -25,8 +25,8 @@ $(mumps-32)-url = http://mumps.enseeiht.fr/
 $(mumps-32)-srcurl = $($(mumps-src)-srcurl)
 $(mumps-32)-src = $($(mumps-src)-src)
 $(mumps-32)-srcdir = $(pkgsrcdir)/$(mumps-32)
-$(mumps-32)-builddeps = $(blas) $(mpi) $(metis-32) $(parmetis-32) $(scotch) $(scalapack) $(gfortran) $(patchelf)
-$(mumps-32)-prereqs = $(blas) $(mpi) $(metis-32) $(parmetis-32) $(scotch) $(scalapack) $(gfortran)
+$(mumps-32)-builddeps = $(blas) $(mpi) $(metis-32) $(parmetis-32) $(scotch) $(scalapack) $(patchelf)
+$(mumps-32)-prereqs = $(blas) $(mpi) $(metis-32) $(parmetis-32) $(scotch) $(scalapack)
 $(mumps-32)-modulefile = $(modulefilesdir)/$(mumps-32)
 $(mumps-32)-prefix = $(pkgdir)/$(mumps-32)
 
@@ -126,7 +126,6 @@ $($(mumps-32)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,
 		$(INSTALL) -m644 -t $($(mumps-32)-prefix)/include $($(mumps-32)-srcdir)/include/* && \
 		$(INSTALL) -m755 -t $($(mumps-32)-prefix)/lib $($(mumps-32)-srcdir)/lib/* && \
 		$(INSTALL) -m644 -t  $($(mumps-32)-prefix)/share/doc $($(mumps-32)-srcdir)/doc/* && \
-		patchelf --add-needed libgfortran.so $($(mumps-32)-prefix)/lib/lib*.so && \
 		patchelf --add-needed libmpi_mpifh.so $($(mumps-32)-prefix)/lib/lib*.so && \
 		patchelf --add-needed libmpi.so $($(mumps-32)-prefix)/lib/lib*.so && \
 		patchelf --add-needed lib$${BLASLIB}.so $($(mumps-32)-prefix)/lib/lib*.so && \
