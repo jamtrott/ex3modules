@@ -151,8 +151,8 @@ endif
 #
 ifeq ($(WITH_CUDA),auto)
 HAVE_CUDA=1
-cuda-toolkit = cuda-toolkit-10.1.243
-pkgs := $(pkgs) cuda-toolkit-10.1.243
+cuda-toolkit = cuda-toolkit-11.7
+pkgs := $(pkgs) cuda-toolkit-11.7
 $(info Using internal CUDA Toolkit ($(cuda-toolkit)))
 else ifeq ($(WITH_CUDA),no)
 $(warning Warning: CUDA is disabled - some modules may not build.)
