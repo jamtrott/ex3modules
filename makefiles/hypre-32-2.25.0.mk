@@ -56,7 +56,7 @@ $($(hypre-32-2.25)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 			--with-MPI-include="$${MPI_HOME}/include" \
 			--with-MPI-lib-dirs="$${MPI_HOME}/lib" \
 			--with-MPI-libs=mpi \
-			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo --enable-device-memory-pool --with-cuda CUDA_HOME="$${CUDA_TOOLKIT_ROOT}") \
+			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo --enable-device-memory-pool --with-cuda --with-gpu-arch='70 80' CUDA_HOME="$${CUDA_TOOLKIT_ROOT}") \
 			$$([ ! -z "$${ROCM_ROOT}" ] && echo --enable-device-memory-pool --with-hip) && \
 		$(MAKE)
 	@touch $@
