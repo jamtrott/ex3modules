@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# hwloc-cairo-2.4.1
+# hwloc-cairo-2.7.1
 
-hwloc-cairo-version = 2.4.1
+hwloc-cairo-version = 2.7.1
 hwloc-cairo = hwloc-cairo-$(hwloc-cairo-version)
 $(hwloc-cairo)-description = Portable abstraction of hierarchical topology of modern architectures
 $(hwloc-cairo)-url = https://www.open-mpi.org/projects/hwloc/

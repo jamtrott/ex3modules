@@ -198,7 +198,10 @@ endif
 #
 # hwloc
 #
-ifeq ($(WITH_HWLOC),hwloc-2.4.1)
+ifeq ($(WITH_HWLOC),hwloc-2.7.1)
+hwloc = hwloc-2.7.1
+$(info Using internal hwloc ($(hwloc)))
+else ifeq ($(WITH_HWLOC),hwloc-2.4.1)
 hwloc = hwloc-2.4.1
 $(info Using internal hwloc ($(hwloc)))
 else ifeq ($(WITH_HWLOC),no)
@@ -435,8 +438,10 @@ pkgs := $(pkgs) \
 	hpl-2.3 \
 	hunspell-1.7.0 \
 	hwloc-2.4.1 \
-	hwloc-cairo-2.4.1 \
+	hwloc-2.7.1 \
+	hwloc-cairo-2.7.1 \
 	hwloc-src-2.4.1 \
+	hwloc-src-2.7.1 \
 	hypre-32-2.23.0 \
 	hypre-32-2.24.0 \
 	hypre-32-2.25.0 \
