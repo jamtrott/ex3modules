@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# pmix-3.1.5
+# pmix-4.1.2
 
-pmix-version = 3.1.5
+pmix-version = 4.1.2
 pmix = pmix-$(pmix-version)
 $(pmix)-description = PMIx: Process management for exascale environments
 $(pmix)-url = https://pmix.org
-$(pmix)-srcurl = https://github.com/pmix/pmix/archive/v$(pmix-version).tar.gz
+$(pmix)-srcurl = https://github.com/openpmix/openpmix/releases/download/v$(pmix-version)/pmix-$(pmix-version).tar.gz
 $(pmix)-builddeps = $(autoconf) $(automake) $(libtool) $(hwloc) $(libevent)
 $(pmix)-prereqs = $(hwloc) $(libevent)
 $(pmix)-src = $(pkgsrcdir)/pmix-$(notdir $($(pmix)-srcurl))
@@ -53,11 +53,6 @@ $($(pmix)-builddir)/.markerfile: $($(pmix)-prefix)/.pkgunpack
 endif
 
 $($(pmix)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(pmix)-builddeps),$(modulefilesdir)/$$(dep)) $($(pmix)-builddir)/.markerfile $($(pmix)-prefix)/.pkgpatch
-	cd $($(pmix)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(pmix)-builddeps) && \
-		./autogen.sh
 	cd $($(pmix)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \

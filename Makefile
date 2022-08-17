@@ -580,7 +580,7 @@ pkgs := $(pkgs) \
 	petsc-src-3.16.5 \
 	petsc-src-3.17.4 \
 	pixman-0.38.4 \
-	pmix-3.1.5 \
+	pmix-4.1.2 \
 	poppler-21.04.0 \
 	protobuf-cpp-3.17.0 \
 	protobuf-python-3.17.0 \
