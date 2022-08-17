@@ -65,7 +65,7 @@ $($(kokkos)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($
 			-DKokkos_ENABLE_SERIAL=On \
 			-DKokkos_ENABLE_HWLOC=On \
 			-DKokkos_HWLOC_DIR="$${HWLOC_ROOT}" \
-			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo -DKokkos_ENABLE_CUDA=On -DKokkos_CUDA_DIR="$${CUDA_TOOKIT_ROOT}" -DKokkos_ENABLE_CUDA_LAMBDA=On) \
+			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo -DKokkos_ENABLE_CUDA=On -DKokkos_CUDA_DIR="$${CUDA_TOOLKIT_ROOT}" -DKokkos_ENABLE_CUDA_LAMBDA=On) \
 			$$([ ! -z "$${ROCM_ROOT}" ] && echo -DKokkos_ENABLE_HIP=On) && \
 		$(MAKE)
 	@touch $@

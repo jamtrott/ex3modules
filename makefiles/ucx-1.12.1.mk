@@ -58,7 +58,7 @@ $($(ucx)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(uc
 			--with-rdmacm=$${RDMA_CORE_ROOT} \
 			--with-verbs=$${RDMA_CORE_ROOT} \
 			--with-mlx5-dv=$${RDMA_CORE_ROOT} \
-			$$([ ! -z "$${CUDA_TOOKIT_ROOT}" ] && echo --with-cuda="$${CUDA_TOOLKIT_ROOT}" || echo --without-cuda) \
+			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo --with-cuda="$${CUDA_TOOLKIT_ROOT}" || echo --without-cuda) \
 			$$([ ! -z "$${GDRCOPY_ROOT}" ] && echo --with-gdrcopy="$${GDRCOPY_ROOT}" || echo --without-gdrcopy) \
 			$$([ ! -z "$${ROCM_ROOT}" ] && echo --with-rocm="$${ROCM_ROOT}" || echo --without-rocm) \
 			--without-java \
