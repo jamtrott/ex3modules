@@ -82,9 +82,9 @@ parmetis-64 = parmetis-64-4.0.3
 suitesparse = suitesparse-32-5.12.0
 suitesparse-32 = suitesparse-32-5.12.0
 suitesparse-64 = suitesparse-64-5.12.0
-superlu_dist = superlu_dist-32-7.2.0
-superlu_dist-32 = superlu_dist-32-7.2.0
-superlu_dist-64 = superlu_dist-64-7.2.0
+superlu_dist = superlu_dist-32-8.1.0
+superlu_dist-32 = superlu_dist-32-8.1.0
+superlu_dist-64 = superlu_dist-64-8.1.0
 petsc = petsc-32-3.17.4
 
 #
@@ -715,10 +715,13 @@ pkgs := $(pkgs) \
 	superlu-5.2.1 \
 	superlu_dist-32-6.4.0 \
 	superlu_dist-32-7.2.0 \
+	superlu_dist-32-8.1.0 \
 	superlu_dist-64-6.4.0 \
 	superlu_dist-64-7.2.0 \
+	superlu_dist-64-8.1.0 \
 	superlu_dist-src-6.4.0 \
 	superlu_dist-src-7.2.0 \
+	superlu_dist-src-8.1.0 \
 	texinfo-6.7 \
 	texlive-20210325 \
 	ucx-1.12.1 \
