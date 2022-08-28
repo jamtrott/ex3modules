@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-cffi-1.14.0
+# python-cffi-1.14.3
 
-python-cffi-version = 1.14.0
+python-cffi-version = 1.14.3
 python-cffi = python-cffi-$(python-cffi-version)
 $(python-cffi)-description = Foreign Function Interface for Python calling C code
 $(python-cffi)-url = https://cffi.readthedocs.io/en/latest/
-$(python-cffi)-srcurl = https://files.pythonhosted.org/packages/05/54/3324b0c46340c31b909fcec598696aaec7ddc8c18a63f2db352562d3354c/cffi-1.14.0.tar.gz
+$(python-cffi)-srcurl = https://files.pythonhosted.org/packages/cb/ae/380e33d621ae301770358eb11a896a34c34f30db188847a561e8e39ee866/cffi-1.14.3.tar.gz
 $(python-cffi)-src = $(pkgsrcdir)/$(notdir $($(python-cffi)-srcurl))
 $(python-cffi)-srcdir = $(pkgsrcdir)/$(python-cffi)
 $(python-cffi)-builddeps = $(python) $(libffi) $(python-pycparser) $(python-py) $(python-pytest) $(python-pip)

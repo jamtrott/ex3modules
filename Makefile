@@ -595,7 +595,7 @@ pkgs := $(pkgs) \
 	python-babel-2.8.0 \
 	python-breathe-4.13.1 \
 	python-certifi-2020.6.20 \
-	python-cffi-1.14.0 \
+	python-cffi-1.14.3 \
 	python-chardet-3.0.4 \
 	python-colorama-0.4.4 \
 	python-coverage-5.5 \
