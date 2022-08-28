@@ -121,10 +121,10 @@ $(info Using internal OpenBLAS ($(openblas)))
 else ifeq ($(WITH_OPENBLAS),no)
 $(warning Warning: OpenBLAS is disabled - some modules may not build.)
 else ifneq ($(WITH_OPENBLAS),)
-OPENBLAS_ROOT = $(WITH_OPENBLAS)
+export OPENBLAS_ROOT = $(WITH_OPENBLAS)
 $(info Using OpenBLAS from $(OPENBLAS_ROOT))
 export BLASDIR := $(OPENBLAS_ROOT)/lib
-export BLASLIB= openblas
+export BLASLIB := openblas
 export C_INCLUDE_PATH := $(OPENBLAS_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
 export CPLUS_INCLUDE_PATH := $(OPENBLAS_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
 export LD_LIBRARY_PATH := $(OPENBLAS_ROOT)/lib$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)

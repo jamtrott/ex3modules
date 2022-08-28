@@ -18,105 +18,105 @@
 #
 # openblas-0.3.12
 
-openblas-version = 0.3.12
-openblas = openblas-$(openblas-version)
-$(openblas)-description = Optimized BLAS library
-$(openblas)-url = http://www.openblas.net/
-$(openblas)-srcurl = https://github.com/xianyi/OpenBLAS/archive/v$(openblas-version).tar.gz
-$(openblas)-src = $(pkgsrcdir)/openblas-$(notdir $($(openblas)-srcurl))
-$(openblas)-srcdir = $(pkgsrcdir)/$(openblas)
-$(openblas)-builddeps = $(cmake) $(gfortran)
-$(openblas)-prereqs =
-$(openblas)-modulefile = $(modulefilesdir)/$(openblas)
-$(openblas)-prefix = $(pkgdir)/$(openblas)
+openblas-0.3.12-version = 0.3.12
+openblas-0.3.12 = openblas-$(openblas-0.3.12-version)
+$(openblas-0.3.12)-description = Optimized BLAS library
+$(openblas-0.3.12)-url = http://www.openblas.net/
+$(openblas-0.3.12)-srcurl = https://github.com/xianyi/OpenBLAS/archive/v$(openblas-0.3.12-version).tar.gz
+$(openblas-0.3.12)-src = $(pkgsrcdir)/openblas-$(notdir $($(openblas-0.3.12)-srcurl))
+$(openblas-0.3.12)-srcdir = $(pkgsrcdir)/$(openblas-0.3.12)
+$(openblas-0.3.12)-builddeps = $(cmake) $(gfortran)
+$(openblas-0.3.12)-prereqs =
+$(openblas-0.3.12)-modulefile = $(modulefilesdir)/$(openblas-0.3.12)
+$(openblas-0.3.12)-prefix = $(pkgdir)/$(openblas-0.3.12)
 
-$($(openblas)-src): $(dir $($(openblas)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(openblas)-srcurl)
+$($(openblas-0.3.12)-src): $(dir $($(openblas-0.3.12)-src)).markerfile
+	$(CURL) $(curl_options) --output $@ $($(openblas-0.3.12)-srcurl)
 
-$($(openblas)-srcdir)/.markerfile:
+$($(openblas-0.3.12)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openblas)-prefix)/.markerfile:
+$($(openblas-0.3.12)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openblas)-prefix)/.pkgunpack: $($(openblas)-src) $($(openblas)-srcdir)/.markerfile $($(openblas)-prefix)/.markerfile $$(foreach dep,$$($(openblas)-builddeps),$(modulefilesdir)/$$(dep))
-	tar -C $($(openblas)-srcdir) --strip-components 1 -xz -f $<
+$($(openblas-0.3.12)-prefix)/.pkgunpack: $($(openblas-0.3.12)-src) $($(openblas-0.3.12)-srcdir)/.markerfile $($(openblas-0.3.12)-prefix)/.markerfile $$(foreach dep,$$($(openblas-0.3.12)-builddeps),$(modulefilesdir)/$$(dep))
+	tar -C $($(openblas-0.3.12)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
-$($(openblas)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openblas)-builddeps),$(modulefilesdir)/$$(dep)) $($(openblas)-prefix)/.pkgunpack
-	sed -i '41i .NOTPARALLEL:' $($(openblas)-srcdir)/lapack-netlib/TESTING/MATGEN/Makefile
+$($(openblas-0.3.12)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openblas-0.3.12)-builddeps),$(modulefilesdir)/$$(dep)) $($(openblas-0.3.12)-prefix)/.pkgunpack
+	sed -i '41i .NOTPARALLEL:' $($(openblas-0.3.12)-srcdir)/lapack-netlib/TESTING/MATGEN/Makefile
 	@touch $@
 
-$($(openblas)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openblas)-builddeps),$(modulefilesdir)/$$(dep)) $($(openblas)-prefix)/.pkgpatch
+$($(openblas-0.3.12)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openblas-0.3.12)-builddeps),$(modulefilesdir)/$$(dep)) $($(openblas-0.3.12)-prefix)/.pkgpatch
 ifeq ($(ARCH),x86_64)
-	cd $($(openblas)-srcdir) && \
+	cd $($(openblas-0.3.12)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(openblas)-builddeps) && \
+		$(MODULE) load $($(openblas-0.3.12)-builddeps) && \
 		$(MAKE) FC=gfortran DYNAMIC_ARCH=1 TARGET=HASWELL USE_THREAD=0 USE_LOCKING=1 USE_OPENMP=0 NUM_THREADS=256 NO_AFFINITY=1
 else ifeq ($(ARCH),aarch64)
-	cd $($(openblas)-srcdir) && \
+	cd $($(openblas-0.3.12)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(openblas)-builddeps) && \
+		$(MODULE) load $($(openblas-0.3.12)-builddeps) && \
 		$(MAKE) DYNAMIC_ARCH=1 TARGET=ARMV8 USE_THREAD=0 USE_LOCKING=1 USE_OPENMP=0 NUM_THREADS=256 NO_AFFINITY=1
 endif
 	@touch $@
 
-$($(openblas)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openblas)-builddeps),$(modulefilesdir)/$$(dep)) $($(openblas)-prefix)/.pkgbuild
+$($(openblas-0.3.12)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openblas-0.3.12)-builddeps),$(modulefilesdir)/$$(dep)) $($(openblas-0.3.12)-prefix)/.pkgbuild
 	@touch $@
 
-$($(openblas)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openblas)-builddeps),$(modulefilesdir)/$$(dep)) $($(openblas)-prefix)/.pkgcheck
-	cd $($(openblas)-srcdir) && \
+$($(openblas-0.3.12)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openblas-0.3.12)-builddeps),$(modulefilesdir)/$$(dep)) $($(openblas-0.3.12)-prefix)/.pkgcheck
+	cd $($(openblas-0.3.12)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(openblas)-builddeps) && \
-		$(MAKE) PREFIX=$($(openblas)-prefix) install
+		$(MODULE) load $($(openblas-0.3.12)-builddeps) && \
+		$(MAKE) PREFIX=$($(openblas-0.3.12)-prefix) install
 	@touch $@
 
-$($(openblas)-modulefile): $(modulefilesdir)/.markerfile $($(openblas)-prefix)/.pkginstall
+$($(openblas-0.3.12)-modulefile): $(modulefilesdir)/.markerfile $($(openblas-0.3.12)-prefix)/.pkginstall
 	printf "" >$@
 	echo "#%Module" >>$@
-	echo "# $(openblas)" >>$@
+	echo "# $(openblas-0.3.12)" >>$@
 	echo "" >>$@
 	echo "proc ModulesHelp { } {" >>$@
-	echo "     puts stderr \"\tSets up the environment for $(openblas)\\n\"" >>$@
+	echo "     puts stderr \"\tSets up the environment for $(openblas-0.3.12)\\n\"" >>$@
 	echo "}" >>$@
 	echo "" >>$@
-	echo "module-whatis \"$($(openblas)-description)\"" >>$@
-	echo "module-whatis \"$($(openblas)-url)\"" >>$@
-	printf "$(foreach prereq,$($(openblas)-prereqs),\n$(MODULE) load $(prereq))" >>$@
+	echo "module-whatis \"$($(openblas-0.3.12)-description)\"" >>$@
+	echo "module-whatis \"$($(openblas-0.3.12)-url)\"" >>$@
+	printf "$(foreach prereq,$($(openblas-0.3.12)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv OPENBLAS_ROOT $($(openblas)-prefix)" >>$@
-	echo "setenv OPENBLAS_INCDIR $($(openblas)-prefix)/include" >>$@
-	echo "setenv OPENBLAS_INCLUDEDIR $($(openblas)-prefix)/include" >>$@
-	echo "setenv OPENBLAS_LIBDIR $($(openblas)-prefix)/lib" >>$@
-	echo "setenv OPENBLAS_LIBRARYDIR $($(openblas)-prefix)/lib" >>$@
-	echo "setenv BLASDIR $($(openblas)-prefix)/lib" >>$@
+	echo "setenv OPENBLAS_ROOT $($(openblas-0.3.12)-prefix)" >>$@
+	echo "setenv OPENBLAS_INCDIR $($(openblas-0.3.12)-prefix)/include" >>$@
+	echo "setenv OPENBLAS_INCLUDEDIR $($(openblas-0.3.12)-prefix)/include" >>$@
+	echo "setenv OPENBLAS_LIBDIR $($(openblas-0.3.12)-prefix)/lib" >>$@
+	echo "setenv OPENBLAS_LIBRARYDIR $($(openblas-0.3.12)-prefix)/lib" >>$@
+	echo "setenv BLASDIR $($(openblas-0.3.12)-prefix)/lib" >>$@
 	echo "setenv BLASLIB openblas" >>$@
-	echo "setenv LAPACKDIR $($(openblas)-prefix)/lib" >>$@
+	echo "setenv LAPACKDIR $($(openblas-0.3.12)-prefix)/lib" >>$@
 	echo "setenv LAPACKLIB openblas" >>$@
 	echo "setenv OPENBLAS_NUM_THREADS 1" >>$@
-	echo "prepend-path PATH $($(openblas)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(openblas)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(openblas)-prefix)/include" >>$@
-	echo "prepend-path LIBRARY_PATH $($(openblas)-prefix)/lib" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(openblas)-prefix)/lib" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(openblas)-prefix)/lib/pkgconfig" >>$@
-	echo "prepend-path CMAKE_MODULE_PATH $($(openblas)-prefix)/lib/cmake/openblas" >>$@
-	echo "set MSG \"$(openblas)\"" >>$@
+	echo "prepend-path PATH $($(openblas-0.3.12)-prefix)/bin" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(openblas-0.3.12)-prefix)/include" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(openblas-0.3.12)-prefix)/include" >>$@
+	echo "prepend-path LIBRARY_PATH $($(openblas-0.3.12)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(openblas-0.3.12)-prefix)/lib" >>$@
+	echo "prepend-path PKG_CONFIG_PATH $($(openblas-0.3.12)-prefix)/lib/pkgconfig" >>$@
+	echo "prepend-path CMAKE_MODULE_PATH $($(openblas-0.3.12)-prefix)/lib/cmake/openblas" >>$@
+	echo "set MSG \"$(openblas-0.3.12)\"" >>$@
 
-$(openblas)-src: $($(openblas)-src)
-$(openblas)-unpack: $($(openblas)-prefix)/.pkgunpack
-$(openblas)-patch: $($(openblas)-prefix)/.pkgpatch
-$(openblas)-build: $($(openblas)-prefix)/.pkgbuild
-$(openblas)-check: $($(openblas)-prefix)/.pkgcheck
-$(openblas)-install: $($(openblas)-prefix)/.pkginstall
-$(openblas)-modulefile: $($(openblas)-modulefile)
-$(openblas)-clean:
-	rm -rf $($(openblas)-modulefile)
-	rm -rf $($(openblas)-prefix)
-	rm -rf $($(openblas)-srcdir)
-	rm -rf $($(openblas)-src)
-$(openblas): $(openblas)-src $(openblas)-unpack $(openblas)-patch $(openblas)-build $(openblas)-check $(openblas)-install $(openblas)-modulefile
+$(openblas-0.3.12)-src: $($(openblas-0.3.12)-src)
+$(openblas-0.3.12)-unpack: $($(openblas-0.3.12)-prefix)/.pkgunpack
+$(openblas-0.3.12)-patch: $($(openblas-0.3.12)-prefix)/.pkgpatch
+$(openblas-0.3.12)-build: $($(openblas-0.3.12)-prefix)/.pkgbuild
+$(openblas-0.3.12)-check: $($(openblas-0.3.12)-prefix)/.pkgcheck
+$(openblas-0.3.12)-install: $($(openblas-0.3.12)-prefix)/.pkginstall
+$(openblas-0.3.12)-modulefile: $($(openblas-0.3.12)-modulefile)
+$(openblas-0.3.12)-clean:
+	rm -rf $($(openblas-0.3.12)-modulefile)
+	rm -rf $($(openblas-0.3.12)-prefix)
+	rm -rf $($(openblas-0.3.12)-srcdir)
+	rm -rf $($(openblas-0.3.12)-src)
+$(openblas-0.3.12): $(openblas-0.3.12)-src $(openblas-0.3.12)-unpack $(openblas-0.3.12)-patch $(openblas-0.3.12)-build $(openblas-0.3.12)-check $(openblas-0.3.12)-install $(openblas-0.3.12)-modulefile

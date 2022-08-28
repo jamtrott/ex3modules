@@ -25,7 +25,7 @@ $(python-scipy)-url = https://www.scipy.org/
 $(python-scipy)-srcurl = https://files.pythonhosted.org/packages/61/67/1a654b96309c991762ee9bc39c363fc618076b155fe52d295211cf2536c7/scipy-1.7.3.tar.gz
 $(python-scipy)-src = $(pkgsrcdir)/python-scipy-$(notdir $($(python-scipy)-srcurl))
 $(python-scipy)-srcdir = $(pkgsrcdir)/$(python-scipy)
-$(python-scipy)-builddeps = $(python) $(python-cython) $(blas) $(mpi) $(python-numpy) $(python-wheel) $(pybind11) $(python-pip)
+$(python-scipy)-builddeps = $(python) $(python-cython) $(openblas) $(mpi) $(python-numpy) $(python-wheel) $(pybind11) $(python-pip)
 $(python-scipy)-prereqs = $(python) $(python-cython) $(python-numpy) $(openblas)
 $(python-scipy)-modulefile = $(modulefilesdir)/$(python-scipy)
 $(python-scipy)-prefix = $(pkgdir)/$(python-scipy)
@@ -52,9 +52,9 @@ $($(python-scipy)-srcdir)/site.cfg: $$(foreach dep,$$($(python-scipy)-builddeps)
 		printf '' >$@.tmp && \
 		echo "[openblas]" >>$@.tmp && \
 		echo "libraries = $${BLASLIB}" >>$@.tmp && \
-		echo "library_dirs = $${OPENBLAS_LIBDIR}" >>$@.tmp && \
-		echo "include_dirs = $${OPENBLAS_INCDIR}" >>$@.tmp && \
-		echo "runtime_library_dirs = $${OPENBLAS_LIBDIR}" >>$@.tmp
+		echo "library_dirs = $${BLASDIR}" >>$@.tmp && \
+		echo "include_dirs = $${OPENBLAS_ROOT}/include" >>$@.tmp && \
+		echo "runtime_library_dirs = $${BLASDIR}" >>$@.tmp
 	mv $@.tmp $@
 
 $($(python-scipy)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-scipy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-scipy)-prefix)/.pkgunpack $($(python-scipy)-srcdir)/site.cfg
