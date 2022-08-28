@@ -1,6 +1,6 @@
 #!/bin/bash
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,9 +27,10 @@
 set -o errexit
 
 program_name=ex3modules
-program_version=0.5.0
+program_version=0.7.0
 
 # default options
+with_openblas=
 with_cmake=
 with_cuda=
 with_hwloc=
@@ -55,6 +56,11 @@ function help()
     printf "  %-20s\t%s\n" "--describe-package" "describe packages"
     printf "\n"
     printf "  %-20s\t%s\n" "--enable-gfortran" "build and use internal Fortran compiler"
+    printf "  %-20s\t%s\n" "--with-openblas=DIR" "Root directory of OpenBLAS installation, or 'openblas-0.3.12'."
+    printf "  %-20s\t%s\n" ""               "If a directory is given, then an external OpenBLAS is used. In this case,"
+    printf "  %-20s\t%s\n" ""               "DIR/include and DIR/lib are added to search paths for headers and libraries."
+    printf "  %-20s\t%s\n" ""               "Otherwise, an internal OpenBLAS is used."
+    printf "  %-20s\t%s\n" "--without-openblas" "disable OpenBLAS usage completely. Some modules may not be built."
     printf "  %-20s\t%s\n" "--with-cmake=DIR" "Root directory of CMake installation, or 'cmake-3.17.2'."
     printf "  %-20s\t%s\n" ""               "If a directory is given, then an external CMake is used. In this case,"
     printf "  %-20s\t%s\n" ""               "DIR/bin is added to PATH. Otherwise, an internal CMake is used."
@@ -153,6 +159,9 @@ function parse_program_options()
 	    --modulefilesdir) modulefilesdir="${2}"; shift 2;;
 	    --modulefilesdir=*) modulefilesdir="${1#*=}"; shift 1;;
 	    --enable-gfortran) enable_gfortran=1; shift 1;;
+	    --with-openblas) with_openblas="${2}"; shift 2;;
+	    --with-openblas=*) with_openblas="${1#*=}"; shift 1;;
+	    --without-openblas) with_openblas=no; shift 1;;
 	    --with-cmake) with_cmake="${2}"; shift 2;;
 	    --with-cmake=*) with_cmake="${1#*=}"; shift 1;;
 	    --without-cmake) with_cmake=no; shift 1;;
@@ -208,6 +217,7 @@ function main ()
     [ ! -z "${pkgdir}" ] && make_options+=" pkgdir=${pkgdir}"
     [ ! -z "${modulefilesdir}" ] && make_options+=" modulefilesdir=${modulefilesdir}"
     [ ! -z "${enable_gfortran}" ] && make_options+=" ENABLE_GFORTRAN=1"
+    [ ! -z "${with_openblas}" ] && make_options+=" WITH_OPENBLAS=${with_openblas}"
     [ ! -z "${with_cmake}" ] && make_options+=" WITH_CMAKE=${with_cmake}"
     [ ! -z "${with_cuda}" ] && make_options+=" WITH_CUDA=${with_cuda}"
     [ ! -z "${with_hwloc}" ] && make_options+=" WITH_HWLOC=${with_hwloc}"

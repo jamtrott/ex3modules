@@ -62,10 +62,6 @@ MODULE := module
 # Preferred packages
 #
 
-# BLAS implementations: netlib-blas, openblas, blis-generic, blis-skx,
-# blis-x86_64, blis-zen, blis-zen2 and gsl.
-blas = openblas-0.3.12
-
 # Default to using 32-bit versions of various linear algebra packages
 hypre = hypre-32-2.25.0
 hypre-32 = hypre-32-2.25.0
@@ -112,6 +108,30 @@ CMAKE = $(shell which cmake)
 $(info Using $(CMAKE) ($(shell $(CMAKE) --version | head -n 1)))
 else
 $(warning Warning: cmake not found - some modules may not build.)
+endif
+
+
+#
+# OpenBLAS
+#
+ifeq ($(WITH_OPENBLAS),openblas-0.3.12)
+openblas = openblas-0.3.12
+blas = openblas-0.3.12
+$(info Using internal OpenBLAS ($(openblas)))
+else ifeq ($(WITH_OPENBLAS),no)
+$(warning Warning: OpenBLAS is disabled - some modules may not build.)
+else ifneq ($(WITH_OPENBLAS),)
+OPENBLAS_ROOT = $(WITH_OPENBLAS)
+$(info Using OpenBLAS from $(OPENBLAS_ROOT))
+export BLASDIR := $(OPENBLAS_ROOT)/lib
+export BLASLIB= openblas
+export C_INCLUDE_PATH := $(OPENBLAS_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
+export CPLUS_INCLUDE_PATH := $(OPENBLAS_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
+export LD_LIBRARY_PATH := $(OPENBLAS_ROOT)/lib$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
+export CMAKE_PREFIX_PATH := $(OPENBLAS_ROOT)/lib/cmake/openblas$(if $(CMAKE_PREFIX_PATH),:$(CMAKE_PREFIX_PATH),)
+export PKGCONFIG_PATH := $(OPENBLAS_ROOT)/lib/pkgconfig$(if $(PKGCONFIG_PATH),:$(PKGCONFIG_PATH),)
+else
+$(warning Warning: using default path for OpenBLAS - some modules may not build if OpenBLAS is not found.)
 endif
 
 #

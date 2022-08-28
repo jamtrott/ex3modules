@@ -25,14 +25,13 @@ $(python-numpy)-url = https://www.numpy.org/
 $(python-numpy)-srcurl = https://github.com/numpy/numpy/releases/download/v$(python-numpy-version)/numpy-$(python-numpy-version).tar.gz
 $(python-numpy)-src = $(pkgsrcdir)/$(notdir $($(python-numpy)-srcurl))
 $(python-numpy)-srcdir = $(pkgsrcdir)/$(python-numpy)
-$(python-numpy)-builddeps = $(python) $(python-cython) $(blas) $(fftw) $(suitesparse) $(python-pip)
-$(python-numpy)-prereqs = $(python) $(blas) $(fftw) $(suitesparse)
-ifneq ($(blas),$(openblas))
-# OpenBLAS already contains LAPACK routines, so there is no need to
-# add LAPACK as well.
-$(python-numpy)-builddeps += $(lapack)
-$(python-numpy)-prereqs += $(lapack)
+$(python-numpy)-builddeps = $(python) $(python-cython) $(blas) $(lapack) $(fftw) $(suitesparse) $(python-pip)
+$(python-numpy)-prereqs = $(python) $(blas) $(lapack) $(fftw) $(suitesparse)
+ifeq ($(blas),)
+$(warning Warning: numpy may be built without BLAS support)
 endif
+
+
 $(python-numpy)-modulefile = $(modulefilesdir)/$(python-numpy)
 $(python-numpy)-prefix = $(pkgdir)/$(python-numpy)
 $(python-numpy)-site-packages = $($(python-numpy)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
@@ -77,8 +76,6 @@ else ifeq ($(blas),$(openblas))
 	@echo 'library_dirs = $($(openblas)-prefix)/lib' >>$@.tmp
 	@echo 'include_dirs = $($(openblas)-prefix)/include' >>$@.tmp
 #	@echo 'runtime_library_dirs = $($(openblas)-prefix)/lib' >>$@.tmp
-else
-$(error Unsupported BLAS library)
 endif
 	@echo '' >>$@.tmp
 	@echo '[amd]' >>$@.tmp
