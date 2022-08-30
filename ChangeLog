@@ -1,3 +1,8 @@
+2022-08-30  James D. Trotter  <james@simula.no>
+
+	add python-marshmallow-3.17.1 python-pycubexr-1.2.0,
+	python-simplejson-3.17.6, and python-tqdm-4.64.0.
+
 2022-07-07  James D. Trotter  <james@simula.no>
 
 	add xtl 0.7.4 and xtensor 0.24.2

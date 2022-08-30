@@ -658,6 +658,7 @@ pkgs := $(pkgs) \
 	python-llvmlite-0.35.0 \
 	python-mako-1.1.4 \
 	python-markupsafe-1.1.1 \
+	python-marshmallow-3.17.1 \
 	python-matplotlib-3.1.1 \
 	python-mccabe-0.6.1 \
 	python-meshio-4.3.6 \
@@ -682,6 +683,7 @@ pkgs := $(pkgs) \
 	python-pyadjoint-2019.1.1 \
 	python-pycodestyle-2.6.0 \
 	python-pycparser-2.20 \
+	python-pycubexr-1.2.0 \
 	python-pydocstyle-5.0.2 \
 	python-pyflakes-2.2.0 \
 	python-pygments-2.6.1 \
@@ -697,6 +699,7 @@ pkgs := $(pkgs) \
 	python-scipy-1.7.3 \
 	python-setuptools-59.6.0 \
 	python-setuptools_scm-4.1.1 \
+	python-simplejson-3.17.6 \
 	python-six-1.15.0 \
 	python-snowballstemmer-2.0.0 \
 	python-sortedcontainers-2.2.2 \
@@ -712,6 +715,7 @@ pkgs := $(pkgs) \
 	python-sympy-1.4 \
 	python-toml-0.10.1 \
 	python-tox-3.20.1 \
+	python-tqdm-4.64.0 \
 	python-urllib3-1.25.11 \
 	python-virtualenv-20.0.35 \
 	python-wcwidth-0.1.9 \
