@@ -1,7 +1,8 @@
 2022-08-30  James D. Trotter  <james@simula.no>
 
 	add python-marshmallow-3.17.1 python-pycubexr-1.2.0,
-	python-simplejson-3.17.6, and python-tqdm-4.64.0.
+	python-simplejson-3.17.6, python-tqdm-4.64.0 and
+	python-extrap-4.0.4.
 
 2022-07-07  James D. Trotter  <james@simula.no>
 

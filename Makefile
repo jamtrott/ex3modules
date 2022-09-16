@@ -625,6 +625,7 @@ pkgs := $(pkgs) \
 	python-distlib-0.3.1 \
 	python-docutils-0.16 \
 	python-execnet-1.7.1 \
+	python-extrap-4.0.4 \
 	python-fenics-dijitso-2018.1.0 \
 	python-fenics-dijitso-2019.1.0 \
 	python-fenics-dolfin-2018.1.0.post1 \
