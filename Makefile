@@ -544,7 +544,7 @@ pkgs := $(pkgs) \
 	llvm-openmp-11.0.0 \
 	matio-1.5.17 \
 	mesa-21.1.5 \
-	meson-0.53.2 \
+	meson-0.63.1 \
 	metis-32-5.1.0 \
 	metis-64-5.1.0 \
 	metis-src-5.1.0 \

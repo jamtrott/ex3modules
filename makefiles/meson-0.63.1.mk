@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# meson-0.53.2
+# meson-0.63.1
 
-meson-version = 0.53.2
+meson-version = 0.63.1
 meson = meson-$(meson-version)
 $(meson)-description = Open source build system implemented in Python
 $(meson)-url = https://mesonbuild.com/
