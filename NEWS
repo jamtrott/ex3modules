@@ -1,19 +1,30 @@
 * Noteworthy changes in the upcoming release
 
-New modules: kokkos 3.6.01, kokkos-kernels 3.6.1, Extra-P 4.0.4.
+New modules:
+ - kokkos 3.6.01
+ - kokkos-kernels 3.6.1
+ - Extra-P 4.0.4
 
-Updated modules: SuperLU_dist 7.2.0.
+Updated modules:
+ - SuperLU_dist 7.2.0
 
-Remove dependencies on internal GCC to let the user decide which
-compiler to use.
+Upgraded modules:
+ - superlu_dist 6.4.0 -> 8.1.0
+ - valgrind 3.16.1 -> 3.19.0
 
-Add options to use external SLURM, MPI, Python and OpenSSL
-installations.
+Other changes:
 
-Rebuild several libraries with CUDA support, including OpenMPI and
-PETSc.
+ - Remove dependencies on internal GCC to let the user decide which
+   compiler to use.
 
-Add ROCm/HIP support for some libraries, such as UCX, Hypre and PETSc.
+ - Add options to use external SLURM, MPI, Python, OpenSSL and
+   OpenBLAS installations.
+
+ - Rebuild several libraries with CUDA support, including OpenMPI and
+   PETSc.
+
+ - Add ROCm/HIP support for some libraries, such as UCX, Hypre and
+   PETSc.
 
 
 * Noteworthy changes in release 0.6.2 (2021-09-01)
