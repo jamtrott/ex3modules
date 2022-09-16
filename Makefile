@@ -753,7 +753,7 @@ pkgs := $(pkgs) \
 	ucx-src-1.12.1 \
 	utf8cpp-3.2.1 \
 	util-linux-2.34 \
-	valgrind-3.16.1 \
+	valgrind-3.19.0 \
 	virtualgl-2.6.5 \
 	vmtk-1.4.0 \
 	vtk8-8.1.2 \

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2022 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# valgrind-3.16.1
+# valgrind-3.19.0
 
-valgrind-version = 3.16.1
+valgrind-version = 3.19.0
 valgrind = valgrind-$(valgrind-version)
 $(valgrind)-description = Framework and tools for dynamic program analysis
 $(valgrind)-url = https://valgrind.org/
-$(valgrind)-srcurl = https://sourceware.org/pub/valgrind/valgrind-3.16.1.tar.bz2
+$(valgrind)-srcurl = https://sourceware.org/pub/valgrind/valgrind-3.19.0.tar.bz2
 $(valgrind)-builddeps =
 $(valgrind)-prereqs =
 $(valgrind)-src = $(pkgsrcdir)/$(notdir $($(valgrind)-srcurl))
