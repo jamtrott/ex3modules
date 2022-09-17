@@ -14,6 +14,9 @@ Upgraded modules:
 
 Other changes:
 
+ - Add 64-bit version of PETSc and FEniCS (dolfin) built with 64-bit
+   PETSc.
+
  - Remove dependencies on internal GCC to let the user decide which
    compiler to use.
 

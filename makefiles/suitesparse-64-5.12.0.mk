@@ -44,6 +44,9 @@ $($(suitesparse-64)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach 
 	sed -i 's,cd build ; cmake,cd build ; $(CMAKE),' $($(suitesparse-64)-srcdir)/GraphBLAS/Makefile
 	sed -i 's,cd build ; cmake,cd build ; $(CMAKE),' $($(suitesparse-64)-srcdir)/Mongoose/Makefile
 	sed -i 's,CUDA = auto,CUDA = no,' $($(suitesparse-64)-srcdir)/SuiteSparse_config/SuiteSparse_config.mk
+	sed -i 's,#define SuiteSparse_long long,#define SuiteSparse_long long long,' $($(suitesparse-64)-srcdir)/SuiteSparse_config/SuiteSparse_config.h
+	sed -i 's,#define SuiteSparse_long_max LONG_MAX,#define SuiteSparse_long_max LLONG_MAX,' $($(suitesparse-64)-srcdir)/SuiteSparse_config/SuiteSparse_config.h
+	sed -i 's,#define SuiteSparse_long_idd "ld",#define SuiteSparse_long_idd "lld",' $($(suitesparse-64)-srcdir)/SuiteSparse_config/SuiteSparse_config.h
 	@touch $@
 
 $($(suitesparse-64)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(suitesparse-64)-builddeps),$(modulefilesdir)/$$(dep)) $($(suitesparse-64)-prefix)/.pkgpatch
@@ -56,7 +59,7 @@ $($(suitesparse-64)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 			LAPACK="" \
 			MY_METIS_LIB="$${METIS_LIBDIR}/libmetis.so" \
 			MY_METIS_INC="$${METIS_INCDIR}" \
-			CMAKE_OPTIONS="-DCMAKE_INSTALL_PREFIX=$($(suitesparse-64)-prefix) -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_C_FLAGS=\"-DLP64 -DLONGBLAS='long int' -DLONG='long int'\""
+			CMAKE_OPTIONS="-DCMAKE_INSTALL_PREFIX=$($(suitesparse-64)-prefix) -DCMAKE_INSTALL_LIBDIR=lib"
 	@touch $@
 
 $($(suitesparse-64)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(suitesparse-64)-builddeps),$(modulefilesdir)/$$(dep)) $($(suitesparse-64)-prefix)/.pkgbuild

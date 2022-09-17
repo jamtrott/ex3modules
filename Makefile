@@ -82,6 +82,8 @@ superlu_dist = superlu_dist-32-8.1.0
 superlu_dist-32 = superlu_dist-32-8.1.0
 superlu_dist-64 = superlu_dist-64-8.1.0
 petsc = petsc-32-3.17.4
+petsc-32 = petsc-32-3.17.4
+petsc-64 = petsc-64-3.17.4
 
 #
 # CMake
@@ -414,6 +416,7 @@ pkgs := $(pkgs) \
 	fenics-dolfin-2018.1.0.post1 \
 	fenics-dolfin-2019-src-2019.1.0.post0 \
 	fenics-dolfin-2019.1.0.post0 \
+	fenics-dolfin-64-2019.1.0.post0 \
 	fenics-dolfinx-20200525 \
 	fenics-dolfinx-src-20200525 \
 	fenics-mshr-2019-src-2019.1.0 \
@@ -596,6 +599,7 @@ pkgs := $(pkgs) \
 	petsc-32-3.16.5 \
 	petsc-32-3.17.4 \
 	petsc-64-3.16.5 \
+	petsc-64-3.17.4 \
 	petsc-src-3.13.2 \
 	petsc-src-3.16.5 \
 	petsc-src-3.17.4 \
@@ -630,6 +634,7 @@ pkgs := $(pkgs) \
 	python-fenics-dijitso-2019.1.0 \
 	python-fenics-dolfin-2018.1.0.post1 \
 	python-fenics-dolfin-2019.1.0.post0 \
+	python-fenics-dolfin-64-2019.1.0.post0 \
 	python-fenics-ffc-2018.1.0 \
 	python-fenics-ffc-2019.1.0 \
 	python-fenics-ffcx-20200522 \
@@ -674,6 +679,7 @@ pkgs := $(pkgs) \
 	python-pandas-1.0.3 \
 	python-pathlib2-2.3.5 \
 	python-petsc4py-3.17.2 \
+	python-petsc4py-64-3.17.2 \
 	python-pillow-8.1.1 \
 	python-pip-21.3.1 \
 	python-pkgconfig-1.5.1 \

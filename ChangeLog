@@ -1,5 +1,8 @@
 2022-09-16  James D. Trotter  <jamest@simula.no>
 
+	* add 64-bit version of PETSc and FEniCS (dolfin) built with
+	64-bit PETSc.
+
 	* valgrind 3.16.1 -> 3.19.0.mk
 
 2022-08-30  James D. Trotter  <james@simula.no>
