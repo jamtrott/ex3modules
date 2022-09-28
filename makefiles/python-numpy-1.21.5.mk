@@ -25,8 +25,8 @@ $(python-numpy)-url = https://www.numpy.org/
 $(python-numpy)-srcurl = https://github.com/numpy/numpy/releases/download/v$(python-numpy-version)/numpy-$(python-numpy-version).tar.gz
 $(python-numpy)-src = $(pkgsrcdir)/$(notdir $($(python-numpy)-srcurl))
 $(python-numpy)-srcdir = $(pkgsrcdir)/$(python-numpy)
-$(python-numpy)-builddeps = $(python) $(python-cython) $(blas) $(lapack) $(fftw) $(suitesparse) $(python-pip)
-$(python-numpy)-prereqs = $(python) $(blas) $(lapack) $(fftw) $(suitesparse)
+$(python-numpy)-builddeps = $(python) $(python-cython) $(blas) $(lapack) $(fftw) $(python-pip)
+$(python-numpy)-prereqs = $(python) $(blas) $(lapack) $(fftw)
 ifeq ($(blas),)
 $(warning Warning: numpy may be built without BLAS support)
 endif
@@ -77,18 +77,18 @@ else ifeq ($(blas),$(openblas))
 	@echo 'include_dirs = $($(openblas)-prefix)/include' >>$@.tmp
 #	@echo 'runtime_library_dirs = $($(openblas)-prefix)/lib' >>$@.tmp
 endif
-	@echo '' >>$@.tmp
-	@echo '[amd]' >>$@.tmp
-	@echo 'libraries = amd' >>$@.tmp
-	@echo 'library_dirs = $($(suitesparse)-prefix)/lib' >>$@.tmp
-	@echo 'include_dirs = $($(suitesparse)-prefix)/include' >>$@.tmp
-	@echo 'runtime_library_dirs = $($(suitesparse)-prefix)/lib' >>$@.tmp
-	@echo '' >>$@.tmp
-	@echo '[umfpack]' >>$@.tmp
-	@echo 'libraries = umfpack' >>$@.tmp
-	@echo 'library_dirs = $($(suitesparse)-prefix)/lib' >>$@.tmp
-	@echo 'include_dirs = $($(suitesparse)-prefix)/include' >>$@.tmp
-	@echo 'runtime_library_dirs = $($(suitesparse)-prefix)/lib' >>$@.tmp
+	# @echo '' >>$@.tmp
+	# @echo '[amd]' >>$@.tmp
+	# @echo 'libraries = amd' >>$@.tmp
+	# @echo 'library_dirs = $($(suitesparse)-prefix)/lib' >>$@.tmp
+	# @echo 'include_dirs = $($(suitesparse)-prefix)/include' >>$@.tmp
+	# @echo 'runtime_library_dirs = $($(suitesparse)-prefix)/lib' >>$@.tmp
+	# @echo '' >>$@.tmp
+	# @echo '[umfpack]' >>$@.tmp
+	# @echo 'libraries = umfpack' >>$@.tmp
+	# @echo 'library_dirs = $($(suitesparse)-prefix)/lib' >>$@.tmp
+	# @echo 'include_dirs = $($(suitesparse)-prefix)/include' >>$@.tmp
+	# @echo 'runtime_library_dirs = $($(suitesparse)-prefix)/lib' >>$@.tmp
 	@echo '' >>$@.tmp
 	@echo '[fftw]' >>$@.tmp
 	@echo 'libraries = fftw3' >>$@.tmp

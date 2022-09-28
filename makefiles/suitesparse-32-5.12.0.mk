@@ -25,8 +25,8 @@ $(suitesparse-32)-url = http://faculty.cse.tamu.edu/davis/suitesparse.html
 $(suitesparse-32)-srcurl =
 $(suitesparse-32)-src = $($(suitesparse-src)-src)
 $(suitesparse-32)-srcdir = $(pkgsrcdir)/$(suitesparse-32)
-$(suitesparse-32)-builddeps = $(cmake) $(blas) $(metis) $(gmp) $(mpfr)
-$(suitesparse-32)-prereqs = $(blas) $(metis) $(gmp) $(mpfr)
+$(suitesparse-32)-builddeps = $(cmake) $(blas) $(metis-32) $(gmp) $(mpfr)
+$(suitesparse-32)-prereqs = $(blas) $(metis-32) $(gmp) $(mpfr)
 $(suitesparse-32)-modulefile = $(modulefilesdir)/$(suitesparse-32)
 $(suitesparse-32)-prefix = $(pkgdir)/$(suitesparse-32)
 

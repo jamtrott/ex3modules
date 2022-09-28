@@ -23,8 +23,8 @@ eigen = eigen-$(eigen-version)
 $(eigen)-description = C++ template library for linear algebra
 $(eigen)-url = http://eigen.tuxfamily.org/
 $(eigen)-srcurl = https://gitlab.com/libeigen/eigen/-/archive/$(eigen-version)/eigen-$(eigen-version).tar.gz
-$(eigen)-builddeps = $(cmake) $(boost) $(mpfr) $(gmp) $(blas) $(suitesparse) $(superlu)
-$(eigen)-prereqs = $(boost) $(mpfr) $(gmp) $(suitesparse) $(blas) $(superlu)
+$(eigen)-builddeps = $(cmake) $(boost) $(mpfr) $(gmp) $(blas)
+$(eigen)-prereqs = $(boost) $(mpfr) $(gmp) $(blas)
 $(eigen)-src = $(pkgsrcdir)/$(notdir $($(eigen)-srcurl))
 $(eigen)-srcdir = $(pkgsrcdir)/$(eigen)
 $(eigen)-builddir = $($(eigen)-srcdir)/build
@@ -63,12 +63,6 @@ $($(eigen)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(
 			-DMPFR_LIBRARIES="$${MPFRLIB}/libmpfr.so" \
 			-DGMP_INCLUDES="$${GMPDIR}/include" \
 			-DGMP_LIBRARIES="$${GMPLIB}/libgmp.so" \
-			-DCHOLMOD_INCLUDES="$${SUITESPARSE_INCDIR}" \
-			-DCHOLMOD_LIBRARIES="$${SUITESPARSE_LIBDIR}/libcholmod.so" \
-			-DUMFPACK_INCLUDES="$${SUITESPARSE_INCDIR}" \
-			-DUMFPACK_LIBRARIES="$${SUITESPARSE_LIBDIR}/libumfpack.so" \
-			-DSUPERLU_INCLUDES="$${SUPERLU_INCDIR}" \
-			-DSUPERLU_LIBRARIES="$${SUPERLU_LIBDIR}/libsuperlu.so" \
 			-DCMAKE_CXX_FLAGS="-O3" && \
 		$(MAKE)
 	@touch $@
