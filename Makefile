@@ -120,6 +120,10 @@ ifeq ($(WITH_OPENBLAS),openblas-0.3.12)
 openblas = openblas-0.3.12
 blas = openblas-0.3.12
 $(info Using internal OpenBLAS ($(openblas)))
+else ifeq ($(WITH_OPENBLAS),openblas-0.3.21)
+openblas = openblas-0.3.21
+blas = openblas-0.3.21
+$(info Using internal OpenBLAS ($(openblas)))
 else ifeq ($(WITH_OPENBLAS),no)
 $(warning Warning: OpenBLAS is disabled - some modules may not build.)
 else ifneq ($(WITH_OPENBLAS),)
@@ -572,6 +576,7 @@ pkgs := $(pkgs) \
 	onetbb-2021.4.0 \
 	onetbb-src-2021.4.0 \
 	openblas-0.3.12 \
+	openblas-0.3.21 \
 	opencascade-7.5.0 \
 	opencl-headers-2020.06.16 \
 	openjpeg-2.4.0 \
