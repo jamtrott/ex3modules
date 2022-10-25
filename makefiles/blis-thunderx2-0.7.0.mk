@@ -67,7 +67,7 @@ $($(blis-thunderx2)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(blis-thunderx2)-builddeps) && \
-		./configure --prefix=$($(blis-thunderx2)-prefix) thunderx2 && \
+		./configure --prefix=$($(blis-thunderx2)-prefix) --enable-cblas thunderx2 && \
 		$(MAKE)
 	@touch $@
 

@@ -23,7 +23,7 @@ blis-skx = blis-skx-$(blis-skx-version)
 $(blis-skx)-description = High-performance BLAS optimised for Intel Skylake-X CPUs
 $(blis-skx)-url = https://github.com/flame/blis
 $(blis-skx)-srcurl =
-$(blis-skx)-builddeps = $(gfortran)
+$(blis-skx)-builddeps =
 $(blis-skx)-prereqs =
 $(blis-skx)-src =  $($(blis-src)-src)
 $(blis-skx)-srcdir = $(pkgsrcdir)/$(blis-skx)
@@ -79,7 +79,7 @@ $($(blis-skx)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(blis-skx)-builddeps) && \
-		./configure --prefix=$($(blis-skx)-prefix) skx && \
+		./configure --prefix=$($(blis-skx)-prefix) --enable-cblas skx && \
 		$(MAKE)
 	@touch $@
 

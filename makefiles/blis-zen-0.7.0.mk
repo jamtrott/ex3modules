@@ -67,7 +67,7 @@ $($(blis-zen)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(blis-zen)-builddeps) && \
-		./configure --prefix=$($(blis-zen)-prefix) zen && \
+		./configure --prefix=$($(blis-zen)-prefix) --enable-cblas zen && \
 		$(MAKE)
 	@touch $@
 

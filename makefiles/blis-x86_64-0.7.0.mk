@@ -67,7 +67,7 @@ $($(blis-x86_64)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(blis-x86_64)-builddeps) && \
-		./configure --prefix=$($(blis-x86_64)-prefix) x86_64 && \
+		./configure --prefix=$($(blis-x86_64)-prefix) --enable-cblas x86_64 && \
 		$(MAKE)
 	@touch $@
 

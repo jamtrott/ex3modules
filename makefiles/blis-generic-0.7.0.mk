@@ -54,7 +54,7 @@ $($(blis-generic)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(blis-generic)-builddeps) && \
-		./configure --prefix=$($(blis-generic)-prefix) generic && \
+		./configure --prefix=$($(blis-generic)-prefix) --enable-cblas generic && \
 		$(MAKE)
 	@touch $@
 
