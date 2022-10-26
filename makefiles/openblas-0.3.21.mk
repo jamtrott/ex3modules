@@ -25,7 +25,7 @@ $(openblas-0.3.21)-url = http://www.openblas.net/
 $(openblas-0.3.21)-srcurl = https://github.com/xianyi/OpenBLAS/archive/v$(openblas-0.3.21-version).tar.gz
 $(openblas-0.3.21)-src = $(pkgsrcdir)/openblas-$(notdir $($(openblas-0.3.21)-srcurl))
 $(openblas-0.3.21)-srcdir = $(pkgsrcdir)/$(openblas-0.3.21)
-$(openblas-0.3.21)-builddeps = $(cmake) $(gfortran)
+$(openblas-0.3.21)-builddeps = $(cmake)
 $(openblas-0.3.21)-prereqs =
 $(openblas-0.3.21)-modulefile = $(modulefilesdir)/$(openblas-0.3.21)
 $(openblas-0.3.21)-prefix = $(pkgdir)/$(openblas-0.3.21)
@@ -53,13 +53,13 @@ ifeq ($(ARCH),x86_64)
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(openblas-0.3.21)-builddeps) && \
-		$(MAKE) FC=gfortran DYNAMIC_ARCH=1 TARGET=HASWELL USE_THREAD=0 USE_LOCKING=1 USE_OPENMP=0 NUM_THREADS=256 NO_AFFINITY=1 USE_CBLAS=1
+		$(MAKE) DYNAMIC_ARCH=1 TARGET=HASWELL USE_THREAD=0 USE_LOCKING=1 USE_OPENMP=0 NUM_THREADS=256 NO_AFFINITY=1 USE_CBLAS=1 NOFORTRAN=1
 else ifeq ($(ARCH),aarch64)
 	cd $($(openblas-0.3.21)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(openblas-0.3.21)-builddeps) && \
-		$(MAKE) DYNAMIC_ARCH=1 TARGET=ARMV8 USE_THREAD=0 USE_LOCKING=1 USE_OPENMP=0 NUM_THREADS=256 NO_AFFINITY=1 USE_CBLAS=1
+		$(MAKE) DYNAMIC_ARCH=1 TARGET=ARMV8 USE_THREAD=0 USE_LOCKING=1 USE_OPENMP=0 NUM_THREADS=256 NO_AFFINITY=1 USE_CBLAS=1 NOFORTRAN=1
 endif
 	@touch $@
 
