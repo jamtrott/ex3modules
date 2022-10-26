@@ -1,3 +1,7 @@
+2022-10-26  James D. Trotter  <jamest@simula.no>
+
+	* various fixes for 64-bit SuiteSparse
+
 2022-09-16  James D. Trotter  <jamest@simula.no>
 
 	* add 64-bit version of PETSc and FEniCS (dolfin) built with

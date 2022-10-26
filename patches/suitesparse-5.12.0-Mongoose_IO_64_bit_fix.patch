@@ -1,0 +1,53 @@
+--- Mongoose/Source/Mongoose_IO.cpp.old	2022-10-27 01:04:09.000000000 +0200
++++ Mongoose/Source/Mongoose_IO.cpp	2022-10-27 01:11:08.000000000 +0200
+@@ -102,7 +102,7 @@
+         return NULL;
+     }
+ 
+-    Int M, N, nz;
++    long M, N, nz;
+     if ((mm_read_mtx_crd_size(file, &M, &N, &nz)) != 0)
+     {
+         LogError("Error: Could not parse matrix dimension and size.\n");
+@@ -117,14 +117,18 @@
+     }
+ 
+     LogInfo("Reading matrix data...\n");
++    long *I_ = (long *)SuiteSparse_malloc(static_cast<size_t>(nz), sizeof(long));
++    long *J_ = (long *)SuiteSparse_malloc(static_cast<size_t>(nz), sizeof(long));
+     Int *I = (Int *)SuiteSparse_malloc(static_cast<size_t>(nz), sizeof(Int));
+     Int *J = (Int *)SuiteSparse_malloc(static_cast<size_t>(nz), sizeof(Int));
+     double *val
+         = (double *)SuiteSparse_malloc(static_cast<size_t>(nz), sizeof(double));
+ 
+-    if (!I || !J || !val)
++    if (!I_ || !J_ || !I || !J || !val)
+     {
+         LogError("Error: Ran out of memory in Mongoose::read_matrix\n");
++        SuiteSparse_free(I_);
++        SuiteSparse_free(J_);
+         SuiteSparse_free(I);
+         SuiteSparse_free(J);
+         SuiteSparse_free(val);
+@@ -132,16 +136,18 @@
+         return NULL;
+     }
+ 
+-    mm_read_mtx_crd_data(file, M, N, nz, I, J, val, matcode);
++    mm_read_mtx_crd_data(file, M, N, nz, I_, J_, val, matcode);
+     fclose(file); // Close the file
+ 
+     for (Int k = 0; k < nz; k++)
+     {
+-        --I[k];
+-        --J[k];
++        I[k] = I_[k]-1;
++        J[k] = J_[k]-1;
+         if (mm_is_pattern(matcode))
+             val[k] = 1;
+     }
++    SuiteSparse_free(I_);
++    SuiteSparse_free(J_);
+ 
+     cs *A = (cs *)SuiteSparse_malloc(1, sizeof(cs));
+     if (!A)

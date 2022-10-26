@@ -47,6 +47,8 @@ $($(suitesparse-64)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach 
 	sed -i 's,#define SuiteSparse_long long,#define SuiteSparse_long long long,' $($(suitesparse-64)-srcdir)/SuiteSparse_config/SuiteSparse_config.h
 	sed -i 's,#define SuiteSparse_long_max LONG_MAX,#define SuiteSparse_long_max LLONG_MAX,' $($(suitesparse-64)-srcdir)/SuiteSparse_config/SuiteSparse_config.h
 	sed -i 's,#define SuiteSparse_long_idd "ld",#define SuiteSparse_long_idd "lld",' $($(suitesparse-64)-srcdir)/SuiteSparse_config/SuiteSparse_config.h
+	patch -d$($(suitesparse-64)-srcdir) -f -p0 <patches/suitesparse-5.12.0-mongoose_64_bit_fix.patch
+	patch -d$($(suitesparse-64)-srcdir) -f -p0 <patches/suitesparse-5.12.0-Mongoose_IO_64_bit_fix.patch
 	@touch $@
 
 $($(suitesparse-64)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(suitesparse-64)-builddeps),$(modulefilesdir)/$$(dep)) $($(suitesparse-64)-prefix)/.pkgpatch
