@@ -69,9 +69,9 @@ hypre-64 = hypre-64-2.24.0
 metis = metis-32-5.1.0
 metis-32 = metis-32-5.1.0
 metis-64 = metis-64-5.1.0
-mumps = mumps-32-5.4.1
-mumps-32 = mumps-32-5.4.1
-mumps-64 = mumps-64-5.4.1
+mumps = mumps-32-5.5.1
+mumps-32 = mumps-32-5.5.1
+mumps-64 = mumps-64-5.5.1
 parmetis = parmetis-32-4.0.3
 parmetis-32 = parmetis-32-4.0.3
 parmetis-64 = parmetis-64-4.0.3
@@ -559,8 +559,11 @@ pkgs := $(pkgs) \
 	mpfr-4.0.2 \
 	mpich-3.3.2 \
 	mumps-32-5.4.1 \
+	mumps-32-5.5.1 \
 	mumps-64-5.4.1 \
+	mumps-64-5.5.1 \
 	mumps-src-5.4.1 \
+	mumps-src-5.5.1 \
 	munge-0.5.13 \
 	mvapich-2.3.4 \
 	mysql-connector-python-8.0.23 \

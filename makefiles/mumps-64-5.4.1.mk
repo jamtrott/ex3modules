@@ -126,7 +126,6 @@ $($(mumps-64)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,
 		$(INSTALL) -m644 -t $($(mumps-64)-prefix)/include $($(mumps-64)-srcdir)/include/* && \
 		$(INSTALL) -m755 -t $($(mumps-64)-prefix)/lib $($(mumps-64)-srcdir)/lib/* && \
 		$(INSTALL) -m644 -t  $($(mumps-64)-prefix)/share/doc $($(mumps-64)-srcdir)/doc/* && \
-		patchelf --add-needed libgfortran.so $($(mumps-64)-prefix)/lib/lib*.so && \
 		patchelf --add-needed libmpi_mpifh.so $($(mumps-64)-prefix)/lib/lib*.so && \
 		patchelf --add-needed libmpi.so $($(mumps-64)-prefix)/lib/lib*.so && \
 		patchelf --add-needed lib$${BLASLIB}.so $($(mumps-64)-prefix)/lib/lib*.so && \
