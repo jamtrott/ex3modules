@@ -25,8 +25,8 @@ $(suitesparse-64)-url = http://faculty.cse.tamu.edu/davis/suitesparse.html
 $(suitesparse-64)-srcurl =
 $(suitesparse-64)-src = $($(suitesparse-src)-src)
 $(suitesparse-64)-srcdir = $(pkgsrcdir)/$(suitesparse-64)
-$(suitesparse-64)-builddeps = $(cmake) $(blas) $(metis-64)
-$(suitesparse-64)-prereqs = $(blas) $(metis-64)
+$(suitesparse-64)-builddeps = $(cmake) $(blas) $(metis-64) $(gmp) $(mpfr)
+$(suitesparse-64)-prereqs = $(blas) $(metis-64) $(gmp) $(mpfr)
 $(suitesparse-64)-modulefile = $(modulefilesdir)/$(suitesparse-64)
 $(suitesparse-64)-prefix = $(pkgdir)/$(suitesparse-64)
 
@@ -43,6 +43,7 @@ $($(suitesparse-64)-prefix)/.pkgunpack: $$($(suitesparse-64)-src) $($(suitespars
 $($(suitesparse-64)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(suitesparse-64)-builddeps),$(modulefilesdir)/$$(dep)) $($(suitesparse-64)-prefix)/.pkgunpack
 	sed -i 's,cd build ; cmake,cd build ; $(CMAKE),' $($(suitesparse-64)-srcdir)/GraphBLAS/Makefile
 	sed -i 's,cd build ; cmake,cd build ; $(CMAKE),' $($(suitesparse-64)-srcdir)/Mongoose/Makefile
+	sed -i '/-gencode=arch=compute_30,code=sm_30/d' $($(suitesparse-64)-srcdir)/SuiteSparse_config/SuiteSparse_config.mk
 	sed -i 's,CUDA = auto,CUDA = no,' $($(suitesparse-64)-srcdir)/SuiteSparse_config/SuiteSparse_config.mk
 	sed -i 's,#define SuiteSparse_long long,#define SuiteSparse_long long long,' $($(suitesparse-64)-srcdir)/SuiteSparse_config/SuiteSparse_config.h
 	sed -i 's,#define SuiteSparse_long_max LONG_MAX,#define SuiteSparse_long_max LLONG_MAX,' $($(suitesparse-64)-srcdir)/SuiteSparse_config/SuiteSparse_config.h
