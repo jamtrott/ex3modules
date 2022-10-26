@@ -558,11 +558,8 @@ pkgs := $(pkgs) \
 	mpc-1.1.0 \
 	mpfr-4.0.2 \
 	mpich-3.3.2 \
-	mumps-32-5.4.1 \
 	mumps-32-5.5.1 \
-	mumps-64-5.4.1 \
 	mumps-64-5.5.1 \
-	mumps-src-5.4.1 \
 	mumps-src-5.5.1 \
 	munge-0.5.13 \
 	mvapich-2.3.4 \
