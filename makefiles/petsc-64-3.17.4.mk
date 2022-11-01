@@ -23,8 +23,8 @@ petsc-64-3.17.4 = petsc-64-$(petsc-64-3.17.4-version)
 $(petsc-64-3.17.4)-description = Portable, Extensible Toolkit for Scientific Computation
 $(petsc-64-3.17.4)-url = https://www.mcs.anl.gov/petsc/
 $(petsc-64-3.17.4)-srcurl =
-$(petsc-64-3.17.4)-builddeps = $(boost) $(blas) $(mpi) $(hwloc) $(hypre-64) $(metis-64) $(mumps-64) $(parmetis-64) $(python) $(scalapack) $(scotch) $(superlu_dist-64) $(cuda-toolkit) $(kokkos) $(kokkos-kernels)
-$(petsc-64-3.17.4)-prereqs = $(boost) $(blas) $(mpi) $(hwloc) $(hypre-64) $(metis-64) $(mumps-64) $(parmetis-64) $(scalapack) $(scotch) $(superlu_dist-64) $(cuda-toolkit) $(kokkos) $(kokkos-kernels)
+$(petsc-64-3.17.4)-builddeps = $(boost) $(blas) $(mpi) $(hwloc) $(hypre-64) $(metis-64) $(mumps-64) $(parmetis-64) $(python) $(scalapack) $(scotch-64) $(superlu_dist-64) $(cuda-toolkit) $(kokkos) $(kokkos-kernels)
+$(petsc-64-3.17.4)-prereqs = $(boost) $(blas) $(mpi) $(hwloc) $(hypre-64) $(metis-64) $(mumps-64) $(parmetis-64) $(scalapack) $(scotch-64) $(superlu_dist-64) $(cuda-toolkit) $(kokkos) $(kokkos-kernels)
 $(petsc-64-3.17.4)-src = $($(petsc-src-3.17.4)-src)
 $(petsc-64-3.17.4)-srcdir = $(pkgsrcdir)/$(petsc-64-3.17.4)
 $(petsc-64-3.17.4)-modulefile = $(modulefilesdir)/$(petsc-64-3.17.4)
@@ -48,7 +48,7 @@ $($(petsc-64-3.17.4)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(petsc-64-3.17.4)-builddeps) && \
-		$(PYTHON) ./configure \
+		$(PYTHON) ./configure MAKEFLAGS="${MAKEFLAGS}" \
 			--prefix=$($(petsc-64-3.17.4)-prefix) \
 			--with-debugging=0 \
 			--with-openmp=1 \

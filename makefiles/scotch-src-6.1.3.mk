@@ -18,25 +18,25 @@
 #
 # scotch-src-6.1.3
 
-scotch-src-version = 6.1.3
-scotch-src = scotch-src-$(scotch-src-version)
-$(scotch-src)-description = Static Mapping, Graph, Mesh and Hypergraph Partitioning, and Parallel and Sequential Sparse Matrix Ordering Package
-$(scotch-src)-url = https://www.labri.fr/perso/pelegrin/scotch/
-$(scotch-src)-srcurl = https://gitlab.inria.fr/scotch/scotch/-/archive/v$(scotch-src-version)/scotch-v$(scotch-src-version).tar.gz
-$(scotch-src)-builddeps =
-$(scotch-src)-prereqs =
-$(scotch-src)-src = $(pkgsrcdir)/$(notdir $($(scotch-src)-srcurl))
+scotch-src-6.1.3-version = 6.1.3
+scotch-src-6.1.3 = scotch-src-$(scotch-src-6.1.3-version)
+$(scotch-src-6.1.3)-description = Static Mapping, Graph, Mesh and Hypergraph Partitioning, and Parallel and Sequential Sparse Matrix Ordering Package
+$(scotch-src-6.1.3)-url = https://www.labri.fr/perso/pelegrin/scotch/
+$(scotch-src-6.1.3)-srcurl = https://gitlab.inria.fr/scotch/scotch/-/archive/v$(scotch-src-6.1.3-version)/scotch-v$(scotch-src-6.1.3-version).tar.gz
+$(scotch-src-6.1.3)-builddeps =
+$(scotch-src-6.1.3)-prereqs =
+$(scotch-src-6.1.3)-src = $(pkgsrcdir)/$(notdir $($(scotch-src-6.1.3)-srcurl))
 
-$($(scotch-src)-src): $(dir $($(scotch-src)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(scotch-src)-srcurl)
+$($(scotch-src-6.1.3)-src): $(dir $($(scotch-src-6.1.3)-src)).markerfile
+	$(CURL) $(curl_options) --output $@ $($(scotch-src-6.1.3)-srcurl)
 
-$(scotch-src)-src: $($(scotch-src)-src)
-$(scotch-src)-unpack:
-$(scotch-src)-patch:
-$(scotch-src)-build:
-$(scotch-src)-check:
-$(scotch-src)-install:
-$(scotch-src)-modulefile:
-$(scotch-src)-clean:
-	rm -rf $($(scotch-src)-src)
-$(scotch-src): $(scotch-src)-src $(scotch-src)-unpack $(scotch-src)-patch $(scotch-src)-build $(scotch-src)-check $(scotch-src)-install $(scotch-src)-modulefile
+$(scotch-src-6.1.3)-src: $($(scotch-src-6.1.3)-src)
+$(scotch-src-6.1.3)-unpack:
+$(scotch-src-6.1.3)-patch:
+$(scotch-src-6.1.3)-build:
+$(scotch-src-6.1.3)-check:
+$(scotch-src-6.1.3)-install:
+$(scotch-src-6.1.3)-modulefile:
+$(scotch-src-6.1.3)-clean:
+	rm -rf $($(scotch-src-6.1.3)-src)
+$(scotch-src-6.1.3): $(scotch-src-6.1.3)-src $(scotch-src-6.1.3)-unpack $(scotch-src-6.1.3)-patch $(scotch-src-6.1.3)-build $(scotch-src-6.1.3)-check $(scotch-src-6.1.3)-install $(scotch-src-6.1.3)-modulefile

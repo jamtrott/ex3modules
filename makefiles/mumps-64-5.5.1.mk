@@ -26,8 +26,8 @@ $(mumps-64-5.5.1)-url = http://mumps.enseeiht.fr/
 $(mumps-64-5.5.1)-srcurl = http://deb.debian.org/debian/pool/main/m/mumps/mumps_$(mumps-64-5.5.1-version).orig.tar.gz
 $(mumps-64-5.5.1)-src = $($(mumps-src-5.5.1)-src)
 $(mumps-64-5.5.1)-srcdir = $(pkgsrcdir)/$(mumps-64-5.5.1)
-$(mumps-64-5.5.1)-builddeps = $(blas) $(mpi) $(metis-64) $(parmetis-64) $(scotch) $(scalapack) $(gfortran) $(patchelf)
-$(mumps-64-5.5.1)-prereqs = $(blas) $(mpi) $(metis-64) $(parmetis-64) $(scotch) $(scalapack) $(gfortran)
+$(mumps-64-5.5.1)-builddeps = $(blas) $(mpi) $(metis-64) $(parmetis-64) $(scotch-64) $(scalapack) $(gfortran) $(patchelf)
+$(mumps-64-5.5.1)-prereqs = $(blas) $(mpi) $(metis-64) $(parmetis-64) $(scotch-64) $(scalapack) $(gfortran)
 $(mumps-64-5.5.1)-modulefile = $(modulefilesdir)/$(mumps-64-5.5.1)
 $(mumps-64-5.5.1)-prefix = $(pkgdir)/$(mumps-64-5.5.1)
 

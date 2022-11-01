@@ -75,6 +75,9 @@ mumps-64 = mumps-64-5.5.1
 parmetis = parmetis-32-4.0.3
 parmetis-32 = parmetis-32-4.0.3
 parmetis-64 = parmetis-64-4.0.3
+scotch = scotch-32-6.1.3
+scotch-32 = scotch-32-6.1.3
+scotch-64 = scotch-64-6.1.3
 suitesparse = suitesparse-32-5.12.0
 suitesparse-32 = suitesparse-32-5.12.0
 suitesparse-64 = suitesparse-64-5.12.0
@@ -740,7 +743,8 @@ pkgs := $(pkgs) \
 	readline-8.0 \
 	scalapack-2.1.0 \
 	scalapack-src-2.1.0 \
-	scotch-6.1.3 \
+	scotch-32-6.1.3 \
+	scotch-64-6.1.3 \
 	scotch-src-6.1.3 \
 	slurm-20.02.7 \
 	sparse-0.6.3 \

@@ -1,3 +1,7 @@
+2022-11-01  James D. Trotter  <jamest@simula.no>
+
+	* build scotch with 64-bit integers
+
 2022-10-26  James D. Trotter  <jamest@simula.no>
 
 	* various fixes for 64-bit SuiteSparse

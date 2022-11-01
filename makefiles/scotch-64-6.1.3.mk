@@ -16,42 +16,42 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# scotch-64-6.1.3-6.1.3
+# scotch-64-6.1.3
 
 scotch-64-6.1.3-version = 6.1.3
 scotch-64-6.1.3 = scotch-64-$(scotch-64-6.1.3-version)
-$(scotch)-description = Static Mapping, Graph, Mesh and Hypergraph Partitioning, and Parallel and Sequential Sparse Matrix Ordering Package
-$(scotch)-url = https://www.labri.fr/perso/pelegrin/scotch/
-$(scotch)-srcurl = https://gitlab.inria.fr/scotch/scotch/-/archive/v$(scotch-version)/scotch-v$(scotch-version).tar.gz
-$(scotch)-src = $($(scotch-src)-src)
-$(scotch)-srcdir = $(pkgsrcdir)/$(scotch)
-$(scotch)-builddeps = $(mpi) $(patchelf)
-$(scotch)-prereqs = $(mpi)
-$(scotch)-modulefile = $(modulefilesdir)/$(scotch)
-$(scotch)-prefix = $(pkgdir)/$(scotch)
+$(scotch-64-6.1.3)-description = Static Mapping, Graph, Mesh and Hypergraph Partitioning, and Parallel and Sequential Sparse Matrix Ordering Package
+$(scotch-64-6.1.3)-url = https://www.labri.fr/perso/pelegrin/scotch/
+$(scotch-64-6.1.3)-srcurl = https://gitlab.inria.fr/scotch/scotch/-/archive/v$(scotch-64-6.1.3-version)/scotch-v$(scotch-64-6.1.3-version).tar.gz
+$(scotch-64-6.1.3)-src = $($(scotch-src-6.1.3)-src)
+$(scotch-64-6.1.3)-srcdir = $(pkgsrcdir)/$(scotch-64-6.1.3)
+$(scotch-64-6.1.3)-builddeps = $(mpi) $(patchelf)
+$(scotch-64-6.1.3)-prereqs = $(mpi)
+$(scotch-64-6.1.3)-modulefile = $(modulefilesdir)/$(scotch-64-6.1.3)
+$(scotch-64-6.1.3)-prefix = $(pkgdir)/$(scotch-64-6.1.3)
 
-$($(scotch)-srcdir)/.markerfile:
+$($(scotch-64-6.1.3)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@)
 	@touch $@
 
-$($(scotch)-prefix)/.markerfile:
+$($(scotch-64-6.1.3)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(scotch)-prefix)/.pkgunpack: $$($(scotch)-src) $($(scotch)-srcdir)/.markerfile $($(scotch)-prefix)/.markerfile $$(foreach dep,$$($(scotch)-builddeps),$(modulefilesdir)/$$(dep))
-	tar -C $($(scotch)-srcdir) --strip-components 1 -xz -f $<
+$($(scotch-64-6.1.3)-prefix)/.pkgunpack: $$($(scotch-64-6.1.3)-src) $($(scotch-64-6.1.3)-srcdir)/.markerfile $($(scotch-64-6.1.3)-prefix)/.markerfile $$(foreach dep,$$($(scotch-64-6.1.3)-builddeps),$(modulefilesdir)/$$(dep))
+	tar -C $($(scotch-64-6.1.3)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
-$($(scotch)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(scotch)-builddeps),$(modulefilesdir)/$$(dep)) $($(scotch)-prefix)/.pkgunpack
+$($(scotch-64-6.1.3)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(scotch-64-6.1.3)-builddeps),$(modulefilesdir)/$$(dep)) $($(scotch-64-6.1.3)-prefix)/.pkgunpack
 # Modify source to allow correct shared library linking
-	sed -i 's,$$(AR) $$(ARFLAGS) $$(@) $$(^),$$(AR) $$(ARFLAGS) $$(@) $$(^) $$(DYNLDFLAGS),g' $($(scotch)-srcdir)/src/libscotchmetis/Makefile
-	sed -i 's,$$(AR) $$(ARFLAGS) $$(@) $$(?),$$(AR) $$(ARFLAGS) $$(@) $$(?) $$(DYNLDFLAGS),g' $($(scotch)-srcdir)/src/libscotchmetis/Makefile
-	sed -i 's,$$(AR) $$(ARFLAGS) $$(@) $$(^),$$(AR) $$(ARFLAGS) $$(@) $$(^) $$(DYNLDFLAGS),g' $($(scotch)-srcdir)/src/libscotch/Makefile
-	sed -i 's,$$(AR) $$(ARFLAGS) $$(@) $$(?),$$(AR) $$(ARFLAGS) $$(@) $$(?) $$(DYNLDFLAGS),g' $($(scotch)-srcdir)/src/libscotch/Makefile
-	sed -i 's,$$(AR) $$(ARFLAGS) $$(@) $$(^),$$(AR) $$(ARFLAGS) $$(@) $$(^) $$(DYNLDFLAGS),g' $($(scotch)-srcdir)/src/esmumps/Makefile
-	sed -i 's,$$(AR) $$(ARFLAGS) $$(@) $$(?),$$(AR) $$(ARFLAGS) $$(@) $$(?) $$(DYNLDFLAGS),g' $($(scotch)-srcdir)/src/esmumps/Makefile
+	sed -i 's,$$(AR) $$(ARFLAGS) $$(@) $$(^),$$(AR) $$(ARFLAGS) $$(@) $$(^) $$(DYNLDFLAGS),g' $($(scotch-64-6.1.3)-srcdir)/src/libscotchmetis/Makefile
+	sed -i 's,$$(AR) $$(ARFLAGS) $$(@) $$(?),$$(AR) $$(ARFLAGS) $$(@) $$(?) $$(DYNLDFLAGS),g' $($(scotch-64-6.1.3)-srcdir)/src/libscotchmetis/Makefile
+	sed -i 's,$$(AR) $$(ARFLAGS) $$(@) $$(^),$$(AR) $$(ARFLAGS) $$(@) $$(^) $$(DYNLDFLAGS),g' $($(scotch-64-6.1.3)-srcdir)/src/libscotch/Makefile
+	sed -i 's,$$(AR) $$(ARFLAGS) $$(@) $$(?),$$(AR) $$(ARFLAGS) $$(@) $$(?) $$(DYNLDFLAGS),g' $($(scotch-64-6.1.3)-srcdir)/src/libscotch/Makefile
+	sed -i 's,$$(AR) $$(ARFLAGS) $$(@) $$(^),$$(AR) $$(ARFLAGS) $$(@) $$(^) $$(DYNLDFLAGS),g' $($(scotch-64-6.1.3)-srcdir)/src/esmumps/Makefile
+	sed -i 's,$$(AR) $$(ARFLAGS) $$(@) $$(?),$$(AR) $$(ARFLAGS) $$(@) $$(?) $$(DYNLDFLAGS),g' $($(scotch-64-6.1.3)-srcdir)/src/esmumps/Makefile
 	@touch $@
 
-$($(scotch)-srcdir)/src/Makefile.inc: $($(scotch)-prefix)/.pkgunpack
+$($(scotch-64-6.1.3)-srcdir)/src/Makefile.inc: $($(scotch-64-6.1.3)-prefix)/.pkgunpack
 	printf "" >$@.tmp
 	echo "EXE             =" >>$@.tmp
 	echo "LIB             = .so" >>$@.tmp
@@ -63,7 +63,7 @@ $($(scotch)-srcdir)/src/Makefile.inc: $($(scotch)-prefix)/.pkgunpack
 	echo "CCS             = gcc" >>$@.tmp
 	echo "CCP             = mpicc" >>$@.tmp
 	echo "CCD             = gcc" >>$@.tmp
-	echo "CFLAGS          = -O3 -DCOMMON_FILE_COMPRESS_GZ -DCOMMON_PTHREAD -DCOMMON_RANDOM_FIXED_SEED -DSCOTCH_RENAME -DSCOTCH_PTHREAD -Drestrict=__restrict -DIDXSIZE64" >>$@.tmp
+	echo "CFLAGS          = -g -O3 -DCOMMON_FILE_COMPRESS_GZ -DCOMMON_PTHREAD -DCOMMON_RANDOM_FIXED_SEED -DSCOTCH_RENAME -DSCOTCH_PTHREAD -Drestrict=__restrict -DIDXSIZE64 -DINTSIZE64" >>$@.tmp
 	echo "CLIBFLAGS       = -shared -fPIC" >>$@.tmp
 	echo "LDFLAGS         = -lz -lm -lrt -pthread" >>$@.tmp
 	echo "DYNLDFLAGS      = -lz -lm -lrt -pthread" >>$@.tmp
@@ -76,70 +76,70 @@ $($(scotch)-srcdir)/src/Makefile.inc: $($(scotch)-prefix)/.pkgunpack
 	echo "YACC            = bison -pscotchyy -y -b y" >>$@.tmp
 	mv $@.tmp $@
 
-$($(scotch)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(scotch)-builddeps),$(modulefilesdir)/$$(dep)) $($(scotch)-prefix)/.pkgpatch $($(scotch)-srcdir)/src/Makefile.inc
+$($(scotch-64-6.1.3)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(scotch-64-6.1.3)-builddeps),$(modulefilesdir)/$$(dep)) $($(scotch-64-6.1.3)-prefix)/.pkgpatch $($(scotch-64-6.1.3)-srcdir)/src/Makefile.inc
 # Parallel builds are not supported
-	cd $($(scotch)-srcdir)/src && \
+	cd $($(scotch-64-6.1.3)-srcdir)/src && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(scotch)-builddeps) && \
+		$(MODULE) load $($(scotch-64-6.1.3)-builddeps) && \
 		$(MAKE) MAKEFLAGS="AR=$${CC:-gcc} CCS=$${CC:-gcc} CCP=$${MPICC:-mpicc} CCD=$${CC:-gcc}" \
 			scotch ptscotch esmumps ptesmumps --jobs=1
 	@touch $@
 
-$($(scotch)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(scotch)-builddeps),$(modulefilesdir)/$$(dep)) $($(scotch)-prefix)/.pkgbuild
+$($(scotch-64-6.1.3)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(scotch-64-6.1.3)-builddeps),$(modulefilesdir)/$$(dep)) $($(scotch-64-6.1.3)-prefix)/.pkgbuild
 	@touch $@
 
-$($(scotch)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(scotch)-builddeps),$(modulefilesdir)/$$(dep)) $($(scotch)-prefix)/.pkgcheck
-	cd $($(scotch)-srcdir)/src && \
+$($(scotch-64-6.1.3)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(scotch-64-6.1.3)-builddeps),$(modulefilesdir)/$$(dep)) $($(scotch-64-6.1.3)-prefix)/.pkgcheck
+	cd $($(scotch-64-6.1.3)-srcdir)/src && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(scotch)-builddeps) && \
-		$(MAKE) install prefix=$($(scotch)-prefix) \
+		$(MODULE) load $($(scotch-64-6.1.3)-builddeps) && \
+		$(MAKE) install prefix=$($(scotch-64-6.1.3)-prefix) \
 			MAKEFLAGS="AR=$${CC} CCS=$${CC} CCP=$${MPICC} CCD=$${CC}" && \
-		patchelf --add-needed libz.so $($(scotch)-prefix)/lib/*.so && \
-		patchelf --add-needed libscotcherr.so $($(scotch)-prefix)/lib/libscotch.so && \
-		patchelf --add-needed libscotch.so $($(scotch)-prefix)/lib/libptscotch.so && \
-		patchelf --add-needed libptscotch.so $($(scotch)-prefix)/lib/libptscotchparmetis.so && \
-		patchelf --add-needed libscotch.so $($(scotch)-prefix)/lib/libscotchmetis.so
+		patchelf --add-needed libz.so $($(scotch-64-6.1.3)-prefix)/lib/*.so && \
+		patchelf --add-needed libscotcherr.so $($(scotch-64-6.1.3)-prefix)/lib/libscotch.so && \
+		patchelf --add-needed libscotch.so $($(scotch-64-6.1.3)-prefix)/lib/libptscotch.so && \
+		patchelf --add-needed libptscotch.so $($(scotch-64-6.1.3)-prefix)/lib/libptscotchparmetis.so && \
+		patchelf --add-needed libscotch.so $($(scotch-64-6.1.3)-prefix)/lib/libscotchmetis.so
 	@touch $@
 
-$($(scotch)-modulefile): $(modulefilesdir)/.markerfile $($(scotch)-prefix)/.pkginstall
+$($(scotch-64-6.1.3)-modulefile): $(modulefilesdir)/.markerfile $($(scotch-64-6.1.3)-prefix)/.pkginstall
 	printf "" >$@
 	echo "#%Module" >>$@
-	echo "# $(scotch)" >>$@
+	echo "# $(scotch-64-6.1.3)" >>$@
 	echo "" >>$@
 	echo "proc ModulesHelp { } {" >>$@
-	echo "     puts stderr \"\tSets up the environment for $(scotch)\\n\"" >>$@
+	echo "     puts stderr \"\tSets up the environment for $(scotch-64-6.1.3)\\n\"" >>$@
 	echo "}" >>$@
 	echo "" >>$@
-	echo "module-whatis \"$($(scotch)-description)\"" >>$@
-	echo "module-whatis \"$($(scotch)-url)\"" >>$@
-	printf "$(foreach prereq,$($(scotch)-prereqs),\n$(MODULE) load $(prereq))" >>$@
+	echo "module-whatis \"$($(scotch-64-6.1.3)-description)\"" >>$@
+	echo "module-whatis \"$($(scotch-64-6.1.3)-url)\"" >>$@
+	printf "$(foreach prereq,$($(scotch-64-6.1.3)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv SCOTCH_ROOT $($(scotch)-prefix)" >>$@
-	echo "setenv SCOTCH_INCDIR $($(scotch)-prefix)/include" >>$@
-	echo "setenv SCOTCH_INCLUDEDIR $($(scotch)-prefix)/include" >>$@
-	echo "setenv SCOTCH_LIBDIR $($(scotch)-prefix)/lib" >>$@
-	echo "setenv SCOTCH_LIBRARYDIR $($(scotch)-prefix)/lib" >>$@
-	echo "prepend-path PATH $($(scotch)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(scotch)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(scotch)-prefix)/include" >>$@
-	echo "prepend-path LIBRARY_PATH $($(scotch)-prefix)/lib" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(scotch)-prefix)/lib" >>$@
-	echo "prepend-path MANPATH $($(scotch)-prefix)/share/man" >>$@
-	echo "set MSG \"$(scotch)\"" >>$@
+	echo "setenv SCOTCH_ROOT $($(scotch-64-6.1.3)-prefix)" >>$@
+	echo "setenv SCOTCH_INCDIR $($(scotch-64-6.1.3)-prefix)/include" >>$@
+	echo "setenv SCOTCH_INCLUDEDIR $($(scotch-64-6.1.3)-prefix)/include" >>$@
+	echo "setenv SCOTCH_LIBDIR $($(scotch-64-6.1.3)-prefix)/lib" >>$@
+	echo "setenv SCOTCH_LIBRARYDIR $($(scotch-64-6.1.3)-prefix)/lib" >>$@
+	echo "prepend-path PATH $($(scotch-64-6.1.3)-prefix)/bin" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(scotch-64-6.1.3)-prefix)/include" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(scotch-64-6.1.3)-prefix)/include" >>$@
+	echo "prepend-path LIBRARY_PATH $($(scotch-64-6.1.3)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(scotch-64-6.1.3)-prefix)/lib" >>$@
+	echo "prepend-path MANPATH $($(scotch-64-6.1.3)-prefix)/share/man" >>$@
+	echo "set MSG \"$(scotch-64-6.1.3)\"" >>$@
 
-$(scotch)-src: $($(scotch)-src)
-$(scotch)-unpack: $($(scotch)-prefix)/.pkgunpack
-$(scotch)-patch: $($(scotch)-prefix)/.pkgpatch
-$(scotch)-build: $($(scotch)-prefix)/.pkgbuild
-$(scotch)-check: $($(scotch)-prefix)/.pkgcheck
-$(scotch)-install: $($(scotch)-prefix)/.pkginstall
-$(scotch)-modulefile: $($(scotch)-modulefile)
-$(scotch)-clean:
-	rm -rf $($(scotch)-modulefile)
-	rm -rf $($(scotch)-prefix)
-	rm -rf $($(scotch)-srcdir)
-	rm -rf $($(scotch)-src)
-$(scotch): $(scotch)-src $(scotch)-unpack $(scotch)-patch $(scotch)-build $(scotch)-check $(scotch)-install $(scotch)-modulefile
+$(scotch-64-6.1.3)-src: $($(scotch-64-6.1.3)-src)
+$(scotch-64-6.1.3)-unpack: $($(scotch-64-6.1.3)-prefix)/.pkgunpack
+$(scotch-64-6.1.3)-patch: $($(scotch-64-6.1.3)-prefix)/.pkgpatch
+$(scotch-64-6.1.3)-build: $($(scotch-64-6.1.3)-prefix)/.pkgbuild
+$(scotch-64-6.1.3)-check: $($(scotch-64-6.1.3)-prefix)/.pkgcheck
+$(scotch-64-6.1.3)-install: $($(scotch-64-6.1.3)-prefix)/.pkginstall
+$(scotch-64-6.1.3)-modulefile: $($(scotch-64-6.1.3)-modulefile)
+$(scotch-64-6.1.3)-clean:
+	rm -rf $($(scotch-64-6.1.3)-modulefile)
+	rm -rf $($(scotch-64-6.1.3)-prefix)
+	rm -rf $($(scotch-64-6.1.3)-srcdir)
+	rm -rf $($(scotch-64-6.1.3)-src)
+$(scotch-64-6.1.3): $(scotch-64-6.1.3)-src $(scotch-64-6.1.3)-unpack $(scotch-64-6.1.3)-patch $(scotch-64-6.1.3)-build $(scotch-64-6.1.3)-check $(scotch-64-6.1.3)-install $(scotch-64-6.1.3)-modulefile

@@ -48,7 +48,7 @@ $($(petsc-32-3.17.4)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(petsc-32-3.17.4)-builddeps) && \
-		$(PYTHON) ./configure \
+		$(PYTHON) ./configure MAKEFLAGS="${MAKEFLAGS}" \
 			--prefix=$($(petsc-32-3.17.4)-prefix) \
 			--with-debugging=0 \
 			--with-openmp=1 \
