@@ -424,6 +424,7 @@ pkgs := $(pkgs) \
 	fenics-dolfin-2019-src-2019.1.0.post0 \
 	fenics-dolfin-2019.1.0.post0 \
 	fenics-dolfin-64-2019.1.0.post0 \
+	fenics-dolfin-64-debug-2019.1.0.post0 \
 	fenics-dolfinx-20200525 \
 	fenics-dolfinx-src-20200525 \
 	fenics-mshr-2019-src-2019.1.0 \
@@ -643,6 +644,7 @@ pkgs := $(pkgs) \
 	python-fenics-dolfin-2018.1.0.post1 \
 	python-fenics-dolfin-2019.1.0.post0 \
 	python-fenics-dolfin-64-2019.1.0.post0 \
+	python-fenics-dolfin-64-debug-2019.1.0.post0 \
 	python-fenics-ffc-2018.1.0 \
 	python-fenics-ffc-2019.1.0 \
 	python-fenics-ffcx-20200522 \
