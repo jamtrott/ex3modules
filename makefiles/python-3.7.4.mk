@@ -81,6 +81,7 @@ $($(python-3.7.4)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach de
 
 $($(python-3.7.4)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-3.7.4)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-3.7.4)-prefix)/.pkgcheck
 	$(MAKE) MAKEFLAGS= prefix=$($(python-3.7.4)-prefix) -C $($(python-3.7.4)-srcdir) install
+	cp $($(python-3.7.4)-srcdir)/python-gdb.py $($(python-3.7.4)-prefix)/bin/python$(python-3.7.4-version-major).$(python-3.7.4-version-minor)-gdb.py
 	@touch $@
 
 $($(python-3.7.4)-modulefile): $(modulefilesdir)/.markerfile $($(python-3.7.4)-prefix)/.pkginstall
