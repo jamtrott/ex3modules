@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# xz-5.2.5
+# xz-5.2.7
 
-xz-version = 5.2.5
+xz-version = 5.2.7
 xz = xz-$(xz-version)
 $(xz)-description = General-purpose data compression software with a high compression ratio
 $(xz)-url = https://tukaani.org/xz/
@@ -43,8 +43,7 @@ $($(xz)-prefix)/.pkgunpack: $($(xz)-src) $($(xz)-srcdir)/.markerfile $($(xz)-pre
 	tar -C $($(xz)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
-$($(xz)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(xz)-builddeps),$(modulefilesdir)/$$(dep)) $($(xz)-prefix)/.pkgunpack patches/xz-0001-fix_missing_version_symbols.patch
-	patch -d $($(xz)-srcdir) -f -p0 <patches/xz-0001-fix_missing_version_symbols.patch
+$($(xz)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(xz)-builddeps),$(modulefilesdir)/$$(dep)) $($(xz)-prefix)/.pkgunpack
 	@touch $@
 
 $($(xz)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(xz)-builddeps),$(modulefilesdir)/$$(dep)) $($(xz)-prefix)/.pkgpatch

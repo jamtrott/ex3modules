@@ -788,7 +788,7 @@ pkgs := $(pkgs) \
 	xtensor-0.24.2 \
 	xtl-0.7.4 \
 	xtrans-1.4.0 \
-	xz-5.2.5 \
+	xz-5.2.7 \
 	zlib-1.2.11
 
 # Sort package list and remove duplicates
