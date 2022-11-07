@@ -65,7 +65,7 @@ MODULE := module
 # Default to using 32-bit versions of various linear algebra packages
 hypre = hypre-32-2.25.0
 hypre-32 = hypre-32-2.25.0
-hypre-64 = hypre-64-2.24.0
+hypre-64 = hypre-64-2.25.0
 metis = metis-32-5.1.0
 metis-32 = metis-32-5.1.0
 metis-64 = metis-64-5.1.0
@@ -478,6 +478,7 @@ pkgs := $(pkgs) \
 	hypre-32-2.25.0 \
 	hypre-64-2.23.0 \
 	hypre-64-2.24.0 \
+	hypre-64-2.25.0 \
 	hypre-src-2.23.0 \
 	hypre-src-2.24.0 \
 	hypre-src-2.25.0 \
