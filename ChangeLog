@@ -1,3 +1,7 @@
+2022-11-07  James D. Trotter  <jamest@simula.no>
+
+	* python-docutils 0.16 -> 0.19
+
 2022-11-01  James D. Trotter  <jamest@simula.no>
 
 	* build scotch with 64-bit integers

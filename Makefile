@@ -637,7 +637,7 @@ pkgs := $(pkgs) \
 	python-cython-0.29.21 \
 	python-dateutil-2.8.2 \
 	python-distlib-0.3.1 \
-	python-docutils-0.16 \
+	python-docutils-0.19 \
 	python-execnet-1.7.1 \
 	python-extrap-4.0.4 \
 	python-fenics-dijitso-2018.1.0 \

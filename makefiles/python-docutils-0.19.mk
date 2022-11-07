@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-docutils-0.16
+# python-docutils-0.19
 
-python-docutils-version = 0.16
+python-docutils-version = 0.19
 python-docutils = python-docutils-$(python-docutils-version)
 $(python-docutils)-description = Python Documentation Utilities
 $(python-docutils)-url = http://docutils.sourceforge.net/
-$(python-docutils)-srcurl = https://files.pythonhosted.org/packages/2f/e0/3d435b34abd2d62e8206171892f174b180cd37b09d57b924ca5c2ef2219d/docutils-0.16.tar.gz
+$(python-docutils)-srcurl = https://files.pythonhosted.org/packages/6b/5c/330ea8d383eb2ce973df34d1239b3b21e91cd8c865d21ff82902d952f91f/docutils-0.19.tar.gz
 $(python-docutils)-src = $(pkgsrcdir)/$(notdir $($(python-docutils)-srcurl))
 $(python-docutils)-srcdir = $(pkgsrcdir)/$(python-docutils)
 $(python-docutils)-builddeps = $(python) $(python-pip)
