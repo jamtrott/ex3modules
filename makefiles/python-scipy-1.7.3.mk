@@ -53,8 +53,7 @@ $($(python-scipy)-srcdir)/site.cfg: $$(foreach dep,$$($(python-scipy)-builddeps)
 		echo "[openblas]" >>$@.tmp && \
 		echo "libraries = $${BLASLIB}" >>$@.tmp && \
 		echo "library_dirs = $${BLASDIR}" >>$@.tmp && \
-		echo "include_dirs = $${OPENBLAS_ROOT}/include" >>$@.tmp && \
-		echo "runtime_library_dirs = $${BLASDIR}" >>$@.tmp
+		echo "include_dirs = $${OPENBLAS_ROOT}/include" >>$@.tmp
 	mv $@.tmp $@
 
 $($(python-scipy)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-scipy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-scipy)-prefix)/.pkgunpack $($(python-scipy)-srcdir)/site.cfg
