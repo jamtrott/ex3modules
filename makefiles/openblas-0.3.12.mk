@@ -44,7 +44,7 @@ $($(openblas-0.3.12)-prefix)/.pkgunpack: $($(openblas-0.3.12)-src) $($(openblas-
 	@touch $@
 
 $($(openblas-0.3.12)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openblas-0.3.12)-builddeps),$(modulefilesdir)/$$(dep)) $($(openblas-0.3.12)-prefix)/.pkgunpack
-	sed -i '41i .NOTPARALLEL:' $($(openblas-0.3.12)-srcdir)/lapack-netlib/TESTING/MATGEN/Makefile
+	sed -i '69i .NOTPARALLEL:' $($(openblas-0.3.12)-srcdir)/lapack-netlib/TESTING/MATGEN/Makefile
 	@touch $@
 
 $($(openblas-0.3.12)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(openblas-0.3.12)-builddeps),$(modulefilesdir)/$$(dep)) $($(openblas-0.3.12)-prefix)/.pkgpatch
