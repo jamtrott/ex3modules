@@ -45,6 +45,7 @@ $($(suitesparse-64)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach 
 	sed -i 's,cd build ; cmake,cd build ; $(CMAKE),' $($(suitesparse-64)-srcdir)/Mongoose/Makefile
 	sed -i '/-gencode=arch=compute_30,code=sm_30/d' $($(suitesparse-64)-srcdir)/SuiteSparse_config/SuiteSparse_config.mk
 	sed -i 's,CUDA = auto,CUDA = no,' $($(suitesparse-64)-srcdir)/SuiteSparse_config/SuiteSparse_config.mk
+	sed -i 's,LDLIBS += -lsuitesparseconfig -lamd -lcolamd -lm -lgmp -lmpfr,LDLIBS += -lsuitesparseconfig -lamd -lcolamd -lm -lgmp -l$${MPFR_LIBDIR}/libmpfr.so,' $($(suitesparse-64)-srcdir)/SLIP_LU/Lib/Makefile
 	sed -i 's,#define SuiteSparse_long long,#define SuiteSparse_long long long,' $($(suitesparse-64)-srcdir)/SuiteSparse_config/SuiteSparse_config.h
 	sed -i 's,#define SuiteSparse_long_max LONG_MAX,#define SuiteSparse_long_max LLONG_MAX,' $($(suitesparse-64)-srcdir)/SuiteSparse_config/SuiteSparse_config.h
 	sed -i 's,#define SuiteSparse_long_idd "ld",#define SuiteSparse_long_idd "lld",' $($(suitesparse-64)-srcdir)/SuiteSparse_config/SuiteSparse_config.h
