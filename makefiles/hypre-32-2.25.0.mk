@@ -50,6 +50,7 @@ $($(hypre-32-2.25)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) load $($(hypre-32-2.25)-builddeps) && \
 		./configure --prefix=$($(hypre-32-2.25)-prefix) \
 			--enable-shared \
+			--disable-fortran \
 			--with-blas-lib-dirs="$${BLASDIR}" --with-blas-libs="$${BLASLIB}" \
 			--with-lapack-lib-dirs="$${BLASDIR}" --with-lapack-libs="$${BLASLIB}" \
 			--with-MPI \
