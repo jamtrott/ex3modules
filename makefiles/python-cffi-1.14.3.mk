@@ -60,11 +60,6 @@ $($(python-cffi)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 	@touch $@
 
 $($(python-cffi)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-cffi)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-cffi)-prefix)/.pkgbuild
-	cd $($(python-cffi)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-cffi)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-cffi)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-cffi)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-cffi)-prefix)/.pkgcheck $($(python-cffi)-site-packages)/.markerfile
