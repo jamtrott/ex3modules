@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# kokkos-kernels-3.6.1
+# kokkos-kernels-3.7.1
 
-kokkos-kernels-version = 3.6.1
+kokkos-kernels-version = 3.7.1
 kokkos-kernels = kokkos-kernels-$(kokkos-kernels-version)
 $(kokkos-kernels)-description = Math Kernels for Kokkos C++ Performance Portability Programming EcoSystem
 $(kokkos-kernels)-url = https://github.com/kokkos/kokkos-kernels
-$(kokkos-kernels)-srcurl = https://github.com/kokkos/kokkos-kernels/archive/refs/tags/3.6.01.tar.gz
+$(kokkos-kernels)-srcurl = https://github.com/kokkos/kokkos-kernels/archive/refs/tags/3.7.01.tar.gz
 $(kokkos-kernels)-builddeps = $(cmake) $(kokkos)
 $(kokkos-kernels)-prereqs = $(kokkos)
 $(kokkos-kernels)-src = $(pkgsrcdir)/kokkos-kernels-$(notdir $($(kokkos-kernels)-srcurl))
