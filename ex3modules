@@ -76,7 +76,7 @@ function help()
     printf "  %-20s\t%s\n" ""               "binaries, headers and libraries. Otherwise, an internal hwloc is used."
     printf "  %-20s\t%s\n" "--without-hwloc" "disable hwloc usage completely"
     printf "  %-20s\t%s\n" "--with-mpi=DIR" "Root directory of MPI installation, or one of the following values:"
-    printf "  %-20s\t%s\n" ""               "'openmpi-4.0.5', 'openmpi-cuda-4.0.5', 'mpich-3.3.2' or 'mvapich-2.3.4'."
+    printf "  %-20s\t%s\n" ""               "'openmpi-4.0.5', 'openmpi-4.1.4', 'mpich-3.3.2' or 'mvapich-2.3.4'."
     printf "  %-20s\t%s\n" ""               "If a directory is given, then an external MPI is used, and DIR/include,"
     printf "  %-20s\t%s\n" ""               "DIR/lib and DIR/lib64 are added to search paths for headers and libraries."
     printf "  %-20s\t%s\n" ""               "Otherwise, an internal MPI implementation is built and used. Note that"
