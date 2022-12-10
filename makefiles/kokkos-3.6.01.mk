@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# kokkos-3.7.01
+# kokkos-3.6.01
 
-kokkos-version = 3.7.01
+kokkos-version = 3.6.01
 kokkos = kokkos-$(kokkos-version)
 $(kokkos)-description = C++ Performance Portability Programming EcoSystem
 $(kokkos)-url = https://github.com/kokkos/kokkos
