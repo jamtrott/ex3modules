@@ -45,7 +45,6 @@ $($(suitesparse-32)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach 
 	sed -i 's,cd build ; cmake,cd build ; $(CMAKE),' $($(suitesparse-32)-srcdir)/Mongoose/Makefile
 	sed -i '/-gencode=arch=compute_30,code=sm_30/d' $($(suitesparse-32)-srcdir)/SuiteSparse_config/SuiteSparse_config.mk
 	sed -i 's,CUDA = auto,CUDA = no,' $($(suitesparse-32)-srcdir)/SuiteSparse_config/SuiteSparse_config.mk
-	sed -i 's,LDLIBS += -lsuitesparseconfig -lamd -lcolamd -lm -lgmp -lmpfr,LDLIBS += -lsuitesparseconfig -lamd -lcolamd -lm -lgmp -l$${MPFR_LIBDIR}/libmpfr.so,' $($(suitesparse-32)-srcdir)/SLIP_LU/Lib/Makefile
 	@touch $@
 
 $($(suitesparse-32)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(suitesparse-32)-builddeps),$(modulefilesdir)/$$(dep)) $($(suitesparse-32)-prefix)/.pkgpatch
