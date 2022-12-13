@@ -452,7 +452,7 @@ pkgs := $(pkgs) \
 	gklib-5.1.0 \
 	glib-2.64.1 \
 	gmp-6.1.2 \
-	gmsh-4.7.1 \
+	gmsh-4.11.0 \
 	gnuplot-5.2.8 \
 	gobject-introspection-1.64.0 \
 	googletest-1.10.0 \

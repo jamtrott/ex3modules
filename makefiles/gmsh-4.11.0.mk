@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# gmsh-4.7.1
+# gmsh-4.11.0
 
-gmsh-version = 4.7.1
+gmsh-version = 4.11.0
 gmsh = gmsh-$(gmsh-version)
 $(gmsh)-description = A three-dimensional finite element mesh generator with built-in pre- and post-processing facilities
 $(gmsh)-url = http://gmsh.info/
