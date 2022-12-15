@@ -476,6 +476,7 @@ pkgs := $(pkgs) \
 	hypre-32-2.23.0 \
 	hypre-32-2.24.0 \
 	hypre-32-2.25.0 \
+	hypre-32-2.25.0-gfx90a \
 	hypre-64-2.23.0 \
 	hypre-64-2.24.0 \
 	hypre-64-2.25.0 \
