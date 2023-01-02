@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2023 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# rdma-core-31.0
+# rdma-core-44.0
 
-rdma-core-version = 31.0
+rdma-core-version = 44.0
 rdma-core = rdma-core-$(rdma-core-version)
 $(rdma-core)-description = Userspace components for the Linux infiniband subsystem
 $(rdma-core)-url = https://github.com/linux-rdma/rdma-core/

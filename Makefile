@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2022 James D. Trotter
+# Copyright (C) 2023 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -743,7 +743,7 @@ pkgs := $(pkgs) \
 	python-zipp-3.3.1 \
 	qperf-0.4.11 \
 	qt5-5.15.2 \
-	rdma-core-31.0 \
+	rdma-core-44.0 \
 	readline-8.0 \
 	scalapack-2.1.0 \
 	scalapack-src-2.1.0 \
