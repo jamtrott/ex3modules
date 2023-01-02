@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2023 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,15 +16,15 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# libfabric-1.11.1
+# libfabric-1.17.0
 
-libfabric-version = 1.11.1
+libfabric-version = 1.17.0
 libfabric = libfabric-$(libfabric-version)
 $(libfabric)-description = Library for OpenFabrics Interfaces
 $(libfabric)-url = http://libfabric.org/
 $(libfabric)-srcurl = https://github.com/ofiwg/libfabric/releases/download/v$(libfabric-version)/libfabric-$(libfabric-version).tar.bz2
-$(libfabric)-builddeps = $(numactl) $(rdma-core)
-$(libfabric)-prereqs = $(numactl) $(rdma-core)
+$(libfabric)-builddeps = $(numactl) $(rdma-core) $(cuda-toolkit) $(gdrcopy)
+$(libfabric)-prereqs = $(numactl) $(rdma-core) $(cuda-toolkit) $(gdrcopy)
 $(libfabric)-src = $(pkgsrcdir)/$(notdir $($(libfabric)-srcurl))
 $(libfabric)-srcdir = $(pkgsrcdir)/$(libfabric)
 $(libfabric)-builddir = $($(libfabric)-srcdir)
@@ -73,9 +73,14 @@ $($(libfabric)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$
 			--enable-sockets=no \
 			--enable-tcp=yes \
 			--enable-udp=yes \
+			--enable-opx=no \
 			--enable-usnic=no \
 			--enable-verbs=$${RDMA_CORE_ROOT} \
-			--with-numa=$${NUMACTL_ROOT} && \
+			--with-numa=$${NUMACTL_ROOT} \
+			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo --with-cuda="$${CUDA_TOOLKIT_ROOT}" || echo --without-cuda) \
+			$$([ ! -z "$${GDRCOPY_ROOT}" ] && echo --with-gdrcopy="$${GDRCOPY_ROOT}" || echo --without-gdrcopy) \
+			$$([ ! -z "$${ROCM_ROOT}" ] && echo --with-rocr="$${ROCM_ROOT}" || echo --without-rocr) \
+			&& \
 		$(MAKE)
 	@touch $@
 
