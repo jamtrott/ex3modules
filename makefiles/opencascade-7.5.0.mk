@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2022 James D. Trotter
+# Copyright (C) 2023 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,10 +60,7 @@ $($(opencascade)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(opencascade)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DBUILD_MODULE_Draw:BOOL=FALSE \
-			-D3RDPARTY_FREETYPE_DIR="$${FREETYPE_ROOT}" \
-			-D3RDPARTY_FREETYPE_INCLUDE_DIR_ft2build="$${FREETYPE_INCDIR}/freetype2" \
-			-D3RDPARTY_FREETYPE_INCLUDE_DIR_freetype2="$${FREETYPE_INCDIR}/freetype2/freetype" \
-			-D3RDPARTY_FREETYPE_LIBRARY="$${FREETYPE_LIBDIR}/libfreetype.so" && \
+			-D3RDPARTY_FREETYPE_DIR="$${FREETYPE_ROOT}" && \
 		$(MAKE)
 	@touch $@
 
@@ -103,6 +100,7 @@ $($(opencascade)-modulefile): $(modulefilesdir)/.markerfile $($(opencascade)-pre
 	echo "prepend-path LIBRARY_PATH $($(opencascade)-prefix)/lib" >>$@
 	echo "prepend-path LD_LIBRARY_PATH $($(opencascade)-prefix)/lib" >>$@
 	echo "prepend-path CMAKE_MODULE_PATH $($(opencascade)-prefix)/lib/cmake/opencascade" >>$@
+	echo "prepend-path CMAKE_PREFIX_PATH $($(opencascade)-prefix)/lib/cmake/opencascade" >>$@
 	echo "set MSG \"$(opencascade)\"" >>$@
 
 $(opencascade)-src: $$($(opencascade)-src)
