@@ -62,7 +62,9 @@ $($(gmsh)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(g
 			-DENABLE_BUILD_SHARED=ON \
 			-DENABLE_GRAPHICS=ON \
 			-DENABLE_OCC=ON \
-			-DCMAKE_PREFIX_PATH=$${OPENCASCADE_ROOT} && \
+			-DFREETYPE_INCLUDE_DIR_freetype2="$${FREETYPE_INCDIR}/freetype2" \
+			-DFREETYPE_INCLUDE_DIR_ft2build="$${FREETYPE_INCDIR}/freetype2" \
+			-DFREETYPE_LIBRARY_RELEASE="$${FREETYPE_LIBDIR}/lib/libfreetype.so" && \
 		$(MAKE)
 	@touch $@
 
