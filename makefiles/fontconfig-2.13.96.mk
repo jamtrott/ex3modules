@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2023 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# fontconfig-2.13.91
+# fontconfig-2.13.96
 
-fontconfig-version = 2.13.91
+fontconfig-version = 2.13.96
 fontconfig = fontconfig-$(fontconfig-version)
 $(fontconfig)-description = Library for configuring and customizing font access
 $(fontconfig)-url = https://www.freedesktop.org/wiki/Software/fontconfig/

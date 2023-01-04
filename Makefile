@@ -432,9 +432,9 @@ pkgs := $(pkgs) \
 	fftw-3.3.8 \
 	flex-2.6.4 \
 	fmt-8.0.1 \
-	fontconfig-2.13.91 \
+	fontconfig-2.13.96 \
 	freeipmi-1.6.6 \
-	freetype-2.10.1 \
+	freetype-2.12.1 \
 	fribidi-1.0.10 \
 	gc-8.0.4 \
 	gcc-10.1.0 \
