@@ -56,7 +56,7 @@ $($(libjpeg-turbo)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) load $($(libjpeg-turbo)-builddeps) && \
 		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(libjpeg-turbo)-prefix) \
-			-DCMAKE_INSTALL_LIBDIR=lib && \
+			-DCMAKE_INSTALL_LIBDIR:PATH=lib && \
 		$(MAKE)
 	@touch $@
 

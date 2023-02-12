@@ -23,8 +23,8 @@ gmsh = gmsh-$(gmsh-version)
 $(gmsh)-description = A three-dimensional finite element mesh generator with built-in pre- and post-processing facilities
 $(gmsh)-url = http://gmsh.info/
 $(gmsh)-srcurl = http://gmsh.info/src/gmsh-$(gmsh-version)-source.tgz
-$(gmsh)-builddeps = $(cmake) $(eigen) $(python) $(opencascade)
-$(gmsh)-prereqs = $(eigen) $(python) $(opencascade)
+$(gmsh)-builddeps = $(cmake) $(eigen) $(python) $(opencascade) $(zlib) $(libpng) $(libjpeg-turbo)
+$(gmsh)-prereqs = $(eigen) $(python) $(opencascade) $(zlib) $(libpng) $(libjpeg-turbo)
 $(gmsh)-src = $(pkgsrcdir)/$(notdir $($(gmsh)-srcurl))
 $(gmsh)-srcdir = $(pkgsrcdir)/$(gmsh)
 $(gmsh)-builddir = $($(gmsh)-srcdir)/build
@@ -64,7 +64,8 @@ $($(gmsh)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(g
 			-DENABLE_OCC=ON \
 			-DFREETYPE_INCLUDE_DIR_freetype2="$${FREETYPE_INCDIR}/freetype2" \
 			-DFREETYPE_INCLUDE_DIR_ft2build="$${FREETYPE_INCDIR}/freetype2" \
-			-DFREETYPE_LIBRARY_RELEASE="$${FREETYPE_LIBDIR}/lib/libfreetype.so" && \
+			-DFREETYPE_LIBRARY_RELEASE="$${FREETYPE_LIBDIR}/libfreetype.so" \
+			-DCMAKE_PREFIX_PATH="$${ZLIB_LIBDIR};$${LIBPNG_LIBDIR};$${LIBJPEG_TURBO_LIBDIR}" && \
 		$(MAKE)
 	@touch $@
 
