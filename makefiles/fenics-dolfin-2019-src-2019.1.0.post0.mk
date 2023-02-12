@@ -16,7 +16,7 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# fenics-dolfin-2019-src.1.0.post0
+# fenics-dolfin-2019-src-2019.1.0.post0
 
 fenics-dolfin-2019-src-version = 2019.1.0.post0
 fenics-dolfin-2019-src = fenics-dolfin-2019-src-$(fenics-dolfin-2019-src-version)

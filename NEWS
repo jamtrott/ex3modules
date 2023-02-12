@@ -4,6 +4,10 @@ New modules:
  - kokkos 3.6.01
  - kokkos-kernels 3.6.1
  - Extra-P 4.0.4
+ - basix 0.5.0
+ - ffcx 0.5.0
+ - ufl 2022.2.0
+ - dolfinx 0.5.2.
 
 Updated modules:
  - SuperLU_dist 7.2.0

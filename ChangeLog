@@ -1,26 +1,30 @@
-2023-01-03  James D. Trotter  <jamest@simula.no>
+2023-02-12  James D. Trotter  <james@simula.no>
+
+	add basix 0.5.0, ffcx 0.5.0, ufl 2022.2.0 and dolfinx 0.5.2.
+
+2023-01-03  James D. Trotter  <james@simula.no>
 
 	* libfabric 1.11.1 -> 1.17.0
 	* fontconfig 2.13.91 -> 2.13.96
 	* freetype 2.10.1 -> 2.12.1
 
-2022-12-13  James D. Trotter  <jamest@simula.no>
+2022-12-13  James D. Trotter  <james@simula.no>
 
 	* gmsh 4.7.1 -> 4.11.0
 
-2022-11-07  James D. Trotter  <jamest@simula.no>
+2022-11-07  James D. Trotter  <james@simula.no>
 
 	* python-docutils 0.16 -> 0.19
 
-2022-11-01  James D. Trotter  <jamest@simula.no>
+2022-11-01  James D. Trotter  <james@simula.no>
 
 	* build scotch with 64-bit integers
 
-2022-10-26  James D. Trotter  <jamest@simula.no>
+2022-10-26  James D. Trotter  <james@simula.no>
 
 	* various fixes for 64-bit SuiteSparse
 
-2022-09-16  James D. Trotter  <jamest@simula.no>
+2022-09-16  James D. Trotter  <james@simula.no>
 
 	* add 64-bit version of PETSc and FEniCS (dolfin) built with
 	64-bit PETSc.

@@ -425,6 +425,8 @@ pkgs := $(pkgs) \
 	fenics-dolfin-2019.1.0.post0 \
 	fenics-dolfin-64-2019.1.0.post0 \
 	fenics-dolfin-64-debug-2019.1.0.post0 \
+	fenics-dolfinx-src-0.5.2 \
+	fenics-dolfinx-32-0.5.2 \
 	fenics-dolfinx-20200525 \
 	fenics-dolfinx-src-20200525 \
 	fenics-mshr-2019-src-2019.1.0 \
@@ -640,14 +642,17 @@ pkgs := $(pkgs) \
 	python-docutils-0.19 \
 	python-execnet-1.7.1 \
 	python-extrap-4.0.4 \
+	python-fenics-basix-0.5.0 \
 	python-fenics-dijitso-2018.1.0 \
 	python-fenics-dijitso-2019.1.0 \
 	python-fenics-dolfin-2018.1.0.post1 \
 	python-fenics-dolfin-2019.1.0.post0 \
 	python-fenics-dolfin-64-2019.1.0.post0 \
 	python-fenics-dolfin-64-debug-2019.1.0.post0 \
+	python-fenics-dolfinx-32-0.5.2 \
 	python-fenics-ffc-2018.1.0 \
 	python-fenics-ffc-2019.1.0 \
+	python-fenics-ffcx-0.5.0 \
 	python-fenics-ffcx-20200522 \
 	python-fenics-fiat-2018.1.0 \
 	python-fenics-fiat-2019.1.0 \
@@ -655,6 +660,7 @@ pkgs := $(pkgs) \
 	python-fenics-mshr-2019.1.0 \
 	python-fenics-ufl-2018.1.0 \
 	python-fenics-ufl-2019.1.0 \
+	python-fenics-ufl-2022.2.0 \
 	python-fenics-ufl-20200512 \
 	python-filelock-3.0.12 \
 	python-flake8-3.8.2 \
@@ -715,6 +721,7 @@ pkgs := $(pkgs) \
 	python-pytest-xdist-1.32.0 \
 	python-pytz-2020.1 \
 	python-requests-2.23.0 \
+	python-scikit-build-0.16.6 \
 	python-scipy-1.7.3 \
 	python-setuptools-59.6.0 \
 	python-setuptools_scm-4.1.1 \
@@ -735,6 +742,7 @@ pkgs := $(pkgs) \
 	python-toml-0.10.1 \
 	python-tox-3.20.1 \
 	python-tqdm-4.64.0 \
+	python-typing_extensions-4.4.0 \
 	python-urllib3-1.25.11 \
 	python-virtualenv-20.0.35 \
 	python-wcwidth-0.1.9 \
