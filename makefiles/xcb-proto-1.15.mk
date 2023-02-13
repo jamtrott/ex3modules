@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2023 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# xcb-proto-1.14
+# xcb-proto-1.15
 
-xcb-proto-version = 1.14
+xcb-proto-version = 1.15
 xcb-proto = xcb-proto-$(xcb-proto-version)
 $(xcb-proto)-description = X protocol descriptions for XCB
 $(xcb-proto)-url = https://x.org/

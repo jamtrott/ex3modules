@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2023 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# libxcb-1.14
+# libxcb-1.15
 
-libxcb-version = 1.14
+libxcb-version = 1.15
 libxcb = libxcb-$(libxcb-version)
 $(libxcb)-description = X Window System protocol library
 $(libxcb)-url = https://x.org/

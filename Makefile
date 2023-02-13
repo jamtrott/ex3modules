@@ -532,7 +532,7 @@ pkgs := $(pkgs) \
 	libx11-1.6.9 \
 	libxau-1.0.9 \
 	libxaw-1.0.13 \
-	libxcb-1.14 \
+	libxcb-1.15 \
 	libxcomposite-0.4.5 \
 	libxcursor-1.2.0 \
 	libxdamage-1.1.5 \
