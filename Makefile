@@ -697,7 +697,7 @@ pkgs := $(pkgs) \
 	python-mpi4py-3.0.3 \
 	python-mpmath-1.1.0 \
 	python-nose-1.3.7 \
-	python-numba-0.52.0 \
+	python-numba-0.56.4 \
 	python-numpy-1.21.5 \
 	python-numpy-quaternion-2021.11.4.15.26.3 \
 	python-packaging-20.4 \
