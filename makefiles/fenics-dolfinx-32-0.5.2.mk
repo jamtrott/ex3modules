@@ -26,8 +26,8 @@ $(fenics-dolfinx-32-0.5.2)-srcurl =
 $(fenics-dolfinx-32-0.5.2)-builddeps = $(cmake) $(ninja) $(boost) $(mpi) $(hdf5-parallel) $(parmetis) $(scotch) $(suitesparse) $(metis) $(petsc) $(python) $(python-fenics-basix-0.5.0) $(python-fenics-ufl-2022) $(python-fenics-ffcx-0.5.0) $(python-pytest) $(pugixml) $(xtensor)
 $(fenics-dolfinx-32-0.5.2)-prereqs = $(boost) $(mpi) $(hdf5-parallel) $(parmetis) $(scotch) $(suitesparse) $(metis) $(petsc) $(python) $(python-fenics-basix-0.5.0) $(python-fenics-ufl-2022) $(python-fenics-ffcx-0.5.0) $(pugixml) $(xtensor)
 $(fenics-dolfinx-32-0.5.2)-src = $($(fenics-dolfinx-src-0.5.2)-src)
-$(fenics-dolfinx-32-0.5.2)-srcdir = $(pkgsrcdir)/$(fenics-dolfinx-32-0.5.2)/cpp
-$(fenics-dolfinx-32-0.5.2)-builddir = $($(fenics-dolfinx-32-0.5.2)-srcdir)/build
+$(fenics-dolfinx-32-0.5.2)-srcdir = $(pkgsrcdir)/$(fenics-dolfinx-32-0.5.2)
+$(fenics-dolfinx-32-0.5.2)-builddir = $($(fenics-dolfinx-32-0.5.2)-srcdir)/cpp/build
 $(fenics-dolfinx-32-0.5.2)-modulefile = $(modulefilesdir)/$(fenics-dolfinx-32-0.5.2)
 $(fenics-dolfinx-32-0.5.2)-prefix = $(pkgdir)/$(fenics-dolfinx-32-0.5.2)
 

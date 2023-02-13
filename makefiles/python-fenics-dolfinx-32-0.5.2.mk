@@ -24,8 +24,8 @@ $(python-fenics-dolfinx-32-0.5.2)-description = Next generation FEniCS problem s
 $(python-fenics-dolfinx-32-0.5.2)-url = https://github.com/FEniCS/dolfinx
 $(python-fenics-dolfinx-32-0.5.2)-srcurl =
 $(python-fenics-dolfinx-32-0.5.2)-src = $($(fenics-dolfinx-src-0.5.2)-src)
-$(python-fenics-dolfinx-32-0.5.2)-builddeps = $(python) $(fenics-dolfinx-32-0.5.2) $(python-pip)
-$(python-fenics-dolfinx-32-0.5.2)-prereqs = $(python) $(fenics-dolfinx-32-0.5.2)
+$(python-fenics-dolfinx-32-0.5.2)-builddeps = $(python) $(fenics-dolfinx-32-0.5.2) $(python-petsc4py) $(python-mpi4py) $(python-pip)
+$(python-fenics-dolfinx-32-0.5.2)-prereqs = $(python) $(fenics-dolfinx-32-0.5.2) $(python-petsc4py) $(python-mpi4py)
 $(python-fenics-dolfinx-32-0.5.2)-srcdir = $(pkgsrcdir)/$(python-fenics-dolfinx-32-0.5.2)
 $(python-fenics-dolfinx-32-0.5.2)-modulefile = $(modulefilesdir)/$(python-fenics-dolfinx-32-0.5.2)
 $(python-fenics-dolfinx-32-0.5.2)-prefix = $(pkgdir)/$(python-fenics-dolfinx-32-0.5.2)
@@ -87,7 +87,7 @@ $($(python-fenics-dolfinx-32-0.5.2)-modulefile): $(modulefilesdir)/.markerfile $
 	printf "$(foreach prereq,$($(python-fenics-dolfinx-32-0.5.2)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv PYTHON_FENICS-DOLFINX-32-0.5.2_ROOT $($(python-fenics-dolfinx-32-0.5.2)-prefix)" >>$@
+	echo "setenv PYTHON_FENICS_DOLFINX_ROOT $($(python-fenics-dolfinx-32-0.5.2)-prefix)" >>$@
 	echo "prepend-path PATH $($(python-fenics-dolfinx-32-0.5.2)-prefix)/bin" >>$@
 	echo "prepend-path PYTHONPATH $($(python-fenics-dolfinx-32-0.5.2)-site-packages)" >>$@
 	echo "set MSG \"$(python-fenics-dolfinx-32-0.5.2)\"" >>$@
