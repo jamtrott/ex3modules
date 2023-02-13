@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-numba-0.52.0
+# python-numba-0.56.4
 
-python-numba-version = 0.52.0
+python-numba-version = 0.56.4
 python-numba = python-numba-$(python-numba-version)
 $(python-numba)-description = JIT compiler for Python and NumPy code
 $(python-numba)-url = https://numba.pydata.org/
