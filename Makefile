@@ -792,7 +792,7 @@ pkgs := $(pkgs) \
 	vmtk-1.4.0 \
 	vtk8-8.1.2 \
 	vtk9-9.1.0 \
-	xcb-proto-1.14 \
+	xcb-proto-1.15 \
 	xcb-util-0.4.0 \
 	xcb-util-image-0.4.0 \
 	xcb-util-keysyms-0.4.0 \
