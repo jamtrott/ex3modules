@@ -92,7 +92,7 @@ $($(xorgproto)-modulefile): $(modulefilesdir)/.markerfile $($(xorgproto)-prefix)
 	echo "prepend-path PATH $($(xorgproto)-prefix)/bin" >>$@
 	echo "prepend-path C_INCLUDE_PATH $($(xorgproto)-prefix)/include" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(xorgproto)-prefix)/include" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(xorgproto)-prefix)/lib/pkgconfig" >>$@
+	echo "prepend-path PKG_CONFIG_PATH $($(xorgproto)-prefix)/share/pkgconfig" >>$@
 	echo "set MSG \"$(xorgproto)\"" >>$@
 
 $(xorgproto)-src: $($(xorgproto)-src)
