@@ -320,6 +320,12 @@ PYTHON = $(pkgdir)/$(python)/bin/python3
 PYTHON_VERSION = 3.7.4
 PYTHON_VERSION_SHORT = 3.7
 $(info Using internal python ($(python)))
+else ifeq ($(WITH_PYTHON),python-3.8.16)
+python = python-3.8.16
+PYTHON = $(pkgdir)/$(python)/bin/python3
+PYTHON_VERSION = 3.8.16
+PYTHON_VERSION_SHORT = 3.8
+$(info Using internal python ($(python)))
 else ifeq ($(WITH_PYTHON),no)
 PYTHON = false
 $(warning Warning: Python is disabled - some modules may not build.)
@@ -623,6 +629,7 @@ pkgs := $(pkgs) \
 	pugixml-1.11 \
 	pybind11-2.8.1 \
 	python-3.7.4 \
+	python-3.8.16 \
 	python-alabaster-0.7.12 \
 	python-apipkg-1.5 \
 	python-appdirs-1.4.4 \
