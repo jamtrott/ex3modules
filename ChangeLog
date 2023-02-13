@@ -1,3 +1,8 @@
+2023-02-13  James D. Trotter  <james@simula.no>
+
+	* python-numba 0.52.0 -> 0.56.4
+	* python-mpi4py 3.0.3 -> 3.1.4
+
 2023-02-12  James D. Trotter  <james@simula.no>
 
 	add basix 0.5.0, ffcx 0.5.0, ufl 2022.2.0 and dolfinx 0.5.2.
