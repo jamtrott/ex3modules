@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2022 James D. Trotter
+# Copyright (C) 2023 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,17 +16,17 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-pytest-6.1.1
+# python-pytest-7.2.2
 
-python-pytest-version = 6.1.1
+python-pytest-version = 7.2.2
 python-pytest = python-pytest-$(python-pytest-version)
 $(python-pytest)-description = Python testing framework
 $(python-pytest)-url = https://docs.pytest.org/
-$(python-pytest)-srcurl = https://files.pythonhosted.org/packages/c8/a7/b3bdcc52e6143c056e5a42fa1b3e73abc11927c6c58e1667884559d7ddee/pytest-6.1.1.tar.gz
+$(python-pytest)-srcurl = https://files.pythonhosted.org/packages/b9/29/311895d9cd3f003dd58e8fdea36dd895ba2da5c0c90601836f7de79f76fe/pytest-7.2.2.tar.gz
 $(python-pytest)-src = $(pkgsrcdir)/$(notdir $($(python-pytest)-srcurl))
 $(python-pytest)-srcdir = $(pkgsrcdir)/$(python-pytest)
-$(python-pytest)-builddeps = $(python) $(python-atomicwrites) $(python-pluggy) $(python-wcwidth) $(python-importlib_metadata) $(python-packaging) $(python-py) $(python-more-itertools) $(python-attrs) $(python-zipp) $(python-pyparsing) $(python-six) $(python-toml) $(python-iniconfig) $(python-pip) $(python-wheel) $(python-setuptools) $(python-pip)
-$(python-pytest)-prereqs = $(python) $(python-atomicwrites) $(python-pluggy) $(python-wcwidth) $(python-importlib_metadata) $(python-packaging) $(python-py) $(python-more-itertools) $(python-attrs) $(python-zipp) $(python-pyparsing) $(python-six) $(python-toml) $(python-iniconfig)
+$(python-pytest)-builddeps = $(python) $(python-atomicwrites) $(python-pluggy) $(python-wcwidth) $(python-importlib_metadata) $(python-packaging) $(python-py) $(python-more-itertools) $(python-attrs) $(python-zipp) $(python-pyparsing) $(python-six) $(python-toml) $(python-iniconfig) $(python-pip) $(python-wheel) $(python-setuptools) $(python-pip) $(python-exceptiongroup)
+$(python-pytest)-prereqs = $(python) $(python-atomicwrites) $(python-pluggy) $(python-wcwidth) $(python-importlib_metadata) $(python-packaging) $(python-py) $(python-more-itertools) $(python-attrs) $(python-zipp) $(python-pyparsing) $(python-six) $(python-toml) $(python-iniconfig) $(python-exceptiongroup)
 $(python-pytest)-modulefile = $(modulefilesdir)/$(python-pytest)
 $(python-pytest)-prefix = $(pkgdir)/$(python-pytest)
 $(python-pytest)-site-packages = $($(python-pytest)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages

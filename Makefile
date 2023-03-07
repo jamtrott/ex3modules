@@ -647,6 +647,7 @@ pkgs := $(pkgs) \
 	python-dateutil-2.8.2 \
 	python-distlib-0.3.1 \
 	python-docutils-0.19 \
+	python-exceptiongroup-1.1.0 \
 	python-execnet-1.7.1 \
 	python-extrap-4.0.4 \
 	python-fenics-basix-0.5.0 \
@@ -722,7 +723,7 @@ pkgs := $(pkgs) \
 	python-pygraphviz-1.5 \
 	python-pyparsing-2.4.7 \
 	python-pyra-pytorch-1.2.0 \
-	python-pytest-6.1.1 \
+	python-pytest-7.2.2 \
 	python-pytest-cov-2.12.1 \
 	python-pytest-forked-1.1.3 \
 	python-pytest-xdist-1.32.0 \
