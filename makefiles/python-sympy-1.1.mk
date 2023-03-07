@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2022 James D. Trotter
+# Copyright (C) 2023 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,6 +45,7 @@ $($(python-sympy-1.1)-prefix)/.pkgunpack: $$($(python-sympy-1.1)-src) $($(python
 	@touch $@
 
 $($(python-sympy-1.1)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-sympy-1.1)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-sympy-1.1)-prefix)/.pkgunpack
+	patch -d $($(python-sympy-1.1)-srcdir) -f -p0 <patches/sympy-1.1-collections_import.patch
 	@touch $@
 
 $($(python-sympy-1.1)-site-packages)/.markerfile:
