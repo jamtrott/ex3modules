@@ -7,7 +7,7 @@ New modules:
  - basix 0.5.0
  - ffcx 0.5.0
  - ufl 2022.2.0
- - dolfinx 0.5.2.
+ - dolfinx 0.5.2
 
 Updated modules:
  - SuperLU_dist 7.2.0

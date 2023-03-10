@@ -431,6 +431,8 @@ pkgs := $(pkgs) \
 	fenics-dolfin-2019.1.0.post0 \
 	fenics-dolfin-64-2019.1.0.post0 \
 	fenics-dolfin-64-debug-2019.1.0.post0 \
+	fenics-dolfin-src-2019.2.0.dev0 \
+	fenics-dolfin-2019.2.0.dev0 \
 	fenics-dolfinx-src-0.5.2 \
 	fenics-dolfinx-32-0.5.2 \
 	fenics-dolfinx-20200525 \
@@ -655,19 +657,23 @@ pkgs := $(pkgs) \
 	python-fenics-dijitso-2019.1.0 \
 	python-fenics-dolfin-2018.1.0.post1 \
 	python-fenics-dolfin-2019.1.0.post0 \
+	python-fenics-dolfin-2019.2.0.dev0 \
 	python-fenics-dolfin-64-2019.1.0.post0 \
 	python-fenics-dolfin-64-debug-2019.1.0.post0 \
 	python-fenics-dolfinx-32-0.5.2 \
 	python-fenics-ffc-2018.1.0 \
 	python-fenics-ffc-2019.1.0 \
+	python-fenics-ffc-2019.2.0.dev0 \
 	python-fenics-ffcx-0.5.0 \
 	python-fenics-ffcx-20200522 \
 	python-fenics-fiat-2018.1.0 \
 	python-fenics-fiat-2019.1.0 \
+	python-fenics-fiat-2019.2.0.dev0 \
 	python-fenics-fiat-20200518 \
 	python-fenics-mshr-2019.1.0 \
 	python-fenics-ufl-2018.1.0 \
 	python-fenics-ufl-2019.1.0 \
+	python-fenics-ufl-2021.1.0 \
 	python-fenics-ufl-2022.2.0 \
 	python-fenics-ufl-20200512 \
 	python-filelock-3.0.12 \

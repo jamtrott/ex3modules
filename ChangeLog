@@ -1,3 +1,8 @@
+2023-03-10  James D. Trotter  <james@simula.no>
+
+	add current development version of FEniCS
+	(python-fenics-dolfin-2019.2.0.dev0).
+
 2023-02-13  James D. Trotter  <james@simula.no>
 
 	* python-numba 0.52.0 -> 0.56.4
