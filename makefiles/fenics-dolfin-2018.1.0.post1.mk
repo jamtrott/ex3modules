@@ -214,6 +214,7 @@ $($(fenics-dolfin-2018)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(fore
 	patch -f -p1 <0003-Require-C-17.patch && \
 	patch -f -p1 <0004-dolfin-mesh-MeshFunction.h-Add-missing-algorithm-inc.patch && \
 	patch -f -p1 <0005-dolfin-la-Include-petscsys.h-instead-of-petscoptions.patch
+	patch -d $($(fenics-dolfin-2018)-srcdir) -f -p0 <patches/fenics-dolfin-2018.1.0-private-eigenlusolver-fix.patch
 	@touch $@
 
 $($(fenics-dolfin-2018)-builddir)/.markerfile: $($(fenics-dolfin-2018)-prefix)/.pkgunpack
