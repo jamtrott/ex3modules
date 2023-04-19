@@ -67,7 +67,7 @@ $($(petsc-32-3.17.4)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 			--with-superlu_dist --with-superlu_dist-dir="$${SUPERLU_DIST_ROOT}" \
 			--with-kokkos --with-kokkos-dir="$${KOKKOS_ROOT}" \
 			--with-kokkos-kernels --with-kokkos-kernels-dir="$${KOKKOS_KERNELS_ROOT}" \
-			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo --with-cuda=1 --with-cuda-arch=70 --with-cuda-dir="$${CUDA_TOOLKIT_ROOT}" CUDAOPTFLAGS="-O3 -g" || echo --with-cuda=0) \
+			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo --with-cuda=1 --with-cuda-arch="$${PETSC_CUDA_ARCH}" --with-cuda-dir="$${CUDA_TOOLKIT_ROOT}" CUDAOPTFLAGS="-O3 -g" || echo --with-cuda=0) \
 			$$([ ! -z "$${ROCM_ROOT}" ] && echo --with-hip=1 --with-hip-dir="$${ROCM_ROOT}" --with-hipc="$${HIPCC}" || echo --with-hip=0) \
 			COPTFLAGS="-O3 -g" CXXOPTFLAGS="-O3 -g" FOPTFLAGS="-O3" && \
 		$(MAKE)
