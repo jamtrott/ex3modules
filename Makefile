@@ -570,6 +570,7 @@ pkgs := $(pkgs) \
 	metis-32-5.1.0 \
 	metis-64-5.1.0 \
 	metis-src-5.1.0 \
+	mfem-4.5 \
 	mpc-1.1.0 \
 	mpfr-4.0.2 \
 	mpich-3.3.2 \
