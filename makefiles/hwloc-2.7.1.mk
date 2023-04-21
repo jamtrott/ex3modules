@@ -55,7 +55,7 @@ $($(hwloc-2.7.1)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(hwloc-2.7.1)-builddeps) && \
 		./configure --prefix=$($(hwloc-2.7.1)-prefix) \
-			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo --with-cuda="$${CUDA_TOOLKIT_ROOT}" || echo --without-cuda --disable-cuda) \
+			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo --with-cuda="$${CUDA_TOOLKIT_ROOT}" || echo --without-cuda --disable-cuda --disable-nvml) \
 			$$([ ! -z "$${ROCM_ROOT}" ] && echo --with-rocm="$${ROCM_ROOT}" || echo --without-rocm) \
 			--disable-opencl && \
 		$(MAKE)
