@@ -504,6 +504,7 @@ pkgs := $(pkgs) \
 	lcms2-2.12 \
 	libarchive-3.4.2 \
 	libatomic_ops-7.6.10 \
+	libceed-0.11.0 \
 	libcerf-1.13 \
 	libcheck-0.15.2 \
 	libdmx-1.1.4 \
