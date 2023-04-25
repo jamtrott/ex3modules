@@ -58,7 +58,7 @@ $($(libceed)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(libceed)-builddeps) && \
 		$(MAKE) for_install=1 prefix=$($(libceed)-prefix) \
-		OPT='-O3 -march=native' \
+		OPT='-O3 -march=native -fPIC' \
 		$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo CUDA_DIR="$${CUDA_TOOLKIT_ROOT}")
 	@touch $@
 
