@@ -23,8 +23,8 @@ petsc-32-3.17.4 = petsc-32-$(petsc-32-3.17.4-version)
 $(petsc-32-3.17.4)-description = Portable, Extensible Toolkit for Scientific Computation
 $(petsc-32-3.17.4)-url = https://www.mcs.anl.gov/petsc/
 $(petsc-32-3.17.4)-srcurl =
-$(petsc-32-3.17.4)-builddeps = $(boost) $(blas) $(mpi) $(hwloc) $(hypre-32) $(metis-32) $(mumps-32) $(parmetis-32) $(python) $(scalapack) $(scotch) $(suitesparse-32) $(superlu) $(superlu_dist-32) $(cuda-toolkit) $(kokkos) $(kokkos-kernels)
-$(petsc-32-3.17.4)-prereqs = $(boost) $(blas) $(mpi) $(hwloc) $(hypre-32) $(metis-32) $(mumps-32) $(parmetis-32) $(scalapack) $(scotch) $(suitesparse-32) $(superlu) $(superlu_dist-32) $(cuda-toolkit) $(kokkos) $(kokkos-kernels)
+$(petsc-32-3.17.4)-builddeps = $(boost) $(blas) $(mpi) $(hwloc) $(hypre-32) $(metis-32) $(mumps-32) $(parmetis-32) $(python) $(scalapack) $(scotch) $(suitesparse-32) $(superlu) $(superlu_dist-32) $(cuda-toolkit) $(kokkos) $(kokkos-kernels) $(tetgen)
+$(petsc-32-3.17.4)-prereqs = $(boost) $(blas) $(mpi) $(hwloc) $(hypre-32) $(metis-32) $(mumps-32) $(parmetis-32) $(scalapack) $(scotch) $(suitesparse-32) $(superlu) $(superlu_dist-32) $(cuda-toolkit) $(kokkos) $(kokkos-kernels) $(tetgen)
 $(petsc-32-3.17.4)-src = $($(petsc-src-3.17.4)-src)
 $(petsc-32-3.17.4)-srcdir = $(pkgsrcdir)/$(petsc-32-3.17.4)
 $(petsc-32-3.17.4)-modulefile = $(modulefilesdir)/$(petsc-32-3.17.4)
@@ -65,6 +65,7 @@ $($(petsc-32-3.17.4)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 			--with-suitesparse --with-suitesparse-dir="$${SUITESPARSE_ROOT}" \
 			--with-superlu --with-superlu-dir="$${SUPERLU_ROOT}" \
 			--with-superlu_dist --with-superlu_dist-dir="$${SUPERLU_DIST_ROOT}" \
+			--with-tetgen --with-tetgen-dir="$${TETGEN_ROOT}" \
 			--with-kokkos --with-kokkos-dir="$${KOKKOS_ROOT}" \
 			--with-kokkos-kernels --with-kokkos-kernels-dir="$${KOKKOS_KERNELS_ROOT}" \
 			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo --with-cuda=1 --with-cuda-arch="$${PETSC_CUDA_ARCH}" --with-cuda-dir="$${CUDA_TOOLKIT_ROOT}" CUDAOPTFLAGS="-O3 -g" || echo --with-cuda=0) \
