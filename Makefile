@@ -794,6 +794,7 @@ pkgs := $(pkgs) \
 	superlu_dist-src-6.4.0 \
 	superlu_dist-src-7.2.0 \
 	superlu_dist-src-8.1.0 \
+	tetgen-1.6.0 \
 	texinfo-6.7 \
 	texlive-20210325 \
 	ucx-1.12.1 \
