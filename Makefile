@@ -88,6 +88,10 @@ petsc = petsc-32-3.17.4
 petsc-32 = petsc-32-3.17.4
 petsc-64 = petsc-64-3.17.4
 
+# HDF5
+hdf5 = hdf5-1.10.5
+hdf5-parallel = hdf5-parallel-1.10.5
+
 #
 # CMake
 #
