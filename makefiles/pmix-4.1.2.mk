@@ -25,7 +25,7 @@ $(pmix)-url = https://pmix.org
 $(pmix)-srcurl = https://github.com/openpmix/openpmix/releases/download/v$(pmix-version)/pmix-$(pmix-version).tar.gz
 $(pmix)-builddeps = $(autoconf) $(automake) $(libtool) $(hwloc) $(libevent)
 $(pmix)-prereqs = $(hwloc) $(libevent)
-$(pmix)-src = $(pkgsrcdir)/pmix-$(notdir $($(pmix)-srcurl))
+$(pmix)-src = $(pkgsrcdir)/$(notdir $($(pmix)-srcurl))
 $(pmix)-srcdir = $(pkgsrcdir)/$(pmix)
 $(pmix)-builddir = $($(pmix)-srcdir)/build
 $(pmix)-modulefile = $(modulefilesdir)/$(pmix)
@@ -94,10 +94,10 @@ $($(pmix)-modulefile): $(modulefilesdir)/.markerfile $($(pmix)-prefix)/.pkginsta
 	echo "" >>$@
 	echo "" >>$@
 	echo "setenv PMIX_ROOT $($(pmix)-prefix)" >>$@
-	echo "setenv PMIX_INCDIR $($(pmix)-prefix)/include" >>$@
-	echo "setenv PMIX_INCLUDEDIR $($(pmix)-prefix)/include" >>$@
-	echo "setenv PMIX_LIBDIR $($(pmix)-prefix)/lib" >>$@
-	echo "setenv PMIX_LIBRARYDIR $($(pmix)-prefix)/lib" >>$@
+	echo "#setenv PMIX_INCDIR $($(pmix)-prefix)/include" >>$@
+	echo "#setenv PMIX_INCLUDEDIR $($(pmix)-prefix)/include" >>$@
+	echo "#setenv PMIX_LIBDIR $($(pmix)-prefix)/lib" >>$@
+	echo "#setenv PMIX_LIBRARYDIR $($(pmix)-prefix)/lib" >>$@
 	echo "prepend-path PATH $($(pmix)-prefix)/bin" >>$@
 	echo "prepend-path C_INCLUDE_PATH $($(pmix)-prefix)/include" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(pmix)-prefix)/include" >>$@

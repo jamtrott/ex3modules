@@ -23,8 +23,8 @@ openmpi-4.1.4 = openmpi-$(openmpi-4.1.4-version)
 $(openmpi-4.1.4)-description = A High Performance Message Passing Library
 $(openmpi-4.1.4)-url = https://www.open-mpi.org/
 $(openmpi-4.1.4)-srcurl =
-$(openmpi-4.1.4)-builddeps = $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(pmix) $(slurm) $(cuda-toolkit) $(util-linux)
-$(openmpi-4.1.4)-prereqs = $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(pmix) $(slurm) $(cuda-toolkit) $(util-linux)
+$(openmpi-4.1.4)-builddeps = $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(slurm) $(cuda-toolkit) $(util-linux)
+$(openmpi-4.1.4)-prereqs = $(knem) $(hwloc) $(libevent) $(numactl) $(ucx) $(libfabric) $(slurm) $(cuda-toolkit) $(util-linux)
 $(openmpi-4.1.4)-src = $($(openmpi-src-4.1.4)-src)
 $(openmpi-4.1.4)-srcdir = $(pkgsrcdir)/$(openmpi-4.1.4)
 $(openmpi-4.1.4)-modulefile = $(modulefilesdir)/$(openmpi-4.1.4)
@@ -57,7 +57,6 @@ $($(openmpi-4.1.4)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 			--with-verbs="$${RDMA_CORE_ROOT}" \
 			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo --with-cuda="$${CUDA_TOOLKIT_ROOT}") \
 			$$([ ! -z "$${SLURM_ROOT}" ] && echo --with-slurm --with-pmi="$${SLURM_ROOT}") \
-			--with-pmix=external --with-pmix-libdir="$${PMIX_LIBDIR}" \
 			--without-verbs \
 			--enable-mpi-cxx \
 			--enable-mpi-fortran=all \
