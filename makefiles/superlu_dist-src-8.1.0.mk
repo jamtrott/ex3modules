@@ -25,7 +25,7 @@ $(superlu_dist-src-8.1.0)-url = https://github.com/xiaoyeli/superlu_dist/
 $(superlu_dist-src-8.1.0)-srcurl = https://github.com/xiaoyeli/superlu_dist/archive/v$(superlu_dist-src-8.1.0-version).tar.gz
 $(superlu_dist-src-8.1.0)-builddeps =
 $(superlu_dist-src-8.1.0)-prereqs =
-$(superlu_dist-src-8.1.0)-src = $(pkgsrcdir)/$(notdir $($(superlu_dist-src-8.1.0)-srcurl))
+$(superlu_dist-src-8.1.0)-src = $(pkgsrcdir)/superlu_dist-$(notdir $($(superlu_dist-src-8.1.0)-srcurl))
 
 $($(superlu_dist-src-8.1.0)-src): $(dir $($(superlu_dist-src-8.1.0)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(superlu_dist-src-8.1.0)-srcurl)
