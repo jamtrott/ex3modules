@@ -18,50 +18,51 @@
 #
 # mfem-4.5
 
-mfem-version = 4.5
-mfem = mfem-$(mfem-version)
-$(mfem)-description = Lightweight, general, scalable C++ library for finite element methods
-$(mfem)-url = https://mfem.org/
-$(mfem)-srcurl = https://mfem.github.io/releases/mfem-4.5.tgz
-$(mfem)-builddeps = $(cmake) $(metis) $(hypre) $(mpi) $(suitesparse) $(superlu_dist) $(mumps) $(petsc) $(mpfr)
-$(mfem)-prereqs = $(metis) $(hypre) $(mpi) $(suitesparse) $(superlu_dist) $(mumps) $(petsc) $(mpfr)
-$(mfem)-src = $(pkgsrcdir)/$(notdir $($(mfem)-srcurl))
-$(mfem)-srcdir = $(pkgsrcdir)/$(mfem)
-$(mfem)-builddir = $($(mfem)-srcdir)/build
-$(mfem)-modulefile = $(modulefilesdir)/$(mfem)
-$(mfem)-prefix = $(pkgdir)/$(mfem)
+mfem-4.5-version = 4.5
+mfem-4.5 = mfem-$(mfem-4.5-version)
+$(mfem-4.5)-description = Lightweight, general, scalable C++ library for finite element methods
+$(mfem-4.5)-url = https://mfem.org/
+$(mfem-4.5)-srcurl = https://mfem.github.io/releases/mfem-4.5.tgz
+$(mfem-4.5)-builddeps = $(cmake) $(metis) $(hypre) $(mpi) $(suitesparse) $(superlu_dist) $(mumps) $(petsc) $(mpfr) $(libceed)
+$(mfem-4.5)-prereqs = $(metis) $(hypre) $(mpi) $(suitesparse) $(superlu_dist) $(mumps) $(petsc) $(mpfr) $(libceed)
+$(mfem-4.5)-src = $(pkgsrcdir)/$(notdir $($(mfem-4.5)-srcurl))
+$(mfem-4.5)-srcdir = $(pkgsrcdir)/$(mfem-4.5)
+$(mfem-4.5)-builddir = $($(mfem-4.5)-srcdir)/build
+$(mfem-4.5)-modulefile = $(modulefilesdir)/$(mfem-4.5)
+$(mfem-4.5)-prefix = $(pkgdir)/$(mfem-4.5)
 
-$($(mfem)-src): $(dir $($(mfem)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(mfem)-srcurl)
+$($(mfem-4.5)-src): $(dir $($(mfem-4.5)-src)).markerfile
+	$(CURL) $(curl_options) --output $@ $($(mfem-4.5)-srcurl)
 
-$($(mfem)-srcdir)/.markerfile:
+$($(mfem-4.5)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(mfem)-prefix)/.markerfile:
+$($(mfem-4.5)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(mfem)-prefix)/.pkgunpack: $$($(mfem)-src) $($(mfem)-srcdir)/.markerfile $($(mfem)-prefix)/.markerfile $$(foreach dep,$$($(mfem)-builddeps),$(modulefilesdir)/$$(dep))
-	tar -C $($(mfem)-srcdir) --strip-components 1 -xz -f $<
+$($(mfem-4.5)-prefix)/.pkgunpack: $$($(mfem-4.5)-src) $($(mfem-4.5)-srcdir)/.markerfile $($(mfem-4.5)-prefix)/.markerfile $$(foreach dep,$$($(mfem-4.5)-builddeps),$(modulefilesdir)/$$(dep))
+	tar -C $($(mfem-4.5)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
-$($(mfem)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mfem)-builddeps),$(modulefilesdir)/$$(dep)) $($(mfem)-prefix)/.pkgunpack
+$($(mfem-4.5)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mfem-4.5)-builddeps),$(modulefilesdir)/$$(dep)) $($(mfem-4.5)-prefix)/.pkgunpack
 	@touch $@
 
-ifneq ($($(mfem)-builddir),$($(mfem)-srcdir))
-$($(mfem)-builddir)/.markerfile: $($(mfem)-prefix)/.pkgunpack
+ifneq ($($(mfem-4.5)-builddir),$($(mfem-4.5)-srcdir))
+$($(mfem-4.5)-builddir)/.markerfile: $($(mfem-4.5)-prefix)/.pkgunpack
 	$(INSTALL) -d $(dir $@) && touch $@
 endif
 
-$($(mfem)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mfem)-builddeps),$(modulefilesdir)/$$(dep)) $($(mfem)-builddir)/.markerfile $($(mfem)-prefix)/.pkgpatch
-	cd $($(mfem)-builddir) && \
+$($(mfem-4.5)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mfem-4.5)-builddeps),$(modulefilesdir)/$$(dep)) $($(mfem-4.5)-builddir)/.markerfile $($(mfem-4.5)-prefix)/.pkgpatch
+	cd $($(mfem-4.5)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(mfem)-builddeps) && \
+		$(MODULE) load $($(mfem-4.5)-builddeps) && \
 		$(CMAKE) .. \
-			-DCMAKE_INSTALL_PREFIX=$($(mfem)-prefix) \
+			-DCMAKE_INSTALL_PREFIX=$($(mfem-4.5)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DCMAKE_BUILD_TYPE=Release \
 			-DBUILD_SHARED_LIBS=1 \
+			-DMFEM_ENABLE_EXAMPLES=YES \
 			-DHYPRE_DIR="$${HYPRE_ROOT}" \
 			-DMFEM_USE_MPI=YES \
 			-DMFEM_USE_METIS=YES -DMFEM_USE_METIS_5=YES -DMETIS_DIR="$${METIS_ROOT}" \
@@ -72,67 +73,68 @@ $($(mfem)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(m
 			-DMFEM_USE_MUMPS=YES -DMUMPS_DIR="$${MUMPS_ROOT}" \
 			-DMFEM_USE_PETSC=YES -DPETSC_DIR="$${PETSC_ROOT}" -DPETSC_ARCH= \
 			-DMFEM_USE_MPFR=YES \
-			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo -DMFEM_USE_CUDA=YES -DCUDA_ARCH=sm_70) \
+			-DMFEM_USE_CEED=YES -DCEED_DIR="$${LIBCEED_ROOT}" \
+			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo -DMFEM_USE_CUDA=YES -DCUDA_ARCH=${MFEM_CUDA_ARCH}) \
 			$$([ ! -z "$${ROCM_ROOT}" ] && echo -DMFEM_USE_HIP=YES -DHIP_ARCH=gfx90a) && \
 		$(MAKE)
 	@touch $@
 
-$($(mfem)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mfem)-builddeps),$(modulefilesdir)/$$(dep)) $($(mfem)-builddir)/.markerfile $($(mfem)-prefix)/.pkgbuild
-	cd $($(mfem)-builddir) && \
+$($(mfem-4.5)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mfem-4.5)-builddeps),$(modulefilesdir)/$$(dep)) $($(mfem-4.5)-builddir)/.markerfile $($(mfem-4.5)-prefix)/.pkgbuild
+	cd $($(mfem-4.5)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(mfem)-builddeps) && \
+		$(MODULE) load $($(mfem-4.5)-builddeps) && \
 		$(MAKE) check
 	@touch $@
 
-$($(mfem)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mfem)-builddeps),$(modulefilesdir)/$$(dep)) $($(mfem)-builddir)/.markerfile $($(mfem)-prefix)/.pkgcheck
-	cd $($(mfem)-builddir) && \
+$($(mfem-4.5)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(mfem-4.5)-builddeps),$(modulefilesdir)/$$(dep)) $($(mfem-4.5)-builddir)/.markerfile $($(mfem-4.5)-prefix)/.pkgcheck
+	cd $($(mfem-4.5)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(mfem)-builddeps) && \
+		$(MODULE) load $($(mfem-4.5)-builddeps) && \
 		$(MAKE) install
 	@touch $@
 
-$($(mfem)-modulefile): $(modulefilesdir)/.markerfile $($(mfem)-prefix)/.pkginstall
+$($(mfem-4.5)-modulefile): $(modulefilesdir)/.markerfile $($(mfem-4.5)-prefix)/.pkginstall
 	printf "" >$@
 	echo "#%Module" >>$@
-	echo "# $(mfem)" >>$@
+	echo "# $(mfem-4.5)" >>$@
 	echo "" >>$@
 	echo "proc ModulesHelp { } {" >>$@
-	echo "     puts stderr \"\tSets up the environment for $(mfem)\\n\"" >>$@
+	echo "     puts stderr \"\tSets up the environment for $(mfem-4.5)\\n\"" >>$@
 	echo "}" >>$@
 	echo "" >>$@
-	echo "module-whatis \"$($(mfem)-description)\"" >>$@
-	echo "module-whatis \"$($(mfem)-url)\"" >>$@
-	printf "$(foreach prereq,$($(mfem)-prereqs),\n$(MODULE) load $(prereq))" >>$@
+	echo "module-whatis \"$($(mfem-4.5)-description)\"" >>$@
+	echo "module-whatis \"$($(mfem-4.5)-url)\"" >>$@
+	printf "$(foreach prereq,$($(mfem-4.5)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv MFEM_ROOT $($(mfem)-prefix)" >>$@
-	echo "setenv MFEM_INCDIR $($(mfem)-prefix)/include" >>$@
-	echo "setenv MFEM_INCLUDEDIR $($(mfem)-prefix)/include" >>$@
-	echo "setenv MFEM_LIBDIR $($(mfem)-prefix)/lib" >>$@
-	echo "setenv MFEM_LIBRARYDIR $($(mfem)-prefix)/lib" >>$@
-	echo "prepend-path PATH $($(mfem)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(mfem)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(mfem)-prefix)/include" >>$@
-	echo "prepend-path LIBRARY_PATH $($(mfem)-prefix)/lib" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(mfem)-prefix)/lib" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(mfem)-prefix)/lib/pkgconfig" >>$@
-	echo "prepend-path MANPATH $($(mfem)-prefix)/share/man" >>$@
-	echo "prepend-path INFOPATH $($(mfem)-prefix)/share/info" >>$@
-	echo "set MSG \"$(mfem)\"" >>$@
+	echo "setenv MFEM_ROOT $($(mfem-4.5)-prefix)" >>$@
+	echo "setenv MFEM_INCDIR $($(mfem-4.5)-prefix)/include" >>$@
+	echo "setenv MFEM_INCLUDEDIR $($(mfem-4.5)-prefix)/include" >>$@
+	echo "setenv MFEM_LIBDIR $($(mfem-4.5)-prefix)/lib" >>$@
+	echo "setenv MFEM_LIBRARYDIR $($(mfem-4.5)-prefix)/lib" >>$@
+	echo "prepend-path PATH $($(mfem-4.5)-prefix)/bin" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(mfem-4.5)-prefix)/include" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(mfem-4.5)-prefix)/include" >>$@
+	echo "prepend-path LIBRARY_PATH $($(mfem-4.5)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(mfem-4.5)-prefix)/lib" >>$@
+	echo "prepend-path PKG_CONFIG_PATH $($(mfem-4.5)-prefix)/lib/pkgconfig" >>$@
+	echo "prepend-path MANPATH $($(mfem-4.5)-prefix)/share/man" >>$@
+	echo "prepend-path INFOPATH $($(mfem-4.5)-prefix)/share/info" >>$@
+	echo "set MSG \"$(mfem-4.5)\"" >>$@
 
-$(mfem)-src: $$($(mfem)-src)
-$(mfem)-unpack: $($(mfem)-prefix)/.pkgunpack
-$(mfem)-patch: $($(mfem)-prefix)/.pkgpatch
-$(mfem)-build: $($(mfem)-prefix)/.pkgbuild
-$(mfem)-check: $($(mfem)-prefix)/.pkgcheck
-$(mfem)-install: $($(mfem)-prefix)/.pkginstall
-$(mfem)-modulefile: $($(mfem)-modulefile)
-$(mfem)-clean:
-	rm -rf $($(mfem)-modulefile)
-	rm -rf $($(mfem)-prefix)
-	rm -rf $($(mfem)-builddir)
-	rm -rf $($(mfem)-srcdir)
-	rm -rf $($(mfem)-src)
-$(mfem): $(mfem)-src $(mfem)-unpack $(mfem)-patch $(mfem)-build $(mfem)-check $(mfem)-install $(mfem)-modulefile
+$(mfem-4.5)-src: $$($(mfem-4.5)-src)
+$(mfem-4.5)-unpack: $($(mfem-4.5)-prefix)/.pkgunpack
+$(mfem-4.5)-patch: $($(mfem-4.5)-prefix)/.pkgpatch
+$(mfem-4.5)-build: $($(mfem-4.5)-prefix)/.pkgbuild
+$(mfem-4.5)-check: $($(mfem-4.5)-prefix)/.pkgcheck
+$(mfem-4.5)-install: $($(mfem-4.5)-prefix)/.pkginstall
+$(mfem-4.5)-modulefile: $($(mfem-4.5)-modulefile)
+$(mfem-4.5)-clean:
+	rm -rf $($(mfem-4.5)-modulefile)
+	rm -rf $($(mfem-4.5)-prefix)
+	rm -rf $($(mfem-4.5)-builddir)
+	rm -rf $($(mfem-4.5)-srcdir)
+	rm -rf $($(mfem-4.5)-src)
+$(mfem-4.5): $(mfem-4.5)-src $(mfem-4.5)-unpack $(mfem-4.5)-patch $(mfem-4.5)-build $(mfem-4.5)-check $(mfem-4.5)-install $(mfem-4.5)-modulefile

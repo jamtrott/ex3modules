@@ -87,6 +87,7 @@ superlu_dist-64 = superlu_dist-64-8.1.0
 petsc = petsc-32-3.17.4
 petsc-32 = petsc-32-3.17.4
 petsc-64 = petsc-64-3.17.4
+mfem = mfem-4.5.2
 
 # HDF5
 hdf5 = hdf5-1.10.5
@@ -576,6 +577,7 @@ pkgs := $(pkgs) \
 	metis-64-5.1.0 \
 	metis-src-5.1.0 \
 	mfem-4.5 \
+	mfem-4.5.2 \
 	mpc-1.1.0 \
 	mpfr-4.0.2 \
 	mpich-3.3.2 \
