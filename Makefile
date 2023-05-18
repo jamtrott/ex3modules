@@ -480,6 +480,7 @@ pkgs := $(pkgs) \
 	harfbuzz-src-2.6.4 \
 	hdf5-1.10.5 \
 	hdf5-parallel-1.10.5 \
+	hdf5-parallel-1.12.0 \
 	hdf5-src-1.10.5 \
 	hpl-2.3 \
 	hunspell-1.7.0 \
