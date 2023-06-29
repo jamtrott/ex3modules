@@ -181,7 +181,7 @@ $($(parmetis-64)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DCMAKE_C_COMPILER="$${MPICC}" \
 			-DCMAKE_CXX_COMPILER="$${MPICXX}" \
-			-DCMAKE_BUILD_TYPE=Debug \
+			-DCMAKE_BUILD_TYPE=RelWithDebInfo \
 			-DSHARED=1 \
 			-DMETIS_PATH="$${METIS_ROOT}" \
 			-DGKLIB_PATH="$${GKLIB_ROOT}" && \
