@@ -1,0 +1,14 @@
+--- a/SRC/dreadMM.c
++++ b/SRC/dreadMM.c
+@@ -104,6 +104,11 @@
+      while(banner[0]=='%') {
+        cs = fgets(line,512,fp);
+        sscanf(line,"%s",banner);
++       int n = strlen(cs);
++       while (n > 0 && cs[n-1] != '\n') {
++         cs = fgets(line,512,fp);
++         n = strlen(cs);
++       } 
+      }
+ 
+      /* 3/ Read n and nnz */

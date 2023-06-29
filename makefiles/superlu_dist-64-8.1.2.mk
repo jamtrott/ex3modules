@@ -43,6 +43,7 @@ $($(superlu_dist-64-8.1.2)-prefix)/.pkgunpack: $$($(superlu_dist-64-8.1.2)-src) 
 
 $($(superlu_dist-64-8.1.2)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(superlu_dist-64-8.1.2)-builddeps),$(modulefilesdir)/$$(dep)) $($(superlu_dist-64-8.1.2)-prefix)/.pkgunpack
 	sed -i 's,set(CMAKE_CXX_STANDARD 11),set(CMAKE_CXX_STANDARD 14),' $($(superlu_dist-64-8.1.2)-srcdir)/CMakeLists.txt
+	patch -d $($(superlu_dist-64-8.1.2)-srcdir) -f -p1 <patches/superlu_dist-8.1.2-dreadMM-fix.patch
 	@touch $@
 
 ifneq ($($(superlu_dist-64-8.1.2)-builddir),$($(superlu_dist-64-8.1.2)-srcdir))
@@ -58,7 +59,7 @@ $($(superlu_dist-64-8.1.2)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(f
 		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(superlu_dist-64-8.1.2)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
-			-DCMAKE_BUILD_TYPE=Debug \
+			-DCMAKE_BUILD_TYPE=RelWithDebInfo \
 			-DBUILD_SHARED_LIBS=TRUE \
 			-DXSDK_INDEX_SIZE=64 \
 			-Denable_openmp=ON \
