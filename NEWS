@@ -1,6 +1,7 @@
 * Noteworthy changes in the upcoming release
 
 New modules:
+ - StarPU 1.4.1
  - kokkos 3.6.01
  - kokkos-kernels 3.6.1
  - Extra-P 4.0.4

@@ -787,6 +787,7 @@ pkgs := $(pkgs) \
 	slurm-20.02.7 \
 	sparse-0.6.3 \
 	sqlite-3.31.1 \
+	starpu-1.4.1 \
 	suitesparse-32-5.12.0 \
 	suitesparse-64-5.12.0 \
 	suitesparse-src-5.12.0 \
