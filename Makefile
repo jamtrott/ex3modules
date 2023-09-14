@@ -207,7 +207,7 @@ endif
 # CUDA-related packages
 ifneq ($(HAVE_CUDA),)
 pkgs := $(pkgs) \
-	gdrcopy-2.2
+	gdrcopy-2.3.1
 endif
 
 #
@@ -296,6 +296,10 @@ endif
 #
 ifeq ($(WITH_OPENSSL),openssl-1.1.1c)
 openssl = openssl-1.1.1c
+OPENSSL = $(pkgdir)/$(openssl)/bin/openssl
+$(info Using internal OpenSSL ($(openssl)))
+else ifeq ($(WITH_OPENSSL),openssl-1.1.1v)
+openssl = openssl-1.1.1v
 OPENSSL = $(pkgdir)/$(openssl)/bin/openssl
 $(info Using internal OpenSSL ($(openssl)))
 else ifeq ($(WITH_OPENSSL),no)
@@ -427,7 +431,7 @@ pkgs := $(pkgs) \
 	dealii-9.1.1 \
 	doxygen-1.8.18 \
 	eigen-3.3.7 \
-	elfutils-0.177 \
+	elfutils-0.189 \
 	expat-2.2.9 \
 	exprtk-93a9f44f9 \
 	fenics-dolfin-2018-src-2018.1.0.post1 \
@@ -440,6 +444,7 @@ pkgs := $(pkgs) \
 	fenics-dolfin-2019.2.0.dev0 \
 	fenics-dolfinx-src-0.5.2 \
 	fenics-dolfinx-32-0.5.2 \
+	fenics-dolfinx-64-0.5.2 \
 	fenics-dolfinx-20200525 \
 	fenics-dolfinx-src-20200525 \
 	fenics-mshr-2019-src-2019.1.0 \
@@ -458,7 +463,7 @@ pkgs := $(pkgs) \
 	gcc-9.2.0 \
 	gcc-src-10.1.0 \
 	gcc-src-8.4.0 \
-	gdb-9.2 \
+	gdb-13.2 \
 	gengetopt-2.23 \
 	gettext-0.21 \
 	gfortran-8.4.0 \
@@ -513,12 +518,14 @@ pkgs := $(pkgs) \
 	lcms2-2.12 \
 	libarchive-3.4.2 \
 	libatomic_ops-7.6.10 \
+	libbpf-1.2.2 \
 	libceed-0.11.0 \
 	libcerf-1.13 \
 	libcheck-0.15.2 \
 	libdmx-1.1.4 \
 	libdrm-2.4.107 \
-	libevent-2.1.11-stable \
+	libdwarf-0.7.0 \
+	libevent-2.1.12-stable \
 	libfabric-1.17.0 \
 	libffi-3.2.1 \
 	libfontenc-1.1.4 \
@@ -612,10 +619,12 @@ pkgs := $(pkgs) \
 	openmpi-src-4.0.5 \
 	openmpi-src-4.1.4 \
 	openssl-1.1.1c \
+	openssl-1.1.1v \
 	osu-micro-benchmarks-mpich-5.6.3 \
 	osu-micro-benchmarks-mvapich-5.6.3 \
 	osu-micro-benchmarks-openmpi-5.6.3 \
 	osu-micro-benchmarks-src-5.6.3 \
+	pahole-1.25 \
 	pango-1.44.7 \
 	parallel-20190922 \
 	paraview-5.9.1 \
@@ -657,10 +666,10 @@ pkgs := $(pkgs) \
 	python-colorama-0.4.4 \
 	python-coverage-5.5 \
 	python-cycler-0.10.0 \
-	python-cython-0.29.21 \
+	python-cython-0.29.36 \
 	python-dateutil-2.8.2 \
 	python-distlib-0.3.1 \
-	python-docutils-0.19 \
+	python-docutils-0.20.1 \
 	python-exceptiongroup-1.1.0 \
 	python-execnet-1.7.1 \
 	python-extrap-4.0.4 \
@@ -673,6 +682,7 @@ pkgs := $(pkgs) \
 	python-fenics-dolfin-64-2019.1.0.post0 \
 	python-fenics-dolfin-64-debug-2019.1.0.post0 \
 	python-fenics-dolfinx-32-0.5.2 \
+	python-fenics-dolfinx-64-0.5.2 \
 	python-fenics-ffc-2018.1.0 \
 	python-fenics-ffc-2019.1.0 \
 	python-fenics-ffc-2019.2.0.dev0 \
@@ -725,7 +735,7 @@ pkgs := $(pkgs) \
 	python-petsc4py-3.17.2 \
 	python-petsc4py-64-3.17.2 \
 	python-pillow-8.1.1 \
-	python-pip-21.3.1 \
+	python-pip-23.2.1 \
 	python-pkgconfig-1.5.1 \
 	python-pluggy-0.13.1 \
 	python-ply-3.11 \
@@ -766,6 +776,7 @@ pkgs := $(pkgs) \
 	python-sympy-1.1 \
 	python-sympy-1.4 \
 	python-toml-0.10.1 \
+	python-tomli-1.2.3 \
 	python-tox-3.20.1 \
 	python-tqdm-4.64.0 \
 	python-typing_extensions-4.4.0 \
@@ -782,8 +793,11 @@ pkgs := $(pkgs) \
 	scalapack-2.1.0 \
 	scalapack-src-2.1.0 \
 	scotch-32-6.1.3 \
+	scotch-32-7.0.4 \
 	scotch-64-6.1.3 \
+	scotch-64-7.0.4 \
 	scotch-src-6.1.3 \
+	scotch-src-7.0.4 \
 	slurm-20.02.7 \
 	sparse-0.6.3 \
 	sqlite-3.31.1 \

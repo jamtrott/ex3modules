@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-pip-21.3.1
+# python-pip-23.2.1
 
-python-pip-version = 21.3.1
+python-pip-version = 23.2.1
 python-pip = python-pip-$(python-pip-version)
 $(python-pip)-description = Package installer for Python
 $(python-pip)-url = https://pip.pypa.io/
-$(python-pip)-srcurl = https://files.pythonhosted.org/packages/da/f6/c83229dcc3635cdeb51874184241a9508ada15d8baa337a41093fab58011/pip-21.3.1.tar.gz
+$(python-pip)-srcurl = https://files.pythonhosted.org/packages/ba/19/e63fb4e0d20e48bd2167bb7e857abc0e21679e24805ba921a224df8977c0/pip-23.2.1.tar.gz
 $(python-pip)-src = $(pkgsrcdir)/$(notdir $($(python-pip)-srcurl))
 $(python-pip)-srcdir = $(pkgsrcdir)/$(python-pip)
 $(python-pip)-builddeps = $(python) $(python-setuptools) $(python-wheel)

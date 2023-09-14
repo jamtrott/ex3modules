@@ -1,3 +1,32 @@
+2023-09-14  James D. Trotter  <james@simula.no>
+
+	New packages:
+
+	* OpenSSL 1.1.1v
+	* fenics-dolfinx-64 0.5.2
+	* libbpf 1.2.2
+	* libdwarf 0.7.0
+	* pahole-1.25
+	* python-tomli 1.2.3
+	* scotch 7.0.4
+
+	Upgrade:
+
+	* elfutils 0.177 -> 0.189
+	* gdb 9.3 -> 13.2
+	* gdrcopy 2.2 -> 2.3.1
+	* libevent 2.1.11-stable -> 2.1.12-stable
+	* python-cython 0.29.21 -> 0.29.36
+	* python-docutils 0.19 -> 0.20.1
+	* python-pip 21.3.1 -> 23.2.1
+
+	Other:
+
+	* Build cmake without OpenSSL support
+	* Build elfutils without debuginfod
+	* Use pip's --target option instead of --prefix in Python example installer
+	* rdma-core: build without documentation to avoid docutils dependency
+
 2023-06-29  James D. Trotter  <james@simula.no>
 
 	add StarPU 1.4.1.

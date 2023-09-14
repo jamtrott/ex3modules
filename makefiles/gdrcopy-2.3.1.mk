@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2023 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# gdrcopy-2.2
+# gdrcopy-2.3.1
 
-gdrcopy-version = 2.2
+gdrcopy-version = 2.3.1
 gdrcopy = gdrcopy-$(gdrcopy-version)
 $(gdrcopy)-description = Low-latency GPU memory copy library based on NVIDIA GPUDirect RDMA technology.
 $(gdrcopy)-url = https://github.com/NVIDIA/gdrcopy

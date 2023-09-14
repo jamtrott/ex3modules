@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2023 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# gdb-9.2
+# gdb-13.2
 
-gdb-version = 9.2
+gdb-version = 13.2
 gdb = gdb-$(gdb-version)
 $(gdb)-description = GNU Project debugger
 $(gdb)-url = https://gdb.gnu.org

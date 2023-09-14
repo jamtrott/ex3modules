@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# elfutils-0.177
+# elfutils-0.189
 
-elfutils-version = 0.177
+elfutils-version = 0.189
 elfutils = elfutils-$(elfutils-version)
 $(elfutils)-description = Collection of utilities to handle ELF objects
 $(elfutils)-url = https://sourceware.org/elfutils/
@@ -57,7 +57,7 @@ $($(elfutils)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(elfutils)-builddeps) && \
-		./configure --prefix=$($(elfutils)-prefix) && \
+		./configure --prefix=$($(elfutils)-prefix) --disable-debuginfod && \
 		$(MAKE)
 	@touch $@
 

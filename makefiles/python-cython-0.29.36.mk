@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2022 James D. Trotter
+# Copyright (C) 2023 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-cython-0.29.21
+# python-cython-0.29.36
 
-python-cython-version = 0.29.21
+python-cython-version = 0.29.36
 python-cython = python-cython-$(python-cython-version)
 $(python-cython)-description = Optimising static compiler for Python
 $(python-cython)-url = https://www.cython.org/
-$(python-cython)-srcurl = https://files.pythonhosted.org/packages/6c/9f/f501ba9d178aeb1f5bf7da1ad5619b207c90ac235d9859961c11829d0160/Cython-0.29.21.tar.gz
+$(python-cython)-srcurl = https://files.pythonhosted.org/packages/38/db/df0e99d6c5fe19ee5c981d22aad557be4bdeed3ecfae25d47b84b07f0f98/Cython-0.29.36.tar.gz
 $(python-cython)-src = $(pkgsrcdir)/$(notdir $($(python-cython)-srcurl))
 $(python-cython)-srcdir = $(pkgsrcdir)/$(python-cython)
 $(python-cython)-builddeps = $(python) $(python-pip)

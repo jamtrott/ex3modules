@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-docutils-0.19
+# python-docutils-0.20.1
 
-python-docutils-version = 0.19
+python-docutils-version = 0.20.1
 python-docutils = python-docutils-$(python-docutils-version)
 $(python-docutils)-description = Python Documentation Utilities
 $(python-docutils)-url = http://docutils.sourceforge.net/
-$(python-docutils)-srcurl = https://files.pythonhosted.org/packages/6b/5c/330ea8d383eb2ce973df34d1239b3b21e91cd8c865d21ff82902d952f91f/docutils-0.19.tar.gz
+$(python-docutils)-srcurl = https://files.pythonhosted.org/packages/1f/53/a5da4f2c5739cf66290fac1431ee52aff6851c7c8ffd8264f13affd7bcdd/docutils-0.20.1.tar.gz
 $(python-docutils)-src = $(pkgsrcdir)/$(notdir $($(python-docutils)-srcurl))
 $(python-docutils)-srcdir = $(pkgsrcdir)/$(python-docutils)
 $(python-docutils)-builddeps = $(python) $(python-pip)
@@ -73,19 +73,7 @@ $($(python-docutils)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-docutils)-builddeps) && \
 		PYTHONPATH=$($(python-docutils)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-docutils)-prefix) && \
-	ln -sf $($(python-docutils)-prefix)/bin/prepstyles.py $($(python-docutils)-prefix)/bin/prepstyles
-	ln -sf $($(python-docutils)-prefix)/bin/rst2html.py $($(python-docutils)-prefix)/bin/rst2html
-	ln -sf $($(python-docutils)-prefix)/bin/rst2html4.py $($(python-docutils)-prefix)/bin/rst2html4
-	ln -sf $($(python-docutils)-prefix)/bin/rst2html5.py $($(python-docutils)-prefix)/bin/rst2html5
-	ln -sf $($(python-docutils)-prefix)/bin/rst2latex.py $($(python-docutils)-prefix)/bin/rst2latex
-	ln -sf $($(python-docutils)-prefix)/bin/rst2man.py $($(python-docutils)-prefix)/bin/rst2man
-	ln -sf $($(python-docutils)-prefix)/bin/rst2odt.py $($(python-docutils)-prefix)/bin/rst2odt
-	ln -sf $($(python-docutils)-prefix)/bin/rst2pseudoxml.py $($(python-docutils)-prefix)/bin/rst2pseudoxml
-	ln -sf $($(python-docutils)-prefix)/bin/rst2s5.py $($(python-docutils)-prefix)/bin/rst2s5
-	ln -sf $($(python-docutils)-prefix)/bin/rst2xetex.py $($(python-docutils)-prefix)/bin/rst2xetex
-	ln -sf $($(python-docutils)-prefix)/bin/rst2xml.py $($(python-docutils)-prefix)/bin/rst2xml
-	ln -sf $($(python-docutils)-prefix)/bin/rstpep2html.py $($(python-docutils)-prefix)/bin/rstpep2html
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --target=$($(python-docutils)-prefix)
 	@touch $@
 
 $($(python-docutils)-modulefile): $(modulefilesdir)/.markerfile $($(python-docutils)-prefix)/.pkginstall

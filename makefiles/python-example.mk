@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2022 James D. Trotter
+# Copyright (C) 2023 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -73,7 +73,7 @@ $($(python-example)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreac
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-example)-builddeps) && \
 		PYTHONPATH=$($(python-example)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-example)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --target=$($(python-example)-prefix)
 	@touch $@
 
 $($(python-example)-modulefile): $(modulefilesdir)/.markerfile $($(python-example)-prefix)/.pkginstall

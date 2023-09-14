@@ -25,7 +25,7 @@ $(rdma-core)-url = https://github.com/linux-rdma/rdma-core/
 $(rdma-core)-srcurl = https://github.com/linux-rdma/rdma-core/releases/download/v$(rdma-core-version)/rdma-core-$(rdma-core-version).tar.gz
 $(rdma-core)-src = $(pkgsrcdir)/$(notdir $($(rdma-core)-srcurl))
 $(rdma-core)-srcdir = $(pkgsrcdir)/$(rdma-core)
-$(rdma-core)-builddeps = $(cmake) $(ninja) $(python-docutils) $(libnl)
+$(rdma-core)-builddeps = $(cmake) $(ninja) $(libnl)
 $(rdma-core)-prereqs = $(libnl)
 $(rdma-core)-modulefile = $(modulefilesdir)/$(rdma-core)
 $(rdma-core)-prefix = $(pkgdir)/$(rdma-core)
@@ -57,7 +57,8 @@ $($(rdma-core)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$
 		$(MODULE) load $($(rdma-core)-builddeps) && \
 		$(CMAKE) .. -GNinja \
 			-DCMAKE_INSTALL_PREFIX=$($(rdma-core)-prefix) \
-			-DCMAKE_INSTALL_LIBDIR=lib && \
+			-DCMAKE_INSTALL_LIBDIR=lib \
+			-DNO_MAN_PAGES=1 && \
 	ninja
 	@touch $@
 

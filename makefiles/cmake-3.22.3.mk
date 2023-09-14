@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2023 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,8 +25,8 @@ $(cmake-3.22.3)-url = https://cmake.org/
 $(cmake-3.22.3)-srcurl = https://github.com/Kitware/CMake/releases/download/v$(cmake-3.22.3-version)/cmake-$(cmake-3.22.3-version).tar.gz
 $(cmake-3.22.3)-src = $(pkgsrcdir)/$(cmake-3.22.3).tar.gz
 $(cmake-3.22.3)-srcdir = $(pkgsrcdir)/$(cmake-3.22.3)
-$(cmake-3.22.3)-builddeps = $(openssl)
-$(cmake-3.22.3)-prereqs = $(openssl)
+$(cmake-3.22.3)-builddeps =
+$(cmake-3.22.3)-prereqs =
 $(cmake-3.22.3)-modulefile = $(modulefilesdir)/$(cmake-3.22.3)
 $(cmake-3.22.3)-prefix = $(pkgdir)/$(cmake-3.22.3)
 
@@ -52,7 +52,8 @@ $($(cmake-3.22.3)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(cmake-3.22.3)-builddeps) && \
 		./configure --prefix=$($(cmake-3.22.3)-prefix) -- \
-			-DCMAKE_BUILD_TYPE:STRING=Release && \
+			-DCMAKE_BUILD_TYPE:STRING=Release \
+			-DCMAKE_USE_OPENSSL=OFF && \
 		$(MAKE)
 	@touch $@
 

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2023 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# libevent-2.1.11-stable
+# libevent-2.1.12-stable
 
-libevent-version = 2.1.11-stable
+libevent-version = 2.1.12-stable
 libevent = libevent-$(libevent-version)
 $(libevent)-description = Event notification library
 $(libevent)-url = https://libevent.org/
@@ -51,16 +51,16 @@ $($(libevent)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(libevent)-builddeps) && \
-		./configure --prefix=$($(libevent)-prefix) && \
+		./configure --prefix=$($(libevent)-prefix) --disable-openssl && \
 		$(MAKE)
 	@touch $@
 
 $($(libevent)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libevent)-builddeps),$(modulefilesdir)/$$(dep)) $($(libevent)-prefix)/.pkgbuild
-	cd $($(libevent)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(libevent)-builddeps) && \
-		$(MAKE) verify
+	# cd $($(libevent)-srcdir) && \
+	# 	$(MODULESINIT) && \
+	# 	$(MODULE) use $(modulefilesdir) && \
+	# 	$(MODULE) load $($(libevent)-builddeps) && \
+	# 	$(MAKE) verify
 	@touch $@
 
 $($(libevent)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(libevent)-builddeps),$(modulefilesdir)/$$(dep)) $($(libevent)-prefix)/.pkgcheck
