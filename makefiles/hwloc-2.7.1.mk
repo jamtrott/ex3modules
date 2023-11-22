@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2022 James D. Trotter
+# Copyright (C) 2023 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,8 +23,8 @@ hwloc-2.7.1 = hwloc-$(hwloc-2.7.1-version)
 $(hwloc-2.7.1)-description = Portable abstraction of hierarchical topology of modern architectures
 $(hwloc-2.7.1)-url = https://www.open-mpi.org/projects/hwloc/
 $(hwloc-2.7.1)-srcurl =
-$(hwloc-2.7.1)-builddeps =
-$(hwloc-2.7.1)-prereqs =
+$(hwloc-2.7.1)-builddeps = $(libxml2)
+$(hwloc-2.7.1)-prereqs = $(libxml2)
 $(hwloc-2.7.1)-src = $($(hwloc-src-2.7.1)-src)
 $(hwloc-2.7.1)-srcdir = $(pkgsrcdir)/$(hwloc-2.7.1)
 $(hwloc-2.7.1)-builddir = $($(hwloc-2.7.1)-srcdir)
@@ -57,7 +57,7 @@ $($(hwloc-2.7.1)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		./configure --prefix=$($(hwloc-2.7.1)-prefix) \
 			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo --with-cuda="$${CUDA_TOOLKIT_ROOT}" || echo --without-cuda --disable-cuda --disable-nvml) \
 			$$([ ! -z "$${ROCM_ROOT}" ] && echo --with-rocm="$${ROCM_ROOT}" || echo --without-rocm) \
-			--disable-opencl && \
+			--disable-libudev --disable-opencl && \
 		$(MAKE)
 	@touch $@
 
