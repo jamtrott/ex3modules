@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2023 James D. Trotter
+# Copyright (C) 2024 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -473,6 +473,7 @@ pkgs := $(pkgs) \
 	glib-2.64.1 \
 	gmp-6.1.2 \
 	gmsh-4.11.0 \
+	gmsh-4.12.1 \
 	gnuplot-5.2.8 \
 	gobject-introspection-1.64.0 \
 	googletest-1.10.0 \
