@@ -50,6 +50,8 @@ $($(hypre-64-2.26)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) load $($(hypre-64-2.26)-builddeps) && \
 		./configure --prefix=$($(hypre-64-2.26)-prefix) \
 			--enable-shared \
+			--disable-fortran \
+			--with-openmp \
 			--enable-mixedint \
 			--with-blas-lib-dirs="$${BLASDIR}" --with-blas-libs="$${BLASLIB}" \
 			--with-lapack-lib-dirs="$${BLASDIR}" --with-lapack-libs="$${BLASLIB}" \
