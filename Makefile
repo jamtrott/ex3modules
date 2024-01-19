@@ -698,7 +698,7 @@ pkgs := $(pkgs) \
 	python-fenics-ufl-2021.1.0 \
 	python-fenics-ufl-2022.2.0 \
 	python-fenics-ufl-20200512 \
-	python-fenics-ufl-legacy \
+	python-fenics-ufl-legacy-2022.3.0 \
 	python-filelock-3.0.12 \
 	python-flake8-3.8.2 \
 	python-flaky-3.7.0 \

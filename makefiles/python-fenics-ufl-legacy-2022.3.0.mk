@@ -16,16 +16,16 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-fenics-ufl-legacy.1.0
+# python-fenics-ufl-legacy-2022.3.0
 
 python-fenics-ufl-legacy-version = 2022.3.0
-python-fenics-ufl-legacy = python-fenics-ufl-$(python-fenics-ufl-legacy-version)
+python-fenics-ufl-legacy = python-fenics-ufl-legacy-$(python-fenics-ufl-legacy-version)
 $(python-fenics-ufl-legacy)-description = FEniCS Project: Unified Form Language
 $(python-fenics-ufl-legacy)-url = https://github.com/FEniCS/ufl-legacy
 $(python-fenics-ufl-legacy)-srcurl = https://github.com/FEniCS/ufl-legacy/archive/refs/tags/2022.3.0.zip
 $(python-fenics-ufl-legacy)-src = $(pkgsrcdir)/$(notdir $($(python-fenics-ufl-legacy)-srcurl))
 $(python-fenics-ufl-legacy)-srcdir = $(pkgsrcdir)/$(python-fenics-ufl-legacy)
-$(python-fenics-ufl-legacy)-builddir = $($(python-fenics-ufl-legacy)-srcdir)/ufl-2022.3.0
+$(python-fenics-ufl-legacy)-builddir = $($(python-fenics-ufl-legacy)-srcdir)/ufl-legacy-2022.3.0
 $(python-fenics-ufl-legacy)-builddeps = $(python) $(python-numpy) $(python-cffi) $(python-setuptools) $(python-wheel) $(python-pip)
 $(python-fenics-ufl-legacy)-prereqs = $(python) $(python-numpy)
 $(python-fenics-ufl-legacy)-modulefile = $(modulefilesdir)/$(python-fenics-ufl-legacy)
@@ -91,7 +91,6 @@ $($(python-fenics-ufl-legacy)-modulefile): $(modulefilesdir)/.markerfile $($(pyt
 	printf "$(foreach prereq,$($(python-fenics-ufl-legacy)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv PYTHON_FENICS_UFL_2021_ROOT $($(python-fenics-ufl-legacy)-prefix)" >>$@
 	echo "prepend-path PATH $($(python-fenics-ufl-legacy)-prefix)/bin" >>$@
 	echo "prepend-path PYTHONPATH $($(python-fenics-ufl-legacy)-site-packages)" >>$@
 	echo "set MSG \"$(python-fenics-ufl-legacy)\"" >>$@
