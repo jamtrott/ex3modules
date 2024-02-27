@@ -612,6 +612,7 @@ pkgs := $(pkgs) \
 	onetbb-src-2021.4.0 \
 	openblas-0.3.12 \
 	openblas-0.3.21 \
+	openblas-0.3.21-omp \
 	opencascade-7.5.0 \
 	opencl-headers-2020.06.16 \
 	openjpeg-2.4.0 \
