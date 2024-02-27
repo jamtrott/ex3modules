@@ -632,6 +632,9 @@ pkgs := $(pkgs) \
 	parmetis-32-4.0.3 \
 	parmetis-64-4.0.3 \
 	parmetis-src-4.0.3 \
+	pastix-32-6.3.2 \
+	pastix-64-6.3.2 \
+	pastix-src-6.3.2 \
 	patchelf-0.14.3 \
 	pciutils-3.6.2 \
 	pcre-8.44 \
