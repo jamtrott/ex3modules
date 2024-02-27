@@ -23,8 +23,8 @@ mfem-4.5 = mfem-$(mfem-4.5-version)
 $(mfem-4.5)-description = Lightweight, general, scalable C++ library for finite element methods
 $(mfem-4.5)-url = https://mfem.org/
 $(mfem-4.5)-srcurl = https://mfem.github.io/releases/mfem-4.5.tgz
-$(mfem-4.5)-builddeps = $(cmake) $(metis) $(hypre) $(mpi) $(suitesparse) $(superlu_dist) $(mumps) $(petsc) $(mpfr) $(libceed)
-$(mfem-4.5)-prereqs = $(metis) $(hypre) $(mpi) $(suitesparse) $(superlu_dist) $(mumps) $(petsc) $(mpfr) $(libceed)
+$(mfem-4.5)-builddeps = $(cmake) $(metis) $(parmetis) $(hypre) $(mpi) $(suitesparse) $(superlu_dist) $(mumps) $(petsc) $(mpfr) $(libceed)
+$(mfem-4.5)-prereqs = $(metis) $(parmetis) $(hypre) $(mpi) $(suitesparse) $(superlu_dist) $(mumps) $(petsc) $(mpfr) $(libceed)
 $(mfem-4.5)-src = $(pkgsrcdir)/$(notdir $($(mfem-4.5)-srcurl))
 $(mfem-4.5)-srcdir = $(pkgsrcdir)/$(mfem-4.5)
 $(mfem-4.5)-builddir = $($(mfem-4.5)-srcdir)/build
@@ -66,6 +66,7 @@ $($(mfem-4.5)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 			-DHYPRE_DIR="$${HYPRE_ROOT}" \
 			-DMFEM_USE_MPI=YES \
 			-DMFEM_USE_METIS=YES -DMFEM_USE_METIS_5=YES -DMETIS_DIR="$${METIS_ROOT}" \
+			-DParMETIS_DIR="$${PARMETIS_ROOT}" \
 			-DMFEM_USE_LAPACK=YES -DLAPACK_DIR="$${LAPACKDIR}" \
 			-DMFEM_USE_OPENMP=YES \
 			-DMFEM_USE_SUITESPARSE=YES -DSuiteSparse_DIR="$${SUITESPARSE_ROOT}" \
