@@ -471,7 +471,7 @@ pkgs := $(pkgs) \
 	giflib-5.2.1 \
 	gklib-5.1.0 \
 	glib-2.64.1 \
-	gmp-6.1.2 \
+	gmp-6.3.0 \
 	gmsh-4.11.0 \
 	gmsh-4.12.1 \
 	gnuplot-5.2.8 \

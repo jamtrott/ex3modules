@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2024 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# gmp-6.1.2
+# gmp-6.3.0
 
-gmp-version = 6.1.2
+gmp-version = 6.3.0
 gmp = gmp-$(gmp-version)
 $(gmp)-description = Library for arbitrary precision arithmetic
 $(gmp)-url = https://gmplib.org/
