@@ -474,6 +474,7 @@ pkgs := $(pkgs) \
 	gmp-6.3.0 \
 	gmsh-4.11.0 \
 	gmsh-4.12.1 \
+	gmsh-4.13.1 \
 	gnuplot-5.2.8 \
 	gobject-introspection-1.64.0 \
 	googletest-1.10.0 \
