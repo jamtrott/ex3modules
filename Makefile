@@ -264,6 +264,9 @@ endif
 ifeq ($(WITH_MPI),openmpi-4.0.5)
 mpi = openmpi-4.0.5
 $(info Using internal MPI ($(mpi)))
+else ifeq ($(WITH_MPI),openmpi-4.1.6)
+mpi = openmpi-4.1.6
+$(info Using internal MPI ($(mpi)))
 else ifeq ($(WITH_MPI),openmpi-4.1.4)
 mpi = openmpi-4.1.4
 $(info Using internal MPI ($(mpi)))
@@ -623,8 +626,10 @@ pkgs := $(pkgs) \
 	openjpeg-2.4.0 \
 	openmpi-4.0.5 \
 	openmpi-4.1.4 \
+	openmpi-4.1.6 \
 	openmpi-src-4.0.5 \
 	openmpi-src-4.1.4 \
+	openmpi-src-4.1.6 \
 	openssl-1.1.1c \
 	openssl-1.1.1v \
 	osu-micro-benchmarks-mpich-5.6.3 \
