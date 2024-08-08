@@ -30,6 +30,7 @@ $(pybind11)-srcdir = $(pkgsrcdir)/$(pybind11)
 $(pybind11)-builddir = $($(pybind11)-srcdir)/build
 $(pybind11)-modulefile = $(modulefilesdir)/$(pybind11)
 $(pybind11)-prefix = $(pkgdir)/$(pybind11)
+$(pybind11)-site-packages = $($(pybind11)-prefix)
 
 $($(pybind11)-src): $(dir $($(pybind11)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(pybind11)-srcurl)
@@ -45,6 +46,10 @@ $($(pybind11)-prefix)/.pkgunpack: $($(pybind11)-src) $($(pybind11)-srcdir)/.mark
 	@touch $@
 
 $($(pybind11)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(pybind11)-builddeps),$(modulefilesdir)/$$(dep)) $($(pybind11)-prefix)/.pkgunpack
+	@touch $@
+
+$($(pybind11)-site-packages)/.markerfile:
+	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(pybind11)-builddir)/.markerfile: $($(pybind11)-prefix)/.pkgunpack
@@ -70,12 +75,18 @@ $($(pybind11)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$
 		$(MAKE) check
 	@touch $@
 
-$($(pybind11)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(pybind11)-builddeps),$(modulefilesdir)/$$(dep)) $($(pybind11)-builddir)/.markerfile $($(pybind11)-prefix)/.pkgcheck
+$($(pybind11)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(pybind11)-builddeps),$(modulefilesdir)/$$(dep)) $($(pybind11)-builddir)/.markerfile $($(pybind11)-prefix)/.pkgcheck $($(pybind11)-site-packages)/.markerfile
 	cd $($(pybind11)-builddir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(pybind11)-builddeps) && \
 		$(MAKE) install
+	cd $($(pybind11)-srcdir) && \
+		$(MODULESINIT) && \
+		$(MODULE) use $(modulefilesdir) && \
+		$(MODULE) load $($(pybind11)-builddeps) && \
+		PYTHONPATH=$($(pybind11)-site-packages):$${PYTHONPATH} \
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --target=$($(pybind11)-prefix)
 	@touch $@
 
 $($(pybind11)-modulefile): $(modulefilesdir)/.markerfile $($(pybind11)-prefix)/.pkginstall
@@ -98,6 +109,7 @@ $($(pybind11)-modulefile): $(modulefilesdir)/.markerfile $($(pybind11)-prefix)/.
 	echo "prepend-path C_INCLUDE_PATH $($(pybind11)-prefix)/include" >>$@
 	echo "prepend-path CPLUS_INCLUDE_PATH $($(pybind11)-prefix)/include" >>$@
 	echo "prepend-path CMAKE_MODULE_PATH $($(pybind11)-prefix)/share/cmake/pybind11" >>$@
+	echo "prepend-path PYTHONPATH $($(pybind11)-site-packages)" >>$@
 	echo "set MSG \"$(pybind11)\"" >>$@
 
 $(pybind11)-src: $($(pybind11)-src)

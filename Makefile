@@ -679,6 +679,7 @@ pkgs := $(pkgs) \
 	python-cffi-1.14.3 \
 	python-chardet-3.0.4 \
 	python-colorama-0.4.4 \
+	python-contourpy-1.0.7 \
 	python-coverage-5.5 \
 	python-cycler-0.10.0 \
 	python-cython-0.29.36 \
@@ -717,6 +718,7 @@ pkgs := $(pkgs) \
 	python-filelock-3.0.12 \
 	python-flake8-3.8.2 \
 	python-flaky-3.7.0 \
+	python-fonttools-4.53.1 \
 	python-freezegun-1.0.0 \
 	python-future-0.18.2 \
 	python-gast-0.6.0 \
@@ -725,6 +727,7 @@ pkgs := $(pkgs) \
 	python-idna-2.9 \
 	python-imagesize-1.2.0 \
 	python-importlib_metadata-1.6.0 \
+	python-importlib_resources-6.4.0 \
 	python-iniconfig-1.1.1 \
 	python-ipopt-0.3.0 \
 	python-ipython-7.14.0 \
