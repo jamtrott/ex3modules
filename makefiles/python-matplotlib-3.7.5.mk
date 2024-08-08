@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-matplotlib-3.1.1
+# python-matplotlib-3.7.5
 
-python-matplotlib-version = 3.1.1
+python-matplotlib-version = 3.7.5
 python-matplotlib = python-matplotlib-$(python-matplotlib-version)
 $(python-matplotlib)-description = 2D plotting library
 $(python-matplotlib)-url = https://matplotlib.org/
-$(python-matplotlib)-srcurl = https://files.pythonhosted.org/packages/12/d1/7b12cd79c791348cb0c78ce6e7d16bd72992f13c9f1e8e43d2725a6d8adf/matplotlib-3.1.1.tar.gz
+$(python-matplotlib)-srcurl = https://files.pythonhosted.org/packages/b6/f0/3836719cc3982fbba3b840d18a59db1d0ee9ac7986f24e8c0a092851b67b/matplotlib-3.7.5.tar.gz
 $(python-matplotlib)-src = $(pkgsrcdir)/$(notdir $($(python-matplotlib)-srcurl))
 $(python-matplotlib)-srcdir = $(pkgsrcdir)/$(python-matplotlib)
 $(python-matplotlib)-builddeps = $(python) $(freetype) $(libpng) $(blas) $(mpi) $(python-numpy) $(python-kiwisolver) $(python-dateutil) $(python-pytest) $(python-cycler) $(python-pyparsing) $(python-pip)
@@ -52,11 +52,11 @@ $($(python-matplotlib)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-matplotlib)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-matplotlib)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-matplotlib)-prefix)/.pkgpatch
-	cd $($(python-matplotlib)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-matplotlib)-builddeps) && \
-		$(PYTHON) setup.py build
+	# cd $($(python-matplotlib)-srcdir) && \
+	# 	$(MODULESINIT) && \
+	# 	$(MODULE) use $(modulefilesdir) && \
+	# 	$(MODULE) load $($(python-matplotlib)-builddeps) && \
+	# 	$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-matplotlib)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-matplotlib)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-matplotlib)-prefix)/.pkgbuild

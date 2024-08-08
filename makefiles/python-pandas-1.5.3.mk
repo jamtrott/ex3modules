@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-pandas-1.0.3
+# python-pandas-1.5.3
 
-python-pandas-version = 1.0.3
+python-pandas-version = 1.5.3
 python-pandas = python-pandas-$(python-pandas-version)
 $(python-pandas)-description = Python data analysis library
 $(python-pandas)-url = https://pandas.pydata.org/
-$(python-pandas)-srcurl = https://github.com/pandas-dev/pandas/releases/download/v$(python-pandas-version)/pandas-$(python-pandas-version).tar.gz
+$(python-pandas)-srcurl = https://files.pythonhosted.org/packages/74/ee/146cab1ff6d575b54ace8a6a5994048380dc94879b0125b25e62edcb9e52/pandas-1.5.3.tar.gz
 $(python-pandas)-src = $(pkgsrcdir)/$(notdir $($(python-pandas)-srcurl))
 $(python-pandas)-srcdir = $(pkgsrcdir)/$(python-pandas)
 $(python-pandas)-builddeps = $(python) $(python-cython) $(blas) $(mpi) $(python-numpy) $(pyhon-pytz) $(python-dateutil) $(python-six) $(python-pytest) $(python-pip)
@@ -52,11 +52,11 @@ $($(python-pandas)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-pandas)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pandas)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pandas)-prefix)/.pkgpatch
-	cd $($(python-pandas)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-pandas)-builddeps) && \
-		$(PYTHON) setup.py build
+	# cd $($(python-pandas)-srcdir) && \
+	# 	$(MODULESINIT) && \
+	# 	$(MODULE) use $(modulefilesdir) && \
+	# 	$(MODULE) load $($(python-pandas)-builddeps) && \
+	# 	$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pandas)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pandas)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pandas)-prefix)/.pkgbuild

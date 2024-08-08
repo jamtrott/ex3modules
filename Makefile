@@ -710,6 +710,7 @@ pkgs := $(pkgs) \
 	python-flaky-3.7.0 \
 	python-freezegun-1.0.0 \
 	python-future-0.18.2 \
+	python-gast-0.6.0 \
 	python-h5py-2.10.0 \
 	python-hypothesis-5.37.4 \
 	python-idna-2.9 \
@@ -726,7 +727,7 @@ pkgs := $(pkgs) \
 	python-mako-1.1.4 \
 	python-markupsafe-1.1.1 \
 	python-marshmallow-3.17.1 \
-	python-matplotlib-3.1.1 \
+	python-matplotlib-3.7.5 \
 	python-mccabe-0.6.1 \
 	python-meshio-4.3.6 \
 	python-more-itertools-8.3.0 \
@@ -737,7 +738,7 @@ pkgs := $(pkgs) \
 	python-numpy-1.21.5 \
 	python-numpy-quaternion-2021.11.4.15.26.3 \
 	python-packaging-20.4 \
-	python-pandas-1.0.3 \
+	python-pandas-1.5.3 \
 	python-pathlib2-2.3.5 \
 	python-petsc4py-3.17.2 \
 	python-petsc4py-64-3.17.2 \
@@ -762,6 +763,7 @@ pkgs := $(pkgs) \
 	python-pytest-cov-2.12.1 \
 	python-pytest-forked-1.1.3 \
 	python-pytest-xdist-1.32.0 \
+	python-pythran-0.16.1 \
 	python-pytz-2020.1 \
 	python-requests-2.23.0 \
 	python-scikit-build-0.16.6 \
