@@ -16,20 +16,19 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-pythran-0.16.1
+# python-pythran-0.10.0
 
-python-pythran-version = 0.16.1
+python-pythran-version = 0.10.0
 python-pythran = python-pythran-$(python-pythran-version)
 $(python-pythran)-description = Ahead of Time compiler for numeric kernels
 $(python-pythran)-url = https://github.com/serge-sans-paille/pythran
-$(python-pythran)-srcurl = https://files.pythonhosted.org/packages/73/32/f892675c5009cd4c1895ded3d6153476bf00adb5ad1634d03635620881f5/pythran-0.16.1.tar.gz
+$(python-pythran)-srcurl = https://files.pythonhosted.org/packages/c4/92/94b344b88bb010186caa65e5730509b4a6d2b1ab59e512ea11a2cbbb36fc/pythran-0.10.0.tar.gz
 $(python-pythran)-src = $(pkgsrcdir)/$(notdir $($(python-pythran)-srcurl))
 $(python-pythran)-builddeps = $(python) $(python-pip) $(python-numpy) $(python-gast)
 $(python-pythran)-prereqs = $(python) $(python-numpy) $(python-gast)
 $(python-pythran)-srcdir = $(pkgsrcdir)/$(python-pythran)
 $(python-pythran)-modulefile = $(modulefilesdir)/$(python-pythran)
 $(python-pythran)-prefix = $(pkgdir)/$(python-pythran)
-$(python-pythran)-site-packages = $($(python-pythran)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-pythran)-src): $(dir $($(python-pythran)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-pythran)-srcurl)
@@ -45,10 +44,6 @@ $($(python-pythran)-prefix)/.pkgunpack: $$($(python-pythran)-src) $($(python-pyt
 	@touch $@
 
 $($(python-pythran)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pythran)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pythran)-prefix)/.pkgunpack
-	@touch $@
-
-$($(python-pythran)-site-packages)/.markerfile:
-	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-pythran)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pythran)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pythran)-prefix)/.pkgpatch
@@ -67,12 +62,12 @@ $($(python-pythran)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach 
 	# 	$(PYTHON) setup.py test
 	@touch $@
 
-$($(python-pythran)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pythran)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pythran)-prefix)/.pkgcheck $($(python-pythran)-site-packages)/.markerfile
+$($(python-pythran)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pythran)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pythran)-prefix)/.pkgcheck
 	cd $($(python-pythran)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pythran)-builddeps) && \
-		PYTHONPATH=$($(python-pythran)-site-packages):$${PYTHONPATH} \
+		PYTHONPATH=$($(python-pythran)-prefix):$${PYTHONPATH} \
 		$(PYTHON) -m pip install . --no-deps --ignore-installed --target=$($(python-pythran)-prefix)
 	@touch $@
 
@@ -92,7 +87,7 @@ $($(python-pythran)-modulefile): $(modulefilesdir)/.markerfile $($(python-pythra
 	echo "" >>$@
 	echo "setenv PYTHON_PYTHRAN_ROOT $($(python-pythran)-prefix)" >>$@
 	echo "prepend-path PATH $($(python-pythran)-prefix)/bin" >>$@
-	echo "prepend-path PYTHONPATH $($(python-pythran)-site-packages)" >>$@
+	echo "prepend-path PYTHONPATH $($(python-pythran)-prefix)" >>$@
 	echo "set MSG \"$(python-pythran)\"" >>$@
 
 $(python-pythran)-src: $($(python-pythran)-src)

@@ -29,7 +29,6 @@ $(python-docutils)-builddeps = $(python) $(python-pip)
 $(python-docutils)-prereqs = $(python)
 $(python-docutils)-modulefile = $(modulefilesdir)/$(python-docutils)
 $(python-docutils)-prefix = $(pkgdir)/$(python-docutils)
-$(python-docutils)-site-packages = $($(python-docutils)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-docutils)-src): $(dir $($(python-docutils)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-docutils)-srcurl)
@@ -45,10 +44,6 @@ $($(python-docutils)-prefix)/.pkgunpack: $$($(python-docutils)-src) $($(python-d
 	@touch $@
 
 $($(python-docutils)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-docutils)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-docutils)-prefix)/.pkgunpack
-	@touch $@
-
-$($(python-docutils)-site-packages)/.markerfile:
-	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-docutils)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-docutils)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-docutils)-prefix)/.pkgpatch
@@ -67,12 +62,12 @@ $($(python-docutils)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach
 		$(PYTHON) alltests.py
 	@touch $@
 
-$($(python-docutils)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-docutils)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-docutils)-prefix)/.pkgcheck $($(python-docutils)-site-packages)/.markerfile
+$($(python-docutils)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-docutils)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-docutils)-prefix)/.pkgcheck
 	cd $($(python-docutils)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-docutils)-builddeps) && \
-		PYTHONPATH=$($(python-docutils)-site-packages):$${PYTHONPATH} \
+		PYTHONPATH=$($(python-docutils)-prefix):$${PYTHONPATH} \
 		$(PYTHON) -m pip install . --no-deps --ignore-installed --target=$($(python-docutils)-prefix)
 	@touch $@
 
@@ -92,7 +87,7 @@ $($(python-docutils)-modulefile): $(modulefilesdir)/.markerfile $($(python-docut
 	echo "" >>$@
 	echo "setenv PYTHON_DOCUTILS_ROOT $($(python-docutils)-prefix)" >>$@
 	echo "prepend-path PATH $($(python-docutils)-prefix)/bin" >>$@
-	echo "prepend-path PYTHONPATH $($(python-docutils)-site-packages)" >>$@
+	echo "prepend-path PYTHONPATH $($(python-docutils)-prefix)" >>$@
 	echo "set MSG \"$(python-docutils)\"" >>$@
 
 $(python-docutils)-src: $($(python-docutils)-src)

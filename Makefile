@@ -674,6 +674,7 @@ pkgs := $(pkgs) \
 	python-atomicwrites-1.4.0 \
 	python-attrs-19.3.0 \
 	python-babel-2.8.0 \
+	python-beniget-0.4.1 \
 	python-breathe-4.13.1 \
 	python-certifi-2020.6.20 \
 	python-cffi-1.14.3 \
@@ -775,11 +776,11 @@ pkgs := $(pkgs) \
 	python-pytest-cov-2.12.1 \
 	python-pytest-forked-1.1.3 \
 	python-pytest-xdist-1.32.0 \
-	python-pythran-0.16.1 \
+	python-pythran-0.10.0 \
 	python-pytz-2020.1 \
 	python-requests-2.23.0 \
 	python-scikit-build-0.16.6 \
-	python-scipy-1.7.3 \
+	python-scipy-1.8.1 \
 	python-setuptools-59.6.0 \
 	python-setuptools_scm-4.1.1 \
 	python-simplejson-3.17.6 \

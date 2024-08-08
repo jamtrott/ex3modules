@@ -29,7 +29,6 @@ $(python-gast)-prereqs = $(python)
 $(python-gast)-srcdir = $(pkgsrcdir)/$(python-gast)
 $(python-gast)-modulefile = $(modulefilesdir)/$(python-gast)
 $(python-gast)-prefix = $(pkgdir)/$(python-gast)
-$(python-gast)-site-packages = $($(python-gast)-prefix)
 
 $($(python-gast)-src): $(dir $($(python-gast)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-gast)-srcurl)
@@ -45,10 +44,6 @@ $($(python-gast)-prefix)/.pkgunpack: $$($(python-gast)-src) $($(python-gast)-src
 	@touch $@
 
 $($(python-gast)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-gast)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-gast)-prefix)/.pkgunpack
-	@touch $@
-
-$($(python-gast)-site-packages)/.markerfile:
-	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-gast)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-gast)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-gast)-prefix)/.pkgpatch
@@ -67,12 +62,12 @@ $($(python-gast)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep
 		$(PYTHON) setup.py test
 	@touch $@
 
-$($(python-gast)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-gast)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-gast)-prefix)/.pkgcheck $($(python-gast)-site-packages)/.markerfile
+$($(python-gast)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-gast)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-gast)-prefix)/.pkgcheck
 	cd $($(python-gast)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-gast)-builddeps) && \
-		PYTHONPATH=$($(python-gast)-site-packages):$${PYTHONPATH} \
+		PYTHONPATH=$($(python-gast)-prefix):$${PYTHONPATH} \
 		$(PYTHON) -m pip install . --no-deps --ignore-installed --target=$($(python-gast)-prefix)
 	@touch $@
 
@@ -92,7 +87,7 @@ $($(python-gast)-modulefile): $(modulefilesdir)/.markerfile $($(python-gast)-pre
 	echo "" >>$@
 	echo "setenv PYTHON_GAST_ROOT $($(python-gast)-prefix)" >>$@
 	echo "prepend-path PATH $($(python-gast)-prefix)/bin" >>$@
-	echo "prepend-path PYTHONPATH $($(python-gast)-site-packages)" >>$@
+	echo "prepend-path PYTHONPATH $($(python-gast)-prefix)" >>$@
 	echo "set MSG \"$(python-gast)\"" >>$@
 
 $(python-gast)-src: $($(python-gast)-src)

@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2023 James D. Trotter
+# Copyright (C) 2024 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +29,6 @@ $(python-example)-prereqs = $(python)
 $(python-example)-srcdir = $(pkgsrcdir)/$(python-example)
 $(python-example)-modulefile = $(modulefilesdir)/$(python-example)
 $(python-example)-prefix = $(pkgdir)/$(python-example)
-$(python-example)-site-packages = $($(python-example)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-example)-src): $(dir $($(python-example)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-example)-srcurl)
@@ -45,10 +44,6 @@ $($(python-example)-prefix)/.pkgunpack: $$($(python-example)-src) $($(python-exa
 	@touch $@
 
 $($(python-example)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-example)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-example)-prefix)/.pkgunpack
-	@touch $@
-
-$($(python-example)-site-packages)/.markerfile:
-	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-example)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-example)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-example)-prefix)/.pkgpatch
@@ -67,12 +62,12 @@ $($(python-example)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach 
 		$(PYTHON) setup.py test
 	@touch $@
 
-$($(python-example)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-example)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-example)-prefix)/.pkgcheck $($(python-example)-site-packages)/.markerfile
+$($(python-example)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-example)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-example)-prefix)/.pkgcheck
 	cd $($(python-example)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-example)-builddeps) && \
-		PYTHONPATH=$($(python-example)-site-packages):$${PYTHONPATH} \
+		PYTHONPATH=$($(python-example)-prefix):$${PYTHONPATH} \
 		$(PYTHON) -m pip install . --no-deps --ignore-installed --target=$($(python-example)-prefix)
 	@touch $@
 
@@ -92,7 +87,7 @@ $($(python-example)-modulefile): $(modulefilesdir)/.markerfile $($(python-exampl
 	echo "" >>$@
 	echo "setenv PYTHON_EXAMPLE_ROOT $($(python-example)-prefix)" >>$@
 	echo "prepend-path PATH $($(python-example)-prefix)/bin" >>$@
-	echo "prepend-path PYTHONPATH $($(python-example)-site-packages)" >>$@
+	echo "prepend-path PYTHONPATH $($(python-example)-prefix)" >>$@
 	echo "set MSG \"$(python-example)\"" >>$@
 
 $(python-example)-src: $($(python-example)-src)

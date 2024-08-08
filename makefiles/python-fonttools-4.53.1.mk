@@ -29,7 +29,6 @@ $(python-fonttools)-prereqs = $(python)
 $(python-fonttools)-srcdir = $(pkgsrcdir)/$(python-fonttools)
 $(python-fonttools)-modulefile = $(modulefilesdir)/$(python-fonttools)
 $(python-fonttools)-prefix = $(pkgdir)/$(python-fonttools)
-$(python-fonttools)-site-packages = $($(python-fonttools)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-fonttools)-src): $(dir $($(python-fonttools)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-fonttools)-srcurl)
@@ -45,10 +44,6 @@ $($(python-fonttools)-prefix)/.pkgunpack: $$($(python-fonttools)-src) $($(python
 	@touch $@
 
 $($(python-fonttools)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-fonttools)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-fonttools)-prefix)/.pkgunpack
-	@touch $@
-
-$($(python-fonttools)-site-packages)/.markerfile:
-	$(INSTALL) -d $(dir $@)
 	@touch $@
 
 $($(python-fonttools)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-fonttools)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-fonttools)-prefix)/.pkgpatch
@@ -67,12 +62,12 @@ $($(python-fonttools)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreac
 		$(PYTHON) setup.py test
 	@touch $@
 
-$($(python-fonttools)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-fonttools)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-fonttools)-prefix)/.pkgcheck $($(python-fonttools)-site-packages)/.markerfile
+$($(python-fonttools)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-fonttools)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-fonttools)-prefix)/.pkgcheck
 	cd $($(python-fonttools)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-fonttools)-builddeps) && \
-		PYTHONPATH=$($(python-fonttools)-site-packages):$${PYTHONPATH} \
+		PYTHONPATH=$($(python-fonttools)-prefix):$${PYTHONPATH} \
 		$(PYTHON) -m pip install . --no-deps --ignore-installed --target=$($(python-fonttools)-prefix)
 	@touch $@
 
@@ -92,7 +87,7 @@ $($(python-fonttools)-modulefile): $(modulefilesdir)/.markerfile $($(python-font
 	echo "" >>$@
 	echo "setenv PYTHON_FONTTOOLS_ROOT $($(python-fonttools)-prefix)" >>$@
 	echo "prepend-path PATH $($(python-fonttools)-prefix)/bin" >>$@
-	echo "prepend-path PYTHONPATH $($(python-fonttools)-site-packages)" >>$@
+	echo "prepend-path PYTHONPATH $($(python-fonttools)-prefix)" >>$@
 	echo "set MSG \"$(python-fonttools)\"" >>$@
 
 $(python-fonttools)-src: $($(python-fonttools)-src)

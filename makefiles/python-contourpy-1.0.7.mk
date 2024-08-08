@@ -29,7 +29,6 @@ $(python-contourpy)-prereqs = $(python) $(pybind11)
 $(python-contourpy)-srcdir = $(pkgsrcdir)/$(python-contourpy)
 $(python-contourpy)-modulefile = $(modulefilesdir)/$(python-contourpy)
 $(python-contourpy)-prefix = $(pkgdir)/$(python-contourpy)
-$(python-contourpy)-site-packages = $($(python-contourpy)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-contourpy)-src): $(dir $($(python-contourpy)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-contourpy)-srcurl)
@@ -47,10 +46,6 @@ $($(python-contourpy)-prefix)/.pkgunpack: $$($(python-contourpy)-src) $($(python
 $($(python-contourpy)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-contourpy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-contourpy)-prefix)/.pkgunpack
 	@touch $@
 
-$($(python-contourpy)-site-packages)/.markerfile:
-	$(INSTALL) -d $(dir $@)
-	@touch $@
-
 $($(python-contourpy)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-contourpy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-contourpy)-prefix)/.pkgpatch
 	cd $($(python-contourpy)-srcdir) && \
 		$(MODULESINIT) && \
@@ -62,12 +57,12 @@ $($(python-contourpy)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreac
 $($(python-contourpy)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-contourpy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-contourpy)-prefix)/.pkgbuild
 	@touch $@
 
-$($(python-contourpy)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-contourpy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-contourpy)-prefix)/.pkgcheck $($(python-contourpy)-site-packages)/.markerfile
+$($(python-contourpy)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-contourpy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-contourpy)-prefix)/.pkgcheck
 	cd $($(python-contourpy)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-contourpy)-builddeps) && \
-		PYTHONPATH=$($(python-contourpy)-site-packages):$${PYTHONPATH} \
+		PYTHONPATH=$($(python-contourpy)-prefix):$${PYTHONPATH} \
 		$(PYTHON) -m pip install . --no-deps --ignore-installed --target=$($(python-contourpy)-prefix)
 	@touch $@
 
@@ -87,7 +82,7 @@ $($(python-contourpy)-modulefile): $(modulefilesdir)/.markerfile $($(python-cont
 	echo "" >>$@
 	echo "setenv PYTHON_CONTOURPY_ROOT $($(python-contourpy)-prefix)" >>$@
 	echo "prepend-path PATH $($(python-contourpy)-prefix)/bin" >>$@
-	echo "prepend-path PYTHONPATH $($(python-contourpy)-site-packages)" >>$@
+	echo "prepend-path PYTHONPATH $($(python-contourpy)-prefix)" >>$@
 	echo "set MSG \"$(python-contourpy)\"" >>$@
 
 $(python-contourpy)-src: $($(python-contourpy)-src)

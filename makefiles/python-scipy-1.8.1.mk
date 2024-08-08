@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2022 James D. Trotter
+# Copyright (C) 2024 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,17 +16,17 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-scipy-1.7.3
+# python-scipy-1.8.1
 
-python-scipy-version = 1.7.3
+python-scipy-version = 1.8.1
 python-scipy = python-scipy-$(python-scipy-version)
 $(python-scipy)-description = Fundamental package for scientific computing with Python
 $(python-scipy)-url = https://www.scipy.org/
-$(python-scipy)-srcurl = https://files.pythonhosted.org/packages/61/67/1a654b96309c991762ee9bc39c363fc618076b155fe52d295211cf2536c7/scipy-1.7.3.tar.gz
+$(python-scipy)-srcurl = https://files.pythonhosted.org/packages/26/b5/9330f004b9a3b2b6a31f59f46f1617ce9ca15c0e7fe64288c20385a05c9d/scipy-1.8.1.tar.gz
 $(python-scipy)-src = $(pkgsrcdir)/python-scipy-$(notdir $($(python-scipy)-srcurl))
 $(python-scipy)-srcdir = $(pkgsrcdir)/$(python-scipy)
-$(python-scipy)-builddeps = $(python) $(python-cython) $(openblas) $(mpi) $(python-numpy) $(python-wheel) $(pybind11) $(python-pip) $(python-pythran)
-$(python-scipy)-prereqs = $(python) $(python-cython) $(python-numpy) $(openblas) $(python-pythran)
+$(python-scipy)-builddeps = $(python) $(python-cython) $(openblas) $(mpi) $(python-numpy) $(python-wheel) $(pybind11) $(python-pip) $(python-pythran) $(python-beniget) $(python-ply)
+$(python-scipy)-prereqs = $(python) $(python-cython) $(python-numpy) $(openblas) $(python-pythran) $(python-beniget) $(python-ply)
 $(python-scipy)-modulefile = $(modulefilesdir)/$(python-scipy)
 $(python-scipy)-prefix = $(pkgdir)/$(python-scipy)
 $(python-scipy)-site-packages = $($(python-scipy)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
@@ -64,6 +64,11 @@ $($(python-scipy)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-scipy)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-scipy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-scipy)-prefix)/.pkgpatch
+	cd $($(python-scipy)-srcdir) && \
+	 	$(MODULESINIT) && \
+	 	$(MODULE) use $(modulefilesdir) && \
+	 	$(MODULE) load $($(python-scipy)-builddeps) && \
+	 	$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-scipy)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-scipy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-scipy)-prefix)/.pkgbuild
@@ -79,7 +84,7 @@ $($(python-scipy)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-scipy)-builddeps) && \
 		PYTHONPATH=$($(python-scipy)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-scipy)-prefix)
+		$(PYTHON) -m pip install . --verbose --no-deps --ignore-installed --no-cache-dir --prefix=$($(python-scipy)-prefix)
 	@touch $@
 
 $($(python-scipy)-modulefile): $(modulefilesdir)/.markerfile $($(python-scipy)-prefix)/.pkginstall
