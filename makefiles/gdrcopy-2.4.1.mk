@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2023 James D. Trotter
+# Copyright (C) 2024 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# gdrcopy-2.3.1
+# gdrcopy-2.4.1
 
-gdrcopy-version = 2.3.1
+gdrcopy-version = 2.4.1
 gdrcopy = gdrcopy-$(gdrcopy-version)
 $(gdrcopy)-description = Low-latency GPU memory copy library based on NVIDIA GPUDirect RDMA technology.
 $(gdrcopy)-url = https://github.com/NVIDIA/gdrcopy
@@ -58,7 +58,7 @@ $($(gdrcopy)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(gdrcopy)-builddeps) && \
-		$(MAKE) prefix=$($(gdrcopy)-prefix) CUDA=$${CUDA_TOOLKIT_ROOT} -n all
+		$(MAKE) prefix=$($(gdrcopy)-prefix) CUDA=$${CUDA_TOOLKIT_ROOT} NVIDIA_IS_OPENSOURCE=y -n config lib exes
 	@touch $@
 
 $($(gdrcopy)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(gdrcopy)-builddeps),$(modulefilesdir)/$$(dep)) $($(gdrcopy)-builddir)/.markerfile $($(gdrcopy)-prefix)/.pkgbuild
@@ -69,7 +69,7 @@ $($(gdrcopy)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(gdrcopy)-builddeps) && \
-		$(MAKE) prefix=$($(gdrcopy)-prefix) CUDA=$${CUDA_TOOLKIT_ROOT} install
+		$(MAKE) prefix=$($(gdrcopy)-prefix) CUDA=$${CUDA_TOOLKIT_ROOT} NVIDIA_IS_OPENSOURCE=y install
 	@touch $@
 
 $($(gdrcopy)-modulefile): $(modulefilesdir)/.markerfile $($(gdrcopy)-prefix)/.pkginstall

@@ -207,7 +207,7 @@ endif
 # CUDA-related packages
 ifneq ($(HAVE_CUDA),)
 pkgs := $(pkgs) \
-	gdrcopy-2.3.1
+	gdrcopy-2.4.1
 endif
 
 #
