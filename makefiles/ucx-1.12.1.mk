@@ -43,6 +43,7 @@ $($(ucx)-prefix)/.pkgunpack: $$($(ucx)-src) $($(ucx)-srcdir)/.markerfile $($(ucx
 	@touch $@
 
 $($(ucx)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(ucx)-builddeps),$(modulefilesdir)/$$(dep)) $($(ucx)-prefix)/.pkgunpack
+	sed -i 's,ucx_check_gdrcopy_dir/lib64,ucx_check_gdrcopy_libdir,' $($(ucx)-srcdir)/config/m4/gdrcopy.m4
 	@touch $@
 
 $($(ucx)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(ucx)-builddeps),$(modulefilesdir)/$$(dep)) $($(ucx)-prefix)/.pkgpatch
