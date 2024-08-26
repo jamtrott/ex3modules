@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# osu-micro-benchmarks-5.6.3-openmpi
+# osu-micro-benchmarks-7.4-openmpi
 
-osu-micro-benchmarks-openmpi-version = 5.6.3
+osu-micro-benchmarks-openmpi-version = 7.4
 osu-micro-benchmarks-openmpi = osu-micro-benchmarks-openmpi-$(osu-micro-benchmarks-openmpi-version)
 $(osu-micro-benchmarks-openmpi)-description = Benchmarks for MPI, OpenSHMEM, UPC and UPC++
 $(osu-micro-benchmarks-openmpi)-url = http://mvapich.cse.ohio-state.edu/benchmarks/
@@ -49,6 +49,10 @@ $($(osu-micro-benchmarks-openmpi)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfi
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(osu-micro-benchmarks-openmpi)-builddeps) && \
 		./configure --prefix=$($(osu-micro-benchmarks-openmpi)-prefix) \
+			$$([ ! -z "$${CUDA_TOOLKIT_ROOT}" ] && echo --enable-cuda --with-cuda="$${CUDA_TOOLKIT_ROOT}" || echo --without-cuda) \
+			$$([ ! -z "$${NCCL_ROOT}" ] && echo --enable-ncclomb --with-nccl="$${NCCL_ROOT}") \
+			$$([ ! -z "$${ROCM_ROOT}" ] && echo --enable-rocm --with-rocm="$${ROCM_ROOT}" || echo --without-rocm) \
+			$$([ ! -z "$${RCCL_ROOT}" ] && echo --enable-rcclomb --with-rccl="$${RCCL_ROOT}") \
 			CC=$${MPICC} CXX=$${MPICXX} && \
 		$(MAKE)
 	@touch $@

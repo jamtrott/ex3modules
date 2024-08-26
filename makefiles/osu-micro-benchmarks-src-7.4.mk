@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# osu-micro-benchmarks-src-5.6.3
+# osu-micro-benchmarks-src-7.4
 
-osu-micro-benchmarks-src-version = 5.6.3
+osu-micro-benchmarks-src-version = 7.4
 osu-micro-benchmarks-src = osu-micro-benchmarks-$(osu-micro-benchmarks-src-version)
 $(osu-micro-benchmarks-src)-description = Benchmarks for MPI, OpenSHMEM, UPC and UPC++
 $(osu-micro-benchmarks-src)-url = http://mvapich.cse.ohio-state.edu/benchmarks/

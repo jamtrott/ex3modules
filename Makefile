@@ -641,10 +641,8 @@ pkgs := $(pkgs) \
 	openmpi-src-5.0.5 \
 	openssl-1.1.1c \
 	openssl-1.1.1v \
-	osu-micro-benchmarks-mpich-5.6.3 \
-	osu-micro-benchmarks-mvapich-5.6.3 \
-	osu-micro-benchmarks-openmpi-5.6.3 \
-	osu-micro-benchmarks-src-5.6.3 \
+	osu-micro-benchmarks-openmpi-7.4 \
+	osu-micro-benchmarks-src-7.4 \
 	pahole-1.25 \
 	pango-1.44.7 \
 	parallel-20190922 \
