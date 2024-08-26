@@ -263,12 +263,19 @@ endif
 #
 ifeq ($(WITH_MPI),openmpi-4.0.5)
 mpi = openmpi-4.0.5
+openmpi = $(mpi)
+$(info Using internal MPI ($(mpi)))
+else ifeq ($(WITH_MPI),openmpi-5.0.5)
+mpi = openmpi-5.0.5
+openmpi = $(mpi)
 $(info Using internal MPI ($(mpi)))
 else ifeq ($(WITH_MPI),openmpi-4.1.6)
 mpi = openmpi-4.1.6
+openmpi = $(mpi)
 $(info Using internal MPI ($(mpi)))
 else ifeq ($(WITH_MPI),openmpi-4.1.4)
 mpi = openmpi-4.1.4
+openmpi = $(mpi)
 $(info Using internal MPI ($(mpi)))
 else ifeq ($(WITH_MPI),mpich-3.3.2)
 mpi = mpich-3.3.2
@@ -627,9 +634,11 @@ pkgs := $(pkgs) \
 	openmpi-4.0.5 \
 	openmpi-4.1.4 \
 	openmpi-4.1.6 \
+	openmpi-5.0.5 \
 	openmpi-src-4.0.5 \
 	openmpi-src-4.1.4 \
 	openmpi-src-4.1.6 \
+	openmpi-src-5.0.5 \
 	openssl-1.1.1c \
 	openssl-1.1.1v \
 	osu-micro-benchmarks-mpich-5.6.3 \
