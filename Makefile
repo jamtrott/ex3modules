@@ -851,6 +851,7 @@ pkgs := $(pkgs) \
 	scotch-src-7.0.4 \
 	slurm-20.02.7 \
 	sparse-0.6.3 \
+	sparsebase-0.3.1 \
 	sqlite-3.31.1 \
 	starpu-1.4.1 \
 	suitesparse-32-5.12.0 \
