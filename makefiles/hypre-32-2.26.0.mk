@@ -49,6 +49,7 @@ $($(hypre-32-2.26)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(hypre-32-2.26)-builddeps) && \
 		./configure --prefix=$($(hypre-32-2.26)-prefix) \
+			CFLAGS="-g -O2 -fopenmp" LDFLAGS="-fopenmp" \
 			--enable-shared \
 			--disable-fortran \
 			--with-openmp \
