@@ -18,25 +18,25 @@
 #
 # ucx-src-1.12.1
 
-ucx-src-version = 1.12.1
-ucx-src = ucx-src-$(ucx-src-version)
-$(ucx-src)-description = Optimized communication layer for MPI, PGAS/OpenSHMEM and RPC/data-centric applications (source)
-$(ucx-src)-url = http://www.openucx.org/
-$(ucx-src)-srcurl = https://github.com/openucx/ucx/archive/v$(ucx-src-version).tar.gz
-$(ucx-src)-builddeps =
-$(ucx-src)-prereqs =
-$(ucx-src)-src = $(pkgsrcdir)/ucx-$(notdir $($(ucx-src)-srcurl))
+ucx-src-1.12.1-version = 1.12.1
+ucx-src-1.12.1 = ucx-src-1.12.1-$(ucx-src-1.12.1-version)
+$(ucx-src-1.12.1)-description = Optimized communication layer for MPI, PGAS/OpenSHMEM and RPC/data-centric applications (source)
+$(ucx-src-1.12.1)-url = http://www.openucx.org/
+$(ucx-src-1.12.1)-srcurl = https://github.com/openucx/ucx/archive/v$(ucx-src-1.12.1-version).tar.gz
+$(ucx-src-1.12.1)-builddeps =
+$(ucx-src-1.12.1)-prereqs =
+$(ucx-src-1.12.1)-src = $(pkgsrcdir)/ucx-$(notdir $($(ucx-src-1.12.1)-srcurl))
 
-$($(ucx-src)-src): $(dir $($(ucx-src)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(ucx-src)-srcurl)
+$($(ucx-src-1.12.1)-src): $(dir $($(ucx-src-1.12.1)-src)).markerfile
+	$(CURL) $(curl_options) --output $@ $($(ucx-src-1.12.1)-srcurl)
 
-$(ucx-src)-src: $($(ucx-src)-src)
-$(ucx-src)-unpack:
-$(ucx-src)-patch:
-$(ucx-src)-build:
-$(ucx-src)-check:
-$(ucx-src)-install:
-$(ucx-src)-modulefile:
-$(ucx-src)-clean:
-	rm -rf $($(ucx-src)-src)
-$(ucx-src): $(ucx-src)-src $(ucx-src)-unpack $(ucx-src)-patch $(ucx-src)-build $(ucx-src)-check $(ucx-src)-install $(ucx-src)-modulefile
+$(ucx-src-1.12.1)-src: $($(ucx-src-1.12.1)-src)
+$(ucx-src-1.12.1)-unpack:
+$(ucx-src-1.12.1)-patch:
+$(ucx-src-1.12.1)-build:
+$(ucx-src-1.12.1)-check:
+$(ucx-src-1.12.1)-install:
+$(ucx-src-1.12.1)-modulefile:
+$(ucx-src-1.12.1)-clean:
+	rm -rf $($(ucx-src-1.12.1)-src)
+$(ucx-src-1.12.1): $(ucx-src-1.12.1)-src $(ucx-src-1.12.1)-unpack $(ucx-src-1.12.1)-patch $(ucx-src-1.12.1)-build $(ucx-src-1.12.1)-check $(ucx-src-1.12.1)-install $(ucx-src-1.12.1)-modulefile

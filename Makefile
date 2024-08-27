@@ -218,6 +218,7 @@ $(warning Warning: ROCm is disabled - some modules may not build.)
 else ifneq ($(WITH_ROCM),)
 HAVE_ROCM=1
 export ROCM_ROOT = $(WITH_ROCM)
+export RCCL_ROOT = $(ROCM_ROOT)/rccl
 export HIPCC = $(ROCM_ROOT)/bin/hipcc
 $(info Using $(HIPCC) ($(shell $(HIPCC) --version | head -n 1)))
 export PATH := $(ROCM_ROOT)/bin$(if $(PATH),:$(PATH),)
@@ -256,6 +257,27 @@ HWLOC_INFO = $(shell which hwloc-info)
 $(info Using $(HWLOC_INFO) ($(shell $(HWLOC_INFO) --version | head -n 1)))
 else
 $(warning Warning: hwloc not found - some modules may not build.)
+endif
+
+#
+# UCX
+#
+ifeq ($(WITH_UCX),ucx-1.12.1)
+ucx = ucx-1.12.1
+$(info Using internal UCX ($(mpi)))
+else ifeq ($(WITH_UCX),ucx-1.17.0)
+ucx = ucx-1.17.0
+$(info Using internal UCX ($(mpi)))
+else ifeq ($(WITH_UCX),no)
+$(warning Warning: UCX is disabled - some modules may not build.)
+else ifneq ($(WITH_UCX),)
+export UCX_ROOT = $(WITH_UCX)
+$(info Using UCX ($(shell $(UCX_ROOT)/ucx_info -v | head -n 1)))
+export PATH := $(UCX_ROOT)/bin$(if $(PATH),:$(PATH),)
+export C_INCLUDE_PATH := $(UCX_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_PATH),)
+export CPLUS_INCLUDE_PATH := $(UCX_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
+export LIBRARY_PATH := $(UCX_ROOT)/lib:$(UCX_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
+export LD_LIBRARY_PATH := $(UCX_ROOT)/lib:$(UCX_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
 endif
 
 #
@@ -849,7 +871,9 @@ pkgs := $(pkgs) \
 	tetgen-1.6.0 \
 	texinfo-6.7 \
 	texlive-20210325 \
+	ucx-1.17.0 \
 	ucx-1.12.1 \
+	ucx-src-1.17.0 \
 	ucx-src-1.12.1 \
 	utf8cpp-3.2.1 \
 	util-linux-2.34 \

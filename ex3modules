@@ -34,6 +34,7 @@ with_openblas=
 with_cmake=
 with_cuda=
 with_hwloc=
+with_ucx=
 with_mpi=
 with_openssl=
 with_python=
@@ -75,11 +76,17 @@ function help()
     printf "  %-20s\t%s\n" ""               "DIR/bin, DIR/include, DIR/lib and DIR/lib64 are added to search paths for"
     printf "  %-20s\t%s\n" ""               "binaries, headers and libraries. Otherwise, an internal hwloc is used."
     printf "  %-20s\t%s\n" "--without-hwloc" "disable hwloc usage completely"
+    printf "  %-20s\t%s\n" "--with-ucx=DIR" "Root directory of UCX installation, or one of the following values:"
+    printf "  %-20s\t%s\n" ""               "ucx-1.17.0 or ucx-1.12.1"
+    printf "  %-20s\t%s\n" ""               "If a directory is given, then an external UCX is used, and DIR/include,"
+    printf "  %-20s\t%s\n" ""               "DIR/lib and DIR/lib64 are added to search paths for headers and libraries."
+    printf "  %-20s\t%s\n" ""               "Otherwise, an internal UCX implementation is built and used."
+    printf "  %-20s\t%s\n" "--without-ucx" "disable UCX usage completely. Some modules may not be built."
     printf "  %-20s\t%s\n" "--with-mpi=DIR" "Root directory of MPI installation, or one of the following values:"
-    printf "  %-20s\t%s\n" ""               "'openmpi-4.0.5', 'openmpi-4.1.4', 'mpich-3.3.2' or 'mvapich-2.3.4'."
+    printf "  %-20s\t%s\n" ""               "'openmpi-5.0.5', 'openmpi-4.1.6', 'openmpi-4.1.4', 'openmpi-4.0.5', 'mpich-3.3.2' or 'mvapich-2.3.4'."
     printf "  %-20s\t%s\n" ""               "If a directory is given, then an external MPI is used, and DIR/include,"
     printf "  %-20s\t%s\n" ""               "DIR/lib and DIR/lib64 are added to search paths for headers and libraries."
-    printf "  %-20s\t%s\n" ""               "Otherwise, an internal MPI implementation is built and used. Note that"
+    printf "  %-20s\t%s\n" ""               "Otherwise, an internal MPI implementation is built and used."
     printf "  %-20s\t%s\n" "--without-mpi" "disable MPI usage completely. Some modules may not be built."
     printf "  %-20s\t%s\n" "--with-openssl=DIR" "Root directory of OpenSSL installation, or 'openssl-1.1.1c'."
     printf "  %-20s\t%s\n" ""               "If a directory is given, then an external OpenSSL is used. In this case,"
@@ -171,6 +178,9 @@ function parse_program_options()
 	    --with-hwloc) with_hwloc="${2}"; shift 2;;
 	    --with-hwloc=*) with_hwloc="${1#*=}"; shift 1;;
 	    --without-hwloc) with_hwloc=no; shift 1;;
+	    --with-ucx) with_ucx="${2}"; shift 2;;
+	    --with-ucx=*) with_ucx="${1#*=}"; shift 1;;
+	    --without-ucx) with_ucx=no; shift 1;;
 	    --with-mpi) with_mpi="${2}"; shift 2;;
 	    --with-mpi=*) with_mpi="${1#*=}"; shift 1;;
 	    --without-mpi) with_mpi=no; shift 1;;
@@ -221,6 +231,7 @@ function main ()
     [ ! -z "${with_cmake}" ] && make_options+=" WITH_CMAKE=${with_cmake}"
     [ ! -z "${with_cuda}" ] && make_options+=" WITH_CUDA=${with_cuda}"
     [ ! -z "${with_hwloc}" ] && make_options+=" WITH_HWLOC=${with_hwloc}"
+    [ ! -z "${with_ucx}" ] && make_options+=" WITH_UCX=${with_ucx}"
     [ ! -z "${with_mpi}" ] && make_options+=" WITH_MPI=${with_mpi}"
     [ ! -z "${with_openssl}" ] && make_options+=" WITH_OPENSSL=${with_openssl}"
     [ ! -z "${with_python}" ] && make_options+=" WITH_PYTHON=${with_python}"

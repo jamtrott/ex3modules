@@ -1,3 +1,7 @@
+2024-08-26  James D. Trotter  <james@simula.no>
+
+	Update UCX to 1.17.0, OpenMPI to 5.0.5 for ROCm-aware MPI.
+
 2024-03-22  James D. Trotter  <james@simula.no>
 
 	Update GMP 6.1.2 to 6.3.0 to fix issues on ARM that previously
