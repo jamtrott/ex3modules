@@ -63,9 +63,9 @@ MODULE := module
 #
 
 # Default to using 32-bit versions of various linear algebra packages
-hypre = hypre-32-2.26.0
-hypre-32 = hypre-32-2.26.0
-hypre-64 = hypre-64-2.26.0
+hypre = hypre-32-2.32.0
+hypre-32 = hypre-32-2.32.0
+hypre-64 = hypre-64-2.32.0
 metis = metis-32-5.1.0
 metis-32 = metis-32-5.1.0
 metis-64 = metis-64-5.1.0
@@ -537,14 +537,17 @@ pkgs := $(pkgs) \
 	hypre-32-2.25.0 \
 	hypre-32-2.25.0-gfx90a \
 	hypre-32-2.26.0 \
+	hypre-32-2.32.0 \
 	hypre-64-2.23.0 \
 	hypre-64-2.24.0 \
 	hypre-64-2.25.0 \
 	hypre-64-2.26.0 \
+	hypre-64-2.32.0 \
 	hypre-src-2.23.0 \
 	hypre-src-2.24.0 \
 	hypre-src-2.25.0 \
 	hypre-src-2.26.0 \
+	hypre-src-2.32.0 \
 	icu-69.1 \
 	iperf-2.0.13 \
 	ipopt-3.13.3 \
