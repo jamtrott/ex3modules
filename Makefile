@@ -84,9 +84,9 @@ suitesparse-64 = suitesparse-64-5.12.0
 superlu_dist = superlu_dist-32-8.1.0
 superlu_dist-32 = superlu_dist-32-8.1.0
 superlu_dist-64 = superlu_dist-64-8.1.0
-petsc = petsc-32-3.17.4
-petsc-32 = petsc-32-3.17.4
-petsc-64 = petsc-64-3.17.4
+petsc = petsc-32-3.21.5
+petsc-32 = petsc-32-3.21.5
+petsc-64 = petsc-64-3.21.5
 mfem = mfem-4.5.2
 
 # HDF5
@@ -686,11 +686,15 @@ pkgs := $(pkgs) \
 	petsc-3.13.2 \
 	petsc-32-3.16.5 \
 	petsc-32-3.17.4 \
+	petsc-32-3.21.5 \
+	petsc-32-3.21.5-sm_70 \
 	petsc-64-3.16.5 \
 	petsc-64-3.17.4 \
+	petsc-64-3.21.5 \
 	petsc-src-3.13.2 \
 	petsc-src-3.16.5 \
 	petsc-src-3.17.4 \
+	petsc-src-3.21.5 \
 	pixman-0.38.4 \
 	pmix-4.1.2 \
 	poppler-21.04.0 \
