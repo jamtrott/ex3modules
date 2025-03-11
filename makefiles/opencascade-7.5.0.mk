@@ -101,6 +101,7 @@ $($(opencascade)-modulefile): $(modulefilesdir)/.markerfile $($(opencascade)-pre
 	echo "prepend-path LD_LIBRARY_PATH $($(opencascade)-prefix)/lib" >>$@
 	echo "prepend-path CMAKE_MODULE_PATH $($(opencascade)-prefix)/lib/cmake/opencascade" >>$@
 	echo "prepend-path CMAKE_PREFIX_PATH $($(opencascade)-prefix)/lib/cmake/opencascade" >>$@
+	echo "setenv CASROOT $($(opencascade)-prefix)" >>$@
 	echo "set MSG \"$(opencascade)\"" >>$@
 
 $(opencascade)-src: $$($(opencascade)-src)
