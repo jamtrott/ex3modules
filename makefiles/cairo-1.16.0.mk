@@ -25,8 +25,8 @@ $(cairo)-url = https://www.cairographics.org/
 $(cairo)-srcurl = https://www.cairographics.org/releases/cairo-$(cairo-version).tar.xz
 $(cairo)-src = $(pkgsrcdir)/$(notdir $($(cairo)-srcurl))
 $(cairo)-srcdir = $(pkgsrcdir)/$(cairo)
-$(cairo)-builddeps = $(libpng) $(freetype) $(fontconfig) $(pixman) $(xorg-libraries)
-$(cairo)-prereqs = $(libpng) $(freetype) $(fontconfig) $(pixman) $(xorg-libraries)
+$(cairo)-builddeps = $(libbsd) $(libpng) $(freetype) $(fontconfig) $(pixman) $(xorg-libraries)
+$(cairo)-prereqs = $(libbsd) $(libpng) $(freetype) $(fontconfig) $(pixman) $(xorg-libraries)
 $(cairo)-modulefile = $(modulefilesdir)/$(cairo)
 $(cairo)-prefix = $(pkgdir)/$(cairo)
 

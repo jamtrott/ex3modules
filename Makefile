@@ -560,6 +560,7 @@ pkgs := $(pkgs) \
 	libarchive-3.4.2 \
 	libatomic_ops-7.6.10 \
 	libbpf-1.2.2 \
+	libbsd-0.12.2 \
 	libceed-0.11.0 \
 	libcerf-1.13 \
 	libcheck-0.15.2 \
@@ -578,6 +579,7 @@ pkgs := $(pkgs) \
 	libice-1.0.10 \
 	libiconv-1.16 \
 	libjpeg-turbo-2.0.4 \
+	libmd-1.1.0 \
 	libnl-3.2.25 \
 	libpaper-1.1.24+nmu5 \
 	libpciaccess-0.16 \
