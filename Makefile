@@ -489,6 +489,7 @@ pkgs := $(pkgs) \
 	fontconfig-2.13.96 \
 	freeipmi-1.6.6 \
 	freetype-2.12.1 \
+	freetype-src-2.12.1 \
 	fribidi-1.0.10 \
 	gc-8.0.4 \
 	gcc-10.1.0 \
@@ -517,6 +518,7 @@ pkgs := $(pkgs) \
 	graphviz-2.44.0 \
 	gsl-2.6 \
 	harfbuzz-2.6.4 \
+	harfbuzz-bootstrap-2.6.4 \
 	harfbuzz-graphite-2.6.4 \
 	harfbuzz-src-2.6.4 \
 	hdf5-1.10.5 \

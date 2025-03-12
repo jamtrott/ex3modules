@@ -22,16 +22,14 @@ freetype-version = 2.12.1
 freetype = freetype-$(freetype-version)
 $(freetype)-description = Font rendering library
 $(freetype)-url = https://www.freetype.org/
-$(freetype)-srcurl = https://download.savannah.gnu.org/releases/freetype/freetype-$(freetype-version).tar.gz
-$(freetype)-src = $(pkgsrcdir)/$(freetype).tar.gz
-$(freetype)-srcdir = $(pkgsrcdir)/$(freetype)
+$(freetype)-srcurl =
 $(freetype)-builddeps = $(libpng)
 $(freetype)-prereqs = $(libpng)
+$(freetype)-src =  $($(freetype-src)-src)
+$(freetype)-srcdir = $(pkgsrcdir)/$(freetype)
+$(freetype)-builddir = $($(freetype)-srcdir)
 $(freetype)-modulefile = $(modulefilesdir)/$(freetype)
 $(freetype)-prefix = $(pkgdir)/$(freetype)
-
-$($(freetype)-src): $(dir $($(freetype)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(freetype)-srcurl)
 
 $($(freetype)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
@@ -39,19 +37,24 @@ $($(freetype)-srcdir)/.markerfile:
 $($(freetype)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(freetype)-prefix)/.pkgunpack: $($(freetype)-src) $($(freetype)-srcdir)/.markerfile $($(freetype)-prefix)/.markerfile $$(foreach dep,$$($(freetype)-builddeps),$(modulefilesdir)/$$(dep))
+$($(freetype)-prefix)/.pkgunpack:  $$($(freetype)-src) $($(freetype)-srcdir)/.markerfile $($(freetype)-prefix)/.markerfile $$(foreach dep,$$($(freetype)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(freetype)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
 $($(freetype)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(freetype)-builddeps),$(modulefilesdir)/$$(dep)) $($(freetype)-prefix)/.pkgunpack
 	@touch $@
 
+ifneq ($($(freetype)-builddir),$($(freetype)-srcdir))
+$($(freetype)-builddir)/.markerfile: $($(freetype)-prefix)/.pkgunpack
+	$(INSTALL) -d $(dir $@) && touch $@
+endif
+
 $($(freetype)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(freetype)-builddeps),$(modulefilesdir)/$$(dep)) $($(freetype)-prefix)/.pkgpatch
 	cd $($(freetype)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(freetype)-builddeps) && \
-		./configure --prefix=$($(freetype)-prefix) && \
+		./configure --prefix=$($(freetype)-prefix) --without-harfbuzz --without-brotli && \
 		$(MAKE) MAKEFLAGS=
 	@touch $@
 
