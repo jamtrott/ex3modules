@@ -850,7 +850,7 @@ pkgs := $(pkgs) \
 	python-xarray-0.15.1 \
 	python-zipp-3.3.1 \
 	qperf-0.4.11 \
-	qt5-5.15.2 \
+	qt5-5.15.16 \
 	rdma-core-44.0 \
 	readline-8.0 \
 	scalapack-2.1.0 \
