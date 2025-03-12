@@ -591,7 +591,7 @@ pkgs := $(pkgs) \
 	libtiff-4.1.0 \
 	libtool-2.4.6 \
 	libufget-1.0.3 \
-	libunwind-1.3.1 \
+	libunwind-1.6.2 \
 	libwebp-1.1.0 \
 	libx11-1.6.9 \
 	libxau-1.0.9 \

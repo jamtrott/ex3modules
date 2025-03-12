@@ -1,3 +1,7 @@
+2025-03-12  James D. Trotter  <james@simula.no>
+
+	Update libunwind to 1.6.2.
+
 2024-08-26  James D. Trotter  <james@simula.no>
 
 	Update UCX to 1.17.0, OpenMPI to 5.0.5 for ROCm-aware MPI.
