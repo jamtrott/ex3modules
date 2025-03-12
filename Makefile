@@ -626,6 +626,7 @@ pkgs := $(pkgs) \
 	llvm-10.0.1 \
 	llvm-11.0.0 \
 	llvm-openmp-11.0.0 \
+	llvm-12.0.1 \
 	matio-1.5.17 \
 	mesa-21.1.5 \
 	meson-0.63.1 \
