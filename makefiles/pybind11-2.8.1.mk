@@ -23,7 +23,7 @@ pybind11 = pybind11-$(pybind11-version)
 $(pybind11)-description = Seamless operability between C++11 and Python
 $(pybind11)-url = https://github.com/pybind/pybind11
 $(pybind11)-srcurl = https://github.com/pybind/pybind11/archive/v$(pybind11-version).tar.gz
-$(pybind11)-builddeps = $(boost) $(cmake) $(python) $(python-pytest)
+$(pybind11)-builddeps = $(boost) $(cmake) $(python) $(python-pytest) $(python-pip)
 $(pybind11)-prereqs =
 $(pybind11)-src = $(pkgsrcdir)/pybind11-$(notdir $($(pybind11)-srcurl))
 $(pybind11)-srcdir = $(pkgsrcdir)/$(pybind11)
@@ -81,6 +81,7 @@ $($(pybind11)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(pybind11)-builddeps) && \
 		PYTHONPATH=$($(pybind11)-prefix):$${PYTHONPATH} \
+		CMAKE_POLICY_VERSION_MINIMUM=3.5 \
 		$(PYTHON) -m pip install . --no-deps --ignore-installed --target=$($(pybind11)-prefix)
 	@touch $@
 

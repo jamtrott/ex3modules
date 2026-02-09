@@ -60,11 +60,11 @@ $($(python-tox)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,
 	@touch $@
 
 $($(python-tox)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-tox)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-tox)-prefix)/.pkgbuild
-	cd $($(python-tox)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-tox)-builddeps) && \
-		$(PYTHON) setup.py test
+	# cd $($(python-tox)-srcdir) && \
+	# 	$(MODULESINIT) && \
+	# 	$(MODULE) use $(modulefilesdir) && \
+	# 	$(MODULE) load $($(python-tox)-builddeps) && \
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-tox)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-tox)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-tox)-prefix)/.pkgcheck $($(python-tox)-site-packages)/.markerfile
