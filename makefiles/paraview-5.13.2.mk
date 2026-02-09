@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2021 James D. Trotter
+# Copyright (C) 2025 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# paraview-5.9.1
+# paraview-5.13.2
 
-paraview-version = 5.9.1
+paraview-version = 5.13.2
 paraview = paraview-$(paraview-version)
 $(paraview)-description = Open-source, multi-platform data analysis and visualization application
 $(paraview)-url = https://www.paraview.org/
-$(paraview)-srcurl = https://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v5.9&type=source&os=Sources&downloadFile=ParaView-v5.9.1.tar.xz
+$(paraview)-srcurl = https://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v5.13&type=source&os=Sources&downloadFile=ParaView-v5.13.2.tar.xz
 $(paraview)-builddeps = $(cmake) $(mpi) $(python) $(libxt) $(qt5)
 $(paraview)-prereqs = $(mpi) $(python) $(qt5)
 $(paraview)-src = $(pkgsrcdir)/paraview-$(paraview-version).tar.xz

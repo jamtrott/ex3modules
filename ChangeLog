@@ -7,6 +7,7 @@
 	Upgrade:
 
 	boost 1.73.0 -> 1.90.0.
+	paraview 5.9.1 -> 5.13.2
 
 	Other:
 

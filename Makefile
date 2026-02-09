@@ -726,7 +726,7 @@ pkgs := $(pkgs) \
 	pahole-1.25 \
 	pango-1.44.7 \
 	parallel-20190922 \
-	paraview-5.9.1 \
+	paraview-5.13.2 \
 	parmetis-32-4.0.3 \
 	parmetis-64-4.0.3 \
 	parmetis-src-4.0.3 \
