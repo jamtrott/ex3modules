@@ -309,10 +309,10 @@ endif
 #
 ifeq ($(WITH_UCX),ucx-1.12.1)
 ucx = ucx-1.12.1
-$(info Using internal UCX ($(mpi)))
+$(info Using internal UCX ($(ucx)))
 else ifeq ($(WITH_UCX),ucx-1.17.0)
 ucx = ucx-1.17.0
-$(info Using internal UCX ($(mpi)))
+$(info Using internal UCX ($(ucx)))
 else ifeq ($(WITH_UCX),no)
 $(warning Warning: UCX is disabled - some modules may not build.)
 else ifneq ($(WITH_UCX),)
