@@ -506,7 +506,9 @@ pkgs := $(pkgs) \
 	boost-src-1.90.0 \
 	bzip2-1.0.8 \
 	cairo-1.16.0 \
+	casacore-3.7.1 \
 	cblas \
+	cfitsio-4.6.3 \
 	cgal-4.12.2 \
 	cgal-5.2.2 \
 	clang-11.0.0 \
@@ -520,6 +522,7 @@ pkgs := $(pkgs) \
 	doxygen-1.8.18 \
 	eigen-3.3.7 \
 	elfutils-0.189 \
+	everybeam-0.8.0 \
 	expat-2.2.9 \
 	exprtk-93a9f44f9 \
 	fenics-dolfin-2018-src-2018.1.0.post1 \
@@ -776,6 +779,7 @@ pkgs := $(pkgs) \
 	python-babel-2.8.0 \
 	python-beniget-0.4.1 \
 	python-breathe-4.13.1 \
+	python-casacore-3.7.1 \
 	python-certifi-2020.6.20 \
 	python-cffi-1.14.3 \
 	python-chardet-3.0.4 \
@@ -954,6 +958,7 @@ pkgs := $(pkgs) \
 	vmtk-1.4.0 \
 	vtk8-8.1.2 \
 	vtk9-9.1.0 \
+	wcslib-8.5 \
 	xcb-proto-1.15 \
 	xcb-util-0.4.0 \
 	xcb-util-image-0.4.0 \

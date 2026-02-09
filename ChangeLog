@@ -5,6 +5,11 @@
 	* pigz 2.8
 	* Lua 5.4.0
 	* Python 3.10.12
+	* casacore 3.7.1
+	* cfitsio 4.6.3
+	* everybeam 0.8.0
+	* python-casacore 3.7.1
+	* wcslib 8.5
 
 	Upgrade:
 
