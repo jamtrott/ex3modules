@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2026 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,37 +18,37 @@
 #
 # boost-python-1.73.0
 
-boost-python-version = 1.73.0
-boost-python = boost-python-$(boost-python-version)
-$(boost-python)-description = C++ library for interoperability between C++ and Python
-$(boost-python)-url = https://www.boost.org/
-$(boost-python)-srcurl =
-$(boost-python)-builddeps = $(python)
-$(boost-python)-prereqs = $(python)
-$(boost-python)-src = $($(boost-src)-src)
-$(boost-python)-srcdir = $(pkgsrcdir)/$(boost-python)
-$(boost-python)-modulefile = $(modulefilesdir)/$(boost-python)
-$(boost-python)-prefix = $(pkgdir)/$(boost-python)
+boost-python-1.73.0-version = 1.73.0
+boost-python-1.73.0 = boost-python-$(boost-python-1.73.0-version)
+$(boost-python-1.73.0)-description = C++ library for interoperability between C++ and Python
+$(boost-python-1.73.0)-url = https://www.boost.org/
+$(boost-python-1.73.0)-srcurl =
+$(boost-python-1.73.0)-builddeps = $(python)
+$(boost-python-1.73.0)-prereqs = $(python)
+$(boost-python-1.73.0)-src = $($(boost-src)-src)
+$(boost-python-1.73.0)-srcdir = $(pkgsrcdir)/$(boost-python-1.73.0)
+$(boost-python-1.73.0)-modulefile = $(modulefilesdir)/$(boost-python-1.73.0)
+$(boost-python-1.73.0)-prefix = $(pkgdir)/$(boost-python-1.73.0)
 
-$($(boost-python)-srcdir)/.markerfile:
+$($(boost-python-1.73.0)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(boost-python)-prefix)/.markerfile:
+$($(boost-python-1.73.0)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(boost-python)-prefix)/.pkgunpack: $$($(boost-python)-src) $($(boost-python)-srcdir)/.markerfile $($(boost-python)-prefix)/.markerfile $$(foreach dep,$$($(boost-python)-builddeps),$(modulefilesdir)/$$(dep))
-	tar -C $($(boost-python)-srcdir) --strip-components 1 -xj -f $<
+$($(boost-python-1.73.0)-prefix)/.pkgunpack: $$($(boost-python-1.73.0)-src) $($(boost-python-1.73.0)-srcdir)/.markerfile $($(boost-python-1.73.0)-prefix)/.markerfile $$(foreach dep,$$($(boost-python-1.73.0)-builddeps),$(modulefilesdir)/$$(dep))
+	tar -C $($(boost-python-1.73.0)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 
-$($(boost-python)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost-python)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost-python)-prefix)/.pkgunpack
+$($(boost-python-1.73.0)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost-python-1.73.0)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost-python-1.73.0)-prefix)/.pkgunpack
 	@touch $@
 
-$($(boost-python)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost-python)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost-python)-prefix)/.pkgpatch
-	cd $($(boost-python)-srcdir) && \
+$($(boost-python-1.73.0)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost-python-1.73.0)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost-python-1.73.0)-prefix)/.pkgpatch
+	cd $($(boost-python-1.73.0)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(boost-python)-builddeps) && \
-		./bootstrap.sh --prefix=$($(boost-python)-prefix) \
+		$(MODULE) load $($(boost-python-1.73.0)-builddeps) && \
+		./bootstrap.sh --prefix=$($(boost-python-1.73.0)-prefix) \
 			--with-toolset=gcc \
 			--with-python=$(PYTHON) \
 			--with-python-version=$(PYTHON_VERSION_SHORT) \
@@ -56,55 +56,55 @@ $($(boost-python)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach de
 		./b2 --toolset=gcc --with-python
 	@touch $@
 
-$($(boost-python)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost-python)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost-python)-prefix)/.pkgbuild
+$($(boost-python-1.73.0)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost-python-1.73.0)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost-python-1.73.0)-prefix)/.pkgbuild
 	@touch $@
 
-$($(boost-python)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost-python)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost-python)-prefix)/.pkgcheck
-	cd $($(boost-python)-srcdir) && \
+$($(boost-python-1.73.0)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost-python-1.73.0)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost-python-1.73.0)-prefix)/.pkgcheck
+	cd $($(boost-python-1.73.0)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(boost-python)-builddeps) && \
+		$(MODULE) load $($(boost-python-1.73.0)-builddeps) && \
 		./b2 --toolset=gcc --with-python install
 	@touch $@
 
-$($(boost-python)-modulefile): $(modulefilesdir)/.markerfile $($(boost-python)-prefix)/.pkginstall
+$($(boost-python-1.73.0)-modulefile): $(modulefilesdir)/.markerfile $($(boost-python-1.73.0)-prefix)/.pkginstall
 	printf "" >$@
 	echo "#%Module" >>$@
-	echo "# $(boost-python)" >>$@
+	echo "# $(boost-python-1.73.0)" >>$@
 	echo "" >>$@
 	echo "proc ModulesHelp { } {" >>$@
-	echo "     puts stderr \"\tSets up the environment for $(boost-python)\\n\"" >>$@
+	echo "     puts stderr \"\tSets up the environment for $(boost-python-1.73.0)\\n\"" >>$@
 	echo "}" >>$@
 	echo "" >>$@
-	echo "module-whatis \"$($(boost-python)-description)\"" >>$@
-	echo "module-whatis \"$($(boost-python)-url)\"" >>$@
-	printf "$(foreach prereq,$($(boost-python)-prereqs),\n$(MODULE) load $(prereq))" >>$@
+	echo "module-whatis \"$($(boost-python-1.73.0)-description)\"" >>$@
+	echo "module-whatis \"$($(boost-python-1.73.0)-url)\"" >>$@
+	printf "$(foreach prereq,$($(boost-python-1.73.0)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv BOOST_PYTHON_ROOT $($(boost-python)-prefix)" >>$@
-	echo "setenv BOOST_PYTHON_INCDIR $($(boost-python)-prefix)/include" >>$@
-	echo "setenv BOOST_PYTHON_INCLUDEDIR $($(boost-python)-prefix)/include" >>$@
-	echo "setenv BOOST_PYTHON_LIBDIR $($(boost-python)-prefix)/lib" >>$@
-	echo "setenv BOOST_PYTHON_LIBRARYDIR $($(boost-python)-prefix)/lib" >>$@
-	echo "prepend-path PATH $($(boost-python)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(boost-python)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(boost-python)-prefix)/include" >>$@
-	echo "prepend-path LIBRARY_PATH $($(boost-python)-prefix)/lib" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(boost-python)-prefix)/lib" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(boost-python)-prefix)/lib/pkgconfig" >>$@
-	echo "prepend-path MANPATH $($(boost-python)-prefix)/share/man" >>$@
-	echo "prepend-path INFOPATH $($(boost-python)-prefix)/share/info" >>$@
-	echo "set MSG \"$(boost-python)\"" >>$@
+	echo "setenv BOOST_PYTHON_ROOT $($(boost-python-1.73.0)-prefix)" >>$@
+	echo "setenv BOOST_PYTHON_INCDIR $($(boost-python-1.73.0)-prefix)/include" >>$@
+	echo "setenv BOOST_PYTHON_INCLUDEDIR $($(boost-python-1.73.0)-prefix)/include" >>$@
+	echo "setenv BOOST_PYTHON_LIBDIR $($(boost-python-1.73.0)-prefix)/lib" >>$@
+	echo "setenv BOOST_PYTHON_LIBRARYDIR $($(boost-python-1.73.0)-prefix)/lib" >>$@
+	echo "prepend-path PATH $($(boost-python-1.73.0)-prefix)/bin" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(boost-python-1.73.0)-prefix)/include" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(boost-python-1.73.0)-prefix)/include" >>$@
+	echo "prepend-path LIBRARY_PATH $($(boost-python-1.73.0)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(boost-python-1.73.0)-prefix)/lib" >>$@
+	echo "prepend-path PKG_CONFIG_PATH $($(boost-python-1.73.0)-prefix)/lib/pkgconfig" >>$@
+	echo "prepend-path MANPATH $($(boost-python-1.73.0)-prefix)/share/man" >>$@
+	echo "prepend-path INFOPATH $($(boost-python-1.73.0)-prefix)/share/info" >>$@
+	echo "set MSG \"$(boost-python-1.73.0)\"" >>$@
 
-$(boost-python)-src: $$($(boost-python)-src)
-$(boost-python)-unpack: $($(boost-python)-prefix)/.pkgunpack
-$(boost-python)-patch: $($(boost-python)-prefix)/.pkgpatch
-$(boost-python)-build: $($(boost-python)-prefix)/.pkgbuild
-$(boost-python)-check: $($(boost-python)-prefix)/.pkgcheck
-$(boost-python)-install: $($(boost-python)-prefix)/.pkginstall
-$(boost-python)-modulefile: $($(boost-python)-modulefile)
-$(boost-python)-clean:
-	rm -rf $($(boost-python)-modulefile)
-	rm -rf $($(boost-python)-prefix)
-	rm -rf $($(boost-python)-srcdir)
-$(boost-python): $(boost-python)-src $(boost-python)-unpack $(boost-python)-patch $(boost-python)-build $(boost-python)-check $(boost-python)-install $(boost-python)-modulefile
+$(boost-python-1.73.0)-src: $$($(boost-python-1.73.0)-src)
+$(boost-python-1.73.0)-unpack: $($(boost-python-1.73.0)-prefix)/.pkgunpack
+$(boost-python-1.73.0)-patch: $($(boost-python-1.73.0)-prefix)/.pkgpatch
+$(boost-python-1.73.0)-build: $($(boost-python-1.73.0)-prefix)/.pkgbuild
+$(boost-python-1.73.0)-check: $($(boost-python-1.73.0)-prefix)/.pkgcheck
+$(boost-python-1.73.0)-install: $($(boost-python-1.73.0)-prefix)/.pkginstall
+$(boost-python-1.73.0)-modulefile: $($(boost-python-1.73.0)-modulefile)
+$(boost-python-1.73.0)-clean:
+	rm -rf $($(boost-python-1.73.0)-modulefile)
+	rm -rf $($(boost-python-1.73.0)-prefix)
+	rm -rf $($(boost-python-1.73.0)-srcdir)
+$(boost-python-1.73.0): $(boost-python-1.73.0)-src $(boost-python-1.73.0)-unpack $(boost-python-1.73.0)-patch $(boost-python-1.73.0)-build $(boost-python-1.73.0)-check $(boost-python-1.73.0)-install $(boost-python-1.73.0)-modulefile

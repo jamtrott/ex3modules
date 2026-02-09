@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2024 James D. Trotter
+# Copyright (C) 2026 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -92,6 +92,37 @@ mfem = mfem-4.5.2
 # HDF5
 hdf5 = hdf5-1.10.5
 hdf5-parallel = hdf5-parallel-1.10.5
+
+#
+# boost
+#
+ifeq ($(WITH_BOOST),boost-1.90.0)
+boost = boost-1.90.0
+boost-src = boost-src-1.90.0
+boost-python = boost-python-1.90.0
+BOOST = $(pkgdir)/$(boost)/bin/boost
+$(info Using internal Boost ($(boost)))
+else ifeq ($(WITH_BOOST),boost-1.73.0)
+boost = boost-1.73.0
+boost-src = boost-src-1.73.0
+boost-python = boost-python-1.73.0
+BOOST = $(pkgdir)/$(boost)/bin/boost
+$(info Using internal Boost ($(boost)))
+else ifeq ($(WITH_BOOST),no)
+BOOST = false
+$(warning Warning: Boost is disabled - some modules may not build.)
+else ifneq ($(WITH_BOOST),)
+BOOST_ROOT = $(WITH_BOOST)
+BOOST = $(BOOST_ROOT)/bin/boost
+$(info Using $(BOOST) ($(shell $(BOOST) --version | head -n 1)))
+export PATH := $(BOOST_ROOT)/bin$(if $(PATH),:$(PATH),)
+export ACLOCAL_PATH := $(BOOST_ROOT)/share/aclocal$(if $(ACLOCAL_PATH),:$(ACLOCAL_PATH),)
+else ifneq ($(shell which boost),)
+BOOST = $(shell which boost)
+$(info Using $(BOOST) ($(shell $(BOOST) --version | head -n 1)))
+else
+$(warning Warning: boost not found - some modules may not build.)
+endif
 
 #
 # CMake
@@ -447,9 +478,12 @@ pkgs := $(pkgs) \
 	blis-zen-0.7.0 \
 	blis-zen2-0.7.0 \
 	boost-1.73.0 \
+	boost-1.90.0 \
 	boost-mpi-1.73.0 \
 	boost-python-1.73.0 \
+	boost-python-1.90.0 \
 	boost-src-1.73.0 \
+	boost-src-1.90.0 \
 	bzip2-1.0.8 \
 	cairo-1.16.0 \
 	cblas \

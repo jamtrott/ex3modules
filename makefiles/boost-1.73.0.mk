@@ -18,90 +18,90 @@
 #
 # boost-1.73.0
 
-boost-version = 1.73.0
-boost = boost-$(boost-version)
-$(boost)-description = Libraries for the C++ programming language
-$(boost)-url = https://www.boost.org/
-$(boost)-srcurl =
-$(boost)-builddeps = $(xz)
-$(boost)-prereqs = $(xz)
-$(boost)-src = $($(boost-src)-src)
-$(boost)-srcdir = $(pkgsrcdir)/$(boost)
-$(boost)-modulefile = $(modulefilesdir)/$(boost)
-$(boost)-prefix = $(pkgdir)/$(boost)
+boost-1.73.0-version = 1.73.0
+boost-1.73.0 = boost-$(boost-1.73.0-version)
+$(boost-1.73.0)-description = Libraries for the C++ programming language
+$(boost-1.73.0)-url = https://www.boost.org/
+$(boost-1.73.0)-srcurl =
+$(boost-1.73.0)-builddeps = $(xz)
+$(boost-1.73.0)-prereqs = $(xz)
+$(boost-1.73.0)-src = $($(boost-src-1.73.0)-src)
+$(boost-1.73.0)-srcdir = $(pkgsrcdir)/$(boost-1.73.0)
+$(boost-1.73.0)-modulefile = $(modulefilesdir)/$(boost-1.73.0)
+$(boost-1.73.0)-prefix = $(pkgdir)/$(boost-1.73.0)
 
-$($(boost)-srcdir)/.markerfile:
+$($(boost-1.73.0)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(boost)-prefix)/.markerfile:
+$($(boost-1.73.0)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(boost)-prefix)/.pkgunpack: $$($(boost)-src) $($(boost)-srcdir)/.markerfile $($(boost)-prefix)/.markerfile $$(foreach dep,$$($(boost)-builddeps),$(modulefilesdir)/$$(dep))
-	tar -C $($(boost)-srcdir) --strip-components 1 -xj -f $<
+$($(boost-1.73.0)-prefix)/.pkgunpack: $$($(boost-1.73.0)-src) $($(boost-1.73.0)-srcdir)/.markerfile $($(boost-1.73.0)-prefix)/.markerfile $$(foreach dep,$$($(boost-1.73.0)-builddeps),$(modulefilesdir)/$$(dep))
+	tar -C $($(boost-1.73.0)-srcdir) --strip-components 1 -xj -f $<
 	@touch $@
 
-$($(boost)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost)-prefix)/.pkgunpack
+$($(boost-1.73.0)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost-1.73.0)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost-1.73.0)-prefix)/.pkgunpack
 	@touch $@
 
-$($(boost)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost)-prefix)/.pkgpatch
-	cd $($(boost)-srcdir) && \
+$($(boost-1.73.0)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost-1.73.0)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost-1.73.0)-prefix)/.pkgpatch
+	cd $($(boost-1.73.0)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(boost)-builddeps) && \
-		./bootstrap.sh --prefix=$($(boost)-prefix) \
+		$(MODULE) load $($(boost-1.73.0)-builddeps) && \
+		./bootstrap.sh --prefix=$($(boost-1.73.0)-prefix) \
 			 --with-toolset=gcc && \
 		./b2 --toolset=gcc --without-python --without-mpi
 	@touch $@
 
-$($(boost)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost)-prefix)/.pkgbuild
+$($(boost-1.73.0)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost-1.73.0)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost-1.73.0)-prefix)/.pkgbuild
 	@touch $@
 
-$($(boost)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost)-prefix)/.pkgcheck
-	cd $($(boost)-srcdir) && \
+$($(boost-1.73.0)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(boost-1.73.0)-builddeps),$(modulefilesdir)/$$(dep)) $($(boost-1.73.0)-prefix)/.pkgcheck
+	cd $($(boost-1.73.0)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(boost)-builddeps) && \
+		$(MODULE) load $($(boost-1.73.0)-builddeps) && \
 		./b2 --toolset=gcc --without-python --without-mpi install
 	@touch $@
 
-$($(boost)-modulefile): $(modulefilesdir)/.markerfile $($(boost)-prefix)/.pkginstall
+$($(boost-1.73.0)-modulefile): $(modulefilesdir)/.markerfile $($(boost-1.73.0)-prefix)/.pkginstall
 	printf "" >$@
 	echo "#%Module" >>$@
-	echo "# $(boost)" >>$@
+	echo "# $(boost-1.73.0)" >>$@
 	echo "" >>$@
 	echo "proc ModulesHelp { } {" >>$@
-	echo "     puts stderr \"\tSets up the environment for $(boost)\\n\"" >>$@
+	echo "     puts stderr \"\tSets up the environment for $(boost-1.73.0)\\n\"" >>$@
 	echo "}" >>$@
 	echo "" >>$@
-	echo "module-whatis \"$($(boost)-description)\"" >>$@
-	echo "module-whatis \"$($(boost)-url)\"" >>$@
-	printf "$(foreach prereq,$($(boost)-prereqs),\n$(MODULE) load $(prereq))" >>$@
+	echo "module-whatis \"$($(boost-1.73.0)-description)\"" >>$@
+	echo "module-whatis \"$($(boost-1.73.0)-url)\"" >>$@
+	printf "$(foreach prereq,$($(boost-1.73.0)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv BOOST_ROOT $($(boost)-prefix)" >>$@
-	echo "setenv BOOST_INCDIR $($(boost)-prefix)/include" >>$@
-	echo "setenv BOOST_INCLUDEDIR $($(boost)-prefix)/include" >>$@
-	echo "setenv BOOST_LIBDIR $($(boost)-prefix)/lib" >>$@
-	echo "setenv BOOST_LIBRARYDIR $($(boost)-prefix)/lib" >>$@
-	echo "prepend-path PATH $($(boost)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(boost)-prefix)/include" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(boost)-prefix)/include" >>$@
-	echo "prepend-path LIBRARY_PATH $($(boost)-prefix)/lib" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(boost)-prefix)/lib" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(boost)-prefix)/lib/pkgconfig" >>$@
-	echo "prepend-path MANPATH $($(boost)-prefix)/share/man" >>$@
-	echo "prepend-path INFOPATH $($(boost)-prefix)/share/info" >>$@
-	echo "set MSG \"$(boost)\"" >>$@
+	echo "setenv BOOST_ROOT $($(boost-1.73.0)-prefix)" >>$@
+	echo "setenv BOOST_INCDIR $($(boost-1.73.0)-prefix)/include" >>$@
+	echo "setenv BOOST_INCLUDEDIR $($(boost-1.73.0)-prefix)/include" >>$@
+	echo "setenv BOOST_LIBDIR $($(boost-1.73.0)-prefix)/lib" >>$@
+	echo "setenv BOOST_LIBRARYDIR $($(boost-1.73.0)-prefix)/lib" >>$@
+	echo "prepend-path PATH $($(boost-1.73.0)-prefix)/bin" >>$@
+	echo "prepend-path C_INCLUDE_PATH $($(boost-1.73.0)-prefix)/include" >>$@
+	echo "prepend-path CPLUS_INCLUDE_PATH $($(boost-1.73.0)-prefix)/include" >>$@
+	echo "prepend-path LIBRARY_PATH $($(boost-1.73.0)-prefix)/lib" >>$@
+	echo "prepend-path LD_LIBRARY_PATH $($(boost-1.73.0)-prefix)/lib" >>$@
+	echo "prepend-path PKG_CONFIG_PATH $($(boost-1.73.0)-prefix)/lib/pkgconfig" >>$@
+	echo "prepend-path MANPATH $($(boost-1.73.0)-prefix)/share/man" >>$@
+	echo "prepend-path INFOPATH $($(boost-1.73.0)-prefix)/share/info" >>$@
+	echo "set MSG \"$(boost-1.73.0)\"" >>$@
 
-$(boost)-src: $$($(boost)-src)
-$(boost)-unpack: $($(boost)-prefix)/.pkgunpack
-$(boost)-patch: $($(boost)-prefix)/.pkgpatch
-$(boost)-build: $($(boost)-prefix)/.pkgbuild
-$(boost)-check: $($(boost)-prefix)/.pkgcheck
-$(boost)-install: $($(boost)-prefix)/.pkginstall
-$(boost)-modulefile: $($(boost)-modulefile)
-$(boost)-clean:
-	rm -rf $($(boost)-modulefile)
-	rm -rf $($(boost)-prefix)
-	rm -rf $($(boost)-srcdir)
-$(boost): $(boost)-src $(boost)-unpack $(boost)-patch $(boost)-build $(boost)-check $(boost)-install $(boost)-modulefile
+$(boost-1.73.0)-src: $$($(boost-1.73.0)-src)
+$(boost-1.73.0)-unpack: $($(boost-1.73.0)-prefix)/.pkgunpack
+$(boost-1.73.0)-patch: $($(boost-1.73.0)-prefix)/.pkgpatch
+$(boost-1.73.0)-build: $($(boost-1.73.0)-prefix)/.pkgbuild
+$(boost-1.73.0)-check: $($(boost-1.73.0)-prefix)/.pkgcheck
+$(boost-1.73.0)-install: $($(boost-1.73.0)-prefix)/.pkginstall
+$(boost-1.73.0)-modulefile: $($(boost-1.73.0)-modulefile)
+$(boost-1.73.0)-clean:
+	rm -rf $($(boost-1.73.0)-modulefile)
+	rm -rf $($(boost-1.73.0)-prefix)
+	rm -rf $($(boost-1.73.0)-srcdir)
+$(boost-1.73.0): $(boost-1.73.0)-src $(boost-1.73.0)-unpack $(boost-1.73.0)-patch $(boost-1.73.0)-build $(boost-1.73.0)-check $(boost-1.73.0)-install $(boost-1.73.0)-modulefile
