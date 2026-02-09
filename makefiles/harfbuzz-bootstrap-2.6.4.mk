@@ -86,19 +86,19 @@ $($(harfbuzz-bootstrap)-modulefile): $(modulefilesdir)/.markerfile $($(harfbuzz-
 	printf "$(foreach prereq,$($(harfbuzz-bootstrap)-prereqs),\n$(MODULE) load $(prereq))" >>$@
 	echo "" >>$@
 	echo "" >>$@
-	echo "setenv HARFBUZZ_ROOT $($(harfbuzz-bootstrap)-prefix)" >>$@
-	echo "setenv HARFBUZZ_INCDIR $($(harfbuzz-bootstrap)-prefix)/include/harfbuzz" >>$@
-	echo "setenv HARFBUZZ_INCLUDEDIR $($(harfbuzz-bootstrap)-prefix)/include/harfbuzz" >>$@
-	echo "setenv HARFBUZZ_LIBDIR $($(harfbuzz-bootstrap)-prefix)/lib" >>$@
-	echo "setenv HARFBUZZ_LIBRARYDIR $($(harfbuzz-bootstrap)-prefix)/lib" >>$@
-	echo "prepend-path PATH $($(harfbuzz-bootstrap)-prefix)/bin" >>$@
-	echo "prepend-path C_INCLUDE_PATH $($(harfbuzz-bootstrap)-prefix)/include/harfbuzz" >>$@
-	echo "prepend-path CPLUS_INCLUDE_PATH $($(harfbuzz-bootstrap)-prefix)/include/harfbuzz" >>$@
-	echo "prepend-path LIBRARY_PATH $($(harfbuzz-bootstrap)-prefix)/lib" >>$@
-	echo "prepend-path LD_LIBRARY_PATH $($(harfbuzz-bootstrap)-prefix)/lib" >>$@
-	echo "prepend-path PKG_CONFIG_PATH $($(harfbuzz-bootstrap)-prefix)/lib/pkgconfig" >>$@
-	echo "prepend-path MANPATH $($(harfbuzz-bootstrap)-prefix)/share/man" >>$@
-	echo "prepend-path INFOPATH $($(harfbuzz-bootstrap)-prefix)/share/info" >>$@
+	echo "setenv HARFBUZZ_BOOTSTRAP_ROOT $($(harfbuzz-bootstrap)-prefix)" >>$@
+	echo "setenv HARFBUZZ_BOOTSTRAP_INCDIR $($(harfbuzz-bootstrap)-prefix)/include/harfbuzz" >>$@
+	echo "setenv HARFBUZZ_BOOTSTRAP_INCLUDEDIR $($(harfbuzz-bootstrap)-prefix)/include/harfbuzz" >>$@
+	echo "setenv HARFBUZZ_BOOTSTRAP_LIBDIR $($(harfbuzz-bootstrap)-prefix)/lib" >>$@
+	echo "setenv HARFBUZZ_BOOTSTRAP_LIBRARYDIR $($(harfbuzz-bootstrap)-prefix)/lib" >>$@
+	# echo "prepend-path PATH $($(harfbuzz-bootstrap)-prefix)/bin" >>$@
+	# echo "prepend-path C_INCLUDE_PATH $($(harfbuzz-bootstrap)-prefix)/include/harfbuzz" >>$@
+	# echo "prepend-path CPLUS_INCLUDE_PATH $($(harfbuzz-bootstrap)-prefix)/include/harfbuzz" >>$@
+	# echo "prepend-path LIBRARY_PATH $($(harfbuzz-bootstrap)-prefix)/lib" >>$@
+	# echo "prepend-path LD_LIBRARY_PATH $($(harfbuzz-bootstrap)-prefix)/lib" >>$@
+	# echo "prepend-path PKG_CONFIG_PATH $($(harfbuzz-bootstrap)-prefix)/lib/pkgconfig" >>$@
+	# echo "prepend-path MANPATH $($(harfbuzz-bootstrap)-prefix)/share/man" >>$@
+	# echo "prepend-path INFOPATH $($(harfbuzz-bootstrap)-prefix)/share/info" >>$@
 	echo "set MSG \"$(harfbuzz-bootstrap)\"" >>$@
 
 $(harfbuzz-bootstrap)-src: $$($(harfbuzz-bootstrap)-src)
