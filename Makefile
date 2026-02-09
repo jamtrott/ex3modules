@@ -671,6 +671,7 @@ pkgs := $(pkgs) \
 	libxxf86dga-1.1.5 \
 	libxxf86vm-1.1.4 \
 	linux-src-5.15.193 \
+	lua-5.4.0 \
 	llvm-10.0.1 \
 	llvm-11.0.0 \
 	llvm-openmp-11.0.0 \
