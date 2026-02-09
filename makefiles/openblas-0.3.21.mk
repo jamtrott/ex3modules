@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2026 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,16 +22,13 @@ openblas-0.3.21-version = 0.3.21
 openblas-0.3.21 = openblas-$(openblas-0.3.21-version)
 $(openblas-0.3.21)-description = Optimized BLAS library
 $(openblas-0.3.21)-url = http://www.openblas.net/
-$(openblas-0.3.21)-srcurl = https://github.com/xianyi/OpenBLAS/archive/v$(openblas-0.3.21-version).tar.gz
-$(openblas-0.3.21)-src = $(pkgsrcdir)/openblas-$(notdir $($(openblas-0.3.21)-srcurl))
-$(openblas-0.3.21)-srcdir = $(pkgsrcdir)/$(openblas-0.3.21)
+$(openblas-0.3.21)-srcurl =
 $(openblas-0.3.21)-builddeps = $(cmake)
 $(openblas-0.3.21)-prereqs =
+$(openblas-0.3.21)-src = $($(openblas-src-0.3.21)-src)
+$(openblas-0.3.21)-srcdir = $(pkgsrcdir)/$(openblas-0.3.21)
 $(openblas-0.3.21)-modulefile = $(modulefilesdir)/$(openblas-0.3.21)
 $(openblas-0.3.21)-prefix = $(pkgdir)/$(openblas-0.3.21)
-
-$($(openblas-0.3.21)-src): $(dir $($(openblas-0.3.21)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(openblas-0.3.21)-srcurl)
 
 $($(openblas-0.3.21)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
@@ -39,7 +36,7 @@ $($(openblas-0.3.21)-srcdir)/.markerfile:
 $($(openblas-0.3.21)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openblas-0.3.21)-prefix)/.pkgunpack: $($(openblas-0.3.21)-src) $($(openblas-0.3.21)-srcdir)/.markerfile $($(openblas-0.3.21)-prefix)/.markerfile $$(foreach dep,$$($(openblas-0.3.21)-builddeps),$(modulefilesdir)/$$(dep))
+$($(openblas-0.3.21)-prefix)/.pkgunpack: $$($(openblas-0.3.21)-src) $($(openblas-0.3.21)-srcdir)/.markerfile $($(openblas-0.3.21)-prefix)/.markerfile $$(foreach dep,$$($(openblas-0.3.21)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(openblas-0.3.21)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 

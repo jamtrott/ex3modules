@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2024 James D. Trotter
+# Copyright (C) 2026 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,16 +23,13 @@ openblas-0.3.21-omp-suffix = -omp
 openblas-0.3.21-omp = openblas-$(openblas-0.3.21-omp-version)$(openblas-0.3.21-omp-suffix)
 $(openblas-0.3.21-omp)-description = Optimized BLAS library
 $(openblas-0.3.21-omp)-url = http://www.openblas.net/
-$(openblas-0.3.21-omp)-srcurl = https://github.com/xianyi/OpenBLAS/archive/v$(openblas-0.3.21-omp-version).tar.gz
-$(openblas-0.3.21-omp)-src = $(pkgsrcdir)/openblas-$(notdir $($(openblas-0.3.21-omp)-srcurl))
-$(openblas-0.3.21-omp)-srcdir = $(pkgsrcdir)/$(openblas-0.3.21-omp)
+$(openblas-0.3.21-omp)-srcurl =
 $(openblas-0.3.21-omp)-builddeps = $(cmake)
 $(openblas-0.3.21-omp)-prereqs =
+$(openblas-0.3.21-omp)-src = $($(openblas-src-0.3.21)-src)
+$(openblas-0.3.21-omp)-srcdir = $(pkgsrcdir)/$(openblas-0.3.21-omp)
 $(openblas-0.3.21-omp)-modulefile = $(modulefilesdir)/$(openblas-0.3.21-omp)
 $(openblas-0.3.21-omp)-prefix = $(pkgdir)/$(openblas-0.3.21-omp)
-
-$($(openblas-0.3.21-omp)-src): $(dir $($(openblas-0.3.21-omp)-src)).markerfile
-	$(CURL) $(curl_options) --output $@ $($(openblas-0.3.21-omp)-srcurl)
 
 $($(openblas-0.3.21-omp)-srcdir)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
@@ -40,7 +37,7 @@ $($(openblas-0.3.21-omp)-srcdir)/.markerfile:
 $($(openblas-0.3.21-omp)-prefix)/.markerfile:
 	$(INSTALL) -d $(dir $@) && touch $@
 
-$($(openblas-0.3.21-omp)-prefix)/.pkgunpack: $($(openblas-0.3.21-omp)-src) $($(openblas-0.3.21-omp)-srcdir)/.markerfile $($(openblas-0.3.21-omp)-prefix)/.markerfile $$(foreach dep,$$($(openblas-0.3.21-omp)-builddeps),$(modulefilesdir)/$$(dep))
+$($(openblas-0.3.21-omp)-prefix)/.pkgunpack: $$($(openblas-0.3.21-omp)-src) $($(openblas-0.3.21-omp)-srcdir)/.markerfile $($(openblas-0.3.21-omp)-prefix)/.markerfile $$(foreach dep,$$($(openblas-0.3.21-omp)-builddeps),$(modulefilesdir)/$$(dep))
 	tar -C $($(openblas-0.3.21-omp)-srcdir) --strip-components 1 -xz -f $<
 	@touch $@
 
@@ -60,7 +57,7 @@ else ifeq ($(ARCH),aarch64)
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(openblas-0.3.21-omp)-builddeps) && \
-		$(MAKE) DYNAMIC_ARCH=1 TARGET=ARMV8 USE_THREAD=0 USE_LOCKING=1 USE_OPENMP=0 NUM_THREADS=256 NO_AFFINITY=1 USE_CBLAS=1 NOFORTRAN=1
+		$(MAKE) DYNAMIC_ARCH=1 TARGET=ARMV8 USE_THREAD=1 USE_LOCKING=0 USE_OPENMP=1 NUM_THREADS=256 NO_AFFINITY=1 USE_CBLAS=1 NOFORTRAN=1
 endif
 	@touch $@
 

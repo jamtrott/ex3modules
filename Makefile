@@ -161,7 +161,21 @@ blas = openblas-0.3.12
 $(info Using internal OpenBLAS ($(openblas)))
 else ifeq ($(WITH_OPENBLAS),openblas-0.3.21)
 openblas = openblas-0.3.21
+openblas-mt = openblas-0.3.21-mt
+openblas-omp = openblas-0.3.21-omp
 blas = openblas-0.3.21
+$(info Using internal OpenBLAS ($(openblas)))
+else ifeq ($(WITH_OPENBLAS),openblas-0.3.21-mt)
+openblas = openblas-0.3.21-mt
+openblas-mt = openblas-0.3.21-mt
+openblas-omp = openblas-0.3.21-omp
+blas = openblas-0.3.21-mt
+$(info Using internal OpenBLAS ($(openblas)))
+else ifeq ($(WITH_OPENBLAS),openblas-0.3.21-omp)
+openblas = openblas-0.3.21-omp
+openblas-mt = openblas-0.3.21-mt
+openblas-omp = openblas-0.3.21-omp
+blas = openblas-0.3.21-omp
 $(info Using internal OpenBLAS ($(openblas)))
 else ifeq ($(WITH_OPENBLAS),no)
 $(warning Warning: OpenBLAS is disabled - some modules may not build.)
@@ -691,7 +705,9 @@ pkgs := $(pkgs) \
 	onetbb-src-2021.4.0 \
 	openblas-0.3.12 \
 	openblas-0.3.21 \
+	openblas-0.3.21-mt \
 	openblas-0.3.21-omp \
+	openblas-src-0.3.21 \
 	opencascade-7.5.0 \
 	opencl-headers-2020.06.16 \
 	openjpeg-2.4.0 \

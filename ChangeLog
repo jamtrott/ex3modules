@@ -1,3 +1,12 @@
+2026-02-09  James D. Trotter  <james@simula.no>
+
+	Update boost to 1.90.0.
+
+	Other:
+
+	* Build single-threaded, multi-threaded and OpenMP variants of
+	OpenBLAS
+
 2025-03-12  James D. Trotter  <james@simula.no>
 
 	Update libunwind to 1.6.2.
