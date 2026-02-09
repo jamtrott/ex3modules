@@ -10,6 +10,8 @@
 	* everybeam 0.8.0
 	* python-casacore 3.7.1
 	* wcslib 8.5
+	* libyaml 0.2.5
+	* python-pyyaml 6.0.3
 
 	Upgrade:
 

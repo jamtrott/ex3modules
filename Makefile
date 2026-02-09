@@ -684,6 +684,7 @@ pkgs := $(pkgs) \
 	libxvmc-1.0.12 \
 	libxxf86dga-1.1.5 \
 	libxxf86vm-1.1.4 \
+	libyaml-0.2.5 \
 	linux-src-5.15.193 \
 	lua-5.4.0 \
 	llvm-10.0.1 \
@@ -887,6 +888,7 @@ pkgs := $(pkgs) \
 	python-pytest-xdist-1.32.0 \
 	python-pythran-0.10.0 \
 	python-pytz-2020.1 \
+	python-pyyaml-6.0.3 \
 	python-requests-2.23.0 \
 	python-scikit-build-0.16.6 \
 	python-scipy-1.8.1 \
