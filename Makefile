@@ -750,6 +750,7 @@ pkgs := $(pkgs) \
 	petsc-src-3.16.5 \
 	petsc-src-3.17.4 \
 	petsc-src-3.21.5 \
+	pigz-2.8 \
 	pixman-0.38.4 \
 	pmix-4.1.2 \
 	poppler-21.04.0 \
