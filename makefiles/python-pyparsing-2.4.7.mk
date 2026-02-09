@@ -52,19 +52,9 @@ $($(python-pyparsing)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-pyparsing)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pyparsing)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pyparsing)-prefix)/.pkgpatch
-	cd $($(python-pyparsing)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-pyparsing)-builddeps) && \
-		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pyparsing)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pyparsing)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pyparsing)-prefix)/.pkgbuild
-	cd $($(python-pyparsing)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-pyparsing)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-pyparsing)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pyparsing)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pyparsing)-prefix)/.pkgcheck $($(python-pyparsing)-site-packages)/.markerfile

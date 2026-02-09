@@ -860,7 +860,7 @@ pkgs := $(pkgs) \
 	python-numba-0.56.4 \
 	python-numpy-1.21.5 \
 	python-numpy-quaternion-2021.11.4.15.26.3 \
-	python-packaging-20.4 \
+	python-packaging-26.0 \
 	python-pandas-1.5.3 \
 	python-pathlib2-2.3.5 \
 	python-petsc4py-3.17.2 \
