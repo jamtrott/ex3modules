@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# cpupower-4.19.75
+# cpupower-5.15.193
 
-cpupower-version = 4.19.75
+cpupower-version = 5.15.193
 cpupower = cpupower-$(cpupower-version)
 $(cpupower)-description = Tools for accessing cpufreq core and drivers in the Linux kernel
 $(cpupower)-url = https://www.kernel.org/

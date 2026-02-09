@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# linux-src-4.19.75
+# linux-src-5.15.193
 
-linux-src-version = 4.19.75
+linux-src-version = 5.15.193
 linux-src = linux-src-$(linux-src-version)
 $(linux-src)-description = Linux kernel source
 $(linux-src)-url = https://www.kernel.org/
-$(linux-src)-srcurl = https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$(linux-src-version).tar.xz
+$(linux-src)-srcurl = https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-$(linux-src-version).tar.xz
 $(linux-src)-builddeps =
 $(linux-src)-prereqs =
 $(linux-src)-src = $(pkgsrcdir)/$(notdir $($(linux-src)-srcurl))

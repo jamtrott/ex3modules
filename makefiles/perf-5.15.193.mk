@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# perf-4.19.75
+# perf-5.15.193
 
-perf-version = 4.19.75
+perf-version = 5.15.193
 perf = perf-$(perf-version)
 $(perf)-description = Performance analysis tools for Linux
 $(perf)-url = https://perf.wiki.kernel.org/index.php/Main_Page

@@ -508,7 +508,7 @@ pkgs := $(pkgs) \
 	cmake-3.22.3 \
 	combblas-1.6.2 \
 	combblas-src-1.6.2 \
-	cpupower-4.19.75 \
+	cpupower-5.15.193 \
 	curl-7.69.1 \
 	dealii-9.1.1 \
 	doxygen-1.8.18 \
@@ -670,7 +670,7 @@ pkgs := $(pkgs) \
 	libxvmc-1.0.12 \
 	libxxf86dga-1.1.5 \
 	libxxf86vm-1.1.4 \
-	linux-src-4.19.75 \
+	linux-src-5.15.193 \
 	llvm-10.0.1 \
 	llvm-11.0.0 \
 	llvm-openmp-11.0.0 \
@@ -736,7 +736,7 @@ pkgs := $(pkgs) \
 	patchelf-0.14.3 \
 	pciutils-3.6.2 \
 	pcre-8.44 \
-	perf-4.19.75 \
+	perf-5.15.193 \
 	perl-5.30.2 \
 	petsc-3.13.2 \
 	petsc-32-3.16.5 \
