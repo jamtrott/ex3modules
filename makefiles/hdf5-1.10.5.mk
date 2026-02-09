@@ -58,6 +58,7 @@ $($(hdf5-1.10.5)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 		./configure --prefix=$($(hdf5-1.10.5)-prefix) \
 			--enable-shared \
 			--enable-fortran \
+			--enable-cxx \
 			--enable-build-all && \
 		$(MAKE)
 	@touch $@
