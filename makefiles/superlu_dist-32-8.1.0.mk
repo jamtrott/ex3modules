@@ -58,7 +58,7 @@ $($(superlu_dist-32-8.1.0)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(f
 		$(CMAKE) .. \
 			-DCMAKE_INSTALL_PREFIX=$($(superlu_dist-32-8.1.0)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
-			-DCMAKE_BUILD_TYPE=DEBUG \
+			-DCMAKE_BUILD_TYPE=Release \
 			-DBUILD_SHARED_LIBS=TRUE \
 			-Denable_openmp=ON \
 			-DTPL_ENABLE_INTERNAL_BLASLIB=OFF \
