@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2022 James D. Trotter
+# Copyright (C) 2026 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-setuptools-59.6.0
+# python-setuptools-82.0.0
 
-python-setuptools-version = 59.6.0
+python-setuptools-version = 82.0.0
 python-setuptools = python-setuptools-$(python-setuptools-version)
 $(python-setuptools)-description = Easily download, build, install, upgrade, and uninstall Python packages
 $(python-setuptools)-url = https://github.com/pypa/setuptools/
-$(python-setuptools)-srcurl = https://files.pythonhosted.org/packages/6a/fa/5ec0fa9095c9b72cb1c31a8175c4c6745bf5927d1045d7a70df35d54944f/setuptools-59.6.0.tar.gz
+$(python-setuptools)-srcurl = https://files.pythonhosted.org/packages/82/f3/748f4d6f65d1756b9ae577f329c951cda23fb900e4de9f70900ced962085/setuptools-82.0.0.tar.gz
 $(python-setuptools)-src = $(pkgsrcdir)/python-setuptools-$(notdir $($(python-setuptools)-srcurl))
 $(python-setuptools)-srcdir = $(pkgsrcdir)/$(python-setuptools)
 $(python-setuptools)-builddeps = $(python)
@@ -56,7 +56,6 @@ $($(python-setuptools)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(forea
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-setuptools)-builddeps) && \
-		$(PYTHON) bootstrap.py && \
 		$(PYTHON) setup.py build
 	@touch $@
 
@@ -92,7 +91,7 @@ $($(python-setuptools)-modulefile): $(modulefilesdir)/.markerfile $($(python-set
 	echo "" >>$@
 	echo "setenv PYTHON_SETUPTOOLS_ROOT $($(python-setuptools)-prefix)" >>$@
 	echo "prepend-path PATH $($(python-setuptools)-prefix)/bin" >>$@
-	echo "prepend-path PYTHONPATH $($(python-setuptools)-site-packages)/setuptools-$(python-setuptools-version)-py$(PYTHON_VERSION_SHORT).egg" >>$@
+	echo "prepend-path PYTHONPATH $($(python-setuptools)-site-packages)" >>$@
 	echo "set MSG \"$(python-setuptools)\"" >>$@
 
 $(python-setuptools)-src: $($(python-setuptools)-src)

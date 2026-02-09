@@ -885,7 +885,7 @@ pkgs := $(pkgs) \
 	python-requests-2.23.0 \
 	python-scikit-build-0.16.6 \
 	python-scipy-1.8.1 \
-	python-setuptools-59.6.0 \
+	python-setuptools-82.0.0 \
 	python-setuptools_scm-4.1.1 \
 	python-simplejson-3.17.6 \
 	python-six-1.15.0 \
@@ -909,7 +909,7 @@ pkgs := $(pkgs) \
 	python-urllib3-1.25.11 \
 	python-virtualenv-20.0.35 \
 	python-wcwidth-0.1.9 \
-	python-wheel-0.37.0 \
+	python-wheel-0.46.3 \
 	python-xarray-0.15.1 \
 	python-zipp-3.3.1 \
 	qperf-0.4.11 \

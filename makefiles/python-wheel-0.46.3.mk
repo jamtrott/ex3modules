@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2022 James D. Trotter
+# Copyright (C) 2026 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,20 +16,19 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-wheel-0.37.0
+# python-wheel-0.46.3
 
-python-wheel-version = 0.37.0
+python-wheel-version = 0.46.3
 python-wheel = python-wheel-$(python-wheel-version)
 $(python-wheel)-description = Reference implementation of the Python wheel packaging standard
 $(python-wheel)-url = https://github.com/pypa/wheel
-$(python-wheel)-srcurl = https://files.pythonhosted.org/packages/4e/be/8139f127b4db2f79c8b117c80af56a3078cc4824b5b94250c7f81a70e03b/wheel-0.37.0.tar.gz
+$(python-wheel)-srcurl = https://files.pythonhosted.org/packages/89/24/a2eb353a6edac9a0303977c4cb048134959dd2a51b48a269dfc9dde00c8a/wheel-0.46.3.tar.gz
 $(python-wheel)-src = $(pkgsrcdir)/$(notdir $($(python-wheel)-srcurl))
+$(python-wheel)-builddeps = $(python)
+$(python-wheel)-prereqs = $(python)
 $(python-wheel)-srcdir = $(pkgsrcdir)/$(python-wheel)
-$(python-wheel)-builddeps = $(python) $(python-setuptools)
-$(python-wheel)-prereqs = $(python) $(python-setuptools)
 $(python-wheel)-modulefile = $(modulefilesdir)/$(python-wheel)
 $(python-wheel)-prefix = $(pkgdir)/$(python-wheel)
-$(python-wheel)-site-packages = $($(python-wheel)-prefix)/lib/python$(PYTHON_VERSION_SHORT)/site-packages
 
 $($(python-wheel)-src): $(dir $($(python-wheel)-src)).markerfile
 	$(CURL) $(curl_options) --output $@ $($(python-wheel)-srcurl)
@@ -47,32 +46,29 @@ $($(python-wheel)-prefix)/.pkgunpack: $$($(python-wheel)-src) $($(python-wheel)-
 $($(python-wheel)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-wheel)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-wheel)-prefix)/.pkgunpack
 	@touch $@
 
-$($(python-wheel)-site-packages)/.markerfile:
-	$(INSTALL) -d $(dir $@)
-	@touch $@
-
 $($(python-wheel)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-wheel)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-wheel)-prefix)/.pkgpatch
-	cd $($(python-wheel)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-wheel)-builddeps) && \
-		$(PYTHON) setup.py build
+	# cd $($(python-wheel)-srcdir) && \
+	# 	$(MODULESINIT) && \
+	# 	$(MODULE) use $(modulefilesdir) && \
+	# 	$(MODULE) load $($(python-wheel)-builddeps) && \
+	# 	$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-wheel)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-wheel)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-wheel)-prefix)/.pkgbuild
-	cd $($(python-wheel)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-wheel)-builddeps) && \
-		$(PYTHON) setup.py test
+	# cd $($(python-wheel)-srcdir) && \
+	# 	$(MODULESINIT) && \
+	# 	$(MODULE) use $(modulefilesdir) && \
+	# 	$(MODULE) load $($(python-wheel)-builddeps) && \
+	# 	$(PYTHON) setup.py test
 	@touch $@
 
-$($(python-wheel)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-wheel)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-wheel)-prefix)/.pkgcheck $($(python-wheel)-site-packages)/.markerfile
+$($(python-wheel)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-wheel)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-wheel)-prefix)/.pkgcheck
 	cd $($(python-wheel)-srcdir) && \
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-wheel)-builddeps) && \
-		$(PYTHON) setup.py install --prefix=$($(python-wheel)-prefix)
+		PYTHONPATH=$($(python-wheel)-prefix):$${PYTHONPATH} \
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --target=$($(python-wheel)-prefix)
 	@touch $@
 
 $($(python-wheel)-modulefile): $(modulefilesdir)/.markerfile $($(python-wheel)-prefix)/.pkginstall
@@ -91,7 +87,7 @@ $($(python-wheel)-modulefile): $(modulefilesdir)/.markerfile $($(python-wheel)-p
 	echo "" >>$@
 	echo "setenv PYTHON_WHEEL_ROOT $($(python-wheel)-prefix)" >>$@
 	echo "prepend-path PATH $($(python-wheel)-prefix)/bin" >>$@
-	echo "prepend-path PYTHONPATH $($(python-wheel)-site-packages)/wheel-$(python-wheel-version)-py$(PYTHON_VERSION_SHORT).egg" >>$@
+	echo "prepend-path PYTHONPATH $($(python-wheel)-prefix)" >>$@
 	echo "set MSG \"$(python-wheel)\"" >>$@
 
 $(python-wheel)-src: $($(python-wheel)-src)

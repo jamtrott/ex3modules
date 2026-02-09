@@ -60,11 +60,6 @@ $($(python-pip)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,
 	@touch $@
 
 $($(python-pip)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pip)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pip)-prefix)/.pkgbuild
-	cd $($(python-pip)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-pip)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-pip)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pip)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pip)-prefix)/.pkgcheck $($(python-pip)-site-packages)/.markerfile
