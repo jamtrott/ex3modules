@@ -135,6 +135,10 @@ else ifeq ($(WITH_CMAKE),cmake-3.22.3)
 cmake = cmake-3.22.3
 CMAKE = $(pkgdir)/$(cmake)/bin/cmake
 $(info Using internal CMake ($(cmake)))
+else ifeq ($(WITH_CMAKE),cmake-3.31.11)
+cmake = cmake-3.31.11
+CMAKE = $(pkgdir)/$(cmake)/bin/cmake
+$(info Using internal CMake ($(cmake)))
 else ifeq ($(WITH_CMAKE),no)
 CMAKE = false
 $(warning Warning: CMake is disabled - some modules may not build.)
@@ -514,6 +518,7 @@ pkgs := $(pkgs) \
 	clang-11.0.0 \
 	cmake-3.17.2 \
 	cmake-3.22.3 \
+	cmake-3.31.11 \
 	combblas-1.6.2 \
 	combblas-src-1.6.2 \
 	cpupower-5.15.193 \
