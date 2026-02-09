@@ -6,7 +6,8 @@
 
 	* Build single-threaded, multi-threaded and OpenMP variants of
 	OpenBLAS
-	* Build HDF5 with C++ support
+	* HDF5: Enable C++ support
+	* ncurses: Enable symbol versioning
 
 2025-03-12  James D. Trotter  <james@simula.no>
 

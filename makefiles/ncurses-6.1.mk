@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2020 James D. Trotter
+# Copyright (C) 2025 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -62,7 +62,8 @@ $($(ncurses)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$(
 			--without-normal \
 			--enable-pc-files \
 			--with-pkg-config-libdir="$($(ncurses)-prefix)/lib/pkgconfig" \
-			--enable-widec && \
+			--enable-widec \
+			--with-versioned-syms && \
 		$(MAKE)
 	@touch $@
 
