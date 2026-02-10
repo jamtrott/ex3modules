@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2023 James D. Trotter
+# Copyright (C) 2026 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-typing_extensions-4.4.0
+# python-typing_extensions-4.15.0
 
-python-typing_extensions-version = 4.4.0
+python-typing_extensions-version = 4.15.0
 python-typing_extensions = python-typing_extensions-$(python-typing_extensions-version)
 $(python-typing_extensions)-description = Backported and Experimental Type Hints for Python 3.7+
 $(python-typing_extensions)-url = https://github.com/python/typing_extensions
-$(python-typing_extensions)-srcurl = https://files.pythonhosted.org/packages/e3/a7/8f4e456ef0adac43f452efc2d0e4b242ab831297f1bac60ac815d37eb9cf/typing_extensions-4.4.0.tar.gz
+$(python-typing_extensions)-srcurl = https://files.pythonhosted.org/packages/72/94/1a15dd82efb362ac84269196e94cf00f187f7ed21c242792a923cdb1c61f/typing_extensions-4.15.0.tar.gz
 $(python-typing_extensions)-src = $(pkgsrcdir)/$(notdir $($(python-typing_extensions)-srcurl))
 $(python-typing_extensions)-builddeps = $(python) $(python-pip)
 $(python-typing_extensions)-prereqs = $(python)
