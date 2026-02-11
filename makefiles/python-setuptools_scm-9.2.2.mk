@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2022 James D. Trotter
+# Copyright (C) 2026 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-setuptools_scm-4.1.1
+# python-setuptools_scm-9.2.2
 
-python-setuptools_scm-version = 4.1.1
+python-setuptools_scm-version = 9.2.2
 python-setuptools_scm = python-setuptools_scm-$(python-setuptools_scm-version)
 $(python-setuptools_scm)-description = Managing Python package versions in SCM metadata
 $(python-setuptools_scm)-url = https://github.com/pypa/setuptools_scm
-$(python-setuptools_scm)-srcurl = https://files.pythonhosted.org/packages/e2/22/3c318bc7123014e032cd4c2ae90e030a5c9f864cd733aca0c991da2c978b/setuptools_scm-4.1.1.tar.gz
+$(python-setuptools_scm)-srcurl = https://files.pythonhosted.org/packages/7b/b1/19587742aad604f1988a8a362e660e8c3ac03adccdb71c96d86526e5eb62/setuptools_scm-9.2.2.tar.gz
 $(python-setuptools_scm)-src = $(pkgsrcdir)/$(notdir $($(python-setuptools_scm)-srcurl))
 $(python-setuptools_scm)-srcdir = $(pkgsrcdir)/$(python-setuptools_scm)
 $(python-setuptools_scm)-builddeps = $(python) $(python-setuptools) $(python-pip)
@@ -52,19 +52,9 @@ $($(python-setuptools_scm)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-setuptools_scm)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-setuptools_scm)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-setuptools_scm)-prefix)/.pkgpatch
-	cd $($(python-setuptools_scm)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-setuptools_scm)-builddeps) && \
-		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-setuptools_scm)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-setuptools_scm)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-setuptools_scm)-prefix)/.pkgbuild
-	cd $($(python-setuptools_scm)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-setuptools_scm)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-setuptools_scm)-prefix)/.pkginstall: $($(python-setuptools_scm)-prefix)/.pkgcheck $($(python-setuptools_scm)-site-packages)/.markerfile

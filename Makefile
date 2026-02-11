@@ -893,7 +893,7 @@ pkgs := $(pkgs) \
 	python-scikit-build-0.16.6 \
 	python-scipy-1.8.1 \
 	python-setuptools-82.0.0 \
-	python-setuptools_scm-4.1.1 \
+	python-setuptools_scm-9.2.2 \
 	python-simplejson-3.17.6 \
 	python-six-1.15.0 \
 	python-snowballstemmer-2.0.0 \
