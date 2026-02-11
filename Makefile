@@ -910,7 +910,7 @@ pkgs := $(pkgs) \
 	python-sympy-1.4 \
 	python-toml-0.10.1 \
 	python-tomli-1.2.3 \
-	python-tox-3.20.1 \
+	python-tox-4.34.1 \
 	python-tqdm-4.64.0 \
 	python-typing_extensions-4.15.0 \
 	python-urllib3-1.25.11 \

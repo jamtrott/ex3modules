@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2022 James D. Trotter
+# Copyright (C) 2026 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,16 +16,16 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-tox-3.20.1
+# python-tox-4.34.1
 
-python-tox-version = 3.20.1
+python-tox-version = 4.34.1
 python-tox = python-tox-$(python-tox-version)
 $(python-tox)-description = Generic virtualenv management and test command line tool
 $(python-tox)-url = http://tox.readthedocs.org/
-$(python-tox)-srcurl = https://files.pythonhosted.org/packages/fe/66/7206a6c69a5f717fb80cd3a532c0639bc183ad2aa1f23a943ca93b0814bd/tox-3.20.1.tar.gz
+$(python-tox)-srcurl = https://files.pythonhosted.org/packages/5e/9b/5909f40b281ebd37c2f83de5087b9cb8a9a64c33745f334be0aeaedadbbc/tox-4.34.1.tar.gz
 $(python-tox)-src = $(pkgsrcdir)/$(notdir $($(python-tox)-srcurl))
 $(python-tox)-srcdir = $(pkgsrcdir)/$(python-tox)
-$(python-tox)-builddeps = $(python) $(python-filelock) $(python-packaging) $(python-pluggy) $(python-py) $(python-six) $(python-toml) $(python-virtualenv) $(python-colorama) $(python-importlib-metadata) $(python-pathlib2) $(python-pytest) $(python-flaky) $(python-pip)
+$(python-tox)-builddeps = $(python) $(python-filelock) $(python-packaging) $(python-pluggy) $(python-py) $(python-six) $(python-toml) $(python-virtualenv) $(python-colorama) $(python-importlib-metadata) $(python-pathlib2) $(python-pytest) $(python-flaky) $(python-pip) $(python-setuptools)
 $(python-tox)-prereqs = $(python) $(python-filelock) $(python-packaging) $(python-pluggy) $(python-py) $(python-six) $(python-toml) $(python-virtualenv) $(python-colorama) $(python-importlib-metadata)
 $(python-tox)-modulefile = $(modulefilesdir)/$(python-tox)
 $(python-tox)-prefix = $(pkgdir)/$(python-tox)
@@ -52,19 +52,9 @@ $($(python-tox)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-tox)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-tox)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-tox)-prefix)/.pkgpatch
-	cd $($(python-tox)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-tox)-builddeps) && \
-		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-tox)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-tox)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-tox)-prefix)/.pkgbuild
-	# cd $($(python-tox)-srcdir) && \
-	# 	$(MODULESINIT) && \
-	# 	$(MODULE) use $(modulefilesdir) && \
-	# 	$(MODULE) load $($(python-tox)-builddeps) && \
-	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-tox)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-tox)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-tox)-prefix)/.pkgcheck $($(python-tox)-site-packages)/.markerfile
