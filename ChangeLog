@@ -27,6 +27,7 @@
 	OpenBLAS
 	* HDF5: Enable C++ support
 	* ncurses: Enable symbol versioning
+	* cmake: Use system curl
 
 2025-03-12  James D. Trotter  <james@simula.no>
 

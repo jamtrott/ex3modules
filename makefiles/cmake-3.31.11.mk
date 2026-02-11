@@ -51,6 +51,7 @@ $($(cmake-3.31.11)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 		$(MODULESINIT) && \
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(cmake-3.31.11)-builddeps) && \
+		./bootstrap --system-curl && \
 		./configure --prefix=$($(cmake-3.31.11)-prefix) -- \
 			-DCMAKE_BUILD_TYPE:STRING=Release \
 			-DCMAKE_USE_OPENSSL=OFF && \
@@ -58,11 +59,6 @@ $($(cmake-3.31.11)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 	@touch $@
 
 $($(cmake-3.31.11)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cmake-3.31.11)-builddeps),$(modulefilesdir)/$$(dep)) $($(cmake-3.31.11)-prefix)/.pkgbuild
-# Disable tests, since they currently fail
-#	cd $($(cmake-3.31.11)-srcdir) && \
-#		$(MODULE) use $(modulefilesdir) && \
-#		$(MODULE) load $($(cmake-3.31.11)-builddeps) && \
-#		$(MAKE) test
 	@touch $@
 
 $($(cmake-3.31.11)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(cmake-3.31.11)-builddeps),$(modulefilesdir)/$$(dep)) $($(cmake-3.31.11)-prefix)/.pkgcheck
