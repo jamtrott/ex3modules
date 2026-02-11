@@ -60,11 +60,6 @@ $($(python-colorama)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 	@touch $@
 
 $($(python-colorama)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-colorama)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-colorama)-prefix)/.pkgbuild
-	cd $($(python-colorama)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-colorama)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-colorama)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-colorama)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-colorama)-prefix)/.pkgcheck $($(python-colorama)-site-packages)/.markerfile

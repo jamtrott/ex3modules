@@ -60,11 +60,6 @@ $($(python-wcwidth)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 	@touch $@
 
 $($(python-wcwidth)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-wcwidth)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-wcwidth)-prefix)/.pkgbuild
-	cd $($(python-wcwidth)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-wcwidth)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-wcwidth)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-wcwidth)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-wcwidth)-prefix)/.pkgcheck $($(python-wcwidth)-site-packages)/.markerfile

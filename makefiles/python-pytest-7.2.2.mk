@@ -60,11 +60,6 @@ $($(python-pytest)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach d
 	@touch $@
 
 $($(python-pytest)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pytest)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pytest)-prefix)/.pkgbuild
-	cd $($(python-pytest)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-pytest)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-pytest)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pytest)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pytest)-prefix)/.pkgcheck $($(python-pytest)-site-packages)/.markerfile

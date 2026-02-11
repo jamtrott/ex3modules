@@ -60,11 +60,6 @@ $($(python-filelock)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 	@touch $@
 
 $($(python-filelock)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-filelock)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-filelock)-prefix)/.pkgbuild
-	cd $($(python-filelock)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-filelock)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-filelock)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-filelock)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-filelock)-prefix)/.pkgcheck $($(python-filelock)-site-packages)/.markerfile

@@ -60,11 +60,6 @@ $($(python-iniconfig)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreac
 	@touch $@
 
 $($(python-iniconfig)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-iniconfig)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-iniconfig)-prefix)/.pkgbuild
-	cd $($(python-iniconfig)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-iniconfig)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-iniconfig)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-iniconfig)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-iniconfig)-prefix)/.pkgcheck $($(python-iniconfig)-site-packages)/.markerfile

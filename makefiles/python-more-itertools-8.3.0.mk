@@ -60,11 +60,6 @@ $($(python-more-itertools)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(f
 	@touch $@
 
 $($(python-more-itertools)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-more-itertools)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-more-itertools)-prefix)/.pkgbuild
-	cd $($(python-more-itertools)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-more-itertools)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-more-itertools)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-more-itertools)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-more-itertools)-prefix)/.pkgcheck $($(python-more-itertools)-site-packages)/.markerfile

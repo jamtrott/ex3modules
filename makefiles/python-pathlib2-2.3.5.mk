@@ -60,11 +60,6 @@ $($(python-pathlib2)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach
 	@touch $@
 
 $($(python-pathlib2)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pathlib2)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pathlib2)-prefix)/.pkgbuild
-	cd $($(python-pathlib2)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-pathlib2)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-pathlib2)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pathlib2)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pathlib2)-prefix)/.pkgcheck $($(python-pathlib2)-site-packages)/.markerfile

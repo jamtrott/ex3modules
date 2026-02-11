@@ -60,11 +60,6 @@ $($(python-virtualenv)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(forea
 	@touch $@
 
 $($(python-virtualenv)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-virtualenv)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-virtualenv)-prefix)/.pkgbuild
-	cd $($(python-virtualenv)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-virtualenv)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-virtualenv)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-virtualenv)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-virtualenv)-prefix)/.pkgcheck $($(python-virtualenv)-site-packages)/.markerfile

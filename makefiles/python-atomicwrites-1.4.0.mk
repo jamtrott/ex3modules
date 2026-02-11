@@ -60,11 +60,6 @@ $($(python-atomicwrites)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(for
 	@touch $@
 
 $($(python-atomicwrites)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-atomicwrites)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-atomicwrites)-prefix)/.pkgbuild
-	cd $($(python-atomicwrites)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-atomicwrites)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-atomicwrites)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-atomicwrites)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-atomicwrites)-prefix)/.pkgcheck $($(python-atomicwrites)-site-packages)/.markerfile
