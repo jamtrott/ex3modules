@@ -926,6 +926,7 @@ pkgs := $(pkgs) \
 	python-virtualenv-20.0.35 \
 	python-wcwidth-0.1.9 \
 	python-wheel-0.46.3 \
+	python-wikiextractor-3.0.6 \
 	python-xarray-0.15.1 \
 	python-zipp-3.3.1 \
 	qperf-0.4.11 \
