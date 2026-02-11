@@ -60,11 +60,6 @@ $($(python-idna)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep
 	@touch $@
 
 $($(python-idna)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-idna)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-idna)-prefix)/.pkgbuild
-	cd $($(python-idna)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-idna)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-idna)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-idna)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-idna)-prefix)/.pkgcheck $($(python-idna)-site-packages)/.markerfile

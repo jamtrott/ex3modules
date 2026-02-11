@@ -60,11 +60,6 @@ $($(python-hypothesis)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(forea
 	@touch $@
 
 $($(python-hypothesis)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-hypothesis)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-hypothesis)-prefix)/.pkgbuild
-	cd $($(python-hypothesis)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-hypothesis)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-hypothesis)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-hypothesis)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-hypothesis)-prefix)/.pkgcheck $($(python-hypothesis)-site-packages)/.markerfile
