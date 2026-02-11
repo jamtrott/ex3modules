@@ -790,11 +790,14 @@ pkgs := $(pkgs) \
 	python-certifi-2020.6.20 \
 	python-cffi-1.14.3 \
 	python-chardet-3.0.4 \
+	python-click-8.3.1 \
+	python-cloudpickle-3.1.2 \
 	python-colorama-0.4.4 \
 	python-contourpy-1.0.7 \
 	python-coverage-5.5 \
 	python-cycler-0.10.0 \
 	python-cython-0.29.36 \
+	python-dask-2026.1.2 \
 	python-dateutil-2.8.2 \
 	python-distlib-0.3.1 \
 	python-docutils-0.20.1 \
@@ -832,6 +835,7 @@ pkgs := $(pkgs) \
 	python-flaky-3.7.0 \
 	python-fonttools-4.53.1 \
 	python-freezegun-1.0.0 \
+	python-fsspec-2026.2.0 \
 	python-future-0.18.2 \
 	python-gast-0.6.0 \
 	python-h5py-2.10.0 \
@@ -864,6 +868,7 @@ pkgs := $(pkgs) \
 	python-numpy-quaternion-2021.11.4.15.26.3 \
 	python-packaging-26.0 \
 	python-pandas-1.5.3 \
+	python-partd-1.4.2 \
 	python-pathlib2-2.3.5 \
 	python-petsc4py-3.17.2 \
 	python-petsc4py-64-3.17.2 \
@@ -913,6 +918,7 @@ pkgs := $(pkgs) \
 	python-sympy-1.4 \
 	python-toml-0.10.1 \
 	python-tomli-1.2.3 \
+	python-toolz-1.1.0 \
 	python-tox-4.34.1 \
 	python-tqdm-4.64.0 \
 	python-typing_extensions-4.15.0 \

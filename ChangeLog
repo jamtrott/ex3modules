@@ -13,6 +13,8 @@
 	* wcslib 8.5
 	* libyaml 0.2.5
 	* python-pyyaml 6.0.3
+	* python-lddl 0.1.0
+	* python-dask 2026.1.2
 
 	Upgrade:
 
