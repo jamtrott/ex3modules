@@ -845,6 +845,7 @@ pkgs := $(pkgs) \
 	python-ipython-7.14.0 \
 	python-jinja2-2.11.2 \
 	python-kiwisolver-1.2.0 \
+	python-lddl-0.1.0 \
 	python-ldrb-2022.0.0 \
 	python-ldrb-2022.5.0 \
 	python-llvmlite-0.35.0 \
