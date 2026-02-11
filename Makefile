@@ -490,6 +490,7 @@ endif
 # Default packages
 #
 pkgs := $(pkgs) \
+	apache-arrow-23.0.0 \
 	autoconf-2.70 \
 	automake-1.16.3 \
 	binutils-2.32 \
@@ -873,6 +874,7 @@ pkgs := $(pkgs) \
 	python-psutil-5.7.0 \
 	python-py-1.9.0 \
 	python-pyadjoint-2019.1.1 \
+	python-pyarrow-23.0.0 \
 	python-pycodestyle-2.6.0 \
 	python-pycparser-2.20 \
 	python-pycubexr-1.2.0 \
