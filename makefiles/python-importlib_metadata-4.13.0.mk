@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-importlib_metadata-1.6.0
+# python-importlib_metadata-4.13.0
 
-python-importlib_metadata-version = 1.6.0
+python-importlib_metadata-version = 4.13.0
 python-importlib_metadata = python-importlib_metadata-$(python-importlib_metadata-version)
 $(python-importlib_metadata)-description = Library for accessing Python package metadata
 $(python-importlib_metadata)-url = http://importlib_metadata.readthedocs.io/
-$(python-importlib_metadata)-srcurl = https://files.pythonhosted.org/packages/b4/1b/baab42e3cd64c9d5caac25a9d6c054f8324cdc38975a44d600569f1f7158/importlib_metadata-1.6.0.tar.gz
+$(python-importlib_metadata)-srcurl = https://files.pythonhosted.org/packages/55/12/ab288357b884ebc807e3f4eff63ce5ba6b941ba61499071bf19f1bbc7f7f/importlib_metadata-4.13.0.tar.gz
 $(python-importlib_metadata)-src = $(pkgsrcdir)/$(notdir $($(python-importlib_metadata)-srcurl))
 $(python-importlib_metadata)-srcdir = $(pkgsrcdir)/$(python-importlib_metadata)
 $(python-importlib_metadata)-builddeps = $(python) $(python-zipp) $(python-pip) $(python-setuptools) $(python-wheel) $(python-pip)
@@ -52,11 +52,6 @@ $($(python-importlib_metadata)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-importlib_metadata)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-importlib_metadata)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-importlib_metadata)-prefix)/.pkgpatch
-	cd $($(python-importlib_metadata)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-importlib_metadata)-builddeps) && \
-		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-importlib_metadata)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-importlib_metadata)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-importlib_metadata)-prefix)/.pkgbuild

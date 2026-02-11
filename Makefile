@@ -838,7 +838,7 @@ pkgs := $(pkgs) \
 	python-hypothesis-5.37.4 \
 	python-idna-2.9 \
 	python-imagesize-1.2.0 \
-	python-importlib_metadata-1.6.0 \
+	python-importlib_metadata-4.13.0 \
 	python-importlib_resources-6.4.0 \
 	python-iniconfig-1.1.1 \
 	python-ipopt-0.3.0 \
