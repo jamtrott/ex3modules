@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2024 James D. Trotter
+# Copyright (C) 2026 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,19 +47,9 @@ $($(python-example)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach 
 	@touch $@
 
 $($(python-example)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-example)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-example)-prefix)/.pkgpatch
-	cd $($(python-example)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-example)-builddeps) && \
-		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-example)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-example)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-example)-prefix)/.pkgbuild
-	cd $($(python-example)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-example)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-example)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-example)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-example)-prefix)/.pkgcheck
