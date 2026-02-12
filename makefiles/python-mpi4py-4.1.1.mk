@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-mpi4py-3.1.4
+# python-mpi4py-4.1.1
 
-python-mpi4py-version = 3.1.4
+python-mpi4py-version = 4.1.1
 python-mpi4py = python-mpi4py-$(python-mpi4py-version)
 $(python-mpi4py)-description = Python bindings for the Message Passing Interface (MPI)
 $(python-mpi4py)-url = https://mpi4py.readthedocs.io/
-$(python-mpi4py)-srcurl = https://files.pythonhosted.org/packages/bc/f2/749af7fd0e7703ddca6cea525ab40f26c3ca6cbe6c23658441c6f9705860/mpi4py-3.1.4.tar.gz
+$(python-mpi4py)-srcurl = https://files.pythonhosted.org/packages/62/74/28ea85b0b949cad827ea50720e00e814e88c8fd536c27c3c491e4f025724/mpi4py-4.1.1.tar.gz
 $(python-mpi4py)-src = $(pkgsrcdir)/$(notdir $($(python-mpi4py)-srcurl))
 $(python-mpi4py)-srcdir = $(pkgsrcdir)/$(python-mpi4py)
 $(python-mpi4py)-builddeps = $(python) $(mpi) $(python-pip)
@@ -52,20 +52,9 @@ $($(python-mpi4py)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-mpi4py)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-mpi4py)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-mpi4py)-prefix)/.pkgpatch
-	cd $($(python-mpi4py)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-mpi4py)-builddeps) && \
-		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-mpi4py)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-mpi4py)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-mpi4py)-prefix)/.pkgbuild
-# 	Tests currently fail due to this issue: https://github.com/openucx/ucx/issues/4130
-# 	cd $($(python-mpi4py)-srcdir) && \
-# 		$(MODULESINIT) && \
-# 		$(MODULE) use $(modulefilesdir) && \
-# 		$(MODULE) load $($(python-mpi4py)-builddeps) && \
-# 		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-mpi4py)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-mpi4py)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-mpi4py)-prefix)/.pkgcheck $($(python-mpi4py)-site-packages)/.markerfile

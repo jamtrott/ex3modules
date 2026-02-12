@@ -860,7 +860,7 @@ pkgs := $(pkgs) \
 	python-mccabe-0.6.1 \
 	python-meshio-4.3.6 \
 	python-more-itertools-8.3.0 \
-	python-mpi4py-3.1.4 \
+	python-mpi4py-4.1.1 \
 	python-mpmath-1.1.0 \
 	python-nose-1.3.7 \
 	python-numba-0.56.4 \
