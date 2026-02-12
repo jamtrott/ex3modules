@@ -880,7 +880,7 @@ pkgs := $(pkgs) \
 	python-pathlib2-2.3.5 \
 	python-petsc4py-3.17.2 \
 	python-petsc4py-64-3.17.2 \
-	python-pillow-8.1.1 \
+	python-pillow-12.1.1 \
 	python-pip-23.2.1 \
 	python-pkgconfig-1.5.1 \
 	python-pluggy-0.13.1 \

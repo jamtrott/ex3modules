@@ -16,16 +16,16 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-pillow-8.1.1
+# python-pillow-12.1.1
 
-python-pillow-version = 8.1.1
+python-pillow-version = 12.1.1
 python-pillow = python-pillow-$(python-pillow-version)
 $(python-pillow)-description = Python Imaging Library
 $(python-pillow)-url = https://python-pillow.org/
-$(python-pillow)-srcurl = https://files.pythonhosted.org/packages/a6/24/1346f8c70dae5daf58e22435a1f1f4696682b4f85321eb4d18ca1d81c0c2/Pillow-8.1.1.tar.gz
+$(python-pillow)-srcurl = https://files.pythonhosted.org/packages/1f/42/5c74462b4fd957fcd7b13b04fb3205ff8349236ea74c7c375766d6c82288/pillow-12.1.1.tar.gz
 $(python-pillow)-src = $(pkgsrcdir)/$(notdir $($(python-pillow)-srcurl))
 $(python-pillow)-srcdir = $(pkgsrcdir)/$(python-pillow)
-$(python-pillow)-builddeps = $(python) $(libjpeg-turbo) $(libtiff) $(freetype) $(libwebp) $(python-pip)
+$(python-pillow)-builddeps = $(python) $(libjpeg-turbo) $(libtiff) $(freetype) $(libwebp) $(python-pip) $(pybind11)
 $(python-pillow)-prereqs = $(python) $(libjpeg-turbo) $(libtiff) $(freetype) $(libwebp)
 $(python-pillow)-modulefile = $(modulefilesdir)/$(python-pillow)
 $(python-pillow)-prefix = $(pkgdir)/$(python-pillow)
