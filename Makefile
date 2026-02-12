@@ -805,6 +805,7 @@ pkgs := $(pkgs) \
 	python-dask-2026.1.2 \
 	python-dateutil-2.8.2 \
 	python-distlib-0.3.1 \
+	python-distributed-2026.1.2 \
 	python-docutils-0.20.1 \
 	python-exceptiongroup-1.1.0 \
 	python-execnet-1.7.1 \
@@ -858,6 +859,7 @@ pkgs := $(pkgs) \
 	python-ldrb-2022.0.0 \
 	python-ldrb-2022.5.0 \
 	python-llvmlite-0.35.0 \
+	python-locket-1.0.0 \
 	python-mako-1.1.4 \
 	python-markupsafe-1.1.1 \
 	python-marshmallow-3.17.1 \
@@ -867,6 +869,7 @@ pkgs := $(pkgs) \
 	python-more-itertools-8.3.0 \
 	python-mpi4py-4.1.1 \
 	python-mpmath-1.1.0 \
+	python-msgpack-1.1.2 \
 	python-nose-1.3.7 \
 	python-numba-0.56.4 \
 	python-numpy-1.21.5 \
@@ -921,9 +924,11 @@ pkgs := $(pkgs) \
 	python-sphinxcontrib-serializinghtml-1.1.4 \
 	python-sympy-1.1 \
 	python-sympy-1.4 \
+	python-tblib-3.2.2 \
 	python-toml-0.10.1 \
 	python-tomli-1.2.3 \
 	python-toolz-1.1.0 \
+	python-tornado-6.5.4 \
 	python-tox-4.34.1 \
 	python-tqdm-4.64.0 \
 	python-typing_extensions-4.15.0 \
@@ -933,6 +938,7 @@ pkgs := $(pkgs) \
 	python-wheel-0.46.3 \
 	python-wikiextractor-3.0.6 \
 	python-xarray-0.15.1 \
+	python-zict-3.0.0 \
 	python-zipp-3.3.1 \
 	qperf-0.4.11 \
 	qt5-5.15.16 \

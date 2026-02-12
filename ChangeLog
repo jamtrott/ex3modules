@@ -15,6 +15,7 @@
 	* python-pyyaml 6.0.3
 	* python-lddl 0.1.0
 	* python-dask 2026.1.2
+	* python-distributed 2026.1.2
 
 	Upgrade:
 

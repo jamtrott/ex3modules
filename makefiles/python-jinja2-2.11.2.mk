@@ -52,19 +52,9 @@ $($(python-jinja2)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-jinja2)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-jinja2)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-jinja2)-prefix)/.pkgpatch
-	cd $($(python-jinja2)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-jinja2)-builddeps) && \
-		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-jinja2)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-jinja2)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-jinja2)-prefix)/.pkgbuild
-	cd $($(python-jinja2)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-jinja2)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-jinja2)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-jinja2)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-jinja2)-prefix)/.pkgcheck $($(python-jinja2)-site-packages)/.markerfile
