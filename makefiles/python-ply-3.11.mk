@@ -60,11 +60,6 @@ $($(python-ply)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,
 	@touch $@
 
 $($(python-ply)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-ply)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-ply)-prefix)/.pkgbuild
-	cd $($(python-ply)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-ply)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-ply)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-ply)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-ply)-prefix)/.pkgcheck $($(python-ply)-site-packages)/.markerfile

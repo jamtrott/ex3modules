@@ -25,6 +25,7 @@
 	python-setuptools 59.6.0 -> 82.0.0
 	python-mpi4py 3.1.4 -> 4.1.1
 	python-urllib3 1.25.11 -> 2.6.3
+	python-pillow 8.1.1 -> 12.1.1
 
 	Other:
 

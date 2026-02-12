@@ -845,6 +845,8 @@ pkgs := $(pkgs) \
 	python-future-0.18.2 \
 	python-gast-0.6.0 \
 	python-h5py-2.10.0 \
+	python-httpx-0.28.1 \
+	python-huggingface-hub-1.4.1 \
 	python-hypothesis-5.37.4 \
 	python-idna-2.9 \
 	python-imagesize-1.2.0 \
@@ -870,6 +872,7 @@ pkgs := $(pkgs) \
 	python-mpi4py-4.1.1 \
 	python-mpmath-1.1.0 \
 	python-msgpack-1.1.2 \
+	python-nltk-3.9.2 \
 	python-nose-1.3.7 \
 	python-numba-0.56.4 \
 	python-numpy-1.21.5 \
@@ -905,11 +908,13 @@ pkgs := $(pkgs) \
 	python-pythran-0.10.0 \
 	python-pytz-2020.1 \
 	python-pyyaml-6.0.3 \
+	python-regex-2026.1.15 \
 	python-requests-2.23.0 \
 	python-scikit-build-0.16.6 \
 	python-scipy-1.8.1 \
 	python-setuptools-82.0.0 \
 	python-setuptools_scm-9.2.2 \
+	python-shellingham-1.5.4 \
 	python-simplejson-3.17.6 \
 	python-six-1.15.0 \
 	python-snowballstemmer-2.0.0 \
@@ -931,6 +936,7 @@ pkgs := $(pkgs) \
 	python-tornado-6.5.4 \
 	python-tox-4.34.1 \
 	python-tqdm-4.64.0 \
+	python-typer-slim-0.23.0 \
 	python-typing_extensions-4.15.0 \
 	python-urllib3-2.6.3 \
 	python-virtualenv-20.0.35 \

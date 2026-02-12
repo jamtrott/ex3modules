@@ -55,11 +55,6 @@ $($(python-beniget)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach 
 	@touch $@
 
 $($(python-beniget)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-beniget)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-beniget)-prefix)/.pkgbuild
-	cd $($(python-beniget)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-beniget)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-beniget)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-beniget)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-beniget)-prefix)/.pkgcheck

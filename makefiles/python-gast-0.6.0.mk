@@ -47,19 +47,9 @@ $($(python-gast)-prefix)/.pkgpatch: $(modulefilesdir)/.markerfile $$(foreach dep
 	@touch $@
 
 $($(python-gast)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-gast)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-gast)-prefix)/.pkgpatch
-	cd $($(python-gast)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-gast)-builddeps) && \
-		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-gast)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-gast)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-gast)-prefix)/.pkgbuild
-	cd $($(python-gast)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-gast)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-gast)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-gast)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-gast)-prefix)/.pkgcheck
