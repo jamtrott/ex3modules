@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-numpy-1.21.5
+# python-numpy-1.26.4
 
-python-numpy-version = 1.21.5
+python-numpy-version = 1.26.4
 python-numpy = python-numpy-$(python-numpy-version)
 $(python-numpy)-description = Fundamental package for scientific computing with Python
 $(python-numpy)-url = https://www.numpy.org/
