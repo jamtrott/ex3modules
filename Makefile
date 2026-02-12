@@ -922,7 +922,7 @@ pkgs := $(pkgs) \
 	python-tox-4.34.1 \
 	python-tqdm-4.64.0 \
 	python-typing_extensions-4.15.0 \
-	python-urllib3-1.25.11 \
+	python-urllib3-2.6.3 \
 	python-virtualenv-20.0.35 \
 	python-wcwidth-0.1.9 \
 	python-wheel-0.46.3 \

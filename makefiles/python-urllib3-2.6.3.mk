@@ -1,5 +1,5 @@
 # ex3modules - Makefiles for installing software on the eX3 cluster
-# Copyright (C) 2022 James D. Trotter
+# Copyright (C) 2026 James D. Trotter
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-urllib3-1.25.11
+# python-urllib3-2.6.3
 
-python-urllib3-version = 1.25.11
+python-urllib3-version = 2.6.3
 python-urllib3 = python-urllib3-$(python-urllib3-version)
 $(python-urllib3)-description = HTTP client for Python
 $(python-urllib3)-url = https://urllib3.readthedocs.io/
-$(python-urllib3)-srcurl = https://files.pythonhosted.org/packages/76/d9/bbbafc76b18da706451fa91bc2ebe21c0daf8868ef3c30b869ac7cb7f01d/urllib3-1.25.11.tar.gz
+$(python-urllib3)-srcurl = https://files.pythonhosted.org/packages/c7/24/5f1b3bdffd70275f6661c76461e25f024d5a38a46f04aaca912426a2b1d3/urllib3-2.6.3.tar.gz
 $(python-urllib3)-src = $(pkgsrcdir)/$(notdir $($(python-urllib3)-srcurl))
 $(python-urllib3)-srcdir = $(pkgsrcdir)/$(python-urllib3)
 $(python-urllib3)-builddeps = $(python) $(python-pytest) $(python-pip)
@@ -52,18 +52,9 @@ $($(python-urllib3)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-urllib3)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-urllib3)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-urllib3)-prefix)/.pkgpatch
-	cd $($(python-urllib3)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-urllib3)-builddeps) && \
-		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-urllib3)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-urllib3)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-urllib3)-prefix)/.pkgbuild
-	# cd $($(python-urllib3)-srcdir) && \
-	# 	$(MODULE) use $(modulefilesdir) && \
-	# 	$(MODULE) load $($(python-urllib3)-builddeps) && \
-	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-urllib3)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-urllib3)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-urllib3)-prefix)/.pkgcheck $($(python-urllib3)-site-packages)/.markerfile
