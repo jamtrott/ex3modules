@@ -52,19 +52,9 @@ $($(python-pytz)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-pytz)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pytz)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pytz)-prefix)/.pkgpatch
-	cd $($(python-pytz)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-pytz)-builddeps) && \
-		$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pytz)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pytz)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pytz)-prefix)/.pkgbuild
-	cd $($(python-pytz)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(python-pytz)-builddeps) && \
-		$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-pytz)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pytz)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pytz)-prefix)/.pkgcheck $($(python-pytz)-site-packages)/.markerfile

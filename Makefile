@@ -844,7 +844,9 @@ pkgs := $(pkgs) \
 	python-fsspec-2026.2.0 \
 	python-future-0.18.2 \
 	python-gast-0.6.0 \
+	python-h11-0.16.0 \
 	python-h5py-2.10.0 \
+	python-httpcore-1.0.9 \
 	python-httpx-0.28.1 \
 	python-huggingface-hub-1.4.1 \
 	python-hypothesis-5.37.4 \
@@ -938,6 +940,7 @@ pkgs := $(pkgs) \
 	python-tqdm-4.64.0 \
 	python-typer-slim-0.23.0 \
 	python-typing_extensions-4.15.0 \
+	python-tzdata-2025.3 \
 	python-urllib3-2.6.3 \
 	python-virtualenv-20.0.35 \
 	python-wcwidth-0.1.9 \
