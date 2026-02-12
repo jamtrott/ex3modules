@@ -327,6 +327,11 @@ export C_INCLUDE_PATH := $(UCX_ROOT)/include$(if $(C_INCLUDE_PATH),:$(C_INCLUDE_
 export CPLUS_INCLUDE_PATH := $(UCX_ROOT)/include$(if $(CPLUS_INCLUDE_PATH),:$(CPLUS_INCLUDE_PATH),)
 export LIBRARY_PATH := $(UCX_ROOT)/lib:$(UCX_ROOT)/lib64$(if $(LIBRARY_PATH),:$(LIBRARY_PATH),)
 export LD_LIBRARY_PATH := $(UCX_ROOT)/lib:$(UCX_ROOT)/lib64$(if $(LD_LIBRARY_PATH),:$(LD_LIBRARY_PATH),)
+else ifneq ($(shell which ucx_info),)
+UCX_INFO = $(shell which ucx_info)
+$(info Using $(UCX_INFO) ($(shell $(UCX_INFO) -v | head -n 1)))
+else
+$(warning Warning: UCX not found - some modules may not build.)
 endif
 
 #
