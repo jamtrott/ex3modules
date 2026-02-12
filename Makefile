@@ -912,6 +912,7 @@ pkgs := $(pkgs) \
 	python-pyyaml-6.0.3 \
 	python-regex-2026.1.15 \
 	python-requests-2.32.5 \
+	python-safetensors-0.7.0 \
 	python-scikit-build-0.16.6 \
 	python-scipy-1.8.1 \
 	python-setuptools-82.0.0 \
