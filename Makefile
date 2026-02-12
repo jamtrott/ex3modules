@@ -932,6 +932,7 @@ pkgs := $(pkgs) \
 	python-sphinxcontrib-serializinghtml-1.1.4 \
 	python-sympy-1.1 \
 	python-sympy-1.4 \
+	python-sympy-1.14.0 \
 	python-tblib-3.2.2 \
 	python-toml-0.10.1 \
 	python-tomli-1.2.3 \
