@@ -909,7 +909,7 @@ pkgs := $(pkgs) \
 	python-pytz-2020.1 \
 	python-pyyaml-6.0.3 \
 	python-regex-2026.1.15 \
-	python-requests-2.23.0 \
+	python-requests-2.32.5 \
 	python-scikit-build-0.16.6 \
 	python-scipy-1.8.1 \
 	python-setuptools-82.0.0 \

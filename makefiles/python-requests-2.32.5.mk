@@ -16,13 +16,13 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# python-requests-2.23.0
+# python-requests-2.32.5
 
-python-requests-version = 2.23.0
+python-requests-version = 2.32.5
 python-requests = python-requests-$(python-requests-version)
 $(python-requests)-description = HTTP library for Python
 $(python-requests)-url = https://requests.readthedocs.io/
-$(python-requests)-srcurl = https://files.pythonhosted.org/packages/f5/4f/280162d4bd4d8aad241a21aecff7a6e46891b905a4341e7ab549ebaf7915/requests-2.23.0.tar.gz
+$(python-requests)-srcurl = https://files.pythonhosted.org/packages/c9/74/b3ff8e6c8446842c3f5c837e9c3dfcfe2018ea6ecef224c710c85ef728f4/requests-2.32.5.tar.gz
 $(python-requests)-src = $(pkgsrcdir)/$(notdir $($(python-requests)-srcurl))
 $(python-requests)-srcdir = $(pkgsrcdir)/$(python-requests)
 $(python-requests)-builddeps = $(python) $(python-chardet) $(python-idna) $(python-urllib3) $(python-certifi) $(python-pip)
