@@ -60,6 +60,7 @@ $($(gmsh)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(g
 		$(CMAKE) .. -DCMAKE_INSTALL_PREFIX=$($(gmsh)-prefix) \
 			-DCMAKE_INSTALL_LIBDIR=lib \
 			-DENABLE_BUILD_SHARED=ON \
+			-DENABLE_OPENMP=ON \
 			-DENABLE_GRAPHICS=OFF \
 			-DENABLE_OCC=ON \
 			-DFREETYPE_INCLUDE_DIR_freetype2="$${FREETYPE_INCDIR}/freetype2" \
