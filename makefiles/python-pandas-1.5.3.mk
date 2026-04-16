@@ -25,7 +25,7 @@ $(python-pandas)-url = https://pandas.pydata.org/
 $(python-pandas)-srcurl = https://files.pythonhosted.org/packages/74/ee/146cab1ff6d575b54ace8a6a5994048380dc94879b0125b25e62edcb9e52/pandas-1.5.3.tar.gz
 $(python-pandas)-src = $(pkgsrcdir)/$(notdir $($(python-pandas)-srcurl))
 $(python-pandas)-srcdir = $(pkgsrcdir)/$(python-pandas)
-$(python-pandas)-builddeps = $(python) $(python-cython) $(blas) $(mpi) $(python-numpy) $(pyhon-pytz) $(python-dateutil) $(python-six) $(python-pytest) $(python-pip)
+$(python-pandas)-builddeps = $(python) $(python-cython) $(blas) $(mpi) $(python-numpy) $(pyhon-pytz) $(python-dateutil) $(python-six) $(python-pytest) $(python-pip) $(python-setuptools)
 $(python-pandas)-prereqs = $(python)  $(python-cython) $(python-numpy) $(pyhon-pytz) $(python-dateutil) $(python-six)
 $(python-pandas)-modulefile = $(modulefilesdir)/$(python-pandas)
 $(python-pandas)-prefix = $(pkgdir)/$(python-pandas)
@@ -52,18 +52,9 @@ $($(python-pandas)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-pandas)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pandas)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pandas)-prefix)/.pkgpatch
-	# cd $($(python-pandas)-srcdir) && \
-	# 	$(MODULESINIT) && \
-	# 	$(MODULE) use $(modulefilesdir) && \
-	# 	$(MODULE) load $($(python-pandas)-builddeps) && \
-	# 	$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-pandas)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pandas)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pandas)-prefix)/.pkgbuild
-	# cd $($(python-pandas)-srcdir) && \
-	# 	$(MODULE) use $(modulefilesdir) && \
-	# 	$(MODULE) load $($(python-pandas)-builddeps) && \
-	# 	$(PYTHON) setup.py test
 	@touch $@
 
 $($(python-pandas)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-pandas)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-pandas)-prefix)/.pkgcheck $($(python-pandas)-site-packages)/.markerfile
@@ -72,7 +63,7 @@ $($(python-pandas)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-pandas)-builddeps) && \
 		PYTHONPATH=$($(python-pandas)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --no-deps --ignore-installed --prefix=$($(python-pandas)-prefix)
+		$(PYTHON) -m pip install . --no-deps --ignore-installed --no-build-isolation --target=$($(python-pandas)-prefix)
 	@touch $@
 
 $($(python-pandas)-modulefile): $(modulefilesdir)/.markerfile $($(python-pandas)-prefix)/.pkginstall

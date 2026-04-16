@@ -64,18 +64,9 @@ $($(python-scipy)-site-packages)/.markerfile:
 	@touch $@
 
 $($(python-scipy)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-scipy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-scipy)-prefix)/.pkgpatch
-	cd $($(python-scipy)-srcdir) && \
-	 	$(MODULESINIT) && \
-	 	$(MODULE) use $(modulefilesdir) && \
-	 	$(MODULE) load $($(python-scipy)-builddeps) && \
-	 	$(PYTHON) setup.py build
 	@touch $@
 
 $($(python-scipy)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-scipy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-scipy)-prefix)/.pkgbuild
-	# cd $($(python-scipy)-srcdir) && \
-	# 	$(MODULE) use $(modulefilesdir) && \
-	# 	$(MODULE) load $($(python-scipy)-builddeps) && \
-	# 	$(PYTHON) runtests.py
 	@touch $@
 
 $($(python-scipy)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(python-scipy)-builddeps),$(modulefilesdir)/$$(dep)) $($(python-scipy)-prefix)/.pkgcheck $($(python-scipy)-site-packages)/.markerfile
@@ -84,7 +75,7 @@ $($(python-scipy)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach 
 		$(MODULE) use $(modulefilesdir) && \
 		$(MODULE) load $($(python-scipy)-builddeps) && \
 		PYTHONPATH=$($(python-scipy)-site-packages):$${PYTHONPATH} \
-		$(PYTHON) -m pip install . --verbose --no-deps --ignore-installed --no-cache-dir --prefix=$($(python-scipy)-prefix)
+		$(PYTHON) -m pip install . --verbose --no-deps --ignore-installed --no-build-isolation --no-cache-dir --prefix=$($(python-scipy)-prefix)
 	@touch $@
 
 $($(python-scipy)-modulefile): $(modulefilesdir)/.markerfile $($(python-scipy)-prefix)/.pkginstall
