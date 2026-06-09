@@ -914,7 +914,7 @@ pkgs := $(pkgs) \
 	python-safetensors-0.7.0 \
 	python-scikit-build-0.16.6 \
 	python-scipy-1.8.1 \
-	python-setuptools-82.0.0 \
+	python-setuptools-47.1.1 \
 	python-setuptools_scm-9.2.2 \
 	python-shellingham-1.5.4 \
 	python-simplejson-3.17.6 \
