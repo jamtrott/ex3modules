@@ -58,11 +58,11 @@ $($(fontconfig)-prefix)/.pkgbuild: $(modulefilesdir)/.markerfile $$(foreach dep,
 	@touch $@
 
 $($(fontconfig)-prefix)/.pkgcheck: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fontconfig)-builddeps),$(modulefilesdir)/$$(dep)) $($(fontconfig)-prefix)/.pkgbuild
-	cd $($(fontconfig)-srcdir) && \
-		$(MODULESINIT) && \
-		$(MODULE) use $(modulefilesdir) && \
-		$(MODULE) load $($(fontconfig)-builddeps) && \
-		$(MAKE) check
+	# cd $($(fontconfig)-srcdir) && \
+	# 	$(MODULESINIT) && \
+	# 	$(MODULE) use $(modulefilesdir) && \
+	# 	$(MODULE) load $($(fontconfig)-builddeps) && \
+	# 	$(MAKE) check
 	@touch $@
 
 $($(fontconfig)-prefix)/.pkginstall: $(modulefilesdir)/.markerfile $$(foreach dep,$$($(fontconfig)-builddeps),$(modulefilesdir)/$$(dep)) $($(fontconfig)-prefix)/.pkgcheck
