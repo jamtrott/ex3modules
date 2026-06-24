@@ -16,9 +16,9 @@
 #
 # Authors: James D. Trotter <james@simula.no>
 #
-# expat-2.2.9
+# expat-2.8.1
 
-expat-version = 2.2.9
+expat-version = 2.8.1
 expat = expat-$(expat-version)
 $(expat)-description = C library for parsing XML
 $(expat)-url = https://libexpat.github.io/

@@ -534,7 +534,7 @@ pkgs := $(pkgs) \
 	eigen-3.3.7 \
 	elfutils-0.189 \
 	everybeam-0.8.0 \
-	expat-2.2.9 \
+	expat-2.8.1 \
 	exprtk-93a9f44f9 \
 	fenics-dolfin-2018-src-2018.1.0.post1 \
 	fenics-dolfin-2018.1.0.post1 \
